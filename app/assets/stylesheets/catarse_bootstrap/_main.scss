@@ -239,7 +239,7 @@ p {
 .text-field.error {
   margin-bottom: 5px;
   border-color: #e86666;
-  background-color: rgba(232, 102, 102, 0.14);
+  background-color: rgba(232, 102, 102, 0.12);
 }
 .text-field.bottom {
   border-top-left-radius: 0px;
@@ -1487,7 +1487,6 @@ p {
 }
 .meter-fill {
   position: relative;
-  width: 67%;
   height: 100%;
   border-radius: 3px;
   background-color: #00b22d;
@@ -2807,6 +2806,7 @@ html.w-mod-js *[data-ix="display-none-on-load-2"] {
     display: block;
   }
   .header-search {
+    margin-left: 0px;
     font-size: 12px;
   }
   .header-logo {
@@ -2816,6 +2816,7 @@ html.w-mod-js *[data-ix="display-none-on-load-2"] {
   }
   .postfix {
     height: 35px;
+    padding-top: 7px;
   }
   .btn-large {
     padding-top: 16px;
