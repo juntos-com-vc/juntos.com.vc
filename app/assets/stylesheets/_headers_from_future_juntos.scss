@@ -299,14 +299,14 @@
   position: static;
   margin-top: 80px;
   padding-bottom: 45px;
-  background-color: #3f4752;
+  background-color: #424342;
 }
 .link-footer {
   position: static;
   display: block;
   padding-top: 7px;
   padding-bottom: 7px;
-  color: rgba(241, 244, 244, 0.54);
+  color: white;
   text-decoration: none;
   line-height: 20px;
 }
@@ -324,8 +324,22 @@
 .footer-full-copyleft {
   margin-top: 30px;
   padding-top: 25px;
-  border-top: 1px solid rgba(121, 128, 139, 0.76);
   color: rgba(241, 244, 244, 0.54);
+}
+.juntos {
+  display: inline-block;
+  padding-top: 37px;
+  width: 640px;
+  text-align: center;
+}
+.engage {
+  background: url("/assets/engage_logo.png") right bottom no-repeat;
+  display: inline-block;
+  float: right;
+  height: 55px;
+  padding-right: 110px;
+  padding-top: 37px;
+  margin-right: 20px;
 }
 .btn {
   display: block;
