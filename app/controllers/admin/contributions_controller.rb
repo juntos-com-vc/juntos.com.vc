@@ -1,5 +1,5 @@
 class Admin::ContributionsController < Admin::BaseController
-  layout 'catarse_bootstrap'
+  layout 'juntos_bootstrap'
   has_scope :project_name_contains, :search_on_payment_data, :with_state, :search_on_user, :search_on_acquirer
   has_scope :user_name_contains, :user_email_contains
   has_scope :credits, type: :boolean

@@ -1,5 +1,5 @@
 class Admin::FinancialsController < Admin::BaseController
-  layout 'catarse_bootstrap'
+  layout 'juntos_bootstrap'
   inherit_resources
   defaults  resource_class: Project, collection_name: 'projects', instance_name: 'project'
 

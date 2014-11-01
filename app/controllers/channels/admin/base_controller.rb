@@ -5,7 +5,7 @@ module Channels::Admin
 
   class BaseController < ::Admin::BaseController
     inherit_resources
-    layout 'catarse_bootstrap'
+    layout 'juntos_bootstrap'
 
     before_filter do
       authorize Channels::Admin, :access?

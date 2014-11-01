@@ -1,0 +1,40 @@
+doctype 5
+html
+  head
+    title= content_for(:title)
+
+    = stylesheet_link_tag 'catarse_bootstrap/catarse'
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+    = content_for(:stylesheets)
+    = favicon_link_tag 'favicon.ico'
+    = csrf_meta_tag
+    meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"
+
+    - if content_for? :meta_tags
+      /project specific meta tags
+      = yield :meta_tags
+    - else
+      /meta tags for the whole site
+      meta name="description"         content=t('site.description')
+      meta name="keywords"            content=t('site.keywords')
+      meta property="og:title"        content=( channel.try(:name) || t('site.title'))
+      meta property="og:type"         content=:cause
+      meta property="og:url"          content=root_url
+      meta property="og:image"        content=CatarseSettings[:company_logo]
+      meta property="og:site_name"    content=CatarseSettings[:company_name]
+      meta property="fb:app_id"       content=CatarseSettings[:facebook_app_id]
+      meta property="og:description"  content=( channel.try(:description) || t('projects.index_header.title') + '. ' +  t('projects.index_header.subtitle'))
+
+  body#catarse_bootstrap[data-namespace=namespace data-controller-name=controller_name data-action=action_name data-user="#{current_user.try(:to_analytics_json)}"]
+    = render_facebook_sdk
+    = render 'layouts/flash' if notice.present?
+    = render 'layouts/webfont'
+
+    .content[data-controller-class=controller.class.name.downcase data-controller-name=controller.controller_name.downcase data-action=controller.action_name.downcase data-locale="#{I18n.locale}" data-user="#{current_user.to_json}"]= yield
+    = render 'layouts/crazzy_egg'
+    = render 'layouts/hot_jar'
+  = javascript_include_tag :application
+  = render_google_analytics_script
+  = render_mixpanel_script
+  = render '/layouts/new_zendesk'
+  = render 'layouts/intercom'

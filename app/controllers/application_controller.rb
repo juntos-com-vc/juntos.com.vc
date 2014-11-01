@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def use_catarse_boostrap
-    devise_controller? ? 'catarse_bootstrap' : 'application'
+    devise_controller? ? 'juntos_bootstrap' : 'application'
   end
 
   def redirect_back_or_default(default)

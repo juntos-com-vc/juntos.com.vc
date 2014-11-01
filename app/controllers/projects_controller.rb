@@ -114,6 +114,6 @@ class ProjectsController < ApplicationController
   end
 
   def use_catarse_boostrap
-    ["new", "create", "show", "about_mobile"].include?(action_name) ? 'catarse_bootstrap' : 'application'
+    ["new", "create", "show", "about_mobile"].include?(action_name) ? 'juntos_bootstrap' : 'application'
   end
 end

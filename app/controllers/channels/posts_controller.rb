@@ -1,5 +1,5 @@
 class Channels::PostsController < Channels::BaseController
-  layout 'catarse_bootstrap'
+  layout 'juntos_bootstrap'
   inherit_resources
 
   private

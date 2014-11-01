@@ -1,5 +1,5 @@
 class Channels::ProfilesController < Channels::BaseController
-  layout 'catarse_bootstrap'
+  layout 'juntos_bootstrap'
   inherit_resources
   actions :show, :edit, :update
   custom_actions resource: [:how_it_works]

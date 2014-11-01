@@ -1,0 +1,38 @@
+- contribution = @notification.contribution
+
+|Olá, #{contribution.user.name}!
+br
+br
+| Infelizmente o projeto #{link_to(contribution.project.name, project_by_slug_url(permalink: contribution.project.permalink))}
+| que você apoiou não atingiu a meta estabelecida e não foi financiado no #{CatarseSettings[:company_name]}.
+br
+br
+| Em função disto, você recebeu #{contribution.display_value} em créditos para apoiar outros projetos.
+'  Aqui temos uma seleção que pode te interessar:
+br
+br
+-contribution.user.recommended_projects.limit(3).each do |project|
+  |#{link_to(project.name, project_by_slug_url(permalink: project.permalink, ref: 'notificacao_projeto_nao_financiado'))}
+  br
+  |#{project.headline}
+  br
+  br
+br/
+br/
+| Lembrando que apoios utilizando créditos poderão ser realizados <strong>até o dia 10/11</strong>, 
+' conforme as #{link_to 'novas regras', 'http://blog.catarse.me/simplificacao-dos-reembolsos-e-o-fim-dos-creditos/', target: '__blank'} divulgadas pelo #{CatarseSettings[:company_name]}. 
+' Após esse prazo, entraremos em contato para reembolsar o valor do apoio.
+br
+br
+| Caso prefira, você pode pedir o #{link_to("reembolso do seu apoio", credits_user_url(contribution.user))}.
+br
+br
+| Lembrando que a chave de identificação do seu apoio é: #{contribution.payment_id}
+br
+br
+| Se ficou com alguma dúvida, entre em contato conosco respondendo a esta mensagem ou através do e-mail #{mail_to CatarseSettings[:email_contact]}
+br
+br
+|Um abraço,
+br
+| #{CatarseSettings[:company_name]}
