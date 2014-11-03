@@ -24,6 +24,20 @@
   float: left;
 }
 
+.label {
+  background-color: #FE6327;
+  position: absolute;
+  top: 50px;
+  width: 185px;
+  height: 50px;
+  z-index: 2;
+  text-align: center;
+  p {
+    margin-top: 8px;
+    color: white;
+  }
+}
+
 .header-link {
   height: 50px;
   position: static;
@@ -231,7 +245,7 @@
 .dropdown-toggle {
   position: relative;
   display: block;
-  padding: 10px 20px;
+  padding: 5px 20px;
 }
 .dropdown-toggle.w--open {
   position: relative;
@@ -249,7 +263,7 @@
   position: relative;
   z-index: 15;
   width: 95px;
-  margin-top: -10px;
+  /*margin-top: -10px;*/
   margin-right: 0px;
   float: right;
   -webkit-transition: all 500ms ease;
@@ -297,7 +311,6 @@
 }
 .main-footer.main-footer-neg {
   position: static;
-  margin-top: 80px;
   padding-bottom: 45px;
   background-color: #424342;
 }

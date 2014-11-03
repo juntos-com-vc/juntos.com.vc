@@ -1,7 +1,7 @@
 $green: #00B22D
 $blue-one: #3F4752
 $blue-two: #79808B
-$orange: #F69219
+$orange: #FF8A41
 
 body
   font-family: proxima-nova
@@ -9,6 +9,21 @@ body
     font-style: italic
   b, strong
     font-weight: 700
+
+  .partners
+    height: 200px
+    background-color: #CCCCCC
+    .content
+      +grid-system(16)
+      .title
+        +grid(16)
+        h2
+          padding: 20px 10px
+          font-family: proxima-nova
+          color: #808080
+          font-size: 30px
+          font-weight: bold
+          text-decoration: none
 
   #page_content
     .container
@@ -32,27 +47,26 @@ body
         height: 30px
         a
           font-family: proxima-nova
-          color: $blue-one
-          font-size: 24px
+          color: $orange
+          font-size: 30px
           font-weight: bold
           text-decoration: none
+
       .more-projects
         float: right
         color: $orange
         text-decoration: none
         margin: 8px 0
-        font-size: 13px
-        font-weight: bold
-        background: url("/assets/catarse_bootstrap/catarse-assets.png") no-repeat scroll 178px -232px transparent
-        padding: 0 20px 0 0
+        font-size: 15px
+        //padding: 0 20px 0 0
         text-indent: -25px
         text-align: right
-        width: 200px
+        width: 250px
         &:hover
           text-decoration: underline
 
       .projects
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        //border-bottom: 1px solid rgba(0, 0, 0, 0.1)
         display: inline-block
         padding-top: 15px
         margin-bottom: 20px

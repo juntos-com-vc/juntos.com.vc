@@ -74,9 +74,9 @@
               = link_to post.url, target: '__blank', class: 'post-resume' do
                 = truncate(post.summary, length: 130).html_safe
 
-      section.main-sidebar-division
-        h3.title= t('.sidebar.titles.newsletter')
-        = render 'layouts/newsletter'
+      /section.main-sidebar-division
+        /h3.title= t('.sidebar.titles.newsletter')
+        /= render 'layouts/newsletter'
 
 
       section.main-sidebar-division
@@ -87,3 +87,8 @@
         = link_to t('.sidebar.titles.twitter'), "https://twitter.com/#{CatarseSettings['twitter_username']}", class: 'twitter-timeline', data:{widget_id:"375343843308089345", chrome:"nofooter"}
 
     .clearfix
+
+  section.partners
+    .content
+      .title
+        h2 = "Parceiros"

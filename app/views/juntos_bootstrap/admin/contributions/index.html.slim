@@ -66,13 +66,8 @@
                 = image_tag contribution.user.display_image, class: 'user_img'
               .user_id= best_in_place [:admin, contribution], :user_id, method: :put, type: :input
             td= best_in_place [:admin, contribution], :value, method: :put, type: :input
-<<<<<<< HEAD
             td= contribution.payment_service_fee
             td.reward.w-col-1.w-col.project-events-dropdown title=("#{contribution.reward.display_minimum} - #{contribution.reward.description}" if contribution.reward)
-=======
-            td= best_in_place [:admin, contribution], :payment_service_fee, method: :put, type: :input
-            td.reward.large-1.columns.project-events-dropdown title=("#{contribution.reward.display_minimum} - #{contribution.reward.description}" if contribution.reward)
->>>>>>> a6012be81e966e09fc6704b63cc61de4fdf1e0f5
               - if contribution.reward
                 span = contribution.reward.display_minimum
               - else
