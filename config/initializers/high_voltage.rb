@@ -1,1 +1,1 @@
-HighVoltage.layout = 'catarse_bootstrap'
+HighVoltage.layout = 'juntos_bootstrap'
