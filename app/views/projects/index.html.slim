@@ -1,6 +1,30 @@
 .banner
   .content
   = link_to t('.banner'), "http://pesquisa.catarse.me", class: "more-projects"
+
+.transparency-headline
+  .transparency-wrapper
+    .follow
+      p Acompanhe em tempo real:
+      .wihtout-comission Sem comissão!
+.transparency-values
+  .transparency-wrapper
+    .collectect-money
+      h2 1.340.795,75
+      b valor em R$
+      br
+      span arrecadados
+    .donations-number
+      h2 6.862
+      b doações
+      br
+      span realizadas
+    .succesfull-projects
+      h2 85
+      b projetos
+      br
+      span apoiados
+
 #page_content
   .container
     .main
@@ -50,9 +74,9 @@
               = link_to post.url, target: '__blank', class: 'post-resume' do
                 = truncate(post.summary, length: 130).html_safe
 
-      section.main-sidebar-division
-        h3.title= t('.sidebar.titles.newsletter')
-        = render 'layouts/newsletter'
+      /section.main-sidebar-division
+        /h3.title= t('.sidebar.titles.newsletter')
+        /= render 'layouts/newsletter'
 
 
       section.main-sidebar-division
@@ -63,3 +87,8 @@
         = link_to t('.sidebar.titles.twitter'), "https://twitter.com/#{CatarseSettings['twitter_username']}", class: 'twitter-timeline', data:{widget_id:"375343843308089345", chrome:"nofooter"}
 
     .clearfix
+
+  section.partners
+    .content
+      .title
+        h2 = "Parceiros"

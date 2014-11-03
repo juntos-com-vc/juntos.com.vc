@@ -1,6 +1,9 @@
 $green-one: #00B22D
 $blue-one: #3F4752
 $blue-two: #79808B
+$orange: #FEB84C
+$purple: #4E6FB5
+$ice: #F2F2F2
 
 .project
   position: relative
@@ -11,15 +14,40 @@ $blue-two: #79808B
     z-index: 20
 
 .project-box
-  height: 400px
-  box-shadow: 0 1px 4px darken(lightgray, 10%)
+  background-color: $orange
+  height: 440px
+  //box-shadow: 0 1px 4px darken(lightgray, 10%)
   position: relative
   margin: 0 20px 1.5em 0
   +transition(all .2s)
   float: left
   width: 220px
+  -webkit-border-top-left-radius: 10px
+  -webkit-border-top-right-radius: 10px
+  -moz-border-radius-topleft: 10px
+  -moz-border-radius-topright: 10px
+  border-top-left-radius: 10px
+  border-top-right-radius: 10px
   &:nth-child(3n+0)
     margin: 0 0 1.5em 0
+
+  .project-title
+    height: 65px
+    margin: 15px 10px 0
+
+  .category
+    height: 25px
+    background-color: $purple
+    p
+      margin-left: 10px
+      padding-top: 5px
+      color: white
+    img
+      position: absolute
+      right: 10px
+      top: 65px
+
+
 
   .status-flag
     position: absolute
@@ -34,11 +62,10 @@ $blue-two: #79808B
 
   .title
     margin: .4em 0
-    line-height: 1.1em
+    line-height: 1.4em
     a
-      color: $blue-one
-      font-weight: bold
-      font-size: 0.95em
+      color: white
+      font-size: 1.2em
       &:hover
         text-decoration: underline !important
 
@@ -47,22 +74,48 @@ $blue-two: #79808B
 
   .headline
     font-size: .8em
-    margin: .8em 0 .4em 0
+    margin: .4em 0 .4em 0
     line-height: 1.4em
     font-weight: 400
     height: 70px
-    a
-      color: $blue-two
 
   .status
     border-top: 1px solid rgba(0, 0, 0, 0.1)
     bottom: 0px
     position: absolute
     width: 100%
-    background: #F8F8F8
-    color: $blue-two
+    background: $ice
+
     span
       color: $blue-one
+
+    .author
+      a
+        font-size: 0.9em
+        color: $orange
+      padding: 10px
+
+    .circle
+      width: 50%
+      padding-bottom: 5px
+      display: inline-block
+      .percent
+        color: #4E6FB5
+        font-size: 0.9em !important
+        line-height: 0.5em
+        width: 60%
+        margin: 0 auto
+        transform: translateY(100%)
+        -webkit-transform: translateY(100%)
+        -ms-transform: translateY(100%)
+        span
+          font-size: 12px
+
+    .info
+      display: inline-block
+      width: 50%
+      float: right
+
 
   .progress-percent
     font-size: .6em
@@ -86,17 +139,21 @@ $blue-two: #79808B
       +background-image(linear-gradient(0deg,lighten($green, 5%) 0%,$green 1%,lighten($green, 5%) 100%,lighten($green, 15%) 100%))
 
   .time-remaining, .money-raised
-    float: left
-    padding: 1em 0
-    text-transform: uppercase
-    font-size: .6em
+    float: right
+    padding: 0.3em 0
+    font-size: .7em
+    text-align: right
     color: $blue-two
     span
+
       display: block
       font-weight: bold
-      font-size: 1.4em
+      font-size: 1.2em
       text-transform: none
-      margin-bottom: .2em
+      margin-bottom: .1em
+      color: $orange
+      b
+        font-size: 1.7em
 
   .money-raised
     float: right

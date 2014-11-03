@@ -1,24 +1,52 @@
 - target = defined?(embed_link) ? '__blank' : ''
 .project-box[itemscope itemtype="http://schema.org/CreativeWork" class=(custom_class if defined?(custom_class))]
   meta[itemprop="dateCreated" content=project.created_at.to_date]
-  - if project.expired?
-    .status-flag
-      = link_to project_by_slug_path(permalink: project.permalink), target: target do
-        = project.status_flag
-  .image = link_to image_tag(project.display_image, size: '220x172'), project_by_slug_path(project.permalink), title: project.name, target: target
-  .padding
+  .project-title
     h4.title    = link_to truncate(project.name, length: 50, separator: ''), project_by_slug_path(project.permalink), title: project.name, target: target
-    p.headline  = link_to truncate(project.headline, length: 140), project_by_slug_path(project.permalink), title: project.headline, target: target
+
+  .category
+    p = project.category.name_pt
+    = image_tag('juntos/icone_placeholder.png', class: 'category-image')
+
+  /- if project.expired?
+    /.status-flag
+      /= link_to project_by_slug_path(permalink: project.permalink), target: target do
+        /= project.status_flag
+  .image = link_to image_tag(project.display_image, size: '220x172'), project_by_slug_path(project.permalink), title: project.name, target: target
+
   .status
+    .author
+      = link_to project.user.name, project.user
     .padding
-      p.progress-percent = t('.progress_html', percent: project.progress)
-      .progress-bar = project.progress_bar
-      = link_to(project_by_slug_path(project.permalink), target: target, title: project.name, class: 'time-remaining') do
-        - unless project.expired?
+      p.headline  = link_to truncate(project.headline, length: 140), project_by_slug_path(project.permalink), title: project.headline, target: target
+    .padding
+      .circle
+        - circle_id = (project.id + Time.now.to_f).to_s
+        .project_progress id="#{circle_id}"
+        javascript:
+          (function() {
+            Circles.create({ 
+              id: "#{circle_id}", radius: 40, value: "#{project.progress}", 
+              text: "<div class='percent'>#{project.progress}%<span>da meta</span></div>",
+              colors: ['#CCC', "#4E6FB5"],
+              duration: 0,
+              width: 7
+            });
+          })();
+      .info
+        .time-remaining
           = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit])
-        - else
-          span = t(".display_status.#{project.display_status}").capitalize
-          = project.display_expires_at
-      = link_to t('.pledged_html', value: number_to_currency(project.pledged, precision: 0)), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
+        .collected-money
+          = link_to t('.pledged_html', value: number_to_currency(project.pledged, precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
+
+      /p.progress-percent = t('.progress_html', percent: project.progress)
+      /.progress-bar = project.progress_bar
+      /= link_to(project_by_slug_path(project.permalink), target: target, title: project.name, class: 'time-remaining') do
+        /- unless project.expired?
+          /= t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit])
+        /- else
+          /span = t(".display_status.#{project.display_status}").capitalize
+          /= project.display_expires_at
+      /= link_to t('.pledged_html', value: number_to_currency(project.pledged, precision: 0)), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
 
 

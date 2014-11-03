@@ -2,6 +2,8 @@
   .w-row
     .w-col.w-col-9.w-col-small-6.w-col-tiny-6.w-clearfix
       = link_to (image_tag "juntos/logo-small.png"), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
+      .label
+        p Financiamento coletivo de projetos sociais
       = yield :header_controls
     .w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-clearfix
       - if current_user

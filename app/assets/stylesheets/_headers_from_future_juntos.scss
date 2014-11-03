@@ -24,6 +24,20 @@
   float: left;
 }
 
+.label {
+  background-color: #FE6327;
+  position: absolute;
+  top: 50px;
+  width: 185px;
+  height: 50px;
+  z-index: 2;
+  text-align: center;
+  p {
+    margin-top: 8px;
+    color: white;
+  }
+}
+
 .header-link {
   height: 50px;
   position: static;
@@ -231,7 +245,7 @@
 .dropdown-toggle {
   position: relative;
   display: block;
-  padding: 10px 20px;
+  padding: 5px 20px;
 }
 .dropdown-toggle.w--open {
   position: relative;
@@ -249,7 +263,7 @@
   position: relative;
   z-index: 15;
   width: 95px;
-  margin-top: -10px;
+  /*margin-top: -10px;*/
   margin-right: 0px;
   float: right;
   -webkit-transition: all 500ms ease;
@@ -297,16 +311,15 @@
 }
 .main-footer.main-footer-neg {
   position: static;
-  margin-top: 80px;
   padding-bottom: 45px;
-  background-color: #3f4752;
+  background-color: #424342;
 }
 .link-footer {
   position: static;
   display: block;
   padding-top: 7px;
   padding-bottom: 7px;
-  color: rgba(241, 244, 244, 0.54);
+  color: white;
   text-decoration: none;
   line-height: 20px;
 }
@@ -324,8 +337,22 @@
 .footer-full-copyleft {
   margin-top: 30px;
   padding-top: 25px;
-  border-top: 1px solid rgba(121, 128, 139, 0.76);
   color: rgba(241, 244, 244, 0.54);
+}
+.juntos {
+  display: inline-block;
+  padding-top: 37px;
+  width: 640px;
+  text-align: center;
+}
+.engage {
+  background: url("/assets/engage_logo.png") right bottom no-repeat;
+  display: inline-block;
+  float: right;
+  height: 55px;
+  padding-right: 110px;
+  padding-top: 37px;
+  margin-right: 20px;
 }
 .btn {
   display: block;
