@@ -1,6 +1,7 @@
 $sidebar-title: #3F4752
 $sidebar-text: #79808E
 $sidebar-link: #F69219
+$explore-sidebar-link: #FEB84C
 
 .main-sidebar
   -webkit-box-sizing: border-box
@@ -9,9 +10,6 @@ $sidebar-link: #F69219
   display: inline-block
   width: 220px
   padding: 40px 0 0 20px
-
-.sidebar-discover
-  padding: 105px 0 0 20px
 
 .main-sidebar-division
   padding: 20px 0
@@ -59,3 +57,11 @@ $sidebar-link: #F69219
 
   .selected
     font-weight: bold
+
+.sidebar-discover
+  padding: 0 0 0 20px
+  .title
+    font-size: 1em
+    text-transform: capitalize
+  .explore-link
+    color: $explore-sidebar-link
