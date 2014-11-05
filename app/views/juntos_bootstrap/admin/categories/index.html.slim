@@ -1,19 +1,20 @@
 = render 'shared/header_big'
 br
 .w-container
+  br
   .w-row.admin
     .w-col.w-col-3
       h1= @title = t('.title')
     .w-col.w-col-3.w-col-push-6
-      = link_to 'New', new_admin_category_path
-
+      = link_to t('.new'), new_admin_category_path, class: 'link'
+  br
   .w-row
     table.w-col.w-col-12
       thead
         tr
-          th.w-col-4.w-col= t('.name.pt')
-          th.w-col-4.w-col= t('.name.en')
-          th.w-col-2.w-col= t('.color')
+          th.w-col-4.w-col= Category.human_attribute_name(:name_pt)
+          th.w-col-4.w-col= Category.human_attribute_name(:name_en)
+          th.w-col-2.w-col= Category.human_attribute_name(:color)
           th.w-col-2.w-col
       tbody
         - @categories.each do |category|
@@ -23,4 +24,5 @@ br
             td.w-col-2.w-col style="color: #{category.color};"
               = category.color
             td.w-col-2.w-col
-              = link_to 'Edit', edit_admin_category_path(category)
+              = link_to t('.edit'), edit_admin_category_path(category)
+  br

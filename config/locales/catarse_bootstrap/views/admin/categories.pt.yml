@@ -1,0 +1,11 @@
+pt:
+  admin:
+    categories:
+      index:
+        title: 'Categorias'
+        new: 'Nova Categoria'
+        edit: 'Alterar'
+      new:
+        title: 'Nova Categoria'
+      edit:
+        title: 'Alterar Categoria'

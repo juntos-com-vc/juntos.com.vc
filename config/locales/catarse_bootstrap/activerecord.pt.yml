@@ -101,6 +101,10 @@ pt:
         title: 'Título'
         body: 'Conteúdo'
         visible: 'Publicar (Marque caso queira publicar essa nóvidade)'
+      category:
+        name_pt: 'Nome em Português'
+        name_en: 'Nome em Inglês'
+        color: 'Cor'
     errors:
       models:
         contribution: "Erro ao salvar apoio"
