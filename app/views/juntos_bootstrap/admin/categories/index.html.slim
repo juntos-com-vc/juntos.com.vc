@@ -1,0 +1,25 @@
+= render 'shared/header_big'
+br
+.w-container
+  .w-row.admin
+    .w-col.w-col-3
+      h1= @title = t('.title')
+    .w-col.w-col-3.w-col-push-6
+      = link_to 'New', new_admin_category_path
+
+  .w-row
+    table.w-col.w-col-12
+      thead
+        tr
+          th.w-col-4.w-col= t('.name.pt')
+          th.w-col-4.w-col= t('.name.en')
+          th.w-col-2.w-col= t('.color')
+          th.w-col-2.w-col
+      tbody
+        - @categories.each do |category|
+          tr class=cycle("even", "odd")
+            td.w-col-4.w-col= category.name_pt
+            td.w-col-4.w-col= category.name_en
+            td.w-col-2.w-col= category
+            td.w-col-2.w-col
+              = link_to 'Edit', edit_admin_category_path(category)
