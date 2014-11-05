@@ -7,6 +7,8 @@ class Category < ActiveRecord::Base
   validates_presence_of :name_pt
   validates_uniqueness_of :name_pt
 
+  validates_length_of :color, maximum: 7
+
   scope :with_projects_on_this_week, -> {
     joins(:projects).merge(Project.with_state('online').of_current_week).uniq
   }

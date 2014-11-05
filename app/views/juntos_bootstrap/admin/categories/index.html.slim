@@ -20,6 +20,7 @@ br
           tr class=cycle("even", "odd")
             td.w-col-4.w-col= category.name_pt
             td.w-col-4.w-col= category.name_en
-            td.w-col-2.w-col= category
+            td.w-col-2.w-col style="color: #{category.color};"
+              = category.color
             td.w-col-2.w-col
               = link_to 'Edit', edit_admin_category_path(category)

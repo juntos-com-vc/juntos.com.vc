@@ -5,13 +5,4 @@ br
     .w-col.w-col-12
       h1= @title = t('.title')
 
-  = simple_form_for [:admin, @category] do |form|
-    .w-row
-      .w-col.w-col-4
-        = form.input :name_pt, as: :string
-      .w-col.w-col-4
-        = form.input :name_en
-      .w-col.w-col-4
-    .w-row
-      .w-col.w-col-4
-        = form.button :submit, 'Submit'
+  = render 'form'
