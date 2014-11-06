@@ -98,6 +98,14 @@ class ProjectDecorator < Draper::Decorator
 
   end
 
+  def category_image_url
+    if source.category.image.present?
+      source.category.image.url
+    else
+      'juntos/icone_placeholder.png'
+    end
+  end
+
   private
 
   def use_uploaded_image(version)

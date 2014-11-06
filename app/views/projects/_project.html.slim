@@ -2,11 +2,11 @@
 .project-box[itemscope itemtype="http://schema.org/CreativeWork" class=(custom_class if defined?(custom_class))]
   meta[itemprop="dateCreated" content=project.created_at.to_date]
   .project-title
-    h4.title    = link_to truncate(project.name, length: 50, separator: ''), project_by_slug_path(project.permalink), title: project.name, target: target
+    h4.title = link_to truncate(project.name, length: 50, separator: ''), project_by_slug_path(project.permalink), title: project.name, target: target
 
-  .category
+  .category style="background-color: #{project.category.color};"
     p = project.category.name_pt
-    = image_tag('juntos/icone_placeholder.png', class: 'category-image')
+    = image_tag(project.category_image_url, class: 'category-image')
 
   /- if project.expired?
     /.status-flag
@@ -25,8 +25,8 @@
         .project_progress id="#{circle_id}"
         javascript:
           (function() {
-            Circles.create({ 
-              id: "#{circle_id}", radius: 40, value: "#{project.progress}", 
+            Circles.create({
+              id: "#{circle_id}", radius: 40, value: "#{project.progress}",
               text: "<div class='percent'>#{project.progress}%<span>da meta</span></div>",
               colors: ['#CCC', "#4E6FB5"],
               duration: 0,
