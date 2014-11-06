@@ -14,15 +14,18 @@ br
         tr
           th.w-col-4.w-col= Category.human_attribute_name(:name_pt)
           th.w-col-4.w-col= Category.human_attribute_name(:name_en)
-          th.w-col-2.w-col= Category.human_attribute_name(:color)
-          th.w-col-2.w-col
+          th.w-col-1.w-col= Category.human_attribute_name(:color)
+          th.w-col-2.w-col= Category.human_attribute_name(:image)
+          th.w-col-1.w-col Ações
       tbody
         - @categories.each do |category|
           tr class=cycle("even", "odd")
             td.w-col-4.w-col= category.name_pt
             td.w-col-4.w-col= category.name_en
-            td.w-col-2.w-col style="color: #{category.color};"
+            td.w-col-1.w-col style="color: #{category.color};"
               = category.color
             td.w-col-2.w-col
+              = image_tag category.image.url
+            td.w-col-1.w-col
               = link_to t('.edit'), edit_admin_category_path(category)
   br

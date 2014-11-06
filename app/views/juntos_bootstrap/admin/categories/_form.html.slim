@@ -12,7 +12,11 @@
       = form.input :name_en
   .w-row
     .w-col.w-col-6
-      = form.input :color, input_html: { maxlength: 7 }, hint: 'Coloque a cor em hexadecimal, por exemplo #FE6327.'
+      = form.input :image, as: :file, required: false,
+        hint: (@category.image.present? ? image_tag(@project.image.url) : t('formtastic.hints.categories.image'))
+    .w-col.w-col-6
+      = form.input :color, input_html: { maxlength: 7 }, hint: t('formtastic.hints.categories.color')
+
   .w-row
     .w-col.w-col-2
       = form.button :submit

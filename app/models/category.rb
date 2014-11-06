@@ -9,6 +9,8 @@ class Category < ActiveRecord::Base
 
   validates_length_of :color, maximum: 7
 
+  mount_uploader :image, CategoryImageUploader
+
   scope :with_projects_on_this_week, -> {
     joins(:projects).merge(Project.with_state('online').of_current_week).uniq
   }
