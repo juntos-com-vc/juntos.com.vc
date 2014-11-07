@@ -11,12 +11,13 @@ body
     font-weight: 700
 
   .partners
-    height: 200px
     background-color: #CCCCCC
     .content
       +grid-system(16)
       .title
         +grid(16)
+        display: block
+        float: none
         h2
           padding: 20px 10px
           font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
@@ -24,6 +25,18 @@ body
           font-size: 30px
           font-weight: bold
           text-decoration: none
+      .logos
+        padding: 0 20px 20px 20px
+        .featured
+          display: inline-block
+          height: 60px
+          margin-right: 10px
+          width: 180px
+        .regular
+          display: inline-block
+          height: 50px
+          margin-right: 10px
+          width: 150px
 
   #page_content
     .container
