@@ -10,8 +10,14 @@
 }
 
 #search-form {
+  display: inline-block;
   margin: auto;
   width: auto;
+
+  .search-input {
+    display: inline-block;
+    width: 150px;
+  }
 }
 
 .img-logo {
