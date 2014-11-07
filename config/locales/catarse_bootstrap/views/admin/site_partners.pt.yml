@@ -1,0 +1,12 @@
+pt:
+  admin:
+    site_partners:
+      index:
+        title: 'Parceiros do Juntos'
+        new: 'Nova Parceiro'
+        edit: 'Alterar'
+        remove: 'Apagar'
+      new:
+        title: 'Nova Parceiro'
+      edit:
+        title: 'Alterar Parceiro'

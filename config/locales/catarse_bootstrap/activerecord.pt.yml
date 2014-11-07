@@ -7,6 +7,7 @@ pt:
       contribution: Apoiador
       category: Categoria
       bank_account: Dados bancários
+      site_partner: Parceiro do Juntos
     attributes:
       bank_account:
         bank: 'Banco'
@@ -105,6 +106,11 @@ pt:
         name_pt: 'Nome em Português'
         name_en: 'Nome em Inglês'
         color: 'Cor'
+      site_partner:
+        logo: Logo
+        url: 'Site da empresa'
+        name: 'Razão Social'
+        featured: 'Destaque'
     errors:
       models:
         contribution: "Erro ao salvar apoio"

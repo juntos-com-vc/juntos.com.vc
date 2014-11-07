@@ -7,14 +7,16 @@
 
   .w-row
     .w-col.w-col-6
-      = form.input :name, as: :string
+      = form.input :name, as: :string, required: true
     .w-col.w-col-6
-      = form.input :url, as: :url
+      = form.input :url, as: :url, required: true
   .w-row
     .w-col.w-col-6
-      = form.input :logo, as: :file, required: false,
+      = form.input :logo, as: :file, required: false, required: true,
         hint: (@site_partner.logo.present? ? logo_tag(@site_partner.logo.url) : '')
+    .w-col.w-col-6
+      = form.input :featured
 
   .w-row
-    .w-col.w-col-2
+    .w-col.w-col-3
       = form.button :submit

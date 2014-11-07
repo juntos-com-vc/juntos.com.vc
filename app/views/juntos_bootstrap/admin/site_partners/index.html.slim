@@ -3,10 +3,11 @@ br
 .w-container
   br
   .w-row.admin
-    .w-col.w-col-3
+    .w-col.w-col-5
       h1= @title = t('.title')
-    .w-col.w-col-3.w-col-push-6
+    .w-col.w-col-3.w-col-push-3
       = link_to t('.new'), new_admin_site_partner_path, class: 'link'
+  br
   br
   .w-row
     table.w-col.w-col-12
