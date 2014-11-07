@@ -133,6 +133,7 @@ Catarse::Application.routes.draw do
     resources :categories, except: [ :show, :destroy ]
     resources :statistics, only: [ :index ]
     resources :financials, only: [ :index ]
+    resources :site_partners
 
     resources :contributions, only: [ :index, :update, :show ] do
       member do

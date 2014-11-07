@@ -1,0 +1,29 @@
+= render 'shared/header_big'
+br
+.w-container
+  br
+  .w-row.admin
+    .w-col.w-col-3
+      h1= @title = t('.title')
+    .w-col.w-col-3.w-col-push-6
+      = link_to t('.new'), new_admin_site_partner_path, class: 'link'
+  br
+  .w-row
+    table.w-col.w-col-12
+      thead
+        tr
+          th.w-col-4.w-col= SitePartner.human_attribute_name(:name)
+          th.w-col-4.w-col= SitePartner.human_attribute_name(:url)
+          th.w-col-2.w-col= SitePartner.human_attribute_name(:logo)
+          th.w-col-2.w-col Ações
+      tbody
+        - @site_partners.each do |site_partner|
+          tr class=cycle("even", "odd")
+            td.w-col-4.w-col= site_partner.name
+            td.w-col-4.w-col= site_partner.url
+            td.w-col-2.w-col
+              = image_tag site_partner.logo.url
+            td.w-col-1.w-col
+              = link_to t('.edit'), edit_admin_site_partner_path(site_partner)
+              = button_to t('.remove'), admin_site_partner_path(site_partner), method: :delete
+  br
