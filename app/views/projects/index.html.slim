@@ -92,3 +92,13 @@
     .content
       .title
         h2 = "Parceiros"
+      .logos
+        - @featured_partners.each do |partner|
+          .featured
+            = link_to partner.url do
+              = image_tag partner.logo.featured.url, title: partner.name
+      .logos
+        - @regular_partners.each do |partner|
+          .regular
+            = link_to partner.url do
+              = image_tag partner.logo.regular.url, title: partner.name

@@ -24,6 +24,8 @@ class ProjectsController < ApplicationController
           @projects_near = Project.with_state('online').near_of(current_user.address_state).order("random()").limit(3).includes(:project_total) if current_user
           @expiring = ProjectsForHome.expiring.includes(:project_total)
           @recent   = ProjectsForHome.recents.includes(:project_total)
+          @featured_partners = SitePartner.featured
+          @regular_partners = SitePartner.regular
         end
       end
     end

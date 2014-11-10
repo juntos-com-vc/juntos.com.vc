@@ -1,0 +1,22 @@
+= simple_form_for [:admin, @site_partner] do |form|
+  - if @site_partner.errors.present?
+    .card.card-error.u-radius.zindex-10.u-marginbottom-30
+      .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
+      - @site_partner.errors.messages.each do |message|
+        .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
+
+  .w-row
+    .w-col.w-col-6
+      = form.input :name, as: :string, required: true
+    .w-col.w-col-6
+      = form.input :url, as: :url, required: true
+  .w-row
+    .w-col.w-col-6
+      = form.input :logo, as: :file, required: false, required: true,
+        hint: (@site_partner.logo.present? ? image_tag(@site_partner.logo.url) : '')
+    .w-col.w-col-6
+      = form.input :featured
+
+  .w-row
+    .w-col.w-col-3
+      = form.button :submit
