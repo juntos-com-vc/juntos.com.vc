@@ -1,5 +1,11 @@
 pt:
   admin: &admin
+    categories:
+      index:
+        menu: 'Categorias'
+    site_partners:
+      index:
+        menu: 'Parceiros'
     filter:
       title: 'Filtros'
     confirm_dialog: 'Você tem certeza?'
