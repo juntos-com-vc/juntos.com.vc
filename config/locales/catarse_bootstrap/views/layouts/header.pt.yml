@@ -2,15 +2,17 @@ pt:
   layouts:
     header:
       blog: Blog
-      discover: Descubra
+      discover: Explore projetos
       faq: FAQ
       help: Ajuda
       profile: Meus dados
       projects: Meus projetos
       signin: Login
-      signup: Cadastre-se
-      submit: Comece seu projeto
+      signup: Cadastro
+      submit: Enviar projetos
       search: Busque projetos
+      how_it_works: Como funciona
+      about: A juntos
     login:
       login_with_facebook: entre com sua conta do facebook
     user:
