@@ -10,8 +10,14 @@
 }
 
 #search-form {
+  display: inline-block;
   margin: auto;
   width: auto;
+
+  .search-input {
+    display: inline-block;
+    width: 150px;
+  }
 }
 
 .img-logo {
@@ -24,7 +30,7 @@
   float: left;
 }
 
-.label {
+.header-logo-label {
   background-color: #FE6327;
   position: absolute;
   top: 50px;

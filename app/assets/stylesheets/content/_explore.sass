@@ -34,21 +34,35 @@
                 +border-radius(5px)
                 &:hover, &.selected
                   background: rgba($pink, 0.3)
+      .section_header
+        +grid(16)
+        +alpha
+        padding-bottom: 60px
+        h1
+          font-weight: 700
+          font-size: 48px
+          color: $ultra_gryn
+          padding-bottom: 5px
+          text-align: center
+          span
+            color: $minimal_gryn
+        h4
+          font-size: 16px
+          color: $ultra_gryn
+
+      .categories-cloud
+        margin-top: 60px
+        ul li
+          background-color: #FE6327
+          box-shadow: inset 0 0 2px 0 lighten(#FE6327, 30%)
+          border-radius: 25px
+          display: inline
+          margin: 5px
+          padding: 10px 15px
+          a
+            color: white
+
       .main
-        .section_header
-          +grid(16)
-          +alpha
-          padding-bottom: 60px
-          h1
-            font-weight: 700
-            font-size: 28px
-            color: $ultra_gryn
-            padding-bottom: 5px
-            span
-              color: $minimal_gryn
-          h4
-            font-size: 16px
-            color: $ultra_gryn
         #explore_results
           .results
             ul.collection_list
