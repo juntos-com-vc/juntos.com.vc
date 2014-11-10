@@ -128,7 +128,7 @@ pt:
           project: 'Permalink ou nome do projeto'
           acquirer: 'Nome da operadora de cartão'
           user: 'ID, Nome, Email ou Email de pagamento'
-          payment_id: Chave, ID do meio de pagamento ou TID da operadora'
+          payment_id: 'Chave, ID do meio de pagamento ou TID da operadora'
         acquirer: 'Operadora'
         payment_tax: 'Taxa meio de pagamento'
         send_refund_request_contribution: 'Enviar solicitação de reembolso'

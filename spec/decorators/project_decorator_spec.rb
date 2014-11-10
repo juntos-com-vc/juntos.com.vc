@@ -269,6 +269,22 @@ RSpec.describe ProjectDecorator do
         expect(project.status_flag).to eq("<div class=\"status_flag\"><img alt=\"Waiting confirmation.#{I18n.locale}\" src=\"/assets/waiting_confirmation.#{I18n.locale}.png\" /></div>")
       end
     end
+  end
+
+  describe "#category_image_url" do
+    context "when category has a uploaded image" do
+      let(:category) { create(:category, image: File.open("#{Rails.root}/spec/fixtures/image.png")) }
+      let(:project) { create(:project, category: category) }
+
+      it { expect(project.category_image_url).to eql(category.image.url) }
+    end
+
+    context "when category hasn't a uploaded image" do
+      let(:category) { create(:category, image: nil) }
+      let(:project) { create(:project, category: category) }
+
+      it { expect(project.category_image_url).to eql('juntos/icone_placeholder.png') }
+    end
 
   end
 end

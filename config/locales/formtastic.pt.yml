@@ -38,6 +38,9 @@ pt:
         video_url: O vídeo é a principal peça do projeto. Se ainda não tiver, não
           precisa enviar... Mas já vá pensando em como fazer um vídeo MATADOR!
         video_url_edit: Cole aqui o link do seu vídeo hospedado no Vimeo ou no Youtube.
+      categories:
+        image: 'Imagem da categoria que será exibida nos projetos. Com tamanho de 54x54.'
+        color: 'Coloque a cor em hexadecimal, por exemplo #FE6327.'
     labels:
       reward:
         description: Descrição

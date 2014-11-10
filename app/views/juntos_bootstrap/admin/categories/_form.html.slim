@@ -1,0 +1,22 @@
+= simple_form_for [:admin, @category] do |form|
+  - if @category.errors.present?
+    .card.card-error.u-radius.zindex-10.u-marginbottom-30
+      .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
+      - @category.errors.messages.each do |message|
+        .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
+
+  .w-row
+    .w-col.w-col-6
+      = form.input :name_pt, as: :string
+    .w-col.w-col-6
+      = form.input :name_en
+  .w-row
+    .w-col.w-col-6
+      = form.input :image, as: :file, required: false,
+        hint: (@category.image.present? ? image_tag(@category.image.url) : t('formtastic.hints.categories.image'))
+    .w-col.w-col-6
+      = form.input :color, input_html: { maxlength: 7 }, hint: t('formtastic.hints.categories.color')
+
+  .w-row
+    .w-col.w-col-2
+      = form.button :submit

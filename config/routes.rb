@@ -130,6 +130,7 @@ Catarse::Application.routes.draw do
       end
     end
 
+    resources :categories, except: [ :show, :destroy ]
     resources :statistics, only: [ :index ]
     resources :financials, only: [ :index ]
 
