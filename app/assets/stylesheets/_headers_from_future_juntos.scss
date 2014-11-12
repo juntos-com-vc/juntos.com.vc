@@ -316,9 +316,10 @@
   background-color: #f1f4f4;
 }
 .main-footer.main-footer-neg {
-  position: static;
-  padding-bottom: 45px;
   background-color: #424342;
+  position: static;
+  margin-top: 0;
+  padding-bottom: 45px;
 }
 .link-footer {
   position: static;
@@ -359,6 +360,9 @@
   padding-right: 110px;
   padding-top: 37px;
   margin-right: 20px;
+  a {
+    color: rgba(241, 244, 244, 0.54);
+  }
 }
 .btn {
   display: block;

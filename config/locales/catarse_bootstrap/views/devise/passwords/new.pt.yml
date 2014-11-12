@@ -2,7 +2,8 @@ pt:
   devise:
     passwords:
       new:
-        no_account_html: "Não tem conta?"
+        no_account_html: "Você ainda não tem conta?"
+        login_with_facebook: "Você pode"
         titles:
           site: 'Redefinir senha'
           header: 'Redefinir senha'

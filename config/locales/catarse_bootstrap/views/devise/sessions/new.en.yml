@@ -3,6 +3,7 @@ en:
     sessions:
       new:
         no_account_html: "Need an account? <strong>%{link}</strong>"
+        login_with_facebook: "You can"
         titles:
           site: 'Log in'
           header: 'Log in'

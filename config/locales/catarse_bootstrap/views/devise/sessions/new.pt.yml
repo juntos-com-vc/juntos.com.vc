@@ -2,14 +2,15 @@ pt:
   devise:
     sessions:
       new:
-        no_account_html: "Não tem conta?"
+        no_account_html: "Você ainda não tem conta?"
+        login_with_facebook: "Você pode"
         titles:
           site: 'Login'
           header: 'Login'
         links:
           register: "Cadastre-se"
           password: "Senha"
-          forgot_password: "Esqueci minha senha"
+          forgot_password: "esqueceu a senha?"
         form:
           labels:
             remember_me: 'Permanecer conectado'
