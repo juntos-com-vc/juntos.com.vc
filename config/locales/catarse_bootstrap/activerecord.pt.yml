@@ -87,6 +87,8 @@ pt:
         moip_login: Login do MoIP
         moip_login_hint: "(Como criar uma conta)"
         reset_password_token: "Link para recriar senha"
+        access_type/ngo: 'ONG'
+        access_type/supporter: 'Apoiador'
       channel:
         ga_code: Código do Analytics
         description: Descrição

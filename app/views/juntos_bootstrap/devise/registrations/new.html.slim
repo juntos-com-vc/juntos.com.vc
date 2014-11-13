@@ -29,6 +29,7 @@ section.devise-body-section
         .w-form
           = simple_form_for resource, as: resource_name, html: {novalidate: true}, url: sign_up_path  do |form|
             = render 'devise/shared/alert'
+            = form.input :access_type, as: :radio_buttons, collection: User.access_types.to_a, label: t('.form.labels.access_type'), input_html: { class: 'w-radio-input' }, item_wrapper_class: 'w-radio w-clearfix access-type-field', required: false, label_method: lambda { |option| User.human_attribute_name("access_type/#{option[0]}")}
             = form.input :name, as: :string, label: t('.form.labels.name'), input_html: { class: 'w-input text-field' }
             = form.input :email, as: :email, wrapper_html: { class: 'no-asterisk' }, input_html: { class: 'w-input text-field' }, required: false
             = form.input :password, as: :password, label: t('.form.labels.password'), input_html: { class: 'w-input text-field' }
