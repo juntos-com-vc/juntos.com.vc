@@ -11,9 +11,13 @@
   .container
     #user_profile
       .section_header
+        .profile_image
+          = @user.display_image_html
         .profile_title
           h1.profile
-              = t('.hello', name: @user.display_name)
+              = @user.display_name
+          h4.bio
+              = @user.bio
       .user_social
         ul
           - if policy(@user).update?
@@ -28,9 +32,6 @@
           - if @user.other_link
             li.other
               = link_to @user.other_link, @user.other_link, target: '_blank'
-        - if policy(@user).update?
-          .current_credits
-            = t('users.credits.index.current_credits_html', credits: @user.display_credits)
 
       .tab_container
         nav#user_profile_menu
@@ -42,9 +43,8 @@
             = link_to t('.tabs.unsubscribes'), '#unsubscribes', id: 'unsubscribes_link', data: { target: '#user_unsubscribes' }
             - if @credit_cards.present?
               = link_to t('.tabs.credit_cards'), '#credit_cards', id: 'credit_cards_link', data: { target: '#user_credit_cards' }
-  .clearfix
-  #user_profile_content
-    .container
+      .clearfix
+      #user_profile_content
         #user_contributed_projects.content[data-path=user_contributions_path(@user)]
           - if !policy(@user).update?
             p.empty.hide= t('.contributions.no_contributions', name: @user.display_name)
@@ -73,5 +73,5 @@
           - if @credit_cards.present?
             #user_credit_cards.content.hide
               = render 'credit_cards'
+      .clearfix
     .clearfix
-  .clearfix
