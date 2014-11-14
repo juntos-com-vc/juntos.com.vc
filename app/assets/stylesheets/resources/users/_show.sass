@@ -1,4 +1,10 @@
 [data-namespace="null"][data-controller="users"][data-action="show"]
+  .tab_container nav a.selected 
+    background-color: #ffb84c
+    border-bottom: 0
+  .tab_container nav a
+    background-color: #424342
+    border-bottom: 0
   .loading img
     display: none
   .inline-hints
@@ -7,18 +13,43 @@
   #creditsModal
     h3
       font-weight: 700
+  #user_profile_content
+    background-color: #f2f2f2 !important
+    .container
+      background-color: #f2f2f2 !important
+    .content
+      padding-top: 20px
+      p.empty
+        text-align: center
+        font-size: 14px
+        width: 100%
+  .current_credits
+    background-color: #424342
+    border-radius: 10px
+    color: #ffb84c
+    padding: 15px 20px
+    height: 65px
+    width: 270px
+    p
+      // color: #ffb84c
+      display: inline-block
+      float: left
+      font-size: 18px
+      font-weight: bolder
+      padding-bottom: 5px
+      width: 50%
+    .fontweight-thin
+      font-weight: lighter
+      text-transform: uppercase
+    #current_credits
+      display: inline-block
+      float: right
+      font-size: 36px
   #user_profile
     padding-top: 20px
-    padding-bottom: 20px
     float: left
-    #user_profile_content
-      .content
-        p.empty
-          text-align: center
-          font-size: 14px
-          width: 100%
     .section_header
-      +grid(12)
+      +grid(10)
       +grid-suffix(1)
       .profile_image
         +grid(3)
@@ -38,7 +69,7 @@
           font-size: 16px
           line-height: 140%
     .user_social
-      +grid(3)
+      +grid(5)
       li
         font-size: 12px
         padding: 0 0 5px 25px
@@ -60,7 +91,6 @@
           background: url($images_path+'social_icons.png') left -54px no-repeat
     .tab_container
       padding-top: 20px
-      margin-bottom:  20px
     #user_contributed_projects
       div.contribution_info
         ul
@@ -90,14 +120,6 @@
       +grid(16)
       +omega
       display: none
-      .current_credits
-        p
-          font-size: 24px
-          font-weight: 700
-          color: $ultra_gryn
-          padding-bottom: 5px
-      #current_credits
-        color: $light_green
       .table_title
         font-size: 20px
         color: $dark_green
@@ -122,7 +144,7 @@
       color: #333333
       font-style: italic
       font-size: 24px
-      margin-top: 20px
+      // margin-top: 20px
       letter-spacing: -1px
     ul
       padding-top: 20px
@@ -184,8 +206,6 @@
             li
               float: left
               margin-right: 20px
-              input#user_id
-                width: 100px
               input#user_name
                 width: 130px
               input#user_cpf, input#user_state_inscription
