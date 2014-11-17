@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,
     :bank_account_attributes, :access_type
 
-  enum access_type: [:supporter, :ngo]
+  enum access_type: [:individual, :legal_entity]
 
   mount_uploader :uploaded_image, UserUploader
 
