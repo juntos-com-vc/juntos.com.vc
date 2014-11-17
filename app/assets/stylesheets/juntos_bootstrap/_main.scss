@@ -44,9 +44,9 @@ p {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  border: 1px solid #00b22d;
+  border: 1px solid #424342 !important;
   border-radius: 5px;
-  background-color: #00b22d;
+  background-color: #424342 !important;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
@@ -377,7 +377,7 @@ p {
   color: #79808b;
 }
 .login-fb {
-  margin-top: 0px;
+  margin-top: 15px;
   margin-bottom: 6px;
   padding-top: 3px;
 }
@@ -2176,13 +2176,13 @@ p {
   font-weight: 600;
 }
 .btn-fb {
-  border: 1px solid #4b6fb8;
-  background-color: #4b6fb8;
+  border: 1px solid #577bb8 !important;
+  background-color: #577bb8 !important;
   color: white;
 }
 .btn-fb:hover {
-  border-color: #547fd6;
-  background-color: #547fd6;
+  border-color: #547fd6 !important;
+  background-color: #547fd6 !important;
 }
 .nav-tab {
   display: inline-block;
@@ -2293,7 +2293,10 @@ p {
   padding-left: 145px;
 }
 .fontcolor-secondary {
-  color: #79808b;
+  color: #424342;
+}
+.fontcolor-alternative {
+  color: white;
 }
 .lineheight-tighter {
   line-height: 115%;
@@ -2583,6 +2586,36 @@ html.w-mod-js *[data-ix="display-none-on-load-2"] {
   display: none;
   opacity: 0;
 }
+
+header.devise-header-section {
+  background-color: #f2f2f2;
+
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.3;
+    margin-top: 40px;
+  }
+}
+
+section.devise-body-section {
+  background-color: orange;
+  background-image: image-url('juntos/back_working_people.jpg');
+  background-size: cover;
+  color: black;
+  padding: 25px 0;
+
+  .access-type-field { 
+    color: #3f4752;
+    display: inline-block;
+    margin-left: 20px;
+  }
+  .access-type-field input{
+    height: 20px;
+    vertical-align: bottom;
+    width: 15px;
+  }
+}
+
 @media (max-width: 991px) {
   body {
     font-size: 14px;

@@ -3,6 +3,7 @@ en:
     passwords:
       new:
         no_account_html: "Need an account? <strong>%{link}</strong>"
+        login_with_facebook: "You can"
         titles:
           site: 'Forgot your password?'
           header: 'Forgot your password?'
