@@ -11,6 +11,8 @@
   .container
     #user_profile
       .section_header
+        .profile_image
+          = @user.display_image_html
         .profile_title
           h1.profile
               = t('.hello', name: @user.display_name)

@@ -115,7 +115,6 @@
       +grid(16)
       +omega
       display: none
-
     #user_credits
       +grid(16)
       +omega
@@ -139,16 +138,19 @@
               color: $pink
   #social_info
     margin-top: 20px
+  #user_form, #change_password
+    input[type="text"], input[type="password"], textarea
+      border-radius: 10px !important
+      border: 1px #ffb84c solid !important
+      min-height: 2em !important
   .user_data
     h1
       color: #333333
       font-style: italic
       font-size: 24px
-      // margin-top: 20px
       letter-spacing: -1px
     ul
       padding-top: 20px
-      border-bottom: 1px dotted #ccc
       li
         font-size: 15px
         margin-bottom: 15px
@@ -217,26 +219,27 @@
             li#user_address_complement_input, li#user_address_state_input
               margin-right: 0px
           #user_submit
-            background: url($images_path+'bot_profileUser.png') left top no-repeat
+            background: #ffb84c
+            border-radius: 20px
             color: #FFFFFF
             display: block
             font-size: 12px
-            height: 56px
             text-transform: uppercase
-            padding-left: 55px
+            padding: 25px
             width: 221px
             border: none
             margin-bottom: 30px
           .socialmidia
+            margin-bottom: 20px              
             textarea#user_bio
               width: 96%
-            #user_newsletter_input, #user_email_input, #user_phone_number_input
-              #user_newsletter
-                float: left
-                margin-right: 5px
+            #user_email_input, #user_phone_number_input, #user_newsletter, #user_moip_login_input
+              float: left
+              margin-right: 5px
               display: inline-block
               margin: 5px
-            margin-bottom: 20px
+            #user_newsletter_input
+              display: inline-block
   #my_avatar
     ul
       padding-bottom: 10px
@@ -283,3 +286,7 @@
         display: block
       .btn
         margin-top: 23px
+  #my_facebook
+    .facebook_start
+      width: 310px
+      height: 60px
