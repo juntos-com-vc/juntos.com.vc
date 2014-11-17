@@ -8,19 +8,20 @@
       p Acompanhe em tempo real:
       .wihtout-comission Sem comissão!
 .transparency-values
+  - statistics = Statistics.first
   .transparency-wrapper
     .collectect-money
-      h2 1.340.795,75
+      h2 = number_with_precision(statistics.total_contributed, precision: 0)
       b valor em R$
       br
       span arrecadados
     .donations-number
-      h2 6.862
+      h2 = statistics.total_contributions
       b doações
       br
       span realizadas
     .succesfull-projects
-      h2 85
+      h2 = statistics.total_projects_success
       b projetos
       br
       span apoiados
