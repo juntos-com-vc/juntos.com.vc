@@ -87,6 +87,7 @@ pt:
         moip_login: Login do MoIP
         moip_login_hint: "(Como criar uma conta)"
         reset_password_token: "Link para recriar senha"
+        birth_date: "Data de Nascimento"
         access_type/legal_entity: 'Pessoa Jurídica'
         access_type/individual: 'Pessoa Física'
       channel:

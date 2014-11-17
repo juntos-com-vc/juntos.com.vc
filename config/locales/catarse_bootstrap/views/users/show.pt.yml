@@ -23,7 +23,7 @@ pt:
         accept_btn: "Sim, desejo solicitar o reembolso do meu apoio"
       index:
         contribution_date: "Data do apoio"
-        current_credits_html: "Seu saldo atual é de <span id=\"current_credits\">%{credits}</span> em créditos."
+        current_credits_html: "<p>Você tem <span class='fontweight-thin'>disponível</span></p><span id=\"current_credits\">%{credits}</span>"
         important_html: "Para saber todas as regras de funcionamento de reembolso, <a href='http://suporte.catarse.me/hc/pt-br/articles/202365507-Regras-e-funcionamento-dos-reembolsos-estornos' target='_blank'>clique aqui</a>. Qualquer dúvida, acesse nosso <a href='http://suporte.catarse.me' target='_blank'>suporte</a>."
         project: Projeto
         refunded: "Solicitação confirmada. Entraremos em contato em até 4 dias uteís."
@@ -67,6 +67,7 @@ pt:
       deactivate_notice: "A conta de %{name} foi desativada."
       deactivate_confirm: "Você deseja desativar essa conta?"
       deactivate_hint: "Todos os seus apoios serão convertidos em apoios anônimos, seus dados não serão mais visíveis, você sairá automaticamente do sistema e sua conta será desativada permanentemente."
+      connect_facebook_account: "importe seus dados"
     unsubscribes:
       projects_in_reminder: "Projetos com lembrete ativo:"
       title: "Escolha de quais projetos você deseja receber notificações:"
@@ -99,3 +100,4 @@ pt:
         email: "Me envie um email"
         facebook: "Perfil no facebook"
         twitter: "Perfil no twitter"
+      hello: "Olá, %{name}"
