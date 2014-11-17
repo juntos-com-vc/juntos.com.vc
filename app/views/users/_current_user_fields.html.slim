@@ -38,6 +38,7 @@
             = f.input :address_zip_code, as: :string, input_html: {autocomplete: 'off'}
             = f.input :address_city, as: :string
             = f.input :address_state, as: :select, collection: State.array
+            = f.input :birth_date, as: :date
           .socialmidia
             = f.input :moip_login, label: (t('activerecord.attributes.user.moip_login') + '  ' +  link_to(t('activerecord.attributes.user.moip_login_hint'), "http://suporte.catarse.me/hc/pt-br/articles/203083097-Criar-uma-conta-no-MoIP")).html_safe
             = f.input :phone_number, required: false, as: :string
