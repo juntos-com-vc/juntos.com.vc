@@ -1,0 +1,80 @@
+#my_avatar.user_data
+  ul
+    li
+      .bootstrap-form
+        = semantic_form_for @user do |f|
+          = f.inputs do
+            p= f.input :uploaded_image, as: :file, label: t('.submit_text')
+          = f.actions do
+            .bootstrap-twitter
+              p= f.action :submit, button_html: {value: t('.submit'), class: 'btn', id: 'image_upload_btn'}
+    li
+      #gravatar_hint.alert.alert-info
+        = link_to 'http://gravatar.com/', target: :_blank do
+          = image_tag 'gravatar.png', id: 'gravatar_logo'
+        p= t('.gravatar_hint_html', link: link_to('Gravatar', 'http://gravatar.com/', target: :_blank))
+        .clearfix
+- unless @user.has_facebook_authentication?
+  #my_facebook.user_data
+    ul
+      li
+        = link_to t('.connect_facebook_account'), user_omniauth_authorize_path(provider: 'facebook', locale: nil), class: 'facebook_start'
+#my_data.user_data
+  h1= t('.my_data')
+  ul
+    li
+      .bootstrap-form
+        = semantic_form_for @user, html: {method: :put, id: 'user_form'}  do |f|
+          .profile
+            = f.input :id, as: :string, input_html: { disabled:  'disabled'}
+            = f.input :full_name, required: true, as: :string, label: t('activerecord.attributes.organization.full_name')
+            = f.input :cpf, as: :string, input_html: {autocomplete: 'off'}, label: (t('activerecord.attributes.organization.cnpj') + link_to(t('activerecord.attributes.user.cpf_hint'), 'http://suporte.catarse.me/hc/pt-br/articles/202457548-O-Catarse-emite-Nota-Fiscal-', {title: t('activerecord.attributes.user.cpf_hint_title') })).html_safe
+            = f.input :state_inscription, as: :string
+            = f.input :name, required: false, as: :string, label: t('activerecord.attributes.organization.name')
+            = f.input :address_street, as: :string
+            = f.input :address_number, as: :string
+            = f.input :address_complement, required: false, as: :string
+            = f.input :address_neighbourhood, as: :string
+            = f.input :address_zip_code, as: :string, input_html: {autocomplete: 'off'}
+            = f.input :address_city, as: :string
+            = f.input :address_state, as: :select, collection: State.array
+            /= f.input :birth_date, as: :date
+            = f.input :responsible_name, as: :string, label: t('activerecord.attributes.organization.responsible_name')
+            = f.input :responsible_cpf, as: :string, label: t('activerecord.attributes.organization.responsible_cpf')
+          .socialmidia
+            = f.input :moip_login, label: (t('activerecord.attributes.user.moip_login') + '  ' +  link_to(t('activerecord.attributes.user.moip_login_hint'), "http://suporte.catarse.me/hc/pt-br/articles/203083097-Criar-uma-conta-no-MoIP")).html_safe
+            = f.input :phone_number, required: false, as: :string
+            = f.input :mobile_phone, as: :string
+            = f.input :email, as: :string
+            = f.input :newsletter, as: :boolean, label: t('.newsletter')
+            = hidden_field_tag 'id', @user.id
+            = f.input :bio, hint: t('.bio_limit'), as: :text, input_html: { rows: 2, cols: 60, maxlength: 140  }
+          .bootstrap-twitter
+            p= f.submit t('.update_social_info'), class: 'btn', id: "user_submit"
+#change_password.user_data
+  h1= t('.change_password')
+  ul
+    li
+      .bootstrap-form
+        = form_for(@user, url: update_password_user_url(@user), html: { method: :put, class: 'skip_feed_event', id: 'password_form' }) do |f|
+          span.hint= t('.current_password_hint').html_safe
+          br
+          .div
+            = f.label :current_password
+            = f.password_field :current_password, class:'empty'
+          .div
+            = f.label :password, t('devise.passwords.edit.form.labels.password')
+            = f.password_field :password, class:'empty'
+          .bootstrap-twitter
+            p= f.submit 'OK', class: 'btn', id: 'password_submit'
+#deactivate.user_data
+  h1= t('.deactivate')
+  ul
+    li
+      .bootstrap-form
+        = form_for(@user, html: { method: :delete }) do |f|
+          span.hint= t('.deactivate_hint').html_safe
+          br
+          br
+          .bootstrap-twitter
+            p= f.submit t('.deactivate'), class: 'btn', data: {confirm: t('.deactivate_confirm')}

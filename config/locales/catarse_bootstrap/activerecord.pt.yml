@@ -90,6 +90,7 @@ pt:
         birth_date: "Data de Nascimento"
         access_type/legal_entity: 'Pessoa Jurídica'
         access_type/individual: 'Pessoa Física'
+        mobile_phone: 'Telefone Celular'
       channel:
         ga_code: Código do Analytics
         description: Descrição
@@ -114,6 +115,12 @@ pt:
         url: 'Site da empresa'
         name: 'Razão Social'
         featured: 'Destaque'
+      organization:
+        full_name: 'Razão Social'
+        cnpj: 'CNPJ'
+        name: 'Nome Fantasia'
+        responsible_name: 'Nome do responsável'
+        responsible_cpf: 'CPF do responsável'
     errors:
       models:
         contribution: "Erro ao salvar apoio"
