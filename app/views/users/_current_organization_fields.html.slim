@@ -41,6 +41,7 @@
             /= f.input :birth_date, as: :date
             = f.input :responsible_name, as: :string, label: t('activerecord.attributes.organization.responsible_name')
             = f.input :responsible_cpf, as: :string, label: t('activerecord.attributes.organization.responsible_cpf')
+            = f.input :gender, as: :radio, collection: {male: 'Masculino', female: 'Feminino'}.invert, label: t('activerecord.attributes.organization.gender'), checked: "individual"
           .socialmidia
             = f.input :moip_login, label: (t('activerecord.attributes.user.moip_login') + '  ' +  link_to(t('activerecord.attributes.user.moip_login_hint'), "http://suporte.catarse.me/hc/pt-br/articles/203083097-Criar-uma-conta-no-MoIP")).html_safe
             = f.input :phone_number, required: false, as: :string
@@ -51,6 +52,68 @@
             = f.input :bio, hint: t('.bio_limit'), as: :text, input_html: { rows: 2, cols: 60, maxlength: 140  }
           .bootstrap-twitter
             p= f.submit t('.update_social_info'), class: 'btn', id: "user_submit"
+#organization_documents.user_data
+  h1 = t('.documents')
+  br/
+  br/
+  .bootstrap-form
+    = semantic_form_for @user do |f|
+      = f.inputs do
+        p
+          = f.input :doc1, as: :file
+          = link_to 'Baixar arquivo', @user.doc1.url if @user.doc1.url.present?
+        br/
+        p
+          = f.input :doc2, as: :file
+          = link_to 'Baixar arquivo', @user.doc2.url if @user.doc2.url.present?
+        br/ 
+        p
+          = f.input :doc3, as: :file
+          = link_to 'Baixar arquivo', @user.doc3.url if @user.doc3.url.present?
+        br/
+        p
+          = f.input :doc4, as: :file
+          = link_to 'Baixar arquivo', @user.doc4.url if @user.doc4.url.present?
+        br/
+        p
+          = f.input :doc5, as: :file
+          = link_to 'Baixar arquivo', @user.doc5.url if @user.doc5.url.present?
+        br/
+        p
+          = f.input :doc6, as: :file
+          = link_to 'Baixar arquivo', @user.doc6.url if @user.doc6.url.present?
+        br/
+        p
+          = f.input :doc7, as: :file
+          = link_to 'Baixar arquivo', @user.doc7.url if @user.doc7.url.present?
+        br/
+        p
+          = f.input :doc8, as: :file
+          = link_to 'Baixar arquivo', @user.doc8.url if @user.doc8.url.present?
+        br/
+        p
+          = f.input :doc9, as: :file
+          = link_to 'Baixar arquivo', @user.doc9.url if @user.doc9.url.present?
+        br/
+        p
+          = f.input :doc10, as: :file
+          = link_to 'Baixar arquivo', @user.doc10.url if @user.doc10.url.present?
+        br/
+        p
+          = f.input :doc11, as: :file
+          = link_to 'Baixar arquivo', @user.doc11.url if @user.doc11.url.present?
+        br/
+        p
+          = f.input :doc12, as: :file
+          = link_to 'Baixar arquivo', @user.doc12.url if @user.doc12.url.present?
+        br/
+        p
+          = f.input :doc13, as: :file
+          = link_to 'Baixar arquivo', @user.doc13.url if @user.doc13.url.present?
+        br/
+      = f.actions do
+        .bootstrap-twitter
+          p= f.action :submit, button_html: {value: t('.submit'), class: 'btn', id: 'image_upload_btn'}
 #change_password.user_data
   h1= t('.change_password')
   ul
