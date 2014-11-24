@@ -21,6 +21,7 @@
         fieldset
         .large-2.columns
           = check_box_tag :has_credits, true, params[:has_credits].present?
+          = check_box_tag :only_organizations, true, params[:only_organizations].present?
           = form.label :has_credits, t('.credits')
         .large-2.columns
           = form.button :submit, t('channels.admin.filter.submit'), class: 'button medium negative'

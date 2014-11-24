@@ -1,61 +1,63 @@
 div class=(policy(parent).update? ? 'project_land' : 'small_project_land')
-  - if project.expired?
-    .status_image
-      a href=""
-      = link_to project_by_slug_path(project.permalink) do
-        - if project.successful?
-          = image_tag "successful.#{I18n.locale}.png"
-        - elsif project.waiting_funds?
-          = image_tag "waiting_confirmation.#{I18n.locale}.png"
-        - elsif project.failed?
-          = image_tag "not_successful.#{I18n.locale}.png"
-        - else
-          = ''
-  .cover
-    p.black_box= project.category.send("name_#{I18n.locale}")
-    img[src=project.display_image width="218px" height="175px"]
-  .project_infos
-    .title
-      h4
-        = link_to project.name, project_by_slug_path(project.permalink)
-      p.author== "#{t('projects.show.project_by')} #{project.user.name}"
+  .title
+    h4
+      = link_to project.name, project_by_slug_path(project.permalink)
+  .category style="background-color: #{project.category.color}"
+    h5 = project.category.send("name_#{I18n.locale}")
+    = image_tag project.category.image.url, class: 'category-image'
+  .info
+    .cover
+      img[src=project.display_image width="218px" height="175px"]
+    .project_infos
+      p.author== project.user.name
       p.headline= project.headline
-    .status_bar
-      .progress style="width: #{project.display_progress}%;"
-    ul
-      li
-        - if project.time_to_go[:time] > 0
-          h6= "#{project.time_to_go[:time]} #{project.time_to_go[:unit]}"
-          p= project.remaining_text
-        - else
-          h6= project.display_status.blank? ? nil : I18n.t("projects.project.display_status.#{project.display_status}")
-          p= project.display_expires_at
-      li
-        h6= "#{project.progress} %"
-        p= t('projects.project.contributed')
-      li
-        h6= project.display_pledged
-        p= t('projects.project.reached')
-  - if contribution && policy(parent).update?
-    div.contribution_info
-      ul
-        li.date
-          h5
-            span #{t(".#{contribution.state}")}
-            span.date<
-              |(#{contribution.display_confirmed_at || I18n.l(contribution.created_at.to_date)})
-        - if contribution.display_value
-          li.value
-            h5= contribution.display_value
-        - if contribution.reward
-          li.reward
-            h5= t('rewards.index.reward_title', minimum: contribution.reward.display_minimum)
-            - description = contribution.reward.description.gsub(/"/,'&quot;')
-            p[ title=description ]= truncate(contribution.reward.description, length: 75)
-    .tell_about
-      p= t('.tell_about_this_contribution')
-      ul
-        li= link_to(image_tag('catarse/facebook_black_icon.png'), "http://www.facebook.com/sharer.php?s=100&p[url]=#{project_by_slug_url(permalink: project.permalink)}&p[summary]=#{t('share_my_contributions')} #{project.name}", target: '_blank').html_safe
-        li= link_to image_tag('catarse/twitter_black_icon.png'), "http://twitter.com/share?text=#{t('share_my_contributions')}#{project.name}&url=#{project_by_slug_url(permalink: project.permalink)}", target: '_blank'
+      .circle
+        - circle_id = (project.id + Time.now.to_f).to_s
+        .project_progress id="#{circle_id}"
+        javascript:
+          (function() {
+            Circles.create({
+              id: "#{circle_id}", radius: 30, value: "#{project.progress}",
+              text: "<div class='percent' style='color: #{project.category.color}'>#{project.progress}%<span>da meta</span></div>",
+              colors: ['#CCC', "#{project.category.color}"],
+              duration: 0,
+              width: 5
+            });
+          })();
+      .time-remaining
+        = t('projects.project.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit])
+      .collected-money
+        = link_to t('projects.project.pledged_html', value: number_to_currency(project.pledged, precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised'
+      /ul
+        /li
+          /- if project.time_to_go[:time] > 0
+            /h6= "#{project.time_to_go[:time]} #{project.time_to_go[:unit]}"
+            /p= project.remaining_text
+          /- else
+            /h6= project.display_status.blank? ? nil : I18n.t("projects.project.display_status.#{project.display_status}")
+            /p= project.display_expires_at
+        /li
+          /h6= "#{project.progress} %"
+          /p= t('projects.project.contributed')
+        /li
+          /h6= project.display_pledged
+          /p= t('projects.project.reached')
+    .contribution_info style="background-color: #{project.category.color}"
+      - if contribution && policy(parent).update?
+        ul
+          - if contribution.display_value
+            li.value
+              h5= contribution.display_value
+              p Doados
+          li.date
+            h5
+              span.date<
+                |#{contribution.display_confirmed_at || I18n.l(contribution.created_at.to_date)}
+          
+    /.tell_about
+      /p= t('.tell_about_this_contribution')
+      /ul
+        /li= link_to(image_tag('catarse/facebook_black_icon.png'), "http://www.facebook.com/sharer.php?s=100&p[url]=#{project_by_slug_url(permalink: project.permalink)}&p[summary]=#{t('share_my_contributions')} #{project.name}", target: '_blank').html_safe
+        /li= link_to image_tag('catarse/twitter_black_icon.png'), "http://twitter.com/share?text=#{t('share_my_contributions')}#{project.name}&url=#{project_by_slug_url(permalink: project.permalink)}", target: '_blank'
 .clearfix
 

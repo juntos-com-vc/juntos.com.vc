@@ -114,6 +114,11 @@
       = f.actions do
         .bootstrap-twitter
           p= f.action :submit, button_html: {value: t('.submit'), class: 'btn', id: 'image_upload_btn'}
+    - if current_user.admin?
+      = link_to 'Aprovar ONG', approve_user_path(@user)
+    br/
+    br/
+    br/
 #change_password.user_data
   h1= t('.change_password')
   ul
