@@ -1150,6 +1150,13 @@ p {
   background-color: #3f4752;
   color: #f1f4f4;
 }
+.page-header .project-image {
+  height: 400px;
+  background-size: cover;
+}
+.page-header .project-category-divider {
+  height: 30px;
+}
 .project-about-highlight {
   margin-top: 38px;
   margin-bottom: 34px;
@@ -2289,8 +2296,7 @@ p {
   color: rgba(121, 128, 139, 0.36);
 }
 .project-name {
-  padding-right: 145px;
-  padding-left: 145px;
+  padding-top: 25px;
 }
 .fontcolor-secondary {
   color: #424342;

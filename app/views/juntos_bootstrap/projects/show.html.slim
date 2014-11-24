@@ -29,9 +29,16 @@
 
 = render 'mobile_video'
 
+nav.project-nav.u-marginbottom-30
+  .w-container
+    .w-row
+      .w-col.w-col-9
+        = @project.headline
+
 - if !@project.draft?
   nav.project-nav.w-hidden-small.w-hidden-tiny
     .w-container
+      .w-row
       .w-row
         .w-col.w-col-9.w-hidden-small.w-hidden-tiny
           = link_to '#about', id: 'about_link', class: 'nav-tab selected', data: {target: '#project_about.content'} do
@@ -48,10 +55,6 @@
             fb:comments-count href="#{request.base_url}/#{request.fullpath.split('/')[2]}" class="badge" style="display: inline"
               |&nbsp;
 
-        .w-col.w-col-3.w-hidden-small.w-hidden-tiny.w-clearfix.project-nav-category
-          = link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden-light u-right'
-          = image_tag 'catarse_bootstrap/tag-icon.png', class: 'project-nav-category-icon', width: "22" 
-
 - if policy(@project).update?
   nav.dashboard-nav.w-hidden-small.w-hidden-tiny
     .w-container
@@ -61,10 +64,10 @@
       = link_to '#dashboard_project', id: 'dashboard_project_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_project'} do
         span.fa.fa-check-circle.text-success .
         | \&nbsp;Projeto
-      a.dashboard-nav-link href="#" 
+      a.dashboard-nav-link href="#"
         span.fa.fa-check-circle .
         | \&nbsp;Recompensas
-      a.dashboard-nav-link href="#" 
+      a.dashboard-nav-link href="#"
         span.fa.fa-check-circle .
         | \&nbsp;Sobre você
       a.dashboard-nav-link href="#"  Preview
