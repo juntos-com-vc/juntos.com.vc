@@ -74,6 +74,7 @@ Catarse::Application.routes.draw do
 
     resources :unsubscribes, only: [:create]
     member do
+      get :approve
       get 'projects'
       put 'unsubscribe_update'
       put 'update_email'

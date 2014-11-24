@@ -37,6 +37,16 @@ class UsersController < ApplicationController
     }
   end
 
+  def approve
+    @user = User.find(params[:id])
+    authorize @user
+    @user.update_attribute(:approved_at, Time.now)
+    @user.save
+    redirect_to user_path(@user)
+  end
+
+
+
   def reactivate
     user = params[:token].present? && User.find_by(reactivate_token: params[:token])
     if user

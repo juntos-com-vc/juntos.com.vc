@@ -90,6 +90,22 @@ pt:
         birth_date: "Data de Nascimento"
         access_type/legal_entity: 'Pessoa Jurídica'
         access_type/individual: 'Pessoa Física'
+        mobile_phone: 'Telefone Celular'
+        gender/male: 'Masculino'
+        gender/female: 'Feminino'
+        doc1: Estatuto social registrado em cartório
+        doc2: Última ata de assembleia geral registrada em cartório
+        doc3: Último parecer do conselho fiscal
+        doc4: Ata de eleição dos dirigentes atuais registrada em cartório
+        doc5: Balanço do último exercício
+        doc6: Cartão do CNPJ
+        doc7: Documentos atuais que comprovam títulos, qualificações certificados e registros municipais, estaduais e federais que a organização possúi
+        doc8: Relatório de atividades do ano anterior
+        doc9: Plano de ação atual
+        doc10: Certidão conjunta negativa de débitos relativos aos tributos federais e a dívida ativa da união
+        doc11: Certidão negativa da justiça federal
+        doc12: RG e CPF ou CNH da pessoa responsável pela ONG, o nome da pessoa precisa constar no estatuto ou atas
+        doc13: Comprovante de residência da pessoa ou da instituição
       channel:
         ga_code: Código do Analytics
         description: Descrição
@@ -114,6 +130,13 @@ pt:
         url: 'Site da empresa'
         name: 'Razão Social'
         featured: 'Destaque'
+      organization:
+        full_name: 'Razão Social'
+        cnpj: 'CNPJ'
+        name: 'Nome Fantasia'
+        responsible_name: 'Nome do responsável'
+        responsible_cpf: 'CPF do responsável'
+        gender: 'Gênero do responsável'
     errors:
       models:
         contribution: "Erro ao salvar apoio"

@@ -12,9 +12,9 @@ pt:
         form:
           labels:
             show_password: 'Exibir senha'
-            name: 'Nome completo'
+            name: 'Nome completo/Razão social'
             password: 'Senha'
-            newsletter: 'Quero receber novidades do Catarse no meu email'
+            newsletter: 'Quero receber novidades meu email'
             accept: 'Ao efetuar cadastro, você está aceitando nossos <a href="%{terms_url}" class="alt-link fontcolor-alternative" target="_blank">termos de uso</a> e <a class="alt-link fontcolor-alternative" href="%{privacy_url}" target="_blank">política de privacidade</a>'
             access_type: 'Sou um(a)'
           hint:

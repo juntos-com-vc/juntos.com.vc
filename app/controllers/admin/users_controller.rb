@@ -3,6 +3,7 @@ class Admin::UsersController < Admin::BaseController
   inherit_resources
   has_scope :by_id, :by_name, :by_email, :by_payer_email, :by_key, only: :index
   has_scope :has_credits, type: :boolean, only: :index
+  has_scope :only_organizations, type: :boolean, only: :index
 
   protected
   def collection

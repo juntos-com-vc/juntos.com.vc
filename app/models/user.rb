@@ -16,15 +16,30 @@ class User < ActiveRecord::Base
     :image_url, :uploaded_image, :bio, :newsletter, :full_name, :address_street, :address_number,
     :address_complement, :address_neighbourhood, :address_city, :address_state, :address_zip_code, :phone_number,
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,
-    :bank_account_attributes, :access_type
+    :bank_account_attributes, :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
+    :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13
 
   enum access_type: [:individual, :legal_entity]
+  enum gender: [:male, :female]
 
   mount_uploader :uploaded_image, UserUploader
+  mount_uploader :doc1, DocumentUploader
+  mount_uploader :doc2, DocumentUploader
+  mount_uploader :doc3, DocumentUploader
+  mount_uploader :doc4, DocumentUploader
+  mount_uploader :doc5, DocumentUploader
+  mount_uploader :doc6, DocumentUploader
+  mount_uploader :doc7, DocumentUploader
+  mount_uploader :doc8, DocumentUploader
+  mount_uploader :doc9, DocumentUploader
+  mount_uploader :doc10, DocumentUploader
+  mount_uploader :doc11, DocumentUploader
+  mount_uploader :doc12, DocumentUploader
+  mount_uploader :doc13, DocumentUploader
 
   validates_length_of :bio, maximum: 140
 
-  validates_presence_of :email
+  validates_presence_of :email, :access_type
   validates_uniqueness_of :email, allow_blank: true, if: :email_changed?, message: I18n.t('activerecord.errors.models.user.attributes.email.taken')
   validates_format_of :email, with: Devise.email_regexp, allow_blank: true, if: :email_changed?
 
@@ -86,6 +101,7 @@ class User < ActiveRecord::Base
   scope :by_id, ->(id){ where(id: id) }
   scope :by_key, ->(key){ where('EXISTS(SELECT true FROM contributions WHERE contributions.user_id = users.id AND contributions.key ~* ?)', key) }
   scope :has_credits, -> { joins(:user_total).where('user_totals.credits > 0') }
+  scope :only_organizations, -> { where(access_type: 1) }
   scope :already_used_credits, -> {
     has_credits.
     where("EXISTS (SELECT true FROM contributions b WHERE b.credits AND b.state = 'confirmed' AND b.user_id = users.id)")

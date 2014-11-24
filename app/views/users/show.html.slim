@@ -69,7 +69,10 @@
           #user_unsubscribes.content.hide
             = render 'unsubscribes'
           #user_settings.content.hide
-            = render 'current_user_fields'
+            - if @user.access_type == :individual
+              = render 'current_user_fields'
+            - else
+              = render 'current_organization_fields'
           #user_credits.content.hide
             = render 'credits'
           - if @credit_cards.present?
