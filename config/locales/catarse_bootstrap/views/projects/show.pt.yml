@@ -75,6 +75,8 @@ pt:
       embed_title: Incorpore este projeto no seu site
       active_btn: ' Lembrar-me'
       deactive_btn: ' Lembrete ativo'
+      contributions: doadores
+      goal: atingidos de %{total}
     show:
       twitter_profile: "Perfil no Twitter"
       facebook_profile: "Perfil no Facebook"

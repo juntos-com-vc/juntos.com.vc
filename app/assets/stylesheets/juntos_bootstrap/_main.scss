@@ -104,6 +104,13 @@ p {
 .btn.bt-blue:hover {
   background-color: #2685eb;
 }
+.btn.bt-yellow { 
+  background-color: #f8bc1c !important;
+  border-color: #f8bc1c !important;
+}
+.btn.bt-yellow:hover { 
+  background-color: #f8bc1c !important;
+}
 .section {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -450,6 +457,25 @@ p {
 .project-stats {
   padding-top: 24px;
   padding-left: 20px;
+}
+.project-stats ul {
+  list-style-type: none;
+}
+.project-stats ul li {
+  line-height: 1;
+}
+.project-stats .circles {
+  float: right;
+}
+.project-stats .circle-percent { 
+  line-height: 1;
+  margin-top: 35px;
+  span { 
+    color: #3F4752;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+  }
 }
 .warning {
   position: absolute;
@@ -963,11 +989,26 @@ p {
   margin-top: 24px;
 }
 .project-author-contacts {
-  margin-top: 15px;
   padding-top: 8px;
   padding-bottom: 21px;
   border-top: 1px solid rgba(255, 255, 255, 0.61);
   font-family: proxima-nova, sans-serif;
+}
+.project-author-contacts ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.project-author-aditional-infos ul li {
+  margin-bottom: 3px;
+}
+.project-author-aditional-infos ul li div {
+  display: inline-block;
+}
+.project-author-aditional-infos ul li .fa {
+  color: #f8bc1c;
+  font-size: 16px;
+  text-align: center;
+  width: 20px;
 }
 .project-news {
   padding-right: 14px;
@@ -1059,6 +1100,10 @@ p {
 .fontsize-smallest {
   font-size: 13px;
   line-height: 150%;
+}
+.fontsize-smallest.inline{
+  display: inline-block;
+  margin-right: 10px;
 }
 .col-right-bootstrap-buttons {
   padding-right: 150px;
@@ -2070,6 +2115,9 @@ p {
 .fontweight-bold {
   font-weight: 700;
 }
+.u-marginbottom-20 {
+  margin-bottom: 20px;
+}
 .u-marginbottom-30 {
   margin-bottom: 30px;
 }
@@ -2078,6 +2126,9 @@ p {
 }
 .u-marginbottom-80 {
   margin-bottom: 80px;
+}
+.u-marginleft-20 {
+  margin-left: 20px;
 }
 .u-right {
   float: right;
@@ -2247,8 +2298,20 @@ p {
   background-color: #f1f4f4;
 }
 .card-user {
-  border-color: rgba(64, 155, 255, 0.09);
-  background-color: rgba(64, 155, 255, 0.09);
+  border: 0px;
+  border-top: 1px solid #f8bc1c;
+  border-bottom: 1px solid #f8bc1c;
+}
+.card-user .header {
+  background: image-url('juntos/profile_icon19x14.png') no-repeat left center transparent;
+  padding-left: 30px;
+  line-height: 2;
+}
+.project-contritubion-card .project-style {
+  border-top: 1px solid #f8bc1c;
+  color: #f8bc1c;
+  padding-top: 10px;
+  text-align: center;
 }
 .u-round {
   border-radius: 50%;
@@ -2273,8 +2336,8 @@ p {
   text-align: center;
 }
 .thumb {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   margin-right: 20px;
   background-position: 50% 50%;
   background-size: cover;
