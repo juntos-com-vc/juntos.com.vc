@@ -456,7 +456,6 @@ p {
 }
 .project-stats {
   padding-top: 24px;
-  padding-left: 20px;
 }
 .project-stats ul {
   list-style-type: none;
@@ -499,7 +498,7 @@ p {
   height: 42px;
   margin-top: -20px;
   padding-bottom: 0px;
-  background-color: #f1f4f4;
+  background-color: white;
 }
 .link-hidden {
   -webkit-transition: all 500ms ease;
@@ -2247,25 +2246,23 @@ p {
   height: 42px;
   margin-right: 5px;
   padding: 13px 13px 8px;
-  border-bottom: 1px solid transparent;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
-  color: #79808b;
+  color: white;
   font-size: 15px;
   text-decoration: none;
 }
 .nav-tab:hover {
-  background-color: white;
-  color: #3f4752;
+  background-color: #424342;
+  color: white;
 }
 .nav-tab.selected {
   height: 42px;
-  border-bottom-color: white;
-  background-color: white;
-  color: #3f4752;
+  background-color: #424342 !important;
+  color: white;
   font-weight: 600;
 }
 .nav-tab.dashboard {
@@ -2657,30 +2654,34 @@ html.w-mod-js *[data-ix="display-none-on-load-2"] {
 }
 header.devise-header-section {
   background-color: #f2f2f2;
-
-  h1 {
-    font-size: 2.5em;
-    line-height: 1.3;
-    margin-top: 40px;
-  }
 }
+<<<<<<< HEAD
+=======
+header.devise-header-section h1 {
+  font-size: 2.5em;
+  line-height: 1.3;
+  margin-top: 40px;
+}
+>>>>>>> [#80418726] Finishing up
 section.devise-body-section {
   background-color: orange;
   background-image: image-url('juntos/back_working_people.jpg');
   background-size: cover;
   color: black;
   padding: 25px 0;
-
-  .access-type-field { 
-    color: #3f4752;
-    display: inline-block;
-    margin-left: 20px;
-  }
-  .access-type-field input{
-    height: 20px;
-    vertical-align: bottom;
-    width: 15px;
-  }
+}
+section.devise-body-section .access-type-field { 
+  color: #3f4752;
+  display: inline-block;
+  margin-left: 20px;
+}
+section.devise-body-section .access-type-field input {
+  height: 20px;
+  vertical-align: bottom;
+  width: 15px;
+}
+.u-no-brackground {
+  background-color: white !important;
 }
 .thumbnail {
   overflow: hidden;

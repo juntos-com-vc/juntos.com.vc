@@ -33,18 +33,16 @@
   nav.project-nav.w-hidden-small.w-hidden-tiny
     .w-container
       .w-row
-      .w-row
         .w-col.w-col-9.w-hidden-small.w-hidden-tiny
-          = link_to '#about', id: 'about_link', class: 'nav-tab selected', data: {target: '#project_about.content'} do
+          = link_to '#about', id: 'about_link', class: 'nav-tab selected', data: {target: '#project_about.content'}, style: "background-color: #{@project.category.color};" do
             = t('.menu.about')
-          = link_to '#posts', id: 'posts_link', class: 'nav-tab' , data: {target: '#project_posts'} do
+          = link_to '#posts', id: 'posts_link', class: 'nav-tab' , data: {target: '#project_posts'}, style: "background-color: #{@project.category.color};" do
             => t('.menu.posts')
             span.badge = @posts_count
-          = link_to '#contributions', id: 'contributions_link', class: 'nav-tab' , data: {target: '#project_contributions'} do
+          = link_to '#contributions', id: 'contributions_link', class: 'nav-tab' , data: {target: '#project_contributions'}, style: "background-color: #{@project.category.color};" do
             => t('.menu.contributions')
             span.badge = @project.total_contributions
-
-          = link_to '#comments', id: 'comments_link', class: 'nav-tab' , data: {target: '#project_comments'} do
+          = link_to '#comments', id: 'comments_link', class: 'nav-tab' , data: {target: '#project_comments'}, style: "background-color: #{@project.category.color};" do
             => t('.menu.comments')
             fb:comments-count href="#{request.base_url}/#{request.fullpath.split('/')[2]}" class="badge" style="display: inline"
               |&nbsp;
@@ -101,8 +99,6 @@ section.section
         #contributions-loading.loader.u-text-center.w-col.w-col-12 = image_tag "catarse_bootstrap/loader.gif"
 
       #project_comments.content.w-col.w-col-8.w-hidden
-
-
 
     #project-sidebar.aside.w-col.w-col-4
       .project-contritubion-card
