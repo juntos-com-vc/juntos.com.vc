@@ -823,7 +823,7 @@ p {
   z-index: 1;
   display: inline-block;
   height: 100%;
-  background-color: rgba(0, 178, 45, 0.84);
+  background-color: rgba(248, 188, 28, 0.84);
   color: white;
   font-size: 20px;
   font-weight: 600;
@@ -2132,6 +2132,9 @@ p {
 .u-right {
   float: right;
 }
+.u-marginright-5 {
+  margin-right: 5px;
+}
 .dropdown-icon {
   position: absolute;
   float: right;
@@ -2294,6 +2297,9 @@ p {
 .card-secondary {
   background-color: #f1f4f4;
 }
+.card-reward {
+  background-color: #ddd;
+}
 .card-user {
   border: 0px;
   border-top: 1px solid #f8bc1c;
@@ -2363,6 +2369,9 @@ p {
 }
 .fontcolor-alternative {
   color: white;
+}
+.fontcolor-yellow {
+  color: #f8bc1c;
 }
 .lineheight-tighter {
   line-height: 115%;
@@ -2540,6 +2549,9 @@ p {
 }
 .u-margintop-10 {
   margin-top: 10px;
+}
+.u-margintop-5 {
+  margin-top: 5px;
 }
 .btn-attached {
   width: auto;
