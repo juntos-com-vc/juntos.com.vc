@@ -78,6 +78,8 @@ pt:
       contributions: doadores
       goal: atingidos de %{total}
     show:
+      contribution_style: 'TUDO OU NADA'
+      proposed_by: 'Proposto por'
       twitter_profile: "Perfil no Twitter"
       facebook_profile: "Perfil no Facebook"
       author_website: "Site do autor"
