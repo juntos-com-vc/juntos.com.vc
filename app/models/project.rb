@@ -29,6 +29,8 @@ class Project < ActiveRecord::Base
   has_many :contributions
   has_many :posts, class_name: "ProjectPost"
   has_many :unsubscribes
+  has_many :project_images
+  has_many :project_partners
 
   accepts_nested_attributes_for :rewards
   accepts_nested_attributes_for :channels
