@@ -58,3 +58,23 @@ App.views.ProjectForm.addChild('Permalink', _.extend({
   }
 }, Skull.TimedInput));
 
+App.views.ProjectForm.addChild('ProjectImages', _.extend({
+  el: 'div#project_images',
+
+  events: {
+    'timedKeyup' : 'checkVideoUrl'
+  },
+
+  checkVideoUrl: function(){
+    var that = this;
+    $.get(this.$el.data('path') + '?url=' + encodeURIComponent(this.$el.val())).success(function(data){
+      if(!data || !data.provider){
+        that.$el.trigger('invalid');
+      }
+    });
+  },
+
+  activate: function(){
+    this.setupTimedInput();
+  }
+}, Skull.TimedInput));

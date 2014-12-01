@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
     @project = Project.new user: current_user
     authorize @project
     @title = t('projects.new.title')
+    5.times { @project.project_images.build }
     @project.rewards.build
   end
 
@@ -76,6 +77,7 @@ class ProjectsController < ApplicationController
 
   def show
     @title = resource.name
+    (5 - @project.project_images.size).times { @project.project_images.build }
     authorize @project
     fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
     @posts_count = resource.posts.count(:all)
