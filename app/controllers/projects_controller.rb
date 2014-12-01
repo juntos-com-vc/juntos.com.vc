@@ -70,7 +70,7 @@ class ProjectsController < ApplicationController
           flash[:notice] = t('project.update.success')
         end
 
-        redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'edit')
+        redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'dashboard_project')
       end
     end
   end
