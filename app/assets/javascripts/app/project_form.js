@@ -58,23 +58,21 @@ App.views.ProjectForm.addChild('Permalink', _.extend({
   }
 }, Skull.TimedInput));
 
-App.views.ProjectForm.addChild('ProjectImages', _.extend({
-  el: 'div#project_images',
+App.addChild('RemoveProjectImage', {
+  el: 'a.js-remove_project_image',
 
   events: {
-    'timedKeyup' : 'checkVideoUrl'
+    'click': 'removeProjectImage'
   },
 
-  checkVideoUrl: function(){
-    var that = this;
-    $.get(this.$el.data('path') + '?url=' + encodeURIComponent(this.$el.val())).success(function(data){
-      if(!data || !data.provider){
-        that.$el.trigger('invalid');
-      }
-    });
-  },
-
-  activate: function(){
-    this.setupTimedInput();
+  removeProjectImage: function(event){
+    event.preventDefault();
+    var removeProjectImage = this.el;
+    var parent = $(removeProjectImage).parents('.w-row.thumbnail-card');
+    parent.find('.thumbnail').remove();
+    parent.find('input[name*="_destroy"]').val('true');
+    $('.js-btn-submit').click();
+    return false;
   }
-}, Skull.TimedInput));
+
+});

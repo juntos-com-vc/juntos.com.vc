@@ -2586,7 +2586,6 @@ html.w-mod-js *[data-ix="display-none-on-load-2"] {
   display: none;
   opacity: 0;
 }
-
 header.devise-header-section {
   background-color: #f2f2f2;
 
@@ -2596,7 +2595,6 @@ header.devise-header-section {
     margin-top: 40px;
   }
 }
-
 section.devise-body-section {
   background-color: orange;
   background-image: image-url('juntos/back_working_people.jpg');
@@ -2615,6 +2613,15 @@ section.devise-body-section {
     width: 15px;
   }
 }
+.thumbnail {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 15px 15px 15px 15px;
+  border: 1px solid #E9E9EC;
+  background-color: #FFF;
+}
+
 
 @media (max-width: 991px) {
   body {

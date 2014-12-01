@@ -70,24 +70,26 @@
           p.fontsize-small.u-marginbottom-40= t('.images.excerpt')
           .w-form.card.card-terciary
             .w-row.u-marginbottom-30
-              .w-col.w-col-5.w-sub-col
+              .w-col.w-col-12.w-sub-col
                 label.field-label.fontsize-smallest.fontcolor-secondary= t('.images.hint')
             .w-row.u-marginbottom-30
               .w-col.w-col-12.w-sub-col
                 = form.simple_fields_for :project_images do |project_images_form|
-                  .w-row.u-marginbottom-30
+                  .w-row.u-marginbottom-30.thumbnail-card
                     .w-col.w-col-6.w-sub-col
                       - if project_images_form.object.image.present?
-                        = image_tag project_images_form.object.image.project_thumb_small.url
+                        = image_tag project_images_form.object.image.project_thumb.url, class: 'thumbnail'
                     .w-col.w-col-6.w-sub-col
-                      = project_images_form.input :image, label: '', as: :file
-                      = project_images_form.input :caption, label: t('.images.caption'), as: :text
-
+                      = project_images_form.input_field :_destroy, as: :hidden
+                      = project_images_form.input_field :image, as: :file, label_html: { class: 'w-hidden' }
+                      = project_images_form.input :caption, label: t('.images.caption'), as: :text, input_html: { class: 'w-input text-field' }
+                      - if project_images_form.object.image.present?
+                        = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_image'
   .divider
     .section
       .w-container.w-hidden-small.w-hidden-tiny
         .w-row
           .w-col.w-col-4
           .w-col.w-col-4
-            = form.button :submit, t('.submit'),  class:'btn btn-large'
+            = form.button :submit, t('.submit'),  class:'btn btn-large js-btn-submit'
           .w-col.w-col-4
