@@ -2306,6 +2306,15 @@ p {
   border-top: 1px solid #f8bc1c;
   border-bottom: 1px solid #f8bc1c;
 }
+.card-partners {
+  border: 0px;
+  border-bottom: 1px solid #f8bc1c;
+}
+.card-partners .title .fa{
+  color: #f8bc1c;
+  display: inline-block;
+  font-size: 20px;
+}
 .card-user .header {
   background: image-url('juntos/profile_icon19x14.png') no-repeat left center transparent;
   padding-left: 30px;
