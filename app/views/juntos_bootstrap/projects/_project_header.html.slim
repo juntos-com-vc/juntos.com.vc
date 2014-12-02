@@ -1,7 +1,45 @@
-.page-header.u-text-center
+.page-header.u-text-left.u-no-brackground
+  .project-image style='background-image:url(#{@project.uploaded_image.url})'
+  .project-category-divider style='background-color: #{@project.category.color}'
   .w-container
-    .fontsize-larger.fontweight-semibold.project-name = @project.name
+    .fontsize-larger.fontweight-semibold.project-name= @project.name
     .fontsize-base.lineheight-looser
+      = t('projects.index.project_of')
+      |&nbsp;
+      = link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden', style:"color: #{@project.category.color}"
+      |&nbsp;
       = t('projects.index.box.by')
       |&nbsp;
-      = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden'
+      = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden', style:"color: #{@project.category.color}"
+    .fontsize-base.lineheight-looser.fontsize-smallest
+      = l @project.online_date.to_date
+    .w-row
+      .w-col.w-col-12
+        = @project.headline
+    .w-row.project-stats
+      .w-col.w-col-12
+        .w-col.w-col-4
+          .category_image
+            = image_tag(@project.category_image_url, class: 'category-image u-left')
+          ul.u-margintop-10
+            li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@project.category.color}"
+              = @project.contributions.count
+            li.u-marginleft-20.fontsize-smallest
+              = t('projects.project_about.contributions')
+        .w-col.w-col-4
+          .category_image
+            = image_tag(@project.category_image_url, class: 'category-image u-left')
+          ul.u-margintop-10
+            li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@project.category.color}"
+              = @project.time_to_go[:time]
+              .fontsize-smallest.inline= @project.time_to_go[:unit].capitalize
+            li.u-marginleft-20.fontsize-smallest
+                = pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))
+        .w-col.w-col-4
+          .category_image
+            = image_tag(@project.category_image_url, class: 'category-image u-left')
+          ul.u-margintop-10
+            li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@project.category.color}"
+              = @project.display_pledged
+            li.u-marginleft-20.fontsize-smallest
+              = t('projects.project_about.goal', total: @project.display_goal).html_safe

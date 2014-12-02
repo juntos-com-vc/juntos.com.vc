@@ -5,7 +5,7 @@
         .w-col.w-col-2
         .w-col.w-col-8
           .fontweight-semibold.fontsize-large= t('.project_start')
-          p.fontsize-base= t('.project_start_subtitle') 
+          p.fontsize-base= t('.project_start_subtitle')
         .w-col.w-col-2
 = simple_form_for @project, html: { id: 'project_form', class: 'w-form' } do |form|
   .section
@@ -31,7 +31,7 @@
               .w-row.u-marginbottom-30.card.card-terciary
                 .w-col.w-col-5.w-sub-col
                   label.field-label.fontweight-semibold for="name-8"= t('.name')
-                  label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"=t('.name_label')  
+                  label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"=t('.name_label')
                 .w-col.w-col-7
                   = form.input_field :name, as: :string, class: 'positive'
                     .text-error.fontsize-smallest
@@ -39,8 +39,8 @@
                       | \&nbsp;This is some text inside of a div block.
               .w-row.u-marginbottom-30.card.card-terciary
                 .w-col.w-col-5.w-sub-col
-                  label.field-label.fontweight-semibold for="name-8"= t('.url') 
-                  label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.url_label')  
+                  label.field-label.fontweight-semibold for="name-8"= t('.url')
+                  label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.url_label')
                 .w-col.w-col-7
                   .w-row
                     .w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.prefix.no-hover
@@ -75,7 +75,7 @@
                       = form.input_field :online_days, class: 'prefix positive', as: :string
                     .w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.postfix.no-hover
                       .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest Dias
-              
+
         .w-col.w-col-4
           .w-hidden-main.w-hidden-medium.card.u-radius.card-notification.zindex-20
             .u-marginbottom-20.fontsize-base.fontweight-bold Painel de controle
@@ -84,7 +84,7 @@
                 span.fontweight-bold Zerezes
               | para editar as informações do seu projeto, baixar relatórios e receber dicas de campanha, acesse esta página no seu computador ou tablet. Lá você vai ter acesso ao painel de controle do seu
               | projeto ;)
-          .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20 data-ix="new-interaction" 
+          .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20 data-ix="new-interaction"
             .fontsize-small.fontweight-semibold.u-marginbottom-20 Links úteis
             ul.w-list-unstyled
               li.alt-link.fontsize-smaller.u-marginbottom-10
@@ -95,7 +95,7 @@
                 a.alt-link href="http://suporte.catarse.me/hc/pt-br/articles/202037363-O-que-%C3%A9-um-projeto-em-Rascunho-" target="_blank"  O que é um projeto em Rascunho?
               li.fontsize-smaller.alt-link.u-marginbottom-10
                 a.alt-link href="http://suporte.catarse.me/hc/pt-br/articles/203073937-O-que-%C3%A9-obrigat%C3%B3rio-para-um-projeto-ir-ao-ar-" target="_blank"  Itens obrigatórios para um projeto ir ao ar
-          .w-hidden-small.w-hidden-tiny.card.u-radius data-ix="new-interaction" 
+          .w-hidden-small.w-hidden-tiny.card.u-radius data-ix="new-interaction"
             .fontsize-small.fontweight-semibold.u-marginbottom-20 Suporte
             ul.w-list-unstyled
               li.alt-link.fontsize-smaller.u-marginbottom-10
