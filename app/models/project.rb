@@ -29,9 +29,12 @@ class Project < ActiveRecord::Base
   has_many :contributions
   has_many :posts, class_name: "ProjectPost"
   has_many :unsubscribes
+  has_many :project_images
+  has_many :project_partners
 
   accepts_nested_attributes_for :rewards
   accepts_nested_attributes_for :channels
+  accepts_nested_attributes_for :project_images, allow_destroy: true, limit: 5, reject_if: proc { |attributes| attributes['image'].nil? }
 
   catarse_auto_html_for field: :about, video_width: 600, video_height: 403
 

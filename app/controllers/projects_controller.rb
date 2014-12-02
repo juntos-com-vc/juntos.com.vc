@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
     @project = Project.new user: current_user
     authorize @project
     @title = t('projects.new.title')
+    5.times { @project.project_images.build }
     @project.rewards.build
   end
 
@@ -69,13 +70,14 @@ class ProjectsController < ApplicationController
           flash[:notice] = t('project.update.success')
         end
 
-        redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'edit')
+        redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'dashboard_project')
       end
     end
   end
 
   def show
     @title = resource.name
+    (5 - @project.project_images.size).times { @project.project_images.build }
     authorize @project
     fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
     @posts_count = resource.posts.count(:all)

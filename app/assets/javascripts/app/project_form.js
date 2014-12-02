@@ -58,3 +58,21 @@ App.views.ProjectForm.addChild('Permalink', _.extend({
   }
 }, Skull.TimedInput));
 
+App.addChild('RemoveProjectImage', {
+  el: 'a.js-remove_project_image',
+
+  events: {
+    'click': 'removeProjectImage'
+  },
+
+  removeProjectImage: function(event){
+    event.preventDefault();
+    var removeProjectImage = this.el;
+    var parent = $(removeProjectImage).parents('.w-row.thumbnail-card');
+    parent.find('.thumbnail').remove();
+    parent.find('input[name*="_destroy"]').val('true');
+    $('.js-btn-submit').click();
+    return false;
+  }
+
+});
