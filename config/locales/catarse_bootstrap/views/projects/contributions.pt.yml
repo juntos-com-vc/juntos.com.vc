@@ -72,9 +72,9 @@ pt:
         page-title: Apoie o %{name}
         title: Oohh yeah!
         you_have_credits: "Você tem <strong>%{credits}</strong> em créditos para realizar este apoio."
-        choose_reward: Escolha a recompensa e em seguida o valor do apoio 
-        choose_value: Digite o valor do seu apoio.
-        minimum_disclaimer: 'A partir de R$ <span id="minimum-value">10</span> está ótimo ;)'
+        choose_reward: Reconhecimentos
+        choose_value: Sua doação
+        minimum_disclaimer: 'Você pode doar qualquer valor. Todas as transações financeiras são feitas em ambiente seguro, via <a href="http://moip.com.br">Moip</a>.<br />Caso o projeto não atinja sua meta financeira até a data estipulada o valor poderá ser convertido em créditos ou ser devolvido, conforme sua escolha. Dessa forma não haverá reconhecimento, é <a href="#">tudo ou nada</a>'
         next_step: "Revisar e realizar pagamento"
         no_reward: Obrigado. Eu só quero ajudar o projeto.
       review:
