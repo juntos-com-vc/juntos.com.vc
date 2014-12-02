@@ -635,7 +635,6 @@ p {
   font-weight: 600;
 }
 .main-header {
-  padding-top: 10px;
   padding-bottom: 8px;
   padding-left: 15px;
   border-bottom: 1px solid rgba(37, 49, 57, 0.6);
@@ -1186,7 +1185,6 @@ p {
 }
 .page-header {
   margin-bottom: 0px;
-  padding-top: 44px;
   padding-bottom: 44px;
   background-color: #f1f4f4;
 }
@@ -2014,10 +2012,10 @@ p {
   text-align: right;
 }
 .user-profile {
+  margin-top: 0;
   position: relative;
   z-index: 15;
   width: 95px;
-  margin-top: -10px;
   margin-right: 0px;
   float: right;
   -webkit-transition: all 500ms ease;
@@ -2095,6 +2093,7 @@ p {
   margin-right: 20px;
   margin-left: 0px;
   padding: 0px;
+  margin-top: -1px;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
@@ -2772,7 +2771,6 @@ section.devise-body-section .access-type-field input {
     background-color: #f1f4f4;
   }
   .main-header {
-    padding-top: 8px;
     padding-bottom: 4px;
     padding-left: 5px;
   }
@@ -3121,7 +3119,6 @@ section.devise-body-section .access-type-field input {
     display: none;
   }
   .main-header {
-    padding-top: 7px;
     padding-bottom: 2px;
     padding-left: 3px;
   }
@@ -3424,7 +3421,6 @@ section.devise-body-section .access-type-field input {
   }
   .user-profile {
     width: 88px;
-    margin-top: -7px;
     margin-right: -12px;
   }
   .dropdown-list.user-menu.w--open {
@@ -3793,7 +3789,6 @@ section.devise-body-section .access-type-field input {
   }
   .user-profile {
     width: 85px;
-    margin-top: -5px;
     margin-right: -18px;
   }
   .dropdown-list.user-menu.w--open {
