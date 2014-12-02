@@ -150,6 +150,8 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+# Rails simple carousel
+gem 'slick_rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem "compass-rails"

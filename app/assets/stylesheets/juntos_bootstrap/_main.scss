@@ -2715,7 +2715,32 @@ section.devise-body-section .access-type-field input {
   border: 1px solid #E9E9EC;
   background-color: #FFF;
 }
-
+.custom-arrow {
+  background-color: black !important; 
+  color: white !important; 
+  height: 100% !important; 
+  margin-top: 0 !important;
+  opacity: 0.7 !important; 
+  top: 0 !important;
+  width: 40px !important; 
+}
+.custom-arrow::before {
+  font-size: 35px !important;
+  line-height: 4 !important;
+}
+.slick-prev.custom-arrow {
+  left: -45px;
+}
+.slick-next.custom-arrow {
+  right: -45px;
+}
+.project-images img {
+  margin: 0 auto;
+}
+.project-images figcaption {
+  margin-top: 6px;
+  text-align: center;
+}
 
 @media (max-width: 991px) {
   body {

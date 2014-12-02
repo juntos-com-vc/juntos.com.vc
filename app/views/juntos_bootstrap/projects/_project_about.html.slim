@@ -42,3 +42,37 @@
   .no-mobile
     .fontsize-base
       = @project.about_html.html_safe
+
+.project-images
+  - @project.project_images.each do |project_image|
+    div
+      figure
+        = image_tag project_image.image.project_thumb_facebook.url
+        figcaption = project_image.caption
+.project-images-nav
+  - @project.project_images.each do |project_image|
+    div
+      = image_tag project_image.image.project_thumb.url
+
+= content_for :custom_javascripts do
+  javascript:
+    $(document).ready(function(){
+      $('.project-images').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        centerMode: true,
+        asNavFor: '.project-images-nav'
+      });
+      $('.project-images-nav').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          asNavFor: '.project-images',
+          dots: true,
+          centerMode: true,
+          focusOnSelect: true,
+          prevArrow: '<button type="button" class="slick-prev custom-arrow"></button>',
+          nextArrow: '<button type="button" class="slick-next custom-arrow"></button>'
+      });
+    });

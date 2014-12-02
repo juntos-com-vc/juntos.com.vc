@@ -23,5 +23,4 @@
 //= require ./lib/jquery.smooth-scroll.js
 //= require_tree ./lib
 //= require_tree ./app
-
-
+//= require slick
