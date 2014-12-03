@@ -76,3 +76,22 @@ App.addChild('RemoveProjectImage', {
   }
 
 });
+
+App.addChild('RemoveProjectPartner', {
+  el: 'a.js-remove_project_partner',
+
+  events: {
+    'click': 'removeProjectPartner'
+  },
+
+  removeProjectPartner: function(event){
+    event.preventDefault();
+    var removeProjectPartner = this.el;
+    var parent = $(removeProjectPartner).parents('.w-row.thumbnail-card');
+    parent.find('.thumbnail').remove();
+    parent.find('input[name*="_destroy"]').val('true');
+    $('.js-btn-submit').click();
+    return false;
+  }
+
+});

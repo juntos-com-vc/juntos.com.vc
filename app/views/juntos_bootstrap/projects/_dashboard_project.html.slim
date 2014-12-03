@@ -86,6 +86,30 @@
                       - if project_images_form.object.image.present?
                         = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_image'
   .divider
+    .w-hidden-small.w-hidden-tiny.section
+      .w-container.w-hidden-small.w-hidden-tiny
+      .w-row
+        .w-col.w-col-8
+          .fontsize-large.fontweight-semibold= t('.partners.title')
+          p.fontsize-small.u-marginbottom-40= t('.partners.excerpt')
+          .w-form.card.card-terciary
+            .w-row.u-marginbottom-30
+              .w-col.w-col-12.w-sub-col
+                label.field-label.fontsize-smallest.fontcolor-secondary= t('.partners.hint')
+            .w-row.u-marginbottom-30
+              .w-col.w-col-12.w-sub-col
+                = form.simple_fields_for :project_partners do |project_partners_form|
+                  .w-row.u-marginbottom-30.thumbnail-card
+                    .w-col.w-col-6.w-sub-col
+                      - if project_partners_form.object.image.present?
+                        = image_tag project_partners_form.object.image.project_thumb.url, class: 'thumbnail'
+                    .w-col.w-col-6.w-sub-col
+                      = project_partners_form.input_field :_destroy, as: :hidden
+                      = project_partners_form.input_field :image, as: :file, label_html: { class: 'w-hidden' }
+                      = project_partners_form.input :link, label: t('.partners.link'), input_html: { class: 'w-input text-field' }
+                      - if project_partners_form.object.image.present?
+                        = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_image'
+  .divider
     .section
       .w-container.w-hidden-small.w-hidden-tiny
         .w-row
