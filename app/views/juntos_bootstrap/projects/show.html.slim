@@ -108,7 +108,7 @@ section.section
         .fontsize-smaller.fontweight-light.u-marginbottom-30[class=@project.display_card_class]
           = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
         .u-marginbottom-10.project-style= t('.contribution_style')
-      .card.card-user.u-marginbottom-30
+      .card.card-user.u-marginbottom-10
         .proposed_by
           .header
             = t('.proposed_by')
@@ -142,6 +142,15 @@ section.section
               i.fa.fa-map-marker
               .fontsize-smallest.lineheight-looser = @project.user.address_city
         = mail_to @project.user.email, t('.contact_author'), target: '_blank', class: 'btn bt-yellow btn-medium btn-message'
+      .card.card-partners.u-marginbottom-30
+        .title
+          i.fa.fa-star
+          .fontsize-smallest.inline.lineheight-looser = Project.human_attribute_name(:project_partners)
+        ul.w-list-unstyled
+          - @project.project_partners.each do |partner|
+            li.u-marginbottom-10
+              = link_to partner.link, target: :_blank do
+                = image_tag partner.image.url
 
       .w-hidden-main.w-hidden-medium.project-share
         .div-share-mobile-fb

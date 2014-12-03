@@ -2306,6 +2306,15 @@ p {
   border-top: 1px solid #f8bc1c;
   border-bottom: 1px solid #f8bc1c;
 }
+.card-partners {
+  border: 0px;
+  border-bottom: 1px solid #f8bc1c;
+}
+.card-partners .title .fa{
+  color: #f8bc1c;
+  display: inline-block;
+  font-size: 20px;
+}
 .card-user .header {
   background: image-url('juntos/profile_icon19x14.png') no-repeat left center transparent;
   padding-left: 30px;
@@ -2617,11 +2626,8 @@ p {
   padding: 10px 14px 15px;
 }
 .card-terciary {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(241, 244, 244, 0.49);
-  background-color: rgba(241, 244, 244, 0.49);
-}
+  border-width: 0px;
+  }
 .card-send-draft {
   position: fixed;
   right: 0px;
@@ -2715,8 +2721,35 @@ section.devise-body-section .access-type-field input {
   border: 1px solid #E9E9EC;
   background-color: #FFF;
 }
-
-
+.custom-arrow {
+  background-color: black !important; 
+  color: white !important; 
+  height: 100% !important; 
+  margin-top: 0 !important;
+  opacity: 0.7 !important; 
+  top: 0 !important;
+  width: 40px !important; 
+}
+.custom-arrow::before {
+  font-size: 35px !important;
+  line-height: 4 !important;
+}
+.slick-prev.custom-arrow {
+  left: -45px;
+}
+.slick-next.custom-arrow {
+  right: -45px;
+}
+.project-images img {
+  margin: 0 auto;
+}
+.project-images figcaption {
+  margin-top: 6px;
+  text-align: center;
+}
+.u-noborder {
+  border-width: 0;
+}
 @media (max-width: 991px) {
   body {
     font-size: 14px;

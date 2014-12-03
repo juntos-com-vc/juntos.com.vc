@@ -15,9 +15,9 @@ pt:
       headline_hint: 'Será utilizada no card do projeto, junto com a imagem acima (miniatura). No máximo 100 caracteres.'
       submit: 'Salvar e visualizar'
       images:
-        title: 'Slider de Imagens'
-        excerpt: 'Aqui você irá adicionar imagens que serão disponibilizadas em um slider no final da página do projeto'
-        hint: 'Lembre de preencher também a leganda da imagem ;)'
+        title: 'Imagens da galeria (opcional)'
+        excerpt: 'Aqui você irá adicionar as imagens da galeria que irão aparecer depois da descrição do projeto'
+        hint: 'Você pode adicionar até 5 imagens na galeria. Ah, e não se esqueça de colocar a leganda :)'
         caption: 'Legenda da imagem'
     project_basics:
       project_start: 'Comece a construir o seu projeto'
