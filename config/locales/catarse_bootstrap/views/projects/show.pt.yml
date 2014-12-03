@@ -19,6 +19,11 @@ pt:
         excerpt: 'Aqui você irá adicionar as imagens da galeria que irão aparecer depois da descrição do projeto'
         hint: 'Você pode adicionar até 5 imagens na galeria. Ah, e não se esqueça de colocar a leganda :)'
         caption: 'Legenda da imagem'
+      partners:
+        title: 'Parceiros do Projeto'
+        excerpt: 'Aqui você irá adicionar logos e links de empresas que apoiaram o projeto e que serão exibidos a direita do projeto'
+        hint: 'Lembre de preencher também o link para o qual a imagem apontará ;)'
+        link: 'Link do parceiro'
     project_basics:
       project_start: 'Comece a construir o seu projeto'
       project_start_subtitle: 'Após percorrer todas as etapas acima, você pode enviar seu projeto para análise'
