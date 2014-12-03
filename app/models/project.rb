@@ -34,7 +34,8 @@ class Project < ActiveRecord::Base
 
   accepts_nested_attributes_for :rewards
   accepts_nested_attributes_for :channels
-  accepts_nested_attributes_for :project_images, allow_destroy: true, limit: 5, reject_if: proc { |attributes| attributes['image'].nil? }
+  accepts_nested_attributes_for :project_images, allow_destroy: true, limit: 8, reject_if: proc { |attributes| attributes['image'].nil? }
+  accepts_nested_attributes_for :project_partners, allow_destroy: true, limit: 3, reject_if: proc { |attributes| attributes['image'].nil? }
 
   catarse_auto_html_for field: :about, video_width: 600, video_height: 403
 
