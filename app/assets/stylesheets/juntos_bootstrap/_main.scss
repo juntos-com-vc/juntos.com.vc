@@ -2626,11 +2626,8 @@ p {
   padding: 10px 14px 15px;
 }
 .card-terciary {
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(241, 244, 244, 0.49);
-  background-color: rgba(241, 244, 244, 0.49);
-}
+  border-width: 0px;
+  }
 .card-send-draft {
   position: fixed;
   right: 0px;
@@ -2750,7 +2747,9 @@ section.devise-body-section .access-type-field input {
   margin-top: 6px;
   text-align: center;
 }
-
+.u-noborder {
+  border-width: 0;
+}
 @media (max-width: 991px) {
   body {
     font-size: 14px;
