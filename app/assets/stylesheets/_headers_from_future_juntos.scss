@@ -155,9 +155,9 @@
   height: 40px;
   margin-top: 0px;
   margin-bottom: 20px;
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;*/
   border-radius: 5px;
-  background-color: #f1f4f4;
+  /*background-color: #f1f4f4;*/
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
@@ -165,10 +165,10 @@
   font-size: 15px;
 }
 .text-field:hover {
-  border-color: #409bff;
+  border-color: #FC7F29;
 }
 .text-field:focus {
-  border-color: #409bff;
+  border-color: #FC7F29;
 }
 
 .text-field.negative {
@@ -260,7 +260,7 @@
   border-top: 1px solid #e9e9ec;
 }
 .text-success {
-  color: #00b22d;
+  color: #FFB74D;
 }
 .u-right {
   float: right;

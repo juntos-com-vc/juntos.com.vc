@@ -2565,6 +2565,83 @@ p {
 .u-text-right {
   text-align: right;
 }
+<<<<<<< Updated upstream
+=======
+.test2 {
+  background-color: rgba(0, 0, 0, 0.61);
+}
+.thumb-profile-header {
+  margin-bottom: -130px;
+  text-align: center;
+}
+.profile-preheader {
+  padding-top: 90px;
+}
+.back-to-project {
+  display: none;
+}
+.fontcolor-terciary {
+  color: #ddd;
+}
+.link-hidden-white {
+  color: white;
+  text-decoration: none;
+}
+.link-hidden-white:hover {
+  text-decoration: underline;
+}
+.u-vertical-align {
+  position: relative;
+  top: 50%;
+}
+.list-profile-highlights {
+  display: inline-block;
+  margin-right: 25px;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+  line-height: 20px;
+}
+.lightbox-bg {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 20;
+  height: 100%;
+  background-color: rgba(63, 71, 82, 0.92);
+}
+.lightbox-googleslide {
+  position: relative;
+  margin-top: 60px;
+  text-align: center;
+}
+.global-alert {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 70px;
+  padding: 20px 38px;
+  background-color: #409bff;
+  box-shadow: rgba(24, 95, 171, 0.27) 0px 0px 28px 11px inset, rgba(0, 0, 0, 0.74) 1px 1px 6px -1px;
+  color: #85f1ff;
+}
+.link-icon-light {
+  opacity: 0.7;
+  color: white;
+  text-decoration: none;
+}
+.link-icon-light:hover {
+  opacity: 1;
+}
+.body-padding-top {
+  /*padding-top: 70px;*/
+
+}
+>>>>>>> Stashed changes
 html.w-mod-js *[data-ix="fade-in"] {
   opacity: 0;
 }
