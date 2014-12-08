@@ -2075,7 +2075,7 @@ p {
   border-top: 1px solid #e9e9ec;
 }
 .text-success {
-  color: #00b22d;
+  color: #FFB74D;
 }
 .header-search {
   display: inline-block;
@@ -2722,13 +2722,13 @@ section.devise-body-section .access-type-field input {
   background-color: #FFF;
 }
 .custom-arrow {
-  background-color: black !important; 
-  color: white !important; 
-  height: 100% !important; 
+  background-color: black !important;
+  color: white !important;
+  height: 100% !important;
   margin-top: 0 !important;
-  opacity: 0.7 !important; 
+  opacity: 0.7 !important;
   top: 0 !important;
-  width: 40px !important; 
+  width: 40px !important;
 }
 .custom-arrow::before {
   font-size: 35px !important;
@@ -3871,6 +3871,11 @@ section.devise-body-section .access-type-field input {
   font-size: 12px;
   font-weight: bold;
   a {
+    color: #FFB74D;
+  }
+}
+.choose-reward {
+  span {
     color: #FFB74D;
   }
 }

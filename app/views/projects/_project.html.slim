@@ -23,16 +23,17 @@
       .circle
         - circle_id = (project.id + Time.now.to_f).to_s
         .project_progress id="#{circle_id}"
-        javascript:
-          (function() {
-            Circles.create({
-              id: "#{circle_id}", radius: 40, value: "#{project.progress}",
-              text: "<div class='percent'>#{project.progress}%<span>da meta</span></div>",
-              colors: ['#CCC', "#4E6FB5"],
-              duration: 0,
-              width: 7
-            });
-          })();
+        - content_for :custom_javascripts do
+          javascript:
+            (function() {
+              Circles.create({
+                id: "#{circle_id}", radius: 40, value: "#{project.progress}",
+                text: "<div class='percent'>#{project.progress}%<span>da meta</span></div>",
+                colors: ['#CCC', "#4E6FB5"],
+                duration: 0,
+                width: 7
+              });
+            })();
       .info
         .time-remaining
           = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit])
