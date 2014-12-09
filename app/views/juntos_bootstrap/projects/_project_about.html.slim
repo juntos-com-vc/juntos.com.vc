@@ -45,14 +45,16 @@
 
 .project-images
   - @project.project_images.each do |project_image|
-    div
-      figure
-        = image_tag project_image.image.project_thumb_facebook.url
-        figcaption = project_image.caption
+    - if project_image.image.project_thumb.url.present?
+      div
+        figure
+          = image_tag project_image.image.project_thumb_facebook.url
+          figcaption = project_image.caption
 .project-images-nav
   - @project.project_images.each do |project_image|
-    div
-      = image_tag project_image.image.project_thumb.url
+    - if project_image.image.project_thumb.url.present?
+      div
+        = image_tag project_image.image.project_thumb.url
 
 = content_for :custom_javascripts do
   javascript:
