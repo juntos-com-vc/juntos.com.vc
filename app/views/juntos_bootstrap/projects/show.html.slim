@@ -150,7 +150,7 @@ section.section
           - @project.project_partners.each do |partner|
             li.u-marginbottom-10
               = link_to partner.link, target: :_blank do
-                = image_tag partner.image.url
+                = image_tag partner.image.project_thumb.url
 
       .w-hidden-main.w-hidden-medium.project-share
         .div-share-mobile-fb
