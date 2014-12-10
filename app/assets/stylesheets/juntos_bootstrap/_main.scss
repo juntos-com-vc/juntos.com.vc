@@ -2309,6 +2309,9 @@ p {
 .card-partners {
   border: 0px;
   border-bottom: 1px solid #f8bc1c;
+  li {
+    text-align: center;
+  }
 }
 .card-partners .title .fa{
   color: #f8bc1c;

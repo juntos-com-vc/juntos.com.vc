@@ -80,7 +80,7 @@
                 .w-row.u-marginbottom-30.thumbnail-card
                   .w-col.w-col-6.w-sub-col
                     - if project_partners_form.object.image.present?
-                      = image_tag project_partners_form.object.image.project_thumb.url, class: 'thumbnail'
+                      = image_tag project_partners_form.object.image.thumb.url, class: 'thumbnail'
                   .w-col.w-col-6.w-sub-col
                     = project_partners_form.input_field :_destroy, as: :hidden
                     = project_partners_form.input_field :image, as: :file, label_html: { class: 'w-hidden' }
