@@ -27,8 +27,8 @@
 
     .fontsize-small.fontweight-light = reward.display_description
 
-    - if reward.days_to_delivery.present?
-        .fontsize-smallest = "#{t('.reward_deliver_time', estimate: reward.display_deliver_estimate)}".html_safe
+    /- if reward.days_to_delivery.present?
+        /.fontsize-smallest = "#{t('.reward_deliver_time', estimate: reward.display_deliver_estimate)}".html_safe
 
     - if current_user && current_user.admin
         .fontsize-smallest = "Modificado em: #{I18n.l(reward.updated_at.to_date)} #{parent.online_date.nil? ? '' : ((parent.online_date > reward.updated_at)? '(draft)' : '(online)')}"
