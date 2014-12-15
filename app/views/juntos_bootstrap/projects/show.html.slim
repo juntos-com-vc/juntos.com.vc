@@ -46,6 +46,9 @@
             => t('.menu.comments')
             fb:comments-count href="#{request.base_url}/#{request.fullpath.split('/')[2]}" class="badge" style="display: inline"
               |&nbsp;
+          = link_to '#project_metrics', id: 'project_metrics_link', class: 'nav-tab' , data: {target: '#project_metrics'}, style: "background-color: #{@project.category.color};" do
+            => t('.menu.metrics')
+              |&nbsp;
 
 - if policy(@project).update?
   nav.dashboard-nav.w-hidden-small.w-hidden-tiny
@@ -59,14 +62,12 @@
       = link_to '#dashboard_reward', id: 'dashboard_reward_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_reward'} do
         span.fa.fa-check-circle .
         | \&nbsp;Recompensas
-      a.dashboard-nav-link href="#"
-        span.fa.fa-check-circle .
-        | \&nbsp;Sobre você
-      a.dashboard-nav-link href="#"  Preview
+      = link_to 'Preview', @project, class: 'dashboard-nav-link'
       - if @project.draft?
         .btn-send-draft
            = link_to 'Enviar projeto para análise', send_to_analysis_project_path(@project), class: 'btn btn-small'
-section.section
+section.section#dashboard_reward.content.w-hidden
+        = render 'dashboard_reward'
 .w-container
   .w-row
     article.w-hidden-small.w-hidden-tiny
@@ -78,12 +79,16 @@ section.section
         = render 'project_about'
       #dashboard_reward.content.w-hidden
         = render 'dashboard_reward'
+      #project_metrics.content.w-hidden
+      - content_for :custom_javascripts do
+        javascript:
+          $(document).ready(function() { $('#project_metrics').load("#{metrics_project_path(@project)}"); });
+        = javascript_include_tag "//www.google.com/jsapi", "chartkick"
 
-      #project_posts.content.w-col.w-col-8.w-hidden[data-path=project_posts_path(project_id: @project.id)]
-        .posts
-          | &nbsp;
-        #posts-loading.loader.u-text-center.w-col.w-col-12 = image_tag "catarse_bootstrap/loader.gif"
 
+      #project_posts.content.w-col.w-col-8.w-hidden
+      javascript:
+          $(document).ready(function() { $('#project_posts').load("#{project_posts_path(@project)}"); });
       #project_contributions.content.w-col.w-col-8.w-hidden[data-path=project_contributions_path(project_id: @project.id)]
         - if policy(@project).update?
           .w-row
