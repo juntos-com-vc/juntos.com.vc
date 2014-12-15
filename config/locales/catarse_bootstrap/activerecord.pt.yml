@@ -131,6 +131,9 @@ pt:
         url: 'Site da empresa'
         name: 'Razão Social'
         featured: 'Destaque'
+        phone: Contato
+        address: Endereço
+        bio: Descrição
       organization:
         full_name: 'Razão Social'
         cnpj: 'CNPJ'

@@ -3,7 +3,7 @@ pt:
     site_partners:
       index:
         title: 'Parceiros do Juntos'
-        new: 'Nova Parceiro'
+        new: 'Novo Parceiro'
         edit: 'Alterar'
         remove: 'Apagar'
       new:
