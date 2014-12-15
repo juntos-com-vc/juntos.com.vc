@@ -23,6 +23,7 @@ Catarse::Application.routes.draw do
   mount CatarsePagarme::Engine => "/", as: :catarse_pagarme
 #  mount CatarseWepay::Engine => "/", as: :catarse_wepay
 
+  resources :site_partners, only: :index
   get '/post_preview' => 'post_preview#show', as: :post_preview
   resources :categories, only: [] do
     member do

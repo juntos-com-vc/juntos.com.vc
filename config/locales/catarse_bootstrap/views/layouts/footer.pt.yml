@@ -28,4 +28,8 @@ pt:
         newsletter: Assine nossa news
         sitemap: Navegue
         social: Redes sociais
+  shared:
+    footer_navigate:
+      links:
+        partners: Parceiros
 
