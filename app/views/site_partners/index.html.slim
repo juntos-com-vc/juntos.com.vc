@@ -16,15 +16,15 @@
             h3 = partner.name
             h4
               span Endereço:
-              =< "Rua de teste"
+              =< partner.address
             h4
               span Contato:
-              =< '(51) 9988-7765'
+              =< partner.phone
             h4
               span Site:
-              =< link_to 'http://www.engage.is'
+              =< link_to partner.url
             p
-              | Art party banh mi occupy keytar disrupt. Twee Neutra flexitarian hashtag, stumptown beard squid. Shabby chic narwhal salvia, retro fap butcher Bushwick McSweeney's migas Pinterest distillery. Mustache next level quinoa flannel. Fingerstache drinking vinegar wayfarers direct trade raw denim, forage gastropub mlkshk farm-to-table occupy DIY twee. Forage meditation Marfa, shabby chic cred four dollar toast gastropub butcher authentic lo-fi mixtape Kickstarter. Banjo cliche iPhone Neutra selvage.
+              = partner.bio
 
       = content_for :custom_javascripts do
         javascript:
