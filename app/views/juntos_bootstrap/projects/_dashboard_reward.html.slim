@@ -29,7 +29,7 @@
                     p.fontsize-small
                       br= reward.display_description
                     .fontsize-smallest
-                      =t('rewards.index.reward_deliver_time', estimate: reward.display_deliver_estimate).html_safe
+                      /=t('rewards.index.reward_deliver_time', estimate: reward.display_deliver_estimate).html_safe
               .w-hidden[class="edit_reward_content_#{reward.id}"]
 
           .new_reward_content.w-hidden
