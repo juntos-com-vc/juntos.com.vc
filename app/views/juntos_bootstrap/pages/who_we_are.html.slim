@@ -1,0 +1,21 @@
+= render 'shared/header_big'
+= render 'shared/feedback'
+
+.section-one-column
+  .w-container
+    .fontsize-largest.u-margintop-30.u-marginbottom-80 = t('.title')
+
+    .w-tabs
+      nav#who_we_are_menu
+        = link_to '#history', 'id' => 'history_link', 'class' => 'nav-tab selected background-yellow' do
+          = t('.menu.history')
+        = link_to '#people', 'id' => 'people_link', 'class' => 'nav-tab background-yellow' do
+          = t('.menu.people')
+    .main.u-margintop-30
+      - who_we_are = Page.find_by(name: Page.names[:who_we_are])
+      #who_we_are_history.content
+        = who_we_are.content
+      #who_we_are_people.content.w-lightbox-hide
+        | Lero 2
+
+= render 'shared/footer_big'

@@ -83,6 +83,7 @@ Catarse::Application.routes.draw do
     end
   end
 
+  get "/who-we-are" => 'high_voltage/pages#show', id: 'who_we_are'
   get "/terms-of-use" => 'high_voltage/pages#show', id: 'terms_of_use'
   get "/privacy-policy" => 'high_voltage/pages#show', id: 'privacy_policy'
   get "/start" => 'high_voltage/pages#show', id: 'start'
@@ -155,6 +156,8 @@ Catarse::Application.routes.draw do
     namespace :reports do
       resources :contribution_reports, only: [ :index ]
     end
+
+    resources :pages, only: [:show, :update, :edit, :index]
   end
 
   get "/:permalink" => "projects#show", as: :project_by_slug
