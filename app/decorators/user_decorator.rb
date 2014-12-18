@@ -16,9 +16,9 @@ class UserDecorator < Draper::Decorator
     "http://twitter.com/#{source.twitter}" unless source.twitter.blank?
   end
 
-  def gravatar_url
+  def gravatar_url size=80
     return unless source.email
-    "https://gravatar.com/avatar/#{Digest::MD5.new.update(source.email)}.jpg?default=#{CatarseSettings[:base_url]}/assets/user.png"
+    "https://gravatar.com/avatar/#{Digest::MD5.new.update(source.email)}.jpg?default=#{CatarseSettings[:base_url]}/assets/user.png&s=#{size}"
   end
 
   def display_name
@@ -27,6 +27,10 @@ class UserDecorator < Draper::Decorator
 
   def display_image
     source.uploaded_image.thumb_avatar.url || source.image_url || source.gravatar_url || '/user.png'
+  end
+
+  def larger_display_image
+    source.uploaded_image.larger_thumb_avatar.url || source.image_url || source.gravatar_url(256) || '/user.png'
   end
 
   def display_image_html options={width: 119, height: 121}

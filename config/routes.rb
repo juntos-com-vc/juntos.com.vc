@@ -83,11 +83,11 @@ Catarse::Application.routes.draw do
     end
   end
 
-  get "/who-we-are" => 'high_voltage/pages#show', id: 'who_we_are'
   get "/terms-of-use" => 'high_voltage/pages#show', id: 'terms_of_use'
   get "/privacy-policy" => 'high_voltage/pages#show', id: 'privacy_policy'
   get "/start" => 'high_voltage/pages#show', id: 'start'
 
+  get "/who-we-are" => 'who_we_are#show', id: 'who_we_are'
 
   # Channels
   constraints SubdomainConstraint do
