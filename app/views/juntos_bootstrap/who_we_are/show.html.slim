@@ -15,7 +15,7 @@
           = t('.menu.people')
     .main.u-margintop-30
       #who_we_are_history.content
-        = @page.content
+        = @page.content_html.html_safe
       #who_we_are_people.content.w-lightbox-hide
         .w-row
           .w-col.w-col-11.

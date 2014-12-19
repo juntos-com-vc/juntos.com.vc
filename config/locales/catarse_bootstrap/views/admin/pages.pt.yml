@@ -1,0 +1,5 @@
+pt:
+  admin:
+    pages:
+      edit:
+        title: 'Alterar Página'

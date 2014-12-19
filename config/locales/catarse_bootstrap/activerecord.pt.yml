@@ -8,6 +8,7 @@ pt:
       category: Categoria
       bank_account: Dados bancários
       site_partner: Parceiro do Juntos
+      page: 'Página'
     attributes:
       bank_account:
         bank: 'Banco'
@@ -146,6 +147,8 @@ pt:
         responsible_name: 'Nome do responsável'
         responsible_cpf: 'CPF do responsável'
         gender: 'Gênero do responsável'
+      page:
+        content: 'Conteúdo'
     errors:
       models:
         contribution: "Erro ao salvar apoio"
