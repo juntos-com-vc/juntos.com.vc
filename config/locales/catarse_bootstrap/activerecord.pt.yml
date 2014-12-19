@@ -94,6 +94,11 @@ pt:
         mobile_phone: 'Telefone Celular'
         gender/male: 'Masculino'
         gender/female: 'Feminino'
+        staff: 'Departamento'
+        staff/team: 'Time'
+        staff/financial_board: 'Conselho Financeiro'
+        staff/technical_board: 'Conselho Técnico'
+        staff/advice_board: 'Conselho'
         doc1: Estatuto social registrado em cartório
         doc2: Última ata de assembleia geral registrada em cartório
         doc3: Último parecer do conselho fiscal

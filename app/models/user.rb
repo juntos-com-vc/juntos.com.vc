@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13
 
   enum access_type: [:individual, :legal_entity]
-  enum staff: [:team, :financial_board, :tecnical_board, :advice_board]
+  enum staff: [:team, :financial_board, :technical_board, :advice_board]
   enum gender: [:male, :female]
 
   mount_uploader :uploaded_image, UserUploader
@@ -253,6 +253,12 @@ class User < ActiveRecord::Base
     self.reset_password_sent_at = Time.now.utc
     self.save(validate: false)
     raw
+  end
+
+  def self.staff_array
+    staffs.map do |name, value|
+      [User.human_attribute_name("staff/#{name}"), value]
+    end
   end
 
 end
