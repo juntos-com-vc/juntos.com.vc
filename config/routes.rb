@@ -87,6 +87,7 @@ Catarse::Application.routes.draw do
   get "/privacy-policy" => 'high_voltage/pages#show', id: 'privacy_policy'
   get "/start" => 'high_voltage/pages#show', id: 'start'
 
+  get "/who-we-are" => 'who_we_are#show', id: 'who_we_are'
 
   # Channels
   constraints SubdomainConstraint do
@@ -155,6 +156,8 @@ Catarse::Application.routes.draw do
     namespace :reports do
       resources :contribution_reports, only: [ :index ]
     end
+
+    resources :pages, only: [:show, :update, :edit, :index]
   end
 
   get "/:permalink" => "projects#show", as: :project_by_slug

@@ -1,0 +1,11 @@
+pt:
+  who_we_are:
+    show:
+      title: 'Quem somos'
+      staff: 'Equipe'
+      financial_board: 'Conselho Financeiro'
+      technical_board: 'Conselho Técnico'
+      advice_board: 'Conselho'
+      menu:
+        history: 'Nossa História'
+        people: 'Nosso Pessoal'

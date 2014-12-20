@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
 
   delegate  :display_name, :display_image, :short_name, :display_image_html,
     :medium_name, :display_credits, :display_total_of_contributions, :contributions_text,
-    :twitter_link, :gravatar_url, :display_bank_account, :display_bank_account_owner, to: :decorator
+    :twitter_link, :gravatar_url, :display_bank_account, :display_bank_account_owner,
+    :larger_display_image, to: :decorator
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name,
     :image_url, :uploaded_image, :bio, :newsletter, :full_name, :address_street, :address_number,
@@ -20,6 +21,7 @@ class User < ActiveRecord::Base
     :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13
 
   enum access_type: [:individual, :legal_entity]
+  enum staff: [:team, :financial_board, :technical_board, :advice_board]
   enum gender: [:male, :female]
 
   mount_uploader :uploaded_image, UserUploader
@@ -251,6 +253,12 @@ class User < ActiveRecord::Base
     self.reset_password_sent_at = Time.now.utc
     self.save(validate: false)
     raw
+  end
+
+  def self.staff_array
+    staffs.map do |name, value|
+      [User.human_attribute_name("staff/#{name}"), value]
+    end
   end
 
 end

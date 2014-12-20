@@ -1,0 +1,19 @@
+= render 'shared/header_big'
+br
+.w-container
+  .w-row.admin.u-marginbottom-40
+    .w-col.w-col-12
+      h1= @title = t('.title')
+  = simple_form_for [:admin, @page] do |form|
+    - if @page.errors.present?
+      .card.card-error.u-radius.zindex-10.u-marginbottom-30
+        .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
+        - @page.errors.messages.each do |message|
+          .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
+
+    .w-row
+      = form.input :content, as: :text, input_html: { class: 'big' }, wrapper_html: { class: 'w-col w-col-12'}
+
+    .w-row
+      .w-col.w-col-2
+        = form.submit class:'btn btn-large u-marginbottom-20'

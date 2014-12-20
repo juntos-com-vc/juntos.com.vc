@@ -69,7 +69,7 @@
           #user_unsubscribes.content.hide
             = render 'unsubscribes'
           #user_settings.content.hide
-            - if @user.access_type == :individual
+            - if @user.individual?
               = render 'current_user_fields'
             - else
               = render 'current_organization_fields'

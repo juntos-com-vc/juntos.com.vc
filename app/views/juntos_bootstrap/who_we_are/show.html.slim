@@ -1,0 +1,37 @@
+= render 'shared/header_big'
+
+- content_for(:title)
+  = t(".title")
+
+.section-one-column
+  .w-container
+    .fontsize-largest.u-margintop-30.u-marginbottom-40 = t('.title')
+
+    .w-tabs
+      nav#who_we_are_menu
+        = link_to '#history', 'id' => 'history_link', 'class' => 'nav-tab selected background-yellow' do
+          = t('.menu.history')
+        = link_to '#people', 'id' => 'people_link', 'class' => 'nav-tab background-yellow' do
+          = t('.menu.people')
+    .main.u-margintop-30
+      #who_we_are_history.content
+        = @page.content_html.html_safe
+      #who_we_are_people.content.w-lightbox-hide
+        .w-row
+          .w-col.w-col-11.
+            .w-row.u-marginbottom-20
+              h1= t('.staff')
+              br
+              = render partial: 'who_we_are/user', collection: @staff
+            .w-row.u-marginbottom-20
+              h1= t('.advice_board')
+              br
+              = render partial: 'who_we_are/user', collection: @advice_board
+            .w-row.u-marginbottom-20
+              h1= t('.technical_board')
+              br
+              = render partial: 'who_we_are/user', collection: @technical_board
+            .w-row.u-marginbottom-20
+              h1= t('.financial_board')
+              br
+              = render partial: 'who_we_are/user', collection: @financial_board

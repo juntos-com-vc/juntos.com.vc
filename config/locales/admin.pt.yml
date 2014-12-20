@@ -6,6 +6,9 @@ pt:
     site_partners:
       index:
         menu: 'Parceiros'
+    pages:
+      index:
+        menu: 'Páginas'
     filter:
       title: 'Filtros'
     confirm_dialog: 'Você tem certeza?'
