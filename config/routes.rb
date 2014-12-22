@@ -24,6 +24,7 @@ Catarse::Application.routes.draw do
 #  mount CatarseWepay::Engine => "/", as: :catarse_wepay
 
   resources :site_partners, only: :index
+  resources :presses, only: :index
   get '/post_preview' => 'post_preview#show', as: :post_preview
   resources :categories, only: [] do
     member do
@@ -137,6 +138,7 @@ Catarse::Application.routes.draw do
     resources :statistics, only: [ :index ]
     resources :financials, only: [ :index ]
     resources :site_partners
+    resources :presses
 
     resources :contributions, only: [ :index, :update, :show ] do
       member do

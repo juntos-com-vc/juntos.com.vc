@@ -1,0 +1,13 @@
+#page_content.press-page
+  .container
+    h1 Mídia
+
+    .presses
+      ul
+        - for press in @presses do
+          li
+            h2 = press.medium
+            h5 = l(press.published_at)
+            h3 = link_to press.title, press.link
+            p = press.quote
+

@@ -1,0 +1,24 @@
+= simple_form_for [:admin, @press] do |form|
+  - if @press.errors.present?
+    .card.card-error.u-radius.zindex-10.u-marginbottom-30
+      .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
+      - @press.errors.messages.each do |message|
+        .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
+
+  .w-row
+    .w-col.w-col-6
+      = form.input :title, as: :string, required: true
+    .w-col.w-col-6
+      = form.input :medium, as: :string, required: true
+  .w-row
+    .w-col.w-col-6
+      = form.input :quote, as: :text 
+    .w-col.w-col-6
+      = form.input :published_at, as: :date
+  .w-row
+    .w-col.w-col-6
+      = form.input :link, as: :url
+
+  .w-row
+    .w-col.w-col-3
+      = form.button :submit
