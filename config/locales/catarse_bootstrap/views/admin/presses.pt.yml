@@ -1,0 +1,12 @@
+pt:
+  admin:
+    presses:
+      index:
+        title: 'Midia'
+        new: 'Nova midia'
+        edit: 'Alterar'
+        remove: 'Apagar'
+      new:
+        title: 'Nova Midia'
+      edit:
+        title: 'Alterar Midia'

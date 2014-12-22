@@ -137,6 +137,7 @@ Catarse::Application.routes.draw do
     resources :statistics, only: [ :index ]
     resources :financials, only: [ :index ]
     resources :site_partners
+    resources :presses
 
     resources :contributions, only: [ :index, :update, :show ] do
       member do

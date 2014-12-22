@@ -8,6 +8,7 @@ pt:
       category: Categoria
       bank_account: Dados bancários
       site_partner: Parceiro do Juntos
+      press: Midia
       page: 'Página'
     attributes:
       bank_account:
@@ -140,6 +141,12 @@ pt:
         phone: Contato
         address: Endereço
         bio: Descrição
+      press:
+        title: 'Titulo'
+        medium: 'Veículo'
+        link: 'Link da notícia'
+        quote: 'Citação'
+        published_at: 'Data de publicação'
       organization:
         full_name: 'Razão Social'
         cnpj: 'CNPJ'
