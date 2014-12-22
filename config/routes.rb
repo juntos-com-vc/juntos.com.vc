@@ -88,6 +88,7 @@ Catarse::Application.routes.draw do
   get "/start" => 'high_voltage/pages#show', id: 'start'
 
   get "/who-we-are" => 'who_we_are#show', id: 'who_we_are'
+  get "/ongs" => 'ongs#index', id: 'ongs'
 
   # Channels
   constraints SubdomainConstraint do

@@ -2722,6 +2722,9 @@ section.devise-body-section .access-type-field input {
 .u-no-brackground {
   background-color: white !important;
 }
+.u-no-padding {
+  padding: 0;
+}
 .thumbnail {
   overflow: hidden;
   width: 100%;
@@ -3904,4 +3907,8 @@ section.devise-body-section .access-type-field input {
     padding: 10px 5px;
     border: solid 1px;
   }
+}
+.ongs-letter-link {
+  border-radius: 0px !important;
+  width: 22px;
 }
