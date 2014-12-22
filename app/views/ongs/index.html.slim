@@ -1,0 +1,20 @@
+= render 'shared/header_big'
+
+- content_for(:title)
+  = t(".title")
+
+.section-one-column
+  .w-container
+    .fontsize-larger.u-margintop-30.u-marginbottom-20 = t('.title')
+    .w-row
+      .w-col.w-col-8
+        .fontsize-small.u-margintop-30.u-marginbottom-20 = t('.disclaimer')
+
+    ul.u-no-padding.u-marginbottom-40
+      - ('A'..'Z').each do |char|
+        li.text= link_to char, "##{char}", class: 'btn btn-yellow ongs-letter-link'
+    - ('A'..'Z').each do |char|
+      .u-marginbottom-40 id="#{char}" name="#{char}"
+        - @ongs.fetch(char, []).each_slice(2) do |ongs|
+          .w-row.u-marginbottom-10
+            = render partial: 'ongs/ong', collection: ongs
