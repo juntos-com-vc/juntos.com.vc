@@ -2,7 +2,10 @@
   .w-row
     .w-col.w-col-4
       = link_to user_path(ong, anchor: 'projects') do
-        = image_tag ong.uploaded_image.thumb_avatar.url
+        - if ong.uploaded_image.present?
+          = image_tag ong.uploaded_image.thumb_avatar.url
+        - else
+          = image_tag 'juntos/placeholder-ong.png'
     .w-col.w-col-8
       .u-marginbottom-10
         = link_to ong.name.upcase, user_path(ong, anchor: 'projects'), class: 'fontsize-base fontcolor-yellow'
