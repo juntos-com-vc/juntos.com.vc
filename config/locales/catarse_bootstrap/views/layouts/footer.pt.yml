@@ -20,6 +20,7 @@ pt:
         submit: Envie seu projeto
         terms: Termos de uso
         twitter: Twitter
+        who_we_are: Quem Somos
       texts:
         copyleft: Feito com amor.
       titles:
@@ -32,4 +33,8 @@ pt:
     footer_navigate:
       links:
         partners: Parceiros
+    footer_welcome:
+      links:
+        who_we_are: Quem Somos
+        press: Mídia
 
