@@ -6,6 +6,7 @@ pt:
         new: 'Nova midia'
         edit: 'Alterar'
         remove: 'Apagar'
+        menu: 'Editar Mídia'
       new:
         title: 'Nova Midia'
       edit:

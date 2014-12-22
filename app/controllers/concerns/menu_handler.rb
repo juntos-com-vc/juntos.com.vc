@@ -22,6 +22,7 @@ module Concerns
       add_to_menu "admin.projects.index.menu",      :admin_projects_path
       add_to_menu "admin.categories.index.menu",    :admin_categories_path
       add_to_menu "admin.site_partners.index.menu", :admin_site_partners_path
+      add_to_menu "admin.presses.index.menu", :admin_presses_path
       add_to_menu "admin.pages.index.menu",         :admin_pages_path
 
       # Admin and channel admin can access
