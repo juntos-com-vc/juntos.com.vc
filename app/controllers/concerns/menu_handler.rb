@@ -15,15 +15,16 @@ module Concerns
       end
 
       # Only admin can access
-      add_to_menu "admin.contributions.index.menu", :admin_contributions_path
-      add_to_menu "admin.financials.index.menu",    :admin_financials_path
-      add_to_menu "admin.statistics.index.menu",    :admin_statistics_path
-      add_to_menu "admin.users.index.menu",         :admin_users_path
-      add_to_menu "admin.projects.index.menu",      :admin_projects_path
-      add_to_menu "admin.categories.index.menu",    :admin_categories_path
-      add_to_menu "admin.site_partners.index.menu", :admin_site_partners_path
-      add_to_menu "admin.presses.index.menu", :admin_presses_path
-      add_to_menu "admin.pages.index.menu",         :admin_pages_path
+      add_to_menu "admin.contributions.index.menu",          :admin_contributions_path
+      add_to_menu "admin.financials.index.menu",             :admin_financials_path
+      add_to_menu "admin.statistics.index.menu",             :admin_statistics_path
+      add_to_menu "admin.users.index.menu",                  :admin_users_path
+      add_to_menu "admin.projects.index.menu",               :admin_projects_path
+      add_to_menu "admin.categories.index.menu",             :admin_categories_path
+      add_to_menu "admin.site_partners.index.menu",          :admin_site_partners_path
+      add_to_menu "admin.pages.index.menu",                  :admin_pages_path
+      add_to_menu "admin.presses.index.menu",                :admin_presses_path
+      add_to_menu 'activerecord.models.transparency_report', :admin_transparency_report_path
 
       # Admin and channel admin can access
       add_to_menu "channels.admin.followers_menu",  :channels_admin_followers_path

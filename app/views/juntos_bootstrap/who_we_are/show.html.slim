@@ -58,9 +58,10 @@
               li = t('.transparency.objectives.content')[3]
           .w-col.w-col-4.u-margintop-70
             .u-margintop-70
-              = link_to '#', class:'btn bt-yellow' do
-                .download-month-balance.u-marginbottom-10
-                  .fontsize-large = t('.transparency.download.title')
-                  .fontsize-smalles = t('.transparency.download.month', month: t('date.month_names')[Time.now.month].upcase)
-                .fa.fa-calendar.fa-3x
+              - if @transparency_report.attachment
+                = link_to @transparency_report.attachment.url, class:'btn bt-yellow', target: :_blank do
+                  .download-month-balance.u-marginbottom-10
+                    .fontsize-large = t('.transparency.download.title')
+                    .fontsize-smalles = t('.transparency.download.month', month: t('date.month_names')[Time.now.month].upcase)
+                  .fa.fa-calendar.fa-3x
 

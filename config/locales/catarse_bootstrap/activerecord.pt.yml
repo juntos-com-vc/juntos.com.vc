@@ -10,6 +10,7 @@ pt:
       site_partner: Parceiro do Juntos
       press: Midia
       page: 'Página'
+      transparency_report: 'Relatório de Trasparência'
     attributes:
       bank_account:
         bank: 'Banco'
@@ -157,6 +158,8 @@ pt:
         gender: 'Gênero do responsável'
       page:
         content: 'Conteúdo'
+      transparency_report:
+        attachment: 'Relatório'
     errors:
       models:
         contribution: "Erro ao salvar apoio"

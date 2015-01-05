@@ -7,6 +7,7 @@ class WhoWeAreController < ApplicationController
     @financial_board = User.where(staff: User.staffs[:financial_board]).limit(4)
     @technical_board = User.where(staff: User.staffs[:technical_board]).limit(4)
     @advice_board = User.where(staff: User.staffs[:advice_board]).limit(4)
+    @transparency_report = TransparencyReport.last
   end
 
 end
