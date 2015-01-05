@@ -45,8 +45,6 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
-
-
   def reactivate
     user = params[:token].present? && User.find_by(reactivate_token: params[:token])
     if user

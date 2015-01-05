@@ -9,3 +9,24 @@ pt:
       menu:
         history: 'Nossa História'
         people: 'Nosso Pessoal'
+        transparency: 'Transparência'
+      transparency:
+        download:
+          title: 'FAÇA O DOWNLOAD'
+          month: 'Do nosso relatório de %{month}'
+        objectives:
+          title: 'Objetivos'
+          content:
+            - 'Apoiar a capacitação de recursos para projetos sociais.'
+            - 'Contribuir para o aumento de cultura de doação no Brasil.'
+            - 'Das mais visibilidade para projetos sociais.'
+            - 'Democratizar a doação no Brasil.'
+        mission:
+          title: 'Missão'
+          content: 'Despertar pessoas em busca de uma transformação social usando a força do coletivo e das redes de comunicação para reduzir diferenças e multiplicar boas ações'
+        vision:
+          title: 'Visão'
+          content: 'Se referência no Terceiro Setor como uma organização sólida e idônea que selecionou projetos de impacto social positivo, estimulando e engajando doadores a participarem dessa mudança'
+        values:
+          title: 'Valores'
+          content: 'Ética, a transparência, o comprometimento social, o profissionalismo, a inovação, o envolvimento, a idoneidade, a solidez e o espírito de coletividade'

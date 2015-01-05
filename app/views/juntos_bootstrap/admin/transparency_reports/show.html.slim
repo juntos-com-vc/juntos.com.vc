@@ -1,0 +1,26 @@
+= render 'shared/header_big'
+.w-container
+  br
+  .w-row.admin
+    .w-col.w-col-5
+      h1= @title = TransparencyReport.model_name.human
+  br
+  br
+  = simple_form_for [:admin, @transparency_report] do |form|
+    - if @transparency_report.errors.present?
+      .card.card-error.u-radius.zindex-10.u-marginbottom-30
+        .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
+        - @transparency_report.errors.messages.each do |message|
+          .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
+
+    .w-row
+      .w-col.w-col-6
+        = form.input :attachment, as: :file, required: true
+      .w-col.w-col-6
+        - if @transparency_report.attachment
+          .u-margintop-30
+            = link_to 'Arquivo', @transparency_report.attachment.url, target: '_blank', class: 'fontcolor-yellow fontsize-large'
+    .w-row
+      .w-col.w-col-4.u-margintop-20.u-marginbottom-30
+        = form.button :submit, class: 'bt-medium'
+
