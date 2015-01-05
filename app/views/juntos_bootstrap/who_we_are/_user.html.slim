@@ -3,6 +3,8 @@
     = image_tag user.larger_display_image
   .fontcolor-yellow
     = user.display_name.upcase
+  .fontcolor-yellow.fontsize-smallest
+    = user.job_title.try(:upcase)
   .u-marginbottom-10.fontsize-smallest
     = user.email
   .fontsize-smallest

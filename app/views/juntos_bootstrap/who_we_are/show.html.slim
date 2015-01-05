@@ -13,12 +13,14 @@
           = t('.menu.history')
         = link_to '#people', 'id' => 'people_link', 'class' => 'nav-tab background-yellow' do
           = t('.menu.people')
+        = link_to '#transparency', 'id' => 'transparency_link', 'class' => 'nav-tab background-yellow' do
+          = t('.menu.transparency')
     .main.u-margintop-30
       #who_we_are_history.content
         = @page.content_html.html_safe
       #who_we_are_people.content.w-lightbox-hide
         .w-row
-          .w-col.w-col-11.
+          .w-col.w-col-11
             .w-row.u-marginbottom-20
               h1= t('.staff')
               br
@@ -35,3 +37,30 @@
               h1= t('.financial_board')
               br
               = render partial: 'who_we_are/user', collection: @financial_board
+      #who_we_are_transparency.content.w-lightbox-hide
+        .w-row
+          .w-col.w-col-4
+            h2.fontcolor-yellow = t('.transparency.mission.title')
+            p = t('.transparency.mission.content')
+          .w-col.w-col-4
+            h2.fontcolor-yellow = t('.transparency.vision.title')
+            p = t('.transparency.vision.content')
+          .w-col.w-col-4
+            h2.fontcolor-yellow = t('.transparency.values.title')
+            p = t('.transparency.values.content')
+        .w-row
+          .w-col.w-col-6
+            h2.fontcolor-yellow = t('.transparency.objectives.title')
+            ul
+              li = t('.transparency.objectives.content')[0]
+              li = t('.transparency.objectives.content')[1]
+              li = t('.transparency.objectives.content')[2]
+              li = t('.transparency.objectives.content')[3]
+          .w-col.w-col-4.u-margintop-70
+            .u-margintop-70
+              = link_to '#', class:'btn bt-yellow' do
+                .download-month-balance.u-marginbottom-10
+                  .fontsize-large = t('.transparency.download.title')
+                  .fontsize-smalles = t('.transparency.download.month', month: t('date.month_names')[Time.now.month].upcase)
+                .fa.fa-calendar.fa-3x
+

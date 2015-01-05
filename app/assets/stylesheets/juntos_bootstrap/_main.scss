@@ -2518,6 +2518,9 @@ p {
 .u-margintop-40 {
   margin-top: 40px;
 }
+.u-margintop-70 {
+  margin-top: 70px;
+}
 .start-stats {
   padding-right: 34px;
   padding-left: 34px;
@@ -2764,6 +2767,10 @@ section.devise-body-section .access-type-field input {
 }
 .background-yellow {
   background-color: #f8bc1c;
+}
+.download-month-balance {
+  display: inline-block;
+  width: 80%;
 }
 @media (max-width: 991px) {
   body {

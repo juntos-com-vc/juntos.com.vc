@@ -114,6 +114,7 @@ pt:
         doc11: Certidão negativa da justiça federal
         doc12: RG e CPF ou CNH da pessoa responsável pela ONG, o nome da pessoa precisa constar no estatuto ou atas
         doc13: Comprovante de residência da pessoa ou da instituição
+        job_title: 'Cargo'
       channel:
         ga_code: Código do Analytics
         description: Descrição
