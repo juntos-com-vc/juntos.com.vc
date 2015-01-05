@@ -7,6 +7,7 @@ App.addChild('Contribution', {
   },
 
   submitForm: function(){
+    alert('lala');
     this.$('form').submit();
     return false;
   },

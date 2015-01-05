@@ -10,6 +10,7 @@ App.addChild('ReviewForm', _.extend({
 
   onNextStepClick: function(){
     if(this.validate()){
+      this.updateContribution();
       this.$errorMessage.hide();
       this.$('#next-step').hide();
       this.parent.payment.show();
@@ -101,8 +102,10 @@ App.addChild('ReviewForm', _.extend({
 
   updateContribution: function(){
     var contribution_data = {
+      country_id: this.$('#contribution_country_id').val(),
       payer_name: this.$('#contribution_full_name').val(),
       payer_email: this.$('#contribution_email').val(),
+      payer_document: this.$('#contribution_payer_document').val(),
       address_street: this.$('#contribution_address_street').val(),
       address_number: this.$('#contribution_address_number').val(),
       address_complement: this.$('#contribution_address_complement').val(),
@@ -110,7 +113,7 @@ App.addChild('ReviewForm', _.extend({
       address_zip_code: this.$('#contribution_address_zip_code').val(),
       address_city: this.$('#contribution_address_city').val(),
       address_state: this.$('#contribution_address_state').val(),
-      address_phone_number: this.$('#contribution_phone_number').val()
+      address_phone_number: this.$('#contribution_address_phone_number').val()
     }
     $.post(this.$el.data('update-info-path'), {
       _method: 'put',
