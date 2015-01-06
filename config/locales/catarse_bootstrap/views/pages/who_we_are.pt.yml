@@ -1,4 +1,5 @@
 pt:
+  updated: 'Arquivo enviado'
   who_we_are:
     show:
       title: 'Quem somos'
@@ -13,7 +14,7 @@ pt:
       transparency:
         download:
           title: 'FAÇA O DOWNLOAD'
-          month: 'Do nosso relatório de %{month}'
+          month: 'Do nosso último relatório'
         objectives:
           title: 'Objetivos'
           content:
