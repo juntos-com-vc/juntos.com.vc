@@ -10,10 +10,11 @@ App.addChild('ReviewForm', _.extend({
 
   onNextStepClick: function(){
     if(this.validate()){
-      this.updateContribution();
-      this.$errorMessage.hide();
-      this.$('#next-step').hide();
-      this.parent.payment.show();
+      if(this.updateContribution()) {
+        this.$errorMessage.hide();
+        this.$('#next-step').hide();
+        this.parent.payment.show();
+      }
     }
     else{
       this.$errorMessage.slideDown('slow');
@@ -115,10 +116,15 @@ App.addChild('ReviewForm', _.extend({
       address_state: this.$('#contribution_address_state').val(),
       address_phone_number: this.$('#contribution_address_phone_number').val()
     }
-    $.post(this.$el.data('update-info-path'), {
-      _method: 'put',
-      contribution: contribution_data
-    });
+    if(contribution_data.address_zip_code !== '' && contribution_data.address_phone_number !== '') {
+      $.post(this.$el.data('update-info-path'), {
+        _method: 'put',
+        contribution: contribution_data
+      });
+      return true
+    } else {
+      return false
+    }
   },
 
   validateCpf: function(cpfString){
