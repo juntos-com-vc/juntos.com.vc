@@ -22,6 +22,7 @@ module Concerns
       add_to_menu "admin.projects.index.menu",               :admin_projects_path
       add_to_menu "admin.categories.index.menu",             :admin_categories_path
       add_to_menu "admin.site_partners.index.menu",          :admin_site_partners_path
+      add_to_menu "admin.channels.index.menu",               :admin_channels_path
       add_to_menu "admin.pages.index.menu",                  :admin_pages_path
       add_to_menu "admin.presses.index.menu",                :admin_presses_path
       add_to_menu 'activerecord.models.transparency_report', :admin_transparency_report_path
@@ -29,7 +30,7 @@ module Concerns
       # Admin and channel admin can access
       add_to_menu "channels.admin.followers_menu",  :channels_admin_followers_path
       add_to_menu 'channels.admin.posts_menu',      :channels_admin_posts_path
-      add_to_menu 'channels.admin.partners_menu',   :channels_admin_partners_path
+      # add_to_menu 'channels.admin.partners_menu',   :channels_admin_partners_path
       add_to_menu 'channels.admin.profile_menu',    :edit_channels_profile_path
 
       def menu

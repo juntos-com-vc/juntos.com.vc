@@ -6,6 +6,16 @@ pt:
     site_partners:
       index:
         menu: 'Parceiros'
+    channels:
+      index:
+        menu: 'Canais'
+        title: 'Canais'
+        new: 'Novo canal'
+        edit: 'Editar'
+      new:
+        title: 'Novo canal'
+      edit:
+        title: 'Editar canal'
     pages:
       index:
         menu: 'Páginas'

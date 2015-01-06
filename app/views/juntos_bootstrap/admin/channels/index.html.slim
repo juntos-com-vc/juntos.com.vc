@@ -1,0 +1,27 @@
+= render 'shared/header_big'
+br
+.w-container
+  br
+  .w-row.admin
+    .w-col.w-col-5
+      h1= @title = t('.title')
+    .w-col.w-col-3.w-col-push-3
+      = link_to t('.new'), new_admin_channel_path, class: 'link'
+  br
+  br
+  .w-row
+    table.w-col.w-col-12
+      thead
+        tr
+          th.w-col-4.w-col= Channel.human_attribute_name(:name)
+          th.w-col-2.w-col= Channel.human_attribute_name(:permalink)
+          th.w-col-2.w-col Ações
+      tbody
+        - @channels.each do |channel|
+          tr class=cycle("even", "odd")
+            td.w-col-4.w-col= link_to channel.name, root_url(subdomain: channel.permalink)
+            td.w-col-2.w-col= channel.permalink
+            td.w-col-1.w-col
+              = link_to t('.edit'), edit_admin_channel_path(channel.id)
+              / = button_to t('.remove'), admin_channel_path(channel), method: :delete
+  br
