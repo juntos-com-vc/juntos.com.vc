@@ -1,3 +1,5 @@
+*.sublime-project
+*.sublime-workspace
 .gems
 .bundle
 db/*.sqlite3
