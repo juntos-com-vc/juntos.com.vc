@@ -33,7 +33,7 @@
                   .fontweight-bold = t('.anonymous_confirmation_title')
                   = t('.anonymous_confirmation')
           .formwrapper
-            .fontsize-base.fontweight-semibold.fontcolor-secondary.u-marginbottom-20 Endereço de entrega
+            .fontsize-base.fontweight-semibold.fontcolor-secondary.u-marginbottom-20 Endereço
             .w-form
               .w-row
                 = form.association :country, as: :select, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, input_html: {class: 'w-select'}
@@ -61,7 +61,7 @@
           #payment-methods.nav-light.u-marginbottom-30[class=(avaiable_payment_engines.size == 1 ? 'w-hidden' : '')]
             - avaiable_payment_engines.each do |engine|
               .nav-tab.nav-tab-light[id=engine.name data-target="##{engine.name}_payment"]
-                = t("projects.contributions.review.#{engine.name}")
+                = t("projects.contributions.review.#{engine.name}.description")
           .tab_content_container
             - avaiable_payment_engines.each do |engine|
               div[id="#{engine.name}_payment" class="payments_type hide" data-path=engine.review_path(@contribution) ]
