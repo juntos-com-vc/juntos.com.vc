@@ -20,8 +20,9 @@
 - @project.channels.each do |channel|
   .card.card-secondary.u-marginbottom-40
     .w-row
-      .w-col.w-col-2
-        = image_tag channel.users.first.display_image, title: channel.name, class: 'thumb u-radius'
+      - if channel.users.first.present?
+        .w-col.w-col-2
+          = image_tag channel.users.first.display_image, title: channel.name, class: 'thumb u-radius'
       .w-col.w-col-6
         .fontsize-smaller
           = "Este projeto faz parte do Canal"

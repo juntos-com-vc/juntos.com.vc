@@ -23,6 +23,10 @@
                 label.field-label.fontweight-semibold= t('.about')
                 label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20= t('.about_hint_html')
                 = form.input_field :about, as: :text, class: 'bottom jumbo positive'
+              .card.card-terciary
+                label.field-label.fontweight-semibold= t('.thank_you')
+                label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20= t('.thank_you_hint_html')
+                = form.input_field :thank_you, as: :text, class: 'bottom positive'
         .w-col.w-col-4
           .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20.u-noborder data-ix="new-interaction"
             .fontsize-small.fontweight-semibold.u-marginbottom-20 Links úteis
