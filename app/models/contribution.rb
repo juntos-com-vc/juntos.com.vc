@@ -100,6 +100,7 @@ class Contribution < ActiveRecord::Base
   end
 
   def notify_to_contributor(template_name, options = {})
+    raise self.user.inspect
     notify_once(template_name, self.user, self, options)
   end
 

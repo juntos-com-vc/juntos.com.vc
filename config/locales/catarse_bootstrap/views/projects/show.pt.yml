@@ -7,6 +7,8 @@ pt:
       video_url_hint: "Link do seu vídeo no Vimeo ou Youtube."
       about: "Descrição do projeto"
       about_hint_html: 'Fale sobre o que será realizado, como o dinheiro será utilizado, quem está por trás do projeto, como e quando o projeto será entregue. Seja informal e direto, essa é uma conversa entre pessoas que querem compartilhar uma ideia, não um projeto de edital. Lembre-se que <a class="alt-link" target="_blank" href="http://suporte.catarse.me/hc/pt-br/articles/203083017-Adicionar-imagens-e-v%C3%ADdeos-na-descri%C3%A7%C3%A3o-do-projeto">você pode utilizar imagens e vídeos</a> para ilustrar melhor o seu projeto na descrição.'
+      thank_you: "Texto de agradecimento"
+      thank_you_hint_html: 'Escreva um parágrafo de agradecimento para seus apoiadores. Cada vez que um novo apoio for realizado, este parágrafo será incluido no email de confirmação para o apoiador.'
       card: 'Card do projeto'
       card_subtitle: 'Sabe aquele cardzinho de projeto que aparece na home e na busca? Pois então, faz bonito pois dizem que a primeira impressão é a que fica ;)'
       image: 'Imagem do projeto'
