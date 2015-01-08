@@ -1,4 +1,4 @@
-= simple_form_for [:admin, @channel], url: admin_channel_path(@channel.id) do |form|
+= simple_form_for [:admin, @channel] do |form|
   - if @channel.errors.present?
     .card.card-error.u-radius.zindex-10.u-marginbottom-30
       .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
@@ -11,10 +11,8 @@
     .w-col.w-col-6
       = form.input :permalink, as: :string, required: true
   .w-row
-    .w-col.w-col-6
+    .w-col.w-col-12
       = form.input :description, as: :text, required: true
-    .w-col.w-col-6
-      = form.input :facebook, as: :url
 
   .w-row
     .w-col.w-col-3

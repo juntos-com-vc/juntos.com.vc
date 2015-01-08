@@ -123,6 +123,8 @@ pt:
         image: Imagem da novidade
         name: Nome
         video_url: Vídeo
+        main_color: Cor principal
+        secondary_color: Cor secundária
       channel_partner:
         name: 'Nome'
         url: 'Site'
