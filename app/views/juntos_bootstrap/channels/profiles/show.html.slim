@@ -1,7 +1,7 @@
 - content_for(:stylesheets)
   = stylesheet_link_tag 'old_bootstrap'
 
-= render 'shared/header_channel'
+= render 'shared/header_big'
 = content_for :title, @profile.name
 
 section.line-box
@@ -59,4 +59,4 @@ section.row.projects
           = link_to image_tag(partner.image.thumb.url), partner.url
 
 
-= render 'shared/footer_channel'
+/= render 'shared/footer_channel'
