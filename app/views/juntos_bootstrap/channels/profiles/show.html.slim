@@ -6,11 +6,21 @@
 
 .page-header.u-margintop-40.u-marginbottom-40
   .w-container
-    .w-row
-      .w-col.w-col-7 
-        h1.u-margintop-40.fontsize-larger= @profile.name
-      .w-col.w-col-5
-        h1.u-margintop-40.fontsize-larger= @profile.name
+    .w-row.u-margintop-40
+      .w-col.w-col-6
+        h1.fontsize-larger style="color: #{@profile.main_color}"= @profile.name
+      .w-col.w-col-2
+      .w-col.w-col-4
+        = link_to image_tag(@profile.image), @profile.website, target: :blank
+        .fontsize-small.u-margintop-10= @profile.description
+        - if @profile.facebook.present?
+          = link_to image_tag("facebook.png"), @profile.facebook, title: t('.accessibility.link_to_facebook'), class: [:"icon-facebook"], target: :blank
+
+.w-container.u-marginbottom-40
+  .w-row
+    - @profile.projects.visible.each do |project|
+      = render partial: 'projects/project', locals: { project: project, channel: @profile }
+
 / section.line-box
 /   .row#channel-profile
 /     .large-12.columns
