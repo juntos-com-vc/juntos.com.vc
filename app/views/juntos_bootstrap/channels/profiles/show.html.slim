@@ -16,10 +16,18 @@
         - if @profile.facebook.present?
           = link_to image_tag("facebook.png"), @profile.facebook, title: t('.accessibility.link_to_facebook'), class: [:"icon-facebook"], target: :blank
 
-.w-container.u-marginbottom-40
+.w-container
   .w-row
     - @profile.projects.visible.each do |project|
       = render partial: 'projects/project', locals: { project: project, channel: @profile }
+
+- if @profile.partners.present?
+  .w-container
+    .w-row.u-marginbottom-30
+      h3.fontsize-large Apoiadores
+      - @profile.partners.each do |partner|
+        .w-col.w-col-2.u-marginbottom-10
+          = link_to image_tag(partner.image.thumb.url), partner.url, target: :blank
 
 / section.line-box
 /   .row#channel-profile
