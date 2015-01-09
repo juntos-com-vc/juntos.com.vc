@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
           @recent   = ProjectsForHome.recents.includes(:project_total)
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
+          @channels = Channel.order("random()").limit(5)
         end
       end
     end

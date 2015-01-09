@@ -1,5 +1,5 @@
 - target = defined?(embed_link) ? '__blank' : ''
-.project-box[itemscope itemtype="http://schema.org/CreativeWork" class=(custom_class if defined?(custom_class)) style="background-color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};"]
+.project-box[itemscope itemtype="http://schema.org/CreativeWork" class=(custom_class if defined?(custom_class)) style=("background-color: #{channel.main_color};" if defined?(:channel) && channel.present?)]
   meta[itemprop="dateCreated" content=project.created_at.to_date]
   .project-title
     h4.title = link_to truncate(project.name, length: 50, separator: ''), project_by_slug_path(project.permalink), title: project.name, target: target
