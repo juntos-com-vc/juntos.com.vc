@@ -1,16 +1,22 @@
-.channel_footer
-  .row
-    .large-12.columns
-      nav
-        ul.nav-horizontal
-          li.nav-item.separator
-            = link_to t('.terms'), channel.terms_url, title: t('.terms'), class: 'standard-link', target: '_blank'
-          li.nav-item.separator
-            = link_to t('.privacy_policy'), privacy_policy_path, title: t('.privacy_policy'), class: 'standard-link', target: '_blank'
-          li.nav-item.separator
-            = link_to t('.how_works', name: channel.name), channels_about_path, title: t('.how_it_works', name: channel.name), class: 'standard-link'
-          li.nav-item.separator
-            = mail_to channel.email, t('.contact'), title: t('.contact'), class: 'standard-link', target: '_blank'
-          li.nav-item
-            = link_to t('.what_is_channel'), CatarseSettings[:about_channel_url], title: t('.how_channels_work'), class: 'standard-link', target: '_blank'
+footer.main-footer.main-footer-neg
+  .w-container
+    .w-row
+      .w-col.w-col-12
+        .w-row
+          .w-col.w-col-2.w-col-small-2.w-col-tiny-2.w-hidden-tiny
+            = link_to "Termos de uso", channels_terms_path, target: '_blank', class: 'link-footer'
+          .w-col.w-col-3.w-col-small-3.w-col-tiny-3.footer-full-firstcolumn
+            = link_to "Política de privacidade", channels_privacy_path, target: '_blank', class: 'link-footer'
+          .w-col.w-col-3.w-col-small-3.w-col-tiny-3.w-hidden-tiny
+            = link_to "Como funciona", channels_about_path, target: '_blank', class: 'link-footer'
+          .w-col.w-col-2.w-col-small-2.w-col-tiny-2
+            = link_to "Contato", channels_contacts_path, target: '_blank', class: 'link-footer'
+          .w-col.w-col-2.w-col-small-2.w-col-tiny-2.w-hidden-tiny.footer-full-lastcolumn
+            = link_to "O que são canais?", "#TODO_DW", target: '_blank', class: 'link-footer'
+  .w-container
+    .footer-full-copyleft
+      .juntos
+        | Copyright 2013 Juntos.com.vc - Todos os direitos reservados
+      .engage
+        strong= link_to "power to the crowd", "http://www.engage.is", target: '_blank'
 

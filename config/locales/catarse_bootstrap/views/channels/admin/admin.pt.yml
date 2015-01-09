@@ -5,6 +5,7 @@ pt:
       followers_menu: "Seguidores"
       statistics_menu: "Estatísticas"
       profile_menu: "Editar canal"
+      images_menu: "Editar imagens"
       partners_menu: "Editar parceiros"
       statistics:
         title: 'Estatísticas do canal'
@@ -47,6 +48,22 @@ pt:
             url: Site
             actions: Ações
           title: Gerenciar parceiros
+      images:
+        back_to_list: "← Voltar para gerenciar imagens"
+        new:
+          add_image: Adiconar imagem
+        edit:
+          edit_title: Editar imagem
+        form:
+          hint_image: Tamanho da imagem 528x256
+          save_submit: Salvar
+        index:
+          new_button: Adicionar imagem
+          table:
+            created_at: Criado em
+            image: Imagem
+            actions: Ações
+          title: Gerenciar imagens
       posts:
         back_to_list: "← Voltar para gerenciar novidades"
         new:

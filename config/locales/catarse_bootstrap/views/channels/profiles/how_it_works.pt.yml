@@ -6,3 +6,12 @@ pt:
           channel: Como funciona
         sidebar:
           title: Navegue
+      terms:
+        title:
+          channel: Termos de uso
+      privacy:
+        title:
+          channel: Política de privacidade
+      contacts:
+        title:
+          channel: Contatos

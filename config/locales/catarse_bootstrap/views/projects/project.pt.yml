@@ -5,9 +5,9 @@ pt:
       reached: atingido
       progress_html: "<span>%{percent}%</span> financiado"
       time_remaining_html:
-        one: "<span><b>%{count}</b> %{unit}</span> para acabar"
-        other: "<span><b>%{count}</b> %{unit}</span> para acabar"
-      pledged_html: "<span><b>%{value}</b></span> em R$ (até agora)"
+        one: "<span style='%{style}'><b>%{count}</b> %{unit}</span> para acabar"
+        other: "<span style='%{style}'><b>%{count}</b> %{unit}</span> para acabar"
+      pledged_html: "<span style='%{style}'><b>%{value}</b></span> em R$ (até agora)"
       display_status:
         expired: "finalizado"
         rejected: "rejeitado"

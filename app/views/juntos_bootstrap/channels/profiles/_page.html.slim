@@ -1,0 +1,15 @@
+- content_for(:stylesheets)
+  = stylesheet_link_tag 'juntos_bootstrap/channels'
+
+= render 'shared/header_channel'
+= content_for :title, title
+
+.page-header.u-margintop-40.u-marginbottom-40
+  .w-container
+    .w-row.u-margintop-40
+      h1.channel-title
+        == title_html
+
+.w-container
+  .w-row.u-marginbottom-40
+    == content_html
