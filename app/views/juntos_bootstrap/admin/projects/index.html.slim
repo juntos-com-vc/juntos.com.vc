@@ -1,80 +1,70 @@
 = render 'shared/header_big'
-.w-row.admin.use-sort
-  h1
-    = @title = t('channels.admin.management.title')
-    ' :
-    = @total_projects
-    '
-    = t('channels.admin.management.total')
+.admin
+  .w-container
+    br
+    br
+    h1
+      = @title = t('channels.admin.management.title')
+      ' :
+      = @total_projects
+      '
+      = t('channels.admin.management.total')
+    br
+    h3 = t('channels.admin.filter.title')
+    = simple_form_for '', url: admin_projects_path, method: :get do |form|
+      .w-row
+        .w-col-3.w-col
+          = form.input :order_by, as: :hidden, input_html: {value: params[:order_by], class: 'w-input text-field'}
+          = form.input :by_id, as: :integer, label: t('channels.admin.filter.by_id'), input_html: {value: params[:by_id], class: 'w-input text-field'}
+        .w-col-3.w-col
+          = form.input :pg_search, as: :string, label: t('channels.admin.filter.pg_search'), input_html: {value: params[:pg_search], class: 'w-input text-field'}
+        .w-col-3.w-col
+          = form.input :user_name_contains, as: :string, label: t('channels.admin.filter.user_name_contains'), input_html: {value: params[:user_name_contains], class: 'w-input text-field'}
+        .w-col-3.w-col
+          = form.input :by_user_email, as: :string, label: t('.by_user_email'), input_html: {value: params[:by_user_email], class: 'w-input text-field'}
 
-  h3 = t('channels.admin.filter.title')
-  = simple_form_for '', url: admin_projects_path, method: :get do |form|
-    .w-row
-      .w-col-2.w-col
-        = form.input :order_by, as: :hidden, input_html: {value: params[:order_by], class: 'w-input text-field'}
-        = form.input :by_id, as: :integer, label: t('channels.admin.filter.by_id'), input_html: {value: params[:by_id], class: 'w-input text-field'}
-      .w-col-3.w-col
-        = form.input :pg_search, as: :string, label: t('channels.admin.filter.pg_search'), input_html: {value: params[:pg_search], class: 'w-input text-field'}
-      .w-col-3.w-col
-        = form.input :user_name_contains, as: :string, label: t('channels.admin.filter.user_name_contains'), input_html: {value: params[:user_name_contains], class: 'w-input text-field'}
-      .w-col-2.w-col
-        = form.input :by_user_email, as: :string, label: t('.by_user_email'), input_html: {value: params[:by_user_email], class: 'w-input text-field'}
-      .w-col-2.w-col
-        = form.input :with_state, collection: Project.state_names, label: t('channels.admin.filter.with_state'), as: :select, selected: params[:with_state], include_blank: true, input_html: { class: 'w-input text-field' }
+      .w-row
+        - [:between_created_at, :between_expires_at, :between_online_date, :between_updated_at].each_with_index do |between_field, index|
+          - mask ='99/99/9999'
+          - if index % 4 == 0
+            .w-row
+          .w-col-3.w-col
+            = form.input "#{between_field}[start_at]", as: :string, label: t(".#{between_field}"), input_html: {value: params[between_field] && params[between_field][:start_at], data: { mask: mask } , class: 'w-input text-field'}
+          .w-col-3.w-col.u-margintop-10
+            = form.input "#{between_field}[ends_at]", as: :string, label: false, label: '', input_html: { value: params[between_field] && params[between_field][:ends_at], data: { mask: mask } , class: 'w-input text-field'}
+        .w-col-3.w-col
+          = form.input "goal_between[start_at]", as: :string, label: t(".#{'goal_between'}"), input_html: {value: params['goal_between'] && params['goal_between'][:start_at], class: 'w-input text-field'}
+        .w-col-3.w-col.u-margintop-10
+          = form.input "goal_between[ends_at]", as: :string, label: false, label: '', input_html: { value: params['goal_between'] && params['goal_between'][:ends_at], class: 'w-input text-field'}
+        .w-col-3.w-col
+          = form.input :with_state, collection: Project.state_names, label: t('channels.admin.filter.with_state'), as: :select, selected: params[:with_state], include_blank: true, input_html: { class: 'w-input text-field' }
+        .w-col-3.w-col
+          = form.input :by_channel, as: :select, collection: Channel.all, selected: params[:by_channel], include_blank: true, input_html: { class: 'w-input text-field' }
 
-    .w-row
-      - [:between_created_at, :between_expires_at, :between_online_date, :between_updated_at, :goal_between].each_with_index do |between_field, index|
-        - mask = (between_field == :goal_between ? '' : '99/99/9999')
-        - if index % 3 == 0
-          .w-row
-        .w-col-2.w-col
-          = form.input "#{between_field}[start_at]", as: :string, label: t(".#{between_field}"), input_html: {value: params[between_field] && params[between_field][:start_at], data: { mask: mask } , class: 'w-input text-field'}
-        .w-col-2.no-label.w-col
-          = form.input "#{between_field}[ends_at]", as: :string, label: false, input_html: { value: params[between_field] && params[between_field][:ends_at], data: { mask: mask } , class: 'w-input text-field'}
-      .w-col-2.w-col
-        = form.input :by_channel, as: :select, collection: Channel.all, selected: params[:by_channel], include_blank: true, input_html: { class: 'w-input text-field' }
+      .w-row
+        .w-col-10.w-col
+        .w-col-2.w-col.u-margintop-10
+          = form.button :submit, t('channels.admin.filter.submit'), class: 'btn bt-medium'
 
-      .w-col-2.no-label.w-col
-        = form.button :submit, t('channels.admin.filter.submit'), class: 'button medium negative'
-
-    .w-row
-      .w-col-2.w-col-offset-10.w-col
-        p.filtered-number = @scoped_projects.count(:all)
-        p.filtered-number-label
-          = pluralize_without_number(@scoped_projects.count(:all), t('project_singular'), t('project_plural'))
-          '
-          = pluralize_without_number @scoped_projects.count(:all), t('found_singular'), t('found_plural')
-
-
+  br
+  br
   = paginate @projects
   - if @scoped_projects.count(:all) < 1
     = t('.no_projects')
   - else
-    table.admin-projects-table.no-bottom
-      thead
+    table.admin-projects-table.no-bottom.table
+      thead.card.card-secondary
         tr
           th.w-col-2.w-col= t('channels.admin.table.name')
           th.w-col-1.w-col= t('channels.admin.table.category')
           th.w-col-1.w-col= t('channels.admin.table.user_id')
-          th.w-col-1.w-col
-            a data-sort="goal" href='#'= t('.goal')
-            span.sort-order
-          th.w-col-1.w-col
-            a data-sort="project_totals.progress" href='#'= t('.pledged')
-            span.sort-order
-          th.w-col-1.w-col
-            a data-sort="project_totals.total_contributions" href='#'= t('.total_contributions')
-            span.sort-order
+          th.w-col-1.w-col= t('.goal')
+          th.w-col-1.w-col= t('.pledged')
+          th.w-col-1.w-col= t('.total_contributions')
           th.w-col-1.w-col= t('channels.admin.table.recommended')
-          th.w-col-1.w-col
-            a data-sort="online_date" href='#'= t('.online_date')
-            span.sort-order
-          th.w-col-1.w-col
-            a data-sort="projects.expires_at" href='#'= t('.expires_at')
-            span.sort-order
-          th.w-col-1.w-col
-            a data-sort="updated_at" href='#'= t('.last_modification')
-            span.sort-order
+          th.w-col-1.w-col= t('.online_date')
+          th.w-col-1.w-col= t('.expires_at')
+          th.w-col-1.w-col= t('.last_modification')
           th.w-col-1.w-col= t('channels.admin.table.state')
           th.w-col-1.w-col
       tbody
@@ -101,30 +91,20 @@
                 span.label.label-warning= project.state
               - else
                 span.label= project.state
-              .btn-group
-                = link_to 'javascript:void(0);', data: {toggle: 'dropdown'}, class: 'btn btn-mini dropdown-toggle' do
-                  span.caret
-              ul.dropdown
+              .project-admin-menu.card-infos-bottom-right
+                = link_to '', 'javascript:void(0);', data: {toggle: 'dropdown'}, class: 'w-dropdown-btn dropdown-toggle fa fa-sort-down'
+              nav.w-dropdown-list.dropdown-list.user-menu
                 - if project.can_approve?
-                  li
-                    = link_to approve_admin_project_path(project), method: :put do
-                      i.icon-ok
-                      = t('channels.admin.table.approve')
-
+                  = link_to approve_admin_project_path(project), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                    .fa.fa-check= t('channels.admin.table.approve')
                 - if project.can_reject?
-                  li
-                    = link_to reject_admin_project_path(project), method: :put  do
-                      i.icon-ban-circle
-                      = t('channels.admin.table.reject')
-
+                  = link_to reject_admin_project_path(project), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                    .fa.fa-close= t('channels.admin.table.reject')
                 - if project.can_push_to_draft?
-                  li
-                    = link_to  push_to_draft_admin_project_path(project), method: :put  do
-                      = t('channels.admin.table.send_to_draft')
+                  = link_to  push_to_draft_admin_project_path(project), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                    = t('channels.admin.table.send_to_draft')
                 - if project.can_push_to_trash?
-                  li
-                    = link_to  push_to_trash_admin_project_path(project), data:{ confirm: t('channels.admin.table.confirmation')}, method: :put  do
-                      = t('channels.admin.table.send_to_trash')
+                  = link_to  push_to_trash_admin_project_path(project), data:{ confirm: t('channels.admin.table.confirmation')}, method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                    = t('channels.admin.table.send_to_trash')
 
   = paginate @projects
-= render 'shared/footer_big'
