@@ -108,6 +108,9 @@ Catarse::Application.routes.draw do
       resources :posts
       get '/', to: 'profiles#show', as: :profile
       get '/how-it-works', to: 'profiles#how_it_works', as: :about
+      get '/terms', to: 'profiles#terms', as: :terms
+      get '/privacy', to: 'profiles#privacy', as: :privacy
+      get '/contacts', to: 'profiles#contacts', as: :contacts
       resource :profile
       # NOTE We use index instead of create to subscribe comming back from auth via GET
       resource :channels_subscriber, only: [:show, :destroy], as: :subscriber

@@ -125,6 +125,9 @@ pt:
         video_url: Vídeo
         main_color: Cor principal
         secondary_color: Cor secundária
+        terms: Termos de uso
+        privacy: Política de privacidade
+        contacts: Contatos
       channel_partner:
         name: 'Nome'
         url: 'Site'

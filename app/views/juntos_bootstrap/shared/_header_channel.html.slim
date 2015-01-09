@@ -1,5 +1,5 @@
 - content_for :header_controls do
   = link_to "Envie seu projeto", channels_about_path, class: 'header-link w-nav-link'
-  = link_to "Termos de uso", "#TODO_DW", class: 'header-link w-nav-link'
-  = link_to "Contatos", "#TODO_DW", class: 'header-link w-nav-link'
+  = link_to "Termos de uso", channels_terms_path, class: 'header-link w-nav-link'
+  = link_to "Contatos", channels_contacts_path, class: 'header-link w-nav-link'
 = render 'shared/header'

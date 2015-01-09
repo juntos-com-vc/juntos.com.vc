@@ -1,0 +1,1 @@
+= render partial: 'page', locals: {title: "#{t('.title.channel')}: #{@profile.name}", title_html: "#{t('.title.channel')}: #{link_to @profile.name, root_path, class: 'standard-link'}", content_html: @profile.terms_html}

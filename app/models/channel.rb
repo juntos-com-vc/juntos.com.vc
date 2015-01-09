@@ -16,6 +16,9 @@ class Channel < ActiveRecord::Base
   has_many :users
 
   catarse_auto_html_for field: :how_it_works, video_width: 560, video_height: 340
+  catarse_auto_html_for field: :terms, video_width: 560, video_height: 340
+  catarse_auto_html_for field: :privacy, video_width: 560, video_height: 340
+  catarse_auto_html_for field: :contacts, video_width: 560, video_height: 340
 
   delegate :display_facebook, :display_twitter, :display_website, to: :decorator
   mount_uploader :image, ProfileUploader

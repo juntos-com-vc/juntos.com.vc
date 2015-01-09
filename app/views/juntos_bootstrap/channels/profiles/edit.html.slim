@@ -23,6 +23,9 @@
       = form.input :facebook, as: :string
       = form.input :website, as: :string
       = form.input :how_it_works, as: :text, input_html: {rows: 20}
+      = form.input :terms, as: :text, input_html: {rows: 20}
+      = form.input :privacy, as: :text, input_html: {rows: 20}
+      = form.input :contacts, as: :text, input_html: {rows: 20}
       .large-2.columns.large-centered
         = form.button :submit, t('channels.edit'), class: 'button action'
       .clearfix
