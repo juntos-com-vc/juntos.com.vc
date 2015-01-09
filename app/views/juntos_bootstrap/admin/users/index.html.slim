@@ -1,47 +1,54 @@
 - content_for(:title)
   = t(".title")
 = render 'shared/header_big'
-.row.admin.use-sort
-  h1= @title = t('.title')
-  = simple_form_for admin_users_path, method: :get, class: 'form-horizontal' do |form|
-    = form.hidden_field :order_by, name: :order_by, value: params[:order_by]
-    fieldset
-      .row
-        .large-2.columns
+br
+br
+.admin
+  .w-container
+    .w-row
+      .w-col.w-col-12
+        h1= @title = t('.title')
+      br
+      br
+    = simple_form_for admin_users_path, method: :get, class: 'form-horizontal' do |form|
+      = form.hidden_field :order_by, name: :order_by, value: params[:order_by]
+      .w-row
+        .w-col.w-col-2
           = form.input :by_id, as: :integer, label: t('.by_id'), input_html: {value: params[:by_id], name: :by_id}
-        .large-2.columns
+        .w-col.w-col-4
           = form.input :by_name, as: :string, label: t('.by_name'), input_html: {value: params[:by_name], name: :by_name}
-        .large-3.columns
+        .w-col.w-col-4
           = form.input :by_email, as: :string, label: t('.by_email'), input_html: {value: params[:by_email], name: :by_email}
-        .large-2.columns
+        .w-col.w-col-2
           = form.input :by_payer_email, as: :string, label: t('.by_payer_email'), input_html: {value: params[:by_payer_email], name: :by_payer_email}
-        .large-3.columns
+      .w-row
+        .w-col.w-col-3
           = form.input :by_key, as: :string, label: t('.key'), input_html: {value: params[:by_key], name: :by_key}
-      .row
-        fieldset
-        .large-2.columns
+        .w-col.w-col-2
           = check_box_tag :has_credits, true, params[:has_credits].present?
+          label for="has_credits" = t('.credits')
+        .w-col.w-col-2
           = check_box_tag :only_organizations, true, params[:only_organizations].present?
-          = form.label :has_credits, t('.credits')
-        .large-2.columns
-          = form.button :submit, t('channels.admin.filter.submit'), class: 'button medium negative'
-
+          label for="only_organizations" = t('.only_organizations')
+      .w-row
+        .w-col.w-col-10
+        .w-col.w-col-2
+          = form.button :submit, t('channels.admin.filter.submit'), class: 'btn bt-medium'
+  br
+  br
   = paginate @users
   - if @users.empty?
     = t('.no_users')
   - else
-    table
-      thead
+    table.table
+      thead.card.card-secondary
         tr
           th= t('.id')
           th= t('.user')
           th= t('.email')
+          th= t('.total_contributed')
+          th= t('.credits')
           th
-            a data-sort="coalesce(user_totals.sum,0)" href='#'= t('.total_contributed')
-            span.sort-order
-          th
-            a data-sort="coalesce(user_totals.credits,0)" href='#'= t('.credits')
-            span.sort-order
       tbody
         - for user in @users do
           tr id=user.id class=cycle("even", "odd")
@@ -50,6 +57,6 @@
             td= user.email
             td= user.user_total ? user.user_total.sum : 0
             td= user.credits
+            td= link_to 'Edit', user_path(user), target: '_blank'
   = paginate @users
   .clearfix
-= render 'shared/footer_big'
