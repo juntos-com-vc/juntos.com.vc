@@ -1,40 +1,44 @@
 = render 'shared/header_big'
-.row.admin
-  h1= @title = t('.title')
-  = simple_form_for '', url: admin_financials_path, method: :get do |form|
-    .row
-      .large-2.columns
-        = form.input :search_on_name, as: :string, label: t('.permalink'), input_html: {value: current_scopes[:search_on_name]}
-      .large-2.columns
-        = form.input "between_expires_at[start_at]", as: :string, label: t(".between_expires_at"), input_html: {value: params[:between_expires_at] && params[:between_expires_at][:start_at], data: { mask: '99/99/9999' } }
-      .large-2.columns.no-label
-        = form.input "between_expires_at[ends_at]", as: :string, label: '', input_html: {value: params[:between_expires_at] && params[:between_expires_at][:ends_at], data: { mask: '99/99/9999' } }
-      .large-2.columns
-        = form.input :by_progress, as: :string, label: t('.by_progress'), input_html: {value: params[:by_progress]}
-      .large-2.columns
-        = form.input :user_name_contains, as: :string, label: t('.user'), input_html: {value: params[:user_name_contains]}
-      .large-2.columns
-        = form.input :with_state, collection: Project.state_names, label: t('channels.admin.filter.with_state'), as: :select, selected: params[:with_state], include_blank: true
-
-    .row
-      .large-2.columns.large-uncentered
-        = form.button :submit, t('channels.admin.filter.submit'), class: 'button medium negative'
-      .large-2.columns.columns.search_report
-        = link_to t('.search_report'), admin_financials_path(params: params,format: :csv)
-      .large-2.columns
-        p.filtered-number = @scoped_projects.count(:all)
-        p.filtered-number-label
-          = pluralize_without_number(@scoped_projects.count(:all), t('project_singular'), t('project_plural'))
-          '
-          = pluralize_without_number @scoped_projects.count(:all), t('found_singular'), t('found_plural')
-
+br
+br
+.w-row.admin
+  .w-container
+    .w-row
+      h3= @title = t('.title')
+    br
+    = simple_form_for '', url: admin_financials_path, method: :get do |form|
+      .w-row
+        .w-col-5.w-col
+          = form.input :search_on_name, as: :string, label: t('.permalink'), input_html: {value: current_scopes[:search_on_name]}
+        .w-col-5.w-col
+          .w-row
+            .w-col-5.w-col
+              = form.input "between_expires_at[start_at]", as: :string, label: t(".between_expires_at"), input_html: {value: params[:between_expires_at] && params[:between_expires_at][:start_at], data: { mask: '99/99/9999' } }
+            .w-col-5.w-col.u-margintop-10.u-marginleft-20
+              = form.input "between_expires_at[ends_at]", as: :string, label: '', input_html: {value: params[:between_expires_at] && params[:between_expires_at][:ends_at], data: { mask: '99/99/9999' } }
+        .w-col-2.w-col
+          = form.input :by_progress, as: :string, label: t('.by_progress'), input_html: {value: params[:by_progress]}
+      .w-row
+        .w-col-5.w-col
+          = form.input :user_name_contains, as: :string, label: t('.user'), input_html: {value: params[:user_name_contains]}
+        .w-col-4.w-col
+          = form.input :with_state, collection: Project.state_names, label: t('channels.admin.filter.with_state'), as: :select, selected: params[:with_state], include_blank: true
+      .w-row
+        .w-col-2.w-col
+          = link_to t('.search_report'), admin_financials_path(params: params,format: :csv)
+        .w-col-8.w-col
+        .w-col-2.w-col.u-margintop-10
+          = form.button :submit, t('channels.admin.filter.submit'), class: 'btn bt-medium negative'
+  br
+  br
   = paginate @projects
   - if @projects.empty?
     = t('.no_projects')
   - else
     - @projects.each do |project|
-      table.admin-table
-        thead
+
+      table.table
+        thead.card.card-secondary
           tr
             th style="width: 200px"= t('.name')
             th= t('.user')
@@ -75,8 +79,8 @@
                 span.label= project.state
           tr class='detail_tr' id="project_details-#{project.id}"
             td colspan='10'
-              table style='border: 1px #ededed solid'
-                thead
+              table.table style='border: 1px #ededed solid'
+                thead.card
                   th style='width: 350px'= t('.details.bank_data')
                   th= t('.details.name')
                   th= t('.details.document')
@@ -94,4 +98,3 @@
                     td= link_to project.permalink, project_by_slug_path(permalink: project.permalink), target: '_blank'
 
   = paginate @projects
-= render 'shared/footer_big'
