@@ -19,6 +19,12 @@ pt:
     pages:
       index:
         menu: 'Páginas'
+        title: Editar páginas
+        who_we_are: Nossa história
+        mission: Missão
+        vision: Visão
+        values: Valores
+        goals: Objetivos
     filter:
       title: 'Filtros'
     confirm_dialog: 'Você tem certeza?'

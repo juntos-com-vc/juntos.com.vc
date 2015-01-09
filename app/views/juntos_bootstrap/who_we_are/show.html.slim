@@ -17,7 +17,7 @@
           = t('.menu.transparency')
     .main.u-margintop-30
       #who_we_are_history.content
-        = @page.content_html.html_safe
+        == @page.try(:content_html)
       #who_we_are_people.content.w-lightbox-hide
         .w-row
           .w-col.w-col-11
@@ -41,24 +41,20 @@
         .w-row
           .w-col.w-col-4
             h2.fontcolor-yellow = t('.transparency.mission.title')
-            p = t('.transparency.mission.content')
+            p== @mission.try(:content_html)
           .w-col.w-col-4
             h2.fontcolor-yellow = t('.transparency.vision.title')
-            p = t('.transparency.vision.content')
+            p== @vision.try(:content_html)
           .w-col.w-col-4
             h2.fontcolor-yellow = t('.transparency.values.title')
-            p = t('.transparency.values.content')
+            p== @values.try(:content_html)
         .w-row
           .w-col.w-col-6
             h2.fontcolor-yellow = t('.transparency.objectives.title')
-            ul
-              li = t('.transparency.objectives.content')[0]
-              li = t('.transparency.objectives.content')[1]
-              li = t('.transparency.objectives.content')[2]
-              li = t('.transparency.objectives.content')[3]
+            p== @goals.try(:content_html)
           .w-col.w-col-4.u-margintop-70
             .u-margintop-70
-              - if @transparency_report.attachment
+              - if @transparency_report.try(:attachment)
                 = link_to @transparency_report.attachment.url, class:'btn bt-yellow', target: :_blank do
                   .download-month-balance.u-marginbottom-10
                     .fontsize-large = t('.transparency.download.title')
