@@ -31,6 +31,7 @@ module Concerns
       add_to_menu "channels.admin.followers_menu",  :channels_admin_followers_path
       add_to_menu 'channels.admin.posts_menu',      :channels_admin_posts_path
       add_to_menu 'channels.admin.partners_menu',   :channels_admin_partners_path
+      add_to_menu 'channels.admin.images_menu',     :channels_admin_images_path
       add_to_menu 'channels.admin.profile_menu',    :edit_channels_profile_path
 
       def menu

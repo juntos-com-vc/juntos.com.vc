@@ -4,6 +4,7 @@ class Channel < ActiveRecord::Base
 
   has_many :posts, class_name: "ChannelPost"
   has_many :partners, class_name: "ChannelPartner"
+  has_many :images, class_name: "ChannelImage"
 
   validates_presence_of :name, :description, :permalink
   validates_uniqueness_of :permalink

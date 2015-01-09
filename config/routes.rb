@@ -101,6 +101,7 @@ Catarse::Application.routes.draw do
         end
         resources :posts
         resources :partners
+        resources :images
         resources :followers, only: [ :index ]
       end
 

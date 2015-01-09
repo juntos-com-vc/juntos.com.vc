@@ -1,0 +1,16 @@
+= render 'shared/header_channel'
+section
+  .row.admin-images
+
+    br/
+    br/
+    .large-4.columns
+      = link_to t('channels.admin.images.back_to_list'), channels_admin_images_path, class: 'navigation-link'
+
+    .large-12.columns
+      h1
+        = @title = t('.add_image')
+
+      = render 'form', url: channels_admin_images_path
+
+= render 'shared/footer_channel'

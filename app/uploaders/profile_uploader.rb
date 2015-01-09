@@ -7,4 +7,9 @@ class ProfileUploader < ImageUploader
     process convert: :jpg
   end
 
+  version :slick do
+    process resize_to_fill: [528,256]
+    process convert: :jpg
+  end
+
 end
