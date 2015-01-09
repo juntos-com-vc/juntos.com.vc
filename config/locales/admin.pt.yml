@@ -123,8 +123,8 @@ pt:
         created_at: 'Iniciado em'
       index:
         details:
-          payer_email: 'E-mail do meio de pagamento'
-          normal_email: 'E-mail no Catarse'
+          payer_email: 'Do pagamento'
+          user_email: 'No Juntos.com.vc'
           payment_id: 'ID Pagamento'
           acquirer_tid: 'TID Operadora'
           payment_method: 'Meio de pagamento'
