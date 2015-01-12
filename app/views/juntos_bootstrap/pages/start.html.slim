@@ -1,14 +1,16 @@
-- content_for :title, t('.page-title')
+- content_for :title, "Como funciona o Juntos.com.vc?"
 
 = render 'shared/header_big'
 = render 'shared/feedback'
 
 .project-start-wrapper
   .page-header
-    .w-container.no-responsive
-      .fontsize-largest.u-text-center.u-marginbottom-70.u-margintop-40 = t('.title')
-      - statistics = Statistics.first
-      .w-row.u-text-center.u-marginbottom-80
+    .w-container.no-responsive.u-margintop-40
+      .fontsize-largest.u-text-center.u-marginbottom-20.u-margintop-40 Como funciona
+      .w-col.w-col-1
+      .w-col.w-col-10 Descubra o que você precisa fazer para que os projetos da Juntos aconteçam. Você pode ser um proponente, como uma ONG (CNPJ), ou um Empreendedor Social (CPF) e lançar seus projetos para que todo mundo possa doar!
+      / - statistics = Statistics.first
+      / .w-row.u-text-center.u-marginbottom-80
         .w-col.w-col-4
           .fontsize-jumbo.text-success.lineheight-loose = number_to_human(statistics.total_contributors)
           p.start-stats.fontsize-base = t('.header.people')
@@ -19,7 +21,7 @@
           .fontsize-jumbo.text-success.lineheight-loose = number_to_human(statistics.total_contributed)
           p.start-stats.fontsize-base = t('.header.money')
 
-      .w-row.u-margintop-20.u-marginbottom-60
+      / .w-row.u-margintop-20.u-marginbottom-60
         .w-col.w-col-3.w-col-push-3
           #learn_link= link_to t('.learn-more'), '#learn', class: 'btn btn-medium'
         .w-col.w-col-3.w-col-push-3
@@ -27,41 +29,58 @@
 
   #learn
     .w-container.no-responsive.section
+      .w-row
+        .headline Para o proponente
       .w-row.u-marginbottom-80.u-margintop-30
         .w-col.w-col-6.u-text-center
-          = image_tag "catarse_bootstrap/start/inscreva-seu-projeto.png"
+          = image_tag "icone_paraproponente01.png"
         .w-col.w-col-6
-          .headline = t('.start.title')
-          p.fontsize-base = t('.start.content')
-          = link_to t('.start.link'), 'http://suporte.catarse.me/hc/pt-br/sections/200406978-Realizadores-Primeiros-passos', class: "alt-link fontsize-base", target: '_blank'
+          p.fontsize-small Para você submeter seu projeto na plataforma Juntos.com.vc, é fundamental que você tenha seus dados preenchidos em seu perfil. Desta forma poderemos entrar em contato com você.
+          p.fontsize-small Após preenchidos estes dados, você pode começar nos contando um pouco do seu projeto, qual o nome dele, em que categoria se enquadra, quantos dias e qual o valor a ser arrecadado.
+          p.fontsize-small O seu projeto será analisado pela curadoria da Juntos.
 
-      .w-row.u-marginbottom-80
+      .w-row.u-marginbottom-80.u-margintop-30
         .w-col.w-col-6
-          .headline = t('.people.title')
-          p.fontsize-base = t('.people.content')
-          = link_to t('.people.link'), 'http://blog.catarse.me/quantos-apoiadores-eu-preciso-para-alcancar-a-meta-do-meu-projeto/', class: 'alt-link fontsize-base', target: '_blank'
-
+          p.fontsize-small Assim que aprovada a sua intenção de projeto, é fundamental você criar, caso não tenha, uma conta junto ao MOIP, para que sejam viabilizadas as formas de pagamento de seu projeto. Se você não tiver uma conta MOIP, basta criá-la em <a href="http://www.moip.com.br">www.moip.com.br</a> como vendedor.
+          p.fontsize-small Para garantir sua segurança e a integridade da organização para os doadores, envie a documentação exigida para o nosso registro e para o MOIP.
+          p.fontsize-small Com sua conta MOIP criada e intenção de projeto aprovada, você pode terminar de construir seu projeto!
         .w-col.w-col-6.u-text-center
-          = image_tag "catarse_bootstrap/start/mobilze-interessados.png"
+          = image_tag "icone_paraproponente02.png"
 
-      .w-row.u-marginbottom-80
+      .w-row.u-marginbottom-80.u-margintop-30
         .w-col.w-col-6.u-text-center
-          = image_tag "catarse_bootstrap/start/trabalhe-muito.png"
+          = image_tag "icone_paraproponente03.png"
         .w-col.w-col-6
-          .headline = t('.work.title')
-          p.fontsize-base = t('.work.content')
-          = link_to t('.work.link'), 'http://blog.catarse.me/category/dicas/', class: 'alt-link fontsize-base', target: '_blank'
+          p.fontsize-small Neste momento, você vai enriquecer a página de seu projeto, escolhendo uma bela capa, que também servirá de avatar. Complete a descrição dele e, quem sabe, vincule um vídeo bacana que apresente seu projeto. Você também pode colocar fotos incríveis numa galeria dedicada a seu projeto.
+          p.fontsize-small Você também pode criar recompensas para o doador, de acordo com o valor da doação. Você descreve a recompensa de determinado valor e o prazo médio em que esta será enviada.
+          p.fontsize-small Sugerimos que você crie uma mensagem de agradecimento aos doadores, pois são eles que poderão tornar o seu projeto possível.
+          p.fontsize-small Ao longo da construção da página você pode visualizar como ela está ficando, para que você publique apenas quando estiver certo que está tudo perfeito.
+          p.fontsize-small Pronto! Agora é só clicar em "Iniciar" e começar a divulgar seu projeto. Boa sorte!
 
-      .w-row.u-marginbottom-80
+      .w-row
+        .headline Para o doador
+      .w-row.u-marginbottom-80.u-margintop-30
         .w-col.w-col-6
-          .headline = t('.time.title')
-          p.fontsize-base = t('.time.content')
-          = link_to t('.time.link'), 'http://blog.catarse.me/nossa-taxa-de-servico-parte-1-de-onde-vem-e-pra-onde-vai-o-dinheiro-do-catarse/', class: 'alt-link fontsize-base', target: '_blank'
+          p.fontsize-small Comece explorando nossos projetos e encontre aquel com o qual você se identifica mais. Agora é só clicar em "Quero contribuir".
+          p.fontsize-small Coloque o valor que você quer doar. Dependendo do valor, você pode ganhar uma forma de recompensa definida pela ONG.
+          p.fontsize-small Você também pode doar através de um cartão doação. Se você recebeu um destes cartões, basta inserir o código dele e continuar com sua doação.
+          p.fontsize-small Além disso, você ainda pode contribuir com a juntos - se quiser - com o valor que desejar, para que possamos continuar a ajudar projetos sociais de forma gratuita!
+          p.fontsize-small Se você quiser, sua doação poderá ser anônima na plataforma. Mas para engajar sua rede e ajudar ainda mais o projeto, mostre que você contribuiu! Conte para os amigos!
+          p.fontsize-small Não esqueça de ter seu cadastro completo, para que possamos identificar a sua doação e aproveite para assinar nossa newsletter.
         .w-col.w-col-6.u-text-center
-          = image_tag "catarse_bootstrap/start/tudo-ou-nada.png"
+          = image_tag "icone_paradoador01.png"
+
+      .w-row.u-marginbottom-80.u-margintop-30
+        .w-col.w-col-6.u-text-center
+          = image_tag "icone_paradoador02.png"
+        .w-col.w-col-6
+          p.fontsize-small Selecione sua forma de pagamento: cartão de crédito, boleto bancário ou transferência online.
+          p.fontsize-small Se você selecionar transferência online, você será redirecionado para outra página.
+          p.fontsize-small Parabéns! Você acabou de efetuar uma doação para um de nossos projetos sociais e ajudar a transformar realidades pelo Brasil.
+          p.fontsize-small Aproveite e conheça outros na plataforma!
 
       .w-row.u-margin-top-40
-        .w-col.w-col-4.w-col-push-4
-          = link_to t('.submit'), new_project_path, class: 'btn btn-large'
-
-  = render 'shared/footer_big'
+        .w-col.w-col-4.w-col-push-2
+          = link_to "Conhecer projetos", explore_path, class: 'btn btn-large btn-dark'
+        .w-col.w-col-4.w-col-push-2
+          = link_to "Propor projeto", new_project_path, class: 'btn btn-large'
