@@ -21,7 +21,7 @@
       .w-col.w-col-12
         .w-col.w-col-4
           .category_image
-            = image_tag(@project.category_image_url, class: 'category-image u-left')
+            = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10')
           ul.u-margintop-10
             li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@project.category.color}"
               = @project.contributions.count
@@ -29,7 +29,7 @@
               = t('projects.project_about.contributions')
         .w-col.w-col-4
           .category_image
-            = image_tag(@project.category_image_url, class: 'category-image u-left')
+            = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10')
           ul.u-margintop-10
             li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@project.category.color}"
               = @project.time_to_go[:time]
@@ -38,7 +38,7 @@
                 = pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))
         .w-col.w-col-4
           .category_image
-            = image_tag(@project.category_image_url, class: 'category-image u-left')
+            = image_tag('juntos/project_calendar.png', class: 'category-image u-left u-margintop-10')
           ul.u-margintop-10
             li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@project.category.color}"
               = @project.display_pledged
