@@ -12,7 +12,7 @@
       = form.input :url, as: :url, required: true
   .w-row
     .w-col.w-col-6
-      = form.input :bio, as: :text 
+      = form.input :bio, as: :text
     .w-col.w-col-6
       = form.input :address, as: :string
   .w-row
@@ -25,5 +25,5 @@
       = form.input :featured
 
   .w-row
-    .w-col.w-col-3
-      = form.button :submit
+    .w-col.w-col-3.u-margintop-30.u-marginbottom-20
+      = form.button :submit, class: 'btn bt-medium'
