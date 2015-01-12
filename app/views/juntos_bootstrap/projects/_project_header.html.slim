@@ -12,7 +12,8 @@
       |&nbsp;
       = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden', style:"color: #{@project.category.color}"
     .fontsize-base.lineheight-looser.fontsize-smallest
-      = l @project.online_date.to_date
+      - if @project.online_date.present?
+        = l @project.online_date.to_date
     .w-row
       .w-col.w-col-12
         = @project.headline

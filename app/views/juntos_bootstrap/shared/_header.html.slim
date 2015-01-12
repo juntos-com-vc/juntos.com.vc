@@ -1,7 +1,10 @@
 .main-header
   .w-row
     .w-col.w-col-9.w-col-small-6.w-col-tiny-6.w-clearfix
-      = link_to (image_tag "juntos/logo-small.png"), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
+      - if namespace == 'channels'
+        = link_to (image_tag @profile.image.header.url), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
+      - else
+        = link_to (image_tag "juntos/logo-small.png"), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
       - if params[:controller] == 'projects' && params[:action] == 'index'
         .header-logo-label
           p Financiamento coletivo de projetos sociais

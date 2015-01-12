@@ -12,4 +12,9 @@ class ProfileUploader < ImageUploader
     process convert: :jpg
   end
 
+  version :header do
+    process resize_to_fill: [176, 38]
+    process convert: :jpg
+  end
+
 end
