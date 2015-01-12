@@ -162,6 +162,7 @@ pt:
         responsible_cpf: 'CPF do responsável'
         gender: 'Gênero do responsável'
       page:
+        name: 'Nome'
         content: 'Conteúdo'
       transparency_report:
         attachment: 'Relatório'

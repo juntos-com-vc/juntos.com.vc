@@ -8,6 +8,10 @@ class WhoWeAreController < ApplicationController
     @technical_board = User.where(staff: User.staffs[:technical_board]).limit(4)
     @advice_board = User.where(staff: User.staffs[:advice_board]).limit(4)
     @transparency_report = TransparencyReport.last
+    @mission = Page.find_by(name: Page.names[:mission])
+    @vision = Page.find_by(name: Page.names[:vision])
+    @values = Page.find_by(name: Page.names[:values])
+    @goals = Page.find_by(name: Page.names[:goals])
   end
 
 end
