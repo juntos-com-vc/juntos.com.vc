@@ -1,21 +1,19 @@
 = render 'shared/header_big'
 br
-.w-container
-  br
-  .w-row.admin
-    .w-col.w-col-3
-      h1= @title = t('.title')
-  br
-  .w-row
-    table.w-col.w-col-12
-      thead
-        tr
-          th.w-col-4.w-col= Page.human_attribute_name(:content)
-          th.w-col-1.w-col Ações
-      tbody
-        - @pages.each do |page|
-          tr class=cycle("even", "odd")
-            td.w-col-4.w-col= page.content
-            td.w-col-1.w-col
-              = link_to t('.edit'), edit_admin_page_path(page)
-  br
+.admin
+  .w-container
+    br
+    .w-row.admin
+      .w-col.w-col-3
+        h1= @title = t('.title')
+
+  table.table.u-margintop-30
+    thead.card.card-secondary
+      tr
+        th= Page.human_attribute_name(:content)
+        th Ações
+    tbody
+      - @pages.each do |page|
+        tr class=cycle("even", "odd")
+          td = page.content_html.html_safe
+          td = link_to t('.edit'), edit_admin_page_path(page)
