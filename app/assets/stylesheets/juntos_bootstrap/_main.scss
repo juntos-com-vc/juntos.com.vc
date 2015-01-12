@@ -2040,7 +2040,6 @@ p {
 .dropdown-list.w--open {
   position: absolute;
   margin-top: 2px;
-  border-radius: 5px;
   background-color: #f1f4f4;
   box-shadow: rgba(63, 71, 82, 0.81) 1px 1px 3px 0px;
 }
@@ -2048,7 +2047,12 @@ p {
   position: absolute;
   z-index: 10;
   margin-top: 8px;
-  margin-left: -110px;
+  margin-left: -150px;
+  min-width: 200px;
+}
+.dropdown-list.user-menu.w--open li{
+  list-style: none;
+  padding: 3px;
 }
 .user-avatar {
   width: 35px;
@@ -2082,9 +2086,6 @@ p {
   width: 35%;
   margin-bottom: 0px;
   margin-left: 20px;
-}
-.u-text-center {
-  text-align: center;
 }
 .header-logo {
   display: inline-block;
@@ -2132,6 +2133,9 @@ p {
 }
 .u-marginleft-20 {
   margin-left: 20px;
+}
+.u-marginleft-10 {
+  margin-left: 10px;
 }
 .u-right {
   float: right;
@@ -2771,6 +2775,9 @@ section.devise-body-section .access-type-field input {
 .download-month-balance {
   display: inline-block;
   width: 80%;
+}
+.u-marginleft--200 {
+  margin-left: -200px !important;
 }
 @media (max-width: 991px) {
   body {
@@ -3918,4 +3925,7 @@ section.devise-body-section .access-type-field input {
 .ongs-letter-link {
   border-radius: 0px !important;
   width: 22px;
+}
+.table {
+  width: 100%;
 }

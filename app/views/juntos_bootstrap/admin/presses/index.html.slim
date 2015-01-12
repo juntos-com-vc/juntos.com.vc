@@ -1,29 +1,26 @@
 = render 'shared/header_big'
 br
-.w-container
-  br
-  .w-row.admin
-    .w-col.w-col-5
-      h1= @title = t('.title')
-    .w-col.w-col-3.w-col-push-3
-      = link_to t('.new'), new_admin_press_path, class: 'link'
-  br
-  br
-  .w-row
-    table.w-col.w-col-12
-      thead
-        tr
-          th.w-col-4.w-col= Press.human_attribute_name(:title)
-          th.w-col-4.w-col= Press.human_attribute_name(:medium)
-          th.w-col-2.w-col= Press.human_attribute_name(:quote)
-          th.w-col-2.w-col Ações
-      tbody
-        - @presses.each do |press|
-          tr class=cycle("even", "odd")
-            td.w-col-4.w-col= press.title
-            td.w-col-4.w-col= press.medium
-            td.w-col-2.w-col= truncate(press.quote, lenght: 100)
-            td.w-col-1.w-col
-              = link_to t('.edit'), edit_admin_press_path(press)
-              = button_to t('.remove'), admin_press_path(press), method: :delete
-  br
+.admin
+  .w-container
+    .w-row
+      .w-col.w-col-5
+        h1= @title = t('.title')
+      .w-col.w-col-3.w-col-push-3
+        = link_to t('.new'), new_admin_press_path, class: 'link'
+
+  table.table.u-margintop-30.u-marginbottom-30
+    thead.card.card-secondary
+      tr
+        th= Press.human_attribute_name(:title)
+        th= Press.human_attribute_name(:medium)
+        th= Press.human_attribute_name(:quote)
+        th Ações
+    tbody
+      - @presses.each do |press|
+        tr class=cycle("even", "odd")
+          td= press.title
+          td= press.medium
+          td= truncate(press.quote, lenght: 100)
+          td
+            = link_to t('.edit'), edit_admin_press_path(press)
+            = button_to t('.remove'), admin_press_path(press), method: :delete

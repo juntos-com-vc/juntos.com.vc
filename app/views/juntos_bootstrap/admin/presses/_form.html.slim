@@ -12,13 +12,13 @@
       = form.input :medium, as: :string, required: true
   .w-row
     .w-col.w-col-6
-      = form.input :quote, as: :text 
+      = form.input :quote, as: :text
     .w-col.w-col-6
       = form.input :published_at, as: :date
   .w-row
     .w-col.w-col-6
       = form.input :link, as: :url
 
-  .w-row
+  .w-row.u-margintop-30.u-marginbottom-20
     .w-col.w-col-3
-      = form.button :submit
+      = form.button :submit, class: 'btn bt-medium'

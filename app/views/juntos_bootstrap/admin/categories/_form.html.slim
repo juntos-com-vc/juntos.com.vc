@@ -13,10 +13,12 @@
   .w-row
     .w-col.w-col-6
       = form.input :image, as: :file, required: false,
-        hint: (@category.image.present? ? image_tag(@category.image.url) : t('formtastic.hints.categories.image'))
-    .w-col.w-col-6
-      = form.input :color, input_html: { maxlength: 7 }, hint: t('formtastic.hints.categories.color')
+        hint: (@category.image.present? ? image_tag(@category.image.url) : t('formtastic.hints.categories.image')),
+        label: ''
+    .w-col.w-col-6.u-margintop-20
+      = form.input :color, input_html: { maxlength: 7 }, hint: t('formtastic.hints.categories.color'),
+        label: ''
 
-  .w-row
+  .w-row.u-margintop-20.u-marginbottom-20
     .w-col.w-col-2
-      = form.button :submit
+      = form.button :submit, class: 'btn bt-medium'
