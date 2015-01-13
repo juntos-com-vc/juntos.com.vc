@@ -12,6 +12,15 @@ class ProjectObserver < ActiveRecord::Observer
     end
   end
 
+  def after_update(project)
+    if project.online_date
+      project.notify_to_backoffice(:online_project_updated, {
+        from_email: project.user.email,
+        from_name: project.user.display_name
+      }, project.new_draft_recipient)
+    end
+  end
+
   def after_create(project)
     deliver_default_notification_for(project, :project_received)
     InactiveDraftWorker.perform_at(1.day.from_now, project.id)
