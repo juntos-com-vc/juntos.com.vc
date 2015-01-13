@@ -81,11 +81,24 @@ pt:
         PayPal:
           name: 'PayPal'
           description: "Pagamento internacional"
+        JuntosGiftCard:
+          name: 'Cartão doação'
+          description: "Cartão doação"
         MoIP:
           name: 'MoIP'
           description: "Pagamento nacional"
         Credits: 'Créditos'
         error: Ooops. Ocorreu um erro ao registrar seu apoio. Por favor, tente novamente.
+        juntos_gift_cards_info:
+          title: Pagar com cartão doação
+          coupon: Código do cartão
+          accept_terms_html: 'Ao clicar, você concorda com os <a href="#" target="_blank">termos de uso</a> e a <a href="#" target="_blank">política de privacidade</a> do cartão doação.'
+          submit: Usar cartão doação
+          success: "Pagamento com cartão doação realizado com sucesso!"
+          error: "Ooops. Ocorreu um erro ao enviar seu pagamento com cartão doação. Por favor, tente novamente."
+          error_duplicate: "Este cartão doação já foi utilizado."
+          error_value: "Este cartão doação não é deste valor informado."
+          error_coupon: "Cartão doação não encontrado."
       show:
         header_subtitle: Sem você talvez este projeto não tivesse uma chance. Bem-vindo
           ao time!
@@ -96,4 +109,3 @@ pt:
         recommended_projects: 'Você também poderá curtir esses projetos:'
         text_title_html: Obrigado por contribuir para o projeto %{link}.
         title: 'Muito obrigado'
-
