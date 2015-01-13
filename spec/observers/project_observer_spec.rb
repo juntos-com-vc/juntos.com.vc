@@ -51,6 +51,21 @@ RSpec.describe ProjectObserver do
     end
   end
 
+  describe "after_update" do
+    let(:user) { create(:user, email: 'foo@foo.com') }
+    let(:project) { create(:project, user: user, goal: 100, online_days: 1, online_date: Time.now - 2.days, state: 'online') }
+    before do
+      expect_any_instance_of(ProjectObserver).to receive(:after_update).and_call_original
+      project.name << " #1"
+      project.save
+    end
+
+    it "should create notification for project owner" do
+      expect(ProjectNotification.where(user_id: project.user.id, template_name: 'online_project_updated', project_id: project.id).first).not_to be_nil
+    end
+  end
+
+
   describe "when project is sent to curator" do
     let(:project) { create(:project, goal: 3000, state: 'draft') }
     let(:user) { create(:user, email: ::CatarseSettings[:email_projects])}
