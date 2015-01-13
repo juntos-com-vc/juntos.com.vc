@@ -13,7 +13,7 @@ class ProjectObserver < ActiveRecord::Observer
   end
 
   def after_update(project)
-    if project.online_date
+    if project.online? && project.online_date.present?
       project.notify_to_backoffice(:online_project_updated, {
         from_email: project.user.email,
         from_name: project.user.display_name
