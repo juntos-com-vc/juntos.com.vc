@@ -248,7 +248,6 @@ class Project < ActiveRecord::Base
   end
 
   def notify_to_backoffice(template_name, options = {}, backoffice_user = User.find_by(email: CatarseSettings[:email_payments]))
-    puts backoffice_user.inspect
     if backoffice_user
       notify_once(
         template_name,
