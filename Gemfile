@@ -95,6 +95,7 @@ gem 'routing-filter', '~> 0.4.0.pre'
 # Payment
 gem 'moip', github: 'catarse/moip-ruby', ref: 'c0225ad71645cd1df35dafa1e45c9f092b3abb9e'
 gem 'httpclient',     '>= 2.2.5'
+gem 'catarse_juntos_gift_cards', github: 'danielweinmann/catarse_juntos_gift_cards', ref: 'a865ff347c748934c1d872656c7e4984755d6d00'
 
 group :production do
   # Gem used to handle image uploading
