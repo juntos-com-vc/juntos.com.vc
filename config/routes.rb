@@ -21,6 +21,7 @@ Catarse::Application.routes.draw do
   mount CatarseMoip::Engine => "/", as: :catarse_moip
   mount CatarseCredits::Engine => "/", as: :catarse_credits
   mount CatarsePagarme::Engine => "/", as: :catarse_pagarme
+  mount CatarseJuntosGiftCards::Engine => "/", :as => :catarse_juntos_gift_cards
 #  mount CatarseWepay::Engine => "/", as: :catarse_wepay
 
   resources :site_partners, only: :index
