@@ -85,6 +85,7 @@ class ProjectsController < ApplicationController
     fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
     @posts_count = resource.posts.count(:all)
     @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
+    @color = (channel.present? && channel.main_color) || @project.category.color
   end
 
   def video

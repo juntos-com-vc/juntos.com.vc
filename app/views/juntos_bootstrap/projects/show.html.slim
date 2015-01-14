@@ -34,19 +34,19 @@
     .w-container
       .w-row
         .w-col.w-col-9.w-hidden-small.w-hidden-tiny
-          = link_to '#about', id: 'about_link', class: 'nav-tab selected', data: {target: '#project_about.content'}, style: "background-color: #{@project.category.color};" do
+          = link_to '#about', id: 'about_link', class: 'nav-tab selected', data: {target: '#project_about.content'}, style: "background-color: #{@color};" do
             = t('.menu.about')
-          = link_to '#posts', id: 'posts_link', class: 'nav-tab' , data: {target: '#project_posts'}, style: "background-color: #{@project.category.color};" do
+          = link_to '#posts', id: 'posts_link', class: 'nav-tab' , data: {target: '#project_posts'}, style: "background-color: #{@color};" do
             => t('.menu.posts')
             span.badge = @posts_count
-          = link_to '#contributions', id: 'contributions_link', class: 'nav-tab' , data: {target: '#project_contributions'}, style: "background-color: #{@project.category.color};" do
+          = link_to '#contributions', id: 'contributions_link', class: 'nav-tab' , data: {target: '#project_contributions'}, style: "background-color: #{@color};" do
             => t('.menu.contributions')
             span.badge = @project.total_contributions
-          = link_to '#comments', id: 'comments_link', class: 'nav-tab' , data: {target: '#project_comments'}, style: "background-color: #{@project.category.color};" do
+          = link_to '#comments', id: 'comments_link', class: 'nav-tab' , data: {target: '#project_comments'}, style: "background-color: #{@color};" do
             => t('.menu.comments')
             fb:comments-count href="#{request.base_url}/#{request.fullpath.split('/')[2]}" class="badge" style="display: inline"
               |&nbsp;
-          = link_to '#project_metrics', id: 'project_metrics_link', class: 'nav-tab' , data: {target: '#project_metrics'}, style: "background-color: #{@project.category.color};" do
+          = link_to '#project_metrics', id: 'project_metrics_link', class: 'nav-tab' , data: {target: '#project_metrics'}, style: "background-color: #{@color};" do
             => t('.menu.metrics')
               |&nbsp;
 
