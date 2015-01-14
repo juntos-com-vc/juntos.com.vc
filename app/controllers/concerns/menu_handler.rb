@@ -35,9 +35,9 @@ module Concerns
       add_to_menu 'channels.admin.profile_menu',    :edit_channels_profile_path
 
       def menu
-        channel_admin_paths = [:channels_admin_followers_path, :channels_admin_posts_path, :channels_admin_partners_path ,:edit_channels_profile_path]
+        channel_admin_paths = [:admin_contributions_path, :admin_projects_path, :channels_admin_followers_path, :channels_admin_posts_path, :channels_admin_partners_path, :channels_admin_images_path, :edit_channels_profile_path]
         ApplicationController.menu_items.inject({}) do |memo, el|
-          if current_user.admin? || channel_admin_paths.include?(el.last)
+          if current_user.admin? || (channel_admin_paths.include?(el.last) && channel && channel.users.find(current_user.id))
             memo.merge!(el.first => Rails.application.routes.url_helpers.send(el.last))
           end
           memo
