@@ -39,10 +39,13 @@
             = f.input :address_city, as: :string
             = f.input :address_state, as: :select, collection: State.array
             = f.input :birth_date, as: :date
-            - if current_user.try(:admin?)
-              = f.input :staff, as: :select, collection: User.staff_array, label: t('activerecord.attributes.user.staff')
-          .socialmidia
             = f.input :job_title, as: :string
+          - if current_user.try(:admin?)
+            .profile
+              h3.u-marginbottom-20 Campos do admin
+              = f.input :staff, as: :select, collection: User.staff_array, label: t('activerecord.attributes.user.staff')
+              = f.input :admin, as: :boolean, label: t('activerecord.attributes.user.admin')
+          .socialmidia
             = f.input :moip_login, label: (t('activerecord.attributes.user.moip_login') + '  ' +  link_to(t('activerecord.attributes.user.moip_login_hint'), "http://suporte.catarse.me/hc/pt-br/articles/203083097-Criar-uma-conta-no-MoIP")).html_safe
             = f.input :phone_number, required: false, as: :string
             = f.input :email, as: :string
