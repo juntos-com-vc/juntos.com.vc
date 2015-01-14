@@ -21,7 +21,13 @@
             .u-marginbottom-40
               = form.label :goal, class: 'fontsize-large', required: true, as: :string
               .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :name
-              = form.input_field :goal, class: 'medium', as: :string
+              .w-row
+                .w-col.w-col-12
+                  .w-row
+                    .w-col.w-col-2.w-col-small-6.w-col-tiny-6.text-field.prefix.no-hover
+                      .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest R$
+                    .w-col.w-col-10.w-col-small-6.w-col-tiny-6
+                      = form.input_field :goal, as: :string, class: 'positive postfix'
             .u-marginbottom-40
               = form.label :online_days, class: 'fontsize-large', required: true, as: :string
               .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :name
@@ -42,9 +48,9 @@
               label.fontsize-large.field-label for="field"= t('simple_form.prompts.project.traffic_sources')
               = form.input :traffic_sources, as: :select, collection: t('simple_form.collections.project.traffic_sources').values, prompt: t('simple_form.prompts.project.select'), class: 'medium', label: '', required: false, hint: ''
           .w-row
-            .w-col.w-col-6.w-col-push-3   
+            .w-col.w-col-6.w-col-push-3
               = form.button :submit, t('.form.submit'), class:'btn btn-large'
-   
+
       .w-col.w-col-4
         .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20
           .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.support')
