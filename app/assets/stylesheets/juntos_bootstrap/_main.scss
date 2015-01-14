@@ -2333,7 +2333,7 @@ p {
   padding-left: 30px;
   line-height: 2;
 }
-.project-contritubion-card .project-style {
+.project-contribution-card .project-style {
   border-top: 1px solid #f8bc1c;
   color: #f8bc1c;
   padding-top: 10px;
@@ -2778,6 +2778,16 @@ section.devise-body-section .access-type-field input {
 }
 .u-marginleft--200 {
   margin-left: -200px !important;
+}
+#project_contributions .contribution {
+  padding: 5px;
+  margin-right: 10px;
+  float: left;
+  border: 1px solid black;
+}
+#project_contributions .contribution .contribution-thumb {
+  width: 119px;
+  height: 121px;
 }
 @media (max-width: 991px) {
   body {

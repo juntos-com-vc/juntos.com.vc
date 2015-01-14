@@ -108,7 +108,7 @@ section.section#dashboard_reward.content.w-hidden
       #project_comments.content.w-col.w-col-8.w-hidden
 
     #project-sidebar.aside.w-col.w-col-4
-      .project-contritubion-card
+      .project-contribution-card
         - if @project.online? && !@project.expired?
           = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20"
 
