@@ -44,6 +44,9 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new params[:project].merge(user: current_user)
     authorize @project
+    if @project.save
+      channel.projects << @project if channel
+    end
     create! { project_by_slug_path(@project.permalink, anchor: 'basics') }
   end
 
