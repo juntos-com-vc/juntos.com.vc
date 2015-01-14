@@ -56,9 +56,6 @@
           h2.title= t('.quick_explore')
           ul
             li
-              a.explore-link[href='#recommended']
-                = t('.recommended')
-            li
               a.explore-link[href='#in_funding']
                 = t('.in_funding')
             li
@@ -70,9 +67,7 @@
             li
               a.explore-link[href='#successful']
                 = t('.successful')
-            - if current_user
-              li
-                a.explore-link[href="#near_of/#{current_user.address_state}"]
-                  = t('.near')
-
+            li
+              a.explore-link[href='#failed']
+                = t('.failed')
     .clearfix

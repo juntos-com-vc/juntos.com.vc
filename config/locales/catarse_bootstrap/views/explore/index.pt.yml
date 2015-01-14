@@ -7,13 +7,14 @@ pt:
       unfollow: Deixar de seguir
       following: seguindo
       categories: Categorias
-      expiring: Na reta final
-      in_funding: No ar
+      expiring: Reta final
+      in_funding: Em andamento
       near: Próximos a mim
       quick_explore: Busca rápida
       recent: Recentes
       recommended: Recomendados
-      successful: Bem-sucedidos
+      successful: Bem sucedido
       title: "Encontre projetos que inspiram entre as categorias abaixo"
+      failed: 'Não financiados'
     title: Explore os projetos
 

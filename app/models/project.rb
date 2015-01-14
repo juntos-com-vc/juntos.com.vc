@@ -61,6 +61,7 @@ class Project < ActiveRecord::Base
 
   # Used to simplify a has_scope
   scope :successful, ->{ with_state('successful') }
+  scope :failed, ->{ with_state('failed') }
   scope :with_project_totals, -> { joins('LEFT OUTER JOIN project_totals ON project_totals.project_id = projects.id') }
 
   scope :by_progress, ->(progress) { joins(:project_total).where("project_totals.pledged >= projects.goal*?", progress.to_i/100.to_f) }
