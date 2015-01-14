@@ -187,6 +187,7 @@ pt:
             online_days:
               greater_than: "O prazo para arrecadação deve ser maior que 0 dias"
               not_a_number: "O prazo para arrecadação deve ser um número de dias"
+              less_than_or_equal_to: "O prazo para arrecadação deve ser menor que 60 dias"
             about:
               blank: "A descrição do projeto não pode ficar em branco"
             headline:
