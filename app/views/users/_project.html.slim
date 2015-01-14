@@ -25,9 +25,9 @@ div class=(policy(parent).update? ? 'project_land' : 'small_project_land')
             });
           })();
       .time-remaining
-        = t('projects.project.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit])
+        = t('projects.project.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: '')
       .collected-money
-        = link_to t('projects.project.pledged_html', value: number_to_currency(project.pledged, precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised'
+        = link_to t('projects.project.pledged_html', style: '', value: number_to_currency(project.pledged, precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised'
       /ul
         /li
           /- if project.time_to_go[:time] > 0
@@ -53,7 +53,7 @@ div class=(policy(parent).update? ? 'project_land' : 'small_project_land')
             h5
               span.date<
                 |#{contribution.display_confirmed_at || I18n.l(contribution.created_at.to_date)}
-          
+
     /.tell_about
       /p= t('.tell_about_this_contribution')
       /ul

@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
     :address_complement, :address_neighbourhood, :address_city, :address_state, :address_zip_code, :phone_number,
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,
     :bank_account_attributes, :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
-    :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13, :staff, :job_title, :birth_date
+    :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13, :staff,
+    :job_title, :birth_date, :admin
 
   enum access_type: [:individual, :legal_entity]
   enum staff: [:team, :financial_board, :technical_board, :advice_board]
