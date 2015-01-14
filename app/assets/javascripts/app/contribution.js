@@ -3,7 +3,14 @@ App.addChild('Contribution', {
 
   events: {
     'click label.back-reward-radio-reward' : 'clickReward',
+    'click #submit_gift_card' : 'submitFormGiftCard',
     'click #submit' : 'submitForm'
+  },
+
+  submitFormGiftCard: function(){
+    this.$('#contribution_preferred_payment_engine').val('JuntosGiftCard');
+    this.$('form').submit();
+    return false;
   },
 
   submitForm: function(){

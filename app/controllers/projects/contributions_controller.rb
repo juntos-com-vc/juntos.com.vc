@@ -13,6 +13,10 @@ class Projects::ContributionsController < ApplicationController
 
   def edit
     authorize resource
+    @payment_engines = avaiable_payment_engines
+    if resource.preferred_payment_engine.present?
+      @payment_engines.select! { |engine| engine.name == resource.preferred_payment_engine }
+    end
     if resource.reward.try(:sold_out?)
       flash[:alert] = t('.reward_sold_out')
       return redirect_to new_project_contribution_path(@project)
@@ -55,6 +59,7 @@ class Projects::ContributionsController < ApplicationController
     @contribution = parent.contributions.new.localized
     @contribution.user = current_user
     @contribution.value = permitted_params[:contribution][:value]
+    @contribution.preferred_payment_engine = permitted_params[:contribution][:preferred_payment_engine]
     @contribution.reward_id = (params[:contribution][:reward_id].to_i == 0 ? nil : params[:contribution][:reward_id])
     authorize @contribution
     @contribution.update_current_billing_info
