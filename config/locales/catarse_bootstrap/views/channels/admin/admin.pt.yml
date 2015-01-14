@@ -55,7 +55,7 @@ pt:
         edit:
           edit_title: Editar imagem
         form:
-          hint_image: Tamanho da imagem 528x256
+          hint_image: Tamanho da imagem 1900x360
           save_submit: Salvar
         index:
           new_button: Adicionar imagem

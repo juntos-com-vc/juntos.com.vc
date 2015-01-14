@@ -4,22 +4,17 @@
 = render 'shared/header_channel'
 = content_for :title, @profile.name
 
-.page-header.u-margintop-40.u-marginbottom-40
+.page-header.u-marginbottom-40
+  - unless @profile.images.empty?
+    .images
+      - @profile.images.each do |image|
+        .image= image_tag(image.image.slick.url)
   .w-container
-    .w-row.u-margintop-40
-      .w-col.w-col-6
-        h1.fontsize-larger style="color: #{@profile.main_color}"= @profile.name
-        - unless @profile.images.empty?
-          .images.u-margintop-20
-            - @profile.images.each do |image|
-              .image= image_tag(image.image.slick.url)
-      .w-col.w-col-2
-      .w-col.w-col-4.u-margintop-40
-        .u-margintop-10
-          = link_to image_tag(@profile.image), @profile.website, target: :blank
-          .fontsize-small.u-margintop-10= @profile.description
-          - if @profile.facebook.present?
-            = link_to image_tag("facebook.png"), @profile.facebook, title: t('.accessibility.link_to_facebook'), class: [:"icon-facebook"], target: :blank
+    .w-row
+      .fontsize-small.u-margintop-10= @profile.description
+      .fontsize-small.u-margintop-10= link_to @profile.website, @profile.website, target: :blank
+      - if @profile.facebook.present?
+        = link_to image_tag("facebook.png"), @profile.facebook, title: t('.accessibility.link_to_facebook'), class: [:"icon-facebook"], target: :blank
 
 .w-container
   .w-row
