@@ -57,6 +57,18 @@ br
             td= user.email
             td= user.user_total ? user.user_total.sum : 0
             td= user.credits
-            td= link_to 'Edit', user_path(user), target: '_blank'
+            td.w-col-1.w-col.project-events-dropdown
+              .project-admin-menu.card-infos-bottom-right
+                = link_to '', 'javascript:void(0);', data: {toggle: 'dropdown'}, class: 'w-dropdown-btn dropdown-toggle fa fa-sort-down'
+              nav.w-dropdown-list.dropdown-list.user-menu
+                = link_to user_path(user), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                    = "Edit"
+                - Channel.all.each do |channel|
+                  - if channel.users.include?(user)
+                    = link_to admin_channel_user_path(channel, user), method: :delete, data: {confirm: 'Tem certeza?'}, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                      .fa.fa-close= "Remover admin do canal #{channel.name}"
+                  - else
+                    = link_to admin_channel_users_path(channel, user_id: user), method: :post, data: {confirm: 'Tem certeza?'}, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                      .fa.fa-check= "Tornar admin do canal #{channel.name}"
   = paginate @users
   .clearfix

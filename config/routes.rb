@@ -144,7 +144,9 @@ Catarse::Application.routes.draw do
     resources :statistics, only: [ :index ]
     resources :financials, only: [ :index ]
     resources :site_partners
-    resources :channels, except: [ :show, :destroy ]
+    resources :channels, except: [ :show, :destroy ] do
+      resources :users, controller: 'channels/users', only: [:create, :destroy]
+    end
     resources :presses
     resource :transparency_report, only: [:show, :update]
 
