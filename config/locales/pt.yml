@@ -12,10 +12,10 @@ pt:
   share_my_contributions: 'Confira o projeto '
   remove: 'Remover'
   site:
-    description: O Catarse é uma ferramenta diferente – e colaborativa – para tirar
+    description: O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar
       o seu projeto do papel!
-    keywords: catarse, crowdfunding, financiamento coletivo, projeto, comunidade,
-      open source
+    keywords: juntoscomvc, juntos.com.vc, crowdfunding, financiamento coletivo, projeto, comunidade,
+      open source, projetos sociais, social crowdfunding, crowdfunding social
     meta_title: "%{title} · %{company_name}"
-    title: A maior comunidade de financiamento coletivo do Brasil!
+    title: Juntos.com.vc
 

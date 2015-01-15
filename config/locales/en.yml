@@ -14,10 +14,10 @@ en:
       confirmed_contributions: 'Confirmed contributions'
       created_projects: 'Created projects'
   site:
-    title: "The biggest crowdfunding community in Brazil"
+    title: "Juntos.com.vc"
     meta_title:  "%{title} · %{company_name}"
-    description: "O Catarse é uma ferramenta diferente – e colaborativa – para tirar o seu projeto do papel!"
-    keywords: "catarse, crowdfunding, project, community, open source"
+    description: "O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar o seu projeto do papel!"
+    keywords: "juntoscomvc, juntos.com.vc, crowdfunding, financiamento coletivo, projeto, comunidade, open source, projetos sociais, social crowdfunding, crowdfunding social"
   login:
     forgot_password:
       welcome: 'Reset password'
@@ -894,7 +894,7 @@ en:
     header:
       bio_tooltip: "Click here to write about you..."
       name_tooltip: "Click here to fill your name..."
-    
+
   notifications:
     contributions:
       to_contribution:

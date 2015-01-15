@@ -14,10 +14,11 @@ fr:
       confirmed_contributions: 'Bailleurs confirmés'
       created_projects: 'Projets créés'
   site:
-    title: "La plus grande communauté de crowdfunding au Brésil"
     meta_title:  "%{title} · %{company_name}"
-    description: "Catarse é uma ferramenta diferente ¿ e colaborativa ¿ para tirar o seu projeto do papel!"
-    keywords: "catarse, crowdfunding, projet, communauté, open source"
+    title: "Juntos.com.vc"
+    meta_title:  "%{title} · %{company_name}"
+    description: "O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar o seu projeto do papel!"
+    keywords: "juntoscomvc, juntos.com.vc, crowdfunding, financiamento coletivo, projeto, comunidade, open source, projetos sociais, social crowdfunding, crowdfunding social"
 
   login:
     forgot_password:
