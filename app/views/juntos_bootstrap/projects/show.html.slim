@@ -103,7 +103,7 @@ section.section#dashboard_reward.content.w-hidden
           .divider.u-marginbottom-20
         .results
           | &nbsp;
-        #contributions-loading.loader.u-text-center.w-col.w-col-12 = image_tag "catarse_bootstrap/loader.gif"
+        #contributions-loading.loader.u-text-center.w-col.w-col-12 = image_tag "loading.gif"
 
       #project_comments.content.w-col.w-col-8.w-hidden
 
@@ -170,7 +170,7 @@ section.section#dashboard_reward.content.w-hidden
             = t('.tweet')
 
       #rewards.u-marginbottom-30[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
-        .u-text-center = image_tag 'catarse_bootstrap/loader.gif'
+        .u-text-center = image_tag 'loading.gif'
       .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
       .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
 
