@@ -365,9 +365,9 @@
   display: block;
   margin-right: auto;
   margin-left: auto;
-  border: 1px solid #00b22d;
+  border: 1px solid #FE6327;
   border-radius: 5px;
-  background-color: #00b22d;
+  background-color: #FE6327;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
@@ -376,9 +376,12 @@
   text-decoration: none;
 }
 .btn:hover {
-  border-color: #27bff2 #27bff2 #08bd35;
-  background-color: #08bd35;
+  border-color: #27bff2 #27bff2 #FE6327;
+  background-color: #FE6327;
   opacity: 1;
+}
+.btn.btn-attached {
+  color: rgba(37, 49, 57, 0.6);
 }
 .u-marginbottom-20 {
   margin-bottom: 20px;
