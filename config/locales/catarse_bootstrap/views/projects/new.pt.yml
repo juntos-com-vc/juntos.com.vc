@@ -10,12 +10,13 @@ pt:
 
         links:
           criteria: "Critérios de seleção"
-          suport_central: "Central de suporte"
-          support_contact: "Entre em contato com a gente"
+          suport_central: "FAQ"
+          support_contact: "Entre em contato conosco"
+          who_we_are: 'Quem somos'
           how_it_works: "Como o Catarse funciona?"
           money: "Como receberei o dinheiro?"
-          selection: "Como os projetos são selecionados?"
-          all_or_nothing: "Por que Tudo ou Nada?"
+          all_or_nothing: "Como funciona o 'tudo ou nada'?"
+          payment_methods: 'Meios de pagamento'
 
       form:
         blocks:
