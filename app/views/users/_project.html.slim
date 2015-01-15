@@ -1,4 +1,4 @@
-div class=(policy(parent).update? ? 'project_land' : 'small_project_land')
+div class=(policy(parent).update? ? 'project_land u-marginbottom-40' : 'small_project_land u-marginbottom-40')
   .title
     h4
       = link_to project.name, project_by_slug_path(project.permalink)
