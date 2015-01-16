@@ -173,7 +173,9 @@ section.section#dashboard_reward.content.w-hidden
         .u-text-center = image_tag 'loading.gif'
       .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
       .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
-
+      - unless @project.channels.any?
+        section.main-sidebar-division.u-marginbottom-30
+          .fb-like-box data-href="#{CatarseSettings['facebook_url']}" data-width="200" data-height="300" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"
 /- if @project.draft?
   /= render 'shared/footer'
 /- else
