@@ -28,21 +28,23 @@
           = form.input :user_name_contains, as: :string, label: t('.user')
       .w-row
         .w-col-4.w-col
+          = form.input :user_cpf_contains, as: :string, label: t('.user_cpf')
+        .w-col-4.w-col
           = form.input :user_email_contains, as: :string, label: t('.user_email')
         .w-col-2.w-col
           = form.input :by_key, as: :string, label: t('.key')
         .w-col-2.w-col
           = form.input :credits, as: :boolean, label: t('.credits')
         .w-col-2.w-col
-        .w-col-2.w-col.u-margintop-40
+        .w-col-2.w-col.u-margintop-20
           = form.button :submit, t('channels.admin.filter.submit'), class: 'bt-medium'
 
   = paginate @contributions
   - if @contributions.empty?
-    = t('.no_contributions')
+    .u-margintop-40= t('.no_contributions')
   - else
     - @contributions.includes(:project, :user, :reward).each do |contribution|
-      table.admin-contributions.table
+      table.admin-contributions.table.u-margintop-40
         thead.card.card-secondary
           tr
             th= t('.contribution')
