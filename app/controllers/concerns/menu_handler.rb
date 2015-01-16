@@ -27,13 +27,6 @@ module Concerns
       add_to_menu "admin.presses.index.menu",                :admin_presses_path
       add_to_menu 'activerecord.models.transparency_report', :admin_transparency_report_path
 
-      # Admin and channel admin can access
-      add_to_menu "channels.admin.followers_menu",  :channels_admin_followers_path
-      add_to_menu 'channels.admin.posts_menu',      :channels_admin_posts_path
-      add_to_menu 'channels.admin.partners_menu',   :channels_admin_partners_path
-      add_to_menu 'channels.admin.images_menu',     :channels_admin_images_path
-      add_to_menu 'channels.admin.profile_menu',    :edit_channels_profile_path
-
       def menu
         channel_admin_paths = [:admin_contributions_path, :admin_projects_path, :channels_admin_followers_path, :channels_admin_posts_path, :channels_admin_partners_path, :channels_admin_images_path, :edit_channels_profile_path]
         ApplicationController.menu_items.inject({}) do |memo, el|

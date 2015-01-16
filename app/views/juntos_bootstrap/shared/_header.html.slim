@@ -29,6 +29,13 @@
               .divider
               - for menu, path in controller.menu do
                 = link_to menu, path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
+              - if current_user.channel || namespace == 'channels'
+                .divider
+                  = link_to t("channels.admin.followers_menu"), channels_admin_followers_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
+                  = link_to t('channels.admin.posts_menu'), channels_admin_posts_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
+                  = link_to t('channels.admin.partners_menu'), channels_admin_partners_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
+                  = link_to t('channels.admin.images_menu'), channels_admin_images_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
+                  = link_to t('channels.admin.profile_menu'), edit_channels_profile_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
             .divider
             = link_to t('layouts.user.logout'), destroy_user_session_path, method: :delete, class: 'w-dropdown-link dropdown-link fontsize-smaller'
       - else
