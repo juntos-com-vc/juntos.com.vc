@@ -602,7 +602,7 @@ p {
   opacity: 1;
 }
 .alt-link {
-  color: #409bff;
+  color: #FFB74D;
   text-decoration: none;
 }
 .alt-link:hover {
@@ -613,10 +613,10 @@ p {
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
-  color: #79808b;
+  color: #FFB74D;
 }
 .alt-link.alt-link-2:hover {
-  color: #79808b;
+  color: #FFB74D;
 }
 .alt-link.alt-link-fb {
   position: relative;
@@ -2145,6 +2145,9 @@ p {
 }
 .u-marginright-10 {
   margin-right: 10px;
+}
+.u-marginright-20 {
+  margin-right: 20px;
 }
 .dropdown-icon {
   position: absolute;

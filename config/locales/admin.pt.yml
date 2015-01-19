@@ -135,7 +135,8 @@ pt:
         payment_fee: 'Taxa do meio de pagamento'
         payment_choice: 'Opção de pagamento'
         payer_email: 'Email utilizado no meio de pagamento'
-        user_email: 'Email utilizado no catarse'
+        user_email: 'Email utilizado no Juntos.com.vc'
+        user_cpf: 'CPF/CNPJ utilizado no Juntos.com.vc'
         created_at: 'Iniciado em'
       index:
         details:
@@ -159,7 +160,8 @@ pt:
         send_refund_request_contribution: 'Enviar solicitação de reembolso'
         payer_email: 'Email do meio de pagamento'
         payment_id: 'Id de pagamento'
-        user_email: 'Email utilizado no catarse'
+        user_email: 'Email utilizado no Juntos.com.vc'
+        user_cpf: 'CPF/CNPJ utilizado no Juntos.com.vc'
         push_to_trash: 'Deletar apoio'
         cancel: 'Cancelar apoio'
         between_values: 'Valores entre'

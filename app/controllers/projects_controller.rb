@@ -86,6 +86,7 @@ class ProjectsController < ApplicationController
     (3 - @project.project_partners.size).times { @project.project_partners.build }
     authorize @project
     fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
+    @channel = resource.channels.first
     @posts_count = resource.posts.count(:all)
     @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
     @color = (channel.present? && channel.main_color) || @project.category.color

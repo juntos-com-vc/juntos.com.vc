@@ -33,8 +33,23 @@ pt:
     footer_navigate:
       links:
         partners: Parceiros
+        ongs: 'ONGs'
     footer_welcome:
       links:
-        who_we_are: Quem Somos
+        who_we_are: Quem somos
         press: Mídia
+        transparency: Transparência
+    footer_about:
+      links:
+        how_it_works: Como funciona
+        send_project: Envie um projeto
+        explore_projects: Explore projetos
+    footer_legal:
+      links:
+        terms_of_use: Termos de uso
+        privacy_politics: Política de privacidade
+    footer_contact:
+      links:
+        contact: 'Contato'
+
 
