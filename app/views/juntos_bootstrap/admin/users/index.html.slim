@@ -15,24 +15,24 @@ br
       .w-row
         .w-col.w-col-2
           = form.input :by_id, as: :integer, label: t('.by_id'), input_html: {value: params[:by_id], name: :by_id}
-        .w-col.w-col-4
+        .w-col.w-col-5
           = form.input :by_name, as: :string, label: t('.by_name'), input_html: {value: params[:by_name], name: :by_name}
-        .w-col.w-col-4
+        .w-col.w-col-5
           = form.input :by_email, as: :string, label: t('.by_email'), input_html: {value: params[:by_email], name: :by_email}
-        .w-col.w-col-2
-          = form.input :by_payer_email, as: :string, label: t('.by_payer_email'), input_html: {value: params[:by_payer_email], name: :by_payer_email}
       .w-row
+        .w-col.w-col-4
+          = form.input :by_payer_email, as: :string, label: t('.by_payer_email'), input_html: {value: params[:by_payer_email], name: :by_payer_email}
         .w-col.w-col-3
           = form.input :by_key, as: :string, label: t('.key'), input_html: {value: params[:by_key], name: :by_key}
-        .w-col.w-col-2
+        .w-col.w-col-2.u-margintop-30
           = check_box_tag :has_credits, true, params[:has_credits].present?
-          label for="has_credits" = t('.credits')
-        .w-col.w-col-2
+          label.label for="has_credits" = t('.credits')
+        .w-col.w-col-2.u-margintop-30
           = check_box_tag :only_organizations, true, params[:only_organizations].present?
           label for="only_organizations" = t('.only_organizations')
       .w-row
         .w-col.w-col-10
-        .w-col.w-col-2
+        .w-col.w-col-2.u-margintop-20
           = form.button :submit, t('channels.admin.filter.submit'), class: 'btn bt-medium'
   br
   br

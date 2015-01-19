@@ -104,7 +104,10 @@ pt:
         menu: "Apoiadores"
         credits: "Créditos"
         credits_view: "Créditos calculados"
-        id: Id
+        by_id: Id
+        by_name: 'Nome'
+        by_email: 'Email do usuário no Juntos.com.vc'
+        by_payer_email: 'Email do pagador'
         key: Chave
         submit: Pesquisar
         has_credits_difference: Discrepância nos créditos
@@ -118,6 +121,7 @@ pt:
         value: Valor
         payer_email: Email do pagamento
         provider: Provedor
+        only_organizations: 'Somente ONGs'
     contributions:
       messages:
         successful:
