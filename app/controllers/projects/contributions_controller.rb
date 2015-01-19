@@ -8,7 +8,7 @@ class Projects::ContributionsController < ApplicationController
   after_filter :verify_authorized, except: [:index]
   belongs_to :project
   before_filter :detect_old_browsers, only: [:new, :create]
-
+  before_filter :load_channel, only: [:edit, :new]
   helper_method :avaiable_payment_engines
 
   def edit
@@ -79,6 +79,10 @@ class Projects::ContributionsController < ApplicationController
   end
 
   protected
+  def load_channel
+    @channel = parent.channels.first
+  end
+
   def load_rewards
     empty_reward = Reward.new(minimum_value: 0, description: t('projects.contributions.new.no_reward'))
     @rewards = [empty_reward] + @project.rewards.remaining.order(:minimum_value)
