@@ -1,139 +1,249 @@
 pt:
   pages:
     terms_of_use:
-      title: Termos de uso
+      title: Termos de uso e Política de Privacidade
       content:
-        start: "Começando"
-        start_text: 'Leia com atenção os termos de uso.<br>
-
-          Bem-vindo ao Catarse! Vale lembrá-lo que o acesso ao conteúdo deste website dependerá  de sua prévia e expressa concordância com os Termos de Uso e Políticas de Privacidade.<br>
+        start: "Bem-vindo ao Juntos.com.vc, serviço oferecido pela Associação Juntos com Você inscrita no CNPJ 15.539.377/0001-90."
+        start_text: 'O acesso ao conteúdo do site http://www.juntos.com.vc (“SITE”) dependerá da sua plena concordância com o Termo de Uso e Política de Privacidade (“TERMO DE USO”) aqui previstos, então a sua leitura e posterior aceitação é indispensável.
+        <br>
+O TERMO DE USO tem como objetivo estabelecer os direitos e obrigações aos doadores, entidades ou empreendedores sociais participantes, bem como parceiros fomentadores, e esclarecer qual o tratamento conferido aos dados e informações fornecidos por aqueles que se cadastrarem para acesso a qualquer área do SITE, conforme as regras e informações abaixo previstas: '
+        what_is: 'I. O QUE É A Juntos.com.vc'
+        what_is_text: 'A Juntos.com.vc, é uma plataforma “crowdfunding”, ou seja, um SITE que proporciona a realização colaborativa destinada a financiar projetos sociais de entidades beneficentes ou empreendedores sociais (“ENTIDADES”). Uma maneira inovadora e prática de viabilizar projetos sociais com a colaboração de diversas pessoas.
 <br>
-
-          Os Termos de Uso apresentam as "Condições Gerais" aplicáveis ao uso da plataforma online disponibilizada pelo GRUPO COMUM CONSULTORIA E INTERMEDIAÇÃO DE NEGÓCIOS LTDA - ME, sociedade limitada, inscrita no CNPJ sob n.º 14.512.425/0001-94, com endereço a Rua Itapeva, 220, conjunto 42, doravante denominada "CATARSE"'
-
-        guidelines: "Definições"
-        guidelines_text: 'USUÁRIO: é toda e qualquer pessoa física que navegue ou faça uso do site do CATARSE, incluindo o CRIADOR DE PROJETOS, o CANAL e o APOIADOR DE PROJETOS.<br>
-
-          CRIADOR DE PROJETOS: é o USUÁRIO do CATARSE interessado em angariar fundos para realização de um projeto criativo.<br>
-
-APOIADOR: é o USUÁRIO do CATARSE interessado em contribuir financeiramente com os PROJETOS de um ou mais CRIADORES DE PROJETOS, podendo receber recompensas, de acordo com as regras estabelecidas em cada projeto.<br>
-
-          O CANAL é um “espaço” dentro do CATARSE gerido por pessoa jurídica distinta, sem qualquer relação societária com o CATARSE, com o objetivo de potencializar e alavancar PROJETOS de seu interesse. A descrição detalhada dos incentivos e participação do CANAL nos PROJETOS, estará detalhada no respectivo item “Como funciona”, disponível no site do CATARSE<br>
-
-        PROJETO: é um projeto criativo divulgado na plataforma CATARSE pelo CRIADOR DE PROJETOS com o objetivo de angariar fundos para a sua concretização. Para cada PROJETO, serão definidas recompensas ou incentivos aos APOIADORES, de acordo com as regras definidas em cada PROJETO. Os PROJETOS devem seguir as Diretrizes para criação de projetos, sendo que qualquer PROJETO que estiver em desacordo com tais diretrizes, poderá ser removido da plataforma pelo CATARSE.<br>
-
-        PROJETO BEM-SUCEDIDO: é o PROJETO que alcança ou supera o valor pleiteado no prazo determinado pelo CRIADOR DO PROJETO.<br>
-'  
-          
-        how_works: "O que é e como funciona o Catarse"
-        how_works_text: 'O CATARSE é uma plataforma online que se destina a aproximar CRIADORES DE PROJETOS e APOIADORES, com o objetivo de ANGARIAÇÃO COLETIVA DE FUNDOS (“crowd funding”), para viabilizar PROJETOS. O CATARSE permite que um CRIADOR DE PROJETOS apresente uma ideia de PROJETO e angarie fundos de APOIADORES interessados em contribuir com esse PROJETO. Os CRIADORES DE PROJETOS também oferecerão aos APOIADORES recompensas, que serão definidas em cada um desses PROJETOS. O CATARSE reúne os valores desembolsados pelos APOIADORES destinados a cada um desses PROJETOS até o prazo final determinado pelos respectivos CRIADORES DE PROJETOS.<br>
-
-          Há no CATARSE a possibilidade de que os PROJETOS sejam disponibilizados de forma organizada por meio de um CANAL. <br>
-
-          O CANAL que aceitar um PROJETO disponível no CATARSE, o divulgará em outras mídias à sua escolha, o que aumentará significativamente a visibilidade e a probabilidade de o PROJETO vir a ser bem sucedido. O CANAL pode inclusive apoiar financeiramente o PROJETO ou contribuir com as recompensas, dependendo do que foi ajustado entre as partes, CANAL e CRIADOR DO PROJETO.<br>
-
-          Quando um desses PROJETOS é bem-sucedido, alcançando ou superando o montante estipulado para sua viabilização, no prazo estipulado no PROJETO, o valor total angariado dos APOIADORES é repassado ao CRIADOR DE PROJETO, descontados o percentual devido ao CATARSE e as tarifas cobradas pelo serviço de pagamentos online utilizado. Em contrapartida, se um desses PROJETOS não é bem-sucedido, deixando de alcançar o montante solicitado, os APOIADORES, mediante solicitação, recebem de volta o valor de suas contribuições, podendo transferí-las a outro PROJETO criativo divulgado na plataforma CATARSE ou pedir o estorno das quantias pagas em cartão de crédito. Para as quantias pagas por meio de débito em conta bancária ou boleto bancário, o pedido de estorno poderá depender da abertura de uma conta individual do APOIADOR em um dos serviços de pagamento online, conforme regras estabelecidas abaixo.<br>
-
-          O CATARSE tem por objetivo apenas aproximar CRIADORES DE PROJETOS, CANAIS e APOIADORES, através de sua plataforma online. A utilização do CATARSE não gera relação de trabalho, vínculo empregatício, associação nem sociedade entre quaisquer USUÁRIOS (CANAIS, APOIADORES e CRIADORES) e o CATARSE, nem tampouco representa transação comercial ou venda de produtos ou serviços.<br>
-
-          O CATARSE é responsável pelo bom funcionamento de seu website. Entretanto, o CATARSE não garante que os PROJETOS serão executados, nem que os incentivos/recompensas oferecidos pelos CRIADORES DE PROJETOS ou pelos CANAIS serão honrados.<br>
-
-          É de responsabilidade única e exclusiva dos CRIADORES DE PROJETOS o resultado do PROJETO criativo proposto, a entrega das eventuais recompensas prometidas e o ressarcimento por eventual dano experimentado pelos APOIADORES, oriundo de ação ou omissão dos CRIADORES DE PROJETOS.<br>
-
-O CANAL será o único responsável por eventuais compromissos por ele assumidos com os CRIADORES DE PROJETOS ou com os APOIADORES, sejam eles de qualquer espécie. Assim, em nenhuma hipótese o CATARSE será responsável por eventual descumprimento de qualquer obrigação assumida pelos CRIADORES DE PROJETOS e/ou pelos CANAIS.<br>
- '
-
-        responsabilities: "Quais as responsabilidades dos criadores, apoiadores e canais?"
-        responsabilities_text: "O CRIADOR DE PROJETOS: <br>
-
-1. Descreve o PROJETO que pretende desenvolver, que deve ser necessariamente lícito e de acordo com a legislação brasileira; <br>
-
-2. Estipula o valor total que deseja obter para financiar o PROJETO; <br>
-
-3. Estipula o prazo em que deseja obter o valor total para iniciar o PROJETO; <br>
-
-4. Estabelece incentivos e/ou recompensas aos APOIADORES que contribuírem com seu PROJETO, determinando as condições de sua obtenção, prazo e forma de recebimento, bem como o número de APOIADORES que poderão se beneficiar desses incentivos e/ou recompensas. <br>
-
-4.1. Ao estabelecer incentivos e/ou recompensas, assume as obrigações previstas no artigo 854 e seguintes do Código Civil Brasileiro, tornando-se diretamente responsável pelo cumprimento de sua promessa perante os APOIADORES que preencherem as condições estipuladas, sem qualquer responsabilidade, direta ou indireta, por parte do CATARSE. <br>
-
-5. Concorda que o PROJETO apresentado pode não ser divulgado pelo CATARSE ou pelo CANAL APOIADOR, a exclusivo critério destes. <br>
-
-6. Assume a responsabilidade integral e exclusiva por tributos de quaisquer natureza incidentes sobre o PROJETO ou sobre sua atividade, inclusive quanto a tributos incidentes sobre pagamentos relativos à sua arrecadação, isentando expressamente o CATARSE ou o CANAL APOIADOR, conforme o ajuste entre as partes, de qualquer responsabilidade tributária, trabalhista ou previdenciária relativas à sua atividade e/ou arrecadação. <br>
-
-7. Neste ato, outorga mandato específico à CATARSE, que fica desde já expressamente autorizada a emitir, em nome do CRIADOR DO PROJETO ou do CANAL CRIADOR recibo ao APOIADOR, com a indicação do projeto apoiado, da data da transferência, do valor angariado, do nome completo, CNPJ ou CPF do CRIADOR DO PROJETO ou do CANAL CRIADOR e do APOIADOR; <br>
-
-8. Indica meios através dos quais o APOIADOR pode acompanhar o desenvolvimento do PROJETO e reclamar diretamente ao CRIADOR DO PROJETO ou ao CANAL CRIADOR os incentivos ou recompensas prometidos e não cumpridos nos prazos e condições previamente estipulados. <br>
-
-9. Cria uma conta MoIP ou Paypal, para recebimento dos valores em caso de projeto bem sucedido, possibilitando a transferência dos recursos para sua conta bancária, descontadas as taxas previamente acordadas. <br>
+O SITE permite que as ENTIDADES apresentem projetos e angariem fundos através de doações feitas pelos participantes doadores (“PARTICIPANTES”) através do SITE.
 <br>
-
-O APOIADOR: <br>
-
-  1. Escolhe livremente o(s) PROJETO(S) que deseja apoiar; <br>
-
-  2. Estipula o(s) valor(es) com que deseja contribuir para o(s) PROJETO(S); <br>
-
-  3. Seleciona, se desejar, qual(is) incentivo(s) e/ou recompensa(s) deseja receber diretamente do CRIADOR DE PROJETOS/CANAL CRIADOR, nos termos e condições estabelecidas pelo próprio CRIADOR DE PROJETOS/CANAL CRIADOR para o PROJETO selecionado. <br>
-
-  4. Efetua o pagamento por meio do MoIP ou Paypal (com uso de seu cartão de crédito, por meio de débito em conta bancária ou boleto bancário), ficando ciente que, para pagamentos por meio de boleto bancário, caso o boleto gerado não seja pago na data de vencimento nele estipulada, perderá o direito à recompensa definida no projeto. <br>
-
-  4.1. Ao cumprir as condições estipuladas para o recebimento dos incentivos e/ou das recompensas prometidos pelo CRIADOR DE PROJETOS ou pelo CANAL CRIADOR, o APOIADOR adquire os direitos previstos no artigo 855 e seguintes do Código Civil brasileiro, devendo exigir diretamente do CRIADOR DE PROJETOS ou do CANAL CRIADOR, dependendo do caso, o cumprimento de sua promessa, estando ciente de que não há qualquer responsabilidade, direta ou indireta, por parte do CATARSE a esse respeito. <br>
-
-  5. É o único responsável pelo acompanhamento do desenvolvimento do PROJETO, por meio de informações prestadas diretamente pelo CRIADOR DO PROJETO ou pelo CANAL CRIADOR e, subsidiariamente, pelo CATARSE, estando ciente e de acordo que o CATARSE não tem qualquer obrigação de monitorar o PROJETO e tampouco qualquer responsabilidade, direta ou indireta, sobre as informações prestadas pelo CRIADOR DE PROJETOS ou pelo CANAL CRIADOR, seja em relação à veracidade e/ou tempestividade das mesmas, seja em relação ao desenvolvimento do PROJETO, a incentivos e/ou recompensas ou com relação a qualquer outro tipo de dado vinculado ao PROJETO e seu desenvolvimento. Cabe exclusivamente ao APOIADOR verificar se o PROJETO foi bem sucedido ou não e se há crédito em seu nome, para que faça o reinvestimento em outro PROJETO ou solicite o reembolso. O CATARSE envidará seus melhores esforços para manter o APOIADOR informado acerca do sucesso ou insucesso do PROJETO por ele apoiado, tal esforço, contudo, não representa qualquer responsabilidade por parte do CATARSE, com o que expressamente concorda o APOIADOR.<br>
-
-  6. Informa, em caso de apoio a PROJETO que não seja bem sucedido, se deseja reinvestir seu crédito em outro PROJETO divulgado pelo CATARSE ou se deseja o estorno dos valores aportados.<br>
-
-  7. Poderá enviar ao CATARSE, através do <a href='mailto:contato@catarse.me'>contato@catarse.me</a>, sugestões ou críticas à forma como um PROJETO divulgado pelo CATARSE está estruturado, bem como denúncias sobre a violação de quaisquer direitos de terceiros assegurados pela legislação brasileira.<br>
+A Juntos.com.vc não cobra nenhum tipo de comissão de nenhum PARTICIPANTE sobre as doações realizadas, exceto as taxas referentes ao sistema contratado para a realização das transações de doações, conforme as previsões contidas neste TERMO DE USO.
 <br>
+Embora não haja cobrança de nenhuma comissão, a Juntos.com,vc é uma associação sem fins lucrativos, que depende também de recursos de terceiros para que possa manter sua plataforma. Assim, o usuário que doar para algum projeto cadastrado no SITE também terá a opção de doar para a Juntos.com.vc, e com isto, colaborar ainda mais para a sustentabilidade da plataforma.'
+        partners_and_sharing: 'II. PARCEIROS ESTRATÉGICOS E COMPARTILHAMENTO DE PLATAFORMA'
+        partners_and_sharing_text: 'A Juntos.com.vc também apoia outros canais de captação de recursos para projetos, através do compartilhamento de sua plataforma, cadastro de usuários e outras funcionalidades, com o que o usuário desde já concorda.
+<br>
+No entanto, é de exclusiva responsabilidade de cada canal parceiro o gerenciamento de suas atividades, incluindo, mas não se limitando, a curadoria dos projetos candidatos, o controle de valores recebidos, e regras de uso da plataforma para seus projetos.'
+        guideline: 'III. UTILIZAÇÃO DA PLATAFORMA'
+        guideline_text: '1. Qualquer pessoa maior de 18 anos pode doar ou divulgar seu projeto através do SITE, sendo expressamente proibida a participação de menores de 18 anos, mesmo que com a prévia autorização dos pais ou responsáveis. Em caso de irregularidade, o SITE poderá cancelar o cadastro desta pessoa e suas eventuais doações ou ações realizadas no SITE
+<br>
+2. Ademais, o PARTICIPANTE é o único responsável pela segurança e controle de sua conta (nome de usuário e senha), que é pessoal e intransferível.
+<br>
+3. O PARTICIPANTE se compromete a manter seus dados sempre atualizados juntos ao SITE, sendo responsável pela veracidade das informações ali dispostas
+<br>
+4. Todos e quaisquer conteúdos enviados pelos usuários são de responsabilidade exclusiva do próprio usuário, não havendo qualquer responsabilidade solidária, subsidiária ou a qualquer título pelo SITE. Sendo assim, o SITE não se responsabiliza por quaisquer danos de qualquer natureza, em decorrência de conteúdos impróprios, ofensivos ou que violem direitos previstos na legislação brasileira
+<br>
+5. Caso haja qualquer suspeita de uso indevido ou não autorizado de sua conta, o usuário deve notificar imediatamente o SITE, pelo e-mail: contato@juntos.com.vc'
+        ngo_guideline: 'IV. REGRAS PARA USO DO SITE POR ENTIDADES E EMPREENDEDORES SOCIAIS'
+        ngo_guideline_text: '1. A entidade sem fins lucrativos ou empreendedores sociais que tenha interesse em candidatar seu projeto junto à plataforma/SITE, deverá candidatar seu respectivo projeto, por meio de seu responsável legal, clicando no link “Enviar seu projeto” do SITE e fornecendo as seguintes informações:
+<br>
+a - Nome da entidade, endereço, telefone, CNPJ e documentação que comprove sua situação de entidade sem fins lucrativos e/ou de empresa social;
+<br>
+b – Nome, RG e CPF do responsável pelo projeto a ser proposto e/ou para empreendedores sociais;
+<br>
+c – Nome, RG e CPF do representante legal da entidade ou empresa social, proponente do projeto;
+<br>
+d – Descrição do projeto que pretende desenvolver, o qual deverá ser necessariamente lícito;
+<br>
+e - Valor pretendido para financiamento do projeto;
+<br>
+f – Prazo que deseja obter o valor total destinado para financiar o projeto, observando o prazo mínimo de 15 (quinze) dias e prazo máximo de 90 (noventa) dias;
+<br>
+g – Indicar eventual reconhecimento aos doadores que financiarem o projeto, ou seja, gratificações que poderá dar ao seu financiador/doador, sendo de sua exclusiva responsabilidade, critério e ônus as formas e condições que eventualmente oferecerá esta
+gratificação;
+<br>
+h – ler na íntegra e aceitar este TERMO DE USO;
+<br>
+i - criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/), conforme indicado no Item VI abaixo.
+<br>
+1.1 Caso a entidade indique forma de gratificação aos seus doadores, esta será inteira e diretamente responsável pelo cumprimento da gratificação perante os doadores, não havendo qualquer responsabilidade, direta ou indireta, por parte do SITE.
+<br>
+1.2 A ENTIDADE deverá fornecer recibo de doação para declaração em imposto de renda do doador, caso assim indique.
+<br>
+2. Cada ENTIDADE poderá cadastrar mais de um projeto por CNPJ e/ou CPF, este último, para hipóteses de empreendedor social.'
+        project_selection: 'V. SELEÇÃO DO PROJETO'
+        project_selection_text: '1. Após a proposição do projeto junto ao SITE, a Juntos.com.vc avaliará cada projeto proposto, sendo que esta avaliação poderá ser realizada por diversas etapas ou em apenas uma etapa, conforme as informações que a Juntos.com.vc vier a indicar.
+<br>
+1.1 O objetivo do Juntos.com.vc é possibilitar a promoção de projetos que provoquem impacto positivo na sociedade e nas comunidades. Os projetos deverão obrigatoriamente estar vinculados a uma entidade sem fins lucrativos ou empresa social.
+<br>
+1.2. A aceitação dos projetos é de única e exclusiva decisão da equipe do SITE Juntos.com.vc.
+<br>
+1.3. Não serão aceitos projetos que:
+<br>
+a) prometam retorno financeiro aos doadores, tais como a venda de participações societárias ou de qualquer espécie de valor mobiliário, a promoção de rifas, sorteios e jogos de azar;
+<br>
+b) tenham conteúdo ilegal, imoral, obsceno, racista, ofensivo ou que esteja em desacordo com a moral e os bons costumes ou com a legislação vigente;
+<br>
+c) que descumpram qualquer condição estabelecida nesse TERMO DE USO.
+<br>
+1.4. Caso o projeto esteja de acordo com as condições estabelecidas nesse termo, bem como seja aceito pela equipe da Juntos.com.vc, a entidade responsável ou empreendedor social responsável pelo projeto receberá uma página do projeto no SITE , que
+ficará disponível durante o tempo que o SITE vier a aprovar.
+<br>
+1.5. Os projetos aprovados serão divididos em categorias, classificadas de acordo com a causa da entidade e foco do projeto.
+<br>
+1.6. O SITE poderá solicitar documentação extra para comprovação das informações cadastradas. Caso a entidade tenha agido de má fé, ou se recusou a enviar a documentação requerida, o SITE poderá retirar a sua página do ar, suspendendo seu cadastro para divulgação de seus projetos, o que poderá ocorrer temporariamente ou definitivamente, e devolvendo aos PARTICIPANTES os valores de doações ainda não repassados à ENTIDADE.
+<br>
+1.7 Nem todos os projetos publicados estarão expostos na página principal do SITE, pois a mecânica do SITE visa diversificar os projetos ali dispostos, buscando ao máximo o revezamento de projetos.
+<br>
+1.8. A ENTIDADE declara, por meio deste, ser a legítima detentora dos direitos de propriedade intelectual sobre os projetos que vier a candidatar, nos termos da legislação brasileira, não havendo nenhuma co-autoria ou participação do SITE e/ou doadores e/ou de terceiros não autorizados sobre a criação dos projetos.
+<br>
+1.9. Ademais, a ENTIDADE se responsabiliza por todo o conteúdo submetido ao SITE, tais como relatórios, fotos e vídeos, declarando que detêm os direitos sobre os materiais publicados, incluindo, mas não se limitando, a autorização para o uso de imagem de terceiros (como, por exemplo, autorização das pessoas que aparecem nas fotos que vier a publicar) e direitos autorais (como, por exemplo, os direitos do fotógrafo e do autor que criou um determinado texto).
+<br>
+1.10. Ao publicar ou enviar qualquer material/conteúdo para o SITE, a ENTIDADE automaticamente outorga à Juntos.com.vc uma licença mundial, não onerosa e não exclusiva para que possa publicar, exibir, reproduzir, editar ou de outra forma utilizar/divulgar o conteúdo submetido, em qualquer formato ou mídia, podendo, ainda, autorizar o uso dos materiais por terceiros. No entanto, a ENTIDADE está ciente e assume que, ao vincular seu projeto no SITE, seu projeto estará exposto e, com isso, aumenta o risco de que sua ideia seja plagiada/replicada e desenvolvida por terceiros, sem a devida autorização, não sendo de responsabilidade do SITE o controle desta situação.
+<br>
+1.11. A ENTIDADE reconhece que o SITE não fará controles prévios das opiniões dos internautas quanto ao projeto e/ou ENTIDADE, e que qualquer visitante do SITE terá acesso ao conteúdo de seu projeto e que poderá fazer comentários, curti-lo ou denunciá-lo. Logo, caso a ENTIDADE sinta-se desconfortável com qualquer manifestação de terceiros no SITE, poderá solicitar ao SITE a exclusão imediata do conteúdo, cabendo ao SITE realizar a avaliação sobre aquele pedido.'
+        donation_account: 'VI. CRIAÇÃO DE CONTA-DOAÇÃO PARA O PROJETO'
+        donation_account_text: '1. Durante o cadastro do projeto pela ENTIDADE para sua seleção, a ENTIDADE deverá criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/), sistema que processa todas as transações financeiras do SITE, ou outro sistema que vier a ser indicado pela Juntos.com.vc.
+<br>
+1.1 O SITE não cobra nenhum tipo de comissão de nenhum PARTICIPANTE ou ENTIDADE sobre as doações realizadas, exceto as taxas do MoIP (sistema de pagamentos) que cobra a seguinte comissão para os projetos bem sucedidos: R$0,39 + 2,49% dos pagamentos à vista (Moip, débito online e boleto bancário), ou R$0,39 + 4,29% dos pagamentos feitos com cartão de crédito. Esses percentuais poderão ser alterados de tempos em tempos, de acordo com as regras do MoIP. Para qualquer esclarecimento vide os termos de uso da MoIP.'
+        getting_updated: 'VII. ACOMPANHAMENTO DOS PROJETOS APROVADOS PELO SITE'
+        getting_updated_text: '1. Após executar o projeto com o valor arrecadado no SITE, a ENTIDADE deverá enviar ao SITE o material respectivo indicando a realização do projeto, tais como textos, fotos e vídeos. Essa atualização é muito importante para que os doadores possam ter
+informações sobre a doação realizada. Caso este material não seja enviado em até 10 dias úteis após a realização do projeto e/ou após solicitação feita pelo SITE, o CNPJ da ENTIDADE será bloqueado no SITE para fins de participação futura.
+<br>
+2. O SITE, muito embora não assuma a responsabilidade pelo conteúdo gerado pelas ENTIDADES, pesquisará sobre a veracidade das informações das mesmas e de seus projetos e, se reserva o direito de retirar do SITE quaisquer projetos publicados, a seu exclusivo critério e sem qualquer ônus.
+<br>
+3. O SITE apenas oferece a estrutura de seu SITE e não participa da concepção dos projetos nele veiculados, nem de sua implementação e realização. Logo, o SITE não garante que os projetos serão executados, nem que os reconhecimentos serão honrados, isentando-se de responsabilidade a respeito, com o que concordam expressamente as entidades criadoras de projetos e os doadores, que devem dirimir eventuais problemas diretamente entre si.'
+        donators_rules: 'VIII. REGRAS DE USO PARA DOADORES'
+        donators_rules_text: '1. Doador é o PARTICIPANTE interessado em financiar projetos de uma ou mais entidades, por meio de contribuições financeiras vinculadas a um ou mais projeto(s) determinado(s) através do SITE Juntos.com.vc.
+<br>
+2. O doador deverá observar as seguintes etapas e obrigações:
+<br>
+a) Cadastrar-se no SITE informando seu nome completo, CPF/ CNPJ, e-mail, endereço completo, e telefone fixo;
+<br>
+b) Ler na íntegra e aceitar este TERMO DE USO;
+<br>
+c ) Escolher o projeto que mais o agrada e que deseja apoiar;
+<br>
+d ) Estipular o valor que deseja doar para o projeto, devendo ainda observar, no momento da doação, se ratifica a opção previamente sinalizada para doação ao próprio SITE e/ou a campanhas específicas;
+<br>
+e ) Escolher, caso desejar, qual reconhecimento deseja receber diretamente da entidade responsável pelo projeto, nos termos das condições estabelecidas pela própria entidade para o projeto selecionado;
+<br>
+f) Preencher seus dados e selecionar a forma de doação que pretende realizar, sendo que esta etapa será gerenciada pela MoIP, empresa de pagamentos online(vide termos de uso do MoIP);
+<br>
+g) O valor doado irá para uma conta provisória do SITE, e ficará bloqueado até que o projeto da ENTIDADE escolhida atinja ou ultrapasse a meta de valor arrecadado para aquele projeto, quando então a doação será transferida para a conta da ENTIDADE, conforme as regras estabelecidas pela empresa gerenciadora destas contas.
+<br>
+2.1 – O SITE ressalta que as gratificações/ reconhecimentos ofertados pelas ENTIDADES aos doadores de seus projetos são de responsabilidade direta da própria entidade beneficiária desta doação, ciente o doador de que não há qualquer responsabilidade, direta ou indireta, por parte do SITE Juntos.com.vc a esse respeito.
+<br>
+2.2. Os PARTICIPANTES doadores reconhecem que seu nome, marca ou nome fantasia e imagem serão publicadas na página do projeto para o qual contribuiu no SITE, exceto quando optarem pela colaboração anônima.
+<br>
+2.3 O valor arrecadado para um projeto pelo SITE Juntos.com.vc só é transferido para a ENTIDADE e os reconhecimentos oferecidos só serão entregues aos doadores, caso a arrecadação atinja ou supere a meta financeira declarada pela ENTIDADE dentro do prazo pré-estabelecido por ela no momento de cadastro do projeto. Caso isto não ocorra, a entidade não receberá qualquer quantia relativa àquele projeto, os reconhecimentos não serão entregues e o doador recebe de volta o valor de sua doação pela agência MoiP ou outra que o SITE vier a indicar .
+<br>
+2.4 Além de todas as informações públicas do SITE, quando um projeto atingir sua meta, a entidade responsável pelo projeto será informada sobre os nomes e e-mails de todos os doadores que aceitaram eventuais gratificações, a fim de acertarem sua entrega.
+<br>
+2.5 O PARTICIPANTE fica desde já ciente de que, caso deseje receber eventual gratificação por parte da ENTIDADE que receber sua doação, o SITE indicará seus dados a esta ENTIDADE, para que a mesma possa gratifica-lo.'
+        donation_card: 'IX. CARTÃO-DOAÇÃO'
+        donation_card_text: '1. Ao doar pelo SITE, o PARTICIPANTE também terá a opção de presentear uma terceira pessoa para que esta escolha o projeto que receberá a quantia doada, através do envio de um cartão-doação. Este cartão-doação conterá um código e data de validade, que deverá ser indicado pelo presenteado no momento de sua escolha de destinação do valor doado a um projeto, para que o SITE possa gerenciar e destinar o valor ao projeto elegido.
+<br>
+2. O PARTICIPANTE doador deverá cumprir com todas as regras previstas acima, exceto no tocante à escolha do projeto contemplado, que será de responsabilidade do presentado.
+<br>
+3. Caso o presenteado não utilize o cartão-doação durante o prazo de validade indicado, o SITE reserva o direito de direcionar o valor doado para qualquer projeto que estiver ativo durante aquele período, a seu exclusivo critério.
+<br>
+X. INFORMAÇÕES DE CONHECIMENTO DA COMUNIDADE EM GERAL E CONTROLE DE CONTEÚDO PELO SITE.
+<br>
+1. Qualquer pessoa que acessar o SITE poderá navegar por todas as páginas sem se cadastrar, exceto na parte restrita às doações e inserção/cadastro de projetos.
+<br>
+2. Os internautas/usuários não cadastrados no SITE poderão curtir projetos e compartilhar em redes sociais, que as ENTIDADES desde já expressamente concordam.
+<br>
+3 - Serão de conhecimento de qualquer pessoa que acesse o SITE as informações públicas disponíveis, como:
+<br>
+a) Na página de projetos (material de apresentação, pedidos e recompensas, número de doadores, valor arrecado em tempo real, dias restantes para finalização da captação de recursos, nome dos doadores não anônimos, doações feita pelos doadores que
+optarem por divulgar essa informação).
+<br>
+b) Na página perfil dos usuários cadastrados (nome, apelido, foto, e projetos publicados, quando o PARTICIPANTE optar por informar os projetos apoiados).
+<br>
+4. Todos os comentários e conteúdos publicados pelos usuários neste SITE são públicos e de divulgação imediata, todavia, serão avaliados por nossa equipe de moderação/monitoração. Assim, nos reservamos o direito de excluir, sem prévio aviso, todos os conteúdos em desconformidade com as políticas aplicáveis pelo SITE, tais como aqueles conteúdos que possuam caráter difamatório, de amaça a terceiros, assédio e/ou bullying, discurso de ódio (com base em raça, etnia, nacionalidade, gênero, deficiência ou qualquer doença), nudez, pornografia ou, ainda, mensagens com intuito comercial e/ou lucrativo ou que não tenha relação com o propósito deste SITE.
+<br>
+4.1. Os comentários ou opiniões expressos nesta página inseridos pelos usuários pertencem exclusivamente a quem os expressou, não sendo a Juntos.com.vc responsável em relação a estes comentários/materiais.
+<br>
+5. O SITE não será, em hipótese alguma, responsável por quaisquer danos decorrentes da interrupção do serviço desta página quando tal indisponibilidade ocorrer por culpa de terceiros, visto que foge ao controle e diligência da Juntos.com.vc.
+<br>
+6. O site Juntos.com.vc também não se responsabiliza por atos de terceiros, como hackers, que logrem êxito em coletar ou utilizar, por quaisquer meios, dados cadastrais e informações disponibilizadas pelo PARTICIPANTE.'
+        personal_infos: 'XI. GERENCIAMENTO DE INFORMAÇÕES PESSOAIS E ENVIO DE E-MAILS'
+        personal_infos_text: '1. Enviamos ao PARTICIPANTE e-mails relativos às suas transações pessoais e anúncios relacionados ao Juntos.com.vc e/ou outros serviços, porém só o fazemos quando autorizado.
+<br>
+1.1 Todas as informações cadastrais dos PARTICIPANTES enviadas para o SITE e/ou para parceiros do SITE que utilizem a mesma plataforma serão mantidas em nosso controle, e somente encaminhadas às ENTIDADES quando autorizado pelo PARTICIPANTE. No entanto, o PARTICIPANTE fica desde já ciente de que, caso deseje receber eventual gratificação por parte da ENTIDADE que receber sua doação, o SITE indicará seus dados a esta ENTIDADE, para que a mesma possa gratifica-lo.
+<br>
+2. O PARTICIPANTE fica ciente que, sempre que fundado em indício de ato ilícito, e solicitadas, por qualquer interessado, informações sobre a propriedade de um registro do usuário no PORTAL, será lícito ao SITE fornecer os dados cadastrais do PARTICIPANTE, a seu exclusivo critério, sem que tal ato constitua qualquer violação de sigilo.
+<br>
+2.1. Para os fins e efeitos do previsto no parágrafo anterior, o PARTICIPANTE concorda e declara, expressamente, que o fornecimento de seus meros dados cadastrais a terceiros não constitui violação de sua intimidade, vida privada, honra e/ou imagem, em virtude da natureza destes dados.
+<br>
+2.2. Para os fins e efeitos do previsto anteriormente, o PARTICIPANTE concorda e declara, expressamente, que, pela natureza dos dados que fornece ao SITE, estes não constituem correspondência, comunicação telegráfica, dados, ou comunicações telefônicas.
+<br>
+3. Reservamos o direito de divulgar suas informações pessoais conforme exigido por lei e quando acreditarmos que a divulgação é necessária para proteger os nossos direitos.
+<br>
+4. Embora o SITE Juntos.com.vc empregue seus melhores esforços para a proteção dos dados do PARTICIPANTE, considerando as características dos sistemas informáticos, e o constante avanço das técnicas de invasão, o SITE NÃO GARANTE A SEGURANÇA ABSOLUTA DE SEUS SISTEMAS, NEM SE RESPONSABILIZA POR ATOS DE TERCEIROS QUE, EVENTUALMENTE, LOGREM ÊXITO EM COLETAR OU UTILIZAR, POR QUAISQUER MEIOS, DADOS E/OU INFORMAÇÕES DISPONIBILIZADAS PELO PARTICIPANTE. Não obstante, caso venha a ser detectada qualquer invasão, a Juntos.com.vc indicará a todos os seus usuários o risco existente, em formato que for mais adequado.'
+        third_part: 'XII. SITES DE TERCEIROS'
+        third_part_text: 'Dentro do SITE, é possível que o PARTICIPANTE encontre links e atalhos que o direcionarão para sites de terceiros. O PARTICIPANTE declara estar ciente que o SITE não tem controle ou ingerência sobre estes sites de terceiros, por não possuírem qualquer ligação com o website Juntos.com.vc, que não tem conhecimento das políticas e regulamentos de privacidade destes sites, que podem ser constantemente alterados, inviabilizando sua verificação prévia pelo website Juntos.com.vc. Assim, constitui obrigação do PARTICIPANTE a verificação dos termos relativos à privacidade destes sites de terceiros, para os quais haja links e atalhos disponíveis no site Juntos.com.vc, quando do acesso a eles.
+Nos termos desta cláusula, o website Juntos.com.vc fica isento de qualquer responsabilidade decorrente de violações da privacidade do PARTICIPANTE pelos sites que eventualmente possuam link a partir do website Juntos.com.vc.'
+        privacy: 'XIII. POLÍTICA DE PRIVACIDADE'
+        privacy_text: 'XIII. POLÍTICA DE PRIVACIDADE
+<br>
+O SITE Juntos.com.vc foi desenvolvido visando assegurar que a privacidade on-line seja respeitada e que as informações pessoais dos PARTICIPANTES sejam devidamente protegidas, sendo a presente política necessária para demonstrar o compromisso e a transparência do site Juntos.com.vc quanto a este importante assunto.
+<br>
+A Juntos.com.vc respeita o direito constitucional à privacidade, intimidade e autodeterminação informativa.
+Conheça a seguir as providências que tomamos para proteger as informações pessoais que os nossos usuários e visitantes poderão compartilhar conosco, assim como as formas de utilização destas informações e, com quem estas poderão ser compartilhadas:
+<br>
+<b>A. INFORMAÇÕES COLETADAS E FUNCIONALIDADES DO SITE Juntos.com.vc</b>
+<br>
+O site Juntos.com.vc foi desenvolvido de maneira a oferecer uma plataforma para captação de recursos exclusivamente para projetos sociais que causem impacto positivo na sociedade. Ao preencher o nosso cadastro, você poderá verificar que algumas informações são obrigatórias e outras, embora opcionais, também são importantes para que a Juntos.com.vc possa lhe oferecer ainda mais facilidades. Poderemos lhe dar uma resposta melhor quando conhecemos mais sobre você. Se possível, preencha todos os itens do formulário. Ressaltamos que nenhuma informação cadastral é coletada sem a sua anuência.
+<br>
+Quando você utiliza o Juntos.com.vc, nos preocupamos em permitir que você tenha acesso às suas informações pessoais, inclusive para proceder com as correções, atualizações necessárias e até mesmo a exclusão das informações que tenham sido compartilhadas conosco. Procure sempre manter o seu cadastro atualizado. Caso verifique algum erro, podemos regularizá-lo(s) após recebermos a sua comunicação a respeito.
+Somente compartilhamos as suas informações disponíveis em nossos cadastros após o seu consentimento prévio, exceto nos casos já previstos acima pelo TERMO DE USO. Seus dados pessoais poderão ser compartilhados com os parceiros estratégicos da Juntos.com.vc como responsáveis por transações financeiras, de quem, exigimos o respeito às nossas orientações específicas, Termos e Condições Gerais e Política de Privacidade. Procuramos sempre empregar melhores esforços no sentido de conseguir a adequada confidencialidade e segurança no processamento dessas informações.
+<br>
+A sua senha para ter acesso às funcionalidades e facilidades oferecidas pela Juntos.com.vc é pessoal e intransferível, como a sua assinatura. Com ela, você terá privacidade e segurança no seu acesso. Não divulgue a sua senha a terceiros sob nenhuma circunstância. Você é o responsável por todos os atos que sejam realizados com o uso do seu login (nome de usuário) e senha pessoal, o que inclui a responsabilidade por prejuízos em decorrência da utilização indevida por terceiros.
+Se por qualquer razão, você desconfiar que alguém possa conhecer a sua senha pessoal, deverá modificá-la imediatamente. Nesse contexto, seguem algumas orientações importantes:
+<br>
+a) sempre crie senhas seguras, sem relação com informações que possam ser facilmente descobertas, como datas de aniversário, casamento, documentos pessoais, números de telefone e números repetitivos ou sequenciais, etc.;
+<br>
+b) prefira a combinação de letras e números para criação de sua senha;
+<br>
+c) troque as suas senhas regularmente;
+<br>
+d) evite deixá-las anotadas. É mais seguro decorá-las.
+<br>
+Procuramos adotar as melhores práticas em segurança de dados para tentar proteger os nossos sistemas e servidores contra acessos não autorizados, divulgação, alteração ou eliminação de dados. Todos os nossos procedimentos para coleta de informações, armazenamento e compartilhamento previamente autorizado são constantemente verificados e analisados, bem como submetidos a verificações de segurança no tráfego de informações em meios eletrônicos. Embora a Juntos.com.vc empregue os seus melhores esforços (considerando a vulnerabilidade dos sistemas informatizados e o constante avanço da tecnologia de invasões) não há como nos responsabilizarmos por atos de terceiros que logrem êxito em coletar ou utilizar, por quaisquer meios, dados cadastrais e informações disponibilizadas pelos usuários em nossos sites, sistemas de informações e tratamento de dados.
+<br>
+A Juntos.com.vc poderá ser obrigada por exigência legal, decisão judicial, determinação de autoridade pública dentro e fora do Brasil, a divulgar suas informações pessoais em casos especiais e previstos pela legislação em vigor. Nós também poderemos divulgar suas informações em caso de venda ou fusão do Juntos.com.vc, podendo submetê-las à política de privacidade diversa. Todavia, caso a finalidade dos dados seja diversa da originária, você será informado, e sua anuência para o tratamento dos dados será requerida.
+<br>
+A Juntos.com.vc poderá utilizar o seu endereço eletrônico (e-mail) para enviar correspondências, materiais promocionais e institucionais. O envio de e-mails pela Juntos.com.vc e/ou por seus parceiros estratégicos deverá ser autorizado previamente por você no momento do cadastro ou da atualização de seus dados.
+<br>
+<b>B. COOKIES, PIXEL TAGS/WEB BEACONS E TECNOLOGIAS SEMELHANTES</b>
+<br>
+O PARTICIPANTE compreende e autoriza que o website Juntos.com.vc utilize artifícios técnicos conhecidos como "cookies", ou semelhantes, para acessar informações sobre a conta do usuário a fim de oferecer um serviço melhor e mais personalizado.
+<br>
+O PARTICIPANTE declara estar ciente que existe a possibilidade de configurar seu navegador para ser avisado, na tela do computador, sobre a recepção dos "cookies", e para impedir a sua instalação no disco rígido. As informações pertinentes a esta configuração estão disponíveis em instruções e manuais do próprio navegador.
+<br>
+Para utilizar os serviços do website Juntos.com.vc não é necessário que o PARTICIPANTE permita a recepção de "cookies" enviados pelo website Juntos.com.vc, sem prejuízo de que, em tal caso, será necessário que o PARTICIPANTE se registre a cada vez que acessar uma área que requeira identificação prévia.
+<br>
+Sempre que a opção que impeça a instalação dos "cookies" não tenha sido ativada, o PARTICIPANTE poderá pesquisar o disco rígido de seu computador, conforme as instruções do próprio navegador, e remover manualmente quaisquer “cookies”.
+<br>
+<b>C. HYPERLINKS E CONEXÕES A OUTROS WEBSITES</b>
+<br>
+O site Juntos.com.vc pode conter hyperlinks ou frames de outros sites, que podem ou não ser nossos parceiros estratégicos. Estes links e frames são disponibilizados buscando, tão-somente, proporcionar mais um benefício para os nossos usuários. É importante destacar que a inclusão destes links e frames não significa que a Juntos.com.vc tenha conhecimento, concorde ou seja responsável por eles ou por seus respectivos conteúdos. Portanto, a Juntos.com.vc não pode ser responsabilizado por eventuais perdas ou danos sofridos em razão da utilização dos referidos links ou frames.
+<br>
+O site Juntos.com.vc procura manter todos os seus sites e hyperlinks com informações atualizadas e corretas, no entanto, não é possível garantir que todos os dados veiculados estejam publicados em nossos sites no exato momento da atualização dos arquivos principais em nossos servidores e sistemas de informação e tratamento de dados.
+<br>
+A Juntos.com.vc igualmente não é responsável pelo conteúdo e direcionamento para os mais variados serviços de terceiros disponíveis para interação com essas mídias, mesmo que por meio de hyperlinks originados a partir do site Juntos.com.vc e e-mails (mensagens eletrônicas) promocionais e/ou de divulgação institucional.
+<br>
+O site Juntos.com.vc também não tem nenhuma responsabilidade pelo conteúdo publicado por seus usuários (ou não) com a utilização dos recursos oferecidos por nosso site, notadamente: opiniões, fotos, vídeos, textos e semelhantes – e nem tem como garantir que os mesmos serão atualizados, corretos e capazes de atender a expectativa dos usuários dos nossos sites e destinatários das nossas mensagens eletrônicas.
+<br>
+<b>D. SEGURANÇA</b>
+<br>
+O SITE Juntos.com.vc sugere algumas orientações para aumentar a segurança e a privacidade dos seus usuários na Internet:
+<br>
+a) Utilize sempre um software antivírus atualizado e de qualidade – com possibilidade de verificar os arquivos de todos os dispositivos que você conectar em seu computador (CD, Pendrive (flashmemory), etc.) – e nos arquivos que você fizer download (carregar/baixar) pela Internet.
+<br>
+b) Sempre faça uso de programas de computador (software) originais e atualizados. Tenha especial atenção e cuidado quando acessar o site do Juntos.com.vc por meio de links contidos em e-mails. Certifique-se de que o hyperlink está realmente apontando para o endereço correto (URL) do nosso site (http://www.juntos.com.vc).
+<br>
+c) Fique atento a e-mails SPAM (mensagens eletrônicas não solicitadas). Estes e-mails aparentam vir de uma fonte segura ou de um amigo, mas na verdade podem ser desenvolvidos para que você faça download de um vírus ou que seja direcionado para um site fraudulento e revele informações confidenciais.
+<br>
+d) Não responda a e-mails que solicitem informações pessoais. Suspeite de qualquer e-mail proveniente de empresas ou pessoas que lhe perguntem senhas, número de identidade ou outras informações de alta sensibilidade.
+<br>
+e) Procure somente abrir e-mails provenientes de fontes conhecidas. Seja especialmente cuidadoso ao abrir e-mails com arquivos anexos e de desconhecidos. Até mesmo amigos podem acidentalmente lhe enviar um e-mail contendo vírus ou programa malicioso.'
+        general_info: 'XIV. DISPOSIÇÕES GERAIS'
+        general_info_text: '1. Todos os textos, imagens, sons e/ou aplicativos exibidos no SITE e que não corresponda aos materiais de propriedade das ENTIDADES são de propriedade da Juntos.com.vc, sendo proibido o seu uso por terceiros, exceto mediante prévia aprovação da Juntos.com.vc. Todos os direitos são reservados e todas as marcas registradas.
+<br>
+2. A utilização deste SITE não gera relação de trabalho, vínculo empregatício, associação, nem sociedade entre os usuários, nem representa transação comercial ou venda de produtos ou serviços.
+<br>
+3. O SITE reserva-se no direito de atualizar o TERMO DE USO a qualquer momento. As informações sobre as atualizações serão enviadas ao endereço de e-mail fornecido ou serão colocadas em local de destaque do site.
+<br>
+4. Este TERMO DE USO será regido, interpretado e executado de acordo com as leis da República Federativa do Brasil, independentemente dos conflitos dessas leis com leis de outros estados ou países, elegendo o Foro da Comarca de São Paulo, Capital, como competente para dirimir todas e quaisquer questões decorrentes deste acordo, com renúncia expressa a qualquer outro, por mais privilegiado ou especial que seja ou venha a ser.'
+        questions: 'XV. DÚVIDAS'
+        general_info_text: 'Caso ainda tenha alguma dúvida, a Juntos.com.vc está a disposição para receber e responder seus comentários e perguntas através do canal de ajuda disponibilizado no site www.juntos.com.vc.
+Você pode entrar em contato pelo e-mail: contato@juntos.com.vc. Teremos um enorme prazer em lhe ajudar a esclarecer quaisquer dúvidas.'
 
-  O CANAL:  <br>
-
-1. Escolhe livremente o(s) PROJETO(S) que deseja apoiar;<br>
-    
-2. Seleciona, se desejar, com qual(is) incentivo(s) e/ou recompensa(s) deseja contribuir  com o CRIADOR DE PROJETOS;<br>
-
-3. Divulga o PROJETO em seu site próprio e também em outras mídias, conforme interesse e acordo entre o CANAL e o CRIADOR DO PROJETO.<br>
-"
-
-        access: "Registro e Acesso"
-        access_text: "Qualquer pessoa maior de idade pode utilizar os serviços do CATARSE. NÃO É AUTORIZADA a participação de USUÁRIOS menores de dezoito anos de idade. Caso seja verificada eventual infração desta disposição, o CATARSE cancelará, de imediato, o cadastro  USUÁRIO. Lembramos que a informação incorreta de dados pessoais, tais como a idade, é crime punido pela legislação brasileira com pena de 1 a 5 anos de reclusão e multa (art. 299 do Código Penal Brasileiro). <br>
-Você pode acessar o CATARSE de duas maneiras: <br>
-(a) cadastrando-se diretamente no CATARSE, através da criação de uma ID e senha, prestando as informações solicitadas; ou <br>
-(b) utilizando a rede social Facebook e efetuando posteriormente seu cadastro no CATARSE. Neste caso, o USUÁRIO deverá autorizar o CATARSE a utilizar suas informações de registro naquela rede social exclusivamente para completar seu cadastro no CATARSE. <br>
-O USUÁRIO é o único responsável pela segurança de seu nome de USUÁRIO e senha. É por meio desses dados que o USUÁRIO pode acessar e alterar suas informações pessoais e outros dados de seu cadastro. <br>
-Caso haja qualquer suspeita de uso indevido ou não autorizado de sua conta, o USUÁRIO deve notificar imediatamente o CATARSE através do <a href='mailto:contato@catarse.me' class='alt-link'>contato@catarse.me</a> <br>
-O CATARSE obriga-se a utilizar as informações cadastrais fornecidas pelo USUÁRIO exclusivamente na forma e nos limites do quanto necessário para a realização da aproximação entre APOIADORES, CRIADORES DE PROJETOS e CANAIS na forma aqui prevista. <br>
-O USUÁRIO concorda em: <br>
-1. Fornecer informações verdadeiras, exatas, atuais e completas quando for realizar seu cadastro para acesso ao site; <br>
-2. Conservar e atualizar suas informações de forma a mantê-las verdadeiras, exatas, atuais e completas; <br>
-3. Ser responsabilizado por qualquer informação falsa, incorreta, desatualizada ou incompleta fornecida. Caso o CATARSE tenha razões suficientes para suspeitar da veracidade e/ou da exatidão de tais informações, terá o direito de suspender ou cancelar, imediatamente e independente de qualquer aviso ou notificação, a conta do USUÁRIO. <br>
-4. Permitir que o CATARSE entregue os dados cadastrais dos CRIADORES DE PROJETO, CANAL APOIADOR e CANAL CRIADOR, disponíveis nos servidores do CATARSE, aos APOIADORES, em caso de violação aos Termos de Uso, falha no cumprimento do PROJETO ou atraso na entrega das recompensas. Os dados cadastrais que poderão ser fornecidos são: nome completo, endereço, CPF ou CNPJ, caso pessoa jurídica, telefone e e-mail."
-
-        tax: "Taxas e pagamentos"
-        tax_text: "O APOIADOR; o CRIADOR DO PROJETO e os CANAIS estão plenamente cientes e concordam que todos os valores destinados ao apoio de projetos só poderão ser arrecadados com a utilização do serviço de pagamentos online Money Over IP (MoIP) - http://www.moip.com.br -, por meio de cartão de crédito, débito em conta ou boleto bancário, (conforme opção do APOIADOR), ou ainda com a utilização do serviço de pagamento online Paypal -http://www.paypal.com.br, sendo depositados sempre em conta de titularidade do CATARSE (conta MoIP ou Paypal, conforme o meio de pagamento selecionado pelo APOIADOR). <br>
-Surgem, a partir daí, duas possibilidades: <br>
-Se o PROJETO FOR BEM-SUCEDIDO, o valor total arrecadado para esse PROJETO (ainda que superior ao valor originalmente solicitado pelo CRIADOR DO PROJETO/CANAL CRIADOR) será transferido da conta MoIP ou Paypal de titularidade do CATARSE para uma conta MoIP ou Paypal do CRIADOR DO PROJETO/CANAL CRIADOR, descontando-se deste valor o montante de 13% (treze por cento), que contempla a taxa de intermediação do CATARSE, bem como as tarifas cobradas pelo serviço MoIP ou pelo serviço Paypal; <br>
-Se o PROJETO NÃO FOR BEM-SUCEDIDO, os APOIADORES, no prazo de 4 dias úteis, receberão um crédito virtual, que aparecerá na seção “Meu Perfil”, na aba “Créditos” da conta do APOIADOR no CATARSE. Esse crédito virtual poderá ser reinvestido em um outro PROJETO divulgado pelo CATARSE ou poderá ser estornado ao APOIADOR mediante solicitação. Se o APOIADOR desejar reinvestir parte do crédito virtual em um projeto, ele não terá mais o direito de solicitar o estorno da parte remanescente da contribuição que gerou o crédito virtual. O APOIADOR que solicite o estorno poderá estar sujeito a abrir uma conta individual nos serviços de pagamento online MoIP ou PayPal para viabilizar o recebimento do valor estornado. <br>
-Para que o estorno seja providenciado pela equipe do CATARSE, o APOIADOR deverá se manifestar ou através do botão “Solicitar estorno”, disponível na aba “Créditos” da seção “Meu Perfil”, da conta do APOIADOR no CATARSE, ou entrando em contato com nossa <a href='mailto:contato@catarse.me' class='alt-link'>contato@catarse.me</a> a partir do e-mail cadastrado pelo usuário no momento da contribuição. <br>
-Salvo disposição em contrário, todas as taxas são cotadas em Reais (R$). O USUÁRIO é o responsável pelo pagamento de todas as taxas e impostos associados com o uso do CATARSE, incluindo, mas não se limitando à taxa de intermediação do CATARSE e taxas ou tarifas praticadas pelo MoIP ou Paypal, assim como quaisquer impostos ou tributos que incidam ou venham a incidir sobre o PROJETO ou sobre a aproximação entre o APOIADOR e CRIADOR DE PROJETOS ou APOIADOR e CANAL CRIADOR.Caso um PROJETO seja retirado do CATARSE por violação dos Termos de Uso, violação de normas legais ou por ordem judicial, os valores pagos pelos APOIADORES poderão não ser reembolsados, caso o APOIADOR, tendo conhecimento de tal violação, não a tenha denunciado ao CATARSE através do <a href='mailto:contato@catarse.me' class='alt-link'>contato@catarse.me</a>. <br>
-Tendo em vista que os serviços de meios de pagamento online e de cartões de crédito são independentes do CATARSE, estes possuem exclusiva responsabilidade pelos pagamentos processados e respondem, inclusive pelas falhas de cartões de crédito."
-
-        rights: "Direitos de propriedade intelectual"
-        rights_text: "O APOIADOR, o CRIADOR DO PROJETO e o CANAL CRIADOR estão plenamente cientes e concordam que todos os valores destinados ao apoio de projetos só poderão ser arrecadados com a utilização do serviço de pagamentos online Money Over IP (MoIP) - http://www.moip.com.br -, por meio de cartão de crédito, débito em conta ou boleto bancário, (conforme opção do APOIADOR), ou ainda com a utilização do serviço de pagamento online Paypal -http://www.paypal.com.br, sendo depositados sempre em conta de titularidade do CATARSE (conta MoIP ou Paypal, conforme o meio de pagamento selecionado pelo APOIADOR). <br>
-Surgem, a partir daí, duas possibilidades: <br>
-Se o PROJETO FOR BEM-SUCEDIDO, o valor total arrecadado para esse PROJETO (ainda que superior ao valor originalmente solicitado pelo CRIADOR DO PROJETO/CANAL CRIADOR) será transferido da conta MoIP ou Paypal de titularidade do CATARSE para uma conta MoIP ou Paypal do CRIADOR DO PROJETO/CANAL CRIADOR, descontando-se deste valor o montante de 13% (treze por cento), que contempla a taxa de intermediação do CATARSE, bem como as tarifas cobradas pelo serviço MoIP ou pelo serviço Paypal; <br>
-Se o PROJETO NÃO FOR BEM-SUCEDIDO, os APOIADORES, no prazo de 4 dias úteis, receberão um crédito virtual, que aparecerá na seção “Meu Perfil”, na aba “Créditos” da conta do APOIADOR no CATARSE. Esse crédito virtual poderá ser reinvestido em um outro PROJETO divulgado pelo CATARSE ou poderá ser estornado ao APOIADOR mediante solicitação. Se o APOIADOR desejar reinvestir parte do crédito virtual em um projeto, ele não terá mais o direito de solicitar o estorno da parte remanescente da contribuição que gerou o crédito virtual. O APOIADOR que solicite o estorno poderá estar sujeito a abrir uma conta individual nos serviços de pagamento online MoIP ou PayPal para viabilizar o recebimento do valor estornado. <br>
-Para que o estorno seja providenciado pela equipe do CATARSE, o APOIADOR deverá se manifestar ou através do botão “Solicitar estorno”, disponível na aba “Créditos” da seção “Meu Perfil”, da conta do APOIADOR no CATARSE, ou entrando em contrato com nossa <a href='mailto:contato@catarse.me' class='alt-link'>contato@catarse.me</a> a partir do e-mail cadastrado pelo usuário no momento da contribuição. <br>
-Salvo disposição em contrário, todas as taxas são cotadas em Reais (R$). O USUÁRIO é o responsável pelo pagamento de todas as taxas e impostos associados com o uso do CATARSE, incluindo, mas não se limitando à taxa de intermediação do CATARSE e taxas ou tarifas praticadas pelo MoIP ou Paypal, assim como quaisquer impostos ou tributos que incidam ou venham a incidir sobre o PROJETO ou sobre a aproximação entre o APOIADOR e CRIADOR DE PROJETOS ou APOIADOR e CANAL CRIADOR.Caso um PROJETO seja retirado do CATARSE por violação dos Termos de Uso, violação de normas legais ou por ordem judicial, os valores pagos pelos APOIADORES poderão não ser reembolsados, caso o APOIADOR, tendo conhecimento de tal violação, não a tenha denunciado ao CATARSE através do <a href='mailto:contato@catarse.me' class='alt-link'>contato@catarse.me</a>. <br>
-Tendo em vista que os serviços de meios de pagamento online e de cartões de crédito são independentes do CATARSE, estes possuem exclusiva responsabilidade pelos pagamentos processados e respondem,inclusive pelas falhas de cartões de crédito."
-
-        content: "Conteúdo do Catarse"
-        content_text: "O CATARSE é uma plataforma online que permite a publicação de conteúdo de USUÁRIOS tais como projetos e comentários, sem qualquer monitoramento nem análise prévia. O CATARSE não assume responsabilidade pelo conteúdo gerado por seus USUÁRIOS, nem tem qualquer obrigação de monitorar esse conteúdo. <br>
-O CATARSE reserva-se os direitos de remover e de não veicular qualquer conteúdo de USUÁRIOS a seu exclusivo critério. O CATARSE também se reserva ao direito de acessar, ler, preservar e divulgar quaisquer informações necessárias para cumprir estes Termos de Uso, obedecer disposições legais ou atender a ordens judiciais, com o que desde já concordam os USUÁRIOS, autorizando expressamente o CATARSE a acessar, ler, preservar e divulgar tais informações para os fins e nas circunstâncias aqui descritas. <br>
-O CRIADOR DE PROJETOS autoriza o CATARSE e o CANAL que eventualmente o divulga, a utilizar vídeos, textos e conteúdo inserido na página do respectivo PROJETO para fins não comerciais, tais como: materiais de divulgação do site, peças gráficas, publicações e vídeos do CATARSE/CANAL, inscrições em editais públicos ou privados, concursos, prêmios e afins. O CATARSE e o CANAL não estão autorizados a fazer uso comercial deste material, ou expor o CRIADOR DE PROJETOS, o CANAL CRIADOR e/ou os PROJETOS a situações inapropriadas ou pejorativas."
-
-        law: "Lei aplicável"
-        law_text: "Estes termos de serviço são regidos única e exclusivamente pelas leis brasileiras, sendo que qualquer ação judicial relativa à sua interpretação ou aplicação deverá ser processada e julgada pelo Poder Judiciário Brasileiro. <br>
-Em caso de conflito de leis estaduais ou municipais, para a interpretação de qualquer dúvida ou litígio, deverá sempre prevalecer a legislação do Estado de São Paulo. <br>
-O foro eleito para resolução de eventuais conflitos é Foro Central da cidade de São Paulo, com exclusão de qualquer outro, por mais privilegiado que seja.</p><br>"
-        last_update: "Última atualização: 09/09/2014"
