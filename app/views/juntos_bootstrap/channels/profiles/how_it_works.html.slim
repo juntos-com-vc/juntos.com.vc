@@ -1,5 +1,4 @@
-= render partial: 'page', locals: {title: "#{t('.title.channel')}: #{@profile.name}", title_html: "#{t('.title.channel')}: #{link_to @profile.name, root_path, class: 'standard-link'}", content_html: @profile.how_it_works_html}
-
+= render partial: 'page', locals: { title: "#{t('.title.channel')}: #{@profile.name}", content_html: @profile.how_it_works_html, title_html: t('.title.channel', channel_link:link_to(@profile.name, root_path, class: 'standard-link')) }
 .w-container
   .w-row.u-marginbottom-40
     .w-col.w-col-4.w-col-push-4= link_to "Enviar projeto", new_project_path, class: 'btn btn-large'

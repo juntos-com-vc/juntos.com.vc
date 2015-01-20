@@ -26,6 +26,7 @@ pt:
 
         info:
           permalink: http://juntos.com.vc/
+          permalink_channel: "http://%{permalink}.juntos.com.vc/"
           goal: R$
           online_days: dias
 

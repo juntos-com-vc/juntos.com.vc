@@ -3,7 +3,7 @@ pt:
     profiles:
       how_it_works:
         title:
-          channel: Como funciona
+          channel: "Antes de enviar seu projeto, veja como o canal %{channel_link} funciona"
         sidebar:
           title: Navegue
       terms:

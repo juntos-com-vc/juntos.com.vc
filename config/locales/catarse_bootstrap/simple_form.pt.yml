@@ -25,6 +25,7 @@ pt:
         category: "Selecione uma categoria"
         select: "Selecione uma opção"
         traffic_sources: "Como você conheceu o Juntos.com.vc?"
+        traffic_sources_channel: "Como você conheceu o %{name}?"
     hints:
       project:
         select: "Selecione uma opção"
