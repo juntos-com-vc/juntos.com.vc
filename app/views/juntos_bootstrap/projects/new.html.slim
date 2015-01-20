@@ -31,10 +31,13 @@
               = form.label :online_days, class: 'fontsize-large', required: true, as: :string
               .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :name
               = form.input_field :online_days, class: 'medium', as: :string
-            .u-marginbottom-40
-              = form.label :category, class: 'fontsize-large', required: false
-              .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :category
-              = form.association :category, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'medium', label: '', required: false, hint: ''
+            - if !channel.present?
+              .u-marginbottom-40
+                = form.label :category, class: 'fontsize-large', required: false
+                .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :category
+                = form.association :category, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'medium', label: ''
+            - else
+              = form.input :category_id, as: :hidden, input_html: {value: channel.category.id}
             .u-marginbottom-40
               = form.label :permalink, class: 'fontsize-large', required: false, as: :string
               .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :permalink

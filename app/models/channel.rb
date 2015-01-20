@@ -6,7 +6,7 @@ class Channel < ActiveRecord::Base
   has_many :partners, class_name: "ChannelPartner"
   has_many :images, class_name: "ChannelImage"
 
-  validates_presence_of :name, :description, :permalink
+  validates_presence_of :name, :description, :permalink, :category_id
   validates_uniqueness_of :permalink
 
   has_and_belongs_to_many :projects, -> { order_status.most_recent_first }
@@ -14,6 +14,7 @@ class Channel < ActiveRecord::Base
   has_many :channels_subscribers
   has_many :subscriber_reports
   has_many :users
+  belongs_to :category
 
   catarse_auto_html_for field: :how_it_works, video_width: 560, video_height: 340
   catarse_auto_html_for field: :terms, video_width: 560, video_height: 340

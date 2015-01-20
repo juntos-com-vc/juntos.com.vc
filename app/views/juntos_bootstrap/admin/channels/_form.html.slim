@@ -1,4 +1,4 @@
-= simple_form_for [:admin, @channel] do |form|
+= simple_form_for [:admin, @channel], url: admin_channel_path(@channel.id) do |form|
   - if @channel.errors.present?
     .card.card-error.u-radius.zindex-10.u-marginbottom-30
       .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
@@ -11,9 +11,11 @@
     .w-col.w-col-6
       = form.input :permalink, as: :string, required: true
   .w-row
-    .w-col.w-col-12
+    .w-col.w-col-6
+      = form.input :category_id, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'medium'
+    .w-col.w-col-6
       = form.input :description, as: :text, required: true
 
   .w-row
-    .w-col.w-col-3
-      = form.button :submit
+    .w-col.w-col-3.u-margintop-20.u-marginbottom-30
+      = form.button :submit, class: 'btn btn-medium'
