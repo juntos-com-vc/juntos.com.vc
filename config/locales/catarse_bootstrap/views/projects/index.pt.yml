@@ -30,11 +30,11 @@ pt:
         near:
           title: 'Próximos a mim'
         recommended:
-          title: 'Recomendados'
+          title: 'Destaques'
         expiring:
           title: "Na reta final"
         recents:
-          title: "Recentes"
+          title: "Em andamento"
         channels:
           title: 'Canal Asas'
       project_of: 'Um projeto de'

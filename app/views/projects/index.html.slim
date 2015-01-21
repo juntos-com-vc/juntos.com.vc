@@ -27,15 +27,6 @@
 #page_content
   .container
     .main
-      - if current_user && @projects_near.present?
-        section.near_projects.list
-          header
-            h2.list-title
-              = link_to t('.sections.near.title'), explore_path(anchor: "near_of/" ) + current_user.address_state
-            = link_to t('.links.near'), explore_path(anchor: "near_of/" ) + current_user.address_state, class: "more-projects"
-          .projects
-            == render @projects_near
-
       section.selected_projects.list
         header
           h2.list-title
@@ -43,14 +34,6 @@
           = link_to t('.links.recommended'), explore_path(anchor: :recommended), class: "more-projects"
         .projects
           == render @recommends
-
-      section.expiring_projects.list
-        header
-          h2.list-title
-            = link_to t('.sections.expiring.title'), explore_path(anchor: :expiring)
-          = link_to t('.links.expiring'), explore_path(anchor: :expiring), class: "more-projects"
-        .projects
-          == render @expiring
 
       section.recents_projects.list
         header
@@ -88,7 +71,7 @@
 
       section.main-sidebar-division
         .awards
-          h3.title Finalista do desafio de impacto social
+          h3.title Finalista do Desafio de Impacto Social
           .google-award
       / section.main-sidebar-division
         = link_to t('.sidebar.titles.twitter'), "https://twitter.com/#{CatarseSettings['twitter_username']}", class: 'twitter-timeline', data:{widget_id:"375343843308089345", chrome:"nofooter"}
