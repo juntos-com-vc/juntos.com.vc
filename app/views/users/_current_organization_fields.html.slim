@@ -52,7 +52,7 @@
             = f.input :bio, hint: t('.bio_limit'), as: :text, input_html: { rows: 2, cols: 60, maxlength: 140  }
           .bootstrap-twitter
             p= f.submit t('.update_social_info'), class: 'btn', id: "user_submit"
-- if @user.access_type == 'legal_entity'
+- if @user.access_type == 'legal_entity' && !channel
   #organization_documents.user_data
     h1 = t('.documents')
     br/
