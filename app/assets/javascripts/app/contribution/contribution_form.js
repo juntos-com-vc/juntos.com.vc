@@ -31,7 +31,7 @@ App.views.Contribution.addChild('ContributionForm', _.extend({
   },
 
   activate: function(){
-    this.value = this.$('#contribution_value');
+    this.value = this.$('#contribution_project_value');
     this.rewards = this.value.data('rewards');
     this.choices = this.$('li.choice');
     this.credits = this.$('#credits');

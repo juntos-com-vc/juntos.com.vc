@@ -10,7 +10,9 @@ class Contribution < ActiveRecord::Base
   include Contribution::PaymentEngineHandler
   include Contribution::PaymentMethods
 
-  delegate :display_value, :display_confirmed_at, :display_slip_url, to: :decorator
+  delegate :display_value, :display_project_value, :display_platform_value, :display_confirmed_at, :display_slip_url, to: :decorator
+
+  before_validation :update_value
 
   belongs_to :project
   belongs_to :reward
@@ -18,12 +20,14 @@ class Contribution < ActiveRecord::Base
   belongs_to :country
   has_many :payment_notifications
 
-  validates_presence_of :project, :user, :value
+  validates_presence_of :project, :user, :value, :project_value
   validates_numericality_of :value,
     greater_than_or_equal_to: 10.00,
     unless: -> (contribution) {
       contribution.user.try(:credits).to_f > 0
     }
+  validates_numericality_of :project_value,
+    greater_than_or_equal_to: 10.00
 
   pg_search_scope :search_on_user,
     against: [:payer_email],
@@ -57,6 +61,7 @@ class Contribution < ActiveRecord::Base
   }
   scope :anonymous, -> { where(anonymous: true) }
   scope :credits, -> { where("credits OR lower(payment_method) = 'credits'") }
+  scope :platform_contributions, -> { where("platform_value > (0)::numeric") }
   scope :not_anonymous, -> { where(anonymous: false) }
   scope :confirmed_today, -> { with_state('confirmed').where("contributions.confirmed_at::date = to_date(?, 'yyyy-mm-dd')", Time.now.strftime('%Y-%m-%d')) }
   scope :avaiable_to_automatic_refund, -> {
@@ -118,5 +123,12 @@ class Contribution < ActiveRecord::Base
 
   def define_key
     self.update_attributes({ key: Digest::MD5.new.update("#{self.id}###{self.created_at}###{Kernel.rand}").to_s })
+  end
+
+  protected
+  def update_value
+    self.value = project_value
+    self.value += platform_value if platform_value.present?
+    true
   end
 end

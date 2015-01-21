@@ -19,7 +19,7 @@ App.addChild('Contribution', {
   },
 
   activate: function(){
-    this.$value = this.$('#contribution_value');
+    this.$value = this.$('#contribution_project_value');
     this.$minimum = this.$('#minimum-value')
     this.clickReward({currentTarget: this.$('input[type=radio]:checked').parent()[0]});
   },

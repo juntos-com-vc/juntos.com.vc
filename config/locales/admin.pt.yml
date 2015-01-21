@@ -198,6 +198,11 @@ pt:
         total_users: usuários
         user: Usuário
         value: Valor
+        credits: Créditos
+        platform_contributions: Contribuições para a plataforma
+        platform_value: Valor para a plataforma
+        project_value: Valor para o projeto
+
     statistics:
       index:
         menu: "Estatísticas"
