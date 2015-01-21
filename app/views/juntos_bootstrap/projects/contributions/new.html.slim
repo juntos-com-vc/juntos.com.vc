@@ -32,11 +32,10 @@
           .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Contribuir para a plataforma
           p.minimum-value Somos uma organização sem fins lucrativos que não cobra nenhuma taxa das ongs nem de seus apoiadores. Por isso deixamos esse espaço para quem quiser colaborar com qualquer valor e ajudar a gente a continuar com nosso trabalho.
           .platform_contribution_input
-            = form.input_field :platform_value, value: @contribution.platform_value, as: :string, class: 'w-input  u-marginbottom-20', placeholder: '10'
+            = form.input_field :platform_value, value: @contribution.platform_value, as: :string, class: 'w-input  u-marginbottom-20'
             span R$ para a plataforma
           .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Cartão doação
-          p.minimum-value Você recebeu um cartão doação? Digite o valor no campo acima (Sua doação) e logo em seguida clique no botão abaixo. Você será direcionado para a tela onde poderá inserir o código recebido.
-          p.minimum-value Fique atento para inserir o valor exato recebido pelo cartão doação. Caso o valor não seja equivalente ao código do cartão, a sua doação não será concluida com sucesso.
+          p.minimum-value Você recebeu um cartão doação? Digite o valor exato recebido no campo acima "Sua doação" e logo em seguida clique no botão "Validar sua doação".
           .w-row.u-margintop-40
             / .w-col.w-col-4.w-col-push-4
             a#submit_gift_card.btn.btn-large href="#" Validar cartão doação
