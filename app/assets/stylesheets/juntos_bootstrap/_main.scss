@@ -1185,7 +1185,7 @@ p {
 }
 .page-header {
   margin-bottom: 0px;
-  padding-bottom: 44px;
+  padding-bottom: 15px;
   background-color: #f1f4f4;
 }
 .page-header.negative {
@@ -2716,7 +2716,8 @@ header.devise-header-section h1 {
 }
 section.devise-body-section {
   background-color: orange;
-  background-image: image-url('juntos/back_working_people.jpg');
+  background-image: image-url('juntos/cadastro_background.png');
+  background-position: center;
   background-size: cover;
   color: black;
   padding: 25px 0;
@@ -3924,7 +3925,6 @@ section.devise-body-section .access-type-field input {
 }
 .minimum-value {
   font-size: 12px;
-  font-weight: bold;
   a {
     color: #FFB74D;
   }

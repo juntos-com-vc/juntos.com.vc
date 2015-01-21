@@ -6,11 +6,11 @@ pt:
       video_url: "URL do vídeo"
       video_url_hint: "Link do seu vídeo no Vimeo ou Youtube."
       about: "Descrição do projeto"
-      about_hint_html: 'Fale sobre o que será realizado, como o dinheiro será utilizado, quem está por trás do projeto, como e quando o projeto será entregue. Seja informal e direto, essa é uma conversa entre pessoas que querem compartilhar uma ideia, não um projeto de edital. Lembre-se que <a class="alt-link" target="_blank" href="http://suporte.catarse.me/hc/pt-br/articles/203083017-Adicionar-imagens-e-v%C3%ADdeos-na-descri%C3%A7%C3%A3o-do-projeto">você pode utilizar imagens e vídeos</a> para ilustrar melhor o seu projeto na descrição.'
+      about_hint_html: 'Fale um pouco sobre o seu projeto e sobre você! Nós queremos saber, assim como os seus doadores! Não se esqueça: faça um texto interessante, atrativo e com informações necessárias para as pessoas saberem o que vai ser feito com o dinheiro e quando. Use imagens e vídeos, para ilustrar melhor. ;)'
       thank_you: "Texto de agradecimento"
-      thank_you_hint_html: 'Escreva um parágrafo de agradecimento para seus apoiadores. Cada vez que um novo apoio for realizado, este parágrafo será incluido no email de confirmação para o apoiador.'
+      thank_you_hint_html: 'Gratidão! Utilize este campo para escrever um parágrafo de agradecimento para os seus doadores! Ele será enviado por email, após cada doação.'
       card: 'Card do projeto'
-      card_subtitle: 'Sabe aquele cardzinho de projeto que aparece na home e na busca? Pois então, faz bonito pois dizem que a primeira impressão é a que fica ;)'
+      card_subtitle: 'Sabe aquele card de projeto que aparece na página inicial e na busca? Está na hora de você fazer o seu! Quanto mais criatividade, melhor! O mais importante é chamar a atenção dos doadores. ;)'
       image: 'Imagem do projeto'
       image_hint: 'Essa imagem será utilizada como a miniatura de seu projeto (PNG, JPG tamanho 512x400)'
       headline: 'Frase de efeito'
@@ -19,12 +19,12 @@ pt:
       images:
         title: 'Imagens da galeria (opcional)'
         excerpt: 'Aqui você irá adicionar as imagens da galeria que irão aparecer depois da descrição do projeto'
-        hint: 'Você pode adicionar até 5 imagens na galeria. Ah, e não se esqueça de colocar a leganda :)'
+        hint: 'Adicione imagens para a sua galeria! Muitas pessoas gostam de ver os projetos antes de doar! Solte a imaginação em até 8 imagens! Não se esqueça de colocar as legendas. :)'
         caption: 'Legenda da imagem'
       partners:
         title: 'Parceiros do Projeto'
         excerpt: 'Aqui você irá adicionar logos e links de empresas que apoiaram o projeto e que serão exibidos a direita do projeto'
-        hint: 'Lembre de preencher também o link para o qual a imagem apontará ;)'
+        hint: 'Adicione logos e links de até 3 empresas que apoiaram o seu projeto! Eles serão exibidos à direita do projeto.'
         link: 'Link do parceiro'
     project_basics:
       project_start: 'Comece a construir o seu projeto'

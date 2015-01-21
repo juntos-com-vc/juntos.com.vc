@@ -13,7 +13,7 @@ Catarse::Application.routes.draw do
     post '/sign_up', {to: 'devise/registrations#create', as: :sign_up}
   end
 
-  get '/thank_you' => "static#thank_you"
+  get '/obrigado' => "static#thank_you"
 
   filter :locale, exclude: /\/auth\//
 
@@ -85,12 +85,12 @@ Catarse::Application.routes.draw do
     end
   end
 
-  get "/terms-of-use" => 'high_voltage/pages#show', id: 'terms_of_use'
-  get "/privacy-policy" => 'high_voltage/pages#show', id: 'privacy_policy'
-  get "/start" => 'high_voltage/pages#show', id: 'start'
+  get "/termos-de-uso" => 'high_voltage/pages#show', id: 'terms_of_use', as: 'terms_of_use'
+  get "/politica-de-privacidade" => 'high_voltage/pages#show', id: 'privacy_policy', as: 'privacy_policy'
+  get "/como-funciona" => 'high_voltage/pages#show', id: 'start', as: :start
 
-  get "/who-we-are" => 'who_we_are#show', id: 'who_we_are'
-  get "/ongs" => 'ongs#index', id: 'ongs'
+  get "/quem-somos" => 'who_we_are#show', id: 'who_we_are', as: 'who_we_are'
+  get "/ongs" => 'ongs#index', id: 'ongs', as: :ongs
 
   # Channels
   constraints SubdomainConstraint do
