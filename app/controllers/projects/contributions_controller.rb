@@ -41,7 +41,7 @@ class Projects::ContributionsController < ApplicationController
 
   def new
     @contribution = Contribution.new(project: parent, user: current_user)
-    @contribution.value = 10
+    @contribution.project_value = 10
     authorize @contribution
 
     @title = t('projects.contributions.new.title', name: @project.name)
@@ -50,7 +50,7 @@ class Projects::ContributionsController < ApplicationController
     # Select
     if params[:reward_id] && (@selected_reward = @project.rewards.find params[:reward_id]) && !@selected_reward.sold_out?
       @contribution.reward = @selected_reward
-      @contribution.value = "%0.0f" % @selected_reward.minimum_value
+      @contribution.project_value = "%0.0f" % @selected_reward.minimum_value
     end
   end
 
@@ -58,7 +58,8 @@ class Projects::ContributionsController < ApplicationController
     @title = t('projects.contributions.create.title')
     @contribution = parent.contributions.new.localized
     @contribution.user = current_user
-    @contribution.value = permitted_params[:contribution][:value]
+    @contribution.project_value = permitted_params[:contribution][:project_value]
+    @contribution.platform_value = permitted_params[:contribution][:platform_value]
     @contribution.preferred_payment_engine = permitted_params[:contribution][:preferred_payment_engine]
     @contribution.reward_id = (params[:contribution][:reward_id].to_i == 0 ? nil : params[:contribution][:reward_id])
     authorize @contribution

@@ -30,7 +30,7 @@ class Projects::MetricsController < ApplicationController
   def confirmed_amount_by_day
     @metrics[:confirmed_amount_by_day] = collection.with_state('confirmed').
       group("contributions.created_at::date").
-      sum(:value)
+      sum(:project_value)
   end
 
   def collection

@@ -35,6 +35,7 @@
           = form.input :by_key, as: :string, label: t('.key')
         .w-col-2.w-col
           = form.input :credits, as: :boolean, label: t('.credits')
+          = form.input :platform_contributions, as: :boolean, label: t('.platform_contributions')
         .w-col-2.w-col
         .w-col-2.w-col.u-margintop-20
           = form.button :submit, t('channels.admin.filter.submit'), class: 'bt-medium'
@@ -52,6 +53,8 @@
             th= t('.project_state')
             th= t('.user')
             th= t('.value')
+            th= t('.project_value')
+            th= t('.platform_value')
             th= t('.reward')
             th= t('.emails')
             th= t('.anonymous')
@@ -70,6 +73,10 @@
               = link_to contribution.user.name, user_path(contribution.user)
             td
               = best_in_place [:admin, contribution], :value, method: :put, type: :input
+            td
+              = best_in_place [:admin, contribution], :project_value, method: :put, type: :input
+            td
+              = best_in_place [:admin, contribution], :platform_value, method: :put, type: :input
             td.reward.large-1.columns
               - if contribution.reward
                 span = contribution.reward.display_minimum

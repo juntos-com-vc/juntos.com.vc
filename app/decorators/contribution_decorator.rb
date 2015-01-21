@@ -6,6 +6,14 @@ class ContributionDecorator < Draper::Decorator
     number_to_currency source.localized.value
   end
 
+  def display_project_value
+    number_to_currency source.localized.project_value
+  end
+
+  def display_platform_value
+    number_to_currency source.localized.platform_value
+  end
+
   def display_confirmed_at
     I18n.l(source.confirmed_at.to_date) if source.confirmed_at
   end

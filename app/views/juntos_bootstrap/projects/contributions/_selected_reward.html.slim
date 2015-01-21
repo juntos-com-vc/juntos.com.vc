@@ -4,11 +4,11 @@
     .fontsize-larger.text-success.u-left = @contribution.display_value
     = link_to t('.edit'), new_project_contribution_path(@contribution.project), class: 'fontsize-small link-hidden u-right fontweight-semibold'
   p.fontsize-smallest.choose-reward
-    span=>  @contribution.display_value
+    span=>  @contribution.display_project_value
     | irão para o projeto
     span=< @contribution.project.name
     |  e
-    span=<>  @contribution.display_value
+    span=<>  @contribution.display_platform_value
     | irão para a Juntos.com.vc
   .back-payment-info-reward
     .fontsize-smaller.fontweight-semibold.u-marginbottom-10 = t('.reward')

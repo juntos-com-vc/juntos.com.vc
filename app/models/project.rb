@@ -220,7 +220,7 @@ class Project < ActiveRecord::Base
   end
 
   def pledged_and_waiting
-    contributions.with_states(['confirmed', 'waiting_confirmation']).sum(:value)
+    contributions.with_states(['confirmed', 'waiting_confirmation']).sum(:project_value)
   end
 
   def new_draft_recipient
