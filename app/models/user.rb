@@ -262,4 +262,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  def approved?
+    access_type == 'individual' || (approved_at && approved_at > Time.now - 1.year)
+  end
 end

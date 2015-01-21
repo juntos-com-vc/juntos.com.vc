@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || current_user.approved?
     @project = Project.new user: current_user
     authorize @project
     @title = t('projects.new.title')
@@ -42,6 +43,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || current_user.approved?
     @project = Project.new params[:project].merge(user: current_user)
     authorize @project
     if @project.save
