@@ -24,7 +24,7 @@ pt:
       partners:
         title: 'Parceiros do Projeto'
         excerpt: 'Aqui você irá adicionar logos e links de empresas que apoiaram o projeto e que serão exibidos a direita do projeto'
-        hint: 'Adicione logos e links de até 3 empresas que apoiaram o seu projeto! Eles serão exibidos à direita do projeto. Recomendamos imagens de 264x75 pixels.
+        hint: 'Adicione logos e links de até 3 empresas que apoiaram o seu projeto! Eles serão exibidos à direita do projeto. Recomendamos imagens de 264x75 pixels.'
         link: 'Link do parceiro'
     project_basics:
       project_start: 'Comece a construir o seu projeto'
