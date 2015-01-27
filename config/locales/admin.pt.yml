@@ -18,8 +18,8 @@ pt:
         title: 'Editar canal'
     pages:
       index:
-        menu: 'Páginas'
-        title: Editar páginas
+        menu: 'Admin Quem Somos'
+        title: Editar Quem Somos
         who_we_are: Nossa história
         mission: Missão
         vision: Visão

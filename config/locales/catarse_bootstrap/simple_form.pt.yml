@@ -11,6 +11,15 @@ pt:
           six: "em uma aula/curso/palestra/evento"
           seven: "fiz uma busca na internet sobre financiamento coletivo / formas alternativas de captação"
           eight: "Outro"
+        channel_traffic_sources:
+          one: "eu já tive outro projeto no canal"
+          two: "indicação de uma pessoa que já teve um projeto no canal"
+          three: "indicação de amigo/colega/contato profissional"
+          four: "a partir de um projeto que estava captando no canal"
+          five: "uma matéria na imprensa (portal de notícias na internet, TV, jornal, revista)"
+          six: "em uma aula/curso/palestra/evento"
+          seven: "fiz uma busca na internet sobre financiamento coletivo / formas alternativas de captação"
+          eight: "Outro"
     validation_texts:
       contribution:
         payer_name: "Por favor digite o nome do apoiador"

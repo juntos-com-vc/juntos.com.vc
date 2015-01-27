@@ -121,7 +121,7 @@ pt:
         ga_code: Código do Analytics
         description: Descrição
         how_it_works: Como funciona
-        image: Imagem da novidade
+        image: Logotipo
         name: Nome
         video_url: Vídeo
         main_color: Cor principal
@@ -209,7 +209,7 @@ pt:
   project:
     update:
       success: As informações foram atualizadas
-    video_regex_validation: somente URLs do Vimeo são aceitas
+    video_regex_validation: somente URLs do Vimeo e Youtube são aceitas
   contribution:
     project_should_be_online: Você não pode apoiar um projeto que não está no ar
     reward_must_be_from_project: deve ser do mesmo projeto
