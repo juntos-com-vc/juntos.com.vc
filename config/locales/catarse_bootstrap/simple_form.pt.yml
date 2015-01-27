@@ -3,8 +3,8 @@ pt:
     collections:
       project:
         traffic_sources:
-          one: "eu já tive outro projeto no Juntos.com.vc"
-          two: "indicação de uma pessoa que já teve um projeto no Juntos.com.vc"
+          one: "eu já tive outro projeto na Juntos.com.vc"
+          two: "indicação de uma pessoa que já teve um projeto na Juntos.com.vc"
           three: "indicação de amigo/colega/contato profissional"
           four: "a partir de um projeto que estava captando na plataforma"
           five: "uma matéria na imprensa (portal de notícias na internet, TV, jornal, revista)"
@@ -33,7 +33,7 @@ pt:
       project:
         category: "Selecione uma categoria"
         select: "Selecione uma opção"
-        traffic_sources: "Como você conheceu o Juntos.com.vc?"
+        traffic_sources: "Como você conheceu a Juntos.com.vc?"
         traffic_sources_channel: "Como você conheceu o %{name}?"
     hints:
       project:
@@ -47,4 +47,5 @@ pt:
         video_url: "Insira aqui o link do seu vídeo. Ele deve estar hospedado no Youtube ou no Vimeo. Se ainda não o tiver, tudo bem, você pode adicioná-lo depois. O vídeo é muito importante para o sucesso de sua campanha e obrigatório para projetos com metas de R$ 5.000 ou mais."
         about: "Fale sobre o que será realizado, como o dinheiro será utilizado, quem está por trás do projeto, como e quando o projeto será entregue. Seja informal e direto, essa é uma conversa entre pessoas que querem compartilhar uma ideia, não um projeto de edital. Lembre-se que <a href=http://suporte.catarse.me/hc/pt-br/articles/203083017-Adicionar-imagens-e-v%C3%ADdeos-na-descri%C3%A7%C3%A3o-do-projeto class='alt-link' target='_blank'>você pode utilizar imagens e vídeos</a> para ilustrar melhor o seu projeto na descrição."
         headline: "No máximo 100 caracteres."
+
 

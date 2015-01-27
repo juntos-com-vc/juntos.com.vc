@@ -69,7 +69,6 @@ App.addChild('Explore', _.extend({
     }
     else{
       this.filter = {
-        recommended: true,
         not_expired: true
       };
     }

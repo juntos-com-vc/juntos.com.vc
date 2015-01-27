@@ -59,8 +59,8 @@
       = link_to '#dashboard_project', id: 'dashboard_project_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_project'} do
         span.fa.fa-check-circle
         | \&nbsp;Projeto
-      = link_to '#dashboard_reward', id: 'dashboard_reward_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_reward'} do
-        span.fa.fa-check-circle .
+      = link_to '#dashboard_rewards', id: 'dashboard_rewards_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_rewards'} do
+        span.fa.fa-check-circle
         | \&nbsp;Recompensas
       = link_to 'Preview', @project, class: 'dashboard-nav-link'
       - if @project.draft?
@@ -77,7 +77,7 @@ section.section#dashboard_reward.content.w-hidden
         = render 'dashboard_project'
       #project_about.content.w-col.w-col-8
         = render 'project_about'
-      #dashboard_reward.content.w-hidden
+      #dashboard_rewards.content.w-hidden
         = render 'dashboard_reward'
       #project_metrics.content.w-hidden
       - content_for :custom_javascripts do

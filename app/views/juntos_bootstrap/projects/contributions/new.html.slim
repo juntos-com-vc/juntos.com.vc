@@ -34,10 +34,10 @@
           .platform_contribution_input
             = form.input_field :platform_value, value: @contribution.platform_value, as: :string, class: 'w-input  u-marginbottom-20'
             span R$ para a plataforma
+          br/
+          a#submit.btn.btn-large.u-margintop-20 href="#" Realizar pagamento
           .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Cartão doação
           p.minimum-value Você recebeu um cartão doação? Digite o valor exato recebido no campo acima "Sua doação" e logo em seguida clique no botão "Validar sua doação".
           .w-row.u-margintop-40
             / .w-col.w-col-4.w-col-push-4
-            a#submit_gift_card.btn.btn-large href="#" Validar cartão doação
-          p.u-text-center.u-margintop-20 ou
-          a#submit.btn.btn-large.u-margintop-20 href="#" Realizar pagamento
+          a#submit_gift_card.btn.btn-large href="#" Validar cartão doação

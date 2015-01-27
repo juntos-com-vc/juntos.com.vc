@@ -4,7 +4,7 @@
   .transparency-wrapper
     .follow
       p Acompanhe em tempo real:
-      .wihtout-comission Sem comissão!
+      .wihtout-comission Não cobramos comissão!
 .transparency-values
   - statistics = Statistics.first
   .transparency-wrapper
@@ -73,6 +73,8 @@
         .awards
           h3.title Finalista do Desafio de Impacto Social
           .google-award
+            a href="http://juntoscomvc.uservoice.com/knowledgebase/articles/492632-desafio-de-impacto-social-google-brasil" target="_blank"
+              = image_tag 'juntos/google_award.jpg'
       / section.main-sidebar-division
         = link_to t('.sidebar.titles.twitter'), "https://twitter.com/#{CatarseSettings['twitter_username']}", class: 'twitter-timeline', data:{widget_id:"375343843308089345", chrome:"nofooter"}
 
@@ -85,10 +87,10 @@
       .logos
         - @featured_partners.each do |partner|
           .featured
-            = link_to partner.url do
+            = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.featured.url, title: partner.name
       .logos
         - @regular_partners.each do |partner|
           .regular
-            = link_to partner.url do
+            = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.regular.url, title: partner.name
