@@ -3,7 +3,7 @@
 
 = render 'shared/header_channel'
 = content_for :title, @profile.name
-
+= @profile.errors.inspect
 .w-container.u-margintop-40.u-marginbottom-40
   .w-row
     = simple_form_for @profile, as: 'profile', url: '/profile', html: { method: 'patch' }, class: 'channel-edit' do |form|
