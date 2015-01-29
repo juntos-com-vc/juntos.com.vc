@@ -126,7 +126,7 @@ pt:
         video_url: Vídeo
         main_color: Cor principal
         secondary_color: Cor secundária
-        terms: Termos de uso
+        terms: Termos de Uso e Privacidade
         privacy: Política de privacidade
         contacts: Contatos
       channel_partner:
@@ -167,6 +167,7 @@ pt:
         content: 'Conteúdo'
       transparency_report:
         attachment: 'Relatório'
+        attachment: 'Relatório anterior'
     errors:
       models:
         contribution: "Erro ao salvar apoio"

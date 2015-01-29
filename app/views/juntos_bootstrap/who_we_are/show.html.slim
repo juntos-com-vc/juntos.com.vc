@@ -60,4 +60,11 @@
                     .fontsize-large = t('.transparency.download.title')
                     .fontsize-smalles = t('.transparency.download.month', month: t('date.month_names')[Time.now.month].upcase)
                   .fa.fa-calendar.fa-3x
+              br/
+              - if @transparency_report.try(:previous_attachment)
+                = link_to @transparency_report.previous_attachment.url, class:'btn bt-yellow', target: :_blank do
+                  .download-month-balance.u-marginbottom-10
+                    .fontsize-large = t('.transparency.download.title')
+                    .fontsize-smalles = t('.transparency.download.previous_month')
+                  .fa.fa-calendar.fa-3x
 

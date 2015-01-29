@@ -15,6 +15,7 @@ pt:
         download:
           title: 'FAÇA O DOWNLOAD'
           month: 'Do nosso último Relatório de Atividades'
+          previous_month: 'Do Relatório de Atividades anterior'
         objectives:
           title: 'Objetivos'
           content:

@@ -19,7 +19,7 @@ class Admin::TransparencyReportsController < Admin::BaseController
 
 private
   def permitted_params
-    params.permit(transparency_report: [:attachment])
+    params.permit(transparency_report: [:attachment, :previous_attachment])
   end
 
 end
