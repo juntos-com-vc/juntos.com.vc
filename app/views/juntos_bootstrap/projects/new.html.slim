@@ -66,26 +66,25 @@
               = form.button :submit, t('.form.submit'), class:'btn btn-large'
 
       .w-col.w-col-4
-        .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20
-          .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.support')
-          ul.w-list-unstyled.fontsize-smaller
-            li.u-marginbottom-10
-              = link_to t('.faq.links.criteria'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487293-crit%C3%A9rios-de-sele%C3%A7%C3%A3o", target: '_blank', class: "alt-link"
+        - if channel.present?
+          .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20
+            .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.support')
+            ul.w-list-unstyled.fontsize-smaller
+              li.u-marginbottom-10 = link_to t('.faq.links.criteria'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487293-crit%C3%A9rios-de-sele%C3%A7%C3%A3o", target: '_blank', class: "alt-link"
+              li.u-marginbottom-10 =link_to t('.faq.links.suport_central'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
+              li =link_to t('.faq.links.support_contact'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
+        - else
+          .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20
+            .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.support')
+            ul.w-list-unstyled.fontsize-smaller
+              li.u-marginbottom-10 = link_to t('.faq.links.criteria'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487293-crit%C3%A9rios-de-sele%C3%A7%C3%A3o", target: '_blank', class: "alt-link"
+              li.u-marginbottom-10 =link_to t('.faq.links.suport_central'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
+              li =link_to t('.faq.links.support_contact'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
 
-            li.u-marginbottom-10
-              =link_to t('.faq.links.suport_central'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
-
-            li.zendesk_widget
-              =link_to t('.faq.links.support_contact'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
-
-        .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20
-          .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.know_more')
-          ul.w-list-unstyled.fontsize-smaller
-            li.u-marginbottom-10
-              =link_to t('.faq.links.who_we_are'), who_we_are_path(anchor: 'people'), target: '_blank', class: "alt-link"
-            li.u-marginbottom-10
-              =link_to t('.faq.links.money'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487294-como-receberei-meu-dinheiro", target: '_blank', class: "alt-link"
-            li.u-marginbottom-10
-              =link_to t('.faq.links.payment_methods'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487295-meios-de-pagamento", target: '_blank', class: "alt-link"
-            li
-              =link_to t('.faq.links.all_or_nothing'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487296-como-funciona-o-tudo-ou-nada", target: '_blank', class: "alt-link"
+          .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20
+            .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.know_more')
+            ul.w-list-unstyled.fontsize-smaller
+              li.u-marginbottom-10 =link_to t('.faq.links.who_we_are'), who_we_are_path(anchor: 'people'), target: '_blank', class: "alt-link"
+              li.u-marginbottom-10 =link_to t('.faq.links.money'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487294-como-receberei-meu-dinheiro", target: '_blank', class: "alt-link"
+              li.u-marginbottom-10 =link_to t('.faq.links.payment_methods'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487295-meios-de-pagamento", target: '_blank', class: "alt-link"
+              li =link_to t('.faq.links.all_or_nothing'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487296-como-funciona-o-tudo-ou-nada", target: '_blank', class: "alt-link"
