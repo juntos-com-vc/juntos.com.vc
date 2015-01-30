@@ -59,7 +59,7 @@ br
             td= number_to_currency project.total_payment_service_fee, precision: 2
             - catarse_fee = CatarseSettings[:catarse_fee].to_f * project.pledged
             td
-              = number_to_currency catarse_fee, precision: 2
+              = number_to_currency project.project_total.try(:platform_fee), precision: 2
             td
               = number_to_currency ((project.pledged*0.87)), precistion: 2
             td

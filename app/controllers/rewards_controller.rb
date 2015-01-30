@@ -21,13 +21,13 @@ class RewardsController < ApplicationController
 
   def update
     authorize resource
-    update!(notice: t('project.update.success')) { project_by_slug_path(permalink: parent.permalink) + '#dashboard_reward' }
+    update!(notice: t('project.update.success')) { project_by_slug_path(permalink: parent.permalink) + '#dashboard_rewards' }
   end
 
   def create
     @reward = Reward.new(params[:reward].merge(project: parent))
     authorize resource
-    create!(notice: t('project.update.success')) { project_by_slug_path(permalink: parent.permalink) + '#dashboard_reward' }
+    create!(notice: t('project.update.success')) { project_by_slug_path(permalink: parent.permalink) + '#dashboard_rewards' }
   end
 
   def destroy

@@ -36,7 +36,7 @@ pt:
         user_id: 'User ID'
         goal: 'Meta'
         total_payment_service_fee: 'Taxa do MP'
-        total_catarse_fee: 'Taxa do Catarse'
+        total_catarse_fee: 'Taxa da plataforma'
         repass_value: 'Vl. Repasse'
         expires_at: 'Finaliza'
         online_date: 'Entrou no ar'
