@@ -33,9 +33,9 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || current_user.approved?
     @project = Project.new user: current_user
     authorize @project
+    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || (current_user && current_user.approved?)
     @title = t('projects.new.title')
     8.times { @project.project_images.build }
     3.times { @project.project_partners.build }
@@ -43,9 +43,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || current_user.approved?
     @project = Project.new params[:project].merge(user: current_user)
     authorize @project
+    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || (current_user && current_user.approved?)
     if @project.save
       channel.projects << @project if channel
     end
