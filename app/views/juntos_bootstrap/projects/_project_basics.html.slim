@@ -88,24 +88,23 @@
             .fontsize-small.fontweight-semibold.u-marginbottom-20 Links úteis
             ul.w-list-unstyled
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-a-cria%C3%A7%C3%A3o-de-projetos" target="_blank"  Critérios de seleção
+                = link_to t('projects.new.faq.links.criteria'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487293-crit%C3%A9rios-de-sele%C3%A7%C3%A3o", target: '_blank', class: "alt-link"
+
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://suporte.catarse.me/hc/pt-br/articles/202446018-Como-funciona-a-sele%C3%A7%C3%A3o-de-projetos-no-Catarse-" target="_blank"  Como os projetos são selecionados?
-              li.fontsize-smaller.alt-link.u-marginbottom-10
-                a.alt-link href="http://suporte.catarse.me/hc/pt-br/articles/202037363-O-que-%C3%A9-um-projeto-em-Rascunho-" target="_blank"  O que é um projeto em Rascunho?
-              li.fontsize-smaller.alt-link.u-marginbottom-10
-                a.alt-link href="http://suporte.catarse.me/hc/pt-br/articles/203073937-O-que-%C3%A9-obrigat%C3%B3rio-para-um-projeto-ir-ao-ar-" target="_blank"  Itens obrigatórios para um projeto ir ao ar
+                =link_to t('projects.new.faq.links.suport_central'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
+
+              li.alt-link.fontsize-smaller.u-marginbottom-10
+                =link_to t('projects.new.faq.links.support_contact'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
           .w-hidden-small.w-hidden-tiny.card.u-radius data-ix="new-interaction"
             .fontsize-small.fontweight-semibold.u-marginbottom-20 Suporte
             ul.w-list-unstyled
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://suporte.catarse.me/hc/pt-br/sections/200426037-Realizadores-repasse-do-dinheiro" target="_blank"  Como o Catarse funciona?
-              li.fontsize-smaller.alt-link.u-marginbottom-10
-                a.alt-link href="http://suporte.catarse.me/hc/pt-br/sections/200406978-Realizadores-Primeiros-passos" target="_blank"  Realizadores - Primeiros passos
+                =link_to t('projects.new.faq.links.money'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487294-como-receberei-meu-dinheiro", target: '_blank', class: "alt-link"
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://suporte.catarse.me/" target="_blank"  Central de Suporte
-              li.fontsize-smaller.alt-link
-                a.alt-link href="https://equipecatarse.zendesk.com/account/dropboxes/20298537" target="_blank"  Entre em contato com a gente
+                =link_to t('projects.new.faq.links.payment_methods'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487295-meios-de-pagamento", target: '_blank', class: "alt-link"
+              li.alt-link.fontsize-smaller.u-marginbottom-10
+                =link_to t('projects.new.faq.links.all_or_nothing'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487296-como-funciona-o-tudo-ou-nada", target: '_blank', class: "alt-link"
+
   .divider
     .section
       .w-container
