@@ -54,14 +54,11 @@
   nav.dashboard-nav.w-hidden-small.w-hidden-tiny
     .w-container
       = link_to '#basics', id: 'basics_link', class: 'dashboard-nav-link ' , data: {target: '#project_basics'} do
-        span.fa.fa-check-circle
-          | \&nbsp;Básico
+        span.fa.fa-check-circle &nbsp;Básico
       = link_to '#dashboard_project', id: 'dashboard_project_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_project'} do
-        span.fa.fa-check-circle
-        | \&nbsp;Projeto
+        span.fa.fa-check-circle &nbsp;Projeto
       = link_to '#dashboard_rewards', id: 'dashboard_rewards_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_rewards'} do
-        span.fa.fa-check-circle
-        | \&nbsp;Recompensas
+        span.fa.fa-check-circle &nbsp;Recompensas
       = link_to 'Preview', @project, class: 'dashboard-nav-link'
       - if @project.draft?
         .btn-send-draft
