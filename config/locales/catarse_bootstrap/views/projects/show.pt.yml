@@ -9,12 +9,12 @@ pt:
       about_hint_html: 'Fale um pouco sobre o seu projeto e sobre você! Nós queremos saber, assim como os seus doadores! Não se esqueça: faça um texto interessante, atrativo e com informações necessárias para as pessoas saberem o que vai ser feito com o dinheiro e quando. Use imagens e vídeos, para ilustrar melhor. ;)'
       thank_you: "Texto de agradecimento"
       thank_you_hint_html: 'Gratidão! Utilize este campo para escrever um parágrafo de agradecimento para os seus doadores! Ele será enviado por email, após cada doação.'
-      card: 'Card do projeto'
-      card_subtitle: 'Sabe aquele card de projeto que aparece na página inicial e na busca? Está na hora de você fazer o seu! Quanto mais criatividade, melhor! O mais importante é chamar a atenção dos doadores. ;)'
+      card: 'Capa do projeto'
+      card_subtitle: 'Sabe aquela capa do projeto que aparece na página inicial e na busca? Está na hora de você fazer o seu! Quanto mais criatividade, melhor! O mais importante é chamar a atenção dos doadores. ;)'
       image: 'Imagem do projeto'
       image_hint: 'Essa imagem será utilizada como a miniatura de seu projeto (PNG, JPG tamanho 512x400)'
       headline: 'Frase de efeito'
-      headline_hint: 'Será utilizada no card do projeto, junto com a imagem acima (miniatura). No máximo 100 caracteres.'
+      headline_hint: 'Será utilizada na capa do projeto, junto com a imagem acima (miniatura). No máximo 100 caracteres.'
       submit: 'Salvar e visualizar'
       images:
         title: 'Imagens da galeria (opcional)'
@@ -23,8 +23,8 @@ pt:
         caption: 'Legenda da imagem'
       partners:
         title: 'Parceiros do Projeto'
-        excerpt: 'Aqui você irá adicionar logos e links de empresas que apoiaram o projeto e que serão exibidos a direita do projeto'
-        hint: 'Adicione logos e links de até 3 empresas que apoiaram o seu projeto! Eles serão exibidos à direita do projeto. Recomendamos imagens de 264x75 pixels.'
+        excerpt: 'Você tem alguma empresa que apoia a sua campanha de captação de recursos? Se você tiver, coloque o logo delas aqui! Você pode colocar até 3 logos, que serão exibidos a direita do projeto. Lembre-se: os apoiadores devem ser do seu projeto, não da sua ONG como um todo.'
+        hint: 'Recomendamos imagens de 264x75 pixels.'
         link: 'Link do parceiro'
     project_basics:
       project_start: 'Comece a construir o seu projeto'

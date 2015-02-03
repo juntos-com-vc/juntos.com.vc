@@ -101,7 +101,7 @@ pt:
     users:
       index:
         title: "Gerenciamento de apoiadores"
-        menu: "Apoiadores"
+        menu: "Usuários"
         credits: "Créditos"
         credits_view: "Créditos calculados"
         by_id: Id

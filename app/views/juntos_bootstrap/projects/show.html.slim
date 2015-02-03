@@ -20,10 +20,10 @@
   meta property="og:site_name" content=CatarseSettings[:company_name]
   meta property="fb:admins" content="#{fb_admins}"
 
-- if @project.draft?
-  = render 'shared/header'
-- else
-  = render 'shared/header_big'
+/- if @project.draft?
+  /= render 'shared/header'
+/- else
+= render 'shared/header_big'
 
 = render 'project_header'
 
