@@ -1,6 +1,9 @@
 - content_for :title, t('.page-title')
 
-= render 'shared/header_big'
+- if channel.present?
+  = render 'shared/header_channel'
+- else
+  = render 'shared/header_big'
 = render 'shared/feedback'
 .section
   .w-container

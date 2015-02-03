@@ -23,7 +23,10 @@
 /- if @project.draft?
   /= render 'shared/header'
 /- else
-= render 'shared/header_big'
+- if channel.present?
+  = render 'shared/header_channel'
+- else
+  = render 'shared/header_big'
 
 = render 'project_header'
 
