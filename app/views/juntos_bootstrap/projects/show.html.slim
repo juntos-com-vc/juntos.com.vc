@@ -113,6 +113,9 @@
 
         .fontsize-smaller.fontweight-light.u-marginbottom-30[class=@project.display_card_class]
           = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
+        - if current_user = @project.user && !@project.user.approved?
+          .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
+            = raw "Você ainda não está com a documentação de sua ONG em dia. Esta documentação é necessária para a aprovação do projeto. Você pode enviar a documentação necessária #{link_to 'aqui', edit_user_path(current_user), style: 'color: #FDB64C;'}"
         .u-marginbottom-10.project-style= t('.contribution_style')
       .card.card-user.u-marginbottom-10
         .proposed_by

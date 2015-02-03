@@ -35,7 +35,6 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new user: current_user
     authorize @project
-    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || (current_user && current_user.approved?)
     @title = t('projects.new.title')
     8.times { @project.project_images.build }
     3.times { @project.project_partners.build }
