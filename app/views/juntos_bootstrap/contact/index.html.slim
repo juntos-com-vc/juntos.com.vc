@@ -1,0 +1,13 @@
+= render 'shared/header_big'
+
+- content_for(:title)
+  = t(".title")
+
+.page-header.u-marginbottom-40
+  .w-container
+    .w-row.u-margintop-40.u-marginbottom-40
+      h1 = t('.title')
+
+.w-container
+  .w-row.u-marginbottom-40
+    == @contact_page.try(:content_html)
