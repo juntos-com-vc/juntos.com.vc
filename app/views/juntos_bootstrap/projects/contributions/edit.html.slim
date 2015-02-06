@@ -26,7 +26,7 @@
             .w-row
               .w-col.w-col-12
                 = form.input_field :anonymous, boolean_style: :inline, class: 'checkbox-fix'
-                label.w-form-label.fontsize-smallest[for="contribution_anonymous"] = t('.anonymous_contribution')
+                label.w-form-label.fontsize-smallest[for="contribution[anonymous]"] = t('.anonymous_contribution')
             .w-row
               .w-col.w-col-12
                 #anonymous-confirmation.card.card-message.u-radius.zindex-10.fontsize-smallest.w-hidden
