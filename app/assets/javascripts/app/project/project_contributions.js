@@ -7,7 +7,7 @@ App.views.Project.addChild('ProjectContributions', _.extend({
     this.$results = this.$(".results");
     this.path = this.$el.data('path');
     this.filter = {available_to_count: true};
-    this.setupScroll();
+    //this.setupScroll();
     //this.parent.on('selectTab', this.fetchPage);
   },
 
@@ -27,5 +27,5 @@ App.views.Project.addChild('ProjectContributions', _.extend({
     this.fetchPage();
   }
 
-}, Skull.InfiniteScroll));
+};
 
