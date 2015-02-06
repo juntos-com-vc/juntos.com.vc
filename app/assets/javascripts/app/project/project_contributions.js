@@ -8,7 +8,7 @@ App.views.Project.addChild('ProjectContributions', _.extend({
     this.path = this.$el.data('path');
     this.filter = {available_to_count: true};
     this.setupScroll();
-    this.parent.on('selectTab', this.fetchPage);
+    //this.parent.on('selectTab', this.fetchPage);
   },
 
   events:{
