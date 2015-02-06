@@ -61,7 +61,7 @@ br
             td
               = number_to_currency project.project_total.try(:platform_fee), precision: 2
             td
-              = number_to_currency ((project.pledged*0.87)), precistion: 2
+              = number_to_currency ((project.pledged - project.total_payment_service_fee)), precistion: 2
             td
               = project.display_expires_at
             td
