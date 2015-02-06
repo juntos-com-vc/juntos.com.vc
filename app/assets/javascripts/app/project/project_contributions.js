@@ -1,4 +1,4 @@
-App.views.Project.addChild('ProjectContributions', _.extend({
+App.views.Project.addChild('ProjectContributions', {
   el: '#project_contributions',
 
   activate: function(){
@@ -27,5 +27,5 @@ App.views.Project.addChild('ProjectContributions', _.extend({
     this.fetchPage();
   }
 
-};
+});
 
