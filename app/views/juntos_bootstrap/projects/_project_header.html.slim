@@ -24,7 +24,7 @@
             = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10')
           ul.u-margintop-10
             li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@color}"
-              = @project.contributions.count
+              = @project.contributions.available_to_count.count
             li.u-marginleft-20.fontsize-smallest
               = t('projects.project_about.contributions')
         .w-col.w-col-4
