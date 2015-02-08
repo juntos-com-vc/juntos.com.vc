@@ -16,6 +16,19 @@ class Admin::ProjectsController < Channels::Admin::BaseController
     end
   end
 
+  def index
+    respond_to do |format|
+      format.html { collection }
+      format.csv do
+        self.response_body = Enumerator.new do |y|
+          collection.copy_to do |line|
+            y << line
+          end
+        end
+      end
+    end
+  end
+
   def destroy
     @project = Project.find params[:id]
     if @project.can_push_to_trash?

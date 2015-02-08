@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
   include Project::RemindersHandler
 
   has_notifications
+  acts_as_copy_target
 
   mount_uploader :uploaded_image, ProjectUploader
 

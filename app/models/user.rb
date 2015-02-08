@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   include User::OmniauthHandler
   has_notifications
+  acts_as_copy_target
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   # :validatable

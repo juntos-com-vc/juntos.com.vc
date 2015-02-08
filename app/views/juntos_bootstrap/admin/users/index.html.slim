@@ -31,7 +31,9 @@ br
           = check_box_tag :only_organizations, true, params[:only_organizations].present?
           label for="only_organizations" = t('.only_organizations')
       .w-row
-        .w-col.w-col-10
+        .w-col.w-col-8
+        .w-col.w-col-2.u-margintop-20
+          = link_to t('.search_report'), admin_users_path(params: params,format: :csv), class: 'btn bt-medium'
         .w-col.w-col-2.u-margintop-20
           = form.button :submit, t('channels.admin.filter.submit'), class: 'btn bt-medium'
   br
@@ -46,6 +48,7 @@ br
           th= t('.id')
           th= t('.user')
           th= t('.email')
+          th= t('.access_type')
           th= t('.total_contributed')
           th= t('.credits')
           th
@@ -55,6 +58,7 @@ br
             td= link_to user.id, user_path(user), target: '_blank'
             td= link_to user.name, admin_contributions_path(by_user_id: user.id), target: '_blank'
             td= user.email
+            td= User.human_attribute_name("access_type/#{user.access_type}")
             td= user.user_total ? user.user_total.sum : 0
             td= user.credits
             td.w-col-1.w-col.project-events-dropdown

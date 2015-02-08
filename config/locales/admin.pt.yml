@@ -96,6 +96,7 @@ pt:
         order_desc: 'Maior meta'
         order_created_at: 'Data de envio'
         last_modification: 'Ultima atualização'
+        search_report: 'Exportar CSV'
     actions:
       confirm: 'Confirmar'
     users:
@@ -122,6 +123,8 @@ pt:
         payer_email: Email do pagamento
         provider: Provedor
         only_organizations: 'Somente ONGs'
+        access_type: 'Tipo de Acesso'
+        search_report: 'Exportar CSV'
     contributions:
       messages:
         successful:
