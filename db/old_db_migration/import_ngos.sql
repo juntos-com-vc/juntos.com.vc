@@ -88,7 +88,7 @@ INSERT INTO users (
   celular,
   nome,
   cpf,
-  senha
+  senha,
   1
 FROM "old_db"."juntoscomvc_cliente"
 WHERE
