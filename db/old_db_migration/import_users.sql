@@ -19,6 +19,7 @@ celular       | phone_number
 nascimento    | birth_date
 sexo          | gender (0 - male; 1 - female)
 administrador | admin
+senha         | uncrypted_password
 0             | access_type
 
 */
@@ -47,7 +48,6 @@ WHERE "clienteId" in (SELECT "clienteId"
                         old_users.email = to_delete.email
                         AND old_users."dataCadastro" != to_delete.created_at);
 
-
 INSERT INTO users (
   uuid,
   name,
@@ -67,6 +67,7 @@ INSERT INTO users (
   birth_date,
   gender,
   admin,
+  uncrypted_password,
   access_type
 ) SELECT
   "clienteId",
@@ -87,6 +88,7 @@ INSERT INTO users (
   nascimento::date,
   CASE WHEN sexo = 'F' THEN 1 ELSE 0 END,
   CASE WHEN administrador = 'true' THEN true ELSE false END,
+  senha,
   0
 FROM "old_db"."juntoscomvc_cliente"
 WHERE
@@ -115,6 +117,7 @@ INSERT INTO users (
   birth_date,
   gender,
   admin,
+  uncrypted_password,
   access_type
 ) SELECT
   "clienteId",
@@ -135,6 +138,7 @@ INSERT INTO users (
   nascimento::date,
   CASE WHEN sexo = 'F' THEN 1 ELSE 0 END,
   CASE WHEN administrador = 'true' THEN true ELSE false END,
+  senha,
   0
 FROM "old_db"."garupa_cliente"
 WHERE

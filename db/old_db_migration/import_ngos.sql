@@ -19,6 +19,7 @@ telefone      | phone_number
 celular       | mobile_phone
 nome          | responsible_name
 cpf           | responsible_cpf
+senha         | uncrypted_password
 1             | access_type
 
 */
@@ -66,6 +67,7 @@ INSERT INTO users (
   mobile_phone,
   responsible_name,
   responsible_cpf,
+  uncrypted_password,
   access_type
 ) SELECT
   "clienteId",
@@ -86,6 +88,7 @@ INSERT INTO users (
   celular,
   nome,
   cpf,
+  senha
   1
 FROM "old_db"."juntoscomvc_cliente"
 WHERE
@@ -115,6 +118,7 @@ INSERT INTO users (
   mobile_phone,
   responsible_name,
   responsible_cpf,
+  uncrypted_password,
   access_type
 ) SELECT
   "clienteId",
@@ -135,6 +139,7 @@ INSERT INTO users (
   celular,
   nome,
   cpf,
+  senha,
   1
 FROM "old_db"."garupa_cliente"
 WHERE
