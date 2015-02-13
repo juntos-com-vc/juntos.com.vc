@@ -94,6 +94,8 @@ WHERE
   AND ativo = 'true'
   AND url not like '%-1';
 
+/* Import the users from Garupa who aren't on database yet. */
+
 INSERT INTO users (
   uuid,
   name,
