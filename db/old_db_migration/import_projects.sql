@@ -22,6 +22,7 @@ dataAtivacao        | online_date
 /* Remove duplicated urls */
 UPDATE old_db.juntoscomvc_projeto SET url = 'brincarumdireitodacrianca-2' WHERE "projetoId" = '10013FE5-5311-46FD-81C2-957DEDD4C733';
 UPDATE old_db.juntoscomvc_projeto SET url = 'cartaelivro-2' WHERE "projetoId" = '58E96A45-B600-4D1C-A0A1-2C274000CE3B';
+UPDATE old_db.juntoscomvc_projeto SET url = 'ios-1' WHERE "projetoId" = 'DE8404A9-B92E-4112-AD59-ACA0BE9F47C5';
 
 /* Import projects */
 INSERT INTO projects (
