@@ -25,6 +25,7 @@ senha         | uncrypted_password
 */
 
 /* Discovering duplicated emails */
+DROP TABLE IF EXISTS duplicated_emails;
 CREATE TEMP TABLE duplicated_emails AS
 WITH emails AS (
   SELECT email
@@ -38,15 +39,9 @@ FROM
   emails;
 
 DELETE FROM old_db.juntoscomvc_cliente
-WHERE "clienteId" in (SELECT "clienteId"
-                      FROM old_db.juntoscomvc_cliente old_users,
-                           (SELECT min("dataCadastro") created_at, email
-                            FROM old_db.juntoscomvc_cliente
-                            WHERE email IN (SELECT email FROM duplicated_emails)
-                            GROUP BY email) to_delete
-                      WHERE
-                        old_users.email = to_delete.email
-                        AND old_users."dataCadastro" != to_delete.created_at);
+WHERE "clienteId" in (SELECT DISTINCT ON (old.email) "clienteId"
+                      FROM old_db.juntoscomvc_cliente old
+                      JOIN duplicated_emails dup ON old.email = dup.email);
 
 INSERT INTO users (
   uuid,
@@ -93,8 +88,7 @@ INSERT INTO users (
 FROM "old_db"."juntoscomvc_cliente"
 WHERE
   tipo = 'AP'
-  AND ativo = 'true'
-  AND url not like '%-1';
+  AND ativo = 'true';
 
 /* Import the users from Garupa who aren't on database yet. */
 
@@ -144,5 +138,4 @@ FROM "old_db"."garupa_cliente"
 WHERE
   tipo = 'AP'
   AND ativo = 'true'
-  AND url not like '%-1'
   AND "email" NOT IN (SELECT email FROM users WHERE uuid is not null);
