@@ -22,6 +22,10 @@ class ProjectPolicy < ApplicationPolicy
     create?
   end
 
+  def edit_partner?
+    is_admin?
+  end
+
   def permitted_attributes
     if user.present? && (user.admin? || (record.draft? || record.rejected? || record.in_analysis?))
       p_attr = [channel_ids: [], project_images_attributes: [:image, :caption, :id, :_destroy], project_partners_attributes: [:image, :link, :id, :_destroy]]

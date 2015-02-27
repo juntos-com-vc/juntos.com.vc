@@ -27,6 +27,8 @@ pt:
         hint: 'Recomendamos imagens de 264x75 pixels.'
         link: 'Link do parceiro'
     project_basics:
+      partner_name: 'Nome do parceiro'
+      partner_message: 'Mensagem para o checkbox'
       project_start: 'Comece a construir o seu projeto'
       project_start_subtitle: 'Após percorrer todas as etapas acima, você pode enviar seu projeto para análise'
       online_date: 'Data de entrada no ar'

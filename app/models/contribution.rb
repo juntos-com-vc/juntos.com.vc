@@ -67,7 +67,7 @@ class Contribution < ActiveRecord::Base
   scope :avaiable_to_automatic_refund, -> {
     with_state('confirmed').where("contributions.payment_method in ('PayPal', 'Pagarme') OR contributions.payment_choice = 'CartaoDeCredito'")
   }
-
+  scope :partner_indications, -> { where(partner_indication: true) }
   scope :can_cancel, -> { where("contributions.can_cancel") }
 
   # Contributions already refunded or with requested_refund should appear so that the user can see their status on the refunds list

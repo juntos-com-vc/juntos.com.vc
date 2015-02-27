@@ -28,6 +28,17 @@
                     label.field-label.fontweight-semibold for="name-8"= t('.user_id')
                   .w-col.w-col-7
                     = form.input_field :user_id, as: :string, class: 'positive'
+                - if policy(@project).edit_partner?
+                  .w-row.u-marginbottom-20.card.card-terciary
+                    .w-col.w-col-5
+                      label.field-label.fontweight-semibold for="name-8"= t('.partner_name')
+                    .w-col.w-col-7
+                      = form.input_field :partner_name, as: :string, class: 'positive'
+                  .w-row.u-marginbottom-20.card.card-terciary
+                    .w-col.w-col-5
+                      label.field-label.fontweight-semibold for="name-8"= t('.partner_message')
+                    .w-col.w-col-7
+                      = form.input_field :partner_message, as: :string, class: 'positive'
               .w-row.u-marginbottom-30.card.card-terciary
                 .w-col.w-col-5.w-sub-col
                   label.field-label.fontweight-semibold for="name-8"= t('.name')

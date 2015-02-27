@@ -106,6 +106,14 @@ class ProjectDecorator < Draper::Decorator
     end
   end
 
+  def partner_display_message
+    if source.partner_message.present?
+      source.partner_message
+    else
+      I18n.t('projects.partner_message', partner: source.partner_name)
+    end
+  end
+
   private
 
   def use_uploaded_image(version)

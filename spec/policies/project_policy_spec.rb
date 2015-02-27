@@ -67,6 +67,27 @@ RSpec.describe ProjectPolicy do
     it_should_behave_like "create permissions"
   end
 
+  permissions :edit_partner? do
+    it "should deny access if user is nil" do
+      is_expected.not_to permit(nil, Project.new)
+    end
+
+    it "should deny access if user is not project owner" do
+      is_expected.not_to permit(User.new, Project.new(user: User.new))
+    end
+
+    it "should deny access if user is project owner" do
+      new_user = User.new
+      is_expected.not_to permit(new_user, Project.new(user: new_user))
+    end
+
+    it "should permit access if user is admin" do
+      admin = User.new
+      admin.admin = true
+      is_expected.to permit(admin, Project.new(user: User.new))
+    end
+  end
+
   describe "#permitted_for?" do
     context "when user is nil and I want to update about" do
       let(:policy){ ProjectPolicy.new(nil, Project.new) }
