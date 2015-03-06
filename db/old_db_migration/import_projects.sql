@@ -1,24 +1,3 @@
-/*
- Importing regular Users
-
-clienteId           | user_id
-categoriaprojetoId  | category_id
-projetoId           | uuid
-nome                | name
-descricao           | headline
-metaValor           | goal
-url                 | permalink
-tempo               | online_days
-descricaoCompleta   | about & about_html
-video               | video_url
-agradecimento       | thank_you
-ativo               | state
-dataCadastro        | created_at
-dataAlteracao       | updated_at
-dataAtivacao        | online_date
-
-*/
-
 /* Remove duplicated urls */
 UPDATE old_db.juntoscomvc_projeto SET url = 'brincarumdireitodacrianca-2' WHERE "projetoId" = '10013FE5-5311-46FD-81C2-957DEDD4C733';
 UPDATE old_db.juntoscomvc_projeto SET url = 'cartaelivro-2' WHERE "projetoId" = '58E96A45-B600-4D1C-A0A1-2C274000CE3B';
