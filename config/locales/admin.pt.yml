@@ -205,6 +205,7 @@ pt:
         platform_contributions: Contribuições para a plataforma
         platform_value: Valor para a plataforma
         project_value: Valor para o projeto
+        partner_indication: Indicação de parceiros
 
     statistics:
       index:

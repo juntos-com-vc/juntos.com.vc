@@ -48,6 +48,9 @@
                 = form.input :address_state, as: :select, collection: State.array, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, input_html: {data: {required_in_brazil: true}}, validation_text: true
                 = form.input :address_zip_code, as: :string, wrapper_html: {class: 'w-col w-col-small-6 w-col-tiny-6 w-col-3 w-sub-col-middle'}, input_html: {data: {required_in_brazil: true}, data: {mask: '99999-999'}}, validation_text: true
                 = form.input :address_phone_number, as: :string, wrapper_html: {class: 'w-col w-col-small-6 w-col-tiny-6 w-col-3'}, input_html: {data: {required_in_brazil: true}, data: {mask: '(99)9999-9999?9'}}, validation_text: true
+              - if @project.have_partner?
+                .w-row
+                  = form.input_field :partner_indication, inline_label: @project.decorator.partner_display_message, class: 'partner-label'
           .w-row.u-marginbottom-40
             .w-col.w-col-push-3.w-col-6
               a#next-step.btn.btn-large href="#payment-engines" Próximo passo

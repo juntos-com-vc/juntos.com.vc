@@ -260,6 +260,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def have_partner?
+    partner_name.present?
+  end
+
   private
   def self.between_dates(attribute, starts_at, ends_at)
     return all unless starts_at.present? && ends_at.present?

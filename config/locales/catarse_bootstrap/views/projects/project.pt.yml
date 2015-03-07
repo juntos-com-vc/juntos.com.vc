@@ -1,5 +1,6 @@
 pt:
   projects:
+    partner_message: "Conheceu o projeto através de %{partner}?"
     project:
       contributed: levantados
       reached: atingido

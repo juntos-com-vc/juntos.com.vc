@@ -35,8 +35,11 @@
           = form.input :by_key, as: :string, label: t('.key')
         .w-col-2.w-col
           = form.input :credits, as: :boolean, label: t('.credits')
+      .w-row
+        .w-col-2.w-col
           = form.input :platform_contributions, as: :boolean, label: t('.platform_contributions')
         .w-col-2.w-col
+          = form.input :partner_indications, as: :boolean, label: t('.partner_indication')
         .w-col-2.w-col.u-margintop-20
           = form.button :submit, t('channels.admin.filter.submit'), class: 'bt-medium'
 
