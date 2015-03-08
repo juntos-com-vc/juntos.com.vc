@@ -113,6 +113,12 @@
                 label.field-label.fontsize-smallest.fontcolor-secondary= t('.image_hint')
               .w-col.w-col-6.w-sub-col
                 = form.input :uploaded_image, label: '', as: :file, required: false, hint: (@project.uploaded_image.present? ? image_tag(@project.uploaded_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_image') )
+            .w-row.u-marginbottom-30.card.card-terciary
+              .w-col.w-col-5.w-sub-col
+                label.field-label.fontweight-semibold=t('.cover_image')
+                label.field-label.fontsize-smallest.fontcolor-secondary= t('.cover_image_hint')
+              .w-col.w-col-6.w-sub-col
+                = form.input :uploaded_cover_image, label: '', as: :file, required: false, hint: (@project.uploaded_cover_image.present? ? image_tag(@project.uploaded_cover_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_cover_image') )
           .w-row.u-marginbottom-30.card.card-terciary
             .w-col.w-col-5.w-sub-col
               label.field-label.fontweight-semibold= t('.headline')

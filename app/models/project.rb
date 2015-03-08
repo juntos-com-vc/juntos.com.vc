@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
   acts_as_copy_target
 
   mount_uploader :uploaded_image, ProjectUploader
+  mount_uploader :uploaded_cover_image, ProjectUploader
 
   delegate  :display_online_date, :display_status, :progress, :display_progress,
             :display_image, :display_expires_at, :remaining_text, :time_to_go,
