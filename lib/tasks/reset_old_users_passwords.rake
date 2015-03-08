@@ -30,7 +30,7 @@ namespace :migration do
       image_link = ActiveRecord::Base.connection.execute(sql).values.first.try(:first)
       if image_link.present?
         puts project.permalink, image_link, "\n"
-        project.remote_uploaded_image_url = "http://juntos.com.vc/dados/projeto/#{image_link}"
+        project.remote_uploaded_image_url = "http://juntoscom.hospedagemdesites.ws/dados/projeto/#{image_link}"
         project.save
       end
     end
@@ -53,7 +53,7 @@ namespace :migration do
       image_link = ActiveRecord::Base.connection.execute(sql).values.first.try(:first)
       if image_link.present? && image_link != 'juntos-com-vc-avatar.png'
         puts user.name, image_link, "\n"
-        user.remote_uploaded_image_url = "http://juntos.com.vc/dados/cliente/#{image_link}"
+        user.remote_uploaded_image_url = "http://juntoscom.hospedagemdesites.ws/dados/cliente/#{image_link}"
         user.save
       end
     end
