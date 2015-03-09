@@ -27,7 +27,7 @@
           = "Este projeto faz parte do Canal"
         .fontweight-bold.u-marginbottom-10.fontsize-smaller
           = channel.name
-        = link_to "Conheça o Canal", root_url(subdomain: channel.permalink), class: 'alt-link fontsize-smaller'
+        = link_to "Conheça o Canal", "http://#{channel.permalink}.juntos.com.vc/", class: 'alt-link fontsize-smaller'
       .w-col.w-col-4
         .project-follow-channel
           - if channel.has_subscriber?(current_user)
