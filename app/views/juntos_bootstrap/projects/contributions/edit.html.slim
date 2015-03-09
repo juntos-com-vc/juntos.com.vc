@@ -63,13 +63,15 @@
               = t('.choose_payment_subtitle')
           #payment-methods.nav-light.u-marginbottom-30[class=(@payment_engines.size == 1 ? 'w-hidden' : '')]
             - @payment_engines.each do |engine|
-              .nav-tab.nav-tab-light[id=engine.name data-target="##{engine.name}_payment"]
-                = t("projects.contributions.review.#{engine.name}.description")
+              - unless engine.name == 'PayPal'
+                .nav-tab.nav-tab-light[id=engine.name data-target="##{engine.name}_payment"]
+                  = t("projects.contributions.review.#{engine.name}.description")
           .tab_content_container
             - @payment_engines.each do |engine|
-              div[id="#{engine.name}_payment" class="payments_type hide" data-path=engine.review_path(@contribution) ]
-                .results
-                  .tab-loader.loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "loading.gif"
+              - unless engine.name == 'PayPal'
+                div[id="#{engine.name}_payment" class="payments_type hide" data-path=engine.review_path(@contribution) ]
+                  .results
+                    .tab-loader.loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "loading.gif"
       .w-col.w-col-4
         .w-hidden-small.w-hidden-tiny
           = render 'selected_reward'
