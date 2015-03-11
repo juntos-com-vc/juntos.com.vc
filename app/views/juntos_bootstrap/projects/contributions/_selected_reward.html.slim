@@ -7,9 +7,10 @@
     span=>  @contribution.display_project_value
     | irão para o projeto
     span=< @contribution.project.name
-    |  e
-    span=<>  @contribution.display_platform_value
-    | irão para a Juntos.com.vc
+    - if @contribution.platform_value.present?
+      |  e
+      span=<>  @contribution.display_platform_value
+      | irão para a Juntos.com.vc
   .back-payment-info-reward
     .fontsize-smaller.fontweight-semibold.u-marginbottom-10 = t('.reward')
     .fontsize-smallest
