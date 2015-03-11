@@ -68,7 +68,7 @@ App.addChild('RemoveProjectImage', {
   removeProjectImage: function(event){
     event.preventDefault();
     var removeProjectImage = this.el;
-    var parent = $(removeProjectImage).parents('.w-row.thumbnail-card');
+    var parent = $(removeProjectImage).parents('.w-col.thumbnail-card');
     parent.find('.thumbnail').remove();
     parent.find('input[name*="_destroy"]').val('true');
     $('.js-btn-submit').click();
