@@ -132,7 +132,7 @@ class Project < ActiveRecord::Base
   validates :video_url, presence: true, if: ->(p) { p.state == 'online' && p.goal >= (CatarseSettings[:minimum_goal_for_video].to_i) }
   validates_presence_of :name, :user, :category, :permalink
   validates_presence_of :about, :headline, :goal, if: ->(p) {p.state == 'online'}
-  validates_length_of :headline, maximum: 140
+  validates_length_of :headline, maximum: 140, minimum: 1
   validates_numericality_of :online_days, less_than_or_equal_to: 60, greater_than: 0, if: ->(p){ p.online_days.present? }
   validates_numericality_of :goal, greater_than: 9, allow_blank: true
   validates_uniqueness_of :permalink, case_sensitive: false
