@@ -136,7 +136,7 @@ pt:
           cancel: 'Apoio cancelado com sucesso!'
           push_to_trash: 'Apoio deletado com sucesso!'
       show:
-        contribution_info: 'Informações do contribution %{key}'
+        contribution_info: 'Informações da contribuição %{key}'
         payment_id: 'ID do pagamento'
         payment_method: 'Meio de pagamento'
         payment_fee: 'Taxa do meio de pagamento'
