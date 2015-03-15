@@ -40,6 +40,8 @@
           = form.input :platform_contributions, as: :boolean, label: t('.platform_contributions')
         .w-col-2.w-col
           = form.input :partner_indications, as: :boolean, label: t('.partner_indication')
+        .w-col.w-col-2.u-margintop-20
+          = link_to t('Exportar CSV'), admin_contributions_path(params: params,format: :csv), class: 'btn bt-medium'
         .w-col-2.w-col.u-margintop-20
           = form.button :submit, t('channels.admin.filter.submit'), class: 'bt-medium'
 

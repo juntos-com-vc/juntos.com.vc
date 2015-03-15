@@ -24,6 +24,19 @@ class Admin::ContributionsController < Admin::BaseController
   end
   contribution_actions
 
+  def index
+    respond_to do |format|
+      format.html { collection }
+      format.csv do
+        self.response_body = Enumerator.new do |y|
+          collection.copy_to do |line|
+            y << line
+          end
+        end
+      end
+    end
+  end
+
   def change_reward
     resource.change_reward! params[:reward_id]
     flash[:notice] = I18n.t('admin.contributions.messages.successful.change_reward')

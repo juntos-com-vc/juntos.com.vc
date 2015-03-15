@@ -1,6 +1,7 @@
 # coding: utf-8
 class Contribution < ActiveRecord::Base
   has_notifications
+  acts_as_copy_target
 
   include I18n::Alchemy
   include PgSearch
