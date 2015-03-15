@@ -12,10 +12,10 @@
         = project.category.name_pt
         = image_tag(project.category_image_url, class: 'category-image')
 
-  /- if project.expired?
-    /.status-flag
-      /= link_to project_by_slug_path(permalink: project.permalink), target: target do
-        /= project.status_flag
+  - if project.expired?
+    .status-flag
+      = link_to project_by_slug_path(permalink: project.permalink), target: target do
+        = project.status_flag
   .image = link_to image_tag(project.display_image, size: '220x172'), project_by_slug_path(project.permalink), title: project.name, target: target
 
   .status
@@ -39,8 +39,9 @@
               });
             })();
       .info
-        .time-remaining
-          = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};")
+        - unless project.expired?
+          .time-remaining
+            = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};")
         .collected-money
           = link_to t('.pledged_html', value: number_to_currency(project.pledged, precision: 0, unit: ''), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};"), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
 
