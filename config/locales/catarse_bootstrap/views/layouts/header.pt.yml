@@ -20,4 +20,7 @@ pt:
       logout: Sair
       my_credits: Saldo de créditos
       refund_link: Solicitar reembolso
+  shared:
+    header:
+      projects: 'Projetos'
 
