@@ -30,9 +30,17 @@ class Admin::ContributionsController < Admin::BaseController
     redirect_to admin_contributions_path(params[:local_params])
   end
 
+  def update_user
+    @contribution = Contribution.find(params[:id])
+  end
+
   protected
   def set_title
     @title = t("admin.contributions.index.title")
+  end
+
+  def permitted_params
+    params.permit(contribution: [:user_id])
   end
 
   def collection

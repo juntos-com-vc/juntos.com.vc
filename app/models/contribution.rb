@@ -73,7 +73,7 @@ class Contribution < ActiveRecord::Base
   # Contributions already refunded or with requested_refund should appear so that the user can see their status on the refunds list
   scope :can_refund, ->{ where("contributions.can_refund") }
 
-  attr_protected :state, :user_id
+  attr_protected :state
 
   def self.between_values(start_at, ends_at)
     return all unless start_at.present? && ends_at.present?
