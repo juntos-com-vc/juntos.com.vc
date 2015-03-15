@@ -21,6 +21,10 @@
               .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :name
               = form.input_field :name, class: 'medium', as: :string
             .u-marginbottom-40
+              = form.label :headline, class: 'fontsize-large', required: true, as: :text
+              p= "(Não se preocupe, você poderá mudar ela depois)"
+              = form.input_field :headline, class: 'medium', as: :text
+            .u-marginbottom-40
               = form.label :goal, class: 'fontsize-large', required: true, as: :string
               .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :name
               .w-row
