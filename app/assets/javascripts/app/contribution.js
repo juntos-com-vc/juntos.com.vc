@@ -31,7 +31,7 @@ App.addChild('Contribution', {
   },
 
   minimumValue: function(){
-    //return this.$('label.back-reward-radio-reward.selected').find('label[data-minimum-value]').data('minimum-value');
+    return this.$('label.back-reward-radio-reward.selected').find('label[data-minimum-value]').data('minimum-value');
   },
 
   resetSelected: function(){
