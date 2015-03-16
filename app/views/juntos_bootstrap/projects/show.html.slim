@@ -53,6 +53,9 @@
             = link_to '#project_metrics', id: 'project_metrics_link', class: 'nav-tab' , data: {target: '#project_metrics'}, style: "background-color: #{@color};" do
               => t('.menu.metrics')
                 |&nbsp;
+            = link_to '#project_reports', id: 'project_reports_link', class: 'nav-tab' , data: {target: '#project_reports'}, style: "background-color: #{@color};" do
+              => t('.menu.reports')
+                |&nbsp;
 
 - if policy(@project).update?
   nav.dashboard-nav.w-hidden-small.w-hidden-tiny
@@ -83,6 +86,8 @@
         javascript:
           $(document).ready(function() { $('#project_metrics').load("#{metrics_project_path(@project)}"); });
         = javascript_include_tag "//www.google.com/jsapi", "chartkick"
+      #project_reports.content.w-hidden
+        = render 'dashboard_reports'
 
 
       #project_posts.content.w-col.w-col-8.w-hidden

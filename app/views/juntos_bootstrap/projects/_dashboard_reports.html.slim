@@ -1,0 +1,98 @@
+#dashboard-reports-tab
+  br/
+  br/
+  br/
+  - selected_r = @project.selected_rewards
+  .w-container
+    .w-row
+      ul
+        li.fontsize-base
+          p
+            =' t('.link_reports_confirmed')
+            =' link_to 'csv', reports_contribution_reports_for_project_owners_path(project_id: @project.id, format: :csv)
+            ',
+            = link_to 'xls', reports_contribution_reports_for_project_owners_path(project_id: @project.id, format: :xls)
+        li.fontsize-base
+          p
+            =' t('.link_reports_waiting_confirmation')
+            =' link_to 'csv', reports_contribution_reports_for_project_owners_path(project_id: @project.id, state: 'waiting_confirmation', format: :csv)
+            ',
+            = link_to 'xls', reports_contribution_reports_for_project_owners_path(project_id: @project.id,state: 'waiting_confirmation', format: :xls)
+        li.fontsize-base
+          p
+            =' t('.all_contributions_without_reward')
+            =' link_to 'csv', reports_contribution_reports_for_project_owners_path(project_id: @project.id, reward_id: 0, format: :csv)
+            ',
+            =' link_to 'xls', reports_contribution_reports_for_project_owners_path(project_id: @project.id, reward_id: 0, format: :xls)
+        - if selected_r.length > 0
+            - selected_r.each do |reward|
+              li.fontsize-base
+                p
+                  =' t('.link_reward', value: reward.display_minimum)
+                  =' link_to 'csv', reports_contribution_reports_for_project_owners_path(project_id: @project.id, reward_id: reward.id, format: :csv)
+                  ',
+                  =' link_to 'xls', reports_contribution_reports_for_project_owners_path(project_id: @project.id, reward_id: reward.id, format: :xls)
+  
+  br/
+  br/
+  br/
+  /.u-text-center
+    /.w-container
+      /.w-row
+        /.w-col.w-col-2
+        /.w-col.w-col-8
+          /.fontsize-large.fontweight-semibold Crie e edite aqui suas recompensas
+          /p.fontsize-base Pense bem como você irá entregá-las e coloque tudo isso no orçamento! Entregue suas recompensas, senão a confiabilidade do seu projeto pode ser prejudicada.
+        /.w-col.w-col-2
+  /.section
+    /.w-container
+      /.w-row
+        /.w-col.w-col-8.w-hidden-small.w-hidden-tiny
+          /#dashboard-rewards
+            /- @project.rewards.rank(:row_order).each_with_index do |reward, index|
+              /.w-row.card.card-terciary.u-marginbottom-20[id="reward_#{reward.id}" data-update_url=sort_project_reward_path(@project, reward) class="sortable"]
+                /.w-col.w-col-4.w-sub-col
+                  /.fontweight-semibold.fontsize-smallest.u-marginbottom-10
+                    /= "Recompensa #{index + 1}"
+                /.w-col.w-col-8
+                  /.card
+                    /.w-row
+                      /.w-col.w-col-11
+                        /.fontsize-base.fontweight-semibold= t('rewards.index.reward_title', minimum: reward.display_minimum).html_safe
+                      /.w-col.w-col-1
+                        /= link_to "javascript:void(0);", data: {target: ".edit_reward_content_#{reward.id}", parent: "#reward_#{reward.id}", path: edit_project_reward_path(@project, reward)}, class: 'show_reward_form' do
+                          /.btn.btn-small.btn-terciary.fa.fa-lg.fa-edit.btn-no-border
+                    /.fontsize-smaller.u-marginbottom-20.fontweight-semibold= pluralize(reward.contributions.with_state('confirmed').count(:all), t('contribution_singular'), t('contribution_plural'))
+                    /p.fontsize-small
+                      /br= reward.display_description
+                    /.fontsize-smallest
+                      //=t('rewards.index.reward_deliver_time', estimate: reward.display_deliver_estimate).html_safe
+              /.w-hidden[class="edit_reward_content_#{reward.id}"]
+
+          /.new_reward_content.w-hidden
+          /= link_to "+ Adicionar recompensa", 'javascript:void(0);', data: {target: '.new_reward_content', path: new_project_reward_path(@project)}, class: 'btn btn-large btn-message show_reward_form new_reward_button'
+
+        /.w-col.w-col-4
+          /.w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20 data-ix="new-interaction"
+            /.fontsize-small.fontweight-semibold.u-marginbottom-20 Links úteis
+            /ul.w-list-unstyled
+              /li.alt-link.fontsize-smaller.u-marginbottom-10
+                /a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488681-o-que-s%C3%A3o-as-recompensas" target="_blank"  O que são as recompensas?
+              /li.alt-link.fontsize-smaller.u-marginbottom-10
+                /a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488682-como-se-beneficiar-das-recompensas" target="_blank" Como se beneficiar das recompensas?
+              /li.fontsize-smaller.alt-link.u-marginbottom-10
+                /a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488683-sugest%C3%B5es-de-recompensas" target="_blank"  Sugestões de recompensas
+              /li.fontsize-smaller.alt-link.u-marginbottom-10
+                /a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488680-recomenda%C3%A7%C3%B5es-do-juntos-com-vc" target="_blank"  Recomendações da Juntos.com.vc
+          /.w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20 data-ix="new-interaction"
+            /.fontsize-small.fontweight-semibold.u-marginbottom-20 Suporte
+            /ul.w-list-unstyled
+              /li.alt-link.fontsize-smaller.u-marginbottom-10
+                /a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488678-como-a-juntos-com-vc-funciona" target="_blank"  Como a Juntos.com.vc funciona?
+              /li.alt-link.fontsize-smaller.u-marginbottom-10
+                /a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/487294-como-receberei-meu-dinheiro" target="_blank"  Como eu irei receber o meu dinheiro?
+              /li.fontsize-smaller.alt-link.u-marginbottom-10
+                /a.alt-link href="http://juntoscomvc.uservoice.com/" target="_blank"  Perguntas frequentes
+              /li.fontsize-smaller.alt-link.u-marginbottom-10
+                /a.alt-link href="/pt/who-we-are" target="_blank"  Entre em contato com a gente
+

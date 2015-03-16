@@ -74,7 +74,7 @@ pt:
         title: Título da sua Novidade
         warning: Lembrando que todo post de novidade vai diretamente para o email de
           seus apoiadores. Por isso, revise bem seu texto antes de enviá-lo.
-    project_reports:
+    dashboard_reports:
       all_contributions_without_reward: Baixar relatório de todos os apoiadores
         que não selecionaram uma recompensa
       link_reports_confirmed: Baixar relatório de todos os apoiadores confirmados

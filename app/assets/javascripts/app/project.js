@@ -19,6 +19,7 @@ App.addChild('Project', _.extend({
     this.route('edit');
     this.route('reports');
     this.route('project_metrics');
+    this.route('project_reports');
   },
 
   toggleWarning: function(){
@@ -37,7 +38,7 @@ App.addChild('Project', _.extend({
     if($tab.length > 0){
       this.onTabClick({ currentTarget: $tab });
 
-      if(($tab.prop('id') == 'project_metrics_link') || ($tab.prop('id') == 'basics_link') || ($tab.prop('id') == 'dashboard_project_link') || ($tab.prop('id') == 'dashboard_rewards_link')) {
+      if(($tab.prop('id') == 'project_metrics_link') || ($tab.prop('id') == 'project_reports_link') || ($tab.prop('id') == 'basics_link') || ($tab.prop('id') == 'dashboard_project_link') || ($tab.prop('id') == 'dashboard_rewards_link')) {
         $('#project-sidebar').hide();
       } else {
         $('#project-sidebar').show();
