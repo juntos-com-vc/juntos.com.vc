@@ -34,8 +34,8 @@ pt:
         name: Quanto mais direto melhor. Deixe para descrever o seu projeto no Sobre
           e no Vídeo.
         online_days: Em média os projetos ficam no ar por 40 dias.
-        uploaded_image: Aqui você faz upload de uma imagem (.jpg) com tamanho 512x400.
-        uploaded_cover_image: Aqui você faz upload de uma imagem (.jpg) com tamanho 1000x400.
+        uploaded_image: Aqui você faz upload de uma imagem (.jpg) com tamanho 220x120.
+        uploaded_cover_image: Aqui você faz upload de uma imagem (.jpg) com tamanho 1900x400.
         video_url: O vídeo é a principal peça do projeto. Se ainda não tiver, não
           precisa enviar... Mas já vá pensando em como fazer um vídeo MATADOR!
         video_url_edit: Cole aqui o link do seu vídeo hospedado no Vimeo ou no Youtube.
