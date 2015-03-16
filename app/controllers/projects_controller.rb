@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new user: current_user
+    @project = Project.new user: current_user, new_record: true
     authorize @project
     @title = t('projects.new.title')
     8.times { @project.project_images.build }
