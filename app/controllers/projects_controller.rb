@@ -44,7 +44,6 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new params[:project].merge(user: current_user)
     authorize @project
-    redirect_to start_path, notice: 'Você precisa atualizar seus documentos para enviar um projeto, eles estão disponíveis para envio no seu perfil de ONG' unless channel || (current_user && current_user.approved?)
     if @project.save
       channel.projects << @project if channel
     end
