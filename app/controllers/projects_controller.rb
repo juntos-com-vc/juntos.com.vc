@@ -91,6 +91,8 @@ class ProjectsController < ApplicationController
     @posts_count = resource.posts.count(:all)
     @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
     @color = (channel.present? && channel.main_color) || @project.category.color
+    @contributions = @project.contributions.available_to_count
+    @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
   end
 
   def video

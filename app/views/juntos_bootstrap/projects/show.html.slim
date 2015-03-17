@@ -94,17 +94,16 @@
       - content_for :custom_javascripts do
         javascript:
             $(document).ready(function() { $('#project_posts').load("#{project_posts_path(@project)}"); });
-      #project_contributions.content.w-col.w-col-8.w-hidden[data-path=project_contributions_path(project_id: @project.id)]
+      #project_contributions.content.w-col.w-col-8.w-hidden
+        .w-row
+          = render @contributions
         - if policy(@project).update?
           .w-row
-            .w-col.w-col-1
-              = radio_button_tag(:contribution_state, "available_to_count", checked: true)
-            .w-col.w-col-5
-              = label_tag(:contribution_state_available_to_count, t('.contribution_states.confirmed'))
-            .w-col.w-col-1
-              = radio_button_tag(:contribution_state, "waiting_confirmation")
-            .w-col.w-col-5
-              = label_tag(:contribution_state_waiting_confirmation, 'Pendentes')
+            br/
+            br/
+
+            h1 Contribuições pendentes
+            = render @pending_contributions
           .divider.u-marginbottom-20
         .results
           | &nbsp;
