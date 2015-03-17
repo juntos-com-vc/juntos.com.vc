@@ -7,7 +7,7 @@
   .w-col.w-col-3
     #twitter_share.img-share = render_twitter(url: project_by_slug_url(permalink: @project.permalink), title: @project.name)
   .w-col.w-col-3
-    = link_to t('.embed'), '#embed', id: 'embed_link', class: 'link-hidden fontsize-small fontcolor-secondary'
+    /= link_to t('.embed'), '#embed', id: 'embed_link', class: 'link-hidden fontsize-small fontcolor-secondary'
   .w-col.w-col-3
     - if user_signed_in? && @project.user_already_in_reminder?(current_user.id)
       .fontsize-small
