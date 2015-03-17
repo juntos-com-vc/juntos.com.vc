@@ -25,6 +25,10 @@
               p= "(Não se preocupe, você poderá mudar ela depois)"
               = form.input_field :headline, class: 'medium', as: :text
             .u-marginbottom-40
+              = form.label :about, class: 'fontsize-large', required: true, as: :text
+              p= "(Não se preocupe, você poderá mudar ela depois)"
+              = form.input_field :about, class: 'medium', as: :text
+            .u-marginbottom-40
               = form.label :goal, class: 'fontsize-large', required: true, as: :string
               .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :name
               .w-row
