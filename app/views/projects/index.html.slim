@@ -31,7 +31,7 @@
         header
           h2.list-title
             = link_to t('.sections.recommended.title'), explore_path(anchor: :recommended)
-          = link_to t('.links.recommended'), explore_path(anchor: :recommended), class: "more-projects"
+          = link_to t('.links.recommended'), explore_path, class: "more-projects"
         .projects
           == render @recommends
 
@@ -39,7 +39,7 @@
         header
           h2.list-title
             = link_to t('.sections.recents.title'), explore_path(anchor: :recent)
-          = link_to t('.links.recents'), explore_path(anchor: :recent), class: "more-projects"
+          = link_to t('.links.recents'), explore_path, class: "more-projects"
         .projects
           == render @recent
 
