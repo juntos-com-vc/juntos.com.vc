@@ -103,7 +103,7 @@ App.addChild('ReviewForm', _.extend({
 
   updateContribution: function(){
     var contribution_data = {
-      anonymous: this.$('#contribution_anonymous').val(),
+      anonymous: this.$('#contribution_anonymous').is(':checked'),
       country_id: this.$('#contribution_country_id').val(),
       payer_name: this.$('#contribution_full_name').val(),
       payer_email: this.$('#contribution_email').val(),
@@ -117,7 +117,8 @@ App.addChild('ReviewForm', _.extend({
       address_state: this.$('#contribution_address_state').val(),
       address_phone_number: this.$('#contribution_address_phone_number').val(),
       partner_indication: this.$('#contribution_partner_indication').prop('checked')
-    }
+    };
+
     if(contribution_data.address_zip_code !== '' && contribution_data.address_phone_number !== '') {
       $.post(this.$el.data('update-info-path'), {
         _method: 'put',
