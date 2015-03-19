@@ -57,6 +57,11 @@ class Admin::ContributionsController < Admin::BaseController
   end
 
   def collection
-    @contributions = apply_scopes(end_of_association_chain).without_state('deleted').reorder("contributions.created_at DESC").page(params[:page])
+    if current_user.present? && current_user.admin?
+      @contributions = apply_scopes(end_of_association_chain).without_state('deleted').reorder("contributions.created_at DESC").page(params[:page])
+    elsif current_user.try(:channel) == channel && channel.present?
+      @contributions = apply_scopes(end_of_association_chain).without_state('deleted').joins(project: :channels).where(channels: {id: channel.id}).reorder("contributions.created_at DESC").page(params[:page])
+    end
   end
+
 end
