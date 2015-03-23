@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
 
   include Project::StateMachineHandler
   include Project::VideoHandler
-  include Project::CustomValidators
+  #include Project::CustomValidators
   include Project::RemindersHandler
 
   has_notifications
@@ -137,7 +137,7 @@ class Project < ActiveRecord::Base
   validates_numericality_of :online_days, less_than_or_equal_to: 60, greater_than: 0, if: ->(p){ p.online_days.present? }
   validates_numericality_of :goal, greater_than: 9, allow_blank: true
   validates_uniqueness_of :permalink, case_sensitive: false
-  validates_format_of :permalink, with: /(\w|-)*/, allow_blank: true
+  validates_format_of :permalink, with: /\A(\w|-)*\Z/
 
   [:between_created_at, :between_expires_at, :between_online_date, :between_updated_at].each do |name|
     define_singleton_method name do |starts_at, ends_at|
