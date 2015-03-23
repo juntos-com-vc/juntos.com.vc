@@ -123,6 +123,7 @@ class User < ActiveRecord::Base
           n.user_id = users.id)", category_id)
   }
   scope :order_by, ->(sort_field){ order(sort_field) }
+  scope :with_visible_projects, -> { joins(:projects).where.not(projects: {state: ['draft', 'rejected', 'deleted', 'in_analysis']}) }
 
   def self.find_active!(id)
     self.active.where(id: id).first!
@@ -265,5 +266,22 @@ class User < ActiveRecord::Base
 
   def approved?
     access_type == 'individual' || (approved_at && approved_at > Time.now - 1.year)
+  end
+
+  def fix_name_encoding
+    n = name
+    n.gsub! 'Ã‡', 'Ç'
+    n.gsub! 'Ã€', 'À'
+    n.gsub! 'Ãƒ', 'Ã'
+    n.gsub! 'Ã‰', 'É'
+    n.gsub! 'ÃŠ', 'Ê'
+    n.gsub! 'Ã§', 'ç'
+    n.gsub! 'Ã©', 'é'
+    n.gsub! 'Ã¡', 'á'
+    n.gsub! 'Ã¢', 'â'
+    n.gsub! 'Ã£', 'ã'
+    n.gsub! 'Ã§Ã£', 'çã'
+    self.name = n
+    self.save
   end
 end
