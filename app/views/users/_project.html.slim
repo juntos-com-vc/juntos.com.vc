@@ -1,4 +1,4 @@
-div class=(policy(parent).update? ? 'project_land u-marginbottom-40' : 'small_project_land u-marginbottom-40')
+div class=(policy(project.user).update? ? 'project_land u-marginbottom-40' : 'small_project_land u-marginbottom-40')
   .title
     h4
       = link_to project.name, project_by_slug_path(project.permalink)
@@ -18,7 +18,7 @@ div class=(policy(parent).update? ? 'project_land u-marginbottom-40' : 'small_pr
           (function() {
             Circles.create({
               id: "#{circle_id}", radius: 30, value: "#{project.progress}",
-              text: "<div class='percent' style='color: #{project.category.color}'>#{project.progress}%<span>da meta</span></div>",
+              text: "<div class='percent' style='color: #{project.category.color}'>#{project.progress}%<div><span>da meta</span></div></div>",
               colors: ['#CCC', "#{project.category.color}"],
               duration: 0,
               width: 5
@@ -42,17 +42,17 @@ div class=(policy(parent).update? ? 'project_land u-marginbottom-40' : 'small_pr
         /li
           /h6= project.display_pledged
           /p= t('projects.project.reached')
-    .contribution_info style="background-color: #{project.category.color}"
-      - if contribution && policy(parent).update?
-        ul
-          - if contribution.display_value
-            li.value
-              h5= contribution.display_value
-              p Doados
-          li.date
-            h5
-              span.date<
-                |#{contribution.display_confirmed_at || I18n.l(contribution.created_at.to_date)}
+    /.contribution_info style="background-color: #{project.category.color}"
+      /- if contribution && policy(parent).update?
+        /ul
+          /- if contribution.display_value
+            /li.value
+              /h5= contribution.display_value
+              /p Doados
+          /li.date
+            /h5
+              /span.date<
+                /|#{contribution.display_confirmed_at || I18n.l(contribution.created_at.to_date)}
 
     /.tell_about
       /p= t('.tell_about_this_contribution')
