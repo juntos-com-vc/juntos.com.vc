@@ -1,4 +1,7 @@
 Catarse::Application.configure do
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -43,7 +46,7 @@ Catarse::Application.configure do
   #config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]

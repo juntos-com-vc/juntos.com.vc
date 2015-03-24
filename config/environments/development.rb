@@ -1,4 +1,6 @@
 Catarse::Application.configure do
+  config.tld_length = 1
+
   Slim::Engine.set_default_options pretty: true
   # Settings specified here will take precedence over those in config/application.rb.
 

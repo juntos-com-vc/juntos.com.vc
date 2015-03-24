@@ -50,6 +50,7 @@ end
 
 
 Channel.find_or_create_by!(name: "Channel name") do |c|
+  c.category = Category.first
   c.permalink = "sample-permalink"
   c.description = "Lorem Ipsum"
 end
