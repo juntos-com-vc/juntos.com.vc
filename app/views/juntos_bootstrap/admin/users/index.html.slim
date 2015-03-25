@@ -73,6 +73,6 @@ br
                       .fa.fa-close= "Remover admin do canal #{channel.name}"
                   - else
                     = link_to admin_channel_users_path(channel, user_id: user), method: :post, data: {confirm: 'Tem certeza?'}, class:'w-dropdown-link dropdown-link fontsize-smaller' do
-                      .fa.fa-check= "Tornar admin do canal #{channel.name}"
+                      = "Tornar admin do canal #{channel.name}"
   = paginate @users
   .clearfix
