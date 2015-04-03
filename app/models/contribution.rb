@@ -129,7 +129,9 @@ class Contribution < ActiveRecord::Base
   protected
   def update_value
     self.value = project_value
-    self.value += platform_value if platform_value.present?
+    if self.value
+      self.value += platform_value if platform_value.present?
+    end
     true
   end
 end
