@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       @subscribed_to_posts = @user.posts_subscription
       @unsubscribes = @user.project_unsubscribes
       @credit_cards = @user.credit_cards
+      @projects = projects
       build_bank_account
     }
   end
@@ -78,6 +79,17 @@ class UsersController < ApplicationController
       flash[:error] = @user.errors.full_messages.to_sentence
     end
     return redirect_to user_path(@user, anchor: 'settings')
+  end
+
+  protected
+
+  def policy_scope(scope)
+    @_policy_scoped = true
+    ProjectPolicy::UserScope.new(current_user, resource, scope).resolve
+  end
+
+  def projects
+    @projects ||= policy_scope(resource.projects)
   end
 
   private

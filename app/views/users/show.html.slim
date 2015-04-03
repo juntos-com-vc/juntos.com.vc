@@ -61,7 +61,7 @@
             p.empty.hide= t('.projects.no_projects', name: @user.display_name)
           - else
             p.empty.hide= t('.projects.no_projects_current_user_html', link: link_to(t('.projects.here'), start_path)).html_safe
-          = render partial: 'users/project', collection: @user.projects.visible
+          = render partial: 'users/project', collection: @projects
           .clearfix
         - if policy(@user).update?
           #user_unsubscribes.content.hide
