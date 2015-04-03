@@ -82,7 +82,7 @@ pt:
         full_name: "Nome completo / Razão Social"
         bio: 'Mini Bio'
         name: "Apelido"
-        newsletter: 'Quero receber novidades do Catarse'
+        newsletter: 'Quero receber novidades da Juntos.com.vc'
         password: Senha
         password_confirmation: "Confirmação de senha"
         phone_number: "Telefone (fixo ou celular)"
@@ -223,9 +223,9 @@ pt:
     confirmed_at: Data da confirmação do pagamento
     contribution_value: Valor do apoio
     reward_deliver_at: Estimativa de entrega
-    service_fee: Taxa do Catarse
+    service_fee: Taxa da Juntos.com.vc
     user_name: Nome do apoiador
-    user_email: Email perfil Catarse
+    user_email: Email perfil juntos.com.vc
     payer_email: Email do meio de pagamento
     payment_method: Meio de pagamento
     street: Rua
