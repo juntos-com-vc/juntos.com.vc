@@ -1,0 +1,10 @@
+= render 'shared/header_big'
+.admin
+  .w-container
+    br
+    br
+
+    = semantic_form_for(@project, url: reject_admin_project_path(@project), method: :put) do |f|
+      = f.input :reject_reason, label: 'Motivo da negação', hint: 'Pode deixar em branco para o email padrão, sem motivo'
+      .clearfix
+      = f.submit 'Rejeitar projeto'
