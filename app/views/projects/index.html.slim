@@ -84,13 +84,20 @@
     .content
       .title
         h2 = "Parceiros"
-      .logos
-        - @featured_partners.each do |partner|
+      .logos.js-partners
+        - @site_partners.each do |partner|
           .featured
             = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.featured.url, title: partner.name
-      .logos
-        - @regular_partners.each do |partner|
-          .regular
-            = link_to partner.url, target: '_blank' do
-              = image_tag partner.logo.regular.url, title: partner.name
+
+      javascript:
+        $(document).ready(function(){
+          $('.js-partners').slick({
+              slidesToShow: 5,
+              slidesToScroll: 1,
+              centerMode: true,
+              focusOnSelect: true,
+              variableWidth: true
+          });
+        });
+

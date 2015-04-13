@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
           @recent   = Project.with_state('online').where(recommended: false).limit(3).includes(:project_total)
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
+          @site_partners = @featured_partners + @regular_partners
           @channels = Channel.order("random()").limit(5)
         end
       end
