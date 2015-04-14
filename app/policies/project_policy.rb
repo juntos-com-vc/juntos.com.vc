@@ -27,7 +27,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    if user.present? && (user.admin? || (record.draft? || record.rejected? || record.in_analysis?))
+    if user.present? && (user.admin? || is_project_channel_admin? || (record.draft? || record.rejected? || record.in_analysis?))
       p_attr = [channel_ids: [], project_images_attributes: [:image, :caption, :id, :_destroy], project_partners_attributes: [:image, :link, :id, :_destroy]]
       p_attr << record.attribute_names.map(&:to_sym)
       {project: p_attr.flatten}

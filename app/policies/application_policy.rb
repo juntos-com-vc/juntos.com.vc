@@ -53,11 +53,15 @@ class ApplicationPolicy
   end
 
   def done_by_owner_or_admin?
-    is_owned_by?(user) || is_admin?
+    is_owned_by?(user) || is_admin? || is_project_channel_admin?
   end
 
   def is_owned_by?(user)
     user.present? && record.user == user
+  end
+
+  def is_project_channel_admin?
+    user.present? && record.channels.try(:first).try(:users).try(:include?, user)
   end
 
   def is_channel_admin?
