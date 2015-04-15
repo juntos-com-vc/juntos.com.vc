@@ -2,7 +2,11 @@
   .banner-images
     - @banners.each do |banner|
       div
-        = image_tag(banner.image.url)
+        - if banner.link.present?
+          = link_to banner.link do
+            = image_tag(banner.image.url)
+        - else
+          = image_tag(banner.image.url)
   javascript:
     $('.banner-images').slick({autoplay: true, arrows: false, dots: false});
 - else

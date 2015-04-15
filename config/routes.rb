@@ -132,7 +132,7 @@ Catarse::Application.routes.draw do
   resources :feedbacks, only: [:create]
 
   namespace :admin do
-    resources :home_banners, only: [:index, :new, :create, :destroy]
+    resources :home_banners, only: [:index, :new, :create, :destroy, :edit, :update]
 
     resources :projects, only: [ :index, :update, :destroy ] do
       member do

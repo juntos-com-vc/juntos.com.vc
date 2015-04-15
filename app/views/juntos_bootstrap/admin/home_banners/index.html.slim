@@ -21,6 +21,7 @@ br
           th= t('.id')
           th
           th
+          th
       tbody
         - @home_banners.each do |home_banner|
           tr id=home_banner.id class=cycle("even", "odd")
@@ -28,5 +29,9 @@ br
             td
               = link_to home_banner.image.url, target: '_blank' do
                 = image_tag(home_banner.image.url, style: 'max-height: 200px;')
-            td= link_to t('.destroy'), admin_home_banner_path(home_banner), method: :delete, data: { confirm: t('.destroy_confirm') }
+            td= home_banner.link
+            td
+              = link_to t('.edit'), edit_admin_home_banner_path(home_banner)
+              | , 
+              = link_to t('.destroy'), admin_home_banner_path(home_banner), method: :delete, data: { confirm: t('.destroy_confirm') }
   .clearfix
