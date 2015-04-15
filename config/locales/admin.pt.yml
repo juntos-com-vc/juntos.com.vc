@@ -227,6 +227,16 @@ pt:
       charts:
         current_period: "Últimas 8 sem."
         last_year: "Ano anterior"
+    home_banners:
+      index:
+        menu: 'Banners da home'
+        destroy: 'Apagar'
+        destroy_confirm: 'Tem certeza? É uma ação sem volta'
+        new: 'Adicionar banner'
+        no_home_banners: 'Sem banners cadastrados'
+        title: 'Banners da homepage'
+      new:
+        title: 'Adicionar banner'
   channels:
     admin:
       <<: *admin

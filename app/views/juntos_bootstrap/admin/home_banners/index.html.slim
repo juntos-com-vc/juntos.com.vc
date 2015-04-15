@@ -1,0 +1,32 @@
+- content_for(:title)
+  = t(".title")
+= render 'shared/header_big'
+br
+br
+.admin
+  .w-container
+    .w-row
+      .w-col.w-col-5
+        h1= @title = t('.title')
+      .w-col.w-col-3.w-col-push-3
+        = link_to t('.new'), new_admin_home_banner_path, class: 'link'
+  br
+  br
+  - if @home_banners.empty?
+    = t('.no_home_banners')
+  - else
+    table.table
+      thead.card.card-secondary
+        tr
+          th= t('.id')
+          th
+          th
+      tbody
+        - @home_banners.each do |home_banner|
+          tr id=home_banner.id class=cycle("even", "odd")
+            td= home_banner.id
+            td
+              = link_to home_banner.image.url, target: '_blank' do
+                = image_tag(home_banner.image.url, style: 'max-height: 200px;')
+            td= link_to t('.destroy'), admin_home_banner_path(home_banner), method: :delete, data: { confirm: t('.destroy_confirm') }
+  .clearfix

@@ -1,4 +1,12 @@
-.banner
+- if @banners.any?
+  .banner-images
+    - @banners.each do |banner|
+      div
+        = image_tag(banner.image.url)
+  javascript:
+    $('.banner-images').slick({autoplay: true, arrows: false, dots: false});
+- else
+  .banner
 
 .transparency-headline
   .transparency-wrapper

@@ -30,6 +30,8 @@
               .divider
               - for menu, path in controller.menu do
                 = link_to menu, path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
+              - if current_user.admin?
+                = link_to t('admin.home_banners.index.menu'), admin_home_banners_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
               - if current_user.channel || namespace == 'channels'
                 .divider
                   = link_to t('channels.admin.partners_menu'), channels_admin_partners_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'

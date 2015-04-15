@@ -132,6 +132,8 @@ Catarse::Application.routes.draw do
   resources :feedbacks, only: [:create]
 
   namespace :admin do
+    resources :home_banners, only: [:index, :new, :create, :destroy]
+
     resources :projects, only: [ :index, :update, :destroy ] do
       member do
         put 'approve'

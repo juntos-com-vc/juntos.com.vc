@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
           @regular_partners = SitePartner.regular
           @site_partners = @featured_partners + @regular_partners
           @channels = Channel.order("random()").limit(5)
+          @banners = HomeBanner.all
         end
       end
     end
