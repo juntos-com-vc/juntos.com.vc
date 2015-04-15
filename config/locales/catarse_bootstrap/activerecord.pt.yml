@@ -34,6 +34,7 @@ pt:
         address_zip_code: "CEP"
         address_phone_number: "Telefone"
         value: valor do apoio
+        project_value: valor do apoio
         payer_name: "Nome Completo"
         payer_email: "Email"
         country: "País"

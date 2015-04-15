@@ -21,12 +21,12 @@ class Contribution < ActiveRecord::Base
   belongs_to :country
   has_many :payment_notifications
 
-  validates_presence_of :project, :user, :value, :project_value
+  validates_presence_of :project, :user, :project_value
   validates_numericality_of :value,
     greater_than_or_equal_to: 5.00,
     unless: -> (contribution) {
       contribution.user.try(:credits).to_f > 0
-    }
+    }, allow_nil: true
   validates_numericality_of :project_value,
     greater_than_or_equal_to: 5.00
 
