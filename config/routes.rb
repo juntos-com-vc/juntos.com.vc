@@ -96,6 +96,7 @@ Catarse::Application.routes.draw do
   # Channels
   constraints SubdomainConstraint do
     namespace :channels, path: '' do
+      get '/supported_by_channel', to: 'projects#supported_by_channel', format: :json
 
       namespace :admin do
         namespace :reports do
