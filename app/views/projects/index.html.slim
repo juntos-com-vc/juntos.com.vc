@@ -3,7 +3,7 @@
     - @banners.each do |banner|
       div
         - if banner.link.present?
-          = link_to banner.link do
+          = link_to banner.link, target: '_blank' do
             = image_tag(banner.image.url)
         - else
           = image_tag(banner.image.url)
