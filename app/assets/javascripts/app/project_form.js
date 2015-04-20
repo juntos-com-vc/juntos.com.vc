@@ -87,7 +87,7 @@ App.addChild('RemoveProjectPartner', {
   removeProjectPartner: function(event){
     event.preventDefault();
     var removeProjectPartner = this.el;
-    var parent = $(removeProjectPartner).parents('.w-row.thumbnail-card');
+    var parent = $(removeProjectPartner).parents('.w-col.thumbnail-card');
     parent.find('.thumbnail').remove();
     parent.find('input[name*="_destroy"]').val('true');
     $('.js-btn-submit').click();
