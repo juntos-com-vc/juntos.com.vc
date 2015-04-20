@@ -19,7 +19,7 @@
       br
       span realizadas
     .succesfull-projects
-      h2 = statistics.total_projects_success
+      h2 = Project.visible.select{ |p| p.progress >= 100}.count
       b projetos
       br
       span apoiados
