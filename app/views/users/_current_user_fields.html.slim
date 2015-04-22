@@ -59,7 +59,7 @@
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
             = f.input :doc13, as: :file
-            - if @user.doc10.url.present?
+            - if @user.doc13.url.present?
               = link_to @user.doc13.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
