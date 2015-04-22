@@ -268,6 +268,10 @@ class User < ActiveRecord::Base
     access_type == 'individual' || (approved_at && approved_at > Time.now - 1.year)
   end
 
+  def pending_documents?
+    access_type == 'individual' && !(doc12? && doc13?)
+  end
+
   def fix_name_encoding
     n = name
     n.gsub! 'Ã‡', 'Ç'
