@@ -94,12 +94,12 @@
     .content
       .title
         h2 = "Parceiros"
-      .logos[class="#{'js-partners' if @featured_partners.count > 4}"]
+      .logos[class="#{'js-featured-partners' if @featured_partners.count > 4}"]
         - @featured_partners.each do |partner|
           .featured
             = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.featured.url, title: partner.name
-      .logos[class="#{'js-partners' if @regular_partners.count > 6}"]
+      .logos[class="#{'js-regular-partners' if @regular_partners.count > 6}"]
         - @regular_partners.each do |partner|
           .regular
             = link_to partner.url, target: '_blank' do
@@ -107,12 +107,17 @@
 
       javascript:
         $(document).ready(function(){
-          $('.js-partners').slick({
+          $('.js-featured-partners').slick({
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              centerMode: true,
+              focusOnSelect: true,
+          });
+          $('.js-regular-partners').slick({
               slidesToShow: 5,
               slidesToScroll: 1,
               centerMode: true,
               focusOnSelect: true,
-              variableWidth: true
           });
         });
 
