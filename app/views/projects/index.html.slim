@@ -1,14 +1,12 @@
 - if @banners.any?
   .banner-images
     - @banners.each do |banner|
-      div
+      div[style="background-image: url('#{banner.image.url}')"]
         - if banner.link.present?
-          = link_to banner.link, target: '_blank' do
-            = image_tag(banner.image.url)
-        - else
-          = image_tag(banner.image.url)
-  javascript:
-    $('.banner-images').slick({autoplay: true, arrows: false, dots: false});
+          = link_to '', banner.link, target: '_blank'
+  - if @banners.count > 1
+    javascript:
+      $('.banner-images').slick({autoplay: true, arrows: false, dots: true});
 - else
   .banner
 
