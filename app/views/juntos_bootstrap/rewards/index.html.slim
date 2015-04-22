@@ -1,7 +1,8 @@
+- project_aumigo = parent.id == 481
 - collection.rank(:row_order).each do |reward|
-
+  - new_contribution = project_aumigo ? 'http://acaochego.doemaisdoemelhor.org.br/br/doacao/1/acaochego/aumigo-seu-apoio-e-nossa-esperanca/checkout?step=1' : new_project_contribution_path(parent, reward_id: reward.id)
   - sold_out = reward.sold_out?
-  .card.card-secondary.card-reward.u-radius.u-marginbottom-10[id="reward_#{reward.id}" data-new_contribution_url=new_project_contribution_path(parent, reward_id: reward.id) data-update_url=sort_project_reward_path(parent, reward) class="#{(policy(reward).update? ? 'clickable_owner sortable' : '')} #{(parent.online? && !policy(reward).update?  ? 'clickable'  : '' )} #{sold_out ? 'card-gone' : 'card-reward'} "]
+  .card.card-secondary.card-reward.u-radius.u-marginbottom-10[id="reward_#{reward.id}" data-new_contribution_url=new_contribution data-update_url=sort_project_reward_path(parent, reward) class="#{(policy(reward).update? ? 'clickable_owner sortable' : '')} #{(parent.online? && !policy(reward).update?  ? 'clickable'  : '' )} #{sold_out ? 'card-gone' : 'card-reward'} "]
     .u-marginbottom-20
       .fontsize-base.fontweight-semibold = t('.reward_title', minimum: reward.display_minimum).html_safe
       div

@@ -20,6 +20,8 @@
   meta property="og:site_name" content=CatarseSettings[:company_name]
   meta property="fb:admins" content="#{fb_admins}"
 
+- project_aumigo = @project.id == 481
+
 /- if @project.draft?
   /= render 'shared/header'
 /- else
@@ -114,7 +116,10 @@
     #project-sidebar.aside.w-col.w-col-4
       .project-contribution-card
         - if @project.online? && !@project.expired?
-          = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20"
+          - if project_aumigo
+            = link_to t('.contribute_project.submit'), 'http://acaochego.doemaisdoemelhor.org.br/br/doacao/1/acaochego/aumigo-seu-apoio-e-nossa-esperanca', id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20", target: '_blank'
+          - else
+            = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20"
 
         .fontsize-smaller.fontweight-light.u-marginbottom-30[class=@project.display_card_class]
           = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
