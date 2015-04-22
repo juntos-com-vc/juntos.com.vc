@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
           @regular_partners = SitePartner.regular
           @site_partners = @featured_partners + @regular_partners
           @channels = Channel.order("random()").limit(5)
-          @banners = HomeBanner.where.not(image: [nil, ''])
+          @banners = HomeBanner.where.not(image: [nil, '']).order(numeric_order: :asc)
         end
       end
     end

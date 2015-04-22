@@ -6,8 +6,10 @@
         .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
 
   .w-row
-    .w-col.w-col-6
+    .w-col.w-col-12
       = f.input :image, as: :file, required: true, hint: 'Height: 360px'
+    .w-col.w-col-6
+      = f.input :numeric_order, hint: 'Ordenação em ordem crescente (numérica)'
     .w-col.w-col-6
       = f.input :link, required: true
   .w-row.u-margintop-30.u-marginbottom-20
