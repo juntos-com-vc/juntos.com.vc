@@ -94,9 +94,14 @@
     .content
       .title
         h2 = "Parceiros"
-      .logos.js-partners
-        - @site_partners.each do |partner|
+      .logos[class="#{'js-partners' if @featured_partners.count > 4}"]
+        - @featured_partners.each do |partner|
           .featured
+            = link_to partner.url, target: '_blank' do
+              = image_tag partner.logo.featured.url, title: partner.name
+      .logos[class="#{'js-partners' if @regular_partners.count > 6}"]
+        - @regular_partners.each do |partner|
+          .regular
             = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.featured.url, title: partner.name
 
