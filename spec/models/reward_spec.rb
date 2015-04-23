@@ -32,11 +32,11 @@ RSpec.describe Reward, type: :model do
     r = build(:reward)
     r.minimum_value = -0.01
     expect(r).not_to be_valid
-    r.minimum_value = 9.99
+    r.minimum_value = 4.99
     expect(r).not_to be_valid
-    r.minimum_value = 10.00
+    r.minimum_value = 5.00
     expect(r).to be_valid
-    r.minimum_value = 10.01
+    r.minimum_value = 5.01
     expect(r).to be_valid
   end
 
