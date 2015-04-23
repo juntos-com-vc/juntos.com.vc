@@ -98,7 +98,7 @@
                       = project_partners_form.input_field :image, as: :file, label_html: { class: 'w-hidden' }
                       = project_partners_form.input :link, label: t('.partners.link'), input_html: { class: 'w-input text-field' }
                       - if project_partners_form.object.image.present?
-                        = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_image'
+                        = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_partner'
   .divider
   .w-hidden-small.w-hidden-tiny.section
     .w-container.w-hidden-small.w-hidden-tiny
