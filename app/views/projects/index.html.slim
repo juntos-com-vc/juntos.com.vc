@@ -1,4 +1,14 @@
-.banner
+- if @banners.any?
+  .banner-images
+    - @banners.each do |banner|
+      div[style="background-image: url('#{banner.image.url}')"]
+        - if banner.link.present?
+          = link_to '', banner.link, target: '_blank'
+  - if @banners.count > 1
+    javascript:
+      $('.banner-images').slick({autoplay: true, arrows: false, dots: true});
+- else
+  .banner
 
 .transparency-headline
   .transparency-wrapper
@@ -84,13 +94,30 @@
     .content
       .title
         h2 = "Parceiros"
-      .logos
+      .logos[class="#{'js-featured-partners' if @featured_partners.count > 4}"]
         - @featured_partners.each do |partner|
           .featured
             = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.featured.url, title: partner.name
-      .logos
+      .logos[class="#{'js-regular-partners' if @regular_partners.count > 6}"]
         - @regular_partners.each do |partner|
           .regular
             = link_to partner.url, target: '_blank' do
-              = image_tag partner.logo.regular.url, title: partner.name
+              = image_tag partner.logo.featured.url, title: partner.name
+
+      javascript:
+        $(document).ready(function(){
+          $('.js-featured-partners').slick({
+              slidesToShow: 4,
+              slidesToScroll: 1,
+              centerMode: true,
+              focusOnSelect: true,
+          });
+          $('.js-regular-partners').slick({
+              slidesToShow: 5,
+              slidesToScroll: 1,
+              centerMode: true,
+              focusOnSelect: true,
+          });
+        });
+

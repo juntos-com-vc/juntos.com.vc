@@ -8,7 +8,7 @@ class Admin::ProjectsController < Channels::Admin::BaseController
     @total_projects = collection.count(:all)
   end
 
-  [:approve, :reject, :push_to_draft, :push_to_trash].each do |name|
+  [:approve, :push_to_draft, :push_to_trash].each do |name|
     define_method name do
       @project = Project.find params[:id]
       @project.send("#{name.to_s}!")
@@ -38,6 +38,17 @@ class Admin::ProjectsController < Channels::Admin::BaseController
     redirect_to admin_projects_path
   end
 
+  def deny
+    @project = Project.find(params[:id])
+  end
+
+  def reject
+    @project = Project.find(params[:id])
+    @project.update_attributes(reject_params)
+    @project.reject!
+    redirect_to admin_projects_path, notice: 'Projeto rejeitado'
+  end
+
   protected
   def collection
     @scoped_projects = apply_scopes(end_of_association_chain).with_project_totals.without_state('deleted')
@@ -45,5 +56,9 @@ class Admin::ProjectsController < Channels::Admin::BaseController
       @scoped_projects = @scoped_projects.where("id IN (SELECT project_id FROM channels_projects WHERE channel_id = #{channel.id})")
     end
     @projects = @scoped_projects.page(params[:page])
+  end
+
+  def reject_params
+    params.require(:project).permit(:reject_reason)
   end
 end

@@ -102,7 +102,7 @@
                   = link_to approve_admin_project_path(project), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
                     .fa.fa-check= t('channels.admin.table.approve')
                 - if project.can_reject?
-                  = link_to reject_admin_project_path(project), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
+                  = link_to deny_admin_project_path(project), class:'w-dropdown-link dropdown-link fontsize-smaller' do
                     .fa.fa-close= t('channels.admin.table.reject')
                 - if project.can_push_to_draft?
                   = link_to  push_to_draft_admin_project_path(project), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do

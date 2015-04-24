@@ -1,0 +1,17 @@
+= simple_form_for [:admin, @home_banner] do |f|
+  - if @home_banner.errors.present?
+    .card.card-error.u-radius.zindex-10.u-marginbottom-30
+      .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
+      - @home_banner.errors.messages.each do |message|
+        .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
+
+  .w-row
+    .w-col.w-col-12
+      = f.input :image, as: :file, required: true, hint: 'Height: 360px'
+    .w-col.w-col-6
+      = f.input :numeric_order, hint: 'Ordenação em ordem crescente (numérica)'
+    .w-col.w-col-6
+      = f.input :link, required: true
+  .w-row.u-margintop-30.u-marginbottom-20
+    .w-col.w-col-3
+      = f.button :submit, class: 'btn bt-medium'

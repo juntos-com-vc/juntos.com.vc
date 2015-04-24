@@ -266,6 +266,10 @@ class Project < ActiveRecord::Base
     partner_name.present?
   end
 
+  def channel_json
+    as_json(only: [:name, :permalink], methods: [:total_contributions])
+  end
+
   private
   def self.between_dates(attribute, starts_at, ends_at)
     return all unless starts_at.present? && ends_at.present?

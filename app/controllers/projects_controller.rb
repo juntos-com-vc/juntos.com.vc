@@ -1,6 +1,6 @@
 # coding: utf-8
 class ProjectsController < ApplicationController
-  after_filter :verify_authorized, except: %i[index video video_embed embed embed_panel about_mobile]
+  after_filter :verify_authorized, except: %i[index video video_embed embed embed_panel about_mobile supported_by_channel]
   inherit_resources
   has_scope :pg_search, :by_category_id, :near_of
   has_scope :recent, :expiring, :failed, :successful, :in_funding, :recommended, :not_expired, type: :boolean
@@ -26,7 +26,9 @@ class ProjectsController < ApplicationController
           @recent   = Project.with_state('online').where(recommended: false).limit(3).includes(:project_total)
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
+          @site_partners = @featured_partners + @regular_partners
           @channels = Channel.order("random()").limit(5)
+          @banners = HomeBanner.where.not(image: [nil, '']).order(numeric_order: :asc)
         end
       end
     end
@@ -115,6 +117,10 @@ class ProjectsController < ApplicationController
   def embed_panel
     @title = resource.name
     render layout: false
+  end
+
+  def supported_by_channel
+    render json: channel.projects
   end
 
   protected

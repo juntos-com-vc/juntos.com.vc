@@ -96,6 +96,7 @@ Catarse::Application.routes.draw do
   # Channels
   constraints SubdomainConstraint do
     namespace :channels, path: '' do
+      get '/supported_by_channel', to: 'projects#supported_by_channel', format: :json
 
       namespace :admin do
         namespace :reports do
@@ -132,9 +133,12 @@ Catarse::Application.routes.draw do
   resources :feedbacks, only: [:create]
 
   namespace :admin do
+    resources :home_banners, only: [:index, :new, :create, :destroy, :edit, :update]
+
     resources :projects, only: [ :index, :update, :destroy ] do
       member do
         put 'approve'
+        get 'deny'
         put 'reject'
         put 'push_to_draft'
         put 'push_to_trash'
