@@ -85,7 +85,7 @@ class ProjectObserver < ActiveRecord::Observer
       contribution.notify_to_contributor(:pending_contribution_project_unsuccessful)
     end
 
-    request_refund_for_failed_project(project)
+    #request_refund_for_failed_project(project)
 
     project.notify_owner(:project_unsuccessful, { from_email: CatarseSettings[:email_projects] })
   end
