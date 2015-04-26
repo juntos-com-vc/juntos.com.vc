@@ -29,7 +29,7 @@ class Admin::ContributionsController < Admin::BaseController
       format.html { collection }
       format.csv do
         self.response_body = Enumerator.new do |y|
-          collection.copy_to do |line|
+          collection(:json).copy_to do |line|
             y << line
           end
         end
@@ -56,11 +56,19 @@ class Admin::ContributionsController < Admin::BaseController
     params.permit(contribution: [:user_id])
   end
 
-  def collection
+  def collection(format = :html)
     if current_user.present? && current_user.admin?
-      @contributions = apply_scopes(end_of_association_chain).without_state('deleted').reorder("contributions.created_at DESC").page(params[:page])
+      if format == :html
+        @contributions = apply_scopes(end_of_association_chain).without_state('deleted').reorder("contributions.created_at DESC").page(params[:page])
+      else
+        @contributions = apply_scopes(end_of_association_chain).without_state('deleted').reorder("contributions.created_at DESC")
+      end
     elsif current_user.try(:channel) == channel && channel.present?
-      @contributions = apply_scopes(end_of_association_chain).without_state('deleted').joins(project: :channels).where(channels: {id: channel.id}).reorder("contributions.created_at DESC").page(params[:page])
+      if format == :html
+        @contributions = apply_scopes(end_of_association_chain).without_state('deleted').joins(project: :channels).where(channels: {id: channel.id}).reorder("contributions.created_at DESC").page(params[:page])
+      else
+        @contributions = apply_scopes(end_of_association_chain).without_state('deleted').joins(project: :channels).where(channels: {id: channel.id}).reorder("contributions.created_at DESC")
+      end
     end
   end
 
