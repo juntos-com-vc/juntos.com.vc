@@ -11,7 +11,7 @@ class Reports::ContributionReportsForProjectOwnersController < Reports::BaseCont
 
     conditions.merge!(reward_id: params[:reward_id]) if params[:reward_id].present?
     conditions.merge!(state: (params[:state].present? ? params[:state] : 'confirmed'))
-    conditions.merge!(project_owner_id: current_user.id) unless current_user.try(:admin)
+    conditions.merge!(project_owner_id: current_user.id) unless (current_user.try(:admin) || (current_user.present? && channel.present? && channel.users.include?(current_user)))
     report_sql = ""
     I18n.t('contribution_report_to_project_owner').keys[0..-2].each{
       |column| report_sql << "#{column} AS \"#{I18n.t("contribution_report_to_project_owner.#{column}")}\","
