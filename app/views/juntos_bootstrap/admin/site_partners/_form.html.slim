@@ -21,8 +21,9 @@
     .w-col.w-col-4
       = form.input :logo, as: :file, required: false, required: true,
         hint: '(180X60)'
-      - if @site_partner.logo.present? 
+      - if @site_partner.logo?
         = image_tag(@site_partner.logo.featured.url)
+        = form.input :logo_cache, as: :hidden, input_html: { value: form.object.logo.url }
     .w-col.w-col-4
       = form.input :featured
 
