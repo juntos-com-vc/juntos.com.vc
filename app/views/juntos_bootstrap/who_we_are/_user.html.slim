@@ -1,11 +1,12 @@
 .w-col.w-col-3
-  .u-marginbottom-10.u-marginright-10
-    = image_tag user.larger_display_image
-  .fontcolor-yellow
-    = user.display_name.mb_chars.upcase.to_s
-  .fontcolor-yellow.fontsize-smallest
-    = user.job_title.try(:mb_chars).try(:upcase).try(:to_s)
-  .u-marginbottom-10.fontsize-smallest
-    = user.email
-  .fontsize-smallest
-    = user.bio
+  .u-paddingleft-5.u-paddingright-5
+    .u-marginbottom-10.u-marginright-10
+      = image_tag user.larger_display_image
+    .fontcolor-yellow
+      = user.display_name.mb_chars.upcase.to_s
+    .fontcolor-yellow.fontsize-smallest
+      = user.job_title.try(:mb_chars).try(:upcase).try(:to_s)
+    .u-marginbottom-10.fontsize-smallest
+      = user.email
+    .fontsize-smallest
+      = user.bio
