@@ -5,11 +5,12 @@ module User::OmniauthHandler
     has_many :oauth_providers, through: :authorizations
 
     def self.create_from_hash(hash)
+      name, email, bio = parse_name_email_bio(hash)
       create!(
         {
-          name: hash['info']['name'],
-          email: hash['info']['email'],
-          bio: (hash["info"]["description"][0..139] rescue nil),
+          name: name,
+          email: email,
+          bio: bio,
           locale: I18n.locale.to_s,
           image_url: "https://graph.facebook.com/#{hash['uid']}/picture?type=large"
         }
@@ -24,6 +25,28 @@ module User::OmniauthHandler
     def facebook_id
       auth = authorizations.joins(:oauth_provider).where("oauth_providers.name = 'facebook'").first
       auth.uid if auth
+    end
+
+    def self.parse_name_email_bio(hash)
+      name = hash['info']['name'].encode('iso-8859-1').force_encoding('utf-8')
+      unless name.valid_encoding?
+        name = hash['info']['name']
+      end
+      email = hash['info']['email'].encode('iso-8859-1').force_encoding('utf-8')
+      unless email.valid_encoding?
+        email = hash['info']['email']
+      end
+      bio = if text = hash['info']['description']
+              text = text[0..139].encode('iso-8859-1').force_encoding('utf-8')
+              if text.valid_encoding?
+                text
+              else
+                hash['info']['description']
+              end
+            else
+              nil
+            end
+      [name, email, bio]
     end
   end
 end
