@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
 
   before_action :referal_it!
 
+  before_action :set_country_payment_engine
+
   def channel
     Channel.find_by_permalink(request.subdomain.to_s)
   end
@@ -76,5 +78,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:access_type, :name, :email, :password, :newsletter)
     end
+  end
+
+  def set_country_payment_engine
+    session[:international_payment] ||= GeoIp.geolocation(request.remote_ip, precision: :country)[:country_code] == 'BR'
   end
 end

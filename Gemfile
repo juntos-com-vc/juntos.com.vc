@@ -97,6 +97,9 @@ gem 'moip', github: 'catarse/moip-ruby', ref: 'c0225ad71645cd1df35dafa1e45c9f092
 gem 'httpclient',     '>= 2.2.5'
 gem 'catarse_juntos_gift_cards', github: 'danielweinmann/catarse_juntos_gift_cards', ref: 'a865ff347c748934c1d872656c7e4984755d6d00'
 
+# Location by IP
+gem 'geo_ip', '~> 0.5.0'
+
 group :production do
   # Gem used to handle image uploading
   gem 'fog', '>= 1.3.1'
