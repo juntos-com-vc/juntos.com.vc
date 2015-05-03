@@ -93,7 +93,7 @@
               br
               strong=' t('.details.normal_email')
               = contribution.user.email
-            td.checkbox= best_in_place [:admin, contribution], :anonymous, method: :put, type: :checkbox, collection: [t('no'), t('yes')]
+            td= (contribution.anonymous ? t('yes') : t('no'))
             td= (contribution.credits ? t('yes') : t('no'))
             td= contribution.state
             td.w-col-1.w-col

@@ -53,7 +53,7 @@ class Admin::ContributionsController < Admin::BaseController
   end
 
   def permitted_params
-    params.permit(contribution: [:user_id])
+    params.permit(contribution: [:user_id, :anonymous])
   end
 
   def collection(format = :html)

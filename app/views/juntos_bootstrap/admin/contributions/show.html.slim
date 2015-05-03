@@ -48,6 +48,7 @@
           | &nbsp;
           = simple_form_for [:admin,resource] do |f|
             = f.input :user_id, label: ''
-            = f.submit "Atualizar usuário"
+            = f.input :anonymous, label: "Anônimo?"
+            = f.submit "Atualizar apoio"
 
 = render 'shared/footer_big'
