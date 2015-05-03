@@ -93,9 +93,10 @@
 
 
       #project_posts.content.w-col.w-col-8.w-hidden
-      - content_for :custom_javascripts do
-        javascript:
-            $(document).ready(function() { $('#project_posts').load("#{project_posts_path(@project)}"); });
+        = render 'dashboard_posts'
+      /- content_for :custom_javascripts do
+        /javascript:
+            /$(document).ready(function() { $('#project_posts').load("#{project_posts_path(@project)}"); });
       #project_contributions.content.w-col.w-col-8.w-hidden
         .w-row
           = render @contributions

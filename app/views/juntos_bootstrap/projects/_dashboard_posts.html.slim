@@ -1,0 +1,41 @@
+.section
+  .w-container
+    .w-row
+      .w-col.w-col-8
+        .project-news.u-marginbottom-60
+          - if policy(@project).update?
+            .fontsize-large.fontweight-semibold.u-marginbottom-30 Novidades
+            = simple_form_for @project,  html: { class: 'w-form card card-terciary' } do |f|
+              = render 'devise/shared/alert'
+              =  hidden_field_tag 'anchor', 'posts'
+              = f.simple_fields_for :posts, @project.posts.build do |form|
+                = form.label "Titulo", as: :string
+                = form.input_field :title, as: :string, class: 'w-input text-field positive'
+
+                = form.label "Novidade", as: :string
+                = form.input_field :comment, class: 'redactor text-field'
+
+                /.w-checkbox.w-clearfix.u-marginbottom-30
+                  /= form.check_box :exclusive, class: 'w-checkbox-input'
+                  /= form.label :exclusive, "Apenas para apoiadores", class: 'w-form-label fontsize-small'
+
+                .w-row
+                  .w-col.w-col-4.w-sub-col.u-marginbottom-20
+                    = form.submit "Publicar", class: 'btn btn-medium'
+                  .w-col.w-col-3
+                    = link_to "Cancelar", 'javascript:location.reload();', class: 'btn btn-medium btn-terciary'
+                  .w-col.w-col-5
+        .divider.u-marginbottom-30
+        .fontsize-large.fontweight-semibold.u-marginbottom-30 Novidades publicadas
+        - @project.posts.each do |post|
+          - if post.persisted?
+            .project-news.u-marginbottom-30
+              .w-row
+                .w-col.w-col-11.w-col-small-11.w-col-tiny-11
+                  .fontsize-large.fontweight-semibold= post.title
+                - if policy(@project).update?
+                  .w-col.w-col-1.w-col-small-1.w-col-tiny-1
+                    = link_to '', project_post_path(@project, post), class: 'btn btn-small btn-terciary fa fa-lg fa-trash btn-no-border', method: :delete
+              .fontsize-small.fontcolor-secondary.u-marginbottom-20= l(post.created_at, format: :posts)
+              .fontsize-small.fontcolor-secondary.u-marginbottom-20= post.comment_html
+            .divider.u-marginbottom-30

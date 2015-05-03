@@ -138,6 +138,10 @@ pt:
         title: 'Título'
         body: 'Conteúdo'
         visible: 'Publicar (Marque caso queira publicar essa nóvidade)'
+      posts:
+        title: Título
+        comment: Novidade
+        comment_html: Novidade
       category:
         name_pt: 'Nome em Português'
         name_en: 'Nome em Inglês'

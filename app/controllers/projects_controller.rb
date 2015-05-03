@@ -77,7 +77,11 @@ class ProjectsController < ApplicationController
           flash[:notice] = t('project.update.success')
         end
 
-        redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'dashboard_project')
+        if params[:anchor] == 'posts'
+          redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'posts')
+        else
+          redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'dashboard_project')
+        end
       end
     end
   end
@@ -126,7 +130,11 @@ class ProjectsController < ApplicationController
   protected
 
   def permitted_params
-    params.permit(policy(resource).permitted_attributes)
+    p = params.permit(policy(resource).permitted_attributes)
+    if params[:anchor] == 'posts'
+      p[:project][:posts_attributes]['0'].merge!({user: current_user})
+    end
+    p
   end
 
   def resource
