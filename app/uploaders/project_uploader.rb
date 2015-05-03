@@ -10,6 +10,11 @@ class ProjectUploader < ImageUploader
     "uploads/project/#{mounted_as}/#{model.id}"
   end
 
+  version :project_header do
+    process resize_to_fill: [1900, 400]
+    process convert: :jpg
+  end
+
   version :project_thumb do
     process resize_to_fill: [220,120]
     process convert: :jpg
