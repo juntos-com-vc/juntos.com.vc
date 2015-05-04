@@ -15,7 +15,7 @@ App.addChild('Payment', _.extend({
 
   show: function(){
     this.$el.slideDown('slow');
-    if(this.$el.data('international-payment') == true || this.$el.data('international-payment') == 'true') {
+    if(this.$el.data('international-payment') != 'BR') {
       this.selectInternationalPayment();
     }
   },
