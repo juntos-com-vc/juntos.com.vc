@@ -70,6 +70,7 @@ class ProjectsController < ApplicationController
   def update
     authorize resource
     update! do |format|
+      update_project_images_and_partners(permitted_params)
       format.html do
         if resource.errors.present?
           flash[:alert] = resource.errors.full_messages.to_sentence
@@ -143,5 +144,19 @@ class ProjectsController < ApplicationController
 
   def use_catarse_boostrap
     ["new", "create", "show", "about_mobile"].include?(action_name) ? 'juntos_bootstrap' : 'application'
+  end
+
+  def update_project_images_and_partners(parameters)
+    parameters[:project][:project_partners_attributes].each do |partner|
+      if partner[1][:id].present?
+        ProjectPartner.find(partner[1][:id]).update_attribute(:link, partner[1][:link])
+      end
+    end
+
+    parameters[:project][:project_images_attributes].each do |image|
+      if image[1][:id].present?
+        ProjectImage.find(image[1][:id]).update_attribute(:caption, image[1][:caption])
+      end
+    end
   end
 end
