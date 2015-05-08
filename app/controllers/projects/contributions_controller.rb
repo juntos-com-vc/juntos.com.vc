@@ -40,7 +40,7 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def new
-    @create_url = project_contributions_url(@project, {host: 'secure.juntos.com.vc', protocol: 'https'}) :
+    @create_url = project_contributions_url(@project, {host: 'secure.juntos.com.vc', protocol: 'https'})
 
     @contribution = Contribution.new(project: parent, user: current_user)
     authorize @contribution
