@@ -7,7 +7,7 @@
 #new-contribution.section
   .w-container
     .w-row
-      = simple_form_for [parent, @contribution], html: { id: 'contribution_form' } do |form|
+      = simple_form_for [parent, @contribution], url: @create_url, html: { id: 'contribution_form' } do |form|
         = form.input :preferred_payment_engine, as: :hidden
         .w-col.w-col-7
           /.w-hidden-small.w-hidden-tiny.u-marginbottom-10.fontsize-largest = t('.title')

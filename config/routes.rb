@@ -1,5 +1,14 @@
 Catarse::Application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+
+  def ssl_options
+    if CatarseSettings[:secure_host]
+      {protocol: 'https', host: CatarseSettings[:secure_host]}
+    else
+      {}
+    end
+  end
+
   devise_for(
     :users,
     {
@@ -41,7 +50,7 @@ Catarse::Application.routes.draw do
         post 'sort'
       end
     end
-    resources :contributions, {controller: 'projects/contributions'} do
+    resources :contributions, {controller: 'projects/contributions'}.merge(ssl_options) do
       member do
         put 'credits_checkout'
       end

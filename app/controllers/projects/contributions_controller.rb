@@ -40,6 +40,10 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def new
+    @create_url = ::CatarseSettings[:secure_host] ?
+      project_contributions_url(@project, {host: ::CatarseSettings[:secure_host], protocol: 'https'}) :
+      project_contributions_path(@project)
+
     @contribution = Contribution.new(project: parent, user: current_user)
     authorize @contribution
 
