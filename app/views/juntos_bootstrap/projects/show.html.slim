@@ -49,7 +49,7 @@
             span.badge = @project.total_contributions
           = link_to '#comments', id: 'comments_link', class: 'nav-tab' , data: {target: '#project_comments'}, style: "background-color: #{@color};" do
             => t('.menu.comments')
-            fb:comments-count href="#{request.base_url}/#{request.fullpath.split('/')[2]}" class="badge" style="display: inline"
+            span class="fb-comments-count" data-href="#{request.base_url}/#{@project.permalink}" class="badge" style="display: inline"
               |&nbsp;
           - if policy(@project).update?
             = link_to '#project_metrics', id: 'project_metrics_link', class: 'nav-tab' , data: {target: '#project_metrics'}, style: "background-color: #{@color};" do
