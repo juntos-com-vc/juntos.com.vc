@@ -147,15 +147,19 @@ class ProjectsController < ApplicationController
   end
 
   def update_project_images_and_partners(parameters)
-    parameters[:project][:project_partners_attributes].each do |partner|
-      if partner[1][:id].present?
-        ProjectPartner.find(partner[1][:id]).update_attribute(:link, partner[1][:link])
+    if parameters[:project][:project_partners_attributes]
+      parameters[:project][:project_partners_attributes].each do |partner|
+        if partner[1][:id].present?
+          ProjectPartner.find(partner[1][:id]).update_attribute(:link, partner[1][:link])
+        end
       end
     end
 
-    parameters[:project][:project_images_attributes].each do |image|
-      if image[1][:id].present?
-        ProjectImage.find(image[1][:id]).update_attribute(:caption, image[1][:caption])
+    if parameters[:project][:project_images_attributes]
+      parameters[:project][:project_images_attributes].each do |image|
+        if image[1][:id].present?
+          ProjectImage.find(image[1][:id]).update_attribute(:caption, image[1][:caption])
+        end
       end
     end
   end
