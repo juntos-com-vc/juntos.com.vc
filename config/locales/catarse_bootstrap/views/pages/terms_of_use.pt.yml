@@ -4,7 +4,7 @@ pt:
       title: Termos de uso e Política de Privacidade
       content:
         start: "Bem-vindo ao Juntos.com.vc, serviço oferecido pela Associação Juntos com Você inscrita no CNPJ 15.539.377/0001-90."
-        start_text: 'O acesso ao conteúdo do site http://www.juntos.com.vc (“SITE”) dependerá da sua plena concordância com o Termo de Uso e Política de Privacidade (“TERMO DE USO”) aqui previstos, então a sua leitura e posterior aceitação é indispensável.
+        start_text: 'O acesso ao conteúdo do site http://www.juntos.com.vc (“SITE”) dependerá da sua plena concordância com o Termo de Uso e Política de Privacidade (“TERMO DE USO”) aqui previstos, então a sua leitura e posterior aceitação são indispensáveis.
         <br>
 O TERMO DE USO tem como objetivo estabelecer os direitos e obrigações aos doadores, entidades ou empreendedores sociais participantes, bem como parceiros fomentadores, e esclarecer qual o tratamento conferido aos dados e informações fornecidos por aqueles que se cadastrarem para acesso a qualquer área do SITE, conforme as regras e informações abaixo previstas: '
         what_is: 'I. O QUE É A Juntos.com.vc'
@@ -16,7 +16,7 @@ A Juntos.com.vc não cobra nenhum tipo de comissão de nenhum PARTICIPANTE sobre
 <br>
 Embora não haja cobrança de nenhuma comissão, a Juntos.com,vc é uma associação sem fins lucrativos, que depende também de recursos de terceiros para que possa manter sua plataforma. Assim, o usuário que doar para algum projeto cadastrado no SITE também terá a opção de doar para a Juntos.com.vc, e com isto, colaborar ainda mais para a sustentabilidade da plataforma.'
         partners_and_sharing: 'II. PARCEIROS ESTRATÉGICOS E COMPARTILHAMENTO DE PLATAFORMA'
-        partners_and_sharing_text: 'A Juntos.com.vc também apoia outros canais de captação de recursos para projetos, através do compartilhamento de sua plataforma, cadastro de usuários e outras funcionalidades, com o que o usuário desde já concorda.
+        partners_and_sharing_text: 'A Juntos.com.vc também apóia outros canais de captação de recursos para projetos, através do compartilhamento de sua plataforma, cadastro de usuários e outras funcionalidades, com o que o usuário desde já concorda.
 <br>
 No entanto, é de exclusiva responsabilidade de cada canal parceiro o gerenciamento de suas atividades, incluindo, mas não se limitando, a curadoria dos projetos candidatos, o controle de valores recebidos, e regras de uso da plataforma para seus projetos.'
         guideline: 'III. UTILIZAÇÃO DA PLATAFORMA'
@@ -49,7 +49,7 @@ gratificação;
 <br>
 h – ler na íntegra e aceitar este TERMO DE USO;
 <br>
-i - criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/), conforme indicado no Item VI abaixo.
+i - criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/) ou ao Paypal (https://www.paypal.com/), conforme indicado no Item VI abaixo.
 <br>
 1.1 Caso a entidade indique forma de gratificação aos seus doadores, esta será inteira e diretamente responsável pelo cumprimento da gratificação perante os doadores, não havendo qualquer responsabilidade, direta ou indireta, por parte do SITE.
 <br>
@@ -88,9 +88,9 @@ ficará disponível durante o tempo que o SITE vier a aprovar.
 <br>
 1.11. A ENTIDADE reconhece que o SITE não fará controles prévios das opiniões dos internautas quanto ao projeto e/ou ENTIDADE, e que qualquer visitante do SITE terá acesso ao conteúdo de seu projeto e que poderá fazer comentários, curti-lo ou denunciá-lo. Logo, caso a ENTIDADE sinta-se desconfortável com qualquer manifestação de terceiros no SITE, poderá solicitar ao SITE a exclusão imediata do conteúdo, cabendo ao SITE realizar a avaliação sobre aquele pedido.'
         donation_account: 'VI. CRIAÇÃO DE CONTA-DOAÇÃO PARA O PROJETO'
-        donation_account_text: '1. Durante o cadastro do projeto pela ENTIDADE para sua seleção, a ENTIDADE deverá criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/), sistema que processa todas as transações financeiras do SITE, ou outro sistema que vier a ser indicado pela Juntos.com.vc.
+        donation_account_text: '1. Durante o cadastro do projeto pela ENTIDADE para sua seleção, a ENTIDADE deverá criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/) ou ao Paypal (https://www.paypal.com/), sistemas que processam todas as transações financeiras do SITE, ou outro sistema que vier a ser indicado pela Juntos.com.vc.
 <br>
-1.1 O SITE não cobra nenhum tipo de comissão de nenhum PARTICIPANTE ou ENTIDADE sobre as doações realizadas, exceto as taxas do MoIP (sistema de pagamentos) que cobra a seguinte comissão para os projetos bem sucedidos: R$0,39 + 2,49% dos pagamentos à vista (Moip, débito online e boleto bancário), ou R$0,39 + 4,29% dos pagamentos feitos com cartão de crédito. Esses percentuais poderão ser alterados de tempos em tempos, de acordo com as regras do MoIP. Para qualquer esclarecimento vide os termos de uso da MoIP.'
+1.1 O SITE não cobra nenhum tipo de comissão de nenhum PARTICIPANTE ou ENTIDADE sobre as doações realizadas, exceto as taxas do MoIP (sistema de pagamentos) que cobra a seguinte comissão para os projetos bem sucedidos: R$0,39 + 2,49% dos pagamentos à vista (Moip, débito online e boleto bancário), ou R$0,39 + 4,29% dos pagamentos feitos com cartão de crédito ou pelo Paypal 5% fixo independente da forma de pagamento . Esses percentuais poderão ser alterados de tempos em tempos, de acordo com as regras do MoIP/Paypal. Para qualquer esclarecimento vide os termos de uso da MoIP/Paypal.'
         getting_updated: 'VII. ACOMPANHAMENTO DOS PROJETOS APROVADOS PELO SITE'
         getting_updated_text: '1. Após executar o projeto com o valor arrecadado no SITE, a ENTIDADE deverá enviar ao SITE o material respectivo indicando a realização do projeto, tais como textos, fotos e vídeos. Essa atualização é muito importante para que os doadores possam ter
 informações sobre a doação realizada. Caso este material não seja enviado em até 10 dias úteis após a realização do projeto e/ou após solicitação feita pelo SITE, o CNPJ da ENTIDADE será bloqueado no SITE para fins de participação futura.
@@ -113,7 +113,7 @@ d ) Estipular o valor que deseja doar para o projeto, devendo ainda observar, no
 <br>
 e ) Escolher, caso desejar, qual reconhecimento deseja receber diretamente da entidade responsável pelo projeto, nos termos das condições estabelecidas pela própria entidade para o projeto selecionado;
 <br>
-f) Preencher seus dados e selecionar a forma de doação que pretende realizar, sendo que esta etapa será gerenciada pela MoIP, empresa de pagamentos online(vide termos de uso do MoIP);
+f) Preencher seus dados e selecionar a forma de doação que pretende realizar, sendo que esta etapa será gerenciada pela MoIP/Paypal, empresas de pagamentos online(vide termos de uso do MoIP/Paypal);
 <br>
 g) O valor doado irá para uma conta provisória do SITE, e ficará bloqueado até que o projeto da ENTIDADE escolhida atinja ou ultrapasse a meta de valor arrecadado para aquele projeto, quando então a doação será transferida para a conta da ENTIDADE, conforme as regras estabelecidas pela empresa gerenciadora destas contas.
 <br>
@@ -121,7 +121,7 @@ g) O valor doado irá para uma conta provisória do SITE, e ficará bloqueado at
 <br>
 2.2. Os PARTICIPANTES doadores reconhecem que seu nome, marca ou nome fantasia e imagem serão publicadas na página do projeto para o qual contribuiu no SITE, exceto quando optarem pela colaboração anônima.
 <br>
-2.3 O valor arrecadado para um projeto pelo SITE Juntos.com.vc só é transferido para a ENTIDADE e os reconhecimentos oferecidos só serão entregues aos doadores, caso a arrecadação atinja ou supere a meta financeira declarada pela ENTIDADE dentro do prazo pré-estabelecido por ela no momento de cadastro do projeto. Caso isto não ocorra, a entidade não receberá qualquer quantia relativa àquele projeto, os reconhecimentos não serão entregues e o doador recebe de volta o valor de sua doação pela agência MoiP ou outra que o SITE vier a indicar .
+2.3 O valor arrecadado para um projeto pelo SITE Juntos.com.vc só é transferido para a ENTIDADE e os reconhecimentos oferecidos só serão entregues aos doadores, caso a arrecadação atinja ou supere a meta financeira declarada pela ENTIDADE dentro do prazo pré-estabelecido por ela no momento de cadastro do projeto. Caso isto não ocorra, a entidade não receberá qualquer quantia relativa àquele projeto, os reconhecimentos não serão entregues e o doador recebe de volta o valor de sua doação pela agência MoiP/Paypal ou outra que o SITE vier a indicar.
 <br>
 2.4 Além de todas as informações públicas do SITE, quando um projeto atingir sua meta, a entidade responsável pelo projeto será informada sobre os nomes e e-mails de todos os doadores que aceitaram eventuais gratificações, a fim de acertarem sua entrega.
 <br>
