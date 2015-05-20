@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
           @recommends = ProjectsForHome.recommends.includes(:project_total)
           @projects_near = Project.with_state('online').near_of(current_user.address_state).order("random()").limit(3).includes(:project_total) if current_user
           @expiring = ProjectsForHome.expiring.where(recommended: false).includes(:project_total)
-          @recent   = Project.with_state('online').where(recommended: false).limit(3).includes(:project_total)
+          @recent   = Project.with_state('online').where(recommended: false).limit(6).includes(:project_total)
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
           @site_partners = @featured_partners + @regular_partners
