@@ -15,7 +15,7 @@
           .w-form
               = render 'devise/shared/alert'
               - if (current_user && current_user.admin?) || (current_user && channel && channel.users.include?(current_user))
-                - if @project.in_analysis?
+                - if @project.in_analysis? || current_user.admin?
                   .w-row.card.card-terciary.u-marginbottom-20
                     .w-col.w-col-5
                       label.field-label.fontweight-semibold for="name-8"= t('.online_date')
