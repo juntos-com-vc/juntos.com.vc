@@ -27,17 +27,29 @@
       .circle
         - circle_id = (project.id + Time.now.to_f).to_s
         .project_progress id="#{circle_id}"
-        - content_for :custom_javascripts do
-          javascript:
-            (function() {
-              Circles.create({
-                id: "#{circle_id}", radius: 40, value: "#{project.progress}",
-                text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.category.color )};\">#{project.progress}%<div><span>da meta</span></div></div>",
-                colors: ['#CCC', "#{ ( defined?(:channel) && channel.present? ? channel.secondary_color : '#4E6FB5' ) }"],
-                duration: 0,
-                width: 7
-              });
-            })();
+        - if request.xhr?
+            javascript:
+              (function() {
+                Circles.create({
+                  id: "#{circle_id}", radius: 40, value: "#{project.progress}",
+                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.category.color )};\">#{project.progress}%<div><span>da meta</span></div></div>",
+                  colors: ['#CCC', "#{ ( defined?(:channel) && channel.present? ? channel.secondary_color : '#4E6FB5' ) }"],
+                  duration: 0,
+                  width: 7
+                });
+              })();
+        - else
+          - content_for :custom_javascripts do
+            javascript:
+              (function() {
+                Circles.create({
+                  id: "#{circle_id}", radius: 40, value: "#{project.progress}",
+                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.category.color )};\">#{project.progress}%<div><span>da meta</span></div></div>",
+                  colors: ['#CCC', "#{ ( defined?(:channel) && channel.present? ? channel.secondary_color : '#4E6FB5' ) }"],
+                  duration: 0,
+                  width: 7
+                });
+              })();
       .info
         - unless project.expired?
           .time-remaining
