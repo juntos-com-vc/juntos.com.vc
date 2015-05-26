@@ -38,7 +38,7 @@
             = f.input :address_zip_code, as: :string, input_html: {autocomplete: 'off'}
             = f.input :address_city, as: :string
             = f.input :address_state, as: :select, collection: State.array
-            = f.input :birth_date, as: :date
+            = f.input :birth_date, as: :date, start_year: 1930, end_year: Date.today.year
             = f.input :job_title, as: :string
           - if current_user.try(:admin?)
             .profile
