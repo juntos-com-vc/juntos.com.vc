@@ -3,5 +3,5 @@
   .w-row.u-marginbottom-40
     - target_path =  new_project_path
     - if @profile.permalink == 'garupa'
-      target_path = 'http://garupa.org.br/envie-sua-ideia/'
+      - target_path = 'http://garupa.org.br/envie-sua-ideia/'
     .w-col.w-col-4.w-col-push-4= link_to 'Enviar projeto', target_path, class: 'btn btn-large'
