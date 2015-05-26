@@ -17,6 +17,13 @@
     .w-row
       .w-col.w-col-12
         = @project.headline
+    - if %w(juntosGSA2015 aprendaladaca).include?(@project.permalink)
+      .w-row.project-progress-stats
+        - if @project.permalink == 'juntosGSA2015'
+          = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/gsa1.png', alt: @project.display_pledged)
+        - if @project.permalink == 'aprendaladaca'
+          = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/estudantes1.png', alt: @project.display_pledged)
+
     .w-row.project-stats
       .w-col.w-col-12
         .w-col.w-col-4
