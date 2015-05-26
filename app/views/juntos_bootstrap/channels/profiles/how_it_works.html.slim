@@ -1,4 +1,7 @@
 = render partial: 'page', locals: { title: "#{t('.title.channel')}: #{@profile.name}", content_html: @profile.how_it_works_html, title_html: t('.title.channel', channel_link:link_to(@profile.name, root_path, class: 'standard-link')) }
 .w-container
   .w-row.u-marginbottom-40
-    .w-col.w-col-4.w-col-push-4= link_to "Enviar projeto", new_project_path, class: 'btn btn-large'
+    - target_path =  new_project_path
+    - if @profile.permalink == 'garupa'
+      target_path = 'http://garupa.org.br/envie-sua-ideia/'
+    .w-col.w-col-4.w-col-push-4= link_to 'Enviar projeto', target_path, class: 'btn btn-large'
