@@ -25,10 +25,11 @@
           br/
           p Você pode doar qualquer valor à partir de R$ 5,00.
           .u-radius
-            .back-reward-input-reward.placeholder
-              | Valor (em R$)
-              p VOCÊ QUER DOAR
-            = form.input_field :project_value, value: @contribution.project_value, as: :string, class: 'w-input back-reward-input-reward u-marginbottom-20'
+            label
+              .back-reward-input-reward.placeholder
+                | Valor (em R$)
+                p VOCÊ QUER DOAR
+              = form.input_field :project_value, value: @contribution.project_value, as: :string, class: 'w-input back-reward-input-reward u-marginbottom-20'
             .minimum-value
               == t('.minimum_disclaimer')
           .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Contribuir para a plataforma
