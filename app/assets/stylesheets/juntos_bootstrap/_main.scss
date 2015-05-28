@@ -1359,21 +1359,21 @@ p {
 .back-reward-input-reward:focus {
   border-top-color: #FFB74D;
 }
-.back-reward-input-reward.placeholder {
-  font-size: 15px;
-  display: inline-block;
-  width: 160px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  padding-top: 15px;
-  padding-left: 17px;
-  float: left;
-  border-style: solid none solid solid;
-  border-color: #FFB74D;
-  border-radius: 10px 0px 0px 10px;
-  background-color: rgba(255, 255, 255, 0.74);
-  color: #CCCCCC;
-}
+/*.back-reward-input-reward.placeholder {*/
+  /*font-size: 15px;*/
+  /*display: inline-block;*/
+  /*width: 160px;*/
+  /*margin-right: 0px;*/
+  /*margin-bottom: 0px;*/
+  /*padding-top: 15px;*/
+  /*padding-left: 17px;*/
+  /*float: left;*/
+  /*border-style: solid none solid solid;*/
+  /*border-color: #FFB74D;*/
+  /*border-radius: 10px 0px 0px 10px;*/
+  /*background-color: rgba(255, 255, 255, 0.74);*/
+  /*color: #CCCCCC;*/
+/*}*/
 .back-reward-radio-reward {
   display: block;
   margin-top: 0px;
@@ -3917,8 +3917,8 @@ section.devise-body-section .access-type-field input {
   }
 }
 .text-field.back-reward-input-reward {
-  border-style: solid solid solid none !important;
-  border-radius: 0 10px 10px 0;
+  border-style: solid solid solid solid !important;
+  border-radius: 10px 10px 10px 10px;
   border-color: #FFB74D;
   color: #FFB74D;
   background-color: white;
@@ -3926,6 +3926,13 @@ section.devise-body-section .access-type-field input {
   font-weight: bold;
   text-align: right;
   padding-right: 20px;
+  width: 100%;
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder,
+  &:-moz-placeholder {
+    /*font-size: 12px;*/
+  }
 }
 .minimum-value {
   font-size: 12px;
