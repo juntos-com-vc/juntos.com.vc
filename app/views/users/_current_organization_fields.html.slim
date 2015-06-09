@@ -43,7 +43,7 @@
             = f.input :responsible_cpf, as: :string, label: t('activerecord.attributes.organization.responsible_cpf')
             = f.input :gender, as: :radio, collection: {male: 'Masculino', female: 'Feminino'}.invert, label: t('activerecord.attributes.organization.gender'), checked: "individual"
           .socialmidia
-            = f.input :moip_login, label: (t('activerecord.attributes.user.moip_login') + '  ' +  link_to(t('activerecord.attributes.user.moip_login_hint'), "http://suporte.catarse.me/hc/pt-br/articles/203083097-Criar-uma-conta-no-MoIP")).html_safe
+            = f.input :moip_login, label: t('activerecord.attributes.user.moip_login')
             = f.input :phone_number, required: false, as: :string
             = f.input :mobile_phone, as: :string
             = f.input :email, as: :string
