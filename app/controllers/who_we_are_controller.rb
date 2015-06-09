@@ -3,10 +3,10 @@ class WhoWeAreController < ApplicationController
 
   def show
     @page = Page.find_by(name: Page.names[:who_we_are])
-    @staff = User.where(staff: User.staffs[:team]).limit(4)
-    @financial_board = User.where(staff: User.staffs[:financial_board]).limit(4)
-    @technical_board = User.where(staff: User.staffs[:technical_board]).limit(4)
-    @advice_board = User.where(staff: User.staffs[:advice_board]).limit(4)
+    @staff = User.where(staff: User.staffs[:team])
+    @financial_board = User.where(staff: User.staffs[:financial_board])
+    @technical_board = User.where(staff: User.staffs[:technical_board])
+    @advice_board = User.where(staff: User.staffs[:advice_board])
     @transparency_report = TransparencyReport.last
     @mission = Page.find_by(name: Page.names[:mission])
     @vision = Page.find_by(name: Page.names[:vision])
