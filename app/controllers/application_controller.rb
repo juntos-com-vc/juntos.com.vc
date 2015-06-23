@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
 
   before_action :referal_it!
 
-  before_action :set_country_payment_engine
-
   def channel
     Channel.find_by_permalink(request.subdomain.to_s)
   end

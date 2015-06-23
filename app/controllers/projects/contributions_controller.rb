@@ -9,6 +9,7 @@ class Projects::ContributionsController < ApplicationController
   belongs_to :project
   before_filter :detect_old_browsers, only: [:new, :create]
   before_filter :load_channel, only: [:edit, :new]
+  before_action :set_country_payment_engine
   helper_method :avaiable_payment_engines
 
   def edit
