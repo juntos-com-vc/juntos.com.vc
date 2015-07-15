@@ -30,11 +30,11 @@
             .minimum-value
               == t('.minimum_disclaimer')
           - if channel && channel.permalink == 'garupa'
-            .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Contribuir para a plataforma
+            .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Contribuir para a Associação Garupa
             p.minimum-value Contribuir para a Associação Garupa
             .platform_contribution_input
               = form.input_field :platform_value, value: @contribution.platform_value, as: :string, class: 'w-input  u-marginbottom-20'
-              span R$ para a plataforma
+              span R$ para a associação
             br/
           - elsif !channel
             .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Contribuir para a plataforma
