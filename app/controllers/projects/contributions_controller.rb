@@ -41,7 +41,12 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def new
-    @create_url = project_contributions_url(@project, {host: 'secure.juntos.com.vc', protocol: 'https'})
+    options = if Rails.env.production?
+                { host: 'secure.juntos.com.vc', protocol: 'https' }
+              else
+                {}
+              end
+    @create_url = project_contributions_url(@project, options)
 
     @contribution = Contribution.new(project: parent, user: current_user)
     authorize @contribution
