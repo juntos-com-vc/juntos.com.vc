@@ -1,10 +1,10 @@
 - if contribution.anonymous
   .contribution.u-margintop-10
-    = link_to '#' do
+    = link_to '#', title: t('projects.contributions.contribution.anonymous_contribution') do
       .contribution-thumb.u-left[style="background-image: url('#{asset_url('user.png')}'); background-size: cover; background-position: center;"]
 - else
   .contribution.u-margintop-10
-    = link_to user_path(contribution.user) do
+    = link_to user_path(contribution.user), title: contribution.user.name do
       .contribution-thumb.u-left[style="background-image: url('#{contribution.user.display_image}'); background-size: cover; background-position: center;"]
 /- if contribution.anonymous
   /.w-clearfix.u-marginbottom-20
