@@ -21,4 +21,12 @@ App.addChild('User', _.extend({
   },
 
 }, Skull.Tabs));
+$(function(){
+  $('.s3-uploader').S3Uploader();
+  if ($('body').data('controller') == 'users' && $('body').data('action') == 'show'){
+    $(document).one('s3_uploads_complete', function(){
+      location.reload();
+    })
+  }
+});
 

@@ -77,6 +77,7 @@ gem 'kaminari'
 # Uploads
 gem 'carrierwave', '~> 0.10.0'
 gem 'rmagick', :require => 'RMagick'
+gem 's3_direct_upload'
 
 # Other Tools
 gem 'to_xls'

@@ -1,5 +1,5 @@
 App.addChild('ProjectForm', _.extend({
-  el: 'form#project_form',
+  el: 'form.project_form',
 
   events: {
     'blur input' : 'checkInput',
