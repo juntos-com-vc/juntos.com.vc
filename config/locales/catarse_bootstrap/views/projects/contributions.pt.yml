@@ -87,7 +87,9 @@ pt:
         MoIP:
           name: 'MoIP'
           description: "Pagamento nacional"
-        Credits: 'Créditos'
+        Credits:
+          name: 'Créditos'
+          description: 'Créditos'
         error: Ooops. Ocorreu um erro ao registrar seu apoio. Por favor, tente novamente.
         juntos_gift_cards_info:
           title: Pagar com cartão doação
