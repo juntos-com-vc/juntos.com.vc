@@ -9,9 +9,6 @@ br/
 | Infelizmente, o projeto #{link_to project.name, project_link, target: '__blank'} não foi aceito no #{company_name}.
 br/
 br/
-| Acreditamos que o projeto não se enquadra no perfil de projetos hospedados no #{company_name}.
-br/
-br/
 - if project.reject_reason.present?
   = project.reject_reason
   br/
