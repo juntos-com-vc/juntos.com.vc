@@ -40,7 +40,7 @@ pt:
         select: "Selecione uma opção"
         traffic_sources: "Como você conheceu o Juntos.com.vc?"
         name: ""
-        permalink: "É o endereço do seu projeto, deixe-a simples. Tente não usar underline, hífen e etc."
+        permalink: "URL é o endereço do seu projeto dentro da nossa plataforma, deixe-a simples. Tente não usar underline, hífen e etc. Por exemplo: colocando 'projetobacana' a URL do seu projeto ficará juntos.com.vc/projetobacana"
         category: "Antes de enviar, explore e se inspire em outros projetos da mesma categoria."
         goal: "Grande parte dos apoios serão de pessoas próximas a você. Pense como conseguir pelo menos 50% do valor da meta dentro da sua rede de contatos."
         online_days: "Em média os projetos ficam no ar por 40 dias. O prazo máximo da campanha é de 60 dias."

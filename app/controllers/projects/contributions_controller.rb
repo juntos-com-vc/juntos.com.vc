@@ -9,6 +9,7 @@ class Projects::ContributionsController < ApplicationController
   belongs_to :project
   before_filter :detect_old_browsers, only: [:new, :create]
   before_filter :load_channel, only: [:edit, :new]
+  before_action :set_country_payment_engine
   helper_method :avaiable_payment_engines
 
   def edit
@@ -40,7 +41,12 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def new
-    @create_url = project_contributions_url(@project, {host: 'secure.juntos.com.vc', protocol: 'https'})
+    options = if Rails.env.production?
+                { host: 'secure.juntos.com.vc', protocol: 'https' }
+              else
+                {}
+              end
+    @create_url = project_contributions_url(@project, options)
 
     @contribution = Contribution.new(project: parent, user: current_user)
     authorize @contribution

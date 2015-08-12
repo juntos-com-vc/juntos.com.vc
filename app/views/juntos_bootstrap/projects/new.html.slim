@@ -61,7 +61,7 @@
                       .fontcolor-secondary.fontsize-base.u-text-center
                         = t('.form.info.permalink')
                 .w-col.w-col-8.w-col-small-6.w-col-tiny-6
-                    = form.input_field :permalink, as: :string, class: 'medium medium postfix', required: false
+                    = form.input_field :permalink, as: :string, class: 'medium medium postfix', required: false, placeholder: 'projetobacana'
             .u-marginbottom-40
               label.fontsize-large.field-label for="field"
                 - if channel.present?

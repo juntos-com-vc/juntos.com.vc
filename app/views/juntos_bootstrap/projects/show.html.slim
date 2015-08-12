@@ -116,7 +116,7 @@
 
     #project-sidebar.aside.w-col.w-col-4
       .project-contribution-card
-        - if @project.online? && !@project.expired?
+        - if @project.online? && !@project.expired? && @project.id != 629
           - if project_aumigo
             = link_to t('.contribute_project.submit'), 'http://acaochego.doemaisdoemelhor.org.br/br/doacao/1/acaochego/aumigo-seu-apoio-e-nossa-esperanca', id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20", target: '_blank'
           - else

@@ -2,13 +2,13 @@
 
   - if contribution.anonymous
 
-    = image_tag 'user.png', class: "project-backer-thumb"
+    = image_tag 'user.png', class: "project-backer-thumb", title: t('projects.contributions.contribution.anonymous_contribution')
     p.body-big.project-backer-name = t('.anonymous_contribution')
     p.body-small = l(contribution.confirmed_at, format: :simple)
     p.body-small = t('.anonymous_description')
 
   - else
-    = link_to user_path(contribution.user) do
+    = link_to user_path(contribution.user), title: contribution.user.name do
       = image_tag contribution.user.display_image, class: 'project-backer-thumb'
 
     p.body-big.project-backer-name
