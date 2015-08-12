@@ -21,7 +21,7 @@ class Admin::ProjectsController < Channels::Admin::BaseController
       format.html { collection }
       format.csv do
         self.response_body = Enumerator.new do |y|
-          collection.copy_to do |line|
+          unpaginated_collection.copy_to do |line|
             y << line
           end
         end
@@ -50,12 +50,16 @@ class Admin::ProjectsController < Channels::Admin::BaseController
   end
 
   protected
-  def collection
+  def unpaginated_collection
     @scoped_projects = apply_scopes(end_of_association_chain).with_project_totals.without_state('deleted')
     if channel
       @scoped_projects = @scoped_projects.where("id IN (SELECT project_id FROM channels_projects WHERE channel_id = #{channel.id})")
     end
-    @projects = @scoped_projects.page(params[:page])
+    @scoped_projects
+  end
+
+  def collection
+    @projects = unpaginated_collection.page(params[:page])
   end
 
   def reject_params
