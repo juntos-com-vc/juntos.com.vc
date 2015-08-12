@@ -17,7 +17,7 @@
     .w-row
       .w-col.w-col-12
         = @project.headline
-    - if %w(juntosGSA2015 aprendaladaca gsa2015 corretordobem movimentoperfeito bibliotecadamell).include?(@project.permalink)
+    - if %w(juntosGSA2015 aprendaladaca gsa2015 corretordobem movimentoperfeito bibliotecadamell fundojovem).include?(@project.permalink)
       .w-row.project-progress-stats
         - if @project.permalink == 'juntosGSA2015'
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/gsa1.png', alt: @project.display_pledged)
@@ -31,6 +31,8 @@
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/cobertor1.png', alt: @project.display_pledged)
         - elsif @project.permalink == 'bibliotecadamell'
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/biblioteca.png', alt: @project.display_pledged)
+        - elsif @project.permalink == 'fundojovem'
+          = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/fundojovem.png', alt: @project.display_pledged)
 
     .w-row.project-stats
       .w-col.w-col-12
