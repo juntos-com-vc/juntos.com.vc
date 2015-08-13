@@ -54,7 +54,7 @@ pt:
         address_state: 'Total de apoios confirmados por Estado'
     reminder:
       ok: 'Ok! Vamos te mandar um lembrete por e-mail 48 horas antes do fim da campanha, a não ser que você já tenha apoiado o projeto'
-    send_to_analysis: Seu projeto foi enviado para nossa equipe.
+    send_to_analysis: 'Obrigado pelo envio do projeto. Em breve a nossa equipe entrará em contato por e-mail.'
     twitter:
       take_a_look: Confira o projeto %{name}
     video_embed:
