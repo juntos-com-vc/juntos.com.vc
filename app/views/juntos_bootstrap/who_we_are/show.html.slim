@@ -1,7 +1,19 @@
 = render 'shared/header_big'
 
 - content_for(:title)
-  = t(".title")
+  = t("site.who_we_are.title")
+
+- content_for :meta_tags do
+  meta name="robots" content="index, follow"
+  meta name="description"         content=t('site.who_we_are.description')
+  meta name="keywords"            content=t('site.keywords')
+  meta property="og:title"        content=t('site.title')
+  meta property="og:type"         content=:cause
+  meta property="og:url"          content=root_url
+  meta property="og:image"        content=image_url('catarse/logo-fb.jpg')
+  meta property="og:site_name"    content=CatarseSettings[:company_name]
+  meta property="fb:app_id"       content=CatarseSettings[:facebook_app_id]
+  meta property="og:description"  content=(t('projects.index_header.title') + '. ' +  t('projects.index_header.subtitle'))
 
 .section-one-column
   .w-container

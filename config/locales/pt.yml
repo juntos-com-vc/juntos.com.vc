@@ -12,10 +12,19 @@ pt:
   share_my_contributions: 'Confira o projeto '
   remove: 'Remover'
   site:
-    description: O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar
-      o seu projeto do papel!
-    keywords: juntoscomvc, juntos.com.vc, crowdfunding, financiamento coletivo, projeto, comunidade,
-      open source, projetos sociais, social crowdfunding, crowdfunding social
+    description: O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar o seu projeto do papel!
+    keywords: juntos, crowdfunding, financiamento coletivo, crowdfunding brasil, recursos para ONGs, captação de recursos, projetos sociais, mobilização de recursos, crowdfunding social
     meta_title: "%{title} · %{company_name}"
     title: Juntos.com.vc
-
+    who_we_are:
+      title: Conheça mais sobre a ONG Juntos.com.vc | Crowdfunding Social
+      description: A Juntos.com.vc oferece consultoria para ONGs, auxiliando na Captação de Recursos para Projetos Sociais por meio do Crowdfundingou Financiamento Coletivo.
+    projects:
+      title: Juntos.com.vc · Juntos com Você
+      description: Juntos.com.vc é a única plataforma de Crowdfunding ou Financiamento Coletivo exclusiva para projetos sociais. Captação de Recursos para ONGs, com 0% de taxa.
+    explore:
+      title: Exemplos de Projetos Sociais captando recursos | Juntos.com.vc
+      description: Conheça Projetos Sociais que captam recursos na Juntos.com.vc, plataforma de Financiamento Coletivo. Único crowdfunding exclusivo para ONGs com 0% de taxa.
+    how_it_works:
+      title: Como funciona o crowdfunding para ONGs | Juntos.com.vc
+      description: Aprenda o que é e como utilizar o Crowdfunding ou Financiamento Coletivo. Uma ferramenta para mobilização e captação de recursos para ONGs ou Projetos Sociais.
