@@ -254,12 +254,21 @@ class Project < ActiveRecord::Base
 
   def notify_to_backoffice(template_name, options = {}, backoffice_user = User.find_by(email: CatarseSettings[:email_payments]))
     if backoffice_user
-      notify_once(
-        template_name,
-        backoffice_user,
-        self,
-        options
-      )
+      if template_name == :new_draft_project
+        notify(
+          template_name,
+          backoffice_user,
+          self,
+          options
+        )
+      else
+        notify_once(
+          template_name,
+          backoffice_user,
+          self,
+          options
+        )
+      end
     end
   end
 
