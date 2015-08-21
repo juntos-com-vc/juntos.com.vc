@@ -14,13 +14,15 @@ Rails.application.routes.draw do
     {
       path: '',
       path_names:   { sign_in: :login, sign_out: :logout, sign_up: :sign_up },
-      controllers:  { omniauth_callbacks: :omniauth_callbacks, passwords: :passwords }
+      controllers:  { omniauth_callbacks: :omniauth_callbacks, passwords: :passwords, registrations: :registrations }
     }
   )
 
   devise_scope :user do
-    post '/sign_up', {to: 'devise/registrations#create', as: :sign_up}
+    post '/sign_up', {to: 'registrations#create', as: :sign_up}
   end
+
+  get '/sign_up_success', to: 'projects#index'
 
   get '/obrigado' => "static#thank_you"
 
