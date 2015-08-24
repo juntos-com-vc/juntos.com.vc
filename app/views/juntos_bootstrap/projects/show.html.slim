@@ -46,7 +46,7 @@
             span.badge = @posts_count
           = link_to '#contributions', id: 'contributions_link', class: 'nav-tab' , data: {target: '#project_contributions'}, style: "background-color: #{@color};" do
             => t('.menu.contributions')
-            span.badge = @project.total_contributions
+            span.badge = project_aumigo ? 4618 :  @project.total_contributions
           = link_to '#comments', id: 'comments_link', class: 'nav-tab' , data: {target: '#project_comments'}, style: "background-color: #{@color};" do
             => t('.menu.comments')
             span class="fb-comments-count" data-href="#{request.base_url}/#{@project.permalink}" class="badge" style="display: inline"
