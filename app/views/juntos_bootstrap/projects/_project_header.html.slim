@@ -53,7 +53,7 @@
           ul.u-margintop-10
             li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@color}"
               = @project.time_to_go[:time]
-              .fontsize-smallest.inline= @project.time_to_go[:unit].capitalize
+              .fontsize-smallest.inline= pluralize_without_number(@project.time_to_go[:time], @project.time_to_go[:unit].capitalize, @project.time_to_go[:unit].capitalize + "s")
             li.u-marginleft-20.fontsize-smallest
                 = pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))
         .w-col.w-col-4
