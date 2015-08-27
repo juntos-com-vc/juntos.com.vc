@@ -1,5 +1,5 @@
 $(function() {
-  $("#donation-value-field").change(function() {
+  $("#contribution_project_value").keyup(function() {
     var options = $("label.back-reward-radio-reward");
     for(var i = options.length - 1; i >= 0; i--) {
       if ($(options[i]).children("label").data("minimum-value") <= $(this).val()) {
