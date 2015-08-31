@@ -24,16 +24,6 @@ GIT
       nokogiri (>= 1.5.0)
 
 GIT
-  remote: git://github.com/codelandev/catarse_moip.git
-  revision: 3a53717395128bac64cfa927529f6f7f79c72d67
-  specs:
-    catarse_moip (3.1.0)
-      enumerate_it
-      httparty
-      libxml-ruby (~> 2.6.0)
-      rails (~> 4.0)
-
-GIT
   remote: git://github.com/danielweinmann/catarse_juntos_gift_cards.git
   revision: a865ff347c748934c1d872656c7e4984755d6d00
   ref: a865ff347c748934c1d872656c7e4984755d6d00
@@ -111,6 +101,10 @@ GEM
       mime-types (>= 1.16)
     catarse_credits (1.0.0)
       rails (>= 4.0)
+    catarse_moip (3.0.3)
+      enumerate_it
+      libxml-ruby (~> 2.6.0)
+      rails (~> 4.0)
     catarse_monkeymail (0.1.6)
       mailchimp-api (~> 2.0.4)
       rails (>= 4.0.3)
@@ -184,7 +178,7 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
-    enumerate_it (1.2.8)
+    enumerate_it (1.2.3)
       activesupport (>= 3.0.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -561,7 +555,7 @@ DEPENDENCIES
   catarse_contribution_validator!
   catarse_credits (= 1.0.0)
   catarse_juntos_gift_cards!
-  catarse_moip!
+  catarse_moip (~> 3.0.3)
   catarse_monkeymail (>= 0.1.6)
   catarse_pagarme (= 2.3.1)
   catarse_paypal_express (= 3.0.1)
