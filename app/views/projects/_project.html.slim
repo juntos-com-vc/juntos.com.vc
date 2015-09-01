@@ -53,7 +53,7 @@
       .info
         - unless project.expired?
           .time-remaining
-            = t('.time_remaining_html', count: project.time_to_go[:time], unit: pluralize_without_number(project.time_to_go[:time], project.time_to_go[:unit], project.time_to_go[:unit] + "s"), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};")
+            = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};")
         .collected-money
           = link_to t('.pledged_html', value: number_to_currency(project.pledged, precision: 0, unit: ''), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};"), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
 
