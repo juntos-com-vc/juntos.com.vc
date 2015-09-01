@@ -22,8 +22,6 @@ Rails.application.routes.draw do
     post '/sign_up', {to: 'registrations#create', as: :sign_up}
   end
 
-  get '/sign_up_success', to: 'projects#index'
-
   get '/obrigado' => "static#thank_you"
 
   filter :locale, exclude: /\/auth\//
@@ -130,6 +128,8 @@ Rails.application.routes.draw do
       resource :channels_subscriber, only: [:show, :destroy], as: :subscriber
     end
   end
+
+  get '/sign_up_success', to: 'projects#index'
 
   # Root path should be after channel constraints
   root to: 'projects#index'
