@@ -47,8 +47,10 @@ App.addChild('Contribution', {
   clickReward: function(event){
     this.selectReward($(event.currentTarget));
     var minimum = this.minimumValue();
-    this.$value.val(minimum);
-    this.$minimum.html(minimum);
+    if (minimum > 0) {
+      this.$value.val(minimum);
+      this.$minimum.html(minimum);
+    }
   }
 });
 
