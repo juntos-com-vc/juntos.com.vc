@@ -19,7 +19,7 @@ class PostPreviewController < ApplicationController
       image width: 600
       youtube width: 600, height: 403, wmode: "opaque"
       vimeo width: 600, height: 403
-      redcloth target: :_blank
+      redcarpet target: :_blank
       link target: :_blank
     end
   end

@@ -24,7 +24,7 @@ module Shared::CatarseAutoHtml
         image
         youtube width: options[:video_width], height: options[:video_height], wmode: "opaque"
         vimeo width: options[:video_width], height: options[:video_height]
-        redcloth target: :_blank
+        redcarpet target: :_blank
         link target: :_blank
         add_alt_link_class
       end
@@ -39,7 +39,7 @@ module Shared::CatarseAutoHtml
           '"' => '"'
         }
         email_image width: options[:image_width]
-        redcloth target: :_blank
+        redcarpet target: :_blank
         link target: :_blank
       end
     end
