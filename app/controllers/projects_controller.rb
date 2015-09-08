@@ -12,12 +12,14 @@ class ProjectsController < ApplicationController
     index! do |format|
       format.html do
         if request.xhr?
-          @projects = apply_scopes(Project.visible.order_status)
+          @projects = apply_scopes(Project.visible.order_status.without_toddynho)
             .most_recent_first
             .includes(:project_total, :user, :category)
             .page(params[:page]).per(6)
           return render partial: 'project', collection: @projects, layout: false
         else
+          @projects = apply_scopes(Project.without_toddynho)
+
           @title = t("site.title")
 
           @recommends = ProjectsForHome.recommends.includes(:project_total)
