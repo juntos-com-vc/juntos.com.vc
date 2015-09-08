@@ -4,13 +4,18 @@
   .w-container
     .fontsize-larger.fontweight-semibold.project-name= @project.name
     .fontsize-base.lineheight-looser
-      = t('projects.index.project_of')
-      |&nbsp;
-      = link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden', style:"color: #{@color}"
-      |&nbsp;
-      = t('projects.index.box.by')
-      |&nbsp;
-      = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden', style:"color: #{@color}"
+      - if @project.permalink == 'toddynho'
+        = 'Um projeto por'
+        |&nbsp;
+        = link_to 'TODDYNHO®', 'https://www.toddynho.com.br/', target: '_blank', class: 'link-hidden', style:"color: #{@color}"
+      - else
+        = t('projects.index.project_of')
+        |&nbsp;
+        = link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden', style:"color: #{@color}"
+        |&nbsp;
+        = t('projects.index.box.by')
+        |&nbsp;
+        = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden', style:"color: #{@color}"
     .fontsize-base.lineheight-looser.fontsize-smallest
       - if @project.online_date.present?
         = l @project.online_date.to_date

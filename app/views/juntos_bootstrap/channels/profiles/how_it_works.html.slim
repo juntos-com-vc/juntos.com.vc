@@ -1,4 +1,4 @@
-= render partial: 'page', locals: { title: "#{t('.title.channel')}: #{@profile.name}", content_html: @profile.how_it_works_html, title_html: t('.title.channel', channel_link:link_to(@profile.name, root_path, class: 'standard-link')) }
+= render partial: 'page', locals: { title: "#{@profile.permalink == 'pepsico' ? t('.title.channel_pepsico') : t('.title.channel')}: #{@profile.name}", content_html: @profile.how_it_works_html, title_html: t('.title.channel', channel_link:link_to(@profile.name, root_path, class: 'standard-link')) }
 .w-container
   .w-row.u-marginbottom-40
     - target_path =  new_project_path

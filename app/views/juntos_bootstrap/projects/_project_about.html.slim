@@ -17,18 +17,19 @@
         = link_to t('.active_btn'), reminder_project_path(@project), class: 'fa fa-clock-o link-hidden u-right fontcolor-secondary'
 
 
-- @project.channels.each do |channel|
-  .card.card-secondary.u-marginbottom-40
-    .w-row
-      - if channel.image.header.present?
-        .w-col.w-col-4
-          = image_tag channel.image.header.url, title: channel.name, class: 'header-logo w-nav-brand'
-      .w-col.w-col-8
-        .fontsize-smaller
-          = "Este projeto faz parte do Canal"
-        .fontweight-bold.u-marginbottom-10.fontsize-smaller
-          = channel.name
-        = link_to "Conheça o Canal", root_url(subdomain: channel.permalink), class: 'alt-link fontsize-smaller'
+- unless @project.permalink == 'toddynho'
+  - @project.channels.each do |channel|
+    .card.card-secondary.u-marginbottom-40
+      .w-row
+        - if channel.image.header.present?
+          .w-col.w-col-4
+            = image_tag channel.image.header.url, title: channel.name, class: 'header-logo w-nav-brand'
+        .w-col.w-col-8
+          .fontsize-smaller
+            = "Este projeto faz parte do Canal"
+          .fontweight-bold.u-marginbottom-10.fontsize-smaller
+            = channel.name
+          = link_to "Conheça o Canal", root_url(subdomain: channel.permalink), class: 'alt-link fontsize-smaller'
 
 .project-about
   .no-mobile

@@ -4,6 +4,7 @@ pt:
       how_it_works:
         title:
           channel: "Antes de enviar seu projeto, veja como o canal %{channel_link} funciona"
+          channel_pepsico: "Veja como o canal %{channel_link} funciona"
         sidebar:
           title: Navegue
       terms:
