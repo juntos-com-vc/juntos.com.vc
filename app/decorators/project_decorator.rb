@@ -66,13 +66,13 @@ class ProjectDecorator < Draper::Decorator
     source.online_date ? I18n.l(source.online_date.to_date) : ''
   end
 
-  def progress
+  def progress(divisor = 1)
     return 0 if source.goal == 0.0 || source.goal.nil?
-    ((source.pledged / source.goal) * 100).to_i
+    ((source.pledged / (source.goal / divisor)) * 100).to_i
   end
 
-  def display_pledged
-    number_to_currency source.pledged
+  def display_pledged(multiply = 1)
+    number_to_currency (source.pledged * multiply)
   end
 
   def display_goal
