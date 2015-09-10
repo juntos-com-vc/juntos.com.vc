@@ -54,7 +54,7 @@
           .w-row.u-marginbottom-40
             .w-col.w-col-push-3.w-col-6
               a#next-step.btn.btn-large href="#payment-engines" Próximo passo
-        #payment-engines.w-hidden[data-international-payment="#{session[:payment_country]}" data-update-info-path="#{project_contribution_path(project_id: @project.id, id: @contribution.id)}"]
+        #payment-engines.w-hidden[data-international-payment="#{session[:payment_country]}" data-update-info-path="#{project_contribution_path(project_id: @project.id, id: @contribution.id)}" data-show-national="#{@project.permalink == 'toddynho'}"]
           .u-marginbottom-30.u-text-center-small-only
             .fontsize-large.fontweight-semibold.text-success-small-only= t('.choose_payment')
             .fontcolor-secondary.fontweight-semibold.fontsize-smallest.fontcolor-secondary

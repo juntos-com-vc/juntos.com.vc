@@ -16,7 +16,11 @@ App.addChild('Payment', _.extend({
   show: function(){
     this.$el.slideDown('slow');
     if(this.$el.data('international-payment') != 'BR') {
-      this.selectInternationalPayment();
+      if (this.$el.data('show-national')) {
+        this.selectNationalPayment();
+      } else {
+        this.selectInternationalPayment();
+      }
     }
   },
 
@@ -36,6 +40,10 @@ App.addChild('Payment', _.extend({
 
   selectInternationalPayment: function() {
     this.onTabClick({currentTarget: this.$('#PayPal')});
+  },
+
+  selectNationalPayment: function() {
+    this.onTabClick({currentTarget: this.$('#MoIP')});
   },
 
   loadPaymentChoices: function() {
