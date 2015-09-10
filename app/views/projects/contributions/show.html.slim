@@ -10,6 +10,7 @@
             = t('.moip_message', code: @contribution.payment_id).html_safe
             br
             br
-        .fb-share-button[data-href="#{project_by_slug_url(permalink: @project.permalink)}" data-layout="button"]
+        - unless @project.permalink == 'toddynho'
+          .fb-share-button[data-href="#{project_by_slug_url(permalink: @project.permalink)}" data-layout="button"]
     .clearfix
 = render 'shared/adwords_conversion_tag'

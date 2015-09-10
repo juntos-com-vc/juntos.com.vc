@@ -92,7 +92,8 @@
         .channels
           h3.title Conheça nossos canais
           - @channels.each do |channel|
-            .channel= link_to channel.name, "http://#{channel.permalink}.juntos.com.vc/", class: "post-title", target: :blank
+            - unless channel.permalink == 'gastromotiva'
+              .channel= link_to channel.name, "http://#{channel.permalink}.juntos.com.vc/", class: "post-title", target: :blank
 
       section.main-sidebar-division
         .awards
