@@ -13,6 +13,15 @@ module Shared::CatarseAutoHtml
       text.gsub(/<a/i, '<a class="alt-link"')
     end
 
+    AutoHtml.add_filter(:add_link_alias) do |text, options|
+      text.gsub(/&quot;.+&quot;:<a.+<\/a>/i) do |match|
+        ali = match.to_s.split("&quot;")[1]
+        link = match.to_s.gsub(/>.+<\/a>/, ">#{ali}</a>")
+        link_with_alias = link.match(/<a.*a>/).to_s
+        link_with_alias
+      end
+    end
+
     def self.catarse_auto_html_for options={}
       self.auto_html_for options[:field] do
         html_escape map: {
@@ -27,6 +36,7 @@ module Shared::CatarseAutoHtml
         redcarpet target: :_blank
         link target: :_blank
         add_alt_link_class
+        add_link_alias
       end
     end
 
