@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
           @site_partners = @featured_partners + @regular_partners
-          @channels = Channel.order("random()").limit(5)
+          @channels = Channel.all.reject { |c| c.permalink == 'gastromotiva' }
           @banners = HomeBanner.where.not(image: [nil, '']).order(numeric_order: :asc)
         end
       end
