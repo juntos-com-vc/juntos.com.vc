@@ -1,6 +1,6 @@
 class Admin::ContributionsController < Admin::BaseController
   layout 'juntos_bootstrap'
-  has_scope :project_name_contains, :search_on_payment_data, :with_state
+  has_scope :project_name_contains, :search_on_payment_data, :with_state, :with_cause
   has_scope :search_on_user, :search_on_acquirer, :by_id, :by_user_id
   has_scope :payer_email_contains, :by_payment_id, :by_key
   has_scope :user_name_contains, :user_email_contains, :user_cpf_contains

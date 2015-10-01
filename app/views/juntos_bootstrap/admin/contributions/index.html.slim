@@ -36,6 +36,8 @@
         .w-col-2.w-col
           = form.input :credits, as: :boolean, label: t('.credits')
       .w-row
+        .w-col-4.w-col
+          = form.input :with_cause, collection: Category.all.map{|c| [c.name_pt, c.id]}, label: t('channels.admin.filter.cause'), as: :select, selected: params[:with_cause], include_blank: true
         .w-col-2.w-col
           = form.input :platform_contributions, as: :boolean, label: t('.platform_contributions')
         .w-col-2.w-col

@@ -21,6 +21,7 @@ pt:
         title: Filtrar
         user_name_contains: Usuário
         with_state: Com o estado
+        cause: Causa
       followers:
         index:
           download: Baixar lista
