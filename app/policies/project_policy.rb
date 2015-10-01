@@ -32,6 +32,8 @@ class ProjectPolicy < ApplicationPolicy
       p_attr << record.attribute_names.map(&:to_sym)
       p_attr << [posts_attributes: [:title, :comment, :exclusive, :user_id]]
       {project: p_attr.flatten}
+    elsif is_owned_by?(user)
+      {project: [:about, :video_url, :uploaded_image, :headline, posts_attributes: [:title, :comment, :exclusive, :user_id]]}
     else
       {project: [:about, :video_url, :uploaded_image, :headline]}
     end
