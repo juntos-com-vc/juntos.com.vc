@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,
     :bank_account_attributes, :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
     :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13, :staff,
-    :remote_doc1_url, :remote_doc2_url, :remote_doc3_url, :remote_doc4_url,
-    :remote_doc5_url, :remote_doc6_url, :remote_doc7_url, :remote_doc8_url,
-    :remote_doc9_url, :remote_doc10_url, :remote_doc11_url, :remote_doc12_url, :remote_doc13_url,
     :job_title, :birth_date, :admin
 
   enum access_type: [:individual, :legal_entity]

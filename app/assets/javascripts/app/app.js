@@ -71,13 +71,4 @@ var App = window.App = Skull.View.extend({
 
 $(function(){
   var app = window.app = new App();
-  $('.s3-uploader-content').S3Uploader();
-  $('.s3-uploader-content').bind("s3_upload_complete", function(e, content) {
-    $($(e.target).data('target')).val(content.url);
-  });
-  $(".js-caption").on('blur', function(){
-    $this = $(this);
-    $($this.data('remote')).val($this.val());
-    $($this.data('remote')).parents('form').submit();
-  });
 });

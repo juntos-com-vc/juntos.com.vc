@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require ./lib/jquery-ui.js
 //= require best_in_place
-//= require s3_direct_upload
 //= require ./lib/underscore.js
 //= require ./lib/backbone.js
 //= require ./lib/skull.js

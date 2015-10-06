@@ -1,8 +1,3 @@
-script#template-upload[type="text/x-tmpl"]
-  | <div id="file-{%=o.unique_id%}" class="upload">
-  |   {%=o.name%}
-  |   <div class="progress"><div class="bar" style="width: 0%"></div></div>
-  | </div>
 .w-hidden-small.w-hidden-tiny.dashboard-header.u-text-center
   .w-container.w-hidden-small.w-hidden-tiny
     .w-row
@@ -11,7 +6,7 @@ script#template-upload[type="text/x-tmpl"]
         .fontweight-semibold.fontsize-large=t('.start')
         p.fontsize-base= t('.start_subtitle')
       .w-col.w-col-2
-= simple_form_for @project, html: { class: 'project_form w-form' } do |form|
+= simple_form_for @project, html: { id: 'project_form', class: 'w-form' } do |form|
   .w-hidden-small.w-hidden-tiny.section
     .w-container.w-hidden-small.w-hidden-tiny
       .w-row
@@ -55,7 +50,7 @@ script#template-upload[type="text/x-tmpl"]
           = render 'formatting_tips'
       .w-row
         .w-col.w-col-8
-          = form.button :submit, t('.submit'),  class:'btn btn-large js-btn-submit'
+        .w-col.w-col-4
   .divider
   .w-hidden-small.w-hidden-tiny.section
     .w-container.w-hidden-small.w-hidden-tiny
@@ -70,30 +65,16 @@ script#template-upload[type="text/x-tmpl"]
           .w-row.u-marginbottom-30
             .w-col.w-col-12.w-sub-col
               .w-row
-                - images_count = 0
                 = form.simple_fields_for :project_images do |project_images_form|
-                  - if project_images_form.object.image.present?
-                    - images_count += 1
-                    .w-col.w-col-5.w-sub-col.u-marginbottom-30.u-marginleft-20.u-marginright-20.card.card-secondary.thumbnail-card
-                      .u-marginleft-20
-                        = image_tag project_images_form.object.image.project_thumb.url, class: 'thumbnail u-marginbottom-10'
-                        = project_images_form.input_field :_destroy, as: :hidden
-                        = project_images_form.hidden_field :remote_image_url, id: "remote-project-#{project_images_form.index}"
-                        = project_images_form.input_field :image, as: :file, label_html: { class: 'w-hidden' }, data: { target: "remote-project-#{project_images_form.index}" }
-                        = project_images_form.input :caption, label: t('.images.caption'), as: :text, input_html: { class: 'w-input text-field' }
-                        = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_image'
-                  - else
-                    = project_images_form.input :caption, as: :hidden, id: "caption-project-#{project_images_form.index}"
-                - (8 - images_count).times do |index|
-                  - index += images_count
                   .w-col.w-col-5.w-sub-col.u-marginbottom-30.u-marginleft-20.u-marginright-20.card.card-secondary.thumbnail-card
                     .u-marginleft-20
-                      = s3_uploader_form callback_url: project_url(@project.permalink), callback_param: "project[project_images_attributes][#{index}][remote_image_url]", callback_method: 'PUT', class: 's3-uploader-content', id: "upload#{rand(100)}" do
-                        = file_field_tag :file, multiple: true, data: { target: "remote-project-#{index}", caption: "caption-project-#{index}" }
-                      label
-                        = t('.images.caption')
-                        = text_field_tag :caption, nil, class: 'w-input text-field js-caption', id: "original-caption-#{index}", data: { remote: "caption-project-#{index}" }
-
+                      - if project_images_form.object.image.present?
+                        = image_tag project_images_form.object.image.project_thumb.url, class: 'thumbnail u-marginbottom-10'
+                      = project_images_form.input_field :_destroy, as: :hidden
+                      = project_images_form.input_field :image, as: :file, label_html: { class: 'w-hidden' }
+                      = project_images_form.input :caption, label: t('.images.caption'), as: :text, input_html: { class: 'w-input text-field' }
+                      - if project_images_form.object.image.present?
+                        = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_image'
   .divider
   .w-hidden-small.w-hidden-tiny.section
     .w-container.w-hidden-small.w-hidden-tiny
@@ -118,49 +99,39 @@ script#template-upload[type="text/x-tmpl"]
                       = project_partners_form.input :link, label: t('.partners.link'), input_html: { class: 'w-input text-field' }
                       - if project_partners_form.object.image.present?
                         = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_partner'
-  .section
+  .divider
+  .w-hidden-small.w-hidden-tiny.section
     .w-container.w-hidden-small.w-hidden-tiny
       .w-row
-        .w-col.w-col-4
-        .w-col.w-col-4
-          = form.button :submit, t('.submit'),  class:'btn btn-large js-btn-submit'
-        .w-col.w-col-4
-.divider
-.w-hidden-small.w-hidden-tiny.section
-  .w-container.w-hidden-small.w-hidden-tiny
-    .w-row
-      .w-col.w-col-8
-        .fontsize-large.fontweight-semibold= t('.card')
-        p.fontsize-small.u-marginbottom-40= t('.card_subtitle')
-        .w-form
-          .w-row.u-marginbottom-30.card.card-terciary
-            .w-col.w-col-5.w-sub-col
-              label.field-label.fontweight-semibold=t('.image')
-              label.field-label.fontsize-smallest.fontcolor-secondary= t('.image_hint')
-            .w-col.w-col-6.w-sub-col
-              = s3_uploader_form callback_url: project_url(@project.permalink), callback_param: 'project[remote_uploaded_image_url]', callback_method: 'PUT', class: 's3-uploader' do
-                = file_field_tag :file
-              /= form.input :uploaded_image, label: '', as: :file, required: false, hint: (@project.uploaded_image.present? ? image_tag(@project.uploaded_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_image') )
-              = @project.uploaded_image.present? ? image_tag(@project.uploaded_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_image')
-          .w-row.u-marginbottom-30.card.card-terciary
-            .w-col.w-col-5.w-sub-col
-              label.field-label.fontweight-semibold=t('.cover_image')
-              label.field-label.fontsize-smallest.fontcolor-secondary= t('.cover_image_hint')
-            .w-col.w-col-6.w-sub-col
-              = s3_uploader_form callback_url: project_url(@project.permalink), callback_param: 'project[remote_uploaded_cover_image_url]', callback_method: 'PUT', class: 's3-uploader' do
-                = file_field_tag :file
-              /= form.input :uploaded_cover_image, label: '', as: :file, required: false, hint: (@project.uploaded_cover_image.present? ? image_tag(@project.uploaded_cover_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_cover_image') )
-              = @project.uploaded_cover_image.present? ? image_tag(@project.uploaded_cover_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_cover_image')
-        = simple_form_for @project, html: { class: 'project_form w-form' } do |form|
+        .w-col.w-col-8
+          .fontsize-large.fontweight-semibold= t('.card')
+          p.fontsize-small.u-marginbottom-40= t('.card_subtitle')
+          .w-form
+            .w-row.u-marginbottom-30.card.card-terciary
+              .w-col.w-col-5.w-sub-col
+                label.field-label.fontweight-semibold=t('.image')
+                label.field-label.fontsize-smallest.fontcolor-secondary= t('.image_hint')
+              .w-col.w-col-6.w-sub-col
+                = form.input :uploaded_image, label: '', as: :file, required: false, hint: (@project.uploaded_image.present? ? image_tag(@project.uploaded_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_image') )
+            .w-row.u-marginbottom-30.card.card-terciary
+              .w-col.w-col-5.w-sub-col
+                label.field-label.fontweight-semibold=t('.cover_image')
+                label.field-label.fontsize-smallest.fontcolor-secondary= t('.cover_image_hint')
+              .w-col.w-col-6.w-sub-col
+                = form.input :uploaded_cover_image, label: '', as: :file, required: false, hint: (@project.uploaded_cover_image.present? ? image_tag(@project.uploaded_cover_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_cover_image') )
           .w-row.u-marginbottom-30.card.card-terciary
             .w-col.w-col-5.w-sub-col
               label.field-label.fontweight-semibold= t('.headline')
               label.field-label.fontsize-smallest.fontcolor-secondary= t('.headline_hint')
             .w-col.w-col-7
               = form.input_field :headline, as: :text, class: 'positive'
-          .w-row
-            .w-col.w-col-4
-            .w-col.w-col-4
-              = form.button :submit, t('.submit'),  class:'btn btn-large js-btn-submit'
-      .w-col.w-col-4
-        = render @project
+        .w-col.w-col-4
+          = render @project
+  .divider
+    .section
+      .w-container.w-hidden-small.w-hidden-tiny
+        .w-row
+          .w-col.w-col-4
+          .w-col.w-col-4
+            = form.button :submit, t('.submit'),  class:'btn btn-large js-btn-submit'
+          .w-col.w-col-4

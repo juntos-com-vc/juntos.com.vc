@@ -52,28 +52,19 @@
             = f.input :newsletter, as: :boolean, label: t('.newsletter')
             = hidden_field_tag 'id', @user.id
             = f.input :bio, hint: t('.bio_limit'), as: :text, input_html: { rows: 2, cols: 60, maxlength: 140  }
+          .documents
+            = f.input :doc12, as: :file, label: 'RG e CPF ou CNH'
+            - if @user.doc12.url.present?
+              = link_to @user.doc12.url, target: '_blank' do
+                = image_tag('download-icon.png')
+                |   Baixar arquivo
+            = f.input :doc13, as: :file
+            - if @user.doc13.url.present?
+              = link_to @user.doc13.url, target: '_blank' do
+                = image_tag('download-icon.png')
+                |   Baixar arquivo
           .bootstrap-twitter
             p= f.submit t('.update_social_info'), class: 'btn', id: "user_submit"
-        .documents
-          label RG e CPF ou CNH
-          - if @user.doc12.url.present?
-            = link_to @user.doc12.url, target: '_blank' do
-              = image_tag('download-icon.png')
-              |   Baixar arquivo
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc12_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-          script#template-upload[type="text/x-tmpl"]
-            | <div id="file-{%=o.unique_id%}" class="upload">
-            |   {%=o.name%}
-            |   <div class="progress"><div class="bar" style="width: 0%"></div></div>
-            | </div>
-          label = User.human_attribute_name(:doc13)
-          - if @user.doc13.url.present?
-            = link_to @user.doc13.url, target: '_blank' do
-              = image_tag('download-icon.png')
-              |   Baixar arquivo
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc13_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
 #change_password.user_data
   h1= t('.change_password')
   ul

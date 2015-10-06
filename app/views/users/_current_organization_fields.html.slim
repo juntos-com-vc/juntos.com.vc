@@ -58,96 +58,65 @@
     br/
     br/
     .bootstrap-form
-      script#template-upload[type="text/x-tmpl"]
-        | <div id="file-{%=o.unique_id%}" class="upload">
-        |   {%=o.name%}
-        |   <div class="progress"><div class="bar" style="width: 0%"></div></div>
-        | </div>
-      /= semantic_form_for @user do |f|
-        /= f.inputs do
-      div
-        div
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc1_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            /= f.input :doc1, as: :file
-            label = User.human_attribute_name(:doc1)
+      = semantic_form_for @user do |f|
+        = f.inputs do
+          p
+            = f.input :doc1, as: :file
             - if @user.doc1.url.present?
               = link_to @user.doc1.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc2_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            label = User.human_attribute_name(:doc2)
-            /= f.input :doc2, as: :file
+          p
+            = f.input :doc2, as: :file
             - if @user.doc2.url.present?
               = link_to @user.doc2.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc5_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            label = User.human_attribute_name(:doc5)
-            /= f.input :doc5, as: :file
+          p
+            = f.input :doc5, as: :file
             - if @user.doc5.url.present?
               = link_to @user.doc5.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc6_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            label = User.human_attribute_name(:doc6)
-            /= f.input :doc6, as: :file
+          p
+            = f.input :doc6, as: :file
             - if @user.doc6.url.present?
               = link_to @user.doc6.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc7_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            /= f.input :doc7, as: :file
-            label = User.human_attribute_name(:doc7)
+          p
+            = f.input :doc7, as: :file
             - if @user.doc7.url.present?
               = link_to @user.doc7.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc10_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            /= f.input :doc10, as: :file
-            label = User.human_attribute_name(:doc10)
+          p
+            = f.input :doc10, as: :file
             - if @user.doc10.url.present?
               = link_to @user.doc10.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc12_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            /= f.input :doc12, as: :file
-            label = User.human_attribute_name(:doc12)
+          p
+            = f.input :doc12, as: :file
             - if @user.doc12.url.present?
               = link_to @user.doc12.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-          /p
-          = s3_uploader_form callback_url: user_url(@user), callback_param: 'user[remote_doc13_url]', callback_method: 'PUT', class: 's3-uploader' do
-            = file_field_tag :file
-            /= f.input :doc13, as: :file
-            label = User.human_attribute_name(:doc13)
+          p
+            = f.input :doc13, as: :file
             - if @user.doc10.url.present?
               = link_to @user.doc13.url, target: '_blank' do
                 = image_tag('download-icon.png')
                 |   Baixar arquivo
           br/
-        /= f.actions do
+        = f.actions do
           .bootstrap-twitter
             p= f.action :submit, button_html: {value: t('.submit'), class: 'btn', id: 'image_upload_btn'}
       - if current_user.admin?
