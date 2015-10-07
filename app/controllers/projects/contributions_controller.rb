@@ -80,6 +80,7 @@ class Projects::ContributionsController < ApplicationController
       success.html do
         flash[:notice] = nil
         session[:thank_you_contribution_id] = @contribution.id
+        session[:new_contribution] = true;
         return redirect_to edit_project_contribution_path(project_id: @project.id, id: @contribution.id)
       end
     end

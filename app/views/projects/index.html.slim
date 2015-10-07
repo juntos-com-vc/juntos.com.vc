@@ -13,6 +13,25 @@
   meta property="fb:app_id"       content=CatarseSettings[:facebook_app_id]
   meta property="og:description"  content=(t('projects.index_header.title') + '. ' +  t('projects.index_header.subtitle'))
 
+- if session.delete(:new_user_registration)
+  = content_for :custom_javascripts do
+    javascript:
+      <!-- Google Code for Contato Conversion Page -->
+      /* <![CDATA[ */
+      var google_conversion_id = 988885353;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "1y4HCIeHugYQ6eLE1wM";
+      var google_conversion_value = 1.00;
+      var google_conversion_currency = "USD";
+      var google_remarketing_only = false;
+      /* ]]> */
+    script src="//www.googleadservices.com/pagead/conversion.js" type="text/javascript" 
+    noscript
+      div style="display:inline;" 
+        img alt="" height="1" src="//www.googleadservices.com/pagead/conversion/988885353/?value=1.00&amp;currency_code=USD&amp;label=1y4HCIeHugYQ6eLE1wM&amp;guid=ON&amp;script=0" style="border-style:none;" width="1" /
+
 - if @banners.any?
   .banner-images
     - @banners.each do |banner|
