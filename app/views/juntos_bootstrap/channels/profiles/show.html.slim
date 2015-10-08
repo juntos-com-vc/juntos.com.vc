@@ -11,7 +11,7 @@
         .image= image_tag(image.image.slick.url)
   .w-container
     .w-row
-      .fontsize-small.u-margintop-10= @profile.description
+      .fontsize-small.u-margintop-10= @profile.description_html.html_safe
       .fontsize-small.u-margintop-10= link_to @profile.website, @profile.website, target: :blank
       - if @profile.facebook.present?
         = link_to image_tag("facebook.png"), @profile.facebook, title: t('.accessibility.link_to_facebook'), class: [:"icon-facebook"], target: :blank
