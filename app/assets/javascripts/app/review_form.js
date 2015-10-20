@@ -119,7 +119,7 @@ App.addChild('ReviewForm', _.extend({
       partner_indication: this.$('#contribution_partner_indication').prop('checked')
     };
 
-    if(contribution_data.address_zip_code !== '' && contribution_data.address_phone_number !== '') {
+    if(contribution_data.country_id !== "36" || (contribution_data.address_zip_code !== '' && contribution_data.address_phone_number !== '')) {
       $.post(this.$el.data('update-info-path'), {
         _method: 'put',
         contribution: contribution_data
