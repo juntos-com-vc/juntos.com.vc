@@ -22,12 +22,14 @@
     .w-row
       .w-col.w-col-12
         = @project.headline
-    - if %w(juntosGSA2015 aprendaladaca gsa2015 corretordobem movimentoperfeito bibliotecadamell fundojovem pesquisadoacao tempodebrincar2015 afabricadedoces adoteumaluno cidadedosmeninos).include?(@project.permalink.downcase)
+    - if %w(juntosGSA2015 aprendaladaca gsa2015 corretordobem movimentoperfeito bibliotecadamell fundojovem pesquisadoacao tempodebrincar2015 afabricadedoces adoteumaluno cidadedosmeninos asa).include?(@project.permalink.downcase)
       .w-row.project-progress-stats
         - if @project.permalink == 'juntosGSA2015'
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/gsa1.png', alt: @project.display_pledged)
         - elsif @project.permalink == 'CidadeDosMeninos'
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/lohaine.png', alt: @project.display_pledged)
+        - elsif @project.permalink == 'asa'
+          = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/asa.png', alt: @project.display_pledged)
         - elsif @project.permalink == 'movimentoperfeito'
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/ilha.png', alt: @project.display_pledged)
         - elsif @project.permalink == 'aprendaladaca'
