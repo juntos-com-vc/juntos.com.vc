@@ -2,10 +2,39 @@ App.addChild('ReviewForm', _.extend({
   el: 'form#review_form',
 
   events: {
-    'blur input' : 'checkInput',
+    'blur input' : 'customCheckInput',
     'change #contribution_country_id' : 'onCountryChange',
     'change #contribution_anonymous' : 'toggleAnonymousConfirmation',
     'click #next-step' : 'onNextStepClick'
+  },
+
+  customCheckInput: function(event){
+    if (this.$country.val() !== '36') {
+      return;
+    }
+    
+    var $this = $(event.currentTarget);
+    var validInput = true;
+    var mask = $this.data('mask');
+    if(mask){
+      // just numbers
+      if(!/.*\?.*/gi.test(mask) && /.*_.*/gi.test($this.val())){
+        validInput = false;
+      }
+      // with optional numbers (?)
+      if(/.*\?.*/gi.test(mask) && /.*_.*_.*/gi.test($this.val())){
+        validInput = false;
+      }
+    }
+    if(!validInput) {
+      $this.trigger('invalid');
+    }
+
+    if(event.currentTarget.checkValidity() && validInput){
+      var $target = this.$(event.currentTarget);
+      $target.removeClass("error");
+      this.$('[data-error-for=' + $target.prop('id') + ']').hide();
+    }
   },
 
   onNextStepClick: function(){
