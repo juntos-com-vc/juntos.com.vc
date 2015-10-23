@@ -141,8 +141,9 @@
           - else
             = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20"
 
-        .fontsize-smaller.fontweight-light.u-marginbottom-30[class=@project.display_card_class]
-          = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
+        - unless @project.permalink == 'asa'
+          .fontsize-smaller.fontweight-light.u-marginbottom-30[class=@project.display_card_class]
+            = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
         - if current_user.present? && current_user == @project.user
           - if current_user.pending_documents?
             .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
@@ -150,7 +151,7 @@
           - if !@project.user.approved?
             .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
               = raw "Você ainda não está com a documentação de sua ONG em dia. Esta documentação é necessária para a aprovação do projeto. Você pode enviar a documentação necessária #{link_to 'aqui', user_path(current_user, anchor: 'settings'), style: 'color: #FDB64C;'}"
-        - unless @project.permalink == 'toddynho'
+        - unless @project.permalink == 'toddynho' || @project.permalink == 'asa'
           .u-marginbottom-10.project-style= t('.contribution_style')
       .card.card-user.u-marginbottom-10
         .proposed_by
