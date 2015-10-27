@@ -8,35 +8,6 @@ App.addChild('ReviewForm', _.extend({
     'click #next-step' : 'onNextStepClick'
   },
 
-  customCheckInput: function(event){
-    if (this.$country.val() !== '36') {
-      return;
-    }
-    
-    var $this = $(event.currentTarget);
-    var validInput = true;
-    var mask = $this.data('mask');
-    if(mask){
-      // just numbers
-      if(!/.*\?.*/gi.test(mask) && /.*_.*/gi.test($this.val())){
-        validInput = false;
-      }
-      // with optional numbers (?)
-      if(/.*\?.*/gi.test(mask) && /.*_.*_.*/gi.test($this.val())){
-        validInput = false;
-      }
-    }
-    if(!validInput) {
-      $this.trigger('invalid');
-    }
-
-    if(event.currentTarget.checkValidity() && validInput){
-      var $target = this.$(event.currentTarget);
-      $target.removeClass("error");
-      this.$('[data-error-for=' + $target.prop('id') + ']').hide();
-    }
-  },
-
   onNextStepClick: function(){
     if(this.validate()){
       if(this.updateContribution()) {
@@ -72,11 +43,19 @@ App.addChild('ReviewForm', _.extend({
   makeFieldsRequired: function(){
     this.$('[data-required-in-brazil]').prop('required', 'required');
     this.$('[data-required-in-brazil]').parent().removeClass('optional').addClass('required');
+
+    this.$(".contribution_address_zip_code").show();
+    this.$(".contribution_address_state").show();
+    $("div.cpf").show();
   },
 
   makeFieldsOptional: function(){
     this.$('[data-required-in-brazil]').prop('required', false);
     this.$('[data-required-in-brazil]').parent().removeClass('required').addClass('optional');
+
+    this.$(".contribution_address_zip_code").hide();
+    this.$(".contribution_address_state").hide();
+    $("div.cpf").hide();
   },
 
   nationalAddress: function(){

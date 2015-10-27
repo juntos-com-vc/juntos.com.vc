@@ -30,6 +30,12 @@ App.addChild('Payment', _.extend({
       url: this.$el.data('update-info-path'),
       type: 'PUT',
       data: { contribution: { payment_method: $selected_tab.prop('id') } }
+    }).success(function() {
+      if ($('#contribution_country_id').val() != 36) {
+        $("div.cpf").hide();
+      } else {
+        $("div.cpf").show();
+      }
     });
   },
 
