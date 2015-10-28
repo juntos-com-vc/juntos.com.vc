@@ -8,8 +8,42 @@ App.addChild('ReviewForm', _.extend({
     'click #next-step' : 'onNextStepClick'
   },
 
+  validateMasked: function(inputField) {
+    var $this = $(inputField);
+    var validInput = true;
+    var mask = $this.data('mask');
+    if(mask){
+      // just numbers
+      if($this.val() === "" || !/.*\?.*/gi.test(mask) && /.*_.*/gi.test($this.val())){
+        validInput = false;
+      }
+      // with optional numbers (?)
+      if($this.val() === "" || /.*\?.*/gi.test(mask) && /.*_.*_.*/gi.test($this.val())){
+        validInput = false;
+      }
+    }
+    if(!validInput) {
+      $this.trigger('invalid');
+    }
+
+    return validInput
+  },
+
+  validateZipAndPhone: function() {
+    if (this.validateMasked("#contribution_address_phone_number")) {
+      if (this.$country.val() !== '36') {
+        return true;
+      } else if (this.validateMasked("#contribution_address_zip_code")) {
+        return true;
+      }
+    }
+
+    // this.$('input.error:visible:first').select();
+    return false;
+  },
+
   onNextStepClick: function(){
-    if(this.validate()){
+    if(this.validate() && this.validateZipAndPhone()){
       if(this.updateContribution()) {
         this.$errorMessage.hide();
         this.$('#next-step').hide();
