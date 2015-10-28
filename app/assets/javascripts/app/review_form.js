@@ -2,7 +2,7 @@ App.addChild('ReviewForm', _.extend({
   el: 'form#review_form',
 
   events: {
-    'blur input' : 'customCheckInput',
+    'blur input' : 'checkInput',
     'change #contribution_country_id' : 'onCountryChange',
     'change #contribution_anonymous' : 'toggleAnonymousConfirmation',
     'click #next-step' : 'onNextStepClick'
