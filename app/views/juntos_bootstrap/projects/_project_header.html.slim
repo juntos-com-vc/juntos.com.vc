@@ -82,7 +82,7 @@
             = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10')
           ul.u-margintop-10
             li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@color}"
-              - if @project.permalink == 'pesquisadoacao'
+              - if %w(associacaoacorde pesquisadoacao).include?(@project.permalink)
                 = @project.display_pledged(2)
               - else
                 = @project.display_pledged
