@@ -33,6 +33,7 @@ class Project < ActiveRecord::Base
   has_many :unsubscribes
   has_many :project_images
   has_many :project_partners
+  has_many :subgoals
 
   accepts_nested_attributes_for :rewards
   accepts_nested_attributes_for :channels
