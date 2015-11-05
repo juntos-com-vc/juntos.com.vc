@@ -87,6 +87,9 @@
         span.fa.fa-check-circle &nbsp;Projeto
       = link_to '#dashboard_rewards', id: 'dashboard_rewards_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_rewards'} do
         span.fa.fa-check-circle &nbsp;Recompensas
+      - if current_user.admin?
+        = link_to '#dashboard_subgoals', id: 'dashboard_subgoals_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_subgoals'} do
+          span.fa.fa-check-circle &nbsp;Submetas
       = link_to 'Preview', @project, class: 'dashboard-nav-link'
       - if @project.draft?
         .btn-send-draft
@@ -102,6 +105,9 @@
         = render 'project_about'
       #dashboard_rewards.content.w-hidden
         = render 'dashboard_reward'
+      - if current_user.admin?
+        #dashboard_subgoals.content.w-hidden
+          = render 'dashboard_subgoals'
       #project_metrics.content.w-hidden
       - content_for :custom_javascripts do
         javascript:

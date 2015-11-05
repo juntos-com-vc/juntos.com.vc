@@ -1,0 +1,40 @@
+#dashboard-subgoals-tab
+  .u-text-center
+    .w-container
+      .w-row
+        .w-col.w-col-2
+        .w-col.w-col-8
+          .fontsize-large.fontweight-semibold Crie e edite aqui as submetas
+          p.fontsize-base <texto submetas>
+        .w-col.w-col-2
+  .section
+    .w-container
+      .w-row
+        .w-col.w-col-12.w-hidden-small.w-hidden-tiny
+          #dashboard-subgoals
+            - @project.subgoals.each_with_index do |subgoal, index|
+              .w-row.card.card-terciary.u-marginbottom-20[id="subgoal_#{subgoal.id}" data-update_url=sort_project_subgoal_path(@project, subgoal) class="sortable"]
+                .w-col.w-col-4.w-sub-col
+                  .fontweight-semibold.fontsize-smallest.u-marginbottom-10
+                    = "Submeta #{index + 1}"
+                .w-col.w-col-8
+                  .card
+                    .w-row
+                      .w-col.w-col-11
+                        .fontsize-base.fontweight-semibold= "Submeta #{subgoal.text}"
+                      .w-col.w-col-1
+                        = link_to "javascript:void(0);", data: {target: ".edit_subgoal_content_#{subgoal.id}", parent: "#subgoal_#{subgoal.id}", path: edit_project_subgoal_path(@project, subgoal)}, class: 'show_subgoal_form' do
+                          .btn.btn-small.btn-terciary.fa.fa-lg.fa-edit.btn-no-border
+                    p.fontsize-small
+                      br= subgoal.text
+              .w-hidden[class="edit_subgoal_content_#{subgoal.id}"]
+
+          .new_subgoal_content.w-hidden
+          = link_to "+ Adicionar submeta", 'javascript:void(0);', data: {target: '.new_subgoal_content', path: new_project_subgoal_path(@project)}, class: 'btn btn-large btn-message show_subgoal_form new_subgoal_button'
+
+
+/ = form.fields_for :subgoals do |subgoal_form|
+/   = subgoal_form.text_field :text
+/   = subgoal_form.text_field :color
+/   = subgoal_form.text_field :value
+/ = form.link_to_add "Adicionar subgoal", :subgoals
