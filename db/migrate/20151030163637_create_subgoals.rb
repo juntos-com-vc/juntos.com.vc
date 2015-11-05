@@ -4,7 +4,7 @@ class CreateSubgoals < ActiveRecord::Migration
       t.references :project, index: true
       t.string :color
       t.decimal :value, precision: 8, scale: 2
-      t.text :text
+      t.string :description
 
       t.timestamps
     end

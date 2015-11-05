@@ -50,6 +50,7 @@ gem 'draper'
 # Frontend stuff
 gem 'slim-rails'
 gem 'jquery-rails'
+gem 'jquery-minicolors-rails'
 gem 'browser'
 
 # Static pages
