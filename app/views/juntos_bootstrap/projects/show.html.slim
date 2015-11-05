@@ -105,7 +105,7 @@
         = render 'project_about'
       #dashboard_rewards.content.w-hidden
         = render 'dashboard_reward'
-      - if current_user.admin?
+      - if current_user and current_user.admin?
         #dashboard_subgoals.content.w-hidden
           = render 'dashboard_subgoals'
       #project_metrics.content.w-hidden
