@@ -1,0 +1,45 @@
+.w-row.card.subgoal-card.card-terciary.u-marginbottom-20
+  .fontweight-semibold.fontsize-smallest.u-marginbottom-10
+    - if resource.new_record?
+      = "Submeta ##{parent.subgoals.count + 1}"
+    - else
+      = "Editar submeta"
+  .w-col.w-col-8
+    .card
+      .w-form
+        = simple_form_for [parent, resource], html: { id: 'project_subgoal_form' } do |form|
+          = render 'devise/shared/alert'
+          .w-row.u-marginbottom-20
+            .w-col.w-col-5
+              label.fontsize-smaller Valor:
+            .w-col.w-col-7
+              .w-row
+                .w-col.w-col-3.text-field.positive.prefix.no-hover
+                  .fontsize-smallest.fontcolor-secondary.u-text-center R$
+                .w-col.w-col-9
+                  = form.input_field :value, class: 'postfix positive', required: true
+              .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="subgoal_minimum_value"] = t('simple_form.validation_texts.subgoal.minimum_value')
+          .w-row
+            .w-col.w-col-5
+              label.fontsize-smaller Descrição:
+            .w-col.w-col-7
+              = form.input_field :description, as: :text, class: 'positive', placeholder: "Descreva sua submeta", required: true
+              .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="subgoal_description"] = t('simple_form.validation_texts.subgoal.description')
+          .w-row
+            .w-col.w-col-5
+              label.fontsize-smaller Cor:
+            .w-col.w-col-7
+              = form.input_field :color, as: :string, class: 'positive', required: true
+              .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="subgoal_description"] = t('simple_form.validation_texts.subgoal.description')
+          .w-row
+            .w-col.w-col-6.w-sub-col
+              = form.button :submit, "Salvar",  class:'btn btn-small'
+            .w-col.w-col-5.w-sub-col
+              input.w-button.btn-terciary.btn.btn-small.subgoal-close-button type="submit" value="Fechar" 
+            - if resource.persisted? && policy(resource).destroy?
+              .w-col.w-col-1
+                = link_to [parent, resource], method: :delete, data: {confirm: 'Tem certeza?'} do
+                  .btn.btn-small.btn-terciary.fa.fa-lg.fa-trash.btn-no-border
+
+javascript:
+  $('#subgoal_color').minicolors();

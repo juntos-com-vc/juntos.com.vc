@@ -9,7 +9,6 @@ App.addChild('DashboardSubgoals', {
 
   activate: function() {
     this.$subgoals = this.$('#dashboard-subgoals');
-    this.sortableSubgoals();
     this.showNewSubgoalForm();
   },
 
@@ -23,34 +22,6 @@ App.addChild('DashboardSubgoals', {
     var $target = this.$(event.currentTarget);
     $target.closest('.subgoal-card').hide();
     $target.closest('.subgoal-card').parent().prev().show();
-  },
-
-  sortableSubgoals: function() {
-    this.$subgoals.sortable({
-      axis: 'y',
-      placeholder: "ui-state-highlight",
-      start: function(e, ui) {
-        return ui.placeholder.height(ui.item.height());
-      },
-      update: function(e, ui) {
-        var csrfToken, position;
-        position = $('#dashboard-subgoals .sortable').index(ui.item);
-        csrfToken = $("meta[name='csrf-token']").attr("content");
-        return $.ajax({
-          type: 'POST',
-          url: ui.item.data('update_url'),
-          dataType: 'json',
-          headers: {
-            'X-CSRF-Token': csrfToken
-          },
-          data: {
-            subgoal: {
-              row_order_position: position
-            }
-          }
-        });
-      }
-    })
   },
 
   showNewSubgoalForm: function(event) {
