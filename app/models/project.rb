@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
   has_many :unsubscribes
   has_many :project_images
   has_many :project_partners
-  has_many :subgoals
+  has_many :subgoals, -> { order 'value DESC' }
 
   accepts_nested_attributes_for :rewards
   accepts_nested_attributes_for :channels
@@ -281,6 +281,12 @@ class Project < ActiveRecord::Base
 
   def channel_json
     as_json(only: [:name, :permalink], methods: [:total_contributions])
+  end
+
+  def current_subgoal
+    ss = subgoals.where("value > ?", pledged)
+    return nil if ss.empty?
+    ss.last
   end
 
   private

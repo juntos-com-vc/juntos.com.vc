@@ -1,0 +1,52 @@
+$subgoals-height: 46px;
+$subgoals-border-radius: 4px;
+
+.project-progress-stats {
+  position: relative;
+  height: 65px;
+}
+
+.all-or-nothing-text {
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.one-subgoal {
+  position: absolute;
+}
+
+.subgoals-bar {
+  height: $subgoals-height;
+  line-height: 44px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #333;
+  border-radius: $subgoals-border-radius;
+  padding: 0 10px;
+  color: #333;
+  text-align: right;
+  overflow: hidden;
+  padding-left: 0;
+
+  .partial-paint {
+    position: absolute;
+    height: $subgoals-height - 2px;
+    border-radius: $subgoals-border-radius;
+    z-index: 0;
+  }
+
+  p {
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.align-centered {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}

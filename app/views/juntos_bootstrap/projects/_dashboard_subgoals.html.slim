@@ -21,12 +21,13 @@
                   .card
                     .w-row
                       .w-col.w-col-11
-                        .fontsize-base.fontweight-semibold= "Submeta #{subgoal.description}"
+                        .fontsize-base.fontweight-semibold= "Submeta"
                       .w-col.w-col-1
                         = link_to "javascript:void(0);", data: {target: ".edit_subgoal_content_#{subgoal.id}", parent: "#subgoal_#{subgoal.id}", path: edit_project_subgoal_path(@project, subgoal)}, class: 'show_subgoal_form' do
                           .btn.btn-small.btn-terciary.fa.fa-lg.fa-edit.btn-no-border
                     p.fontsize-small
-                      br= subgoal.description
+                      br= "Descricao: #{subgoal.description}"
+                      br= "Valor: #{number_to_currency(subgoal.value)}"
               .w-hidden[class="edit_subgoal_content_#{subgoal.id}"]
 
           .new_subgoal_content.w-hidden

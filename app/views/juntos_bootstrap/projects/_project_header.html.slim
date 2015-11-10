@@ -22,6 +22,8 @@
     .w-row
       .w-col.w-col-12
         = @project.headline
+    - unless @project.subgoals.empty?
+      = render 'subgoals'
     - if %w(juntosGSA2015 aprendaladaca gsa2015 corretordobem movimentoperfeito bibliotecadamell fundojovem pesquisadoacao tempodebrincar2015 afabricadedoces adoteumaluno cidadedosmeninos asa festadenatal).include?(@project.permalink.downcase)
       .w-row.project-progress-stats
         - if @project.permalink == 'juntosGSA2015'

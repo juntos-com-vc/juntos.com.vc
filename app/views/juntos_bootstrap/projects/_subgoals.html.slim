@@ -1,0 +1,20 @@
+.w-row.project-progress-stats
+  .all-or-nothing-text
+    p.small.align-centered Tudo ou Nada por submeta: ao atingir cada submeta abaixo, o proponente garante o repasse do respectivo valor
+  .one-subgoal[style="width: 100%"]
+    .subgoals-bar
+      - if @project.current_subgoal
+        .partial-paint[style="width: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
+      - else
+        .partial-paint[style="width: #{@project.subgoals.first.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
+      p[style="z-index: 10"] = number_to_currency(@project.goal, precision: 2)
+
+  - @project.subgoals.each do |subgoal|
+    .one-subgoal[style="width: #{subgoal.percentual_from_total}%"]
+      - if (@project.pledged >= subgoal.value)
+        .subgoals-bar[style="color: #fff; background-color: #{subgoal.color};"]
+          p = number_to_currency(subgoal.value, precision: 2)
+      - else
+        .subgoals-bar
+          p = number_to_currency(subgoal.value, precision: 2)
+      p.small.align-right = subgoal.description
