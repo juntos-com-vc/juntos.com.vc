@@ -1,0 +1,34 @@
+#dashboard-subgoals-tab
+  .u-text-center
+    .w-container
+      .w-row
+        .w-col.w-col-2
+        .w-col.w-col-8
+          .fontsize-large.fontweight-semibold Crie e edite aqui as submetas
+        .w-col.w-col-2
+  .section
+    .w-container
+      .w-row
+        .w-col.w-col-12.w-hidden-small.w-hidden-tiny
+          #dashboard-subgoals
+            - @project.subgoals.each_with_index do |subgoal, index|
+              .w-row.card.card-terciary.u-marginbottom-20[id="subgoal_#{subgoal.id}"]
+                .w-col.w-col-4.w-sub-col
+                  .fontweight-semibold.fontsize-smallest.u-marginbottom-10
+                    = "Submeta #{index + 1}"
+                .w-col.w-col-8
+                  .card
+                    .w-row
+                      .w-col.w-col-11
+                        .fontsize-base.fontweight-semibold= "Submeta"
+                      .w-col.w-col-1
+                        = link_to "javascript:void(0);", data: {target: ".edit_subgoal_content_#{subgoal.id}", parent: "#subgoal_#{subgoal.id}", path: edit_project_subgoal_path(@project, subgoal)}, class: 'show_subgoal_form' do
+                          .btn.btn-small.btn-terciary.fa.fa-lg.fa-edit.btn-no-border
+                    .subgoal-color-display[style="width: 48px; height: 36px; background-color: #{subgoal.color};"]
+                    p.fontsize-small
+                      br= "Descricao: #{subgoal.description}"
+                      br= "Valor: #{number_to_currency(subgoal.value)}"
+              .w-hidden[class="edit_subgoal_content_#{subgoal.id}"]
+
+          .new_subgoal_content.w-hidden
+          = link_to "+ Adicionar submeta", 'javascript:void(0);', data: {target: '.new_subgoal_content', path: new_project_subgoal_path(@project)}, class: 'btn btn-large btn-message show_subgoal_form new_subgoal_button'

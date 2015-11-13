@@ -43,6 +43,7 @@ class ProjectsController < ApplicationController
     8.times { @project.project_images.build }
     3.times { @project.project_partners.build }
     @project.rewards.build
+    @project.subgoals.build
   end
 
   def create
