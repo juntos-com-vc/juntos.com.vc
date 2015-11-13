@@ -3,7 +3,7 @@ $subgoals-border-radius: 4px;
 
 .project-progress-stats {
   position: relative;
-  height: 65px;
+  margin-top: 12px;
 }
 
 .all-or-nothing-text {
@@ -15,6 +15,11 @@ $subgoals-border-radius: 4px;
 
 .one-subgoal {
   position: absolute;
+
+  .subgoal-description {
+    max-width: 200px;
+    float: right;
+  }
 }
 
 .subgoals-bar {
