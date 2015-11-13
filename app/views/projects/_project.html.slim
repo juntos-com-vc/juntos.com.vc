@@ -55,7 +55,8 @@
           .time-remaining
             = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};")
         .collected-money
-          = link_to t('.pledged_html', value: number_to_currency(project.permalink == 'pesquisadoacao' ? (project.pledged * 2) : project.pledged, precision: 0, unit: ''), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};"), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
+          - multiply = %w(associacaoacorde pesquisadoacao).include?(project.permalink) ? 2 : 1
+          = link_to t('.pledged_html', value: number_to_currency((project.pledged * multiply), precision: 0, unit: ''), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};"), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
 
       /p.progress-percent = t('.progress_html', percent: project.progress)
       /.progress-bar = project.progress_bar

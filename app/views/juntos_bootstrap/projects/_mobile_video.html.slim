@@ -13,7 +13,7 @@
       .fontsize-largest = @project.total_contributions
       .fontsize-smaller = t('projects.show.sidebar.contributions')
     .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
-      .fontsize-largest = @project.display_pledged(@project.permalink == 'pesquisadoacao' ? 2 : 1)
+      .fontsize-largest = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : 1)
       .fontsize-smaller = t('projects.show.sidebar.goal', total: @project.display_goal)
     .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
       .fontsize-largest = @project.remaining_days
