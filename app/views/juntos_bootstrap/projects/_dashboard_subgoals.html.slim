@@ -5,7 +5,6 @@
         .w-col.w-col-2
         .w-col.w-col-8
           .fontsize-large.fontweight-semibold Crie e edite aqui as submetas
-          p.fontsize-base <texto submetas>
         .w-col.w-col-2
   .section
     .w-container
@@ -25,6 +24,7 @@
                       .w-col.w-col-1
                         = link_to "javascript:void(0);", data: {target: ".edit_subgoal_content_#{subgoal.id}", parent: "#subgoal_#{subgoal.id}", path: edit_project_subgoal_path(@project, subgoal)}, class: 'show_subgoal_form' do
                           .btn.btn-small.btn-terciary.fa.fa-lg.fa-edit.btn-no-border
+                    .subgoal-color-display[style="width: 48px; height: 36px; background-color: #{subgoal.color};"]
                     p.fontsize-small
                       br= "Descricao: #{subgoal.description}"
                       br= "Valor: #{number_to_currency(subgoal.value)}"
