@@ -2,7 +2,7 @@
 # 1024/4 = 240MB for each web worker
 # 512/4  = 128MB for each web worker (in this case, make it 3 worker processes)
 if ENV['PX_DYNO']
-  worker_processes 18
+  worker_processes 8
 else
   worker_processes 2
 end
