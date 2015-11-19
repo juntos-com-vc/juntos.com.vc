@@ -146,14 +146,14 @@
             = link_to t('.contribute_project.submit'), 'http://acaochego.doemaisdoemelhor.org.br/br/doacao/1/acaochego/aumigo-seu-apoio-e-nossa-esperanca', id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20", target: '_blank'
           - else
             = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn bt-yellow btn-large u-marginbottom-20"
-
-        .fontsize-smaller.fontweight-light.u-marginbottom-30[class=@project.display_card_class]
-          - if @project.permalink == 'asa'
-            | Este projeto já teve os três primeiros meses financiados pela LIVO e agora estamos correndo atrás para que ele dure um ano!
-            br
-            | Faça parte dessa história!
-          - else
-            = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
+        - if @project.subgoals.empty?
+          .fontsize-smaller.fontweight-light.u-marginbottom-30[class=@project.display_card_class]
+            - if @project.permalink == 'asa'
+              | Este projeto já teve os três primeiros meses financiados pela LIVO e agora estamos correndo atrás para que ele dure um ano!
+              br
+              | Faça parte dessa história!
+            - else
+              = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
         - if current_user.present? && current_user == @project.user
           - if current_user.pending_documents?
             .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
