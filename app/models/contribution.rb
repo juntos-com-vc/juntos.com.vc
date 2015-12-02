@@ -102,7 +102,9 @@ class Contribution < ActiveRecord::Base
   end
 
   def can_refund?
-    confirmed? && project.failed?
+    confirmed? && project.failed? &&
+    Date.today - (project.online_date + project.online_days.days).to_date < 90 &&
+    user.credits > self.value    
   end
 
   def available_rewards
