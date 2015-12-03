@@ -21,7 +21,7 @@ class Project < ActiveRecord::Base
             :display_image, :display_expires_at, :remaining_text, :time_to_go,
             :display_pledged, :display_goal, :remaining_days, :progress_bar,
             :status_flag, :state_warning_template, :display_card_class,
-            :category_image_url, to: :decorator
+            :category_image_url, :display_subgoals, to: :decorator
 
   belongs_to :user
   belongs_to :category

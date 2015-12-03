@@ -6,10 +6,10 @@
       - if @project.current_subgoal
         .partial-paint[style="width: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
       - else
-        .partial-paint[style="width: #{@project.subgoals.first.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
+        .partial-paint[style="width: #{@project.display_subgoals.first.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
       p[style="z-index: 10"] = number_to_currency(@project.goal, precision: 2)
 
-  - @project.subgoals.each do |subgoal|
+  - @project.display_subgoals.each do |subgoal|
     .one-subgoal[style="width: #{subgoal.percentual_from_total}%"]
       - if (@project.pledged >= subgoal.value)
         .subgoals-bar[style="color: #fff; background-color: #{subgoal.color};"]
