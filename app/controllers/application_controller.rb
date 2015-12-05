@@ -79,6 +79,15 @@ class ApplicationController < ActionController::Base
   end
 
   def set_country_payment_engine
-    session[:payment_country] ||= GeoIp.geolocation(request.remote_ip, precision: :country)[:country_code]
+    begin
+      session[:payment_country] ||= GeoIp.geolocation(request.remote_ip, precision: :country)[:country_code]
+    rescue
+      # There has been a problem with GeoIp that is timing out every request.
+      # Most likely their API is down for some reason.
+      # I'm replacing it's code for now.
+      # Look into replacing the API as soon as possible
+      session[:payment_country] = 'BR'
+      puts "error loading Geolocation"
+    end
   end
 end
