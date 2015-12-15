@@ -11,6 +11,6 @@ class Subgoal < ActiveRecord::Base
   private
 
   def cannot_be_higher_than_project_goal
-    value >= project.goal
+    value <= project.goal
   end
 end

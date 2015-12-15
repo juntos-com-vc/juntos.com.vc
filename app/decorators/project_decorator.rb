@@ -80,7 +80,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def display_subgoals
-    source.subgoals.where("value < ?", source.goal)
+    source.subgoals.where("value <= ?", source.goal)
   end
 
   def progress_bar
