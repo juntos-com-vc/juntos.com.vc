@@ -16,8 +16,9 @@ module Shared::CatarseAutoHtml
     AutoHtml.add_filter(:add_link_alias) do |text, options|
       text.gsub(/&quot;.+&quot;:<a.+<\/a>/i) do |match|
         ali = match.to_s.split("&quot;")[1]
-        link = match.to_s.gsub(/>.+<\/a>/, ">#{ali}</a>")
+        link = match.to_s.gsub(/"_blank">.+<\/a>/, "\"_blank\">#{ali}</a>")
         link_with_alias = link.match(/<a.*a>/).to_s
+        binding.pry
         link_with_alias
       end
     end
