@@ -18,7 +18,6 @@ module Shared::CatarseAutoHtml
         ali = match.to_s.split("&quot;")[1]
         link = match.to_s.gsub(/"_blank">.+<\/a>/, "\"_blank\">#{ali}</a>")
         link_with_alias = link.match(/<a.*a>/).to_s
-        binding.pry
         link_with_alias
       end
     end
