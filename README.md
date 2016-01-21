@@ -1,4 +1,7 @@
-# Catarse [![Build Status](https://secure.travis-ci.org/catarse/catarse.png?branch=master)](https://travis-ci.org/catarse/catarse) [![Coverage Status](https://coveralls.io/repos/catarse/catarse/badge.png?branch=channels)](https://coveralls.io/r/catarse/catarse) [![Dependency Status](https://gemnasium.com/catarse/catarse.png)](https://gemnasium.com/catarse/catarse) [![Code Climate](https://codeclimate.com/github/catarse/catarse.png)](https://codeclimate.com/github/catarse/catarse)
+# Juntos.com.vc
+
+[![Build Status](https://travis-ci.org/juntos-com-vc/juntos.com.vc.svg?branch=master)](https://travis-ci.org/juntos-com-vc/juntos.com.vc)
+[![Code Climate](https://codeclimate.com/github/juntos-com-vc/juntos.com.vc/badges/gpa.svg)](https://codeclimate.com/github/juntos-com-vc/juntos.com.vc)
 
 The first crowdfunding platform from Brazil
 
