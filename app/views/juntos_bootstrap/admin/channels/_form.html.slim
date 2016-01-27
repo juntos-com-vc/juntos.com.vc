@@ -1,44 +1,28 @@
-- if params[:action] == 'new' || params[:action] == 'create'
-  = simple_form_for [:admin, @channel] do |form|
-    - if @channel.errors.present?
-      .card.card-error.u-radius.zindex-10.u-marginbottom-30
-        .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
-        - @channel.errors.messages.each do |message|
-          .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
+= simple_form_for [:admin, @channel],
+  url: (@channel.id ? admin_channel_path(@channel.id) : nil) do |form|
+  - if @channel.errors.present?
+    .card.card-error.u-radius.zindex-10.u-marginbottom-30
+      .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
+      - @channel.errors.messages.each do |message|
+        .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
 
-    .w-row
-      .w-col.w-col-6
-        = form.input :name, as: :string, required: true
-      .w-col.w-col-6
-        = form.input :permalink, as: :string, required: true
-    .w-row
-      .w-col.w-col-6
-        = form.input :category_id, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'medium'
-      .w-col.w-col-6
-        = form.input :description, as: :text, required: true
+  .w-row
+    .w-col.w-col-6
+      = form.input :name, as: :string, required: true
+    .w-col.w-col-6
+      = form.input :permalink, as: :string, required: true
+  .w-row
+    .w-col.w-col-6
+      = form.input :category_id, as: :select, class: 'medium',
+        collection: Category.order(:name_pt),
+        prompt: t('simple_form.prompts.project.category')
+    .w-col.w-col-6
+      = form.input :recurring, as: :select, collection: [:true, :false],
+        prompt: false, required: true
+  .w-row
+    .w-col.w-col-12
+      = form.input :description, as: :text, required: true
 
-    .w-row
-      .w-col.w-col-3.u-margintop-20.u-marginbottom-30
-        = form.button :submit, class: 'btn btn-medium'
-- else
-  = simple_form_for [:admin, @channel], url: admin_channel_path(@channel.id) do |form|
-    - if @channel.errors.present?
-      .card.card-error.u-radius.zindex-10.u-marginbottom-30
-        .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('failure_title')
-        - @channel.errors.messages.each do |message|
-          .fontsize-smaller = "#{message[0]}: #{message[1].to_sentence}"
-
-    .w-row
-      .w-col.w-col-6
-        = form.input :name, as: :string, required: true
-      .w-col.w-col-6
-        = form.input :permalink, as: :string, required: true
-    .w-row
-      .w-col.w-col-6
-        = form.input :category_id, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'medium'
-      .w-col.w-col-6
-        = form.input :description, as: :text, required: true
-
-    .w-row
-      .w-col.w-col-3.u-margintop-20.u-marginbottom-30
-        = form.button :submit, class: 'btn btn-medium'
+  .w-row
+    .w-col.w-col-3.u-margintop-20.u-marginbottom-30
+      = form.button :submit, class: 'btn btn-medium'

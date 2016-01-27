@@ -130,6 +130,7 @@ pt:
         terms: Termos de Uso e Privacidade
         privacy: Política de privacidade
         contacts: Contatos
+        recurring: Recorrente
       channel_partner:
         name: 'Nome'
         url: 'Site'

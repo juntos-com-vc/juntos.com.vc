@@ -1,5 +1,10 @@
 pt:
   simple_form:
+    options:
+      channel:
+        recurring:
+          "true": "Sim"
+          "false": "Não"
     collections:
       project:
         traffic_sources:
