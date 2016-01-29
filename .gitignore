@@ -28,3 +28,4 @@ Cookbooks
 .project
 .secret.rvmrc
 .rvmrc
+.env

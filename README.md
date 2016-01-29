@@ -41,7 +41,11 @@ To run this project you need to have:
 
         $ cp config/database.sample.yml config/database.yml
 
-    Add your datbase credentials
+    Add your database credentials
+
+* Create a copy of `.env.example` called `.env` and add your credentials to it
+
+        $ cp .env.example .env
 
 * Install the gems
 
@@ -54,6 +58,8 @@ To run this project you need to have:
 If everything goes OK, you can now run the project!
 
 ### Running the project
+
+Start the local server
 
 ```bash
 $ rails server
