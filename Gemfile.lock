@@ -176,6 +176,8 @@ GEM
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     draper (1.4.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -572,6 +574,7 @@ DEPENDENCIES
   coveralls
   database_cleaner
   devise
+  dotenv-rails
   draper
   ezcrypto
   factory_girl_rails
@@ -636,3 +639,6 @@ DEPENDENCIES
   user_notifier (~> 0.0.5)
   video_info (>= 1.1.1)
   weekdays
+
+BUNDLED WITH
+   1.11.2
