@@ -636,4 +636,18 @@ RSpec.describe Project, type: :model do
       it { is_expected.to be_falsey }
     end
   end
+
+  context 'when a project belongs to a recurring channel' do
+    let(:recurring_channel) { create :channel, recurring: true }
+    subject {
+      build :project,
+        channels: [recurring_channel],
+        category: nil,
+        online_days: nil
+    }
+
+    describe 'validations' do
+      it { is_expected.not_to validate_presence_of :category }
+    end
+  end
 end
