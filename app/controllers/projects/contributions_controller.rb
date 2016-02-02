@@ -41,12 +41,7 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def new
-    options = if Rails.env.production?
-                { host: 'secure.juntos.com.vc', protocol: 'https' }
-              else
-                {}
-              end
-    @create_url = project_contributions_url(@project, options)
+    @create_url = project_contributions_url(@project, project_contribution_url_options)
 
     @contribution = Contribution.new(project: parent, user: current_user)
     authorize @contribution
@@ -135,5 +130,13 @@ class Projects::ContributionsController < ApplicationController
 
   def use_catarse_boostrap
     ["new", "create", "edit", "update"].include?(action_name) ? 'juntos_bootstrap' : 'application'
+  end
+
+  def project_contribution_url_options
+    if CatarseSettings.get_without_cache(:secure_host)
+      { host: params[:host], protocol: params[:protocol] }
+    else
+      {}
+    end
   end
 end
