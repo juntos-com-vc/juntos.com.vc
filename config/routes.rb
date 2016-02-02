@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   def ssl_options
-    if CatarseSettings[:secure_host]
-      {protocol: 'https', host: CatarseSettings[:secure_host]}
+    if CatarseSettings.get_without_cache(:secure_host)
+      {protocol: 'https', host: CatarseSettings.get_without_cache(:secure_host)}
     else
       {}
     end
