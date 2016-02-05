@@ -58,12 +58,13 @@
                       .fontcolor-secondary.u-text-center.fontsize-smallest juntos.com.vc/
                     .w-col.w-col-8.w-col-small-6.w-col-tiny-6
                       = form.input_field :permalink, as: :string, class: 'postfix positive', required: false
-              .w-row.u-marginbottom-30.card.card-terciary
-                .w-col.w-col-5.w-sub-col
-                  label.field-label.fontweight-semibold for="name-8"= t('.category')
-                  label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.category_label')
-                .w-col.w-col-7
-                  = form.association :category, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'w-select text-field positive', label: '', required: false, hint: ''
+              - unless @channel && @channel.recurring?
+                .w-row.u-marginbottom-30.card.card-terciary
+                  .w-col.w-col-5.w-sub-col
+                    label.field-label.fontweight-semibold for="name-8"= t('.category')
+                    label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.category_label')
+                  .w-col.w-col-7
+                    = form.association :category, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'w-select text-field positive', label: '', required: false, hint: ''
               .w-row.u-marginbottom-30.card.card-terciary
                 .w-col.w-col-5.w-sub-col
                   label.field-label.fontweight-semibold for="project_goal"= t('.value')
@@ -76,16 +77,17 @@
                       .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest R$
                     .w-col.w-col-8.w-col-small-6.w-col-tiny-6
                       = form.input_field :goal, as: :string, class: 'positive'
-              .w-row.card.card-terciary
-                .w-col.w-col-5.w-sub-col
-                  label.field-label.fontweight-semibold for="name-8"=t('.online_days')
-                  label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.online_days_label')
-                .w-col.w-col-7
-                  .w-row
-                    .w-col.w-col-8.w-col-small-6.w-col-tiny-6
-                      = form.input_field :online_days, class: 'prefix positive', as: :string
-                    .w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.postfix.no-hover
-                      .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest Dias
+              - unless @channel && @channel.recurring?
+                .w-row.card.card-terciary
+                  .w-col.w-col-5.w-sub-col
+                    label.field-label.fontweight-semibold for="name-8"=t('.online_days')
+                    label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.online_days_label')
+                  .w-col.w-col-7
+                    .w-row
+                      .w-col.w-col-8.w-col-small-6.w-col-tiny-6
+                        = form.input_field :online_days, class: 'prefix positive', as: :string
+                      .w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.postfix.no-hover
+                        .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest Dias
 
         .w-col.w-col-4
           .w-hidden-main.w-hidden-medium.card.u-radius.card-notification.zindex-20

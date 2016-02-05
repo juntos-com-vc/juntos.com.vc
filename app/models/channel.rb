@@ -33,6 +33,10 @@ class Channel < ActiveRecord::Base
     self.by_permalink(string).first!
   end
 
+  def self.recurring (recurring)
+    where(recurring: recurring)
+  end
+
   def has_subscriber? user
     user && subscribers.where(id: user.id).first.present?
   end

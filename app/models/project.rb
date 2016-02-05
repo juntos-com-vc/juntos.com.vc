@@ -129,6 +129,8 @@ class Project < ActiveRecord::Base
     ")
   }
 
+  scope :recurring, -> { joins(:channels).merge(Channel.recurring(true)) }
+
   attr_accessor :accepted_terms, :new_record
 
   validates_acceptance_of :accepted_terms, on: :create
@@ -149,6 +151,10 @@ class Project < ActiveRecord::Base
     define_singleton_method name do |starts_at, ends_at|
       between_dates name.to_s.gsub('between_',''), starts_at, ends_at
     end
+  end
+
+  def self.without_recurring
+    where('id NOT IN (?)', recurring.map(&:id))
   end
 
   def self.send_verify_moip_account_notification

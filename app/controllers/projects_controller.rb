@@ -12,20 +12,20 @@ class ProjectsController < ApplicationController
     index! do |format|
       format.html do
         if request.xhr?
-          @projects = apply_scopes(Project.visible.order_status.without_toddynho)
+          @projects = apply_scopes(Project.visible.order_status.without_toddynho.without_recurring)
             .most_recent_first
             .includes(:project_total, :user, :category)
             .page(params[:page]).per(6)
           return render partial: 'project', collection: @projects, layout: false
         else
-          @projects = apply_scopes(Project.without_toddynho)
+          @projects = apply_scopes(Project.without_toddynho.without_recurring)
 
           @title = t("site.title")
 
           @recommends = ProjectsForHome.recommends.includes(:project_total)
           @projects_near = Project.with_state('online').near_of(current_user.address_state).order("random()").limit(3).includes(:project_total) if current_user
           @expiring = ProjectsForHome.expiring.where(recommended: false).includes(:project_total)
-          @recent   = apply_scopes(Project.without_toddynho).with_state('online').where(recommended: false).order("random()").limit(6).includes(:project_total)
+          @recent   = apply_scopes(Project.without_toddynho.without_recurring).with_state('online').where(recommended: false).order("random()").limit(6).includes(:project_total)
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
           @site_partners = @featured_partners + @regular_partners
@@ -47,12 +47,13 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new params[:project].merge(user: current_user)
+    options = {user: current_user}
+    options.merge!(channels: [channel]) if channel
+
+    @project = Project.new params[:project].merge(options)
     authorize @project
     session[:new_project] = true
-    if @project.save
-      channel.projects << @project if channel
-    end
+    @project.save
     create! { project_by_slug_path(@project.permalink, anchor: 'basics') }
   end
 
@@ -100,9 +101,12 @@ class ProjectsController < ApplicationController
     @channel = resource.channels.first
     @posts_count = resource.posts.count(:all)
     @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
-    @color = (channel.present? && channel.main_color) || @project.category.color
     @contributions = @project.contributions.available_to_count
     @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
+
+    unless @channel && @channel.recurring?
+      @color = (channel.present? && channel.main_color) || @project.category.color
+    end
   end
 
   def video

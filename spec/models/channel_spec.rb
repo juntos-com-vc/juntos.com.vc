@@ -105,6 +105,17 @@ RSpec.describe Channel, type: :model do
     end
   end
 
+  describe '.recurring' do
+    let(:category) { create :category }
+    let(:recurring_channels) { create_list :channel, 2, recurring: true }
+    let(:normal_channels) { create_list :channel, 2, category: category }
+
+    subject { described_class.recurring true }
+
+    it { is_expected.to match_array recurring_channels }
+    it { is_expected.not_to include normal_channels }
+  end
+
   context 'when it is a recurring channel' do
     subject { create :channel, recurring: true, category: nil }
 
