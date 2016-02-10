@@ -6,8 +6,10 @@ class Channel < ActiveRecord::Base
   has_many :partners, class_name: "ChannelPartner"
   has_many :images, class_name: "ChannelImage"
 
-  validates_presence_of :name, :description, :permalink, :category_id
+  validates_presence_of :name, :description, :permalink
   validates_uniqueness_of :permalink
+
+  validates_presence_of :category_id, unless: :recurring?
 
   has_and_belongs_to_many :projects, -> { order_status.most_recent_first }
   has_many :subscribers, class_name: 'User', through: :channels_subscribers, source: :user
@@ -29,6 +31,10 @@ class Channel < ActiveRecord::Base
 
   def self.find_by_permalink!(string)
     self.by_permalink(string).first!
+  end
+
+  def self.recurring (recurring)
+    where(recurring: recurring)
   end
 
   def has_subscriber? user

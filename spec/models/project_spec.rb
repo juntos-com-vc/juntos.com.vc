@@ -636,4 +636,59 @@ RSpec.describe Project, type: :model do
       it { is_expected.to be_falsey }
     end
   end
+
+  describe '#recurring?' do
+    subject { project.recurring? }
+
+    context 'when a project belongs to a recurring channel' do
+      let(:channel) { create :channel, recurring: true }
+      let(:project) { create :project, channels: [channel] }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'when a project does not belong to a recurring channel' do
+      let(:project) { create :project }
+
+      it { is_expected.to be_falsey }
+    end
+  end
+
+  describe 'recurring related scopes' do
+    let(:channel) { create :channel, recurring: true }
+    let!(:normal_projects) { create_list :project, 2 }
+    let!(:recurring_projects) {
+      create_list :project, 2,
+        channels: [channel],
+        category: nil
+    }
+
+    describe '.without_recurring' do
+      subject { described_class.without_recurring }
+
+      it { is_expected.to match_array normal_projects }
+      it { is_expected.to have(2).itens }
+    end
+
+    describe '.recurring' do
+      subject { described_class.recurring }
+
+      it { is_expected.to match_array recurring_projects }
+      it { is_expected.to have(2).itens }
+    end
+  end
+
+  context 'when a project belongs to a recurring channel' do
+    let(:recurring_channel) { create :channel, recurring: true }
+    subject {
+      build :project,
+        channels: [recurring_channel],
+        category: nil,
+        online_days: nil
+    }
+
+    describe 'validations' do
+      it { is_expected.not_to validate_presence_of :category }
+    end
+  end
 end

@@ -8,7 +8,7 @@
         = 'Um projeto por'
         |&nbsp;
         = link_to 'TODDYNHO®', 'https://www.toddynho.com.br/', target: '_blank', class: 'link-hidden', style:"color: #{@color}"
-      - else
+      - elsif ! (@channel && @channel.recurring?)
         = t('projects.index.project_of')
         |&nbsp;
         = link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden', style:"color: #{@color}"
@@ -70,15 +70,16 @@
                 = @project.contributions.available_to_count.count
             li.u-marginleft-20.fontsize-smallest
               = t('projects.project_about.contributions')
-        .w-col.w-col-4
-          .category_image
-            = image_tag('juntos/project_calendar.png', class: 'category-image u-left u-margintop-10')
-          ul.u-margintop-10
-            li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@color}"
-              = @project.time_to_go[:time]
-              .fontsize-smallest.inline= @project.time_to_go[:unit].capitalize
-            li.u-marginleft-20.fontsize-smallest
-                = pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))
+        - unless @channel && @channel.recurring?
+          .w-col.w-col-4
+            .category_image
+              = image_tag('juntos/project_calendar.png', class: 'category-image u-left u-margintop-10')
+            ul.u-margintop-10
+              li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@color}"
+                = @project.time_to_go[:time]
+                .fontsize-smallest.inline= @project.time_to_go[:unit].capitalize
+              li.u-marginleft-20.fontsize-smallest
+                  = pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))
         .w-col.w-col-4
           .category_image
             = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10')

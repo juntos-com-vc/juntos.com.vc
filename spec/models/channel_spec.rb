@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Channel, type: :model do
   describe "Validations & Assoaciations" do
 
-    [:name, :description, :permalink].each do |attribute|
+    [:name, :description, :permalink, :category_id].each do |attribute|
       it { is_expected.to validate_presence_of      attribute }
       it { is_expected.to allow_mass_assignment_of  attribute }
     end
@@ -102,6 +102,25 @@ RSpec.describe Channel, type: :model do
 
     it "should projects in more days online ascending order and online projects first" do
       expect(channel.projects).to eq([project2, project1, project3])
+    end
+  end
+
+  describe '.recurring' do
+    let(:category) { create :category }
+    let(:recurring_channels) { create_list :channel, 2, recurring: true }
+    let(:normal_channels) { create_list :channel, 2, category: category }
+
+    subject { described_class.recurring true }
+
+    it { is_expected.to match_array recurring_channels }
+    it { is_expected.not_to include normal_channels }
+  end
+
+  context 'when it is a recurring channel' do
+    subject { create :channel, recurring: true, category: nil }
+
+    describe 'validations' do
+      it { is_expected.not_to validate_presence_of :category }
     end
   end
 end
