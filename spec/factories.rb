@@ -143,7 +143,7 @@ FactoryGirl.define do
 
   factory :bank do
     name "Foo"
-    code "000"
+    sequence(:code) { |n| n.to_s.rjust(3, '0') }
   end
 
   factory :bank_account do |f|

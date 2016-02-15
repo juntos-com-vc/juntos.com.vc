@@ -2,9 +2,10 @@ div class=(policy(project.user).update? ? 'project_land u-marginbottom-40' : 'sm
   .title
     h4
       = link_to project.name, project_by_slug_path(project.permalink)
-  .category style="background-color: #{project.category.color}"
-    h5 = project.category.send("name_#{I18n.locale}")
-    = image_tag project.category.image.url, class: 'category-image'
+  - unless channel && channel.recurring?
+    .category style="background-color: #{project.category.color}"
+      h5 = project.category.send("name_#{I18n.locale}")
+      = image_tag project.category.image.url, class: 'category-image'
   .info
     .cover
       img[src=project.display_image width="218px" height="175px"]
@@ -13,13 +14,14 @@ div class=(policy(project.user).update? ? 'project_land u-marginbottom-40' : 'sm
       p.headline= project.headline
       .circle
         - circle_id = (project.id + Time.now.to_f).to_s
+        - project_color = project.category.try(:color) || '#CCC'
         .project_progress id="#{circle_id}"
         javascript:
           (function() {
             Circles.create({
               id: "#{circle_id}", radius: 30, value: "#{project.progress}",
-              text: "<div class='percent' style='color: #{project.category.color}'>#{project.progress}%<div><span>da meta</span></div></div>",
-              colors: ['#CCC', "#{project.category.color}"],
+              text: "<div class='percent' style='color: #{project_color}'>#{project.progress}%<div><span>da meta</span></div></div>",
+              colors: ['#CCC', "#{project_color}"],
               duration: 0,
               width: 5
             });
