@@ -1,7 +1,7 @@
 namespace :deploy do
   PRODUCTION_APP = 'juntoscomvc'
   STAGING_APP    = 'juntos-com-vc-staging'
-  REMOTE          = ENV["REMOTE_HOST"] || "git@heroku.com"
+  REMOTE          = ENV["REMOTE_HOST"] || "https://git.heroku.com"
 
   def heroku_cmd(cmd)
     Bundler.with_clean_env do
@@ -28,7 +28,7 @@ namespace :deploy do
 
   task :push do
     puts 'Deploying site to Heroku ...'
-    sh "git push #{REMOTE}:#{APP}.git master"
+    sh "git push #{REMOTE}/#{APP}.git master"
   end
 
   task :restart do
@@ -41,7 +41,7 @@ namespace :deploy do
     puts "Tagging release as '#{release_name}'"
     sh "git tag -a #{release_name} -m 'Tagged release'"
     sh "git push origin --tags"
-    sh "git push --tags #{REMOTE}:#{APP}.git"
+    sh "git push --tags #{REMOTE}/#{APP}.git"
   end
 
   task :migrate do
@@ -73,18 +73,18 @@ namespace :deploy do
 
       puts "Removing tagged version '#{previous_release}' (now transformed in branch) ..."
       sh "git tag -d #{previous_release}"
-      sh "git push #{REMOTE}:#{APP}.git :refs/tags/#{previous_release}"
+      sh "git push #{REMOTE}/#{APP}.git :refs/tags/#{previous_release}"
 
       puts "Pushing '#{previous_release}' to Heroku master ..."
-      sh "git push #{REMOTE}:#{APP}.git +#{previous_release}:master --force"
+      sh "git push #{REMOTE}/#{APP}.git +#{previous_release}:master --force"
 
       puts "Deleting rollbacked release '#{current_release}' ..."
       sh "git tag -d #{current_release}"
-      sh "git push #{REMOTE}:#{APP}.git :refs/tags/#{current_release}"
+      sh "git push #{REMOTE}/#{APP}.git :refs/tags/#{current_release}"
 
       puts "Retagging release '#{previous_release}' in case to repeat this process (other rollbacks)..."
       sh "git tag -a #{previous_release} -m 'Tagged release'"
-      sh "git push --tags #{REMOTE}:#{APP}.git"
+      sh "git push --tags #{REMOTE}/#{APP}.git"
 
       puts "Turning local repo checked out on master ..."
       sh "git checkout master"
