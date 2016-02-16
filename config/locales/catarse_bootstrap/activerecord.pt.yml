@@ -18,9 +18,9 @@ pt:
         owner_name: 'Nome do titular'
         owner_document: 'CPF / CNPJ do titular'
         agency: 'Agência'
-        agency_digit: 'Dígito'
+        agency_digit: 'Dígito da agência'
         account: 'Número da conta'
-        account_digit: 'Dígito'
+        account_digit: 'Dígito da conta'
       contribution:
         payer_name: "Nome Completo"
         payer_email: "Email"

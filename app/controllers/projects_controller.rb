@@ -44,11 +44,24 @@ class ProjectsController < ApplicationController
     3.times { @project.project_partners.build }
     @project.rewards.build
     @project.subgoals.build
+
+    @banks = Bank.to_collection if channel && channel.recurring?
   end
 
   def create
     options = {user: current_user}
     options.merge!(channels: [channel]) if channel
+
+    if channel && channel.recurring?
+      pagarme_recipient = PagarmeService.create_recipient({
+        transfer_interval: 'monthly',
+        transfer_day: Time.current.day,
+        transfer_enabled: true,
+        bank_account: params[:bank_account]
+      })
+
+      options.merge!(recipient: pagarme_recipient['id'])
+    end
 
     @project = Project.new params[:project].merge(options)
     authorize @project

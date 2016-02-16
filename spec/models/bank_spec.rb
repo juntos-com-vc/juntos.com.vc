@@ -27,4 +27,23 @@ RSpec.describe Bank, type: :model do
     end
   end
 
+  describe '.to_collection' do
+    let(:banks) { create_list :bank, 2 }
+    let(:collection) { banks.map { |bank| [bank.to_s, bank.code] } }
+    subject { Bank.to_collection }
+
+    before do
+      allow(Bank).to receive(:order_popular).and_return(banks)
+    end
+
+    it { is_expected.to match_array collection }
+  end
+
+  describe '#to_s' do
+    let(:bank) { build :bank, name: 'Bank', code: '007' }
+    let(:result_string) { "#{bank.code} . #{bank.name}" }
+    subject { bank.to_s }
+
+    it { is_expected.to eq result_string }
+  end
 end
