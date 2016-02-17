@@ -127,8 +127,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
-  # Uncomment only for optimization, should be commented on master branch
-  # gem 'rack-mini-profiler'
+  gem 'fuubar', '~> 2.0.0'
 end
 
 group :test, :development do
@@ -149,7 +148,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara',   '~> 2.2.0'
   gem 'coveralls', require: false
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.51.0'
 end
 
 # Rails simple carousel
