@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.3'
 
-gem 'rails', '~> 4.1.12'
+gem 'rails', '~> 4.1.14'
 
 gem 'protected_attributes', '~> 1.0.5' # When upgrade to strong_parameters, remove this gem.
 gem 'rails-observers', '~> 0.1.2'
@@ -127,8 +127,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
-  # Uncomment only for optimization, should be commented on master branch
-  # gem 'rack-mini-profiler'
+  gem 'fuubar', '~> 2.0.0'
 end
 
 group :test, :development do
@@ -149,7 +148,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara',   '~> 2.2.0'
   gem 'coveralls', require: false
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.51.0'
 end
 
 # Rails simple carousel
