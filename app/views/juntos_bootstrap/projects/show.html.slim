@@ -161,7 +161,7 @@
           - if !@project.user.approved?
             .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
               = raw "Você ainda não está com a documentação de sua ONG em dia. Esta documentação é necessária para a aprovação do projeto. Você pode enviar a documentação necessária #{link_to 'aqui', user_path(current_user, anchor: 'settings'), style: 'color: #FDB64C;'}"
-        - unless @project.permalink == 'toddynho' || @project.permalink == 'asa'
+        - unless %w(bolsasdazmina marcha2016 toddynho asa).include? @project.permalink.downcase
           .u-marginbottom-10.project-style= t('.contribution_style')
       .card.card-user.u-marginbottom-10
         .proposed_by
