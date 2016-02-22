@@ -8,21 +8,23 @@ RSpec.describe PagarmeService do
   end
 
   describe '.create_recipient' do
-    let(:recipient) {{
-      transfer_interval: 'monthly',
-      transfer_day: 7,
-      transfer_enabled: true,
-      bank_account: {
-        bank_code: '001',
-        agencia: '0001',
-        conta: '000001',
-        conta_dv: '00',
-        document_number: '111.111.111-11',
-        legal_name: 'Juntos com você API'
-      }
+    let(:bank_account) {{
+      bank_code: '001',
+      agencia: '0001',
+      conta: '000001',
+      conta_dv: '00',
+      document_number: '111.111.111-11',
+      legal_name: 'Juntos com você API'
     }}
 
-    subject { described_class.create_recipient(recipient) }
+    let(:recipient) {{
+      transfer_interval: 'monthly',
+      transfer_day: Time.current.day,
+      transfer_enabled: true,
+      bank_account: bank_account
+    }}
+
+    subject { described_class.create_recipient(bank_account) }
 
     before do
       allow(request).to receive_messages(:parameters= => nil, :run => nil)
