@@ -53,12 +53,7 @@ class ProjectsController < ApplicationController
     options.merge!(channels: [channel]) if channel
 
     if channel && channel.recurring?
-      pagarme_recipient = PagarmeService.create_recipient({
-        transfer_interval: 'monthly',
-        transfer_day: Time.current.day,
-        transfer_enabled: true,
-        bank_account: params[:bank_account]
-      })
+      pagarme_recipient = PagarmeService.create_recipient(params[:bank_account])
 
       options.merge!(recipient: pagarme_recipient['id'])
     end
@@ -89,6 +84,11 @@ class ProjectsController < ApplicationController
     authorize resource
     update! do |format|
       update_project_images_and_partners(permitted_params)
+
+      if channel && channel.recurring?
+        PagarmeService.update_recipient_bank_account(@project.recipient, params[:bank_account])
+      end
+
       format.html do
         if resource.errors.present?
           flash[:alert] = resource.errors.full_messages.to_sentence
@@ -117,7 +117,12 @@ class ProjectsController < ApplicationController
     @contributions = @project.contributions.available_to_count
     @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
 
-    unless @channel && @channel.recurring?
+    if @channel && @channel.recurring?
+      @banks = Bank.to_collection
+
+      recipient = PagarmeService.find_recipient_by_id(@project.recipient)
+      @bank_account = recipient.bank_account
+    else
       @color = (channel.present? && channel.main_color) || @project.category.color
     end
   end
