@@ -101,6 +101,50 @@ RSpec.describe PagarmeService do
         subject
       end
     end
+
+    describe '.update_recipient_bank_account' do
+      let(:recipient_id) { 're_ciknzf3jp003eyn6erpmwarkk' }
+      let(:bank_account_id) { 11585644 }
+      let(:account_info) {{
+        'bank_code' => '341',
+        'agencia' => '007',
+        'agencia_dv' => nil,
+        'conta' => '077',
+        'conta_dv' => 77,
+        'document_number' => '74458396820',
+        'legal_name' => 'TEST BANK ACCOUNT',
+      }}
+
+      subject {
+        described_class.update_recipient_bank_account recipient_id, account_info
+      }
+
+      before do
+        allow(request).to receive_messages(:parameters= => nil, :run => nil)
+        allow(PagarmeService).to receive(:create_bank_account)
+                                        .and_return(bank_account_id)
+      end
+
+      it 'instantiates a new Request object' do
+        expect(PagarMe::Request)
+          .to receive(:new).with('/recipients/' +recipient_id, 'PUT')
+
+        subject
+      end
+
+      it 'passes the correct parameters to the request' do
+        expect(request)
+          .to receive(:parameters=).with(bank_account_id: bank_account_id)
+
+        subject
+      end
+
+      it 'triggers the request' do
+        expect(request).to receive(:run)
+
+        subject
+      end
+    end
   end
 
   describe 'create_bank_account' do

@@ -1,6 +1,6 @@
 class PagarmeService
-  def self.create_recipient(bank_account)
-    recipient = recipient_params(bank_account)
+  def self.create_recipient(account_info)
+    recipient = recipient_params(account_info)
 
     request = PagarMe::Request.new('/recipients', 'POST')
     request.parameters = recipient
@@ -14,9 +14,11 @@ class PagarmeService
     PagarMe::Util.convert_to_pagarme_object(response)
   end
 
-  def self.update_recipient(id, bank_account)
+  def self.update_recipient_bank_account(id, account_info)
+    bank_account_id = create_bank_account(account_info)
+
     request = PagarMe::Request.new('/recipients' + "/#{id}", 'PUT')
-    request.parameters = {bank_account: bank_account}
+    request.parameters = {bank_account_id: bank_account_id}
     response = request.run
 
     PagarMe::Util.convert_to_pagarme_object(response)

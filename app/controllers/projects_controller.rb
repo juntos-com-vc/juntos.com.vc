@@ -53,9 +53,7 @@ class ProjectsController < ApplicationController
     options.merge!(channels: [channel]) if channel
 
     if channel && channel.recurring?
-      pagarme_recipient = PagarmeService.create_recipient({
-        bank_account: params[:bank_account]
-      })
+      pagarme_recipient = PagarmeService.create_recipient(params[:bank_account])
 
       options.merge!(recipient: pagarme_recipient['id'])
     end
@@ -88,7 +86,7 @@ class ProjectsController < ApplicationController
       update_project_images_and_partners(permitted_params)
 
       if channel && channel.recurring?
-        PagarmeService.update_recipient(@project.recipient, params[:bank_account])
+        PagarmeService.update_recipient_bank_account(@project.recipient, params[:bank_account])
       end
 
       format.html do

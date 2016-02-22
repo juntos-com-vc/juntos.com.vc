@@ -138,9 +138,11 @@
                 .u-marginbottom-40
                   = form.input :owner_document,
                     label: t('activerecord.attributes.bank_account.owner_document') do
-                    = text_field_tag 'bank_account[document_number]',
-                      @bank_account.document_number, required: true,
+                    = text_field_tag 'bank_account[owner_document]',
+                      @bank_account.document_number, disabled: true,
                       class: 'text required w-input text-field'
+                    = hidden_field_tag 'bank_account[document_number]',
+                      @bank_account.document_number
 
         .w-col.w-col-4
           .w-hidden-main.w-hidden-medium.card.u-radius.card-notification.zindex-20
