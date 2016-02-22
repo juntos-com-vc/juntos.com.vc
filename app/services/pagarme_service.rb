@@ -22,6 +22,12 @@ class PagarmeService
     PagarMe::Util.convert_to_pagarme_object(response)
   end
 
+  def self.create_bank_account(account_info)
+    bank_account = PagarMe::BankAccount.new(account_info).create
+
+    bank_account["id"]
+  end
+
   private
 
   def self.recipient_params(bank_account)
