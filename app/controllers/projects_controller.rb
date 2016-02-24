@@ -44,24 +44,17 @@ class ProjectsController < ApplicationController
     3.times { @project.project_partners.build }
     @project.rewards.build
     @project.subgoals.build
-
-    @banks = Bank.to_collection if channel && channel.recurring?
   end
 
   def create
     options = {user: current_user}
     options.merge!(channels: [channel]) if channel
 
-    if channel && channel.recurring?
-      pagarme_recipient = PagarmeService.create_recipient(params[:bank_account])
-
-      options.merge!(recipient: pagarme_recipient['id'])
-    end
-
     @project = Project.new params[:project].merge(options)
     authorize @project
     session[:new_project] = true
     @project.save
+
     create! { project_by_slug_path(@project.permalink, anchor: 'basics') }
   end
 
@@ -86,7 +79,7 @@ class ProjectsController < ApplicationController
       update_project_images_and_partners(permitted_params)
 
       if channel && channel.recurring?
-        PagarmeService.update_recipient_bank_account(@project.recipient, params[:bank_account])
+        PagarmeService.delay.process(@project, params[:bank_account])
       end
 
       format.html do
@@ -121,7 +114,7 @@ class ProjectsController < ApplicationController
       @banks = Bank.to_collection
 
       recipient = PagarmeService.find_recipient_by_id(@project.recipient)
-      @bank_account = recipient.bank_account
+      @bank_account = recipient.try(:bank_account) || PagarMe::BankAccount.new
     else
       @color = (channel.present? && channel.main_color) || @project.category.color
     end

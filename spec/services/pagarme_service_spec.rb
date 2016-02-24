@@ -1,6 +1,55 @@
 require 'rails_helper'
 
 RSpec.describe PagarmeService do
+  describe '.process' do
+    let(:project) { build :project }
+    let(:recipient_id) { 're_ciknzf3jp003eyn6erpmwarkk' }
+    let(:recipient_response) {{ "id" => recipient_id }}
+    let(:account_info) {{
+      bank_code: '001',
+      agencia: '0001',
+      conta: '000001',
+      conta_dv: '00',
+      document_number: '111.111.111-11',
+      legal_name: 'Juntos com você API'
+    }}
+
+    subject { described_class.process(project, account_info) }
+
+    context 'when creating a new recipient' do
+      before do
+        allow(PagarmeService)
+          .to receive(:create_recipient).and_return(recipient_response)
+      end
+
+      it 'calls .create_recipient with the correct arguments' do
+        expect(PagarmeService).to receive(:create_recipient).with(account_info)
+        subject
+      end
+
+      it 'updates the recipient attribute on the project' do
+        expect { subject }
+          .to change { project.recipient }.from(nil).to(recipient_id)
+      end
+    end
+
+    context 'when updating recipient information' do
+      let(:project) { build :project, recipient: recipient_id }
+
+      before do
+        allow(PagarmeService).to receive(:update_recipient_bank_account)
+      end
+
+      it "calls .update_recipient_bank_account method in the proper way" do
+        expect(PagarmeService)
+          .to receive(:update_recipient_bank_account)
+          .with(project.recipient, account_info)
+
+        subject
+      end
+    end
+  end
+
   describe 'operations with Request class' do
     let(:request) { instance_double('PagarMe::Request') }
 
@@ -147,7 +196,7 @@ RSpec.describe PagarmeService do
     end
   end
 
-  describe 'create_bank_account' do
+  describe '.create_bank_account' do
     let(:account_instance) { instance_double('PagarMe::BankAccount') }
     let(:bank_account) {{
       'object' => 'bank_account',
@@ -181,6 +230,5 @@ RSpec.describe PagarmeService do
     end
 
     it { is_expected.to eq bank_account['id'] }
-
   end
 end
