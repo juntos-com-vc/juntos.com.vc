@@ -105,7 +105,7 @@
                   = form.input :agency,
                     label: t('activerecord.attributes.bank_account.agency') do
                     = text_field_tag 'bank_account[agencia]',
-                      @bank_account.agencia, required: true,
+                      @bank_account.agencia, required: true, maxlength: 5,
                       class: 'text required w-input text-field'
 
                 .u-marginbottom-40
@@ -132,17 +132,18 @@
                   = form.input :owner_name,
                     label: t('activerecord.attributes.bank_account.owner_name') do
                     = text_field_tag 'bank_account[legal_name]',
-                      @bank_account.legal_name, required: true,
-                      class: 'text required w-input text-field'
+                      @bank_account.legal_name || current_user.name,
+                      required: true, class: 'text required w-input text-field'
 
                 .u-marginbottom-40
                   = form.input :owner_document,
                     label: t('activerecord.attributes.bank_account.owner_document') do
-                    = text_field_tag 'bank_account[owner_document]',
-                      @bank_account.document_number, disabled: true,
+                    = text_field_tag 'bank_account[document_number]',
+                      @bank_account.document_number || current_user.cpf,
+                      disabled: (@bank_account.id),
                       class: 'text required w-input text-field'
                     = hidden_field_tag 'bank_account[document_number]',
-                      @bank_account.document_number
+                      @bank_account.document_number if @bank_account.id
 
         .w-col.w-col-4
           .w-hidden-main.w-hidden-medium.card.u-radius.card-notification.zindex-20

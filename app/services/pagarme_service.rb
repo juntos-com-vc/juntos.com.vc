@@ -1,4 +1,13 @@
 class PagarmeService
+  def self.process(project, account_info)
+    if project.recipient
+      update_recipient_bank_account(project.recipient, account_info)
+    else
+      recipient = create_recipient(account_info)
+      project.update_attributes(recipient: recipient['id'])
+    end
+  end
+
   def self.create_recipient(account_info)
     recipient = recipient_params(account_info)
 

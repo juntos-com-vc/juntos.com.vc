@@ -38,51 +38,6 @@
                       .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest R$
                     .w-col.w-col-10.w-col-small-6.w-col-tiny-6
                       = form.input_field :goal, as: :string, class: 'positive postfix'
-            - if channel && channel.recurring?
-              p.fontsize-large = t('activerecord.models.bank_account')
-
-              .u-marginbottom-40
-                = form.input :bank,
-                  label: t('activerecord.attributes.bank_account.bank') do
-                  = select_tag 'bank_account[bank_code]', options_for_select(@banks),
-                    class: 'select required w-input text-field', required: true,
-                    prompt: t('simple_form.prompts.project.select')
-
-              .u-marginbottom-40
-                = form.input :agency,
-                  label: t('activerecord.attributes.bank_account.agency') do
-                  = text_field_tag 'bank_account[agencia]', nil,
-                    class: 'text required w-input text-field'
-
-              .u-marginbottom-40
-                = form.input :agency_digit,
-                  label: t('activerecord.attributes.bank_account.agency_digit') do
-                  = text_field_tag 'bank_account[agencia_dv]', nil,
-                    class: 'text optional w-input text-field'
-
-              .u-marginbottom-40
-                = form.input :account,
-                  label: t('activerecord.attributes.bank_account.account') do
-                  = text_field_tag 'bank_account[conta]', nil,
-                    class: 'text required w-input text-field'
-
-              .u-marginbottom-40
-                = form.input :account_digit,
-                  label: t('activerecord.attributes.bank_account.account_digit') do
-                  = text_field_tag 'bank_account[conta_dv]', nil,
-                    class: 'text required w-input text-field'
-
-              .u-marginbottom-40
-                = form.input :owner_name,
-                  label: t('activerecord.attributes.bank_account.owner_name') do
-                  = text_field_tag 'bank_account[legal_name]', current_user.name,
-                    class: 'text required w-input text-field'
-
-              .u-marginbottom-40
-                = form.input :owner_document,
-                  label: t('activerecord.attributes.bank_account.owner_document') do
-                  = text_field_tag 'bank_account[document_number]',
-                    current_user.cpf, class: 'text required w-input text-field'
             - unless channel && channel.recurring?
               .u-marginbottom-40
                 = form.label :online_days, class: 'fontsize-large', required: true, as: :string

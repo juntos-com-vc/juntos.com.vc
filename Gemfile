@@ -135,6 +135,7 @@ group :test, :development do
   gem 'rspec-its'
   gem 'rspec-collection_matchers'
   gem 'pry'
+  gem 'pry-remote'
   gem 'jasmine-rails'
   gem 'dotenv-rails'
 end
