@@ -152,7 +152,7 @@
               | Este projeto já teve os três primeiros meses financiados pela LIVO e agora estamos correndo atrás para que ele dure um ano!
               br
               | Faça parte dessa história!
-            - elsif ! %w(bolsasdazmina marcha2016).include? @project.permalink.downcase
+            - elsif ! %w(bolsasdazmina marcha2016 paranaue).include? @project.permalink.downcase
               = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
         - if current_user.present? && current_user == @project.user
           - if current_user.pending_documents?
