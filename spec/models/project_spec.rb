@@ -654,6 +654,29 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe '#color' do
+    subject { project.color }
+
+    context 'when a project belongs to a recurring channel' do
+      let(:default_color) { CatarseSettings[:default_color] }
+      let(:channel) { create :channel, recurring: true }
+      let(:project) { create :project, channels: [channel] }
+
+      it 'returns the default color' do
+        expect(subject).to eq default_color
+      end
+    end
+
+    context 'when a project is not related to a recurring channel' do
+      let(:category) { create :category }
+      let(:project) { create :project, category: category }
+
+      it 'returns the category color' do
+        expect(subject).to eq category.color
+      end
+    end
+  end
+
   describe 'recurring related scopes' do
     let(:channel) { create :channel, recurring: true }
     let!(:normal_projects) { create_list :project, 2 }
