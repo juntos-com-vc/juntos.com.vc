@@ -4,7 +4,7 @@
   .project-title
     h4.title = link_to truncate(project.name, length: 50, separator: ''), project_by_slug_path(project.permalink), title: project.name, target: target
 
-  .category style="background-color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.category.color )};"
+  .category style="background-color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.color )};"
     p
       - if defined?(:channel) && channel.present?
         = project.user.address_city
@@ -20,7 +20,7 @@
 
   .status
     .author
-      = link_to project.user.name, project.user, style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};"
+      = link_to project.user.name, project.user, style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )};"
     .padding
       p.headline  = link_to truncate(project.headline, length: 140), project_by_slug_path(project.permalink), title: project.headline, target: target
     .padding
@@ -33,7 +33,7 @@
               (function() {
                 Circles.create({
                   id: "#{circle_id}", radius: 40, value: "#{project.progress(multiply)}",
-                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.category.color )};\">#{project.progress(multiply)}%<div><span>da meta</span></div></div>",
+                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.color )};\">#{project.progress(multiply)}%<div><span>da meta</span></div></div>",
                   colors: ['#CCC', "#{ ( defined?(:channel) && channel.present? ? channel.secondary_color : '#4E6FB5' ) }"],
                   duration: 0,
                   width: 7
@@ -45,7 +45,7 @@
               (function() {
                 Circles.create({
                   id: "#{circle_id}", radius: 40, value: "#{project.progress(multiply)}",
-                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.category.color )};\">#{project.progress(multiply)}%<div><span>da meta</span></div></div>",
+                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.color )};\">#{project.progress(multiply)}%<div><span>da meta</span></div></div>",
                   colors: ['#CCC', "#{ ( defined?(:channel) && channel.present? ? channel.secondary_color : '#4E6FB5' ) }"],
                   duration: 0,
                   width: 7
@@ -54,10 +54,10 @@
       .info
         - unless project.expired?
           .time-remaining
-            = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};")
+            = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )};")
         .collected-money
           - multiply = %w(associacaoacorde pesquisadoacao).include?(project.permalink) ? 2 : 1
-          = link_to t('.pledged_html', value: number_to_currency((project.pledged * multiply), precision: 0, unit: ''), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.category.color )};"), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
+          = link_to t('.pledged_html', value: number_to_currency((project.pledged * multiply), precision: 0, unit: ''), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )};"), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target
 
       /p.progress-percent = t('.progress_html', percent: project.progress)
       /.progress-bar = project.progress_bar

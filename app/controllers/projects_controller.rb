@@ -115,9 +115,9 @@ class ProjectsController < ApplicationController
 
       recipient = PagarmeService.find_recipient_by_id(@project.recipient)
       @bank_account = recipient.try(:bank_account) || PagarMe::BankAccount.new
-    else
-      @color = (channel.present? && channel.main_color) || @project.category.color
     end
+
+    @color = (channel.present? && channel.main_color) || @project.color
   end
 
   def video

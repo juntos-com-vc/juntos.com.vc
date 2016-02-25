@@ -248,6 +248,10 @@ class Project < ActiveRecord::Base
     channels.one? { |c| c.recurring? }
   end
 
+  def color
+    recurring? ? CatarseSettings[:default_color] : category.color
+  end
+
   def notification_type type
     channels.first ? "#{type}_channel".to_sym : type
   end
