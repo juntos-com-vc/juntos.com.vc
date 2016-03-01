@@ -79,7 +79,7 @@ class ProjectsController < ApplicationController
       update_project_images_and_partners(permitted_params)
 
       if channel && channel.recurring?
-        PagarmeService.delay.process(@project, params[:bank_account])
+        RecipientWorker.perform_async(@project.id, params[:bank_account])
       end
 
       format.html do
