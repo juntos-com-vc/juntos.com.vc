@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe PagarmeService do
   describe '.process' do
-    let(:project) { build :project }
     let(:recipient_id) { 're_ciknzf3jp003eyn6erpmwarkk' }
     let(:recipient_response) {{ "id" => recipient_id }}
     let(:account_info) {{
@@ -14,9 +13,11 @@ RSpec.describe PagarmeService do
       legal_name: 'Juntos com você API'
     }}
 
-    subject { described_class.process(project, account_info) }
+    subject { described_class.process(project.id, account_info) }
 
     context 'when creating a new recipient' do
+      let(:project) { create :project }
+
       before do
         allow(PagarmeService)
           .to receive(:create_recipient).and_return(recipient_response)
@@ -27,14 +28,14 @@ RSpec.describe PagarmeService do
         subject
       end
 
-      it 'updates the recipient attribute on the project' do
+      it 'updates the recipient attribute on project' do
         expect { subject }
-          .to change { project.recipient }.from(nil).to(recipient_id)
+          .to change { project.reload.recipient }.from(nil).to(recipient_id)
       end
     end
 
     context 'when updating recipient information' do
-      let(:project) { build :project, recipient: recipient_id }
+      let(:project) { create :project, recipient: recipient_id }
 
       before do
         allow(PagarmeService).to receive(:update_recipient_bank_account)

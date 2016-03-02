@@ -92,58 +92,66 @@
               - if channel && channel.recurring?
                 p.fontsize-large = t('activerecord.models.bank_account')
 
-                .u-marginbottom-40
-                  = form.input :bank,
-                    label: t('activerecord.attributes.bank_account.bank') do
-                    = select_tag 'bank_account[bank_code]',
-                      options_for_select(@banks, @bank_account.bank_code),
-                      class: 'select required w-input text-field',
-                      prompt: t('simple_form.prompts.project.select'),
-                      required: true
+                fieldset[disabled=@project.recipient_job_running?]
+                  - if @project.recipient_job_running?
+                    .card.card-waiting.u-radius.zindex-10.u-marginbottom-30
+                      .fontsize-smaller.fontweight-bold.u-marginbottom-10
+                        = t('.bank_account_job_running_title')
+                      .fontsize-smaller = t('.bank_account_job_running')
 
-                .u-marginbottom-40
-                  = form.input :agency,
-                    label: t('activerecord.attributes.bank_account.agency') do
-                    = text_field_tag 'bank_account[agencia]',
-                      @bank_account.agencia, required: true, maxlength: 5,
-                      class: 'text required w-input text-field'
+                  .u-marginbottom-40
+                    = form.input :bank,
+                      label: t('activerecord.attributes.bank_account.bank') do
+                      = select_tag 'bank_account[bank_code]',
+                        options_for_select(@banks, @bank_account.bank_code),
+                        class: 'select required w-input text-field',
+                        prompt: t('simple_form.prompts.project.select'),
+                        required: true
 
-                .u-marginbottom-40
-                  = form.input :agency_digit,
-                    label: t('activerecord.attributes.bank_account.agency_digit') do
-                    = text_field_tag 'bank_account[agencia_dv]',
-                      @bank_account.agencia_dv, maxlength: 2,
-                      class: 'text optional w-input text-field'
+                  .u-marginbottom-40
+                    = form.input :agency,
+                      label: t('activerecord.attributes.bank_account.agency') do
+                      = text_field_tag 'bank_account[agencia]',
+                        @bank_account.agencia, required: true, maxlength: 5,
+                        class: 'text required w-input text-field'
 
-                .u-marginbottom-40
-                  = form.input :account,
-                    label: t('activerecord.attributes.bank_account.account') do
-                    = text_field_tag 'bank_account[conta]', @bank_account.conta,
-                      class: 'text required w-input text-field', required: true
+                  .u-marginbottom-40
+                    = form.input :agency_digit,
+                      label: t('activerecord.attributes.bank_account.agency_digit') do
+                      = text_field_tag 'bank_account[agencia_dv]',
+                        @bank_account.agencia_dv, maxlength: 2,
+                        class: 'text optional w-input text-field'
 
-                .u-marginbottom-40
-                  = form.input :account_digit,
-                    label: t('activerecord.attributes.bank_account.account_digit') do
-                    = text_field_tag 'bank_account[conta_dv]',
-                      @bank_account.conta_dv, required: true, maxlength: 2,
-                      class: 'text required w-input text-field'
+                  .u-marginbottom-40
+                    = form.input :account,
+                      label: t('activerecord.attributes.bank_account.account') do
+                      = text_field_tag 'bank_account[conta]', @bank_account.conta,
+                        class: 'text required w-input text-field', required: true
 
-                .u-marginbottom-40
-                  = form.input :owner_name,
-                    label: t('activerecord.attributes.bank_account.owner_name') do
-                    = text_field_tag 'bank_account[legal_name]',
-                      @bank_account.legal_name || current_user.name,
-                      required: true, class: 'text required w-input text-field'
+                  .u-marginbottom-40
+                    = form.input :account_digit,
+                      label: t('activerecord.attributes.bank_account.account_digit') do
+                      = text_field_tag 'bank_account[conta_dv]',
+                        @bank_account.conta_dv, required: true, maxlength: 2,
+                        class: 'text required w-input text-field'
 
-                .u-marginbottom-40
-                  = form.input :owner_document,
-                    label: t('activerecord.attributes.bank_account.owner_document') do
-                    = text_field_tag 'bank_account[document_number]',
-                      @bank_account.document_number || current_user.cpf,
-                      disabled: (@bank_account.id),
-                      class: 'text required w-input text-field'
-                    = hidden_field_tag 'bank_account[document_number]',
-                      @bank_account.document_number if @bank_account.id
+                  .u-marginbottom-40
+                    = form.input :owner_name,
+                      label: t('activerecord.attributes.bank_account.owner_name') do
+                      = text_field_tag 'bank_account[legal_name]',
+                        @bank_account.legal_name || current_user.name,
+                        maxlength: 30, minlength: 5, required: true,
+                        class: 'text required w-input text-field'
+
+                  .u-marginbottom-40
+                    = form.input :owner_document,
+                      label: t('activerecord.attributes.bank_account.owner_document') do
+                      = text_field_tag 'bank_account[document_number]',
+                        @bank_account.document_number || current_user.cpf,
+                        disabled: (@bank_account.id),
+                        class: 'text required w-input text-field'
+                      = hidden_field_tag 'bank_account[document_number]',
+                        @bank_account.document_number if @bank_account.id
 
         .w-col.w-col-4
           .w-hidden-main.w-hidden-medium.card.u-radius.card-notification.zindex-20

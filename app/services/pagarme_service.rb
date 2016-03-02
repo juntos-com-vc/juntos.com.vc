@@ -1,11 +1,15 @@
 class PagarmeService
-  def self.process(project, account_info)
+  def self.process(project_id, account_info)
+    project = Project.find(project_id)
+
     if project.recipient
       update_recipient_bank_account(project.recipient, account_info)
     else
       recipient = create_recipient(account_info)
       project.update_attributes(recipient: recipient['id'])
     end
+
+    project.update_attributes(recipient_job_running: false)
   end
 
   def self.create_recipient(account_info)
