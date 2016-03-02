@@ -18,6 +18,7 @@ RSpec.describe Contribution, type: :model do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:reward) }
     it { is_expected.to belong_to(:country) }
+    it { is_expected.to belong_to(:recurring_contribution) }
   end
 
   describe "Validations" do
