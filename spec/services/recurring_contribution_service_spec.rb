@@ -7,7 +7,7 @@ RSpec.describe RecurringContributionService do
       create :recurring_contribution, {
         project: contribution.project,
         user: contribution.user,
-        value: contribution.value
+        value: contribution.project_value
       }
     end
 
@@ -24,7 +24,7 @@ RSpec.describe RecurringContributionService do
         .with({
           project: contribution.project,
           user: contribution.user,
-          value: contribution.value
+          value: contribution.project_value
         })
 
       subject

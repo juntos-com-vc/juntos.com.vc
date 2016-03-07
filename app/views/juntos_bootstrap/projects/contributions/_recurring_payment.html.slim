@@ -1,0 +1,66 @@
+.formwrapper
+  .fontsize-base.fontweight-semibold.fontcolor-secondary.u-marginbottom-20
+    = t(:number_card, scope: [:projects, :contributions, :edit])
+
+  .w-form
+    .w-row
+      .w-col.w-col-6.w-sub-col
+        = form.input :payment_card_name,
+          label: t(:payment_card_name,
+            scope: [:projects, :contributions, :edit, :form_labels]) do
+          = text_field_tag 'payment_card_name', nil, required: true,
+            class: 'string w-input text-field'
+
+      .w-col.w-col-6.w-sub-col
+        = form.input :payment_card_cpf,
+          label: t(:payment_card_cpf,
+            scope: [:projects, :contributions, :edit, :form_labels]) do
+          = text_field_tag 'payment_card_cpf', nil, required: true,
+            data: {mask: '999.999.999-99'}, class: 'string w-input text-field'
+
+    .w-row
+      .w-col.w-col-6.w-sub-col
+        = form.input :payment_card_phone,
+          label: t(:payment_card_phone,
+            scope: [:projects, :contributions, :edit, :form_labels]) do
+          = text_field_tag 'payment_card_phone', nil, required: true,
+            data: {mask: '(99) 9999-9999?9'}, class: 'string w-input text-field'
+
+      .w-col.w-col-6.w-sub-col
+        = form.input :payment_card_birth,
+          label: t(:payment_card_birth,
+            scope: [:projects, :contributions, :edit, :form_labels]) do
+          = text_field_tag 'payment_card_birth', nil, required: true,
+            data: {mask: '99/99/9999'}, class: 'string w-input text-field'
+
+    .w-row
+      .w-col.w-col-6.w-sub-col.number
+        = form.input :payment_card_number,
+          label: t(:payment_card_number,
+            scope: [:projects, :contributions, :edit, :form_labels]) do
+
+          .w-row
+            .w-col.w-col-9.w-col-small-9.w-col-tiny-9
+              = text_field_tag 'payment_card_number', nil, required: true,
+                class: 'w-input text-field prefix'
+
+            .w-col.w-col-3.w-col-small-3.w-col-tiny-3.text-field.postfix.no-hover
+
+      .w-col.w-col-3.w-sub-col
+        = form.input :payment_card_source,
+          label: t(:payment_card_source,
+            scope: [:projects, :contributions, :edit, :form_labels]) do
+          = text_field_tag 'payment_card_source', nil, required: true,
+            class: 'string w-input text-field'
+
+      .w-col.w-col-3.w-sub-col
+        = form.input :payment_card_date,
+          label: t(:payment_card_date,
+            scope: [:projects, :contributions, :edit, :form_labels]) do
+          = text_field_tag 'payment_card_date', nil, required: true,
+            data: {mask: '99/99'}, class: 'string w-input text-field'
+
+    .w-row
+      .w-col.w-col-6.w-col-push-3
+        = submit_tag t(:credits_submit, scope: [:projects, :contributions, :edit]),
+          class: 'btn btn-large u-marginbottom-20'

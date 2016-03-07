@@ -57,29 +57,35 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def create
-    @title = t('projects.contributions.create.title')
-    @contribution = parent.contributions.new.localized
-    @contribution.user = current_user
-    @contribution.project_value = permitted_params[:contribution][:project_value]
-    @contribution.platform_value = permitted_params[:contribution][:platform_value]
-    @contribution.preferred_payment_engine = permitted_params[:contribution][:preferred_payment_engine]
-    @contribution.reward_id = (params[:contribution][:reward_id].to_i == 0 ? nil : params[:contribution][:reward_id])
-    authorize @contribution
-    @contribution.update_current_billing_info
-    create! do |success,failure|
-      failure.html do
-        flash[:alert] = resource.errors.full_messages.to_sentence
-        load_rewards
-        render :new
+    Contribution.transaction do
+      @title = t('projects.contributions.create.title')
+      @contribution = parent.contributions.new.localized
+      @contribution.user = current_user
+      @contribution.project_value = permitted_params[:contribution][:project_value]
+      @contribution.platform_value = permitted_params[:contribution][:platform_value]
+      @contribution.preferred_payment_engine = permitted_params[:contribution][:preferred_payment_engine]
+      @contribution.reward_id = (params[:contribution][:reward_id].to_i == 0 ? nil : params[:contribution][:reward_id])
+      authorize @contribution
+      @contribution.update_current_billing_info
+      create! do |success,failure|
+        failure.html do
+          flash[:alert] = resource.errors.full_messages.to_sentence
+          load_rewards
+          render :new
+        end
+        success.html do
+          if channel && channel.recurring?
+            RecurringContributionService.create(@contribution)
+          end
+
+          flash[:notice] = nil
+          session[:thank_you_contribution_id] = @contribution.id
+          session[:new_contribution] = true;
+          return redirect_to edit_project_contribution_path(project_id: @project.id, id: @contribution.id)
+        end
       end
-      success.html do
-        flash[:notice] = nil
-        session[:thank_you_contribution_id] = @contribution.id
-        session[:new_contribution] = true;
-        return redirect_to edit_project_contribution_path(project_id: @project.id, id: @contribution.id)
-      end
+      @thank_you_id = @project.id
     end
-    @thank_you_id = @project.id
   end
 
   protected

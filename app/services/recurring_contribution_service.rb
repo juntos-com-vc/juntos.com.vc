@@ -3,7 +3,7 @@ class RecurringContributionService
     recurring_contribution = RecurringContribution.create({
       project: contribution.project,
       user: contribution.user,
-      value: contribution.value
+      value: contribution.project_value.to_f
     })
 
     contribution.update_attributes({
