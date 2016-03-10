@@ -19,6 +19,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :reward
   belongs_to :user
   belongs_to :country
+  belongs_to :recurring_contribution
   has_many :payment_notifications
 
   validates_presence_of :project, :user, :project_value

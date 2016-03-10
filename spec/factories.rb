@@ -85,6 +85,7 @@ FactoryGirl.define do
     f.association :user, factory: :user
     f.confirmed_at Time.now
     f.value 10.00
+    f.project_value 10.00
     f.state 'confirmed'
     f.credits false
     f.payment_id '1.2.3'
@@ -164,5 +165,9 @@ FactoryGirl.define do
     f.body_html "<p>This is a comment</p>"
   end
 
+  factory :recurring_contribution do |f|
+   f.association :project, factory: :project
+   f.association :user, factory: :user
+   value 100
+  end
 end
-

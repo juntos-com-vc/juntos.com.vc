@@ -28,6 +28,9 @@ pt:
         form_labels:
           user_another_card: "Usar outro cartão de crédito"
           payment_card_number: 'Número do cartão de crédito'
+          payment_card_cpf: 'CPF'
+          payment_card_phone: 'Telefone'
+          payment_card_birth: 'Data de Nascimento'
           payment_card_flag: 'Bandeira'
           payment_card_source: 'Cód. Segurança'
           payment_card_source_short: 'CVC'
