@@ -5,7 +5,54 @@ App.addChild('ReviewForm', _.extend({
     'blur input' : 'checkInput',
     'change #contribution_country_id' : 'onCountryChange',
     'change #contribution_anonymous' : 'toggleAnonymousConfirmation',
-    'click #next-step' : 'onNextStepClick'
+    'click #next-step' : 'onNextStepClick',
+    'click [data-recurring=true]' : 'sendRecurringContribution'
+  },
+
+  sendRecurringContribution: function (e) {
+    this._hideErrors();
+
+    PagarMe.encription_key = $(e.currentTarget).data('pagarme-encryption');
+
+    var creditCard = this._sync();
+
+    if (this._hasErrors(creditCard)) {
+      e.preventDefault();
+    }
+  },
+
+  _sync: function () {
+    var creditCard = new PagarMe.creditCard();
+
+    creditCard.cardHolderName = this.$('[data-payment-card-holder-name]').val();
+    creditCard.cardNumber = this.$('[data-payment-card-number]').val();
+    creditCard.cardExpirationMonth = this.$('[data-payment-card-expiration-month]').val();
+    creditCard.cardExpirationYear = this.$('[data-payment-card-expiration-year]').val();
+    creditCard.cardCVV = this.$('[data-payment-card-cvv]').val();
+
+    return creditCard;
+  },
+
+  _hasErrors: function (creditCard) {
+    var hasErrors = false;
+
+    for (var field in creditCard.fieldErrors()) {
+      hasErrors = true;
+      this._showError(creditCard, field);
+    }
+
+    return hasErrors;
+  },
+
+  _showError: function (creditCard, field) {
+    var message = creditCard.fieldErrors()[field];
+
+    this.$('[data-error-for="' +field+ '"]').text(message)
+      .removeClass('w-hidden');
+  },
+
+  _hideErrors: function () {
+    this.$('[data-error-for]').addClass('w-hidden');
   },
 
   validateMasked: function(inputField) {
