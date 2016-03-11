@@ -10,42 +10,47 @@ App.addChild('ReviewForm', _.extend({
   },
 
   sendRecurringContribution: function (e) {
+    e.preventDefault();
+
+    PagarMe.encryption_key = $(e.currentTarget).data('pagarme-encryption');
+
     this._hideErrors();
 
-    PagarMe.encription_key = $(e.currentTarget).data('pagarme-encryption');
+    this.creditCard = new PagarMe.creditCard();
+    this._sync();
 
-    var creditCard = this._sync();
+    if (! this._hasErrors()) {
+      var _this = this;
 
-    if (this._hasErrors(creditCard)) {
-      e.preventDefault();
+      this.creditCard.generateHash(function (hash) {
+        _this.$el.find('[data-card-info]').attr('disabled', true);
+        _this.$el.append('<input type="hidden" name="payment_card_hash" value="' +hash+ '">');
+        _this.$el.submit();
+      });
     }
   },
 
   _sync: function () {
-    var creditCard = new PagarMe.creditCard();
-
-    creditCard.cardHolderName = this.$('[data-payment-card-holder-name]').val();
-    creditCard.cardNumber = this.$('[data-payment-card-number]').val();
-    creditCard.cardExpirationMonth = this.$('[data-payment-card-expiration-month]').val();
-    creditCard.cardExpirationYear = this.$('[data-payment-card-expiration-year]').val();
-    creditCard.cardCVV = this.$('[data-payment-card-cvv]').val();
-
-    return creditCard;
+    this.creditCard.cardHolderName = this.$('[data-payment-card-holder-name]').val();
+    this.creditCard.cardNumber = this.$('[data-payment-card-number]').val();
+    this.creditCard.cardExpirationMonth = this.$('[data-payment-card-expiration-month]').val();
+    this.creditCard.cardExpirationYear = this.$('[data-payment-card-expiration-year]').val();
+    this.creditCard.cardCVV = this.$('[data-payment-card-cvv]').val();
   },
 
-  _hasErrors: function (creditCard) {
+  _hasErrors: function () {
     var hasErrors = false;
 
-    for (var field in creditCard.fieldErrors()) {
+    for (var field in this.creditCard.fieldErrors()) {
       hasErrors = true;
-      this._showError(creditCard, field);
+      this._showError(field);
     }
 
     return hasErrors;
   },
 
-  _showError: function (creditCard, field) {
-    var message = creditCard.fieldErrors()[field];
+  _showError: function (field) {
+    var message = this.creditCard.fieldErrors()[field];
 
     this.$('[data-error-for="' +field+ '"]').text(message)
       .removeClass('w-hidden');
