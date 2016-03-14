@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/juntos-com-vc/juntos.com.vc.svg?branch=master)](https://travis-ci.org/juntos-com-vc/juntos.com.vc)
 [![Code Climate](https://codeclimate.com/github/juntos-com-vc/juntos.com.vc/badges/gpa.svg)](https://codeclimate.com/github/juntos-com-vc/juntos.com.vc)
-[![Coverage Status](https://coveralls.io/repos/github/juntos-com-vc/juntos.com.vc/badge.svg?branch=bank-account-updates)](https://coveralls.io/github/juntos-com-vc/juntos.com.vc?branch=bank-account-updates)
+[![Coverage Status](https://coveralls.io/repos/github/juntos-com-vc/juntos.com.vc/badge.svg?branch=master)](https://coveralls.io/github/juntos-com-vc/juntos.com.vc?branch=master)
 
 The first crowdfunding platform from Brazil
 
