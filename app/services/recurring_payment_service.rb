@@ -27,12 +27,15 @@ class RecurringPaymentService
 
     transaction.charge
 
-    if transaction.status == 'paid' && contribution
+    if contribution
       contribution.update_attributes({
         payment_method: 'PagarMe',
         payment_id: transaction.tid,
         payment_service_fee: transaction.cost.to_f / 100
       })
+    else
+      RecurringContributionService.create_contribution(recurring_contribution,
+                                                       transaction)
     end
   end
 end

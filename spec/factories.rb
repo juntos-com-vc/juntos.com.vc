@@ -166,8 +166,13 @@ FactoryGirl.define do
   end
 
   factory :recurring_contribution do |f|
-   f.association :project, factory: :project
-   f.association :user, factory: :user
-   value 100
+    before(:create) do |contribution|
+      channel = FactoryGirl.create(:channel, recurring: true)
+
+      contribution.project = FactoryGirl.create(:project, channels: [channel])
+    end
+
+    f.association :user, factory: :user
+    value 100
   end
 end

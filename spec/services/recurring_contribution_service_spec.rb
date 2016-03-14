@@ -36,4 +36,37 @@ RSpec.describe RecurringContributionService do
         .from(nil).to(recurring_contribution.id)
     end
   end
+
+  describe '.create_contribution' do
+    let(:recurring_contribution) { create :recurring_contribution }
+    let(:transaction) do
+      double(PagarMe::Transaction, {
+        status: 'paid',
+        tid: '1457977601018',
+        cost: 50
+      })
+    end
+
+    subject do
+      described_class.create_contribution(recurring_contribution, transaction)
+    end
+
+    before do
+      allow(Contribution).to receive(:create)
+    end
+
+    it 'creates a new contribution resource' do
+      expect(Contribution).to receive(:create)
+        .with({
+          project: recurring_contribution.project,
+          user: recurring_contribution.user,
+          project_value: recurring_contribution.value,
+          payment_method: 'PagarMe',
+          payment_id: transaction.tid,
+          payment_service_fee: transaction.cost.to_f / 100
+        })
+
+      subject
+    end
+  end
 end
