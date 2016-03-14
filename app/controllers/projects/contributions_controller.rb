@@ -28,6 +28,12 @@ class Projects::ContributionsController < ApplicationController
     authorize resource
     resource.update_attributes(permitted_params[:contribution])
     resource.update_user_billing_info
+
+    if channel && channel.recurring?
+      RecurringPaymentService.perform(resource.recurring_contribution.id,
+                                      resource, params[:payment_card_hash])
+    end
+
     render json: {message: 'updated'}
   end
 

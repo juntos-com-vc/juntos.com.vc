@@ -3,80 +3,81 @@
     = t(:number_card, scope: [:projects, :contributions, :edit])
 
   .w-form
-    .w-row
-      .w-col.w-col-6.w-sub-col
-        = form.input :payment_card_name,
-          label: t(:payment_card_name,
-            scope: [:projects, :contributions, :edit, :form_labels]) do
-          = text_field_tag 'payment_card_name', nil, required: true,
-            class: 'string w-input text-field',
-            data: { payment_card_holder_name: true }
-          .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
-            data-error-for="card_holder_name"]
-
-      .w-col.w-col-6.w-sub-col
-        = form.input :payment_card_cpf,
-          label: t(:payment_card_cpf,
-            scope: [:projects, :contributions, :edit, :form_labels]) do
-          = text_field_tag 'payment_card_cpf', nil, required: true,
-            data: { mask: '999.999.999-99', payment_card_cpf: true },
-            class: 'string w-input text-field'
-
-    .w-row
-      .w-col.w-col-6.w-sub-col
-        = form.input :payment_card_phone,
-          label: t(:payment_card_phone,
-            scope: [:projects, :contributions, :edit, :form_labels]) do
-          = text_field_tag 'payment_card_phone', nil, required: true,
-            data: { mask: '(99) 9999-9999?9', payment_card_phone: true },
-            class: 'string w-input text-field'
-
-      .w-col.w-col-6.w-sub-col
-        = form.input :payment_card_birth,
-          label: t(:payment_card_birth,
-            scope: [:projects, :contributions, :edit, :form_labels]) do
-          = text_field_tag 'payment_card_birth', nil, required: true,
-            data: { mask: '99/99/9999', payment_card_birth: true },
-            class: 'string w-input text-field'
-
-    .w-row
-      .w-col.w-col-6.w-sub-col
-        = form.input :payment_card_number,
-          label: t(:payment_card_number,
-            scope: [:projects, :contributions, :edit, :form_labels]) do
-          = text_field_tag 'payment_card_number', nil, required: true,
-            class: 'w-input text-field',
-            data: { payment_card_number: true }
-          .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
-            data-error-for="card_number"]
-
-      .w-col.w-col-3.w-sub-col
-        = form.input :payment_card_source,
-          label: t(:payment_card_source,
-            scope: [:projects, :contributions, :edit, :form_labels]) do
-          = text_field_tag 'payment_card_source', nil, required: true,
-            class: 'string w-input text-field', data: { payment_card_cvv: true }
-          .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
-            data-error-for="card_cvv"]
-
-      .w-col.w-col-3.w-sub-col
-        = form.input :payment_card_date,
-          label: t(:payment_card_date,
-            scope: [:projects, :contributions, :edit, :form_labels]) do
-
-          .w-row
-            .w-col.w-col-6.w-sub-col
-              = text_field_tag 'payment_card_date', nil, required: true,
-                data: { mask: '99', payment_card_expiration_month: true },
-                class: 'string w-input text-field month'
+    fieldset[data-card-info="true"]
+      .w-row
+        .w-col.w-col-6.w-sub-col
+          = form.input :payment_card_name,
+            label: t(:payment_card_name,
+              scope: [:projects, :contributions, :edit, :form_labels]) do
+            = text_field_tag 'payment_card_name', nil, required: true,
+              class: 'string w-input text-field',
+              data: { payment_card_holder_name: true }
             .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
-              data-error-for="card_expiration_year"]
-            .w-col.w-col-6.w-sub-col
-              = text_field_tag 'payment_card_date', nil, required: true,
-                data: { mask: '99', payment_card_expiration_year: true },
-                class: 'string w-input text-field year'
+              data-error-for="card_holder_name"]
+
+        .w-col.w-col-6.w-sub-col
+          = form.input :payment_card_cpf,
+            label: t(:payment_card_cpf,
+              scope: [:projects, :contributions, :edit, :form_labels]) do
+            = text_field_tag 'payment_card_cpf', nil, required: true,
+              data: { mask: '999.999.999-99', payment_card_cpf: true },
+              class: 'string w-input text-field'
+
+      .w-row
+        .w-col.w-col-6.w-sub-col
+          = form.input :payment_card_phone,
+            label: t(:payment_card_phone,
+              scope: [:projects, :contributions, :edit, :form_labels]) do
+            = text_field_tag 'payment_card_phone', nil, required: true,
+              data: { mask: '(99) 9999-9999?9', payment_card_phone: true },
+              class: 'string w-input text-field'
+
+        .w-col.w-col-6.w-sub-col
+          = form.input :payment_card_birth,
+            label: t(:payment_card_birth,
+              scope: [:projects, :contributions, :edit, :form_labels]) do
+            = text_field_tag 'payment_card_birth', nil, required: true,
+              data: { mask: '99/99/9999', payment_card_birth: true },
+              class: 'string w-input text-field'
+
+      .w-row
+        .w-col.w-col-6.w-sub-col
+          = form.input :payment_card_number,
+            label: t(:payment_card_number,
+              scope: [:projects, :contributions, :edit, :form_labels]) do
+            = text_field_tag 'payment_card_number', nil, required: true,
+              class: 'w-input text-field',
+              data: { payment_card_number: true }
             .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
-              data-error-for="card_expiration_month"]
+              data-error-for="card_number"]
+
+        .w-col.w-col-3.w-sub-col
+          = form.input :payment_card_source,
+            label: t(:payment_card_source,
+              scope: [:projects, :contributions, :edit, :form_labels]) do
+            = text_field_tag 'payment_card_source', nil, required: true,
+              class: 'string w-input text-field', data: { payment_card_cvv: true }
+            .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
+              data-error-for="card_cvv"]
+
+        .w-col.w-col-3.w-sub-col
+          = form.input :payment_card_date,
+            label: t(:payment_card_date,
+              scope: [:projects, :contributions, :edit, :form_labels]) do
+
+            .w-row
+              .w-col.w-col-6.w-sub-col
+                = text_field_tag 'payment_card_date', nil, required: true,
+                  data: { mask: '99', payment_card_expiration_month: true },
+                  class: 'string w-input text-field month'
+              .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
+                data-error-for="card_expiration_year"]
+              .w-col.w-col-6.w-sub-col
+                = text_field_tag 'payment_card_date', nil, required: true,
+                  data: { mask: '99', payment_card_expiration_year: true },
+                  class: 'string w-input text-field year'
+              .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
+                data-error-for="card_expiration_month"]
 
     .w-row
       .w-col.w-col-6.w-col-push-3
