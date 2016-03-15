@@ -32,6 +32,9 @@ class Projects::ContributionsController < ApplicationController
     if channel && channel.recurring?
       RecurringPaymentService.perform(resource.recurring_contribution.id,
                                       resource, params[:payment_card_hash])
+
+      redirect_to obrigado_path
+      return
     end
 
     render json: {message: 'updated'}
