@@ -69,4 +69,23 @@ RSpec.describe RecurringContributionService do
       subject
     end
   end
+
+  describe '.cancel' do
+    let(:contribution) do
+      create :recurring_contribution,
+        credit_card: 'card_cilsa7d9o005n0x6dvu5cc111'
+    end
+
+    subject { described_class.cancel(contribution.project, contribution.user) }
+
+    before do
+      allow_any_instance_of(RecurringContribution)
+        .to receive(:cancel).and_return(true)
+    end
+
+    it 'calls the cancel method on the resource' do
+      expect_any_instance_of(RecurringContribution).to receive(:cancel)
+      subject
+    end
+  end
 end

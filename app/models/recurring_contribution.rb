@@ -13,4 +13,9 @@ class RecurringContribution < ActiveRecord::Base
   def self.on_day(day)
     where('extract(day from created_at) = ?', day)
   end
+
+  def cancel
+    self.cancelled_at = Time.current
+    save
+  end
 end

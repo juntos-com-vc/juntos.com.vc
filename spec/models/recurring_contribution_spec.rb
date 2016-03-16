@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe RecurringContribution do
+  let(:contribution) do
+    create :recurring_contribution,
+            credit_card: 'card_cilsa7d9o005n0x6dvu5cc111'
+  end
+
   it { is_expected.to belong_to :project }
   it { is_expected.to belong_to :user }
   it { is_expected.to have_many :contributions }
@@ -31,7 +36,6 @@ RSpec.describe RecurringContribution do
   end
 
   describe '.on_day' do
-    let(:contribution) { create :recurring_contribution }
     let(:other_contribution) do
       create :recurring_contribution, created_at: Time.current.yesterday
     end
@@ -40,5 +44,20 @@ RSpec.describe RecurringContribution do
 
     it { is_expected.to include contribution }
     it { is_expected.not_to include other_contribution }
+  end
+
+  describe 'state changes' do
+    before { Timecop.freeze(Time.current) }
+    after { Timecop.return }
+
+    describe '#cancel' do
+      subject { contribution.cancel }
+
+      it 'updates the cancelled_at field to current date' do
+        expect { subject }
+          .to change { contribution.reload.cancelled_at.to_s }
+          .from('').to(Time.current.to_s)
+      end
+    end
   end
 end

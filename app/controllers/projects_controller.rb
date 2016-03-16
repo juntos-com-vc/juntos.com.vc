@@ -112,6 +112,10 @@ class ProjectsController < ApplicationController
 
     if @channel && @channel.recurring?
       @banks = Bank.to_collection
+      @recurring_active = RecurringContribution.where({
+        project: @project,
+        user: current_user
+      }).active.any?
 
       recipient = PagarmeService.find_recipient_by_id(@project.recipient)
       @bank_account = recipient.try(:bank_account) || PagarMe::BankAccount.new

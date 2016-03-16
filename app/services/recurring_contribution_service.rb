@@ -21,4 +21,13 @@ class RecurringContributionService
       payment_service_fee: transaction.cost.to_f / 100
     })
   end
+
+  def self.cancel(project, user)
+    recurring_contribution = RecurringContribution.where({
+      project: project,
+      user: user
+    }).active.first
+
+    recurring_contribution.cancel
+  end
 end

@@ -110,6 +110,8 @@ pt:
           waiting_funds: "Aguardando a confirmação de boletos para saber se este projeto será financiado."
           draft: "Esse projeto é apenas um rascunho e ainda não está aberto para receber apoios."
         submit: Apoiar este projeto
+        cancel: Cancelar apoio
+        already_contributing: Você já apoia este projeto
       project_by: projeto por
       funding_period: Período de campanha
       project_header:

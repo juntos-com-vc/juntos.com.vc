@@ -68,6 +68,7 @@ Rails.application.routes.draw do
       get 'about_mobile'
       get 'embed_panel'
       get 'send_to_analysis'
+      get :cancel_recurring, to: 'projects/recurring_contributions#cancel'
     end
   end
   resources :users do
