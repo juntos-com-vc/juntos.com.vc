@@ -138,6 +138,7 @@ group :test, :development do
   gem 'pry-remote'
   gem 'jasmine-rails'
   gem 'dotenv-rails'
+  gem 'timecop', '~> 0.8.0'
 end
 
 group :test do
