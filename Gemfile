@@ -115,6 +115,8 @@ group :production do
   # Monitoring with the new new relic
   gem 'newrelic_rpm', '3.6.5.130'
 
+  gem 'clockwork', '~> 1.0.0'
+
   # Using dalli and memcachier have not presented significative performance gains
   # Probably this is due to our pattern of cache usage
   # + the lack of concurrent procs in our deploy
