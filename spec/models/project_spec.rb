@@ -192,38 +192,52 @@ RSpec.describe Project, type: :model do
   end
 
   describe '.video_url' do
+    subject { project }
+
     before do
       CatarseSettings[:minimum_goal_for_video] = 5000
     end
-    context 'when goal is above minimum' do
-      subject { @project_01 }
 
-      before do
-        @project_01 = create(:project, goal: 6000, state: 'online')
+    context 'when goal is above minimum' do
+      context 'and project is online' do
+        let(:project) { create :project, goal: 6000, state: 'online' }
+
+        it { is_expected.not_to allow_value(nil).for(:video_url) }
       end
 
-      it{ is_expected.not_to allow_value(nil).for(:video_url) }
+      context 'and project is in analysis' do
+        let(:project) { create :project, goal: 6000, state: 'in_analysis' }
+
+        it { is_expected.not_to allow_value(nil).for(:video_url) }
+      end
     end
 
     context 'when goal is below minimum' do
-      subject { @project_02 }
+      context 'and project is online' do
+        let(:project) { create :project, goal: 4000, state: 'online' }
 
-      before do
-        CatarseSettings[:minumum_goal_for_video] = 5000
-        @project_02 = create(:project, goal: 4000, state: 'online')
+        it { is_expected.to allow_value(nil).for(:video_url) }
       end
 
-      it{ is_expected.to allow_value(nil).for(:video_url) }
+      context 'and project is in analysis' do
+        let(:project) { create :project, goal: 4000, state: 'in_analysis' }
+
+        it { is_expected.to allow_value(nil).for(:video_url) }
+      end
     end
 
     context 'when goal is minimum' do
-      subject { @project_03 }
+      context 'and project is online' do
+        let(:project) { build :project, goal: 5000, state: 'online' }
 
-      before do
-        @project_03 = build(:project, goal: 5000, state: 'online', video_url: nil)
+        it { is_expected.not_to allow_value(nil).for(:video_url) }
       end
 
-      it{ is_expected.not_to allow_value(nil).for(:video_url) }
+      context 'and project is in analysis' do
+        let(:project) { build :project, goal: 5000, state: 'in_analysis' }
+
+        it { is_expected.not_to allow_value(nil).for(:video_url) }
+      end
     end
   end
 

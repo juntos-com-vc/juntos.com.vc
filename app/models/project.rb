@@ -137,7 +137,7 @@ class Project < ActiveRecord::Base
 
   validates_acceptance_of :accepted_terms, on: :create
 
-  validates :video_url, presence: true, if: ->(p) { p.state == 'online' && p.goal >= (CatarseSettings[:minimum_goal_for_video].to_i) }
+  validates :video_url, presence: true, if: :video_required?
   validates_presence_of :name, :user, :permalink
   validates_presence_of :about, unless: :new_record
   validates_presence_of :about, :headline, :goal, if: ->(p) {p.state == 'online'}
@@ -314,5 +314,13 @@ class Project < ActiveRecord::Base
       r.path.spec.to_s.split('/').second.to_s.gsub(/\(.*?\)/, '')
     end
     routes.compact.uniq
+  end
+
+  def video_required?
+    %w(in_analysis online).include?(state) && has_minimum_goal_for_video?
+  end
+
+  def has_minimum_goal_for_video?
+    goal >= CatarseSettings[:minimum_goal_for_video].to_i
   end
 end
