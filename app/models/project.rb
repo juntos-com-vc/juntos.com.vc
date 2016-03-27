@@ -36,9 +36,9 @@ class Project < ActiveRecord::Base
   has_many :subgoals, -> { order 'value DESC' }
 
   accepts_nested_attributes_for :project_images,
-    limit: 8,
+    limit: CatarseSettings[:project_images_limit],
     allow_destroy: true,
-    reject_if: proc { |attributes| attributes['original_image_url'].nil? }
+    reject_if: :reject_project_image
 
   accepts_nested_attributes_for :project_partners,
     limit: 3,
@@ -311,6 +311,10 @@ class Project < ActiveRecord::Base
     ss.last
   end
 
+  def project_images_limit?
+    project_images.count == CatarseSettings[:project_images_limit]
+  end
+
   private
   def self.between_dates(attribute, starts_at, ends_at)
     return all unless starts_at.present? && ends_at.present?
@@ -330,5 +334,9 @@ class Project < ActiveRecord::Base
 
   def has_minimum_goal_for_video?
     goal >= CatarseSettings[:minimum_goal_for_video].to_i
+  end
+
+  def reject_project_image(attributes)
+    new_record? && attributes[:original_image_url].nil?
   end
 end

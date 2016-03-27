@@ -105,7 +105,6 @@ class ProjectsController < ApplicationController
 
   def show
     @title = resource.name
-    (8 - @project.project_images.size).times { @project.project_images.build }
     (3 - @project.project_partners.size).times { @project.project_partners.build }
     authorize @project
     fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id

@@ -70,11 +70,15 @@
                 max_file_size: 5.megabytes, data: {s3_uploader: true},
                 key: "uploads/project/image/#{@project.id}/${filename}" do
                   = file_field_tag :file, multiple: true, id: 'gallery-upload',
-                    data: {url: s3_uploader_url}
+                    data: {url: s3_uploader_url}, disabled: @project.project_images_limit?
 
           .w-row.u-marginbottom-30
             .w-col.w-col-12.w-sub-col
               .w-row[data-thumbnail-gallery='true']
+
+                - if @project.project_images.present?
+                  = render partial: 'projects/image_thumbs/gallery_thumb',
+                    collection: @project.project_images, as: :project_image
 
   .divider
   .w-hidden-small.w-hidden-tiny.section

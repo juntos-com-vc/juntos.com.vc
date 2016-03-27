@@ -2329,6 +2329,10 @@ p {
 .card-secondary {
   background-color: #f1f4f4;
 }
+.card-secondary--removed {
+  opacity: .5;
+  pointer-events: none;
+}
 .card-reward {
   background-color: #ddd;
 }

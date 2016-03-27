@@ -59,20 +59,18 @@ App.views.ProjectForm.addChild('Permalink', _.extend({
 }, Skull.TimedInput));
 
 App.addChild('RemoveProjectImage', {
-  el: 'a.js-remove_project_image',
+  el: 'a[data-remove-submitted-image]',
 
   events: {
     'click': 'removeProjectImage'
   },
 
-  removeProjectImage: function(event){
-    event.preventDefault();
-    var removeProjectImage = this.el;
-    var parent = $(removeProjectImage).parents('.w-col.thumbnail-card');
-    parent.find('.thumbnail').remove();
-    parent.find('input[name*="_destroy"]').val('true');
-    $('.js-btn-submit').click();
-    return false;
+  removeProjectImage: function (e) {
+    e.preventDefault();
+    $(e.currentTarget).siblings('[data-destroy-image]').val(true);
+    $(e.currentTarget)
+      .closest('[data-thumbnail-card]')
+      .addClass('card-secondary--removed');
   }
 
 });
@@ -96,36 +94,9 @@ App.addChild('RemoveProjectPartner', {
 
 });
 
-App.views.ProjectForm.addChild('ProjectGalleryUploader', {
+App.views.ProjectForm.addChild('ProjectGalleryUploader', _.extend({
   el: '[data-project-gallery-uploader]',
-  submitButton: $('.js-btn-submit'),
+  thumbGallery: $('[data-thumbnail-gallery]'),
   template: _.template($('[data-thumbnail-card-template]').html()),
-
-  events: {
-    's3_uploads_start': 'uploadStarted',
-    's3_upload_complete': 'uploadComplete',
-    's3_uploads_complete': 'allUploadsComplete'
-  },
-
-  activate: function () {
-    this.$el.find('[data-s3-uploader]').S3Uploader();
-    this.thumbGallery = this.$el.find('[data-thumbnail-gallery]');
-  },
-
-  uploadStarted: function (e) {
-    this.submitButton.attr('disabled', true);
-  },
-
-  allUploadsComplete: function (e) {
-    this.submitButton.attr('disabled', false);
-  },
-
-  uploadComplete: function (e, content) {
-    var image = {
-      caption: '',
-      url: content.url
-    };
-
-    this.thumbGallery.append(this.template({image: image}));
-  }
-});
+  limit: 8
+}, App.ProjectImageUploader));
