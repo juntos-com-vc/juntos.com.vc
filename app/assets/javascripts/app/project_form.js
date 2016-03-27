@@ -59,20 +59,18 @@ App.views.ProjectForm.addChild('Permalink', _.extend({
 }, Skull.TimedInput));
 
 App.addChild('RemoveProjectImage', {
-  el: 'a.js-remove_project_image',
+  el: 'a[data-remove-submitted-image]',
 
   events: {
     'click': 'removeProjectImage'
   },
 
-  removeProjectImage: function(event){
-    event.preventDefault();
-    var removeProjectImage = this.el;
-    var parent = $(removeProjectImage).parents('.w-col.thumbnail-card');
-    parent.find('.thumbnail').remove();
-    parent.find('input[name*="_destroy"]').val('true');
-    $('.js-btn-submit').click();
-    return false;
+  removeProjectImage: function (e) {
+    e.preventDefault();
+    $(e.currentTarget).siblings('[data-destroy-image]').val(true);
+    $(e.currentTarget)
+      .closest('[data-thumbnail-card]')
+      .addClass('card-secondary--removed');
   }
 
 });
@@ -95,3 +93,10 @@ App.addChild('RemoveProjectPartner', {
   }
 
 });
+
+App.views.ProjectForm.addChild('ProjectGalleryUploader', _.extend({
+  el: '[data-project-gallery-uploader]',
+  thumbGallery: $('[data-thumbnail-gallery]'),
+  template: _.template($('[data-thumbnail-card-template]').html()),
+  limit: 8
+}, App.ProjectImageUploader));

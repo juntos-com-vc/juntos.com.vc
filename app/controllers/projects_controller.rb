@@ -105,7 +105,6 @@ class ProjectsController < ApplicationController
 
   def show
     @title = resource.name
-    (8 - @project.project_images.size).times { @project.project_images.build }
     (3 - @project.project_partners.size).times { @project.project_partners.build }
     authorize @project
     fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
@@ -179,14 +178,6 @@ class ProjectsController < ApplicationController
       parameters[:project][:project_partners_attributes].each do |partner|
         if partner[1][:id].present?
           ProjectPartner.find(partner[1][:id]).update_attribute(:link, partner[1][:link])
-        end
-      end
-    end
-
-    if parameters[:project][:project_images_attributes]
-      parameters[:project][:project_images_attributes].each do |image|
-        if image[1][:id].present?
-          ProjectImage.find(image[1][:id]).update_attribute(:caption, image[1][:caption])
         end
       end
     end

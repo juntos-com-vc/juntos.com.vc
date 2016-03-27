@@ -1,0 +1,24 @@
+.w-col.w-col-5.w-sub-col.u-marginbottom-30.u-marginleft-20.u-marginright-20.card.card-secondary.thumbnail-card[data-thumbnail-card="true"]
+  .u-marginleft-20
+    - if project_image.image_processing?
+      = image_tag 'image_processing.gif', class: 'thumbnail u-marginbottom-10'
+    - else
+      = image_tag project_image.image.url, 
+        class: 'thumbnail u-marginbottom-10'
+
+    label.field-label Legenda da imagem
+
+    = text_area_tag 'project[project_images_attributes][][caption]',
+      project_image.caption, class: 'text optional w-input text-field w-input text-field'
+
+    = hidden_field_tag 'project[project_images_attributes][][id]',
+      project_image.id
+
+    = hidden_field_tag 'project[project_images_attributes][][original_image_url]',
+      project_image.original_image_url
+
+    = hidden_field_tag 'project[project_images_attributes][][_destroy]', false,
+      data: { destroy_image: true }
+
+    = link_to t('remove'), '#', class: 'btn btn-small',
+      data: { remove_submitted_image: true }
