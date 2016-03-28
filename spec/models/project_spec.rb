@@ -673,6 +673,8 @@ RSpec.describe Project, type: :model do
   describe '#color' do
     subject { project.color }
 
+    before { CatarseSettings[:default_color] = '#ff8a41' }
+
     context 'when a project belongs to a recurring channel' do
       let(:default_color) { CatarseSettings[:default_color] }
       let(:channel) { create :channel, recurring: true }
@@ -697,6 +699,8 @@ RSpec.describe Project, type: :model do
     let(:project) { create :project }
 
     subject { project.reload.project_images_limit? }
+
+    before { CatarseSettings[:project_images_limit] = '8' }
 
     context 'when project has no images' do
       it { is_expected.to be_falsey }
