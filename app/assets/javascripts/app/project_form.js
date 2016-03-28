@@ -107,3 +107,11 @@ App.views.ProjectForm.addChild('ProjectPartnersUploader', _.extend({
   template: _.template($('[data-thumbnail-partner-template]').html()),
   limit: 3
 }, App.ProjectImageUploader));
+
+App.views.ProjectForm.addChild('ProjectUploadedImageUploader', _.extend({
+  el: '[data-uploaded-image]',
+}, App.ProjectCoverUploader));
+
+App.views.ProjectForm.addChild('ProjectCoverImageUploader', _.extend({
+  el: '[data-uploaded-cover-image]',
+}, App.ProjectCoverUploader));

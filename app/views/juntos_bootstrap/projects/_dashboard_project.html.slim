@@ -121,14 +121,28 @@
               .w-col.w-col-5.w-sub-col
                 label.field-label.fontweight-semibold=t('.image')
                 label.field-label.fontsize-smallest.fontcolor-secondary= t('.image_hint')
-              .w-col.w-col-6.w-sub-col
-                = form.input :uploaded_image, label: '', as: :file, required: false, hint: (@project.uploaded_image.present? ? image_tag(@project.uploaded_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_image') )
+              .w-col.w-col-6.w-sub-col[data-uploaded-image="true"]
+                = s3_uploader_form callback_param: 'project[images]',
+                  max_file_size: 5.megabytes, data: {s3_uploader: true},
+                  key: "uploads/project/uploaded_image/#{@project.id}/${filename}" do
+                    = file_field_tag :file, id: 'uploaded-image-upload',
+                      data: {url: s3_uploader_url}
+
+                = hidden_field_tag 'project[original_uploaded_image]', nil,
+                  data: {image_field: true}
             .w-row.u-marginbottom-30.card.card-terciary
               .w-col.w-col-5.w-sub-col
                 label.field-label.fontweight-semibold=t('.cover_image')
                 label.field-label.fontsize-smallest.fontcolor-secondary= t('.cover_image_hint')
-              .w-col.w-col-6.w-sub-col
-                = form.input :uploaded_cover_image, label: '', as: :file, required: false, hint: (@project.uploaded_cover_image.present? ? image_tag(@project.uploaded_cover_image.project_thumb.url, size: '220x172') : t('formtastic.hints.project.uploaded_cover_image') )
+              .w-col.w-col-6.w-sub-col[data-uploaded-cover-image="true"]
+                = s3_uploader_form callback_param: 'project[images]',
+                  max_file_size: 5.megabytes, data: {s3_uploader: true},
+                  key: "uploads/project/uploaded_cover_image/#{@project.id}/${filename}" do
+                    = file_field_tag :file, id: 'uploaded-cover-image-upload',
+                      data: {url: s3_uploader_url}
+
+                = hidden_field_tag 'project[original_uploaded_cover_image]', nil,
+                  data: {image_field: true}
           .w-row.u-marginbottom-30.card.card-terciary
             .w-col.w-col-5.w-sub-col
               label.field-label.fontweight-semibold= t('.headline')
