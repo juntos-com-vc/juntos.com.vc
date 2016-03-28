@@ -719,6 +719,34 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe '#project_partners_limit?' do
+    let(:project) { create :project }
+
+    subject { project.reload.project_partners_limit? }
+
+    before { CatarseSettings[:project_partners_limit] = '3' }
+
+    context 'when project has no partners' do
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when project has less than three partners' do
+      let!(:project_partner) do
+        create_list :project_partner, 1, project: project
+      end
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when project has reached the partners limit' do
+      let!(:project_partner) do
+        create_list :project_partner, 3, project: project
+      end
+
+      it { is_expected.to be_truthy }
+    end
+  end
+
   describe 'recurring related scopes' do
     let(:channel) { create :channel, recurring: true }
     let!(:normal_projects) { create_list :project, 2 }

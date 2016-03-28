@@ -100,3 +100,10 @@ App.views.ProjectForm.addChild('ProjectGalleryUploader', _.extend({
   template: _.template($('[data-thumbnail-card-template]').html()),
   limit: 8
 }, App.ProjectImageUploader));
+
+App.views.ProjectForm.addChild('ProjectPartnersUploader', _.extend({
+  el: '[data-partners-uploader]',
+  thumbGallery: $('[data-thumbnail-partner]'),
+  template: _.template($('[data-thumbnail-partner-template]').html()),
+  limit: 3
+}, App.ProjectImageUploader));

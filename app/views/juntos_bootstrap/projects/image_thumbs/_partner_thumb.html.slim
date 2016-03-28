@@ -1,0 +1,23 @@
+.w-col.w-col-5.w-sub-col.u-marginbottom-30.u-marginleft-20.u-marginright-20.card.card-secondary.thumbnail-card[data-thumbnail-card="true"]
+  .u-marginleft-20
+    - if project_partner.image_processing?
+      = image_tag 'image_processing.gif', class: 'thumbnail u-marginbottom-10'
+    - else
+      = image_tag project_partner.image.thumb.url,
+        class: 'thumbnail u-marginbottom-10'
+
+    label.field-label Link do parceiro
+
+    = text_field_tag 'project[project_partners_attributes][][link]',
+      project_partner.link, class: 'string optional w-input text-field w-input text-field'
+
+    = hidden_field_tag 'project[project_partners_attributes][][id]',
+      project_partner.id
+
+    = hidden_field_tag 'project[project_partners_attributes][][original_image_url]', nil
+
+    = hidden_field_tag 'project[project_partners_attributes][][_destroy]', false,
+      data: { destroy_image: true }
+
+    = link_to t('remove'), '#', class: 'btn btn-small',
+      data: { remove_submitted_image: true }

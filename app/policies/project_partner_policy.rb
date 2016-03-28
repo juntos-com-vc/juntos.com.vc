@@ -22,7 +22,7 @@ class ProjectPartnerPolicy < ApplicationPolicy
 
   def permitted_attributes
     if done_by_owner_or_admin?
-      { project_partner: [:image, :caption] }
+      { project_partner: [:original_image_url, :caption] }
     else
       { project_partner: [] }
     end
