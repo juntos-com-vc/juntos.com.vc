@@ -17,6 +17,9 @@ class Project < ActiveRecord::Base
   mount_uploader :uploaded_image, ProjectUploader
   mount_uploader :uploaded_cover_image, ProjectUploader
 
+  before_save :check_url
+  after_commit :process_images, on: :update
+
   delegate  :display_online_date, :display_status, :progress, :display_progress,
             :display_image, :display_expires_at, :remaining_text, :time_to_go,
             :display_pledged, :display_goal, :remaining_days, :progress_bar,
@@ -320,6 +323,20 @@ class Project < ActiveRecord::Base
   end
 
   private
+
+  def check_url
+    self.image_processing = true if original_uploaded_image
+    self.cover_image_processing = true if original_uploaded_cover_image
+  end
+
+  def process_images
+    if original_uploaded_image && original_uploaded_cover_image &&
+        image_processing && cover_image_processing
+      ProjectCoverProcessWorker.perform_async(self.id, original_uploaded_image,
+                                              original_uploaded_cover_image)
+    end
+  end
+
   def self.between_dates(attribute, starts_at, ends_at)
     return all unless starts_at.present? && ends_at.present?
     where("(projects.#{attribute} AT TIME ZONE '#{Time.zone.tzinfo.name}')::date between to_date(?, 'dd/mm/yyyy') and to_date(?, 'dd/mm/yyyy')", starts_at, ends_at)
