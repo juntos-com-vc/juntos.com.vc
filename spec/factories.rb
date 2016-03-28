@@ -175,4 +175,10 @@ FactoryGirl.define do
     f.association :user, factory: :user
     value 100
   end
+
+  factory :project_image do |f|
+    f.association :project, factory: :project
+    f.caption 'Image caption'
+    f.original_image_url 'http://juntos.com.vc/assets/juntos/logo-small.png'
+  end
 end

@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
   has_many :subgoals, -> { order 'value DESC' }
 
   accepts_nested_attributes_for :project_images,
-    limit: CatarseSettings[:project_images_limit],
+    limit: CatarseSettings[:project_images_limit].to_i,
     allow_destroy: true,
     reject_if: :reject_project_image
 
@@ -312,7 +312,7 @@ class Project < ActiveRecord::Base
   end
 
   def project_images_limit?
-    project_images.count == CatarseSettings[:project_images_limit]
+    project_images.count == CatarseSettings[:project_images_limit].to_i
   end
 
   private
