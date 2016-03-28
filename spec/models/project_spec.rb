@@ -1,5 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 
 RSpec.describe Project, type: :model do
   let(:project){ build(:project, goal: 3000) }
@@ -688,6 +690,28 @@ RSpec.describe Project, type: :model do
       it 'returns the category color' do
         expect(subject).to eq category.color
       end
+    end
+  end
+
+  describe '#project_images_limit?' do
+    let(:project) { create :project }
+
+    subject { project.reload.project_images_limit? }
+
+    context 'when project has no images' do
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when project has less than eight images' do
+      let!(:project_images) { create_list :project_image, 5, project: project }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when project has reached the images limit' do
+      let!(:project_images) { create_list :project_image, 8, project: project }
+
+      it { is_expected.to be_truthy }
     end
   end
 

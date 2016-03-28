@@ -42,7 +42,7 @@ App.ProjectImageUploader = {
 
   removeImage: function (e) {
     e.preventDefault();
-    e.currentTarget.closest('[data-thumbnail-card]').remove();
+    $(e.currentTarget).closest('[data-thumbnail-card]').remove();
     this.disableFileInput(!this.onLimit());
   }
 }
