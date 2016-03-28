@@ -181,4 +181,10 @@ FactoryGirl.define do
     f.caption 'Image caption'
     f.original_image_url 'http://juntos.com.vc/assets/juntos/logo-small.png'
   end
+
+  factory :project_partner do |f|
+    f.association :project, factory: :project
+    f.link 'http://juntos.com.vc'
+    f.original_image_url 'http://juntos.com.vc/assets/juntos/logo-small.png'
+  end
 end

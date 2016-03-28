@@ -81,8 +81,6 @@ class ProjectsController < ApplicationController
   def update
     authorize resource
     update! do |format|
-      update_project_images_and_partners(permitted_params)
-
       if channel && channel.recurring? && params[:bank_account]
         RecipientWorker.perform_async(@project.id, params[:bank_account])
       end
@@ -105,7 +103,6 @@ class ProjectsController < ApplicationController
 
   def show
     @title = resource.name
-    (3 - @project.project_partners.size).times { @project.project_partners.build }
     authorize @project
     fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
     @channel = resource.channels.first
@@ -171,15 +168,5 @@ class ProjectsController < ApplicationController
 
   def use_catarse_boostrap
     ["new", "create", "show", "about_mobile"].include?(action_name) ? 'juntos_bootstrap' : 'application'
-  end
-
-  def update_project_images_and_partners(parameters)
-    if parameters[:project][:project_partners_attributes]
-      parameters[:project][:project_partners_attributes].each do |partner|
-        if partner[1][:id].present?
-          ProjectPartner.find(partner[1][:id]).update_attribute(:link, partner[1][:link])
-        end
-      end
-    end
   end
 end

@@ -41,9 +41,9 @@ class Project < ActiveRecord::Base
     reject_if: :reject_project_image
 
   accepts_nested_attributes_for :project_partners,
-    limit: 3,
+    limit: CatarseSettings[:project_partners_limit].to_i,
     allow_destroy: true,
-    reject_if: proc { |attributes| attributes['image'].nil? }
+    reject_if: :reject_project_image
 
   accepts_nested_attributes_for :rewards
   accepts_nested_attributes_for :channels
@@ -313,6 +313,10 @@ class Project < ActiveRecord::Base
 
   def project_images_limit?
     project_images.count == CatarseSettings[:project_images_limit].to_i
+  end
+
+  def project_partners_limit?
+    project_partners.count == CatarseSettings[:project_partners_limit].to_i
   end
 
   private

@@ -81,29 +81,34 @@
                     collection: @project.project_images, as: :project_image
 
   .divider
-  .w-hidden-small.w-hidden-tiny.section
+  .w-hidden-small.w-hidden-tiny.section[data-partners-uploader='true']
     .w-container.w-hidden-small.w-hidden-tiny
     .w-row
       .w-col.w-col-8
         .fontsize-large.fontweight-semibold= t('.partners.title')
         p.fontsize-small.u-marginbottom-40= t('.partners.excerpt')
+
         .w-form.card.card-terciary
           .w-row.u-marginbottom-30
             .w-col.w-col-12.w-sub-col
-              label.field-label.fontsize-smallest.fontcolor-secondary= t('.partners.hint')
+              label.field-label.fontsize-smallest.fontcolor-secondary
+                = t('.partners.hint')
+
+            .w-col.w-col-12.w-sub-col.u-marginbottom-30.u-margintop-30
+              = s3_uploader_form callback_param: 'project[partners]',
+                max_file_size: 5.megabytes, data: {s3_uploader: true},
+                key: "uploads/project/image/#{@project.id}/partner/${filename}" do
+                  = file_field_tag :file, multiple: true, id: 'parner-upload',
+                    data: {url: s3_uploader_url}, disabled: @project.project_partners_limit?
+
           .w-row.u-marginbottom-30
             .w-col.w-col-12.w-sub-col
-              .w-row.u-marginbottom-30.thumbnail-card
-                = form.simple_fields_for :project_partners do |project_partners_form|
-                  .w-col.w-col-5.w-sub-col.u-marginbottom-30.u-marginleft-20.u-marginright-20.card.card-secondary.thumbnail-card
-                    .u-marginleft-20
-                      - if project_partners_form.object.image.present?
-                        = image_tag project_partners_form.object.image.thumb.url, class: 'thumbnail u-marginbottom-10'
-                      = project_partners_form.input_field :_destroy, as: :hidden
-                      = project_partners_form.input_field :image, as: :file, label_html: { class: 'w-hidden' }
-                      = project_partners_form.input :link, label: t('.partners.link'), input_html: { class: 'w-input text-field' }
-                      - if project_partners_form.object.image.present?
-                        = link_to t('remove'), '#', class: 'btn btn-small js-remove_project_partner'
+              .w-row[data-thumbnail-partner='true']
+
+                - if @project.project_partners.present?
+                  = render partial: 'projects/image_thumbs/partner_thumb',
+                    collection: @project.project_partners, as: :project_partner
+
   .divider
   .w-hidden-small.w-hidden-tiny.section
     .w-container.w-hidden-small.w-hidden-tiny
@@ -142,4 +147,5 @@
           .w-col.w-col-4
 
 = render 'projects/templates/thumbnail_card_template'
+= render 'projects/templates/partner_card_template'
 = render 'projects/templates/progress_bar_uploader'
