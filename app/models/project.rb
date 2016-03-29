@@ -17,7 +17,7 @@ class Project < ActiveRecord::Base
   mount_uploader :uploaded_image, ProjectUploader
   mount_uploader :uploaded_cover_image, ProjectUploader
 
-  before_save :check_url
+  before_save :check_url, unless: :new_record?
   after_commit :process_images, on: :update
 
   delegate  :display_online_date, :display_status, :progress, :display_progress,
@@ -325,8 +325,8 @@ class Project < ActiveRecord::Base
   private
 
   def check_url
-    self.image_processing = true if original_uploaded_image
-    self.cover_image_processing = true if original_uploaded_cover_image
+    self.image_processing = true if self.original_uploaded_image
+    self.cover_image_processing = true if self.original_uploaded_cover_image
   end
 
   def process_images
