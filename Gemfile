@@ -158,6 +158,10 @@ group :test do
   gem 'selenium-webdriver', '~> 2.51.0'
 end
 
+source 'https://rails-assets.tenex.tech' do
+  gem 'rails-assets-underscore', '~> 1.4.4'
+end
+
 # Rails simple carousel
 gem 'slick_rails'
 gem 'sass-rails', '~> 4.0.0'

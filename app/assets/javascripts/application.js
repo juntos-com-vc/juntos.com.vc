@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require ./lib/jquery-ui.js
 //= require best_in_place
-//= require ./lib/underscore.js
+//= require underscore
 //= require ./lib/backbone.js
 //= require ./lib/skull.js
 //= require ./app/app.js

@@ -96,22 +96,22 @@ App.addChild('RemoveProjectPartner', {
 
 App.views.ProjectForm.addChild('ProjectGalleryUploader', _.extend({
   el: '[data-project-gallery-uploader]',
-  thumbGallery: $('[data-thumbnail-gallery]'),
-  template: _.template($('[data-thumbnail-card-template]').html()),
+  thumbGallery: '[data-thumbnail-gallery]',
+  template: '[data-thumbnail-card-template]',
   limit: 8
 }, App.ProjectImageUploader));
 
 App.views.ProjectForm.addChild('ProjectPartnersUploader', _.extend({
   el: '[data-partners-uploader]',
-  thumbGallery: $('[data-thumbnail-partner]'),
-  template: _.template($('[data-thumbnail-partner-template]').html()),
+  thumbGallery: '[data-thumbnail-partner]',
+  template: '[data-thumbnail-partner-template]',
   limit: 3
 }, App.ProjectImageUploader));
 
 App.views.ProjectForm.addChild('ProjectUploadedImageUploader', _.extend({
-  el: '[data-uploaded-image]',
+  el: '[data-uploaded-image]'
 }, App.ProjectCoverUploader));
 
 App.views.ProjectForm.addChild('ProjectCoverImageUploader', _.extend({
-  el: '[data-uploaded-cover-image]',
+  el: '[data-uploaded-cover-image]'
 }, App.ProjectCoverUploader));

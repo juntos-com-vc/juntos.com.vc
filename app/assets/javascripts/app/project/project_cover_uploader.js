@@ -20,4 +20,4 @@ App.ProjectCoverUploader = {
       return !attr;
     });
   }
-}
+};
