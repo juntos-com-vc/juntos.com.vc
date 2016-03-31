@@ -23,6 +23,6 @@
 //= require ./lib/jquery.smooth-scroll.js
 //= require_tree ./lib
 //= require_tree ./app
+//= require s3_direct_upload
 //= require slick
 //= require jquery.minicolors
-//= require s3_direct_upload
