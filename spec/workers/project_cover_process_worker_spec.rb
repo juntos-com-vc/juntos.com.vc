@@ -5,15 +5,16 @@ Sidekiq::Testing.fake!
 RSpec.describe ProjectCoverProcessWorker do
   describe '.perform_async' do
     let(:image) { 'http://juntos.com.vc/assets/juntos/logo-small.png' }
-    let!(:project) do
-      create :project,
-        original_uploaded_image: image,
-        original_uploaded_cover_image: image
-    end
+    let!(:project) { create :project }
 
     subject do
       described_class.perform_async(project.id, project.original_uploaded_image,
                                     project.original_uploaded_cover_image)
+    end
+
+    before do
+      project.update_attributes(original_uploaded_image: image,
+        original_uploaded_cover_image: image)
     end
 
     it 'enqueues a job' do
