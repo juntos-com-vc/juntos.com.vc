@@ -10,6 +10,8 @@ App.ProjectImageUploader = {
 
   activate: function () {
     this.$el.find('[data-s3-uploader]').S3Uploader();
+    this.$thumbGallery = this.$el.find(this.thumbGallery);
+    this.$template = _.template($(this.template).html());
   },
 
   onLimit: function () {
@@ -17,14 +19,14 @@ App.ProjectImageUploader = {
   },
 
   thumbCount: function () {
-    return this.thumbGallery.children().length;
+    return this.$thumbGallery.children().length;
   },
 
   uploadComplete: function (e, content) {
-    var thumb = this.template({ url: content.url });
+    var thumb = this.$template({ url: content.url });
 
     if (this.onLimit()) {
-      this.thumbGallery.append(thumb);
+      this.$thumbGallery.append(thumb);
     } else {
       this.disableFileInput(true);
     }
@@ -45,4 +47,4 @@ App.ProjectImageUploader = {
     $(e.currentTarget).closest('[data-thumbnail-card]').remove();
     this.disableFileInput(!this.onLimit());
   }
-}
+};
