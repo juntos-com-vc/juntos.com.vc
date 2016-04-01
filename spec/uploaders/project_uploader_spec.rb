@@ -17,7 +17,7 @@ RSpec.describe ProjectUploader do
 
   describe '#project_thumb' do
     subject{ @uploader.project_thumb }
-    it{ is_expected.to have_dimensions(220, 172) }
+    it{ is_expected.to have_dimensions(220, 120) }
   end
 
   describe '#project_thumb' do
