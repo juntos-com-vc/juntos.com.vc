@@ -17,8 +17,6 @@ p
   -if contribution.reward.present?
     | Recompensa selecionada: #{contribution.reward.description}
     br/
-    | Estimativa de entrega: #{contribution.reward.display_deliver_estimate}
-    br/
   | ID do apoio: #{contribution.payment_id}
   br/
   | Nome/Razão Social do realizador: #{contribution.project.user.display_name}
