@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ProjectsForHome, type: :model do
   describe "association" do
-    it{ is_expected.to have_one :project_total } 
+    it{ is_expected.to have_one :project_total }
   end
   describe '.recommends' do
     before do

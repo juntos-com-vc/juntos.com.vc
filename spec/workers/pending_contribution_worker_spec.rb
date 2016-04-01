@@ -14,8 +14,8 @@ RSpec.describe PendingContributionWorker do
     it "should create a pending payment notification" do
       PendingContributionWorker.perform_async(contribution.id)
       expect(ContributionNotification.where({
-        template_name: 'pending_payment', 
-        user: contribution.user, 
+        template_name: 'pending_payment',
+        user: contribution.user,
         contribution: contribution
       }).count(:all)).to eq 1
     end
@@ -29,8 +29,8 @@ RSpec.describe PendingContributionWorker do
     it "should not create a pending payment notification" do
       PendingContributionWorker.perform_async(contribution.id)
       expect(ContributionNotification.where({
-        template_name: 'pending_payment', 
-        user: contribution.user, 
+        template_name: 'pending_payment',
+        user: contribution.user,
         contribution: contribution
       }).count(:all)).to eq 0
     end
@@ -42,8 +42,8 @@ RSpec.describe PendingContributionWorker do
     it "should not create a pending payment notification" do
       PendingContributionWorker.perform_async(contribution.id)
       expect(ContributionNotification.where({
-        template_name: 'pending_payment', 
-        user: contribution.user, 
+        template_name: 'pending_payment',
+        user: contribution.user,
         contribution: contribution
       }).count(:all)).to eq 0
     end
