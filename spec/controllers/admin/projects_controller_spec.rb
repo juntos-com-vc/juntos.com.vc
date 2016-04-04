@@ -33,7 +33,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
       project.reload
     end
 
-    it { is_expected.to eq(true) }
+    xit { is_expected.to eq(true) }
   end
 
   describe 'PUT push_to_draft' do

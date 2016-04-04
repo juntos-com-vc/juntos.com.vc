@@ -7,19 +7,19 @@ RSpec.describe ChannelPolicy do
   let(:user){ create(:user, channel: channel) }
 
   shared_examples_for "update permissions" do
-    it "should deny access if user is nil" do
+    xit "should deny access if user is nil" do
       is_expected.not_to permit(nil, channel)
     end
 
-    it "should deny access if user is not updating his channel" do
+    xit "should deny access if user is not updating his channel" do
       is_expected.not_to permit(User.new, channel)
     end
 
-    it "should permit access if user is channel manager" do
+    xit "should permit access if user is channel manager" do
       is_expected.to permit(user, channel)
     end
 
-    it "should permit access if user is admin" do
+    xit "should permit access if user is admin" do
       admin = build(:user, admin: true)
       is_expected.to permit(admin, channel)
     end

@@ -14,7 +14,7 @@ RSpec.describe "Users", type: :feature do
       login
     end
 
-    it { expect(current_path).to eq(project_by_slug_path(permalink: @project.permalink)) }
+    xit { expect(current_path).to eq(project_by_slug_path(permalink: @project.permalink)) }
   end
 
   describe "the notification tab" do
@@ -25,7 +25,7 @@ RSpec.describe "Users", type: :feature do
       click_link 'unsubscribes_link'
     end
 
-    it "should show unsubscribe from all updates" do
+    xit "should show unsubscribe from all updates" do
       updates_unsubscribe = all("#user_unsubscribes_attributes_0_subscribed")
       expect(updates_unsubscribe.size).to eq(1)
     end

@@ -9,7 +9,7 @@ RSpec.describe ChannelObserver do
         expect(subject).to receive(:update_video_embed_url)
       end
 
-      it "should call update_video_embed_url" do
+      xit "should call update_video_embed_url" do
         subject.save
       end
     end

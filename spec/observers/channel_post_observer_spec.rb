@@ -23,11 +23,11 @@ RSpec.describe ChannelPostObserver do
         ).never
       end
 
-      it 'should not fill published at field' do
+      xit 'should not fill published at field' do
         expect(channel_post.published_at).to be_nil
       end
 
-      it 'should not call Notification.notify once' do
+      xit 'should not call Notification.notify once' do
         channel_post.update_attributes(visible: false)
       end
     end
@@ -45,11 +45,11 @@ RSpec.describe ChannelPostObserver do
         ).once.and_call_original
       end
 
-      it 'should call Notification.notify once' do
+      xit 'should call Notification.notify once' do
         channel_post.update_attributes(visible: true)
       end
 
-      it 'should fill published at field' do
+      xit 'should fill published at field' do
         channel_post.update_attributes(visible: true)
         expect(channel_post.published_at).not_to be_nil
       end
