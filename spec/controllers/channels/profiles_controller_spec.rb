@@ -4,7 +4,7 @@ RSpec.describe Channels::ProfilesController, type: :controller do
   subject{ response }
   let(:channel){ FactoryGirl.create(:channel) }
 
-  describe "GET show" do
+  xdescribe "GET show" do
     before do
       allow(request).to receive(:subdomain).and_return(channel.permalink)
       get :show, id: 'sample'

@@ -19,12 +19,12 @@ RSpec.describe Channels::ChannelsSubscribersController, type: :controller do
     end
 
     context "when user is signed in" do
-      it{ is_expected.to redirect_to root_path }
+      xit{ is_expected.to redirect_to root_path }
     end
 
     context "when no user is signed in" do
       let(:current_user){ nil }
-      it{ is_expected.to redirect_to new_user_registration_path }
+      xit{ is_expected.to redirect_to new_user_registration_path }
     end
   end
 
@@ -35,12 +35,12 @@ RSpec.describe Channels::ChannelsSubscribersController, type: :controller do
     end
 
     context "when signed in user owns the subscription" do
-      it{ is_expected.to redirect_to root_path }
+      xit{ is_expected.to redirect_to root_path }
     end
 
     context "when signed in user does not own the subscription" do
       let(:current_user){ FactoryGirl.create(:user) }
-      it{ is_expected.not_to be_successful }
+      xit{ is_expected.not_to be_successful }
     end
   end
 end
