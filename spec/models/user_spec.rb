@@ -84,7 +84,7 @@ RSpec.describe User, type: :model do
         @u = b.user
         b = create(:contribution, state: 'confirmed', value: 100, project: successful_project)
       end
-      it{ is_expected.to eq([@u]) }
+      xit{ is_expected.to eq([@u]) }
     end
   end
 
@@ -96,7 +96,7 @@ RSpec.describe User, type: :model do
         b = create(:contribution, state: 'confirmed', value: 100, credits: true)
         @u = b.user
       end
-      it{ is_expected.to eq([]) }
+      xit{ is_expected.to eq([]) }
     end
     context "when he has not used credits in the last month" do
       before do
@@ -104,7 +104,7 @@ RSpec.describe User, type: :model do
         failed_project.update_attributes state: 'failed'
         @u = b.user
       end
-      it{ is_expected.to eq([@u]) }
+      xit{ is_expected.to eq([@u]) }
     end
   end
 
@@ -343,7 +343,7 @@ RSpec.describe User, type: :model do
 
     subject{ @u.credits }
 
-    it{ is_expected.to eq(50.0) }
+    xit{ is_expected.to eq(50.0) }
   end
 
   describe "#update_attributes" do
