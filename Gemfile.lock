@@ -460,6 +460,9 @@ GEM
     rspec-expectations (3.1.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.1.0)
+    rspec-html-matchers (0.7.2)
+      nokogiri (~> 1)
+      rspec (>= 3.0.0.a, < 4)
     rspec-its (1.0.1)
       rspec-core (>= 2.99.0.beta1)
       rspec-expectations (>= 2.99.0.beta1)
@@ -657,6 +660,7 @@ DEPENDENCIES
   rmagick
   routing-filter (~> 0.4.0.pre)
   rspec-collection_matchers
+  rspec-html-matchers (~> 0.7.2)
   rspec-its
   rspec-rails (~> 3.1)
   s3_direct_upload!

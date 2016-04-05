@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User::FixUsersDocumentsURLService do
-  describe '.process' do
+  xdescribe '.process' do
     let(:fake_document) { 'http://juntos.com.vc/assets/juntos/logo-small.png' }
     let!(:user) { create :user }
 

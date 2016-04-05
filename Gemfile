@@ -156,6 +156,7 @@ group :test do
   gem 'capybara',   '~> 2.2.0'
   gem 'coveralls', require: false
   gem 'selenium-webdriver', '~> 2.51.0'
+  gem 'rspec-html-matchers', '~> 0.7.2'
 end
 
 source 'https://rails-assets.tenex.tech' do

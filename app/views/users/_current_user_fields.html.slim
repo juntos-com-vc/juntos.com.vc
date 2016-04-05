@@ -53,16 +53,8 @@
             = hidden_field_tag 'id', @user.id
             = f.input :bio, hint: t('.bio_limit'), as: :text, input_html: { rows: 2, cols: 60, maxlength: 140  }
           .documents
-            = f.input :doc12, as: :file, label: 'RG e CPF ou CNH'
-            - if @user.doc12.url.present?
-              = link_to @user.doc12.url, target: '_blank' do
-                = image_tag('download-icon.png')
-                |   Baixar arquivo
-            = f.input :doc13, as: :file
-            - if @user.doc13.url.present?
-              = link_to @user.doc13.url, target: '_blank' do
-                = image_tag('download-icon.png')
-                |   Baixar arquivo
+            = user_documents_uploader @user
+
           .bootstrap-twitter
             p= f.submit t('.update_social_info'), class: 'btn', id: "user_submit"
 #change_password.user_data
@@ -92,3 +84,5 @@
           br
           .bootstrap-twitter
             p= f.submit t('.deactivate'), class: 'btn', data: {confirm: t('.deactivate_confirm')}
+
+= render 'shared/progress_bar_uploader'

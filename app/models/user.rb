@@ -14,15 +14,17 @@ class User < ActiveRecord::Base
     :twitter_link, :gravatar_url, :display_bank_account, :display_bank_account_owner,
     :larger_display_image, to: :decorator
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name,
-    :image_url, :uploaded_image, :bio, :newsletter, :full_name, :address_street, :address_number,
-    :address_complement, :address_neighbourhood, :address_city, :address_state, :address_zip_code, :phone_number,
-    :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,
-    :bank_account_attributes, :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
-    :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13, :staff,
-    :job_title, :birth_date, :admin, :original_doc1_url, :original_doc2_url,
-    :original_doc3_url, :original_doc4_url, :original_doc5_url, :original_doc6_url,
-    :original_doc7_url, :original_doc8_url, :original_doc9_url, :original_doc10_url,
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+    :name, :image_url, :uploaded_image, :bio, :newsletter, :full_name,
+    :address_street, :address_number, :address_complement, :address_city,
+    :address_neighbourhood, :address_state, :address_zip_code, :phone_number,
+    :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link,
+    :moip_login, :deactivated_at, :reactivate_token, :bank_account_attributes,
+    :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
+    :staff, :job_title, :birth_date, :admin, :original_doc1_url,
+    :original_doc2_url, :original_doc3_url, :original_doc4_url,
+    :original_doc5_url, :original_doc6_url, :original_doc7_url,
+    :original_doc8_url, :original_doc9_url, :original_doc10_url,
     :original_doc11_url, :original_doc12_url, :original_doc13_url
 
   enum access_type: [:individual, :legal_entity]
@@ -30,19 +32,6 @@ class User < ActiveRecord::Base
   enum gender: [:male, :female]
 
   mount_uploader :uploaded_image, UserUploader
-  mount_uploader :doc1, DocumentUploader
-  mount_uploader :doc2, DocumentUploader
-  mount_uploader :doc3, DocumentUploader
-  mount_uploader :doc4, DocumentUploader
-  mount_uploader :doc5, DocumentUploader
-  mount_uploader :doc6, DocumentUploader
-  mount_uploader :doc7, DocumentUploader
-  mount_uploader :doc8, DocumentUploader
-  mount_uploader :doc9, DocumentUploader
-  mount_uploader :doc10, DocumentUploader
-  mount_uploader :doc11, DocumentUploader
-  mount_uploader :doc12, DocumentUploader
-  mount_uploader :doc13, DocumentUploader
 
   validates_length_of :bio, maximum: 140
 
@@ -272,7 +261,7 @@ class User < ActiveRecord::Base
   end
 
   def pending_documents?
-    access_type == 'individual' && !(doc12? && doc13?)
+    access_type == 'individual' && !(original_doc12_url? && original_doc13_url?)
   end
 
   def fix_name_encoding
@@ -290,5 +279,19 @@ class User < ActiveRecord::Base
     n.gsub! 'Ã§Ã£', 'çã'
     self.name = n
     self.save
+  end
+
+  def documents_list
+    if (access_type == 'individual')
+      [:original_doc12_url, :original_doc13_url]
+    else
+      [
+        :original_doc1_url, :original_doc2_url, :original_doc3_url,
+        :original_doc4_url, :original_doc5_url, :original_doc6_url,
+        :original_doc7_url, :original_doc8_url, :original_doc9_url,
+        :original_doc10_url, :original_doc11_url, :original_doc12_url,
+        :original_doc13_url
+      ]
+    end
   end
 end
