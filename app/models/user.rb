@@ -20,7 +20,10 @@ class User < ActiveRecord::Base
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link, :moip_login, :deactivated_at, :reactivate_token,
     :bank_account_attributes, :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
     :doc1, :doc2, :doc3, :doc4, :doc5, :doc6, :doc7, :doc8, :doc9, :doc10, :doc11, :doc12, :doc13, :staff,
-    :job_title, :birth_date, :admin
+    :job_title, :birth_date, :admin, :original_doc1_url, :original_doc2_url,
+    :original_doc3_url, :original_doc4_url, :original_doc5_url, :original_doc6_url,
+    :original_doc7_url, :original_doc8_url, :original_doc9_url, :original_doc10_url,
+    :original_doc11_url, :original_doc12_url, :original_doc13_url
 
   enum access_type: [:individual, :legal_entity]
   enum staff: [:team, :financial_board, :technical_board, :advice_board]
