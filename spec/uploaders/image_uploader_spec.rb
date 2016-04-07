@@ -40,8 +40,8 @@ RSpec.describe ImageUploader do
     context "when in production env" do
       before do
         allow(Rails.env).to receive(:production?).and_return(true)
-        CatarseSettings[:aws_access_key] = 'test'
       end
+
       it{ is_expected.to eq(:fog) }
     end
   end

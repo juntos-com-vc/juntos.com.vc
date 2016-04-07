@@ -1,7 +1,7 @@
 S3DirectUpload.config do |c|
-  c.access_key_id = CatarseSettings.get_without_cache(:aws_access_key)
-  c.secret_access_key = CatarseSettings.get_without_cache(:aws_secret_key)
-  c.bucket = CatarseSettings.get_without_cache(:aws_bucket)
+  c.access_key_id = ENV['AWS_ACCESS_KEY']
+  c.secret_access_key = ENV['AWS_SECRET_KEY']
+  c.bucket = ENV['AWS_BUCKET'],
   c.region = 'sa-east-1'
-  c.url = "https://#{CatarseSettings.get_without_cache(:aws_bucket)}.s3.amazonaws.com"
+  c.url = "https://#{ENV['AWS_BUCKET']}.s3.amazonaws.com"
 end
