@@ -8,7 +8,9 @@ App.ProjectCoverUploader = {
   },
 
   activate: function () {
-    this.$el.find('[data-s3-uploader]').S3Uploader();
+    this.$el.find('[data-s3-uploader]').S3Uploader({
+      remove_completed_progress_bar: false
+    });
   },
 
   uploadComplete: function (e, content) {
