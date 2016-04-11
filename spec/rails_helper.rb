@@ -28,4 +28,5 @@ RSpec.configure do |config|
 
   config.include ActionView::Helpers::TextHelper
   config.include FactoryGirl::Syntax::Methods
+  config.include RSpecHtmlMatchers
 end

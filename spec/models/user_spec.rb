@@ -463,4 +463,24 @@ RSpec.describe User, type: :model do
       it { is_expected.to eq(false) }
     end
   end
+
+  describe '#documents_list' do
+    subject { user.documents_list }
+
+    context 'when user is a legal entity' do
+      let(:user) { create :user, access_type: 'legal_entity' }
+      let(:legal_entity_documents) do
+        (1..13).map { |n| "original_doc#{n}_url".to_sym }
+      end
+
+      it { is_expected.to match_array legal_entity_documents }
+    end
+
+    context 'when user is an individual' do
+      let(:user) { create :user, access_type: 'individual' }
+      let(:individual_documents) { [:original_doc12_url, :original_doc13_url] }
+
+      it { is_expected.to match_array individual_documents }
+    end
+  end
 end

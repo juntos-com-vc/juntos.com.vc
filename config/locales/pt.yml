@@ -11,6 +11,7 @@ pt:
   sending: Enviando...
   share_my_contributions: 'Confira o projeto '
   remove: 'Remover'
+  download_file: 'Baixar arquivo'
   site:
     description: O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar o seu projeto do papel!
     keywords: juntos, crowdfunding, financiamento coletivo, crowdfunding brasil, recursos para ONGs, captação de recursos, projetos sociais, mobilização de recursos, crowdfunding social
