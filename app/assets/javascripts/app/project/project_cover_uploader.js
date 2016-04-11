@@ -13,6 +13,10 @@ App.ProjectCoverUploader = {
 
   uploadComplete: function (e, content) {
     this.$el.find('[data-image-field]').val(content.url);
+
+    if (this.previewImage) {
+      $(this.previewImage).attr('src', content.url);
+    }
   },
 
   toggleSubmitButton: function (e) {

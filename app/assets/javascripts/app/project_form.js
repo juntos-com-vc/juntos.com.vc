@@ -109,7 +109,8 @@ App.views.ProjectForm.addChild('ProjectPartnersUploader', _.extend({
 }, App.ProjectImageUploader));
 
 App.views.ProjectForm.addChild('ProjectUploadedImageUploader', _.extend({
-  el: '[data-uploaded-image]'
+  el: '[data-uploaded-image]',
+  previewImage: '[data-cover-preview]'
 }, App.ProjectCoverUploader));
 
 App.views.ProjectForm.addChild('ProjectCoverImageUploader', _.extend({
