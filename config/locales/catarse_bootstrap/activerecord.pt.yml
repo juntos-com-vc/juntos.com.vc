@@ -232,6 +232,7 @@ pt:
     service_fee: Taxa da Juntos.com.vc
     user_name: Nome do apoiador
     user_email: Email perfil juntos.com.vc
+    user_phone_number: Telefone
     payer_email: Email do meio de pagamento
     payment_method: Meio de pagamento
     street: Rua
