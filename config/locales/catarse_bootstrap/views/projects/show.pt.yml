@@ -12,7 +12,7 @@ pt:
       card: 'Capa do projeto'
       card_subtitle: 'Sabe aquela capa do projeto que aparece na página inicial e na busca? Está na hora de você fazer o seu! Quanto mais criatividade, melhor! O mais importante é chamar a atenção dos doadores. ;)'
       image: 'Imagem do projeto'
-      image_hint: 'Essa imagem será utilizada como a miniatura de seu projeto (PNG, JPG tamanho 220x120)'
+      image_hint: 'Essa imagem será utilizada como a miniatura de seu projeto (PNG, JPG tamanho 484x252)'
       cover_image: 'Capa do projeto'
       cover_image_hint: 'Essa imagem será utilizada como a capa do seu projeto (PNG, JPG tamanho 1900x400)'
       headline: 'Frase de efeito'
