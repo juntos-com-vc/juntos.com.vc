@@ -36,19 +36,27 @@
             .w-row.u-marginbottom-20
               h1= t('.staff')
               br
-              = render partial: 'who_we_are/user', collection: @staff
+
+              - @staff.in_groups_of(4, false) do |staff_group|
+                .w-row.u-marginbottom-20
+                  = render partial: 'who_we_are/user', collection: staff_group
+
             .w-row.u-marginbottom-20
               h1= t('.advice_board')
               br
-              = render partial: 'who_we_are/user', collection: @advice_board
+
+              - @advice_board.in_groups_of(4, false) do |advice_group|
+                .w-row.u-marginbottom-20
+                  = render partial: 'who_we_are/user', collection: advice_group
+
             .w-row.u-marginbottom-20
               h1= t('.technical_board')
               br
-              = render partial: 'who_we_are/user', collection: @technical_board
-            / .w-row.u-marginbottom-20
-            /   h1= t('.financial_board')
-            /   br
-            /   = render partial: 'who_we_are/user', collection: @financial_board
+
+              - @technical_board.in_groups_of(4, false) do |technical_group|
+                .w-row.u-marginbottom-20
+                  = render partial: 'who_we_are/user', collection: technical_group
+
       #who_we_are_transparency.content.w-lightbox-hide
         .w-row
           .w-col.w-col-4
