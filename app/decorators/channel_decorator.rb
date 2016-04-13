@@ -13,6 +13,14 @@ class ChannelDecorator < Draper::Decorator
     source.website.gsub(/https?:\/\//i, '')
   end
 
+  def submit_your_project_text
+    if source.custom_submit_text.blank?
+      I18n.t(:submit_your_project, scope: [:layouts, :header])
+    else
+      source.custom_submit_text
+    end
+  end
+
   private
   def last_fragment(uri)
     uri.split("/").last

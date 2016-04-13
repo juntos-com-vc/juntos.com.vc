@@ -17,5 +17,22 @@ RSpec.describe ChannelDecorator do
     subject{ channel.display_website }
     it{ is_expected.to eq('foobar.com') }
   end
+
+  describe '#submit_your_project_text' do
+    subject { channel.submit_your_project_text }
+
+    context 'when channel has a custom submit project text' do
+      let(:channel) { build :channel, custom_submit_text: 'Custom text' }
+
+      it { is_expected.to eq channel.custom_submit_text }
+    end
+
+    context 'when does not have a custom submit project text' do
+      it 'returns the default text' do
+        is_expected
+          .to eq I18n.t(:submit_your_project, scope: [:layouts, :header])
+      end
+    end
+  end
 end
 
