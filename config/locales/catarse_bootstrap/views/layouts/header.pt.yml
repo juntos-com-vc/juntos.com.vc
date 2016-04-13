@@ -13,6 +13,9 @@ pt:
       search: Busque projetos
       how_it_works: Como funciona
       about: A juntos
+      submit_your_project: Envie seu projeto
+      terms_of_use: Termos de uso
+      contacts: Contatos
     login:
       login_with_facebook: entre com sua conta do facebook
     user:

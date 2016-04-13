@@ -20,6 +20,9 @@
       = form.input :recurring, as: :select, collection: [:true, :false],
         prompt: false, required: true
   .w-row
+    .w-col.w-col-6
+      = form.input :custom_submit_text, as: :string
+  .w-row
     .w-col.w-col-12
       = form.input :description, as: :text, required: true
 

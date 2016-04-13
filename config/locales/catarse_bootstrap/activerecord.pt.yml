@@ -131,6 +131,8 @@ pt:
         privacy: Política de privacidade
         contacts: Contatos
         recurring: Recorrente
+        category_id: Categoria
+        custom_submit_text: Texto de envio personalizado
       channel_partner:
         name: 'Nome'
         url: 'Site'

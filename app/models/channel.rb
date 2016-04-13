@@ -24,7 +24,9 @@ class Channel < ActiveRecord::Base
   catarse_auto_html_for field: :contacts, video_width: 560, video_height: 340
   catarse_auto_html_for field: :description, video_width: 560, video_height: 340
 
-  delegate :display_facebook, :display_twitter, :display_website, to: :decorator
+  delegate :display_facebook, :display_twitter, :display_website,
+           :submit_your_project_text, to: :decorator
+
   mount_uploader :image, ProfileUploader
 
   scope :by_permalink, ->(p) { where("lower(channels.permalink) = lower(?)", p) }
