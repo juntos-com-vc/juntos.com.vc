@@ -28,6 +28,7 @@ class Channel < ActiveRecord::Base
            :submit_your_project_text, to: :decorator
 
   mount_uploader :image, ProfileUploader
+  mount_uploader :email_header_image, ProfileUploader
 
   scope :by_permalink, ->(p) { where("lower(channels.permalink) = lower(?)", p) }
 
