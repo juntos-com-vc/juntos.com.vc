@@ -27,6 +27,9 @@ class Channel < ActiveRecord::Base
   delegate :display_facebook, :display_twitter, :display_website,
            :submit_your_project_text, to: :decorator
 
+  before_save :check_images_url
+  after_commit :process_images_async, on: :update
+
   mount_uploader :image, ProfileUploader
   mount_uploader :email_header_image, ProfileUploader
 
@@ -62,5 +65,20 @@ class Channel < ActiveRecord::Base
   # Using decorators
   def decorator
     @decorator ||= ChannelDecorator.new(self)
+  end
+
+  private
+
+  def check_images_url
+    self.image_processing = true if self.original_image_url
+    self.email_header_image_processing = true if self.original_email_header_image_url
+  end
+
+  def process_images_async
+    if original_image_url && original_email_header_image_url &&
+        image_processing && email_header_image_processing
+      ChannelImagesProcessWorker.perform_async(self.id, original_image_url,
+                                               original_email_header_image_url)
+    end
   end
 end

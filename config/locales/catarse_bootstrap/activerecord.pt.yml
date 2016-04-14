@@ -123,6 +123,7 @@ pt:
         description: Descrição
         how_it_works: Como funciona
         image: Logotipo
+        email_header_image: Imagem de e-mail personalizada
         name: Nome
         video_url: Vídeo
         main_color: Cor principal
@@ -257,6 +258,7 @@ pt:
   channels:
     edit: Atualizar canal
     image_hint: Tamanho máximo (600x121px)
+    email_header_image_hint: Essa imagem será utilizada no topo dos e-mails enviados aos usuários através desse canal
     subscribed: "+ %{count} seguidores"
     back_to_news: '← Voltar para as novidades'
     follow: "Siga o canal"
