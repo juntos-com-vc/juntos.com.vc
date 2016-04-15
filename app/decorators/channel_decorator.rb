@@ -21,6 +21,10 @@ class ChannelDecorator < Draper::Decorator
     end
   end
 
+  def email_image
+    source.email_header_image.blank? ?  source.image : source.email_header_image
+  end
+
   private
   def last_fragment(uri)
     uri.split("/").last

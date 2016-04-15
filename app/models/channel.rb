@@ -25,7 +25,7 @@ class Channel < ActiveRecord::Base
   catarse_auto_html_for field: :description, video_width: 560, video_height: 340
 
   delegate :display_facebook, :display_twitter, :display_website,
-           :submit_your_project_text, to: :decorator
+           :submit_your_project_text, :email_image, to: :decorator
 
   before_save :check_images_url
   after_commit :process_images_async, on: :update
