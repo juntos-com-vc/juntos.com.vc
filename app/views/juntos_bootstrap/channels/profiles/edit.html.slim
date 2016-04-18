@@ -9,21 +9,46 @@
       - if current_user.admin
         = form.input :ga_code, as: :string
       = form.input :name, as: :string
-      / = form.input :email, as: :string
       = form.input :description, as: :text
-      = form.input :image, as: :file, hint: t('channels.image_hint')
-      - if @profile.image.present?
-        p= image_tag(@profile.image)
+
+      .u-marginbottom-40[data-channel-profile-upload="true"]
+        = form.label :image
+        = form.hint t(:image_hint, scope: [:channels])
+        = hidden_field_tag 'profile[original_image_url]', nil,
+          data: { image_field: true }
+        = s3_uploader_form data: { s3_uploader: true },
+          max_file_size: 5.megabytes,
+          key: "uploads/channel/image/#{@profile.id}/${filename}" do
+            = file_field_tag :file, id: 'logo-uploader',
+              data: { url: s3_uploader_url }
+
+        - if @profile.image.present?
+          p.u-margintop-20= image_tag(@profile.image)
+
+      .u-marginbottom-40[data-channel-profile-upload="true"]
+        = form.label :email_header_image, class: 'text'
+        = form.hint t(:email_header_image_hint, scope: [:channels])
+        = hidden_field_tag 'profile[original_email_header_image_url]', nil,
+          data: { image_field: true }
+        = s3_uploader_form data: { s3_uploader: true },
+          max_file_size: 5.megabytes,
+          key: "uploads/channel/image/#{@profile.id}/${filename}" do
+            = file_field_tag :file, id: 'logo-uploader',
+              data: { url: s3_uploader_url }
+
+        - if @profile.email_header_image.present?
+          p.u-margintop-20= image_tag(@profile.email_header_image)
 
       = form.input :main_color, as: :string
       = form.input :secondary_color, as: :string
-      / = form.input :video_url, as: :string
-      / = form.input :twitter, as: :string
       = form.input :facebook, as: :string
       = form.input :website, as: :string
       = form.input :how_it_works, as: :text, input_html: {rows: 20}
       = form.input :terms, as: :text, input_html: {rows: 20}
       = form.input :contacts, as: :text, input_html: {rows: 20}
       .large-2.columns.large-centered
-        = form.button :submit, t('channels.edit'), class: 'button action'
+        = form.button :submit, t('channels.edit'),
+          class: 'button btn-medium action'
       .clearfix
+
+= render 'shared/progress_bar_uploader'

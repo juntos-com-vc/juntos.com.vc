@@ -130,7 +130,8 @@ FactoryGirl.define do
     f.comment_html "<p>This is a comment</p>"
   end
 
-  factory :channel do
+  factory :channel do |f|
+    f.association :category
     name "Test"
     email "email+channel@foo.bar"
     description "Lorem Ipsum"

@@ -3,7 +3,7 @@
 - user = @notification.user
 
 = content_for :email_logo do
-  = image_tag(channel.image, alt: channel.name)
+  = image_tag(channel.email_image, size: '600x130', alt: channel.name)
 
 br/
 strong= post.title
