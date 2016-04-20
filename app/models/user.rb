@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     :original_doc2_url, :original_doc3_url, :original_doc4_url,
     :original_doc5_url, :original_doc6_url, :original_doc7_url,
     :original_doc8_url, :original_doc9_url, :original_doc10_url,
-    :original_doc11_url, :original_doc12_url, :original_doc13_url
+    :original_doc11_url, :original_doc12_url, :original_doc13_url, :staffs
 
   enum access_type: [:individual, :legal_entity]
   enum staff: [:team, :financial_board, :technical_board, :advice_board]
