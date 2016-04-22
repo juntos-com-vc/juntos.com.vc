@@ -36,13 +36,17 @@ RSpec.describe ChannelDecorator do
   end
 
   describe '#email_image' do
-    let(:fake_image) { 'http://juntos.com.vc/assets/juntos/logo.png' }
-    let(:fake_email_image) { 'http://juntos.com.vc/assets/juntos/logo-small.png' }
+    let(:fake_image) { instance_double('ProfileUploader') }
+    let(:fake_email_image) { instance_double('ProfileUploader') }
 
     subject { channel.email_image }
 
     before do
-      allow(channel).to receive_messages(image: fake_image)
+      allow(fake_image).to receive(:url)
+        .and_return('http://juntos.com.vc/assets/juntos/logo.png')
+
+      allow(fake_email_image).to receive(:url)
+        .and_return('http://juntos.com.vc/assets/juntos/logo-small.png')
     end
 
     context 'when channel has a custom email header image' do
@@ -52,7 +56,7 @@ RSpec.describe ChannelDecorator do
         allow(channel).to receive_messages(email_header_image: fake_email_image)
       end
 
-      it { is_expected.to eq channel.email_header_image }
+      it { is_expected.to eq channel.email_header_image.url }
     end
 
     context 'when channel does not have a custom email header image' do
@@ -60,7 +64,7 @@ RSpec.describe ChannelDecorator do
 
       before { allow(channel).to receive_messages(image: fake_image) }
 
-      it { is_expected.to eq channel.image }
+      it { is_expected.to eq channel.image.url }
     end
   end
 end
