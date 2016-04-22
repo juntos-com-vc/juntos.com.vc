@@ -33,29 +33,41 @@
       #who_we_are_people.content.w-lightbox-hide
         .w-row
           .w-col.w-col-12
-            .w-row.u-marginbottom-20
-              h1= t('.staff')
-              br
+            - unless @team.blank?
+              .w-row.u-marginbottom-20
+                h1= t('.team')
+                br
 
-              - @staff.in_groups_of(4, false) do |staff_group|
-                .w-row.u-marginbottom-20
-                  = render partial: 'who_we_are/user', collection: staff_group
+                - @team.in_groups_of(4, false) do |team_group|
+                  .w-row.u-marginbottom-20
+                    = render partial: 'who_we_are/user', collection: team_group
 
-            .w-row.u-marginbottom-20
-              h1= t('.advice_board')
-              br
+            - unless @advice_board.blank?
+              .w-row.u-marginbottom-20
+                h1= t('.advice_board')
+                br
 
-              - @advice_board.in_groups_of(4, false) do |advice_group|
-                .w-row.u-marginbottom-20
-                  = render partial: 'who_we_are/user', collection: advice_group
+                - @advice_board.in_groups_of(4, false) do |advice_group|
+                  .w-row.u-marginbottom-20
+                    = render partial: 'who_we_are/user', collection: advice_group
 
-            .w-row.u-marginbottom-20
-              h1= t('.technical_board')
-              br
+            - unless @financial_board.blank?
+              .w-row.u-marginbottom-20
+                h1= t('.financial_board')
+                br
 
-              - @technical_board.in_groups_of(4, false) do |technical_group|
-                .w-row.u-marginbottom-20
-                  = render partial: 'who_we_are/user', collection: technical_group
+                - @financial_board.in_groups_of(4, false) do |financial_group|
+                  .w-row.u-marginbottom-20
+                    = render partial: 'who_we_are/user', collection: financial_group
+
+            - unless @technical_board.blank?
+              .w-row.u-marginbottom-20
+                h1= t('.technical_board')
+                br
+
+                - @technical_board.in_groups_of(4, false) do |technical_group|
+                  .w-row.u-marginbottom-20
+                    = render partial: 'who_we_are/user', collection: technical_group
 
       #who_we_are_transparency.content.w-lightbox-hide
         .w-row

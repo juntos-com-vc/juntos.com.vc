@@ -188,4 +188,14 @@ FactoryGirl.define do
     f.link 'http://juntos.com.vc'
     f.original_image_url 'http://juntos.com.vc/assets/juntos/logo-small.png'
   end
+
+  factory :page do |f|
+    f.name Page.names.keys.sample
+    f.content "Some random content"
+  end
+
+  factory :transparency_report do |f|
+    f.attachment File.open("#{Rails.root}/spec/support/testimg.png")
+    f.previous_attachment File.open("#{Rails.root}/spec/support/testimg.png")
+  end
 end
