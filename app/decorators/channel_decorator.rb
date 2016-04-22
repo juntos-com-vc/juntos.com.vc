@@ -22,7 +22,11 @@ class ChannelDecorator < Draper::Decorator
   end
 
   def email_image
-    source.email_header_image.blank? ?  source.image : source.email_header_image
+    if source.email_header_image.blank?
+      source.image.url
+    else
+      source.email_header_image.url
+    end
   end
 
   private
