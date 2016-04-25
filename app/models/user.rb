@@ -21,15 +21,21 @@ class User < ActiveRecord::Base
     :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link,
     :moip_login, :deactivated_at, :reactivate_token, :bank_account_attributes,
     :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
-    :staff, :job_title, :birth_date, :admin, :original_doc1_url,
+    :staffs, :job_title, :birth_date, :admin, :original_doc1_url,
     :original_doc2_url, :original_doc3_url, :original_doc4_url,
     :original_doc5_url, :original_doc6_url, :original_doc7_url,
     :original_doc8_url, :original_doc9_url, :original_doc10_url,
-    :original_doc11_url, :original_doc12_url, :original_doc13_url, :staffs
+    :original_doc11_url, :original_doc12_url, :original_doc13_url
 
   enum access_type: [:individual, :legal_entity]
-  enum staff: [:team, :financial_board, :technical_board, :advice_board]
   enum gender: [:male, :female]
+
+  STAFFS = {
+    team: 0,
+    financial_board: 1,
+    technical_board: 2,
+    advice_board: 3
+  }
 
   mount_uploader :uploaded_image, UserUploader
 
@@ -116,6 +122,8 @@ class User < ActiveRecord::Base
   }
   scope :order_by, ->(sort_field){ order(sort_field) }
   scope :with_visible_projects, -> { joins(:projects).where.not(projects: {state: ['draft', 'rejected', 'deleted', 'in_analysis']}) }
+
+  scope :staff, -> { where(staff_members_query) }
 
   def self.find_active!(id)
     self.active.where(id: id).first!
@@ -251,8 +259,8 @@ class User < ActiveRecord::Base
   end
 
   def self.staff_array
-    staffs.map do |name, value|
-      [User.human_attribute_name("staff/#{name}"), name]
+    STAFFS.map do |name, value|
+      [User.human_attribute_name("staff/#{name}"), value]
     end
   end
 
@@ -293,5 +301,9 @@ class User < ActiveRecord::Base
         :original_doc13_url
       ]
     end
+  end
+
+  def self.staff_members_query
+    STAFFS.values.map { |value| "staffs @> ARRAY[#{value}]" }.join(' OR ')
   end
 end

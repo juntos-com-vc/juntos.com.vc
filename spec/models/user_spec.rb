@@ -7,6 +7,12 @@ RSpec.describe User, type: :model do
   let(:failed_project){ create(:project, state: 'online') }
   let(:facebook_provider){ create :oauth_provider, name: 'facebook' }
 
+  describe '::STAFFS' do
+    it 'defines a constant' do
+      expect(described_class.const_defined?(:STAFFS)).to be_truthy
+    end
+  end
+
   describe "associations" do
     it{ is_expected.to have_many :contributions }
     it{ is_expected.to have_many :projects }
@@ -31,6 +37,25 @@ RSpec.describe User, type: :model do
     it{ is_expected.to allow_value('a'.center(140)).for(:bio) }
     it{ is_expected.not_to allow_value('a'.center(141)).for(:bio) }
     it{ is_expected.to validate_uniqueness_of(:email) }
+  end
+
+  describe '.staff_array' do
+    let(:attributes) do
+      [
+        User.human_attribute_name('staff/team'),
+        User.human_attribute_name('staff/financial_board'),
+        User.human_attribute_name('staff/technical_board'),
+        User.human_attribute_name('staff/advice_board'),
+      ]
+    end
+
+    let(:expected_array) do
+      attributes.each_with_index.map { |name, index| [name, index] }
+    end
+
+    subject { described_class.staff_array }
+
+    it { is_expected.to match expected_array }
   end
 
   describe ".to_send_category_notification" do
@@ -72,6 +97,23 @@ RSpec.describe User, type: :model do
     end
 
     it{ is_expected.to eq [user] }
+  end
+
+  describe '.staff' do
+    subject { described_class.staff }
+
+    context 'when the user is a staff member' do
+      let(:staff_member) { create :user, staffs: [1] }
+
+      it { is_expected.to include staff_member }
+    end
+
+    context 'when the user is not a staff member' do
+      let(:non_staff_user) { create :user }
+
+      it { is_expected.not_to include non_staff_user }
+    end
+
   end
 
   describe ".has_credits" do

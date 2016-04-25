@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   actions :show, :update, :update_password, :unsubscribe_notifications, :credits, :destroy
   respond_to :json, only: [:contributions, :projects]
 
+  before_action :update_staffs, only: :update
+
   def destroy
     authorize resource
     resource.deactivate
@@ -93,11 +95,18 @@ class UsersController < ApplicationController
   end
 
   private
+
   def build_bank_account
     @user.build_bank_account unless @user.bank_account
   end
 
   def permitted_params
     params.permit(policy(resource).permitted_attributes)
+  end
+
+  def update_staffs
+    unless params[:user].blank? || params[:user][:staffs].blank?
+      params[:user][:staffs] = params[:user][:staffs].reject(&:blank?)
+    end
   end
 end

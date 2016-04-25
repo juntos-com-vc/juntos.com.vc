@@ -3,7 +3,7 @@ pt:
   who_we_are:
     show:
       title: 'Quem somos'
-      staff: 'Equipe'
+      team: 'Equipe'
       financial_board: 'Conselho Financeiro'
       technical_board: 'Conselho Técnico'
       advice_board: 'Conselho'

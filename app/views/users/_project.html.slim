@@ -2,8 +2,8 @@ div class=(policy(project.user).update? ? 'project_land u-marginbottom-40' : 'sm
   .title
     h4
       = link_to project.name, project_by_slug_path(project.permalink)
-  - unless channel && channel.recurring?
-    .category style="background-color: #{project.color}"
+  .category style="background-color: #{project.color}"
+    - unless project.recurring?
       h5 = project.category.send("name_#{I18n.locale}")
       = image_tag project.category.image.url, class: 'category-image'
   .info

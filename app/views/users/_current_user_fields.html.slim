@@ -43,7 +43,8 @@
           - if current_user.try(:admin?)
             .profile
               h3.u-marginbottom-20 Campos do admin
-              = f.input :staff, as: :select, collection: User.staff_array, label: t('activerecord.attributes.user.staff')
+              = f.input :staffs, as: :select, collection: User.staff_array,
+                label: t('activerecord.attributes.user.staff'), multiple: true
               = f.input :admin, as: :boolean, label: t('activerecord.attributes.user.admin')
           .socialmidia
             = f.input :moip_login, label: t('activerecord.attributes.user.moip_login')
