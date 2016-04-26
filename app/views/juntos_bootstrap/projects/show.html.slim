@@ -224,9 +224,9 @@
             = image_tag 'catarse_bootstrap/twitter-256.png', class: 'icon-share-mobile'
             = t('.tweet')
 
+      #rewards.u-marginbottom-30[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
+        .u-text-center = image_tag 'loading.gif'
       - unless @project.recurring?
-        #rewards.u-marginbottom-30[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
-          .u-text-center = image_tag 'loading.gif'
         .fontsize-small.fontweight-semibold.u-text-center-small-only = t('.funding_period')
         .fontsize-small.u-text-center-small-only = "#{@project.display_online_date} - #{@project.display_expires_at}  (#{t('datetime.distance_in_words.x_days', count: @project.online_days)})"
       - unless @project.channels.any?
