@@ -133,6 +133,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'thin'
   gem 'fuubar', '~> 2.0.0'
+  gem 'quiet_assets', '~> 1.1.0'
 end
 
 group :test, :development do
