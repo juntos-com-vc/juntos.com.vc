@@ -398,6 +398,8 @@ GEM
       slop (~> 3.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.5.5)
     rack-protection (1.5.3)
       rack
@@ -652,6 +654,7 @@ DEPENDENCIES
   pry
   pry-remote
   pundit
+  quiet_assets (~> 1.1.0)
   rails (~> 4.1.14)
   rails-assets-underscore (~> 1.4.4)!
   rails-observers (~> 0.1.2)
