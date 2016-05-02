@@ -1,0 +1,55 @@
+en:
+  layouts:
+    footer:
+      links:
+        blog: 'Blog'
+        contact: 'Contact'
+        discover: 'Explore projects'
+        start: 'How it works'
+        expiring: 'At the home stretch'
+        facebook: 'Facebook'
+        faq: 'Help'
+        feedback: 'Feedback'
+        github: 'Github'
+        instagram: 'Instagram'
+        near: 'Near me'
+        press: 'Press'
+        privacy: 'Privacy policy'
+        recents: 'Recent'
+        recommended: 'Recommended'
+        submit: 'Submit a project'
+        terms: 'Terms of use'
+        twitter: 'Twitter'
+        who_we_are: 'Who we are'
+      texts:
+        copyleft: 'Made with love'
+      titles:
+        about: 'About us'
+        contact: 'Contact'
+        newsletter: 'Newsletter'
+        sitemap: 'Sitemap'
+        social: 'Social'
+  shared:
+    footer_navigate:
+      links:
+        partners: 'Partners'
+        ongs: 'NGOs'
+    footer_welcome:
+      links:
+        who_we_are: 'Who we are'
+        press: 'Press'
+        transparency: 'Transparency'
+    footer_about:
+      links:
+        how_it_works: 'How it works'
+        send_project: 'Send a project'
+        explore_projects: 'Explore the projects'
+    footer_legal:
+      links:
+        terms_of_use: 'Privacy and terms of use'
+        faq: 'Frequently asked questions'
+    footer_contact:
+      links:
+        contact: 'Contact'
+        blog: 'Blog'
+        facebook: 'Facebook'

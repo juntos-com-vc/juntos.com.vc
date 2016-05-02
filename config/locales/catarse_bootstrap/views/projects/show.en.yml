@@ -1,0 +1,157 @@
+en:
+  projects:
+    dashboard_project:
+      start: 'Tell what you have to say to the world!'
+      start_subtitle: 'Use the space below to tell us about your project and why people should get carried away with it and embrace your idea'
+      video_url: 'URL of the video'
+      video_url_hint: 'Link to your video on Vimeo or YouTube'
+      about: 'Project description'
+      about_hint_html: 'Tell us about your project and about you! We want to know, as well as the donors! Do not forget: make an interesting text, attractive and showing necessary information for people to know what will be done with the money and when. Use images and videos to illustrate. ;)'
+      thank_you: 'Thank you message'
+      thank_you_hint_html: 'Gratitude! Use this field to write a paragraph to thank the donors! It will be emailed after each donation.'
+      card: "Project's cover"
+      card_subtitle: "Do you know that project’s cover that is shown in the home page and in the search page? It’s time for you to make your own! The more creative, the better! The most important thing is to draw the attention of donors. ;)"
+      image: "Project's image"
+      image_hint: 'This image will be used as the thumbnail of your project (PNG, JPG size 220x110)'
+      cover_image: "Project's cover"
+      cover_image_hint: 'This image will be used as the cover of your project (PNG, JPG size 1900x400)'
+      headline: 'Catchphrase'
+      headline_hint: 'It will be used on the cover of the project, along the picture above (thumbnail). 100 characters at most.'
+      submit: 'Save and preview'
+      remove: 'Remove'
+      images:
+        title: 'Image gallery (optional)'
+        excerpt: 'Here you will add the images of the gallery that will appear after the description of the project'
+        hint: 'Add pictures to your gallery! Many people like to see the projects before donating! Unleash your imagination up to 8 images! We recommend images of 512x400 pixels. Do not forget to put subtitles. :)'
+        caption: 'Subtitle'
+      partners:
+        title: "Project's partners"
+        excerpt: 'Do you have any company that supports your fundraising campaign? If you have, put them right here! You can put up to 3 logos that will be displayed to the right side of the project. Remember, supporters must be of your project, not your NGO as a whole.'
+        hint: 'We recommend 264x75 pixels images.'
+        link: "Partner's link"
+    dashboard_reward:
+      title: 'Create and edit you rewards here'
+      subtitle: 'Think how you will deliver them and put all this in the budget! Deliver our rewards or the reliability of your project may be impaired.'
+      add_reward: '+ Add reward'
+      what_are_rewards: 'What are rewards?'
+      how_to_benefit: 'How to benefit from rewards?'
+      rewards_suggestions: 'Rewards suggestions'
+      reward_count: 'Reward #%{number}'
+    project_basics:
+      partner_name: "Partner's name"
+      partner_message: 'Parter message'
+      project_start: 'Start building your project'
+      project_start_subtitle: 'After going through all the steps above, you can submit your project for analysis'
+      online_date: 'Online date'
+      user_id: "User's id"
+      name: 'Name of the project'
+      name_label: ''
+      url: 'URL of the project'
+      url_label: 'It is the address of your project. It should be easy to remember. Avoid using underscores, hyphens and symbols.'
+      category: 'Category'
+      category_label: 'Explore and by inspired by other projects in the same category as yours.'
+      online_days: 'Deadline for the raising'
+      online_days_label: 'On average the projects are aired for 40 days. The maximum campaign period is 60 days.'
+      online_days_addon: 'days'
+      value: 'Amount to the raised'
+      value_secondary: 'A great part of the support will be from people close to you. Think about how to get at least 50% of the target value within your network.'
+      bank_account_job_running_title: 'Warning: '
+      bank_account_job_running: 'Your bank account info are beeing processed, wait a moment.'
+      useful_links: 'Useful links'
+      support: 'Support'
+      form:
+        submit: 'Save'
+    metrics:
+      titles:
+        confirmed_by_day: 'Confirmed contributions by day'
+        confirmed_amount_by_day: 'Amount by day'
+        address_state: 'Confirmed contributions by state'
+    reminder:
+      ok: 'Ok! We will send an email reminder to you 48 hours before the end of funding period'
+    send_to_analysis: 'Thank you to send this project. Our team will contact you soon.'
+    twitter:
+      take_a_look: 'Take a look at %{name}'
+    video_embed:
+      a_project_by_html: 'A project by %{link} at'
+    posts:
+      project_post:
+        unavailable: 'Only available to donors'
+        contribute: 'Support'
+        unavailable_contribute: 'this project to preview.'
+        destroy: 'Destroy'
+        destroy_confirmation: 'Are you sure?'
+      new:
+        notice: 'Notice sent!'
+        comment: 'Comment'
+        exclusive: 'Exclusive to donors'
+        submit: 'Send notice'
+        title: 'Notice title'
+        warning: 'Every notice goes directly to your donors email. So, review your text before you send it'
+    dashboard_reports:
+      all_contributions_without_reward: 'Download report from all donors that did not select a reward'
+      link_reports_confirmed: 'Download confirmed donors report'
+      link_reports_waiting_confirmation: 'Download reports from billet payment'
+      link_reward: 'Download report from donors that have chosen the %{value} reward'
+    project_about:
+      embed: < embed >
+      embed_title: 'Embed it on your site'
+      active_btn: ' Remember me'
+      deactive_btn: ' Reminder active'
+      contributions: 'donors'
+      goal: achieved of %{total}
+    show:
+      dashboard_nav:
+        basics: 'Basics'
+        project: 'Project'
+        rewards: 'Rewards'
+        subgoals: 'Subgoals'
+        preview: 'Preview'
+        send_to_analysis: 'Send project to analysis'
+      contribution_style: 'All OR NOTHING'
+      proposed_by: 'Proposed by'
+      twitter_profile: 'Twitter profile'
+      facebook_profile: 'Facebook profile'
+      author_website: "Author's site"
+      share: 'Share'
+      tweet: 'Tweet'
+      contact_author: 'Send a message'
+      user_documents: >
+        You do not have the documentation correct yet. This documentation is required
+        for the approval of the project . You can send the necessary documentation
+        <a href="%{url}" style="%{color}">here</a>.
+      contribute_project:
+        display_status:
+          reached_goal: 'This project will be successful and funded at %{date}'
+          not_reached_goal: 'This project will only be supported if at least %{goal} are achieved by %{date}'
+          failed: 'This project did not achieve at least %{goal} by %{date} and was not supported'
+          rejected: 'This project was not accepted. It is not possible to support'
+          in_analysis: 'This project is in analysis and is not open to support yet'
+          successful: 'This project was successful and supported at %{date}'
+          waiting_funds: 'Waiting contributions to be confirmed to know if this project will be successful'
+          draft: 'This project is only a draft and is not yet open to receive support'
+        submit: 'Support this project'
+        cancel: 'Cancel support'
+        already_contributing: 'You are already contributing with this project'
+      project_by: 'project by'
+      funding_period: 'Campaign period'
+      project_header:
+        subtitle_html: 'A project of %{link}'
+        without_city: 'A project of'
+        with_city: 'A project of %{category_name} by %{author} at %{city}'
+      menu:
+        about: 'About'
+        add_reward: 'Add reward'
+        comments: 'Comments'
+        contributions: 'Donors'
+        metrics: 'Metrics'
+        edit: 'Edit'
+        reports: 'Reports'
+        posts: 'Posts'
+      no_rewards_warning: 'Think how you will deliver them and put all this in the budget!'
+      no_rewards_warning_title: 'Create you rewards here'
+      contribution_states:
+        confirmed: 'Confirmed'
+        pending: 'Billet'
+      sidebar:
+        contributions: 'donors'
+        goal: 'achieved of %{total}'

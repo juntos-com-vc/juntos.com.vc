@@ -2,13 +2,14 @@ en:
   devise:
     sessions:
       new:
-        no_account_html: "Need an account? <strong>%{link}</strong>"
+        no_account_html: "Need an account?"
         login_with_facebook: "You can"
         titles:
           site: 'Log in'
-          header: 'Log in'
+          header: 'Login now and contribute to social projects!'
         links:
           register: "Sign up"
+          password: "Password"
           forgot_password: "I forgot my password"
         form:
           labels:
@@ -16,3 +17,4 @@ en:
           inputs:
             submit: 'Log me in'
             facebook: 'Log in with Facebook'
+            password: 'Password'

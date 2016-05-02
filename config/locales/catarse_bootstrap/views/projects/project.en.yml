@@ -1,0 +1,42 @@
+en:
+  projects:
+    partner_message: 'Conheceu o projeto através de %{partner}?'
+    project:
+      of_target: 'of target'
+      contributed: 'raised'
+      reached: 'reached'
+      progress_html: "<span>%{percent}%</span> of the target"
+      time_remaining_html:
+        one: "<span style='%{style}'><b>%{count}</b> %{unit}</span> to finish"
+        other: "<span style='%{style}'><b>%{count}</b> %{unit}</span> to finish"
+      pledged_html: "<span style='%{style}'><b>%{value}</b></span> in BRL$ (until now)"
+      display_status:
+        expired: 'expired'
+        rejected: 'rejected'
+        failed: 'unfunded'
+        successful: 'successful'
+        reached_goal: 'successful'
+        waiting_confirmation: 'waiting'
+        waiting_funds: 'waiting'
+        not_reached_goal: 'waiting'
+        draft: 'draft'
+        in_analysis: 'in analysis'
+    card:
+      contributed: 'raised'
+      reached: 'reached'
+      progress_html: "<span>%{percent}%</span> of the target"
+      time_remaining_html:
+        one: "<span>%{count} %{unit}</span> restante"
+        other: "<span>%{count} %{unit}</span> restantes"
+      pledged_html: "<span>%{value}</span> of the target"
+      display_status:
+        expired: 'expired'
+        rejected: 'rejected'
+        failed: 'unfunded'
+        successful: 'successful'
+        reached_goal: 'successful'
+        waiting_confirmation: 'waiting'
+        waiting_funds: 'waiting'
+        not_reached_goal: 'waiting'
+        draft: 'draft'
+        in_analysis: 'in analysis'

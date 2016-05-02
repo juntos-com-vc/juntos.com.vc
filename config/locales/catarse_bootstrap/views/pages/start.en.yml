@@ -1,0 +1,108 @@
+en:
+  pages:
+    start:
+      title: 'How it works'
+      submit_title: 'Send your project'
+      subtitle: 'Before you start a project know what needs to be done to make it happen with Juntos.'
+      meet: 'Meet projects'
+      propose: 'Propose projects'
+      proponent:
+        headline: 'To the proponent'
+        description_01_html: >
+          <p class="fontsize-small">
+            In order to submit your project in Juntos.com.vc plataform, it is
+            underlying that you have your data filled in your profile. Thereby,
+            we can contact you.
+          </p>
+
+          <p class="fontsize-small">
+            After this data is filled, you can start telling us a little about your
+            project, what is the name of it, in which category it fits, how many
+            days and what is the amount to be collected.
+          </p>
+
+          <p class="fontsize-small">
+            Your project will be reviewed by our curator and, after it is analyzed,
+            we will contact you.
+          </p>
+        description_02_html: >
+          <p class="fontsize-small">
+            Once your campaign proposal is approved, it is essential to create,
+            is case you don’t have yet, a MOIP account in order to make the
+            arrangements to make the payments of your project. If you do not have
+            a MOIP account, simply create it in moip.com.br as seller (it is cost free).
+          </p>
+
+          <p class="fontsize-small">
+            At this point , you will enrich you project’s page, chose a beautiful
+            cover, which will also be the avatar. Complete the description of it
+            and attach a nice video to submit your project. You can also put amazing
+            pictures in a gallery dedicated to your project.
+          </p>
+        description_03_html: >
+          <p class="fontsize-small">
+            You can also create rewards for the donator, according to the amount
+            of the donation. You describe the reward of a certain amount.
+          </p>
+
+          <p class="fontsize-small">
+            We suggest you create a thank you message to donors, because they are
+            the ones who will make your project possible .
+          </p>
+
+          <p class="fontsize-small">
+            Throughout the construction of your project’s page, you can see how
+            it is getting so that you only publish it when you are sure that
+            everything is perfect.
+          </p>
+
+          <p class="fontsize-small">
+            Ready! Now just click "Start" and start promoting your project.
+            Good luck!
+          </p>
+      donor:
+        headline: 'To the donor'
+        description_01_html: >
+          <p class="fontsize-small">
+            Start exploring our projects e find one that you identify the most.
+            Now, just hit "I want to contribute".
+          </p>
+
+          <p class="fontsize-small">
+            Put the amount you want to donate. Depending on the value, you can
+            get a form of reward defined by the NGO.
+          </p>
+
+          <p class="fontsize-small">
+            You can also donate through a donation card. If you have received
+            one of these cards, please enter its code and continue with the donation.
+          </p>
+
+          <p class="fontsize-small">
+            In addition, you can still contribute to Juntos - if you like - with
+            the value you want, so that we can continue to help social projects for free!
+          </p>
+        description_02_html: >
+          <p class="fontsize-small">
+            If you want, your donation can be anonymous on the platform. However,
+            to engage your network and help further the project, show that you helped!
+            Tell your friends!
+          </p>
+
+          <p class="fontsize-small">
+            Do not forget to have your registration complete, so we can identify
+            your donation and take the opportunity to subscribe to the newsletter!
+          </p>
+
+          <p class="fontsize-small">
+            Select your form of payment: credit card or billet banking.
+          </p>
+
+          <p class="fontsize-small">
+            Congratulations ! You have just made a donation to one of our social
+            projects and helped transforming realities in Brazil.
+          </p>
+
+          <p class="fontsize-small">
+            Enjoy and meets others at the plataform!
+          </p>

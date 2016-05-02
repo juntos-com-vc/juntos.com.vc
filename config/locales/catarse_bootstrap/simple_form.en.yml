@@ -1,0 +1,57 @@
+en:
+  simple_form:
+    options:
+      channel:
+        recurring:
+          "true": "Yes"
+          "false": "No"
+    collections:
+      project:
+        traffic_sources:
+          one: 'I already had a project at Juntos'
+          two: 'Indication from a person who has already had a project at Juntos'
+          three: 'Referral from a friend, colleague, professional contact'
+          four: 'From a project that was raising funds on the platform'
+          five: 'An article in the press (news portal in the internet, TV, newspapper, magazine)'
+          six: 'In a class, lecture, event'
+          seven: 'I did an internet search about crowdfunding / alternative forms of funding'
+          eight: 'Other'
+        channel_traffic_sources:
+          one: 'I already had a project on this channel'
+          two: 'Indication from a person who had already a project on this channel'
+          three: 'Referral from a friend, colleague, professional contact'
+          four: 'From a project that was raising funds on the channel'
+          five: 'An article in the press (news portal in the internet, TV, newspapper, magazine)'
+          six: 'In a class, lecture, event'
+          seven: 'I did an internet search about crowdfunding / alternative forms of funding'
+          eight: 'Other'
+    validation_texts:
+      contribution:
+        payer_name: "Por favor digite o nome do apoiador"
+        payer_email: "Por favor digite um email válido"
+        address_street: "Digite o nome da rua"
+        address_number: "Digite o número do endereço"
+        address_city: "Digite o nome da cidade"
+        address_zip_code: "Digite o CEP"
+        address_phone_number: "Digite o número de telefone"
+      reward:
+        minimum_value: 'Enter a minimum value'
+        description: 'Enter a description'
+    prompts:
+      project:
+        category: 'Choose a category'
+        select: 'Choose an option'
+        traffic_sources: 'How did you hear about Juntos.com.vc?'
+        traffic_sources_channel: 'How did you hear about %{name}?'
+    hints:
+      project:
+        select: 'Choose an option'
+        traffic_sources: 'How did you hear about Juntos.com.vc?'
+        name: ''
+        permalink: 'It is the address of your project, keep it simple. Try not to use underscore, hyphen, etc.'
+        category: 'Before sending, explore and be inspired by other projects in the same category'
+        goal: "Grande parte dos apoios serão de pessoas próximas a você. Pense como conseguir pelo menos 50% do valor da meta dentro da sua rede de contatos."
+        online_days: "Em média os projetos ficam no ar por 40 dias. O prazo máximo da campanha é de 60 dias."
+        video_url: "Insira aqui o link do seu vídeo. Ele deve estar hospedado no Youtube ou no Vimeo. Se ainda não o tiver, tudo bem, você pode adicioná-lo depois. O vídeo é muito importante para o sucesso de sua campanha e obrigatório para projetos com metas de R$ 5.000 ou mais."
+        about: '(Do not worry, you can change it later)'
+        headline: '(Do not worry, you can change it later)'

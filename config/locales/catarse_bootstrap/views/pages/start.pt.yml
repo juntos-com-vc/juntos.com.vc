@@ -1,28 +1,114 @@
 pt:
   pages:
     start:
-      page-title: "Como funciona o Catarse?"
-      title: "Viabilize seu projeto coletivamente"
-      submit: "Comece seu projeto"
-      learn-more: "Aprenda mais"
-      header:
-        people: "Pessoas já apoiaram pelo menos 01 projeto no Catarse"
-        success: "Projetos já foram bem sucedidos por aqui"
-        money: "Foram investidos em ideias publicadas no Catarse"
-      start:
-        title: "Comece seu projeto"
-        content: "Comece o rascunho do seu projeto agora! Você pode levar o tempo que quiser para fazer o vídeo da campanha de arrecadação, bolar recompensas atrativas, calcular o orçamento e traçar estratégias de comunicação e engajamento do público. Quando sentir que o projeto está bem formatado, mande para nossa equipe e receba dicas para aumentar suas chances de sucesso."
-        link: "Saiba mais sobre os primeiros passos de um projeto"
-      people:
-        title: "Mobilize interessados"
-        content: "Pelo menos 50% dos apoiadores virá da sua própria rede de contatos. O Catarse é uma forma de você se aproximar das pessoas que gostam do seu trabalho e expandir essa rede. Muitas das pessoas apoiam projetos pela relação com o realizador, outros pela admiração do trabalho e outras para receber uma recompensa única, mas a principal razão é a identificação com a proposta do projeto."
-        link: 'Saiba quantos apoiadores você precisará mobilizar'
-      work:
-        title: "Trabalhe muito no antes, durante e depois do período de arrecadação"
-        content: "Estude projetos semelhantes ao seu. Mapeie, analise, expanda e prepare a sua rede e outras comunidades que possam se interessar pela realização da sua ideia. Planeje cada dia da sua campanha e execute ações para conquistar mais apoiadores. Explique por que está pedindo o dinheiro e como vai usá-lo. Comunique-se o tempo inteiro com os apoiadores do seu projeto. Execute e entregue as recompensas dentro do prazo estabelecido."
-        link: 'Receba dicas de campanhas de sucesso no Catarse'
-      time:
-        title: "Tudo ou nada"
-        content: "Você pode escolher um prazo entre 1 e 60 dias para alcançar o objetivo de arrecadação, no sistema que chamamos de Tudo ou Nada. Quando um projeto alcança a meta de arrecadação, o Catarse fica com 13% desse valor. Se o projeto não alcança o objetivo de arrecadação, não cobramos nada e devolvemos o dinheiro aos apoiadores."
-        link: 'Saiba como nossa taxa ajuda a manter o Catarse'
-        
+      title: 'Como funciona'
+      submit_title: 'Envie seu projeto'
+      subtitle: 'Antes de começar um projeto saiba o que precisa ser feito para que ele aconteça com a Juntos.'
+      meet: 'Conhecer projetos'
+      propose: 'Propor projeto'
+      proponent:
+        headline: 'Para o proponente'
+        description_01_html: >
+          <p class="fontsize-small">
+            Para você submeter seu projeto na plataforma Juntos.com.vc, é fundamental
+            que você tenha seus dados preenchidos em seu perfil. Dessa forma,
+            poderemos entrar em contato com você.
+          </p>
+
+          <p class="fontsize-small">
+            Após preenchidos esses dados, você pode começar nos contando um pouco
+            do seu projeto, qual o nome dele, em que categoria se encaixa, quantos
+            dias e qual o valor a ser arrecadado.
+          </p>
+
+          <p class="fontsize-small">
+            O seu projeto será analisado pela nossa curadoria e, assim que analisado,
+            entraremos em contato.
+          </p>
+        description_02_html: >
+          <p class="fontsize-small">
+            Assim que aprovada a sua proposta de campanha, é fundamental você criar,
+            caso não tenha, uma conta junto ao MOIP, para que sejam viabilizadas as
+            formas de pagamento do seu projeto. Se você não tiver uma conta MOIP,
+            basta criá-la em moip.com.br como vendedor (não tem nenhum custo).
+          </p>
+
+          <p class="fontsize-small">
+            Com a sua conta MOIP e a proposta de projeto aprovada, você pode
+            terminar de construir o seu projeto!
+          </p>
+
+          <p class="fontsize-small">
+            Neste momento, você vai enriquecer a página de seu projeto,
+            escolhendo uma bela capa, que também servirá de avatar. Complete a
+            descrição dele e vincule um vídeo bacana que apresente seu projeto.
+            Você também pode colocar fotos incríveis numa galeria dedicada a seu projeto.
+          </p>
+        description_03_html: >
+          <p class="fontsize-small">
+            Você também pode criar recompensas para o doador, de acordo com o valor
+            da doação. Você descreve a recompensa de determinado valor.
+          </p>
+
+          <p class="fontsize-small">
+            Sugerimos que você crie uma mensagem de agradecimento aos doadores,
+            pois são eles que poderão tornar o seu projeto possível.
+          </p>
+
+          <p class="fontsize-small">
+            Ao longo da construção da página do seu projeto, você pode visualizar
+            como ela está ficando, para que você publique apenas quando tiver a
+            certeza que está tudo perfeito.
+          </p>
+
+          <p class="fontsize-small">
+            Pronto! Agora é só clicar em “Iniciar” e começar a divulgar o seu
+            projeto. Boa sorte!
+          </p>
+      donor:
+        headline: 'Para o doador'
+        description_01_html: >
+          <p class="fontsize-small">
+            Comece explorando nossos projetos e encontre aquele que você se identifica
+            mais. Agora, é só clicar em “Quero contribuir”.
+          </p>
+
+          <p class="fontsize-small">
+            Coloque o valor que você quer doar. Dependendo do valor, você pode
+            ganhar uma forma de recompensa definida pela ONG.
+          </p>
+
+          <p class="fontsize-small">
+            Você também poder doar através de um cartão doação. Se você recebeu
+            um desses cartões, basta inserir o código dele e continuar com a doação.
+          </p>
+
+          <p class="fontsize-small">
+            Além disso, você ainda pode contribuir com a Juntos - se quiser - com
+            o valor que desejar, para que possamos continuar a ajudar projetos
+            sociais de forma gratuita!
+          </p>
+        description_02_html: >
+          <p class="fontsize-small">
+            Se você quiser, sua doação poderá ser anônima na plataforma. Entretanto,
+            para engajar sua rede e ajudar ainda mais o projeto, mostre que você
+            contribuiu! Conte para os amigos!
+          </p>
+
+          <p class="fontsize-small">
+            Não esqueça de ter seu cadastro completo, para que possamos identificar
+            a sua doação e aproveite para assinar a newsletter!
+          </p>
+
+          <p class="fontsize-small">
+            Selecione sua forma de pagamento: cartão de crédito ou boleto bancário.
+          </p>
+
+          <p class="fontsize-small">
+            Parabéns! Você acabou de efetuar uma doação para um de nossos projetos
+            sociais e ajudar a transformar realidades pelo Brasil.
+          </p>
+
+          <p class="fontsize-small">
+            Aproveite e conheça outros na plataforma!
+          </p>

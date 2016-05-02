@@ -2,6 +2,7 @@ pt:
   devise:
     registrations:
       new:
+        title: 'Faça parte desta plataforma de contribuição exclusiva para projetos sociais'
         have_account_html: "Você já é cadastro?"
         login_with_facebook: "Você pode"
         titles:

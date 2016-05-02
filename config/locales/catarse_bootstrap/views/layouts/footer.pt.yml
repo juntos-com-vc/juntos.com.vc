@@ -47,8 +47,11 @@ pt:
     footer_legal:
       links:
         terms_of_use: Termos de uso e privacidade
+        faq: 'Perguntas frequentes'
     footer_contact:
       links:
         contact: 'Contato'
+        blog: 'Blog'
+        facebook: 'Facebook'
 
 

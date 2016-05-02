@@ -2,7 +2,9 @@ en:
   devise:
     registrations:
       new:
-        have_account_html: "Have an account? <strong>%{link}</strong>"
+        title: 'Be part of this unique contribution platform for social projects.'
+        have_account_html: 'Have you already signed up?'
+        login_with_facebook: 'You can'
         titles:
           site: 'Sign up'
           header: 'Sign up'
@@ -14,10 +16,15 @@ en:
             name: 'Name'
             password: 'Password'
             newsletter: 'I want to subscribe to Catarse newsletter'
+          labels:
+            access_type: 'I am'
+            show_password: 'Show password'
+            name: 'Full name/Corporate name'
+            password: 'Password'
+            newsletter: 'I want to receive new on my e-mail'
+            accept: 'When you register, you are accepting our <a href="%{terms_url}" class="alt-link fontcolor-alternative" target="_blank">terms of use and privacy</a>'
           hint:
             password_length: 'Must be at least 6 characters.'
           inputs:
-            submit: 'Sign me up'
-            facebook: 'Sign up with Facebook'
-
-
+            submit: 'Register'
+            facebook: 'Sign up using Facebook'

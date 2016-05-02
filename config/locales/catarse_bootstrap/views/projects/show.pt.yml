@@ -18,6 +18,7 @@ pt:
       headline: 'Frase de efeito'
       headline_hint: 'Será utilizada na capa do projeto, junto com a imagem acima (miniatura). No máximo 100 caracteres.'
       submit: 'Salvar e visualizar'
+      remove: 'Remover'
       images:
         title: 'Imagens da galeria (opcional)'
         excerpt: 'Aqui você irá adicionar as imagens da galeria que irão aparecer depois da descrição do projeto'
@@ -28,6 +29,14 @@ pt:
         excerpt: 'Você tem alguma empresa que apoia a sua campanha de captação de recursos? Se você tiver, coloque o logo delas aqui! Você pode colocar até 3 logos, que serão exibidos a direita do projeto. Lembre-se: os apoiadores devem ser do seu projeto, não da sua ONG como um todo.'
         hint: 'Recomendamos imagens de 264x75 pixels.'
         link: 'Link do parceiro'
+    dashboard_reward:
+      title: 'Crie e edite aqui suas recompensas'
+      subtitle: 'Pense bem como você irá entregá-las e coloque tudo isso no orçamento! Entregue suas recompensas, senão a confiabilidade do seu projeto pode ser prejudicada.'
+      add_reward: '+ Adicionar recompensa'
+      what_are_rewards: 'O que são as recompensas?'
+      how_to_benefit: 'Como se beneficiar das recompensas?'
+      rewards_suggestions: 'Sugestões de recompensas'
+      reward_count: 'Recompensa #%{number}'
     project_basics:
       partner_name: 'Nome do parceiro'
       partner_message: 'Mensagem para o checkbox'
@@ -43,10 +52,13 @@ pt:
       category_label: 'Explore e se inspire em outros projetos da mesma categoria que o seu.'
       online_days: 'Prazo para arrecadação'
       online_days_label: 'Em média os projetos ficam no ar por 40 dias. O prazo máximo da campanha é de 60 dias.'
+      online_days_addon: 'dias'
       value: 'Valor a ser arrecadado'
       value_secondary: 'Grande parte dos apoios serão de pessoas próximas a você. Pense como conseguir pelo menos 50% do valor da meta dentro da sua rede de contatos.'
       bank_account_job_running_title: 'Atenção:'
       bank_account_job_running: 'Seus dados bancários estão sendo processados, aguarde.'
+      useful_links: 'Links úteis'
+      support: 'Suporte'
       form:
         submit: 'Salvar'
     metrics:
@@ -91,6 +103,13 @@ pt:
       contributions: doadores
       goal: atingidos de %{total}
     show:
+      dashboard_nav:
+        basics: 'Básico'
+        project: 'Projeto'
+        rewards: 'Recompensas'
+        subgoals: 'Submetas'
+        preview: 'Preview'
+        send_to_analysis: 'Enviar projeto para análise'
       contribution_style: 'TUDO OU NADA'
       proposed_by: 'Proposto por'
       twitter_profile: "Perfil no Twitter"
@@ -99,6 +118,10 @@ pt:
       share: "Compartilhe"
       tweet: "Tweet"
       contact_author: "Enviar mensagem"
+      user_documents: >
+        Você ainda não está com a documentação de sua ONG em dia. Esta documentação
+        é necessária para a aprovação do projeto. Você pode enviar a documentação
+        necessária <a href="" sttyle="%{color}">aqui</a>
       contribute_project:
         display_status:
           reached_goal: "Este projeto será bem-sucedido e financiado em %{date}"

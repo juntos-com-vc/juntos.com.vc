@@ -1,109 +1,245 @@
 en:
   admin: &admin
-    confirm_dialog: 'You are sure?'
-    projects:
+    categories:
       index:
-        by_state: 'By state'
-        between_created_at: 'Created at between'
-        submit: 'Filter'
-        send_to_trash: 'Delete'
-        send_to_draft: 'Send to DRAFT!'
-        reject: 'Reject!'
-        approve: 'Approve!'
-        order_asc: 'Goal asc'
-        order_desc: 'Goal desc'
-        order_created_at: 'Submission date'
-        last_modification: 'Last update'
+        menu: 'Categories'
+    site_partners:
+      index:
+        menu: 'Partners'
+    channels:
+      index:
+        menu: 'Channels'
+        title: 'Channels'
+        new: 'New channel'
+        edit: 'Edit channel'
+      new:
+        title: 'New channel'
+      edit:
+        title: 'Edit channel'
+    pages:
+      index:
+        menu: 'Admin Who we are'
+        title: 'Edit Who we are'
+        who_we_are: 'Our history'
+        mission: 'Mission'
+        vision: 'Vision'
+        values: 'Values'
+        goals: 'Objectives'
+    filter:
+      title: 'Filters'
+    confirm_dialog: 'Are you sure?'
     financials:
       index:
-        submit: 'Filter'
+        id: 'ID'
+        name: 'Title'
+        user: 'MoIP user'
+        user_id: 'User ID'
+        goal: 'Goal'
+        total_payment_service_fee: 'MoIP fee'
+        total_catarse_fee: 'Platform fee'
+        repass_value: 'Vl. Repasse'
+        expires_at: 'Expires at'
+        online_date: 'Online'
+        pledged: 'Reached'
+        recommended: 'Recommended?'
+        state: 'State'
+        menu: 'Financial reports'
+        title: 'Financial reports'
+        contribution_report: 'Contribution report'
+        search_report: 'Search report'
+        total_projects: 'projects'
+        submit: 'filter'
         by_state: 'By state'
-        by_progress: By progress %
+        between_expires_at: 'Expires between'
+        by_progress: 'By progress %'
+        details:
+          name: 'Legal name'
+          bank_data: 'Bank account info'
+          document: 'CPF / CNPJ'
+          email: 'E-mail'
+          permalink: "Project's permalink"
+    projects:
+      index:
+        with_state: 'By state'
+        by_category: 'By category'
+        project: 'Project'
+        user: 'User'
+        between_created_at: 'Created between'
+        goal_between: 'Goal between'
+        between_expires_at: 'Expires between'
+        between_online_date: 'Onlinde date between'
+        between_updated_at: 'Updated between'
+        by_user_email: "Owner's email"
+        id: 'ID'
+        name: 'Title'
+        send_to_trash: 'Delete'
+        send_to_draft: 'Send to draft'
+        reject: 'Reject'
+        approve: 'Approve'
+        user_id: 'User ID'
+        goal: 'Goal'
+        total_contributions: 'Contributions'
+        online_date: 'Online date'
+        pledged: 'Reached'
+        recommended: 'Recommended?'
+        state: 'State'
+        no_projects: 'No projects were found'
+        menu: 'Admin projects'
+        title: 'Project management'
+        total_projects: 'projects'
+        submit: 'filter'
+        expires_at: 'Expires at'
+        category: 'Category'
+        order_table: 'Order table'
+        order_date: 'Oldest'
+        order_asc: 'Smallest goal'
+        order_desc: 'Biggest goal'
+        order_created_at: 'Created at'
+        last_modification: 'Last update'
+        search_report: 'Export CSV'
+    actions:
+      confirm: 'Confirm'
     users:
       index:
-        title: "Management contributions"
-        menu: Users
-        credits: Credits
-        credits_view: "Calculated credits"
-        id: ID
-        key: Key
-        submit: Search
-        has_credits_difference: "Discrepancy in credits"
-        total_contributed: contributed
-        total_contributors: contributors
-        total_contributions: contributions
-        total_users: users
-        total_credits: credits
-        total_credits_view: "calculated credits"
-        user: User
-        value: Value
-        provider: Provider
+        title: 'Donors management'
+        menu: 'Users'
+        credits: 'Credits'
+        credits_view: 'Credits'
+        by_id: 'ID'
+        by_name: 'Name'
+        by_email: 'Registered e-mail'
+        by_payer_email: "Payer's email"
+        key: 'Key'
+        submit: 'Search'
+        has_credits_difference: 'Credit differences'
+        total_contributed: 'Total supported'
+        total_contributions: 'donors'
+        total_contributions: 'donations'
+        total_users: 'users'
+        total_credits: 'credits'
+        total_credits_view: 'credits'
+        user: 'User'
+        value: 'Value'
+        payer_email: "Payer's email"
+        provider: 'Provider'
+        only_organizations: 'NGOs only'
+        access_type: 'Access type'
+        search_report: 'Export CSV'
     contributions:
       messages:
         successful:
-          confirm: 'Contribution confirmed!'
-          pendent: 'Contribution unconfirmed!'
-          refund: 'Contribution refunded!'
-          change_reward: 'Reward changed!'
-          hide: 'Contribution hidden!'
-          cancel: 'Contribution canceled!'
-          push_to_trash: 'Contribution deleted!'
-      index:
-        send_refund_request_contribution: 'Send refund request'
-        push_to_trash: 'Delete contribution'
-        cancel: 'Cancel contribution'
-        refund_and_hide: 'Refund and hide'
-        contribution_info: 'Info of contribution %{key}'
+          confirm: 'Donation successfully confirmed'
+          pendent: 'Donation unconfimed'
+          refund: 'Donation refunded successfully'
+          change_reward: 'Reward updated successfully'
+          hide: 'Donation hidden successfully'
+          cancel: 'Donation cancelled successfully'
+          push_to_trash: 'Donation deleted'
+      show:
+        contribution_info: 'Donation info %{key}'
         payment_id: 'Payment ID'
         payment_method: 'Payment method'
         payment_fee: 'Payment method fee'
-        payment_choice: 'Payment choice'
-        payer_email: 'Payer email'
-        user_email: 'Catarse user email'
-        pending_to_refund: 'Pending to refund'
+        payment_choice: 'Payment option'
+        payer_email: "Payer's email"
+        user_email: 'Registered email'
+        user_cpf: 'Registered CPF/CNPJ'
         created_at: 'Created at'
-        title: "Contributions management"
-        menu: Contributions
-        anonymous: Anonymous?
-        confirmed: Confirmed?
-        credits: "Used credits?"
-        id: ID
-        key: Key
-        no_contributions: "No contributions found."
-        project: Project
-        refunded: Refunded?
-        requested_refund: "Requested refund?"
-        reward: Reward
-        no_reward: "No reward"
-        submit: Search
-        total_contributed: contributed
-        total_contributors: contributors
-        total_contributions: contributions
-        total_users: Users
-        user: User
-        value: Value
+      index:
+        details:
+          payer_email: 'Payment'
+          user_email: 'At Juntos.com.vc'
+          payment_id: 'Payment ID'
+          acquirer_tid: 'Acquirer TID'
+          payment_method: 'Payment method'
+          payment_choice: 'Payment option'
+          acquirer_name: 'Acquirer name'
+          installments: 'Installments'
+          created_at: 'Created at'
+
+        placeholders:
+          project: 'Project name or permalink'
+          acquirer: 'Acquirer name'
+          user: "ID, name, email or payer's email"
+          payment_id: 'Key, payment method ID or acquirer TID'
+        acquirer: 'Acquirer'
+        payment_tax: 'Payment method fee'
+        send_refund_request_contribution: 'Request refund'
+        payer_email: "Payer's email"
+        payment_id: 'Payment ID'
+        user_email: 'Registed email'
+        user_cpf: 'Registered CPF/CNPJ'
+        push_to_trash: 'Delete donation'
+        cancel: 'Cancel donation'
+        between_values: 'Values between'
+        by_state: 'State'
+        refund_and_hide: 'Refund and hide donation'
+        pending_to_refund: 'Pending to refund'
+        confirm_contribution: 'Confirm donation'
+        unconfirm_contribution: 'Unconfirm donation'
+        refund_contribution: 'Refund donation'
+        request_refund: 'Request refund'
+        title: 'Donations management'
+        state: 'State'
+        menu: 'Donations'
+        anonymous: 'Anonymous?'
+        contribution: 'Donation'
+        confirmed: 'Confirmed?'
+        credits_html: 'Did use credits?'
+        id: 'ID'
+        key: 'Key'
+        no_contributions: 'No contributions'
+        project: 'Project'
+        refunded: 'Refunded?'
+        requested_refund: 'Requested refund?'
+        reward: 'Reward'
+        no_reward: 'No reward'
+        submit: 'Search'
+        total_contributed: 'raised'
+        total_contributions: 'donors'
+        total_contribution: 'donations'
+        total_users: 'users'
+        user: 'User'
+        value: 'Value'
+        credits: 'Credits'
+        platform_contributions: 'Donations to the platform'
+        platform_value: 'Amount to the platform'
+        project_value: 'Amount to the project'
+        partner_indication: 'Partner indication'
+
     statistics:
       index:
-        menu: "Statistics"
-        title: "Statistics"
-        total_users: "Users"
-        total_contributions: "Contributions"
-        total_contributors: "Contributors"
-        total_contributed: "Contributed"
-        total_projects: "Projects"
-        total_projects_success: "Successful"
-        total_projects_online: "Online"
+        menu: 'Statistics'
+        title: 'Statistics'
+        total_users: 'Users'
+        total_contributions: 'Donations'
+        total_contributors: 'Donors'
+        total_contributed: 'Donations'
+        total_projects: 'Projects'
+        total_projects_success: 'Successful'
+        total_projects_online: 'Online'
+      projects_in_analysis_by_week:
+        title: 'Send to analysis by week'
       projects_by_week:
-        title: "Projects sent per week"
-        current_period: "Last 8 weeks"
-        previous_period: "Previous 8 weeks"
-        last_year: "Last year"
+        title: 'Drafts by week'
       contributions_by_week:
-        title: "Contributed value confirmed per week"
-        current_period: "Last 8 weeks"
-        previous_period: "Previous 8 weeks"
-        last_year: "Last year"
-
+        title: 'Confirmed donations by week'
+      charts:
+        current_period: 'Last eight weeks'
+        last_year: 'Last year'
+    home_banners:
+      index:
+        menu: 'Homepage banners'
+        edit: 'Edit'
+        destroy: 'Delete'
+        destroy_confirm: 'Are you sure?'
+        new: 'New banner'
+        no_home_banners: 'No registered banners'
+        title: 'homepage banners'
+      new:
+        title: 'New banner'
+      edit:
+        title: 'Edit banner'
   channels:
     admin:
       <<: *admin

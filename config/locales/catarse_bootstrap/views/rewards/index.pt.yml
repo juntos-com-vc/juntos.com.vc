@@ -9,7 +9,17 @@ pt:
       contributions_to_confirm:
         one: 1 apoio em prazo de confirmação.
         other: "%{count} apoios em prazo de confirmação."
-      edit_reward: Editar recompensa
       new_reward: Cadastrar recompensa
       reward_deliver_time: "<b>Estimativa de Entrega:</b> %{estimate}"
       reward_title: Para %{minimum} ou mais
+    form:
+      edit_reward: Editar recompensa
+      reward_count: 'Recompensa #%{number}'
+      minimum_value: 'Valor mínimo'
+      description: 'Descrição'
+      description_placeholder: 'Descreva sua recompensa'
+      limit: 'Limitar recompensa'
+      available: 'Quantidade disponível'
+      are_you_sure: 'Tem certeza?'
+      close: 'Fechar'
+      save: 'Salvar'

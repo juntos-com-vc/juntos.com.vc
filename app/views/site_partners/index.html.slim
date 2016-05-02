@@ -1,9 +1,9 @@
 #page_content
   .container
     .site-partners
-      h1 Parceiros
-      h2 Conheça nossos principais parceiros
-      
+      h1 = t('.title')
+      h2 = t('.meet_our_partners')
+
       .site-partners-nav
         - @site_partners.each do |partner|
           .partner
@@ -15,13 +15,13 @@
           .partner-details
             h3 = partner.name
             h4
-              span Endereço:
+              span = t('.address')
               =< partner.address
             h4
-              span Contato:
+              span = t('.contact')
               =< partner.phone
             h4
-              span Site:
+              span = t('.site')
               =< link_to partner.url, partner.url, target: '_blank'
             p
               = partner.bio
@@ -46,6 +46,6 @@
                 nextArrow: '<button type="button" class="slick-next custom-arrow"></button>'
             });
           });
-          
+
 
 

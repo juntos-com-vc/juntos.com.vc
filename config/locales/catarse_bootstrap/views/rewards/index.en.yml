@@ -1,0 +1,24 @@
+en:
+  rewards:
+    index:
+      select_reward: "Select this reward"
+      display_remaining: "%{remaining} of %{maximum} available"
+      dont_want: "I don't want any reward"
+      limited: 'Limited'
+      sold_out: 'Sold out'
+      contributions_to_confirm:
+        one: '1 contribuition to confirm'
+        other: '%{count} contrbuitions to confirm'
+      new_reward: 'New reward'
+      reward_title: 'To %{minimum} or more'
+    form:
+      edit_reward: 'Edit reward'
+      reward_count: 'Reward #%{number}'
+      minimum_value: 'Minium value'
+      description: 'Description'
+      description_placeholder: 'Describe your reward'
+      limit: 'Limit rewards'
+      available: 'Available quantity'
+      are_you_sure: 'Are you sure?'
+      close: 'Close'
+      save: 'Save'

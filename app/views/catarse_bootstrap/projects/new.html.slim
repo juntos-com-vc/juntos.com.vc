@@ -34,9 +34,9 @@
               label.fontsize-large.field-label for="field"= t('simple_form.prompts.project.traffic_sources')
               = form.input :traffic_sources, as: :select, collection: t('simple_form.collections.project.traffic_sources').values, prompt: t('simple_form.prompts.project.select'), class: 'medium', label: '', required: false, hint: ''
           .w-row
-            .w-col.w-col-6.w-col-push-3   
+            .w-col.w-col-6.w-col-push-3
               = form.button :submit, t('.form.submit'), class:'btn btn-large'
-   
+
       .w-col.w-col-4
         .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20
           .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.support')
@@ -45,7 +45,7 @@
               = link_to t('.faq.links.criteria'), "http://suporte.catarse.me/hc/pt-br/articles/202387638-Diretrizes-para-a-cria%C3%A7%C3%A3o-de-projetos", target: '_blank', class: "alt-link"
 
             li.u-marginbottom-10
-              =link_to t('.faq.links.suport_central'), "#{CatarseSettings[:faq_url]}", target: '_blank', class: "alt-link"
+              =link_to t('.faq.links.support_central'), "#{CatarseSettings[:faq_url]}", target: '_blank', class: "alt-link"
 
             li.zendesk_widget
               =link_to t('.faq.links.support_contact'), "#{CatarseSettings[:zendesk_url]}/account/dropboxes/#{CatarseSettings[:zendesk_dropbox_id]}", target: '_blank', class: "alt-link"

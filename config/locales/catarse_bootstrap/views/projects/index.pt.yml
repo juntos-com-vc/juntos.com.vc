@@ -5,6 +5,15 @@ pt:
         maior. Promova uma catarse coletiva! Você é a peça que falta nesta história.
       title: Faça acontecer os projetos em que você acredita
     index:
+      transparency:
+        keep_track: 'Acompanhe em tempo real'
+        without_comission: 'Não cobramos comissão!'
+        brl_amount: 'valor em R$'
+        raised: 'arrecadados'
+        donations: 'doações'
+        made: 'realizadas'
+        projects: 'projetos'
+        supported: 'apoiados'
       box:
         by: por
         when: em
@@ -15,9 +24,12 @@ pt:
         expiring: "ver mais"
         recents: "ver mais"
         near: "ver mais"
+        see_more: 'ver mais'
       sidebar:
         titles:
-          blog: blog
+          blog: 'Blog'
+          meet_channels: 'Conheça nossos canais'
+          challenge_finalist: 'Finalista do Desafio de Impacto Social'
           facebook: "já curtiu nosso face?"
           newsletter: "Assine nossa news"
           faq: "tá com dúvida?"
@@ -27,6 +39,8 @@ pt:
         buttons:
           newsletter: Enviar
       sections:
+        partners:
+          title: 'Partners'
         near:
           title: 'Próximos a mim'
         recommended:

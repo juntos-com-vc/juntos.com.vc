@@ -7,16 +7,19 @@ pt:
         titles:
           support: "Suporte"
           know_more: "Saiba mais"
+          useful_links: 'Links Úteis'
 
         links:
           criteria: "Critérios de seleção"
-          suport_central: "FAQ"
+          support_central: "FAQ"
           support_contact: "Entre em contato conosco"
           who_we_are: 'Quem somos'
           how_it_works: "Como a Juntos.com.vc funciona?"
           money: "Como receberei o dinheiro?"
           all_or_nothing: "Como funciona o 'tudo ou nada'?"
           payment_methods: 'Meios de pagamento'
+          required_itens: 'Itens obrigatórios para um projeto ir ao ar'
+          recommendations: 'Recomendações da Juntos.com.vc'
 
       form:
         blocks:

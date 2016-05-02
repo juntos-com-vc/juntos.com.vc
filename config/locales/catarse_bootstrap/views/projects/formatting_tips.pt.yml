@@ -1,0 +1,28 @@
+pt:
+  projects:
+    formatting_tips:
+      title: 'Dicas de formatação'
+
+      video: >
+        Se você colar a url de uma imagem ou de um vídeo do vimeo ou do youtube,
+        eles irão aparecer na descrição do projeto. Experimente!
+
+      urls_html: >
+        Ao colar uma url qualquer, ela virará um link. Por exemplo,
+        http://juntos.com.vc virará <a class="alt-link" href="http://juntos.com.vc">
+        http://juntos.com.vc</a>.
+
+      labeled_urls_html: >
+        Se você quiser colocar um texto no link, basta usar o seguinte formato:
+        "texto que você quer":http://sua.url. Por exemplo, "Juntos":http://juntos.com.vc
+        virará <a class="alt-link" href="http://juntos.com.vc">Juntos</a>.
+
+      bold_text_html: >
+        Você pode usar negrito adicionando dois asteriscos (**) antes e depois
+        do texto que você quer formatar. Por exemplo, **meu texto em negrito**
+        irá aparecer como <b>meu texto em negrito</b>.
+
+      italic_text_html: >
+        Você pode usar itálico adicionando um underscore (_) antes e depois do
+        texto que você quer formatar. Por exemplo, _meu texto em itálico_ irá
+        aparecer como <em>meu texto em itálico</em>.

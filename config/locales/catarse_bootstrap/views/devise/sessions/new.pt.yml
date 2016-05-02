@@ -6,7 +6,7 @@ pt:
         login_with_facebook: "Você pode"
         titles:
           site: 'Login'
-          header: 'Login'
+          header: 'Entre agora e contribua com projetos de alto impacto social!'
         links:
           register: "Cadastre-se"
           password: "Senha"

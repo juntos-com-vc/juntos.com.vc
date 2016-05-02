@@ -1,0 +1,18 @@
+en:
+  found_singular: 'Found'
+  found_plural: 'Found'
+  project_singular: 'project'
+  project_plural: 'projects'
+  contribution_singular: 'donor'
+  contribution_plural: 'donors'
+  remaining_singular: 'remaining'
+  remaining_plural: 'remaining'
+  created_project:
+    zero: 'has not created any projects yet'
+    one: '%{count} project created'
+    other: '%{count} projects created'
+  contributed_project:
+    zero: 'has not supported any projects yet'
+    one: 'supported %{count} project'
+    other: 'supported %{count} projects'
+

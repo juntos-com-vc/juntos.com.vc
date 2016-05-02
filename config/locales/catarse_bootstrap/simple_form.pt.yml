@@ -34,6 +34,9 @@ pt:
         address_city: "Digite o nome da cidade"
         address_zip_code: "Digite o CEP"
         address_phone_number: "Digite o número de telefone"
+      reward:
+        minimum_value: 'Preencha o valor mínimo para a recompensa'
+        description: 'Preencha o campo descrição'
     prompts:
       project:
         category: "Selecione uma categoria"
@@ -50,7 +53,5 @@ pt:
         goal: "Grande parte dos apoios serão de pessoas próximas a você. Pense como conseguir pelo menos 50% do valor da meta dentro da sua rede de contatos."
         online_days: "Em média os projetos ficam no ar por 40 dias. O prazo máximo da campanha é de 60 dias."
         video_url: "Insira aqui o link do seu vídeo. Ele deve estar hospedado no Youtube ou no Vimeo. Se ainda não o tiver, tudo bem, você pode adicioná-lo depois. O vídeo é muito importante para o sucesso de sua campanha e obrigatório para projetos com metas de R$ 5.000 ou mais."
-        about: "Fale sobre o que será realizado, como o dinheiro será utilizado, quem está por trás do projeto, como e quando o projeto será entregue. Seja informal e direto, essa é uma conversa entre pessoas que querem compartilhar uma ideia, não um projeto de edital. Lembre-se que <a href=http://suporte.catarse.me/hc/pt-br/articles/203083017-Adicionar-imagens-e-v%C3%ADdeos-na-descri%C3%A7%C3%A3o-do-projeto class='alt-link' target='_blank'>você pode utilizar imagens e vídeos</a> para ilustrar melhor o seu projeto na descrição."
-        headline: "No máximo 100 caracteres."
-
-
+        about: '(Não se preocupe, você poderá mudar ela depois)'
+        headline: '(Não se preocupe, você poderá mudar ela depois)'
