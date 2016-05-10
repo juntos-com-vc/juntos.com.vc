@@ -14,6 +14,17 @@ RSpec.describe "Projects", type: :feature do
     CatarseSettings[:company_name] = 'Catarse'
   }
 
+  xdescribe "show" do
+    describe "created projects count" do
+      let(:user) { create(:user) }
+      let(:online_project) { create(:project, state: 'online', user: user) }
+      let!(:deleted_project) { create(:project, state: 'deleted', user: user) }
+      it "shows the users projects count without the deleted project" do
+        visit project_path(online_project)
+        expect(page).to have_content "1 projeto criado"
+      end
+    end
+  end
 
   describe "home" do
     before do
