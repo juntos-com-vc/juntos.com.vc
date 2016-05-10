@@ -196,7 +196,7 @@
           ul.w-list-unstyled.fontweight-light
             li
               i.fa.fa-heart
-              .created_projects.fontsize-smallest= t('created_project', count: @project.user.projects.size)
+              .created_projects.fontsize-smallest= t('created_project', count: @project.user.decorate.projects_count)
             li
               i.fa.fa-star
               .contributed_projects.fontsize-smallest = t('contributed_project', count: @project.user.total_contributed_projects)

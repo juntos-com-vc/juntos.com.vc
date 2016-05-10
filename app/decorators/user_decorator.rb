@@ -71,4 +71,7 @@ class UserDecorator < Draper::Decorator
     number_to_currency source.contributions.with_state('confirmed').sum(:value)
   end
 
+  def projects_count
+    source.projects.with_state(["online","waiting_funds","successful","failed"]).count
+  end
 end
