@@ -1,8 +1,12 @@
 class Reports::ContributionReportsForProjectOwnersController < Reports::BaseController
   def index
-    @report = end_of_association_chain.to_xls( columns: I18n.t('contribution_report_to_project_owner').values )
-    super do |format|
-      format.xls { send_data @report, filename: 'apoiadores.xls' }
+    if policy(Project.find(params[:project_id])).update?
+      @report = end_of_association_chain.to_xls( columns: I18n.t('contribution_report_to_project_owner').values )
+      super do |format|
+        format.xls { send_data @report, filename: 'apoiadores.xls' }
+      end
+    else
+      redirect_to root_path
     end
   end
 
