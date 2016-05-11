@@ -89,4 +89,15 @@ RSpec.describe UserDecorator do
       its(:display_total_of_contributions) { should == 'R$ 500'}
     end
   end
+
+  describe "#projects_count" do
+    let(:user) { create(:user) }
+    let(:user_decorator) { UserDecorator.new(user) }
+    let!(:online_project) { create(:project, state: 'online', user: user) }
+    let!(:deleted_project) { create(:project, state: 'deleted', user: user) }
+
+    it "counts the user's projects with states: online, waiting_funds, successful, failed" do
+      expect(user_decorator.projects_count).to eq 1
+    end
+  end
 end
