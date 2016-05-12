@@ -8,8 +8,8 @@ default: &default
 
 development:
   <<: *default
-  database: juntos_com_vc_development
+  database: catarse_development
 
 test:
   <<: *default
-  database: juntos_com_vc_test
+  database: catarse_test
