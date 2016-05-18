@@ -1,0 +1,12 @@
+en:
+  pages:
+    privacy_policy:
+      title: Privacy Policy
+      content:
+        explanation: "Explaining in a simple way"
+        explanation_text: "We work to offer you the best possible service - to make it easier to organize a fundraising and managing your project. <br>Your Catarse account:<ol><li><p class='prg2'>Supporters - people who register to be supporters (who will contribute financially to the project) will need to provide your full name, e-mail, full address, and telephone (the last one only because of a MoIP requirement, for those who prefer to use this payment method).</p></li><li><p class='prg2'>Project creators - people who are interested in presenting a project will need to provide the following information: full name, address and telephone number. These information will be required by Catarse team after the project is sent, only if the project is selected to go to the webpage. There will also be the need to create an 'Business Account/Professional' in MoIP website.</p></li></ol>"
+        explanation_text_cont: "We respect your right to privacy, therefore we do not provide your name or any personal information to third parties.<br>The MoIP and Paypal are services that process all Catarse transactions. No one gets access to your credit card data, only MoIP or Paypal itself. Neither we from Catharsis."
+        email: "Email"
+        email_text: "We communicate with you only if you want this to happen. <br> We send you emails related to you personal transactions and ads related to services, but we only do it when needed. <br> You will also receive some notifications, which may be waived if you choose to (through the opt-out). <br> The creators of the project have access to the address and email of their supporters, as well as the supported values and selected rewards."
+        update: "Update privacy policy"
+        update_text: "Catarse reserves the right to update the privacy policy at any time. Information about the updates will be sent to the email address provided or will be placed in a prominent place on the website. <br> We reserve the right to disclose your personal information as required by law and when we believe that disclosure is necessary to protect our rights. <br> To modify or delete any or all of the personal information you provided for us, log in and update your profile. <br> If you have any questions regarding this Privacy Policy you should open a request in our <a href='http://suporte.catarse.me/' class='alt-link'>Support Center.</a>"
