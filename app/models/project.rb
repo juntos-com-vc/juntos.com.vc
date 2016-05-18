@@ -142,7 +142,7 @@ class Project < ActiveRecord::Base
 
   scope :recurring, -> { joins(:channels).merge(Channel.recurring(true)) }
 
-  scope :without_recurring, -> { where('id NOT IN (?)', recurring.map(&:id)) unless recurring.empty? }
+  scope :without_recurring, -> { where('projects.id NOT IN (?)', recurring.map(&:id)) unless recurring.empty? }
 
   attr_accessor :accepted_terms, :new_record
 
