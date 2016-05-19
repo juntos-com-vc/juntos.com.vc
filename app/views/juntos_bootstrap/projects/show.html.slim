@@ -82,18 +82,22 @@
   nav.dashboard-nav.w-hidden-small.w-hidden-tiny
     .w-container
       = link_to '#basics', id: 'basics_link', class: 'dashboard-nav-link ' , data: {target: '#project_basics'} do
-        span.fa.fa-check-circle &nbsp;Básico
+        span.fa.fa-check-circle
+          span.u-marginleft-10 = t('.dashboard_nav.basics')
       = link_to '#dashboard_project', id: 'dashboard_project_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_project'} do
-        span.fa.fa-check-circle &nbsp;Projeto
+        span.fa.fa-check-circle
+          span.u-marginleft-10 = t('.dashboard_nav.project')
       = link_to '#dashboard_rewards', id: 'dashboard_rewards_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_rewards'} do
-        span.fa.fa-check-circle &nbsp;Recompensas
+        span.fa.fa-check-circle
+          span.u-marginleft-10 = t('.dashboard_nav.rewards')
       - if current_user.admin?
         = link_to '#dashboard_subgoals', id: 'dashboard_subgoals_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_subgoals'} do
-          span.fa.fa-check-circle &nbsp;Submetas
-      = link_to 'Preview', @project, class: 'dashboard-nav-link'
+          span.fa.fa-check-circle
+            span.u-marginleft-10 = t('.dashboard_nav.subgoals')
+      = link_to t('.dashboard_nav.preview'), @project, class: 'dashboard-nav-link'
       - if @project.draft?
         .btn-send-draft
-           = link_to 'Enviar projeto para análise', send_to_analysis_project_path(@project), class: 'btn btn-small'
+           = link_to t('.dashboard_nav.send_to_analysis'), send_to_analysis_project_path(@project), class: 'btn btn-small'
 .w-container
   .w-row
     article.w-hidden-small.w-hidden-tiny
@@ -119,9 +123,6 @@
 
       #project_posts.content.w-col.w-col-8.w-hidden
         = render 'dashboard_posts'
-      /- content_for :custom_javascripts do
-        /javascript:
-            /$(document).ready(function() { $('#project_posts').load("#{project_posts_path(@project)}"); });
       #project_contributions.content.w-col.w-col-8.w-hidden
         .w-row
           = render @contributions
@@ -167,7 +168,7 @@
                 = raw "Você ainda não está com a documentação em dia. Esta documentação é necessária para a aprovação do projeto. Você pode enviar a documentação necessária #{link_to 'aqui', user_path(current_user, anchor: 'settings'), style: 'color: #FDB64C;'}"
             - if !@project.user.approved?
               .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
-                = raw "Você ainda não está com a documentação de sua ONG em dia. Esta documentação é necessária para a aprovação do projeto. Você pode enviar a documentação necessária #{link_to 'aqui', user_path(current_user, anchor: 'settings'), style: 'color: #FDB64C;'}"
+                = t('.user_documents', url: user_path(current_user, anchor: 'settings'), color: '#FDB64C')
           - unless (%w(bolsasdazmina marcha2016 toddynho asa paranaue).include? @project.permalink.downcase) || @project.recurring?
             .u-marginbottom-10.project-style= t('.contribution_style')
       .card.card-user.u-marginbottom-10

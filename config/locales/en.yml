@@ -1,4 +1,5 @@
 en:
+  download_file: 'Download file'
   not_found:
     title: "Sorry, we couldn't find this address :("
     text: "You may have mistyped the address or the page may have moved."
@@ -16,8 +17,21 @@ en:
   site:
     title: "Juntos.com.vc"
     meta_title:  "%{title} · %{company_name}"
+    header_logo_label: Crowdfunding of social projects
     description: "O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar o seu projeto do papel!"
     keywords: "juntoscomvc, juntos.com.vc, crowdfunding, financiamento coletivo, projeto, comunidade, open source, projetos sociais, social crowdfunding, crowdfunding social"
+    projects:
+      title: Juntos.com.vc · Juntos com Você
+      description: 'Juntos.com.vc is the only Crowdfunding Platform that is exclusive for Social Projects. We provide assistance for fundraising destined to NGOs without any service fee.'
+    how_it_works:
+      title: 'How it works'
+      description: 'Learn what is and how to use The Crowdfunding Tool. An instrument to mobilize, helping to raise funds for NGOs or other kinds of Social Projects.'
+    who_we_are:
+      title: 'Who we are'
+      description: 'The NGO Juntos.com.vc offers consultancy to other NGOs, assisting them in fundraising for Social Projects by crowdfunding.'
+    explore:
+      title: 'Explore projects'
+      description: 'Discover Social Projects which raise funds at Juntos.com.vc, Crowdfunding Platform. The unique crowdfunding exclusive for NGOs with 0% service fees.'
   login:
     forgot_password:
       welcome: 'Reset password'
@@ -140,62 +154,6 @@ en:
       title: "Asas Channel"
   shared:
     accept_terms_html: "I have read and accepted the %{link}."
-  activerecord:
-    errors:
-      models:
-        project:
-          attributes:
-            permalink:
-              invalid: "Invalid project permalink"
-    attributes:
-      unsubscribe:
-        update: "Receive project updates"
-      contribution:
-        value: Value
-      project:
-        category: Category
-        expires_at: Deadline
-        online_days: Days of the air campaign
-        headline: Headline
-        image_url: "Image URL"
-        name: Name
-        user_id: "User ID"
-        video_url: "Video URL"
-        permalink: 'Project URL'
-        traffic_sources: "How did you hear about Catarse?"
-        more_links: 'Where can we find more about you and your project?'
-      reward:
-        description: Description
-        maximum_contributions: "Maximum contributions"
-        minimum_value: "Minimum value"
-      user:
-        address_city: City
-        address_complement: Complement
-        address_neighbourhood: Neighbourhood
-        address_number: Number
-        address_state: State
-        address_street: Street
-        address_zip_code: "Zip code"
-        cpf: 'CPF / CNPJ '
-        cpf_hint_title: 'Nota Fiscal será emitida para esse documento'
-        cpf_hint: '(?)'
-        state_inscription: 'State Inscription'
-        moip_login: 'MoIP Login'
-        moip_login_hint: '(How to create an account)'
-        current_password: "Current password"
-        email: Email
-        full_name: "Full name / Company Name"
-        bio: 'Mini Bio'
-        name: "Nickname"
-        password: Password
-        password_confirmation: "Password Confirmation"
-        phone_number: "Mobile phone number"
-        newsletter: 'I want receive news about Catarse'
-    models:
-      contribution: Contribution
-      category: Category
-      project: Project
-      reward: Reward
   contribution:
     display_confirmed_at: "%{time_ago} ago"
     reward_must_be_from_project: "must be from the same project"
@@ -246,20 +204,6 @@ en:
       contributed: contributed
       reached: reached
   error: "Ooops! There was an error. Please try again."
-  explore:
-    index:
-      near: 'Near me'
-      categories: Categories
-      expiring: "Expiring"
-      quick_explore: "Quick search"
-      recent: Recent
-      recommended: Recommended
-      subtitle: "Explore the projects, find the ones that touch you, and make them happen!"
-      successful: Successful
-      title: "Discover amazing projects"
-    title: "Explore the projects"
-    project:
-      empty: "Hey, we didn't find any project with the text you searched. Wanna try some new words? =D"
   formtastic:
     hints:
       contribution:
@@ -313,22 +257,6 @@ en:
   here: here
   i_contributed: "I contributed the project %{name} on @catarse"
   i_just_contributed: "I just contributed the project %{name} on @catarse"
-  layouts:
-    login:
-      login_with_facebook: "sign in with your facebook account"
-      remember_me: "Remember me and keep me connected."
-    header:
-      blog: Blog
-      help: Help
-      signup: "Sign up"
-      signin: Login
-      discover: Discover
-      submit: Send your project
-      profile: "My profile"
-      account: "My account"
-    user:
-      logout: Logout
-      my_credits: "My credit"
   not_informed: "not informed"
   notify_locale: "We identified your language by your browser. If you prefer another one, click on one of the flags on the right."
   on_the_spot:
@@ -411,14 +339,14 @@ en:
         take_a_look: "Check out the project"
         title: "Be part of it and share this project"
       contribute_project:
-        submit: "Back this project"
+        submit: 'Support this project'
         display_status:
           reached_goal: "This project will be successful and funded on %{date}"
           not_reached_goal: "This project will only be funded if at least %{goal} is contributed until %{date}"
           failed: "This project didn't reach the goal of %{goal} until %{date} and wasn't funded"
           successful: "This project was successful and was funded on %{date}"
           waiting_funds: "Waiting confirmation from payments to know if this project will be funded."
-          draft: "This project is in draft mode and is not open to contributions yet."
+          draft: 'This project is only a draft and is not yet open to receive support.'
         reached_of: "Reached of"
     contributions:
       contribution:
@@ -852,8 +780,8 @@ en:
     show:
       attention: Attention
       tabs:
-        contributed_projects: "Contributed projects"
-        created_projects: "Created projects"
+        contributed_projects: Projects supported
+        created_projects: "Projects created"
         comments: Comments
         credits: Credits
         settings: Settings

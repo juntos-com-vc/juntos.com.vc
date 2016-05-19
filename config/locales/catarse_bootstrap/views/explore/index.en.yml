@@ -1,0 +1,22 @@
+en:
+  explore:
+    index:
+      success_follow: "Agora você segue a categoria e vai receber semanalmente uma lista com os novos projetos de %{name}"
+      success_unfollow: "Você deixou de seguir essa categoria %{name}"
+      follow: 'Follow'
+      unfollow: 'Unfollow'
+      following: 'following'
+      categories: 'Categories'
+      expiring: 'At the home stretch'
+      in_funding: 'In progress'
+      near: 'Near me'
+      quick_explore: 'Quick search'
+      recent: 'Recent'
+      recommended: 'Recommended'
+      successful: 'Successful'
+      title: 'Find projects that inspire'
+      subtitle: 'Explore the projects, find the ones that touch you, and make them happen!'
+      failed: 'Unfunded'
+    title: 'Explore the projects'
+    project:
+      empty: "Hey, we didn't find any project with the text you searched. Wanna try some new words? =D"

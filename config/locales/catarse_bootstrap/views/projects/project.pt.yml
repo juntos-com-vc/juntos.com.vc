@@ -2,40 +2,41 @@ pt:
   projects:
     partner_message: "Conheceu o projeto através de %{partner}?"
     project:
-      contributed: levantados
-      reached: atingido
+      of_target: 'da meta'
+      contributed: 'levantados'
+      reached: 'atingido'
       progress_html: "<span>%{percent}%</span> financiado"
       time_remaining_html:
         one: "<span style='%{style}'><b>%{count}</b> %{unit}</span> para acabar"
         other: "<span style='%{style}'><b>%{count}</b> %{unit}</span> para acabar"
       pledged_html: "<span style='%{style}'><b>%{value}</b></span> em R$ (até agora)"
       display_status:
-        expired: "finalizado"
-        rejected: "rejeitado"
-        failed: "não financiado"
-        successful: financiado
-        reached_goal: financiado
-        waiting_confirmation: aguardando
-        waiting_funds: aguardando
-        not_reached_goal: aguardando
-        draft: "rascunho"
-        in_analysis: "em análise"
+        expired: 'finalizado'
+        rejected: 'rejeitado'
+        failed: 'não financiado'
+        successful: 'financiado'
+        reached_goal: 'financiado'
+        waiting_confirmation: 'aguardando'
+        waiting_funds: 'aguardando'
+        not_reached_goal: 'aguardando'
+        draft: 'rascunho'
+        in_analysis: 'em análise'
     card:
-      contributed: levantados
-      reached: atingido
+      contributed: 'levantados'
+      reached: 'atingido'
       progress_html: "<span>%{percent}%</span> financiado"
       time_remaining_html:
         one: "<span>%{count} %{unit}</span> restante"
         other: "<span>%{count} %{unit}</span> restantes"
       pledged_html: "<span>%{value}</span> levantados"
       display_status:
-        expired: "finalizado"
-        rejected: "rejeitado"
-        failed: "não financiado"
-        successful: financiado
-        reached_goal: financiado
-        waiting_confirmation: aguardando
-        waiting_funds: aguardando
-        not_reached_goal: aguardando
-        draft: "rascunho"
-        in_analysis: "em análise"
+        expired: 'finalizado'
+        rejected: 'rejeitado'
+        failed: 'não financiado'
+        successful: 'financiado'
+        reached_goal: 'financiado'
+        waiting_confirmation: 'aguardando'
+        waiting_funds: 'aguardando'
+        not_reached_goal: 'aguardando'
+        draft: 'rascunho'
+        in_analysis: 'em análise'

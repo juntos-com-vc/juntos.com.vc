@@ -1,0 +1,39 @@
+en:
+  projects:
+    new:
+      page-title: 'Start your project'
+
+      faq:
+        titles:
+          support: 'Support'
+          know_more: 'Know more'
+          useful_links: 'Useful links'
+
+        links:
+          criteria: 'Selection criteria'
+          support_central: 'FAQ'
+          support_contact: 'Contact us'
+          who_we_are: 'Who we are'
+          how_it_works: 'How it works'
+          money: 'How will I get the money?'
+          all_or_nothing: 'How "All or nothing" works?'
+          payment_methods: 'Payment methods'
+          required_itens: 'Required itens'
+          recommendations: 'Juntos recommendations'
+
+      form:
+        blocks:
+          first:
+            title: 'Welcome ;)'
+            description: >
+              We only need to know three things so you can go to the next step
+              where you will already have a preview of your design, how it will
+              look like, if selected.
+
+        info:
+          permalink: 'http://juntos.com.vc/'
+          permalink_channel: 'http://%{permalink}.juntos.com.vc/'
+          goal: 'BRL$'
+          online_days: 'days'
+
+        submit: 'Save and continue'

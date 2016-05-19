@@ -4,8 +4,7 @@ header.devise-header-section
   .w-container
     .w-row
       .w-col.w-col-8.w-col-push-2
-        h1
-          | Entre agora e contribua com projetos de alto impacto social!
+        h1 = t('.titles.header')
     .w-row
       .w-col.w-col-6.w-col-push-3
         = render 'devise/shared/header'
@@ -30,7 +29,7 @@ section.devise-body-section
         .w-form
           = simple_form_for resource, as: resource_name, url: session_path(resource_name), html: {novalidate: true}, class: 'email-form' do |form|
             = render 'devise/shared/alert'
-            = form.input :email, as: :email, label: t('.email'), input_html: { class: 'w-input text-field' }, required: false
+            = form.input :email, as: :email, input_html: { class: 'w-input text-field' }, required: false
             = form.input :password, as: :password, label: t('.form.inputs.password'), input_html: { class: 'w-input text-field' }
             = link_to t('.links.forgot_password'), new_password_path(resource_name), class: 'fontsize-smallest link-hidden fontcolor-secondary u-right'
             .u-marginbottom-10

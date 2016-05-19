@@ -1,11 +1,11 @@
 #dashboard-rewards-tab
-  .u-text-center
+  .dashboard-header.u-text-center
     .w-container
       .w-row
         .w-col.w-col-2
         .w-col.w-col-8
-          .fontsize-large.fontweight-semibold Crie e edite aqui suas recompensas
-          p.fontsize-base Pense bem como você irá entregá-las e coloque tudo isso no orçamento! Entregue suas recompensas, senão a confiabilidade do seu projeto pode ser prejudicada.
+          .fontsize-large.fontweight-semibold = t('.title')
+          p.fontsize-base = t('.subtitle')
         .w-col.w-col-2
   .section
     .w-container
@@ -16,7 +16,7 @@
               .w-row.card.card-terciary.u-marginbottom-20[id="reward_#{reward.id}" data-update_url=sort_project_reward_path(@project, reward) class="sortable"]
                 .w-col.w-col-4.w-sub-col
                   .fontweight-semibold.fontsize-smallest.u-marginbottom-10
-                    = "Recompensa #{index + 1}"
+                    = t('.reward_count', number: index + 1)
                 .w-col.w-col-8
                   .card
                     .w-row
@@ -29,33 +29,37 @@
                     p.fontsize-small
                       br= reward.display_description
                     .fontsize-smallest
-                      /=t('rewards.index.reward_deliver_time', estimate: reward.display_deliver_estimate).html_safe
               .w-hidden[class="edit_reward_content_#{reward.id}"]
 
           .new_reward_content.w-hidden
-          = link_to "+ Adicionar recompensa", 'javascript:void(0);', data: {target: '.new_reward_content', path: new_project_reward_path(@project)}, class: 'btn btn-large btn-message show_reward_form new_reward_button'
+          = link_to t('.add_reward'), 'javascript:void(0);', data: {target: '.new_reward_content', path: new_project_reward_path(@project)}, class: 'btn btn-large btn-message show_reward_form new_reward_button'
 
         .w-col.w-col-4
           .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20 data-ix="new-interaction"
-            .fontsize-small.fontweight-semibold.u-marginbottom-20 Links úteis
+            .fontsize-small.fontweight-semibold.u-marginbottom-20
+              = t(:useful_links, scope: [:projects, :new, :faq, :titles])
             ul.w-list-unstyled
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488681-o-que-s%C3%A3o-as-recompensas" target="_blank"  O que são as recompensas?
+                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488681-o-que-s%C3%A3o-as-recompensas" target="_blank" = t('.what_are_rewards')
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488682-como-se-beneficiar-das-recompensas" target="_blank" Como se beneficiar das recompensas?
+                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488682-como-se-beneficiar-das-recompensas" target="_blank" = t('.how_to_benefit')
               li.fontsize-smaller.alt-link.u-marginbottom-10
-                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488683-sugest%C3%B5es-de-recompensas" target="_blank"  Sugestões de recompensas
+                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488683-sugest%C3%B5es-de-recompensas" target="_blank" = t('.rewards_suggestions')
               li.fontsize-smaller.alt-link.u-marginbottom-10
-                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488680-recomenda%C3%A7%C3%B5es-do-juntos-com-vc" target="_blank"  Recomendações da Juntos.com.vc
+                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488680-recomenda%C3%A7%C3%B5es-do-juntos-com-vc" target="_blank"
+                  = t(:recommendations, scope: [:projects, :new, :faq, :links])
           .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20 data-ix="new-interaction"
-            .fontsize-small.fontweight-semibold.u-marginbottom-20 Suporte
+            .fontsize-small.fontweight-semibold.u-marginbottom-20
+              = t(:support, scope: [:projects, :new, :faq, :titles])
             ul.w-list-unstyled
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488678-como-a-juntos-com-vc-funciona" target="_blank"  Como a Juntos.com.vc funciona?
+                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/488678-como-a-juntos-com-vc-funciona" target="_blank"
+                  = t(:how_it_works, scope: [:projects, :new, :faq, :links])
               li.alt-link.fontsize-smaller.u-marginbottom-10
-                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/487294-como-receberei-meu-dinheiro" target="_blank"  Como eu irei receber o meu dinheiro?
+                a.alt-link href="http://juntoscomvc.uservoice.com/knowledgebase/articles/487294-como-receberei-meu-dinheiro" target="_blank"  = t(:money, scope: [:projects, :new, :faq, :links])
               li.fontsize-smaller.alt-link.u-marginbottom-10
-                a.alt-link href="http://juntoscomvc.uservoice.com/" target="_blank"  Perguntas frequentes
+                a.alt-link href="http://juntoscomvc.uservoice.com/" target="_blank"
+                  = t(:support_central, scope: [:projects, :new, :faq, :links])
               li.fontsize-smaller.alt-link.u-marginbottom-10
-                a.alt-link href="/pt/who-we-are" target="_blank"  Entre em contato com a gente
-
+                a.alt-link href="/pt/who-we-are" target="_blank"
+                  = t(:support_contact, scope: [:projects, :new, :faq, :links])

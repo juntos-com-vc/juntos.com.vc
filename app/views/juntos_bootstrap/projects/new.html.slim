@@ -22,11 +22,11 @@
               = form.input_field :name, class: 'medium', as: :string
             .u-marginbottom-40
               = form.label :headline, class: 'fontsize-large', required: true, as: :text
-              p= "(Não se preocupe, você poderá mudar ela depois)"
+              p = form.hint :headline
               = form.input_field :headline, class: 'medium', as: :text
             .u-marginbottom-40
               = form.label :about, class: 'fontsize-large', required: true, as: :text
-              p= "(Não se preocupe, você poderá mudar ela depois)"
+              p = form.hint :about
               = form.input_field :about, class: 'medium', as: :text
             .u-marginbottom-40
               = form.label :goal, class: 'fontsize-large', required: true, as: :string
@@ -35,7 +35,8 @@
                 .w-col.w-col-12
                   .w-row
                     .w-col.w-col-2.w-col-small-6.w-col-tiny-6.text-field.prefix.no-hover
-                      .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest R$
+                      .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest
+                        = t('.form.info.goal')
                     .w-col.w-col-10.w-col-small-6.w-col-tiny-6
                       = form.input_field :goal, as: :string, class: 'positive postfix'
             - unless channel && channel.recurring?
@@ -91,7 +92,7 @@
             .fontsize-small.fontweight-semibold.u-marginbottom-20 = t('.faq.titles.support')
             ul.w-list-unstyled.fontsize-smaller
               li.u-marginbottom-10 = link_to t('.faq.links.criteria'), "http://juntoscomvc.uservoice.com/knowledgebase/articles/487293-crit%C3%A9rios-de-sele%C3%A7%C3%A3o", target: '_blank', class: "alt-link"
-              li.u-marginbottom-10 =link_to t('.faq.links.suport_central'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
+              li.u-marginbottom-10 =link_to t('.faq.links.support_central'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
               li =link_to t('.faq.links.support_contact'), "http://juntoscomvc.uservoice.com", target: '_blank', class: "alt-link"
 
           .w-hidden-small.w-hidden-tiny.card.u-radius.u-marginbottom-20

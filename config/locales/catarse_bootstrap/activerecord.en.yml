@@ -1,13 +1,111 @@
 en:
   activerecord:
+    models:
+      channel: 'Channel'
+      project: 'Project'
+      reward: 'Reward'
+      contribution: 'Contribution'
+      category: 'Catergory'
+      bank_account: 'Bank account'
+      site_partner: 'Partners'
+      press: 'Press'
+      page: 'Page'
+      transparency_report: 'Transparency Report'
+    attributes:
+      user:
+        address_city: 'City'
+        address_complement: 'Complement'
+        address_neighbourhood: 'District/Neighbourhood'
+        address_number: 'Household number'
+        address_state: 'State'
+        address_street: 'Adress'
+        address_zip_code: 'ZIP Code'
+        cpf: 'CPF / CNPJ '
+        cpf_hint: '(?)'
+        state_inscription: 'State Registration'
+        current_password: 'Current password'
+        email: 'Email'
+        full_name: 'Full name / Company name*'
+        bio: 'Mini Bio'
+        name: 'Nickname'
+        newsletter: 'I want to receive new from Juntos.com.vc by email'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        phone_number: 'Phone number (fixed or mobile)'
+        cpf_hint_title: 'Invoices will be emmited to this document'
+        id: 'ID'
+        moip_login: 'MoIP login'
+        moip_login_hint: '(how to create an account)'
+        reset_password_token: 'Reset password'
+        birth_date: 'Date of birth'
+        access_type/legal_entity: 'Legal person'
+        access_type/individual: 'Individual'
+        mobile_phone: 'Cellphone'
+        gender/male: 'Male'
+        gender/female: 'Female'
+        staff: 'Staff'
+        staff/team: 'Team'
+        staff/financial_board: 'Financial council'
+        staff/technical_board: 'Technical council'
+        staff/advice_board: 'Council'
+        original_doc12_url: 'RG e CPF ou CNH'
+        original_doc13_url: 'Proof of residence of the person or institution'
+        job_title: 'Role'
+        admin: 'Admin'
+      project:
+        channels: 'Channels'
+        category: 'Category'
+        expires_at: 'Expires at'
+        online_days: 'How many days do you need in order to achieve your goal? The maximum time is 60 days.'
+        headline: 'A soundbite about your project. 140 characters at most.'
+        image_url: 'Image URL'
+        name: 'Name of the project'
+        goal: 'How much do you plan to raise? (Numbers only)'
+        about: 'Tell the story of your project and how you want to spend the raised money.'
+        user_id: 'User ID'
+        video_url: 'Video URL'
+        permalink: 'URL of your project'
+        traffic_sources: 'How did you hear about Juntos.com.vc?'
     errors:
       models:
+        contribution: 'An error occurred while trying to save the contribution'
         project:
           attributes:
+            name:
+              blank: 'Project name cannot be blank'
             permalink:
-              invalid: Invalid project URL
+              blank: "The project's URL cannot be blank"
+              invalid: "The project's URL is invalid"
+              taken: 'This URL has already been taken'
+            category:
+              blank: 'You have to choose a category for you project'
+            goal:
+              blank: "The project's goal cannot be blank"
+              greater_than: 'The goal needs to be greater than 9'
+              not_a_number: 'Only numbers are allowed on goal'
+            online_days:
+              greater_than: "The project's deadline should be greater than 0"
+              not_a_number: "The project's deadline should be a number"
+              less_than_or_equal_to: "The project's deadline should be less than or equals to 60 days"
+            about:
+              blank: "The project's description cannot be blank"
+            headline:
+              blank: "The project's headline cannot be blank"
+              too_long: "The project's headline is too long. You can use only 140 characters"
         user:
           attributes:
             email:
-              not_found: "Email not found, please sign up"
-              taken: "Email has already been taken"
+              not_found: 'This email address was not found'
+              taken: 'This email is already registered, log in'
+              invalid: 'This email is invalid'
+              blank: 'The email field cannot be blank'
+            password:
+              too_short: 'Your password is too short'
+              confirmation: 'The password and password confirmation fields should match'
+              blank: 'The password cannot be blank'
+            reset_password_token:
+              invalid: 'expired. Access <a href="/password/new">reset my password</a> and resquest a new password reset token.'
+  project:
+    update:
+      success: 'Project updated'
+    video_regex_validation: 'only URLs from YouTube or Vimeo are allowed'

@@ -9,7 +9,7 @@
       - if defined?(:channel) && channel.present?
         = project.user.address_city
       - else
-        = project.category.name_pt
+        = project.category.send("name_#{I18n.locale}")
         = image_tag(project.category_image_url, class: 'category-image')
 
   - if project.expired?
@@ -33,7 +33,7 @@
               (function() {
                 Circles.create({
                   id: "#{circle_id}", radius: 40, value: "#{project.progress(multiply)}",
-                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.color )};\">#{project.progress(multiply)}%<div><span>da meta</span></div></div>",
+                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.color )};\">#{project.progress(multiply)}%<div><span>#{t(:of_target, scope: [:projects, :project])}</span></div></div>",
                   colors: ['#CCC', "#{ ( defined?(:channel) && channel.present? ? channel.secondary_color : '#4E6FB5' ) }"],
                   duration: 0,
                   width: 7
@@ -45,7 +45,7 @@
               (function() {
                 Circles.create({
                   id: "#{circle_id}", radius: 40, value: "#{project.progress(multiply)}",
-                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.color )};\">#{project.progress(multiply)}%<div><span>da meta</span></div></div>",
+                  text: "<div class='percent' style=\"color: #{( defined?(:channel) && channel.present? ? channel.secondary_color : project.color )};\">#{project.progress(multiply)}%<div><span>#{t(:of_target, scope: [:projects, :project])}</span></div></div>",
                   colors: ['#CCC', "#{ ( defined?(:channel) && channel.present? ? channel.secondary_color : '#4E6FB5' ) }"],
                   duration: 0,
                   width: 7

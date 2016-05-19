@@ -1,23 +1,24 @@
-pt:
+en:
   projects:
     contributions:
-      no_estimate: "Não disponível"
-      you_selected: "Você escolheu essa!"
+      no_estimate: 'Not available'
+      you_selected: 'You chose this reward!'
       contribute_text:
-        credits_tab: Meus créditos
+        credits_tab: 'My credits'
       checkout:
-        no_credits: Você não possui créditos suficientes para realizar este apoio.
-        success: Seu apoio foi realizado com sucesso. Muito obrigado!
+        no_credits: 'You do not have credits enough to support this project'
+        success: 'Your donation was successful. Thank you!'
       contribution:
-        anonymous_contribution: Apoiador anônimo
-        anonymous_description: Optou por permanecer incógnito
-        no_reward: Este apoiador não selecionou nenhuma recompensa
+        anonymous_contribution: 'Anonymous donor'
+        anonymous_description: 'Chose to be anonymous'
+        no_reward: 'This donator did not select any reward'
       selected_reward:
-        review_without_reward_html: Você irá apoiar com <strong>%{value}</strong>
-          e não quer nenhuma recompensa por seu apoio.
-        value: 'Valor total do apoio'
-        reward: 'Recompensa selecionada'
-        edit: 'Editar'
+        review_without_reward_html: >
+          You will support with <strong>%{value}</strong> and do not want any
+          reward for this
+        value: 'Support value'
+        reward: 'Selected reward'
+        edit: 'Edit'
       edit:
         payment_slip_disclaimer: "Caso o projeto não seja bem-sucedido, nós faremos o reembolso do seu apoio. Os dados bancários informados aqui serão usados para isso."
         review_errors_title: "Verifique os dados informados"
@@ -72,29 +73,37 @@ pt:
         you_are_about_html: Você está prestes a fazer parte do grupo que faz de tudo
           para o %{link} acontecer.
       new:
-        page-title: Apoie o %{name}
-        title: Oohh yeah!
-        you_have_credits: "Você tem <strong>%{credits}</strong> em créditos para realizar este apoio."
-        choose_reward: Recompensas
-        choose_value: Sua doação
-        amount: 'Valor (em R$)'
-        minimum_notice: 'Você pode doar qualquer valor à partir de R$ 5,00.'
-        minimum_disclaimer: 'Todas as transações financeiras são feitas em ambiente seguro, via <a href="http://moip.com.br">Moip</a>.<br />Caso o projeto não atinja sua meta financeira até a data estipulada o valor poderá ser convertido em créditos ou ser devolvido, conforme sua escolha. Dessa forma não haverá recompensa, é <a href="#">tudo ou nada</a>'
-        next_step: "Revisar e realizar pagamento"
-        no_reward: Obrigado. Eu só quero ajudar o projeto.
-        contribute_to_platform: 'Contribuir para a plataforma'
+        page-title: 'Support %{name}'
+        title: 'Oohh yeah!'
+        you_have_credits: >
+          You have <strong>%{credits}</strong> credits to use in this donation if
+          you will.
+        choose_reward: 'Rewards'
+        choose_value: 'Your donation'
+        amount: 'Amount (in BRL$)'
+        minimum_notice: 'You can donate any amount starting from BRL$ 5,00'
+        minimum_disclaimer: >
+          All financial transactions are done in a secure environment, via
+          <a href="http://moip.com.br">MoIP</a>.
+
+          If the project does not reach its financial goal by the deadline the
+          value may be converted into credits or may be returned to you, as you
+          prefer. Thus there will be no reward, it's make or break!
+        next_step: 'Review and go to payment'
+        no_reward: 'Thanks. I just want to support the project'
+        contribute_to_platform: 'Contribute to the platform'
         contribute_to_platform_text: >
-          Somos uma organização sem fins lucrativos que não cobra nenhuma taxa
-          das ongs nem de seus apoiadores. Por isso deixamos esse espaço para
-          quem quiser colaborar com qualquer valor e ajudar a gente a continuar
-          com nosso trabalho.
-        amount_to_platform: 'R$ para a plataforma'
-        complete_payment: 'Realizar pagamento'
-        gift_card: 'Cartão doação'
+          We are a non-profit organization that does not charge any rate of NGOs
+          nor their supporters. That is why we have this space for those who want
+          to collaborate with any value and help us to continue our work.
+        amount_to_platform: 'BRL$ to the platform'
+        complete_payment: 'Complete payment'
+        gift_card: 'Gift card'
         gift_card_text: >
-          Você recebeu um cartão doação? Digite o valor exato recebido no campo
-          acima "Sua doação" e logo em seguida clique no botão "Validar sua doação".
-        validate_gift_card: 'Validar cartão doação'
+          Have you received a donation card? Enter the exact amount received in
+          the "Your donation" field above and then immediately click the
+          "Validate your Donation" button.
+        validate_gift_card: 'Validate gift card'
       review:
         PayPal:
           name: 'PayPal'

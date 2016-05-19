@@ -47,26 +47,27 @@
 .transparency-headline
   .transparency-wrapper
     .follow
-      p Acompanhe em tempo real:
-      .wihtout-comission Não cobramos comissão!
+      p = t(:keep_track, scope: [:projects, :index, :transparency])
+      .wihtout-comission
+        = t(:without_comission, scope: [:projects, :index, :transparency])
 .transparency-values
   - statistics = Statistics.first
   .transparency-wrapper
     .collectect-money
       h2 = number_with_precision(statistics.total_contributed, precision: 0)
-      b valor em R$
+      b = t(:brl_amount, scope: [:projects, :index, :transparency])
       br
-      span arrecadados
+      span = t(:raised, scope: [:projects, :index, :transparency])
     .donations-number
       h2 = statistics.total_contributions
-      b doações
+      b = t(:donations, scope: [:projects, :index, :transparency])
       br
-      span realizadas
+      span = t(:made, scope: [:projects, :index, :transparency])
     .succesfull-projects
       h2 = Project.visible.select{ |p| p.progress >= 100 || p.state == 'successful' }.count
-      b projetos
+      b = t(:projects, scope: [:projects, :index, :transparency])
       br
-      span apoiados
+      span = t(:supported, scope: [:projects, :index, :transparency])
 
 #page_content
   .container
@@ -75,7 +76,7 @@
         header
           h2.list-title
             = link_to t('.sections.recommended.title'), explore_path(anchor: :recommended)
-          = link_to t('.links.recommended'), explore_path, class: "more-projects"
+          = link_to t('.links.see_more'), explore_path, class: "more-projects"
         .projects
           == render @recommends
 
@@ -89,7 +90,7 @@
 
     aside.main-sidebar
       section.main-sidebar-division
-        h3.title Blog
+        h3.title = t(:blog, scope: [:projects, :index, :sidebar, :titles])
         ul.blog
           - (Blog.fetch_last_posts rescue [])[0..2].each do |post|
             li.post
@@ -109,13 +110,13 @@
 
       section.main-sidebar-division
         .channels
-          h3.title Conheça nossos canais
+          h3.title = t(:meet_channels, scope: [:projects, :index, :sidebar, :titles])
           - @channels.each do |channel|
             .channel= link_to channel.name, "http://#{channel.permalink}.juntos.com.vc/", class: "post-title", target: :blank
 
       section.main-sidebar-division
         .awards
-          h3.title Finalista do Desafio de Impacto Social
+          h3.title = t(:challenge_finalist, scope: [:projects, :index, :sidebar, :titles])
           .google-award
             a href="http://juntoscomvc.uservoice.com/knowledgebase/articles/492632-desafio-de-impacto-social-google-brasil" target="_blank"
               = image_tag 'juntos/google_award.jpg'
@@ -127,7 +128,7 @@
   section.partners
     .content
       .title
-        h2 = "Parceiros"
+        h2 = t(:title, scope: [:projects, :index, :sections, :partners])
       .logos[class="#{'js-featured-partners' if @featured_partners.count > 4}"]
         - @featured_partners.each do |partner|
           .featured

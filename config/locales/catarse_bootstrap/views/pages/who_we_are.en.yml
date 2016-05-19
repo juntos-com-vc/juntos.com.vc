@@ -1,0 +1,34 @@
+en:
+  updated: 'Arquivo enviado'
+  who_we_are:
+    show:
+      title: 'Who we are'
+      team: 'Team'
+      financial_board: 'Financial Council'
+      technical_board: 'Technical Council'
+      advice_board: 'Council'
+      menu:
+        history: 'Our history'
+        people: 'Our team'
+        transparency: 'Transparency'
+      transparency:
+        download:
+          title: 'DOWNLOAD'
+          month: 'our last activity report'
+          previous_month: 'our previous activity report'
+        objectives:
+          title: 'Objectives'
+          content:
+            - 'To suport the fundraising for social projects'
+            - 'To contribute to the increase of donation culture on Brazil.'
+            - 'To give more visibility to social projects.'
+            - 'To democratize the donation on Brazil, in other words, make ir possible for anyone to contribute to social projects.'
+        mission:
+          title: 'Mission'
+          content: 'To arouse people seeking social transformation using the strength of community and of communication networks to reduce power differences and multiply good deeds.'
+        vision:
+          title: 'Vision'
+          content: 'To be a reference in the Third Sector as a solid and reputable organization that selects positive social impact projects, stimulating and engaging donors to participate in this change.'
+        values:
+          title: 'Values'
+          content: 'Ethics, transparency, social commitment, professionalism, innovation, involvement, integrity, solidity and the spirit of community.'

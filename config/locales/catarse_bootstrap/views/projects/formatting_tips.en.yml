@@ -1,0 +1,28 @@
+en:
+  projects:
+    formatting_tips:
+      title: 'Formatting tips'
+
+      video: >
+        If you paste the URL of an image or a video from Vimeo or YouTube, it will
+        appear in the project's description. Try it!
+
+      urls_html: >
+        By pasting an URL, it will turn into a link. For example,
+        http://juntos.com.vc turns into <a class="alt-link" href="http://juntos.com.vc">
+        http://juntos.com.vc</a>.
+
+      labeled_urls_html: >
+        If you want to put text in the link, just use the following format:
+        "text you want":http://your.url. For example, "Juntos":http://juntos.com.vc
+        turns into <a class="alt-link" href="http://juntos.com.vc">Juntos</a>.
+
+      bold_text_html: >
+        You can use bold by adding two asterisks (**) before and after the text
+        you want to format. For example, **my bold text** will appear as <b>my
+        bold text</b>.
+
+      italic_text_html: >
+        You can use italics by adding an underscore (_) before and after the text
+        you want to format. For example, _my text in italics_ will appear as <em>
+        my text in italics</em>.

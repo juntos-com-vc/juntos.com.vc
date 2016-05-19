@@ -1,13 +1,9 @@
 .w-row.card.reward-card.card-terciary.u-marginbottom-20
   .fontweight-semibold.fontsize-smallest.u-marginbottom-10
     - if resource.new_record?
-      = "Recompensa ##{parent.rewards.count + 1}"
+      = t('.reward_count', number: parent.rewards.count + 1)
     - else
-      = "Editar recompensa"
-    /a.link-edit.fa.fa-question-circle href="#"
-  /.w-col.w-col-4.w-sub-col
-    /.fontsize-smallest.fontcolor-secondary.reward-explanation.w-hidden
-      /| Você pode limitar a quantidade disponível de uma recompensa. Uma vez que o limite é atingido, a recompensa será marcada como ESGOTADA. A previsão de entrega é a data que você pretende entregar a recompensa aos apoiadores. Se você quiser mudar a ordem das recompensas, basta arrastá-las por aqui. Experimente!
+      = t('.edit_reward')
   .w-col.w-col-8
     .card
       .w-form
@@ -15,40 +11,34 @@
           = render 'devise/shared/alert'
           .w-row.u-marginbottom-20
             .w-col.w-col-5
-              label.fontsize-smaller Valor mínimo:
+              label.fontsize-smaller = t('.minimum_value')
             .w-col.w-col-7
               .w-row
                 .w-col.w-col-3.text-field.positive.prefix.no-hover
-                  .fontsize-smallest.fontcolor-secondary.u-text-center R$
+                  .fontsize-smallest.fontcolor-secondary.u-text-center
+                    = t(:unit, scope: [:number, :currency, :format])
                 .w-col.w-col-9
                   = form.input_field :minimum_value, class: 'postfix positive', required: true
               .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_minimum_value"] = t('simple_form.validation_texts.reward.minimum_value')
-          /.w-row
-            /.w-col.w-col-5
-              /label.fontsize-smaller Previsão de entrega:
-            /.w-col.w-col-7
-              /.w-row
-                /.w-col.w-col-6.w-sub-col.deliver-at-date
-                  /= form.input_field :deliver_at, required: true, as: :date, discard_day: true, start_year: Time.now.year, discard_day: true, required: true
           .w-row
             .w-col.w-col-5
-              label.fontsize-smaller Descrição:
+              label.fontsize-smaller = t('.description')
             .w-col.w-col-7
-              = form.input_field :description, as: :text,  class: 'positive', placeholder: "Descreva sua recompensa", required: true
+              = form.input_field :description, as: :text,  class: 'positive', placeholder: t('.description_placeholder'), required: true
               .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_description"] = t('simple_form.validation_texts.reward.description')
           .w-row
             .w-col.w-col-5
               .w-checkbox
-                input#checkbox.w-checkbox-input data-name="Checkbox" name="checkbox" type="checkbox" 
-                  label.w-form-label for="checkbox"  Limitar recompensa
+                input#checkbox.w-checkbox-input data-name="Checkbox" name="checkbox" type="checkbox"
+                  label.w-form-label for="checkbox" = t('.limit')
             .w-col.w-col-7
-              = form.input_field :maximum_contributions, class: 'u-marginbottom-30 positive', placeholder: "Quantidade disponível"
+              = form.input_field :maximum_contributions, class: 'u-marginbottom-30 positive', placeholder: t('.available')
           .w-row
             .w-col.w-col-6.w-sub-col
-              = form.button :submit, "Salvar",  class:'btn btn-small'
+              = form.button :submit, t('.save'),  class:'btn btn-small'
             .w-col.w-col-5.w-sub-col
-              input.w-button.btn-terciary.btn.btn-small.reward-close-button type="submit" value="Fechar" 
+              input.w-button.btn-terciary.btn.btn-small.reward-close-button type="submit" value="#{t('.close')}"
             - if resource.persisted? && policy(resource).destroy?
               .w-col.w-col-1
-                = link_to [parent, resource], method: :delete, data: {confirm: 'Tem certeza?'} do
+                = link_to [parent, resource], method: :delete, data: {confirm: t('.are_you_sure')} do
                   .btn.btn-small.btn-terciary.fa.fa-lg.fa-trash.btn-no-border

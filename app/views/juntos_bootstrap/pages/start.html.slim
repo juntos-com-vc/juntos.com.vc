@@ -20,46 +20,28 @@
   .page-header
     .w-container.no-responsive
       - if params[:submit]
-        .fontsize-largest.u-text-center.u-marginbottom-20.u-margintop-40 Envie seu projeto
+        .fontsize-largest.u-text-center.u-marginbottom-20.u-margintop-40
+          = t(:submit_title, scope: [:pages, :start])
       - else
-        .fontsize-largest.u-text-center.u-marginbottom-20.u-margintop-40 Como funciona
+        .fontsize-largest.u-text-center.u-marginbottom-20.u-margintop-40
+          = t(:title, scope: [:pages, :start])
       .w-col.w-col-1
-      .w-col.w-col-10.u-text-center Antes de começar um projeto saiba o que precisa ser feito para que ele aconteça com a Juntos.
-      / - statistics = Statistics.first
-      / .w-row.u-text-center.u-marginbottom-80
-        .w-col.w-col-4
-          .fontsize-jumbo.text-success.lineheight-loose = number_to_human(statistics.total_contributors)
-          p.start-stats.fontsize-base = t('.header.people')
-        .w-col.w-col-4
-          .fontsize-jumbo.text-success.lineheight-loose = number_to_human(statistics.total_projects_success)
-          p.start-stats.fontsize-base = t('.header.success')
-        .w-col.w-col-4
-          .fontsize-jumbo.text-success.lineheight-loose = number_to_human(statistics.total_contributed)
-          p.start-stats.fontsize-base = t('.header.money')
-
-      / .w-row.u-margintop-20.u-marginbottom-60
-        .w-col.w-col-3.w-col-push-3
-          #learn_link= link_to t('.learn-more'), '#learn', class: 'btn btn-medium'
-        .w-col.w-col-3.w-col-push-3
-          = link_to t('.submit'), new_project_path, class: 'btn btn-medium btn-secondary'
+      .w-col.w-col-10.u-text-center
+        = t(:subtitle, scope: [:pages, :start])
 
   #learn
     .w-container.no-responsive.section
       .w-row
-        .headline Para o proponente
+        .headline = t(:headline, scope: [:pages, :start, :proponent])
       .w-row.u-marginbottom-80.u-margintop-30
         .w-col.w-col-6.u-text-center
           = image_tag "icone_paraproponente01.png"
         .w-col.w-col-6
-          p.fontsize-small Para você submeter seu projeto na plataforma Juntos.com.vc, é fundamental que você tenha seus dados preenchidos em seu perfil. Dessa forma, poderemos entrar em contato com você. 
-          p.fontsize-small Após preenchidos esses dados, você pode começar nos contando um pouco do seu projeto, qual o nome dele, em que categoria se encaixa, quantos dias e qual o valor a ser arrecadado.
-          p.fontsize-small O seu projeto será analisado pela nossa curadoria e, assim que analisado, entraremos em contato.
+          = t(:description_01_html, scope: [:pages, :start, :proponent])
 
       .w-row.u-marginbottom-80.u-margintop-30
         .w-col.w-col-6
-          p.fontsize-small Assim que aprovada a sua proposta de campanha, é fundamental você criar, caso não tenha, uma conta junto ao MOIP, para que sejam viabilizadas as formas de pagamento do seu projeto. Se você não tiver uma conta MOIP, basta criá-la em moip.com.br como vendedor (não tem nenhum custo).
-          p.fontsize-small Com a sua conta MOIP e a proposta de projeto aprovada, você pode terminar de construir o seu projeto!
-          p.fontsize-small Neste momento, você vai enriquecer a página de seu projeto, escolhendo uma bela capa, que também servirá de avatar. Complete a descrição dele e vincule um vídeo bacana que apresente seu projeto. Você também pode colocar fotos incríveis numa galeria dedicada a seu projeto.
+          = t(:description_02_html, scope: [:pages, :start, :proponent])
         .w-col.w-col-6.u-text-center
           = image_tag "icone_paraproponente02.png"
 
@@ -67,19 +49,13 @@
         .w-col.w-col-6.u-text-center
           = image_tag "icone_paraproponente03.png"
         .w-col.w-col-6
-          p.fontsize-small Você também pode criar recompensas para o doador, de acordo com o valor da doação. Você descreve a recompensa de determinado valor.
-          p.fontsize-small Sugerimos que você crie uma mensagem de agradecimento aos doadores, pois são eles que poderão tornar o seu projeto possível.
-          p.fontsize-small Ao longo da construção da página do seu projeto, você pode visualizar como ela está ficando, para que você publique apenas quando tiver a certeza que está tudo perfeito.
-          p.fontsize-small Pronto! Agora é só clicar em “Iniciar” e começar a divulgar o seu projeto. Boa sorte!
+          = t(:description_03_html, scope: [:pages, :start, :proponent])
 
       .w-row
-        .headline Para o doador
+        .headline = t(:headline, scope: [:pages, :start, :donor])
       .w-row.u-marginbottom-80.u-margintop-30
         .w-col.w-col-6
-          p.fontsize-small Comece explorando nossos projetos e encontre aquele que você se identifica mais. Agora, é só clicar em “Quero contribuir”.
-          p.fontsize-small Coloque o valor que você quer doar. Dependendo do valor, você pode ganhar uma forma de recompensa definida pela ONG.
-          p.fontsize-small Você também poder doar através de um cartão doação. Se você recebeu um desses cartões, basta inserir o código dele e continuar com a doação.
-          p.fontsize-small Além disso, você ainda pode contribuir com a Juntos - se quiser - com o valor que desejar, para que possamos continuar a ajudar projetos sociais de forma gratuita!
+          = t(:description_01_html, scope: [:pages, :start, :donor])
         .w-col.w-col-6.u-text-center
           = image_tag "icone_paradoador01.png"
 
@@ -87,14 +63,10 @@
         .w-col.w-col-6.u-text-center
           = image_tag "icone_paradoador02.png"
         .w-col.w-col-6
-          p.fontsize-small Se você quiser, sua doação poderá ser anônima na plataforma. Entretanto, para engajar sua rede e ajudar ainda mais o projeto, mostre que você contribuiu! Conte para os amigos!
-          p.fontsize-small Não esqueça de ter seu cadastro completo, para que possamos identificar a sua doação e aproveite para assinar a newsletter!
-          p.fontsize-small Selecione sua forma de pagamento: cartão de crédito ou boleto bancário.
-          p.fontsize-small Parabéns! Você acabou de efetuar uma doação para um de nossos projetos sociais e ajudar a transformar realidades pelo Brasil.
-          p.fontsize-small Aproveite e conheça outros na plataforma!
+          = t(:description_02_html, scope: [:pages, :start, :donor])
 
       .w-row.u-margin-top-40
         .w-col.w-col-4.w-col-push-2
-          = link_to "Conhecer projetos", explore_path, class: 'btn btn-large btn-dark'
+          = link_to t(:meet, scope: [:pages, :start]), explore_path, class: 'btn btn-large btn-dark'
         .w-col.w-col-4.w-col-push-2
-          = link_to "Propor projeto", new_project_path, class: 'btn btn-large'
+          = link_to t(:propose, scope: [:pages, :start]), new_project_path, class: 'btn btn-large'

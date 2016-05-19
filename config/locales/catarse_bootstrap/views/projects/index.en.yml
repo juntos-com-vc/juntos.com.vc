@@ -1,0 +1,54 @@
+en:
+  projects:
+    index_header:
+      subtitle: Financie projetos de maneira colaborativa e torne-se parte de algo
+        maior. Promova uma catarse coletiva! Você é a peça que falta nesta história.
+      title: Faça acontecer os projetos em que você acredita
+    index:
+      transparency:
+        keep_track: 'Keep track in real time'
+        without_comission: 'We do not charge comission!'
+        brl_amount: 'amount in BRL$'
+        raised: 'raised'
+        donations: 'donations'
+        made: 'made'
+        projects: 'projects'
+        supported: 'supported'
+      box:
+        by: 'by'
+        when: 'when'
+      banner: 'View the research'
+      links:
+        channels: 'Discover Asas channel'
+        recommended: 'recommended'
+        expiring: 'expiring'
+        recents: 'recents'
+        near: 'near'
+        see_more: 'see more'
+      sidebar:
+        titles:
+          blog: 'Blog'
+          meet_channels: 'Meet our channels'
+          challenge_finalist: 'Finalist in the Social Impact Challenge'
+          facebook: 'like our page on Facebook'
+          newsletter: 'Subscribe to our newsletter'
+          faq: 'FAQ'
+          schedule: 'schedule'
+        placeholders:
+          email: 'Enter you e-mail'
+        buttons:
+          newsletter: 'Submit'
+      sections:
+        partners:
+          title: 'Partners'
+        near:
+          title: 'Near me'
+        recommended:
+          title: 'Highlights'
+        expiring:
+          title: 'At the home stretch'
+        recents:
+          title: 'In progress'
+        channels:
+          title: 'Asas Channel'
+      project_of: 'A project of'

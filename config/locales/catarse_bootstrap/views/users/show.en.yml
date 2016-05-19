@@ -1,0 +1,157 @@
+en:
+  users:
+    failed_reactivation: 'This reactivation link is invalid, please contact our team'
+    reactivated: 'Welcome back, your account was reactivated'
+    project:
+      confirmed: 'Confirmed'
+      refunded: 'Refunded'
+      requested_refund: 'Refund requested'
+      waiting_confirmation: 'Waiting confirmation'
+      tell_about_this_contribution: 'Tell everybody about you donation!'
+    credit_cards:
+      index:
+        last_digits: 'Card'
+        brand: 'Brand'
+        title: 'Credit cards'
+        remove: 'Remove'
+    credits:
+      modal:
+        title: 'Do you really want to request refunding?'
+        text: 'How the refunding procedure works at Juntos.com.vc:'
+        link: 'Refunding operating rules'
+        reject_btn: 'No, I want to keep my credits'
+        accept_btn: 'Yes, I want to request refund of my donation'
+      index:
+        contribution_date: 'Date of support'
+        current_credits_html: >
+          <p>You have <span class='fontweight-thin'>available</span></p>
+          <span id="current_credits">%{credits}</span>
+        important_html: >
+          For all refund operating rules, <a href='http://juntoscomvc.uservoice.com/knowledgebase/articles/490435-regras-e-funcionamento-dos-reembolsos-e-estornos'
+          target='_blank'>click here</a>. Should you have any questions, please
+          visit our <a href='http://juntoscomvc.uservoice.com' target='_blank'>
+          support</a>.
+        project: 'Project'
+        refunded: 'Refunded'
+        insufficient_credits: 'You do not have enough credits to request refund'
+        refunds_title: 'Contributions that can be refunded'
+        request_refund: 'Request refund'
+        requested_refund: 'Refund requested'
+        status: 'Status'
+        title: 'Credits'
+        value: 'Amount'
+      refund:
+        cannot_refund: 'This donation cannot be refunded'
+        error: 'Oops. An error occurred while requesting your refund'
+        no_credits: 'You do not have enough credits to request refund'
+        refunded: 'This donation has been already refunded'
+        requested_refund: 'You have already requested refund of this donation'
+      title: 'Credits'
+    current_user_fields:
+      bank_account_title: 'Bank account info'
+      bank_account_hint: >
+        Your bank account information will be used to refund your donation if
+        the project does not reach 100% of its goal
+      my_facebook: 'Integration with Facebook'
+      bio_limit: '140 characters at most'
+      updated: 'Your information was updated'
+      update_social_info: 'Update information'
+      social_info: 'Contact info'
+      twitter: "twitter username"
+      facebook_link: 'facebook profile link'
+      other_link: 'website'
+      change_password: 'Change my password'
+      current_password_hint: >
+        <i>For your password to be changed you'll need to confirm you current
+        password</i>
+      email_hint: >
+        Your email will be used to send notifications from Juntos.com.vc and from
+        projects you support. It will not be visible in your public profile.
+      email_tooltip: 'Enter your email...'
+      gravatar_hint_html: >
+        You can also change you profile image using Gravatar. It is as simple as
+        uploading an image and already works for other sites.
+      local_avatar: 'My avatar'
+      submit_text: 'Choose your image'
+      submit: 'Submit'
+      my_data: 'My profile'
+      newsletter: 'I want to receive news from Juntos.com.vc by e-mail'
+      password_hint: "<i>Leave it blank if you want to change your password.</i>"
+      deactivate: 'Deactive my account'
+      deactivate_notice: "%{name}'s account was deactivated."
+      deactivate_confirm: 'Do you want to deactivate this account?'
+      deactivate_hint: >
+        All your donations will be converted in anonymous donations, your data will
+        not be visible anymore and your account will be permanently deactivated.
+      connect_facebook_account: 'import your data'
+    current_organization_fields:
+      bank_account_title: 'Bank account info'
+      bank_account_hint: >
+        Your bank account information will be used to refund your donation if
+        the project does not reach 100% of its goal
+      my_facebook: 'Integration with Facebook'
+      bio_limit: '140 characters at most'
+      updated: 'Your information was updated'
+      update_social_info: 'Update information'
+      social_info: 'Contact info'
+      twitter: "twitter username"
+      facebook_link: 'facebook profile link'
+      other_link: 'website'
+      change_password: 'Change my password'
+      current_password_hint: >
+        <i>For your password to be changed you'll need to confirm you current
+        password</i>
+      email_hint: >
+        Your email will be used to send notifications from Juntos.com.vc and from
+        projects you support. It will not be visible in your public profile.
+      email_tooltip: 'Enter your email...'
+      gravatar_hint_html: >
+        You can also change you profile image using Gravatar. It is as simple as
+        uploading an image and already works for other sites.
+      local_avatar: 'My avatar'
+      submit_text: 'Choose your image'
+      submit: 'Submit'
+      my_data: 'My profile'
+      newsletter: 'I want to receive news from Juntos.com.vc by e-mail'
+      password_hint: "<i>Leave it blank if you want to change your password.</i>"
+      deactivate: 'Deactive my account'
+      deactivate_notice: "%{name}'s account was deactivated."
+      deactivate_confirm: 'Do you want to deactivate this account?'
+      deactivate_hint: >
+        All your donations will be converted in anonymous donations, your data will
+        not be visible anymore and your account will be permanently deactivated.
+      connect_facebook_account: 'import your data'
+      documents: 'Documents for NGOs approval (needed to submit projects)'
+    unsubscribes:
+      projects_in_reminder: 'Projects with reminders'
+      title: 'Choose which projects do you want to receive notifications from:'
+      posts: 'I want to receive notifications about projects'
+    show:
+      projects:
+        here: 'here'
+        no_projects: "%{name} ainda não realizou nenhum projeto no Juntos.com.vc. Será que a inspiração vai bater uma hora dessas?"
+        no_projects_current_user_html: "Você ainda não realizou nenhum projeto no Juntos.com.vc. Deixe a inspiração bater e clique %{link} para começar!"
+        title: "%{name}'s projects"
+        title_current_user: 'My projects'
+      contributions:
+        anonymous: 'Anonymous donation'
+        no_contributions: "%{name} ainda não apoiou nenhum projeto. Mas a gente sabe que é só questão de tempo! :D"
+        no_contributions_current_user_html: "Você ainda não apoiou nenhum projeto. Que tal <a href=\"/\">começar agora</a>?"
+        no_reward: 'You did not choose any reward'
+        title: 'Projects that %{name} has supported'
+        title_current_user: 'Projects I have supported'
+        your_reward: 'Your reward'
+      attention: 'Pay attention'
+      tabs:
+        credit_cards: 'Credit cards'
+        contributed_projects: 'Supported projects'
+        created_projects: 'Projects created'
+        comments: 'Comments'
+        credits: 'Credits'
+        settings: 'Settings'
+        unsubscribes: 'Notifications'
+      user_social:
+        email: 'Send me an email'
+        facebook: 'Facebook profile'
+        twitter: 'Twitter profile'
+      hello: "Hello, %{name}"

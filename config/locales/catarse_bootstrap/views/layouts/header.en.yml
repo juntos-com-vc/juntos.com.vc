@@ -1,0 +1,31 @@
+en:
+  layouts:
+    header:
+      blog: 'Blog'
+      discover: 'Explore projects'
+      faq: 'FAQ'
+      help: 'Ajuda'
+      profile: 'My profile'
+      projects: 'My projects'
+      signin: 'Login'
+      signup: 'Sign up'
+      submit: 'Send projects'
+      search: 'Search projects'
+      how_it_works: 'How it works'
+      about: 'About us'
+      submit_your_project: 'Send a project'
+      terms_of_use: 'Termos of use'
+      contacts: 'Contacts'
+      account: 'My account'
+    login:
+      login_with_facebook: 'sign in with your facebook account'
+      remember_me: 'Remember me and keep me connected.'
+    user:
+      my_contributions: 'My contributions'
+      logout: 'Logout'
+      my_credits: 'My credit'
+      refund_link: 'Solicitar reembolso'
+  shared:
+    header:
+      projects: 'Projects'
+
