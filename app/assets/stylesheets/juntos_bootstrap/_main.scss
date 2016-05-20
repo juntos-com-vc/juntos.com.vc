@@ -1208,6 +1208,16 @@ p {
   margin-bottom: 10px;
   font-weight: 600;
 }
+.btn-reset {
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+
+  &:focus {
+    background: #ddd;
+  }
+}
 .btn-message {
   margin-bottom: 0px;
   padding-top: 12px;

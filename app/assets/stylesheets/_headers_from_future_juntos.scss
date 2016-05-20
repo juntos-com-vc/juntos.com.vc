@@ -6,6 +6,7 @@
   .w-row {
     width: 960px;
     margin: auto;
+    max-width: 100%;
   }
 }
 
@@ -295,6 +296,17 @@
 .header-logo:hover {
   opacity: 0.5;
 }
+.header-menu {
+  display: inline-block;
+  height: 50px;
+  text-align: right;
+}
+.btn-header-menu {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 32px;
+  width: 45px;
+}
 .fontsize-smaller {
   font-size: 14px;
   line-height: 150%;
@@ -347,6 +359,7 @@
   display: inline-block;
   padding-top: 37px;
   width: 640px;
+  max-width: 100%;
   text-align: center;
 }
 .engage {
