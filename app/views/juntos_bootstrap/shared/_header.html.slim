@@ -1,4 +1,4 @@
-.main-header
+.main-header class=('responsive-enabled' if is_page_responsive?)
   .w-row
     .w-col.w-col-9.w-col-small-6.w-col-tiny-6.w-clearfix
       - @channel ||= channel
@@ -10,10 +10,11 @@
         .header-logo-label
           p = t(:header_logo_label, scope: [:site])
       = yield :header_controls
-    .w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-clearfix.w-hidden-main.header-menu
-      button.btn-header-menu.btn-reset
-        i.fa.fa-bars
-    .w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-clearfix.w-hidden-medium.w-hidden-small.w-hidden-tiny
+    - if is_page_responsive?
+      .w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-clearfix.w-hidden-main.header-menu
+        button.btn-header-menu.btn-reset
+          i.fa.fa-bars
+    .w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-clearfix.w-hidden-medium.w-hidden-small.w-hidden-tiny style=("display: inherit !important;" if !is_page_responsive?)
       - if current_user
         .w-dropdown.user-profile
           = link_to '#', id: 'user-menu', class: 'w-dropdown-toggle dropdown-toggle' do
