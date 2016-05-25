@@ -12,8 +12,9 @@
       = yield :header_controls
     - if is_page_responsive?
       .w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-clearfix.w-hidden-main.header-menu
-        button.btn-header-menu.btn-reset
-          i.fa.fa-bars
+        #sidebarToggle
+          button.btn-header-menu.btn-reset
+            i.fa.fa-bars
     .w-col.w-col-3.w-col-small-6.w-col-tiny-6.w-clearfix.w-hidden-medium.w-hidden-small.w-hidden-tiny style=("display: inherit !important;" if !is_page_responsive?)
       - if current_user
         .w-dropdown.user-profile

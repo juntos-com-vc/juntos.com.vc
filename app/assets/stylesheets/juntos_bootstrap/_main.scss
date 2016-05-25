@@ -2596,6 +2596,11 @@ p {
   display: inline-block;
   width: 75%;
 }
+.link-reminder-text {
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
 .link-hidden-success {
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;

@@ -49,15 +49,13 @@
 - else
   = render 'shared/header_big'
 
-= render 'project_header'
-
-= render 'mobile_video'
+= render 'project_header_desktop'
 
 - if !@project.draft?
-  nav.project-nav.w-hidden-small.w-hidden-tiny
+  nav.project-nav
     .w-container
       .w-row
-        .w-col.w-col-9.w-hidden-small.w-hidden-tiny
+        .w-col.w-col-9
           = link_to '#about', id: 'about_link', class: 'nav-tab selected', data: {target: '#project_about.content'}, style: "background-color: #{@color};" do
             = t('.menu.about')
           = link_to '#posts', id: 'posts_link', class: 'nav-tab' , data: {target: '#project_posts'}, style: "background-color: #{@color};" do
@@ -100,7 +98,7 @@
            = link_to t('.dashboard_nav.send_to_analysis'), send_to_analysis_project_path(@project), class: 'btn btn-small'
 .w-container
   .w-row
-    article.w-hidden-small.w-hidden-tiny
+    article
       #project_basics.content.w-hidden
         = render 'project_basics'
       #dashboard_project.content.w-hidden
