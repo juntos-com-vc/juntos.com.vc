@@ -54,6 +54,13 @@ p {
   text-align: center;
   text-decoration: none;
 }
+.btn-ib {
+  display: inline-block;
+  border-radius: 5px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 .btn:hover {
   border-color: #27bff2 #27bff2 #08bd35;
   background-color: #08bd35;
@@ -98,8 +105,9 @@ p {
   margin-top: 11px;
   margin-bottom: 0px;
 }
-.btn.bt-blue {
+.bt-blue {
   background-color: #409bff;
+  color: white;
 }
 .btn.bt-blue:hover {
   background-color: #2685eb;
@@ -2288,7 +2296,7 @@ p {
 }
 .nav-tab-container {
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
 }
 .nav-tab {
@@ -2348,6 +2356,9 @@ p {
 .card-secondary--removed {
   opacity: .5;
   pointer-events: none;
+}
+.reward-options {
+  text-align: right;
 }
 .card-reward {
   background-color: #ddd;
