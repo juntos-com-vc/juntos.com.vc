@@ -1,5 +1,5 @@
 App.views.Project.addChild('ProjectSidebar', {
-  el: '#project-sidebar',
+  el: '.rewards_container',
 
   events:{
     "click .show_reward_form": "showRewardForm",
