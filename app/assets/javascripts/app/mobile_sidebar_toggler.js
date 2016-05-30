@@ -11,6 +11,6 @@ App.addChild('MobileSidebarToggler', {
 
   toggleSidebar: function () {
     this.sidebar.fadeIn();
-    $('.mobile-sidebar').animate({width: '60%'});
+    $('.mobile-sidebar').animate({width: '300px'});
   }
 });

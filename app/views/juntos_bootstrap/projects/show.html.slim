@@ -105,6 +105,9 @@
         = render 'dashboard_project'
       #project_about.content.w-col.w-col-8
         = render 'project_about'
+      - unless @project.subgoals.empty?
+        #project_about.content.w-col.w-col-8
+          = render 'subgoals_mobile'
       #dashboard_rewards.content.w-hidden
         = render 'dashboard_reward'
       - if current_user and current_user.admin?

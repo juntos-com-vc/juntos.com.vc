@@ -143,6 +143,7 @@ pt:
         with_city: "Um projeto de %{category_name} por %{author} em %{city}"
       menu:
         about: Sobre
+        rewards: Recompensas
         add_reward: Adicionar recompensa
         comments: Comentários
         contributions: Apoiadores
