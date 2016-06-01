@@ -2813,9 +2813,15 @@ section.devise-body-section .access-type-field input {
 }
 .slick-prev.custom-arrow {
   left: -45px;
+  @media screen and (max-width: 991px) {
+    left: -9px;
+  }
 }
 .slick-next.custom-arrow {
   right: -45px;
+  @media screen and (max-width: 991px) {
+    right: -28px;
+  }
 }
 .project-images img {
   margin: 0 auto;
