@@ -24,7 +24,7 @@
         = @project.headline
     - unless @project.subgoals.empty?
       = render 'juntos_bootstrap/projects/subgoals'
-    - if %w(juntosGSA2015 aprendaladaca gsa2015 corretordobem movimentoperfeito bibliotecadamell fundojovem pesquisadoacao tempodebrincar2015 afabricadedoces adoteumaluno cidadedosmeninos asa festadenatal associacaoacorde bolsasdazmina marcha2016 paranaue).include?(@project.permalink.downcase)
+    - if %w(juntosGSA2015 aprendaladaca gsa2015 corretordobem movimentoperfeito bibliotecadamell fundojovem pesquisadoacao tempodebrincar2015 afabricadedoces adoteumaluno cidadedosmeninos asa festadenatal associacaoacorde bolsasdazmina marcha2016 paranaue jornaljoca).include?(@project.permalink.downcase)
       .w-row.project-progress-stats
         - if @project.permalink == 'juntosGSA2015'
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/gsa1.png', alt: @project.display_pledged)
@@ -62,6 +62,8 @@
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/marcha.png', alt: @project.display_pledged)
         - elsif @project.permalink == 'Paranaue'
           = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/apore.png', alt: @project.display_pledged)
+        - elsif @project.permalink == 'jornaljoca'
+          = image_tag('https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/metas/joca.png', alt: @project.display_pledged)
 
     .w-row.project-stats
       .w-col.w-col-12
