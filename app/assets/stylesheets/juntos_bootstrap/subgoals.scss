@@ -1,9 +1,26 @@
 $subgoals-height: 46px;
 $subgoals-border-radius: 4px;
+$mobile-subgoal-height: 300px;
 
 .project-progress-stats {
   position: relative;
   margin-top: 12px;
+  @media screen and (max-width: 991px) {
+    height: $mobile-subgoal-height ;
+  }
+}
+
+.project-stats-container {
+  position: absolute;
+  top: 130px;
+  right: 0;
+  width: 45%;
+}
+
+.project-stat {
+  list-style: none;
+  text-align: center;
+  padding: 0;
 }
 
 .all-or-nothing-text {
@@ -11,10 +28,17 @@ $subgoals-border-radius: 4px;
     margin: 0;
     padding: 0;
   }
+  @media screen and (max-width: 991px) {
+    margin: 20px 0;
+  }
 }
 
 .one-subgoal {
   position: absolute;
+  @media screen and (max-width: 991px) {
+    height: $mobile-subgoal-height;
+    width: 25%;
+  }
 
   .subgoal-description {
     max-width: 200px;
@@ -34,10 +58,16 @@ $subgoals-border-radius: 4px;
   text-align: right;
   overflow: hidden;
   padding-left: 0;
+  @media screen and (max-width: 991px) {
+    height: 100%;
+    position: relative;
+    overflow: visible;
+    white-space: nowrap;
+  }
 
   .partial-paint {
     position: absolute;
-    height: $subgoals-height - 2px;
+    height: 100%;
     border-radius: $subgoals-border-radius;
     z-index: 0;
   }
@@ -45,6 +75,13 @@ $subgoals-border-radius: 4px;
   p {
     position: relative;
     z-index: 10;
+
+    @media screen and (max-width: 991px) {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+      margin-left: 120%;
+    }
   }
 }
 
@@ -77,4 +114,8 @@ $subgoals-border-radius: 4px;
   -webkit-transition: height 0.6s ease;
   -o-transition: height 0.6s ease;
   transition: height 0.6s ease;
+}
+
+.subgoal-label {
+  z-index: 10;
 }

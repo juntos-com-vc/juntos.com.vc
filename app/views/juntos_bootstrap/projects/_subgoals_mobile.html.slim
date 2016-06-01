@@ -1,6 +1,51 @@
-.w-row
-  .w-col.w-col-6.w-col-medium-6.w-col-small-6.w-col-tiny-6
-    .progress.progress-bar-vertical
-      .progress-bar[role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: 60%;"]
-  .w-col.w-col-6.w-col-medium-6.w-col-small-6.w-col-tiny-6
-    div Dados
+.w-row.w-hidden-main
+  .w-row.project-progress-stats
+    .all-or-nothing-text
+      p.small.align-centered Tudo ou Nada por submeta: ao atingir cada submeta abaixo, o proponente garante o repasse do respectivo valor
+    .one-subgoal[style="width: 25%"]
+      .subgoals-bar
+        - if @project.current_subgoal
+          .partial-paint.w-hidden-main[style="width: 100%; height: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
+          .partial-paint.w-hidden-medium.w-hidden-small.w-hidden-tiny[style="width: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
+        - else
+          .partial-paint.w-hidden-main[style="width: 100%; height: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
+          .partial-paint.w-hidden-medium.w-hidden-small.w-hidden-tiny[style="width: #{@project.display_subgoals.first.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
+        p[style="z-index: 10"] = number_to_currency(@project.goal, precision: 2)
+
+    - @project.display_subgoals.each do |subgoal|
+      .one-subgoal[style="width: 25%; height: #{subgoal.percentual_from_total}%;"]
+        - if (@project.pledged >= subgoal.value)
+          .subgoals-bar[style="background-color: #{subgoal.color};"]
+            p = number_to_currency(subgoal.value, precision: 2)
+        - else
+          .subgoals-bar
+            p = number_to_currency(subgoal.value, precision: 2)
+        p.subgoal-description.small.align-right.w-hidden-medium.w-hidden-small.w-hidden-tiny = subgoal.description
+  .project-stats-container
+    .w-col.w-col-12
+        - unless @channel && @channel.recurring?
+          .w-col.w-col-4
+            ul.u-margintop-10.project-stat
+              li.fontsize-large.fontweight-semibold style="color:#{@project.color}"
+                = @project.time_to_go[:time]
+                .fontsize-smallest.inline= @project.time_to_go[:unit].capitalize
+              li.fontsize-smallest
+                  = pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))
+        .w-col.w-col-4
+          ul.u-margintop-10.project-stat
+            li.fontsize-large.fontweight-semibold style="color:#{@project.color}"
+              - if %w(associacaoacorde pesquisadoacao).include?(@project.permalink)
+                = @project.display_pledged(2)
+              - else
+                = @project.display_pledged
+            li.fontsize-smallest
+              = t('projects.project_about.goal', total: @project.display_goal).html_safe
+        .w-col.w-col-4
+          ul.u-margintop-10.project-stat
+            li.fontsize-large.fontweight-semibold style="color:#{@project.color}"
+              - if @project.permalink == 'aumigo'
+                | 4618
+              - else
+                = @project.contributions.available_to_count.count
+            li.fontsize-smallest
+              = t('projects.project_about.contributions')
