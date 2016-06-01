@@ -2849,6 +2849,17 @@ section.devise-body-section .access-type-field input {
   float: left;
   border: 1px solid black;
 }
+@media screen and (max-width: 991px) {
+  .contributors-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    &:before {
+      display: none !important;
+    }
+  }
+}
 #project_contributions .contribution .contribution-thumb {
   width: 119px;
   height: 121px;

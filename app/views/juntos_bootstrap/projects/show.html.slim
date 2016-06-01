@@ -127,7 +127,7 @@
       #project_posts.content.w-col.w-col-8.w-hidden
         = render 'dashboard_posts'
       #project_contributions.content.w-col.w-col-8.w-hidden
-        .w-row
+        .w-row.contributors-container
           = render @contributions
         - if policy(@project).update?
           .w-row
