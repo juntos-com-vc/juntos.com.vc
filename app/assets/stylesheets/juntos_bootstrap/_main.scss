@@ -2849,6 +2849,11 @@ section.devise-body-section .access-type-field input {
   float: left;
   border: 1px solid black;
 }
+@media screen and (min-width: 992px) {
+  .contribution-name {
+    display: none;
+  }
+}
 @media screen and (max-width: 991px) {
   .contributors-container {
     display: flex;
@@ -2858,6 +2863,16 @@ section.devise-body-section .access-type-field input {
     &:before {
       display: none !important;
     }
+  }
+
+  .contribution-container {
+    text-align: center;
+    max-width: 145px;
+    padding: 7px;
+  }
+
+  #project_contributions .contribution {
+    margin: 0;
   }
 }
 #project_contributions .contribution .contribution-thumb {
