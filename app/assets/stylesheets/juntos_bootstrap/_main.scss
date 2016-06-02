@@ -54,13 +54,6 @@ p {
   text-align: center;
   text-decoration: none;
 }
-.btn-ib {
-  display: inline-block;
-  border-radius: 5px;
-  border: none;
-  text-transform: uppercase;
-  font-weight: bold;
-}
 .btn:hover {
   border-color: #27bff2 #27bff2 #08bd35;
   background-color: #08bd35;
@@ -105,9 +98,8 @@ p {
   margin-top: 11px;
   margin-bottom: 0px;
 }
-.bt-blue {
+.btn.bt-blue {
   background-color: #409bff;
-  color: white;
 }
 .btn.bt-blue:hover {
   background-color: #2685eb;
@@ -1216,16 +1208,6 @@ p {
   margin-bottom: 10px;
   font-weight: 600;
 }
-.btn-reset {
-  padding: 0;
-  border: none;
-  background: none;
-  outline: none;
-
-  &:focus {
-    background: #ddd;
-  }
-}
 .btn-message {
   margin-bottom: 0px;
   padding-top: 12px;
@@ -2294,11 +2276,6 @@ p {
   border-color: #547fd6 !important;
   background-color: #547fd6 !important;
 }
-.nav-tab-container {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
 .nav-tab {
   display: inline-block;
   height: 42px;
@@ -2306,7 +2283,6 @@ p {
   padding: 13px 13px 8px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  white-space: nowrap;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
@@ -2356,9 +2332,6 @@ p {
 .card-secondary--removed {
   opacity: .5;
   pointer-events: none;
-}
-.reward-options {
-  text-align: right;
 }
 .card-reward {
   background-color: #ddd;
@@ -2613,11 +2586,6 @@ p {
   display: inline-block;
   width: 75%;
 }
-.link-reminder-text {
-  @media (max-width: 767px) {
-    display: block;
-  }
-}
 .link-hidden-success {
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
@@ -2813,15 +2781,9 @@ section.devise-body-section .access-type-field input {
 }
 .slick-prev.custom-arrow {
   left: -45px;
-  @media screen and (max-width: 991px) {
-    left: -9px;
-  }
 }
 .slick-next.custom-arrow {
   right: -45px;
-  @media screen and (max-width: 991px) {
-    right: -28px;
-  }
 }
 .project-images img {
   margin: 0 auto;
@@ -2848,32 +2810,6 @@ section.devise-body-section .access-type-field input {
   margin-right: 10px;
   float: left;
   border: 1px solid black;
-}
-@media screen and (min-width: 992px) {
-  .contribution-name {
-    display: none;
-  }
-}
-@media screen and (max-width: 991px) {
-  .contributors-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-    &:before {
-      display: none !important;
-    }
-  }
-
-  .contribution-container {
-    text-align: center;
-    max-width: 145px;
-    padding: 7px;
-  }
-
-  #project_contributions .contribution {
-    margin: 0;
-  }
 }
 #project_contributions .contribution .contribution-thumb {
   width: 119px;

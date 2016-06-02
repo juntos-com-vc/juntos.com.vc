@@ -140,7 +140,6 @@ en:
         with_city: 'A project of %{category_name} by %{author} at %{city}'
       menu:
         about: 'About'
-        rewards: 'Rewards'
         add_reward: 'Add reward'
         comments: 'Comments'
         contributions: 'Donors'

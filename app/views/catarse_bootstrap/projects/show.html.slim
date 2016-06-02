@@ -25,7 +25,7 @@
 - else
   = render 'shared/header_big'
 
-= render 'project_header_desktop'
+= render 'project_header'
 
 = render 'mobile_video'
 
@@ -50,7 +50,7 @@
 
         .w-col.w-col-3.w-hidden-small.w-hidden-tiny.w-clearfix.project-nav-category
           = link_to @project.category, explore_path(anchor: "by_category_id/#{@project.category_id}"), class: 'link-hidden-light u-right'
-          = image_tag 'catarse_bootstrap/tag-icon.png', class: 'project-nav-category-icon', width: "22"
+          = image_tag 'catarse_bootstrap/tag-icon.png', class: 'project-nav-category-icon', width: "22" 
 
 - if policy(@project).update?
   nav.dashboard-nav.w-hidden-small.w-hidden-tiny
@@ -61,10 +61,10 @@
       = link_to '#dashboard_project', id: 'dashboard_project_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_project'} do
         span.fa.fa-check-circle.text-success .
         | \&nbsp;Projeto
-      a.dashboard-nav-link href="#"
+      a.dashboard-nav-link href="#" 
         span.fa.fa-check-circle .
         | \&nbsp;Recompensas
-      a.dashboard-nav-link href="#"
+      a.dashboard-nav-link href="#" 
         span.fa.fa-check-circle .
         | \&nbsp;Sobre você
       a.dashboard-nav-link href="#"  Preview
