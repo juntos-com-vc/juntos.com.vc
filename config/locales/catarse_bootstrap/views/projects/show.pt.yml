@@ -133,7 +133,6 @@ pt:
           waiting_funds: "Aguardando a confirmação de boletos para saber se este projeto será financiado."
           draft: "Esse projeto é apenas um rascunho e ainda não está aberto para receber apoios."
         submit: Apoiar este projeto
-        submit_short: Apoiar projeto
         cancel: Cancelar apoio
         already_contributing: Você já apoia este projeto
       project_by: projeto por
@@ -144,7 +143,6 @@ pt:
         with_city: "Um projeto de %{category_name} por %{author} em %{city}"
       menu:
         about: Sobre
-        rewards: Recompensas
         add_reward: Adicionar recompensa
         comments: Comentários
         contributions: Apoiadores

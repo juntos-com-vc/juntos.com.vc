@@ -2,7 +2,7 @@
 
 = render 'shared/header'
 
-= render 'projects/project_header_desktop'
+= render 'projects/project_header'
 
 #project_review.section[data-thank-you-path=project_contribution_path(project_id: @project.id, id: @contribution.id)]
   .w-container
@@ -56,7 +56,7 @@
             .fontsize-large.fontweight-semibold.text-success-small-only= t('.choose_payment')
             .fontcolor-secondary.fontweight-semibold.fontsize-smallest.fontcolor-secondary
               span.fa.fa-lock
-              |&nbsp;&nbsp;&nbsp;
+              |&nbsp;&nbsp;&nbsp;  
               = t('.choose_payment_subtitle')
           #payment-methods.nav-light.u-marginbottom-30[class=(avaiable_payment_engines.size == 1 ? 'w-hidden' : '')]
             - avaiable_payment_engines.each do |engine|
