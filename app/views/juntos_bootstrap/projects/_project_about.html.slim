@@ -1,20 +1,26 @@
+= render 'project_header_mobile'
+
 .w-embed.w-video.project-video
   iframe src="#{@project.display_video_embed_url}" class="embedly-embed" width="100%" height="379" frameborder="0" allowFullScreen
 
+= render 'mobile_video'
+
 .project-share.u-marginbottom-30.w-row
-  .w-col.w-col-3
+  .w-col.w-col-3.w-col-medium-3.w-col-small-3.w-col-medium-3.w-col-tiny-3
     #facebook_share.img-share = render_facebook_like title: @project.name, href: project_by_slug_url(@project.permalink, locale: I18n.locale)
-  .w-col.w-col-3
+  .w-col.w-col-3.w-col-medium-3.w-col-small-3.w-col-medium-3.w-col-tiny-3
     #twitter_share.img-share = render_twitter(url: project_by_slug_url(permalink: @project.permalink), title: @project.name)
-  .w-col.w-col-3
+  .w-col.w-col-3.w-col-small-3.w-col-medium-3.w-col-tiny-3
     /= link_to t('.embed'), '#embed', id: 'embed_link', class: 'link-hidden fontsize-small fontcolor-secondary'
-  .w-col.w-col-3
+  .w-col.w-col-3.w-col-medium-3.w-col-small-3.w-col-medium-3.w-col-tiny-3
     - if user_signed_in? && @project.user_already_in_reminder?(current_user.id)
-      .fontsize-small
-        = link_to t('.deactive_btn'), reminder_project_path(@project), class: 'fa fa-clock-o link-hidden-success u-right', method: :delete
+        = link_to(reminder_project_path(@project), method: :delete) do
+            span.fa.fa-clock-o.link-hidden-success
+            span.link-hidden-success.fontsize-smaller.link-reminder-text = t('.deactive_btn')
     - else
-      .fontsize-small
-        = link_to t('.active_btn'), reminder_project_path(@project), class: 'fa fa-clock-o link-hidden u-right fontcolor-secondary'
+        = link_to reminder_project_path(@project) do
+            span.fa.fa-clock-o
+            span.link-hidden.fontcolor-secondary.fontsize-smaller.link-reminder-text = t('.active_btn')
 
 
 - unless @project.permalink == 'toddynho'
@@ -30,11 +36,6 @@
           .fontweight-bold.u-marginbottom-10.fontsize-smaller
             = channel.name
           = link_to "Conheça o Canal", root_url(subdomain: channel.permalink), class: 'alt-link fontsize-smaller'
-
-.project-about
-  .no-mobile
-    .fontsize-base
-      = @project.about_html.html_safe
 
 .project-images
   - @project.project_images.each do |project_image|

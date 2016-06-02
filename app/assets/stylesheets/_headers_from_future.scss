@@ -65,7 +65,17 @@
   display: inline;
   height: 44px;
 }
-
+.header-menu {
+  display: inline-block;
+  height: 50px;
+  text-align: right;
+}
+.btn-header-menu {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 32px;
+  width: 45px;
+}
 .btn-dark {
   border: 1px solid #3f4752;
   background-color: #3f4752;

@@ -17,6 +17,7 @@ App.addChild('Project', _.extend({
     this.route('posts');
     this.route('contributions');
     this.route('comments');
+    this.route('rewards_tab');
     this.route('edit');
     this.route('reports');
     this.route('project_metrics');

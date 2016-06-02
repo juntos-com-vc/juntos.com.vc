@@ -430,6 +430,9 @@ textarea.w-select {
   }
   .w-hidden-main {
     display: inherit !important;
+    &.nav-tab {
+      display: inline-block !important;
+    }
   }
   .w-hidden-medium {
     display: none !important;

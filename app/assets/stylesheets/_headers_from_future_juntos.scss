@@ -1,3 +1,11 @@
+.fb-like-box * {
+   width: 100% !important;
+}
+
+.project-rewards-container {
+  padding: 20px;
+}
+
 .main-header {
   height: 50px;
   padding-left: 15px;
@@ -6,6 +14,7 @@
   .w-row {
     width: 960px;
     margin: auto;
+    max-width: 100%;
   }
 }
 
@@ -295,6 +304,19 @@
 .header-logo:hover {
   opacity: 0.5;
 }
+.responsive-enabled {
+  .header-menu {
+    display: inline-block;
+    height: 50px;
+    text-align: right;
+  }
+  .btn-header-menu {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 32px;
+    width: 45px;
+  }
+}
 .fontsize-smaller {
   font-size: 14px;
   line-height: 150%;
@@ -347,6 +369,7 @@
   display: inline-block;
   padding-top: 37px;
   width: 640px;
+  max-width: 100%;
   text-align: center;
 }
 .engage {
@@ -360,6 +383,39 @@
   a {
     color: rgba(241, 244, 244, 0.54);
   }
+}
+.btn-floating-action {
+  border:none;
+  font-size:1.5em;
+  color:white;
+  border-radius: 50%;
+  margin: auto;
+  position: fixed;
+  bottom: 10px;
+  z-index: 999;
+  right: 8px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  width: 80px;
+  height: 80px;
+  font-weight: bold;
+  text-decoration: none !important;
+  -webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+     -moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+          box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+
+  @media screen and (min-width: 991px) {
+    display: none;
+  }
+}
+.btn-floating-action--green {
+  background-color: #ff4081;
+}
+.btn-floating-action--pink {
+  background-color: #ff4081;
 }
 .btn {
   display: block;
@@ -388,6 +444,9 @@
 }
 .project-images-nav {
   width: 94%;
+}
+.mobile-project-header-subtitle {
+  padding-bottom: 16px;
 }
 .u-marginbottom-40 {
   margin-bottom: 40px;
