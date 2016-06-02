@@ -52,6 +52,7 @@
 = render 'project_header_desktop'
 
 - if !@project.draft?
+  = link_to t('.contribute_project.submit_short'), new_project_contribution_path(@project), class: "btn-floating-action", style: "background-color: #{@color};"
   nav.project-nav
     .w-container
       .w-row

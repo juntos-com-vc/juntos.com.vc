@@ -384,6 +384,39 @@
     color: rgba(241, 244, 244, 0.54);
   }
 }
+.btn-floating-action {
+  border:none;
+  font-size:1.5em;
+  color:white;
+  border-radius: 50%;
+  margin: auto;
+  position: fixed;
+  bottom: 10px;
+  z-index: 999;
+  right: 8px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  width: 80px;
+  height: 80px;
+  font-weight: bold;
+  text-decoration: none !important;
+  -webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+     -moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+          box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+
+  @media screen and (min-width: 991px) {
+    display: none;
+  }
+}
+.btn-floating-action--green {
+  background-color: #ff4081;
+}
+.btn-floating-action--pink {
+  background-color: #ff4081;
+}
 .btn {
   display: block;
   margin-right: auto;
