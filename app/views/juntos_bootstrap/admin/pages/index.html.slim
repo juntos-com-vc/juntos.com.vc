@@ -12,14 +12,16 @@ br
     table.w-col.w-col-12
       thead
         tr
-          th.w-col-4.w-col= Page.human_attribute_name(:name)
-          th.w-col-4.w-col= Page.human_attribute_name(:content)
+          th.w-col-2.w-col= Page.human_attribute_name(:name)
+          th.w-col-8.w-col= Page.human_attribute_name(:content)
+          th.w-col-1.w-col Língua
           th.w-col-1.w-col Ações
       tbody
         - @pages.each do |page|
           tr class=cycle("even", "odd")
-            td.w-col-4.w-col= t(".#{page.name}")
-            td.w-col-4.w-col= page.content
+            td.w-col-2.w-col= t(".#{page.name}")
+            td.w-col-8.w-col= page.content
+            td.w-col-1.w-col= page.locale
             td.w-col-1.w-col
               = link_to t('.edit'), edit_admin_page_path(page)
   br

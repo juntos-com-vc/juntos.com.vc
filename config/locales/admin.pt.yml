@@ -20,6 +20,8 @@ pt:
       index:
         menu: 'Admin Quem Somos'
         title: Editar Quem Somos
+        edit: Editar
+        contact: Contato
         who_we_are: Nossa história
         mission: Missão
         vision: Visão

@@ -20,6 +20,8 @@ en:
       index:
         menu: 'Admin Who we are'
         title: 'Edit Who we are'
+        edit: 'Edit'
+        contact: 'Contact'
         who_we_are: 'Our history'
         mission: 'Mission'
         vision: 'Vision'

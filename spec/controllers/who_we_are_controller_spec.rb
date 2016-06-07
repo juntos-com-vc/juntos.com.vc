@@ -9,11 +9,11 @@ RSpec.describe WhoWeAreController, type: :controller do
     let!(:technical_member) { create :user, staffs: [2] }
     let!(:advice_member) { create :user, staffs: [3] }
 
-    let!(:who_we_are) { create :page, name: :who_we_are }
-    let!(:mission) { create :page, name: :mission }
-    let!(:values) { create :page, name: :values }
-    let!(:vision) { create :page, name: :vision }
-    let!(:goals) { create :page, name: :goals }
+    let!(:who_we_are) { create :page, name: :who_we_are, locale: :pt }
+    let!(:mission) { create :page, name: :mission, locale: :pt }
+    let!(:values) { create :page, name: :values, locale: :pt }
+    let!(:vision) { create :page, name: :vision, locale: :pt }
+    let!(:goals) { create :page, name: :goals, locale: :pt }
 
     let!(:report) { create :transparency_report }
 
