@@ -30,7 +30,9 @@
               = form.input_field :project_value, value: value, as: :string, class: 'w-input back-reward-input-reward u-marginbottom-20', placeholder: t('.amount')
             - unless @project.recurring?
               .minimum-value
-                == t('.minimum_disclaimer')
+                p == t('.secured_transaction')
+                - if @project.permalink.downcase != 'amigosdobem'
+                  p == t('.minimum_disclaimer')
           - if (channel && channel.permalink == 'garupa') || @project.category_id == 11 # 11 = Garupa
             .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only Contribuir para a Associação Garupa
             p.minimum-value Somos uma organização sem fins lucrativos que não cobra nenhuma taxa das ongs nem de seus apoiadores. Por isso deixamos esse espaço para quem quiser colaborar com qualquer valor e ajudar a gente a continuar com nosso trabalho.

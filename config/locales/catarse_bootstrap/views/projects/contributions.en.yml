@@ -82,13 +82,8 @@ en:
         choose_value: 'Your donation'
         amount: 'Amount (in BRL$)'
         minimum_notice: 'You can donate any amount starting from BRL$ 5,00'
-        minimum_disclaimer: >
-          All financial transactions are done in a secure environment, via
-          <a href="http://moip.com.br">MoIP</a>.
-
-          If the project does not reach its financial goal by the deadline the
-          value may be converted into credits or may be returned to you, as you
-          prefer. Thus there will be no reward, it's make or break!
+        minimum_disclaimer: If the project does not reach its financial goal by the deadline the value may be converted into credits or may be returned to you, as you prefer. Thus there will be no reward, it's make or break!
+        secured_transaction: 'All financial transactions are done in a secure environment, via <a href="http://moip.com.br">MoIP</a>.'
         next_step: 'Review and go to payment'
         no_reward: 'Thanks. I just want to support the project'
         contribute_to_platform: 'Contribute to the platform'
