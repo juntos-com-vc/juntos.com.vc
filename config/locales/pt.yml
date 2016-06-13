@@ -1,4 +1,11 @@
 pt:
+  views:
+    pagination:
+      first: "&laquo; Primeiro"
+      last: "Ultimo &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Proximo &rsaquo;"
+      truncate: "..."
   not_filled: 'Não preenchido'
   days: dias
   facebook_locale: pt_BR
