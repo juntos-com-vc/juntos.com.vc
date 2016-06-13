@@ -3,6 +3,9 @@ pt:
     categories:
       index:
         menu: 'Categorias'
+        title: 'Categorias'
+        new: 'Nova categoria'
+        edit: 'Editar'
     site_partners:
       index:
         menu: 'Parceiros'

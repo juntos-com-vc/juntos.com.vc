@@ -27,19 +27,19 @@
           ul
             li
               a href="#{explore_path}"
-                | Todos
+                | #{t('.all')}
             - @categories.each_with_index do |category, index|
               li style="background-color: #{category.color};"
                 a[
                   href="#by_category_id/#{category.id}"
-                  data-name=(params[:locale] == 'en' ? category.name_en : category.name_pt)
+                  data-name=category.name_with_locale
                   data-categoryid=category.id
                   data-isfollowing=(current_user.try(:following_this_category?, category.id) ? 'true' : 'false')
                   data-followpath=subscribe_category_path(category)
                   data-unfollowpath=unsubscribe_category_path(category)
                   data-totalfollowers=category.users.count
                   ]
-                    = category.name_pt
+                    = category.name_with_locale
 
     .main
       #explore_results[data-projects-path=projects_path]
