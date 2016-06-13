@@ -25,6 +25,10 @@ html
       meta property="fb:app_id"       content=CatarseSettings[:facebook_app_id]
       meta property="og:description"  content=( channel.try(:description) || t('projects.index_header.title') + '. ' +  t('projects.index_header.subtitle'))
 
+    script src='http://arquivos.weblibras.com.br/auto/wl-min.js'
+    javascript:
+      var wl = new WebLibras();
+
   body#catarse_bootstrap[data-namespace=namespace data-controller-name=controller_name data-action=action_name data-user="#{current_user.try(:to_analytics_json)}"]
     = render_facebook_sdk
     = render 'layouts/flash' if notice.present?
