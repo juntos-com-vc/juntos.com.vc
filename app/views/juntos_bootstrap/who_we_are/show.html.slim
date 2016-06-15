@@ -29,7 +29,7 @@
           = t('.menu.transparency')
     .main.u-margintop-30
       #who_we_are_history.content
-        == @page.try(:content_html)
+        == simple_format(@page.try(:content_html))
       #who_we_are_people.content.w-lightbox-hide
         .w-row
           .w-col.w-col-12
@@ -73,17 +73,17 @@
         .w-row
           .w-col.w-col-4
             h2.fontcolor-yellow = t('.transparency.mission.title')
-            p== @mission.try(:content_html)
+            p== simple_format(@mission.try(:content_html))
           .w-col.w-col-4
             h2.fontcolor-yellow = t('.transparency.vision.title')
-            p== @vision.try(:content_html)
+            p== simple_format(@vision.try(:content_html))
           .w-col.w-col-4
             h2.fontcolor-yellow = t('.transparency.values.title')
-            p== @values.try(:content_html)
+            p== simple_format(@values.try(:content_html))
         .w-row
           .w-col.w-col-6
             h2.fontcolor-yellow = t('.transparency.objectives.title')
-            p== @goals.try(:content_html)
+            p== simple_format(@goals.try(:content_html))
           .w-col.w-col-4.u-margintop-70
             .u-margintop-70
               - if @transparency_report.try(:attachment)
