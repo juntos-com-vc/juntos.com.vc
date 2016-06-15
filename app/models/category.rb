@@ -15,6 +15,10 @@ class Category < ActiveRecord::Base
     joins(:projects).merge(Project.with_state('online').of_current_week).uniq
   }
 
+  def self.with_visible_projects
+    order(self.name_with_locale).find(Project.visible.pluck(:category_id))
+  end
+
   def self.with_projects
     where("exists(select true from projects p where p.category_id = categories.id and p.state not in('draft', 'rejected'))")
   end
@@ -24,7 +28,7 @@ class Category < ActiveRecord::Base
   end
 
   def to_s
-    self.send('name_' + I18n.locale.to_s)
+    self.send("name_#{I18n.locale}")
   end
 
   def total_online_projects
@@ -35,5 +39,13 @@ class Category < ActiveRecord::Base
     self.users.to_send_category_notification(self.id).each do |user|
       self.notify(:categorized_projects_of_the_week, user, self)
     end
+  end
+
+  def self.name_with_locale
+    "name_#{I18n.locale}" 
+  end
+
+  def name_with_locale
+    to_s
   end
 end
