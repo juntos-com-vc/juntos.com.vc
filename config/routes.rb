@@ -195,6 +195,7 @@ Rails.application.routes.draw do
     resources :pages, only: [:show, :update, :edit, :index]
   end
 
+  get '/bancodehistorias', to: redirect('http://juntoscomvc.wix.com/bancodehistorias')
+  
   get "/:permalink" => "projects#show", as: :project_by_slug
-
 end
