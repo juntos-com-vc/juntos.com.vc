@@ -30,6 +30,8 @@ pt:
         vision: Visão
         values: Valores
         goals: Objetivos
+      edit:
+        title: 'Editar quem somos'
     filter:
       title: 'Filtros'
     confirm_dialog: 'Você tem certeza?'

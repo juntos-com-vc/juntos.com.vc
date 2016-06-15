@@ -25,6 +25,7 @@ pt:
     meta_title: "%{title} · %{company_name}"
     header_logo_label: Financiamento coletivo de projetos sociais
     title: Juntos.com.vc
+    copyright: Todos os direitos reservados
     who_we_are:
       title: Conheça mais sobre a ONG Juntos.com.vc | Crowdfunding Social
       description: A Juntos.com.vc oferece consultoria para ONGs, auxiliando na Captação de Recursos para Projetos Sociais por meio do Crowdfunding ou Financiamento Coletivo.

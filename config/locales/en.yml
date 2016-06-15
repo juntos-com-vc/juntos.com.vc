@@ -27,6 +27,7 @@ en:
     header_logo_label: Crowdfunding of social projects
     description: "O Juntos.com.vc é uma ferramenta diferente – e colaborativa – para tirar o seu projeto do papel!"
     keywords: "juntoscomvc, juntos.com.vc, crowdfunding, financiamento coletivo, projeto, comunidade, open source, projetos sociais, social crowdfunding, crowdfunding social"
+    copyright: 'All rights reserved'
     projects:
       title: Juntos.com.vc · Juntos com Você
       description: 'Juntos.com.vc is the only Crowdfunding Platform that is exclusive for Social Projects. We provide assistance for fundraising destined to NGOs without any service fee.'

@@ -30,6 +30,8 @@ en:
         vision: 'Vision'
         values: 'Values'
         goals: 'Objectives'
+      edit:
+        title: 'Edit who we are'
     filter:
       title: 'Filters'
     confirm_dialog: 'Are you sure?'
