@@ -6,7 +6,7 @@ en:
         login_with_facebook: "You can"
         titles:
           site: 'Log in'
-          header: 'Login now and contribute to social projects!'
+          header: 'Join us now and contribute with high impact social projects!'
         links:
           register: "Sign up"
           password: "Password"

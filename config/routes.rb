@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   def ssl_options
     if CatarseSettings.get_without_cache(:secure_host)
-      {protocol: 'http', host: CatarseSettings.get_without_cache(:secure_host)}
+      if Rails.env.production?
+        {protocol: 'https', host: CatarseSettings.get_without_cache(:secure_host)}
+      else
+        {protocol: 'http', host: CatarseSettings.get_without_cache(:secure_host)}
+      end
     else
       {}
     end
@@ -195,6 +199,7 @@ Rails.application.routes.draw do
     resources :pages, only: [:show, :update, :edit, :index]
   end
 
-  get "/:permalink" => "projects#show", as: :project_by_slug
+  get '/bancodehistorias', to: redirect('http://juntoscomvc.wix.com/bancodehistorias')
 
+  get "/:permalink" => "projects#show", as: :project_by_slug
 end

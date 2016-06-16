@@ -3,7 +3,7 @@
 if Rails.env.production? && CatarseSettings.get_without_cache(:base_domain)
   Rails.application.config.session_store :cookie_store, key: CatarseSettings.get_without_cache(:secret_token), domain: CatarseSettings.get_without_cache(:base_domain), tld_length: 2
 else
-  Rails.application.config.session_store :cookie_store, key: CatarseSettings.get_without_cache(:secret_token), domain: "lvh.me"
+  Rails.application.config.session_store :cookie_store, key: CatarseSettings.get_without_cache(:secret_token)
 end
 
 # Use the database for sessions instead of the cookie-based default,

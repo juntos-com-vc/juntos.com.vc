@@ -3,6 +3,9 @@ pt:
     categories:
       index:
         menu: 'Categorias'
+        title: 'Categorias'
+        new: 'Nova categoria'
+        edit: 'Editar'
     site_partners:
       index:
         menu: 'Parceiros'
@@ -20,11 +23,15 @@ pt:
       index:
         menu: 'Admin Quem Somos'
         title: Editar Quem Somos
+        edit: Editar
+        contact: Contato
         who_we_are: Nossa história
         mission: Missão
         vision: Visão
         values: Valores
         goals: Objetivos
+      edit:
+        title: 'Editar quem somos'
     filter:
       title: 'Filtros'
     confirm_dialog: 'Você tem certeza?'
