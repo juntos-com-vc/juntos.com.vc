@@ -149,9 +149,10 @@ class Projects::ContributionsController < ApplicationController
 
   def project_contribution_url_options
     if CatarseSettings.get_without_cache(:secure_host)
-      { host: params[:host], protocol: params[:protocol] }
+      { protocol: params[:protocol], host: params[:host]}
     else
-      {}
+      {
+      }
     end
   end
 end

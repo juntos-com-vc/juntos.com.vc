@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   def ssl_options
     if CatarseSettings.get_without_cache(:secure_host)
-      {protocol: 'https', host: CatarseSettings.get_without_cache(:secure_host)}
+      {protocol: 'http', host: CatarseSettings.get_without_cache(:secure_host)}
     else
       {}
     end
