@@ -449,6 +449,8 @@ GEM
       rdoc (>= 2.4.2)
     rinku (1.5.1)
     rmagick (2.13.3)
+    rollbar (2.11.5)
+      multi_json
     routing-filter (0.4.0.pre)
       actionpack
     rspec (3.1.0)
@@ -661,6 +663,7 @@ DEPENDENCIES
   rails_12factor
   ranked-model
   rmagick
+  rollbar
   routing-filter (~> 0.4.0.pre)
   rspec-collection_matchers
   rspec-html-matchers (~> 0.7.2)
@@ -688,5 +691,8 @@ DEPENDENCIES
   video_info (>= 1.1.1)
   weekdays
 
+RUBY VERSION
+   ruby 2.1.8p440
+
 BUNDLED WITH
-   1.11.2
+   1.12.5

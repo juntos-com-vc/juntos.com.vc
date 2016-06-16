@@ -120,6 +120,9 @@ group :production do
 
   gem 'clockwork', '~> 1.0.0'
 
+  # Catch errors
+  gem 'rollbar'
+
   # Using dalli and memcachier have not presented significative performance gains
   # Probably this is due to our pattern of cache usage
   # + the lack of concurrent procs in our deploy
