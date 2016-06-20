@@ -56,17 +56,14 @@
     .collectect-money
       h2 = number_with_precision(statistics.total_contributed, precision: 0)
       b = t(:brl_amount, scope: [:projects, :index, :transparency])
-      br
       span = t(:raised, scope: [:projects, :index, :transparency])
     .donations-number
       h2 = statistics.total_contributions
       b = t(:donations, scope: [:projects, :index, :transparency])
-      br
       span = t(:made, scope: [:projects, :index, :transparency])
     .succesfull-projects
       h2 = Project.visible.select{ |p| p.progress >= 100 || p.state == 'successful' }.count
       b = t(:projects, scope: [:projects, :index, :transparency])
-      br
       span = t(:supported, scope: [:projects, :index, :transparency])
 
 #page_content
