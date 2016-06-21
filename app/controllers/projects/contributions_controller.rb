@@ -29,7 +29,7 @@ class Projects::ContributionsController < ApplicationController
     resource.update_attributes(permitted_params[:contribution])
     resource.update_user_billing_info
 
-    if channel && channel.recurring?
+    if @project.recurring?
       RecurringPaymentService.perform(resource.recurring_contribution.id,
                                       resource, params[:payment_card_hash])
 
@@ -83,7 +83,7 @@ class Projects::ContributionsController < ApplicationController
           render :new
         end
         success.html do
-          if channel && channel.recurring?
+          if @project.recurring?
             RecurringContributionService.create(@contribution)
           end
 
