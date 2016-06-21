@@ -83,7 +83,7 @@ class Projects::ContributionsController < ApplicationController
           render :new
         end
         success.html do
-          if channel && channel.recurring?
+          if @project.recurring?
             RecurringContributionService.create(@contribution)
           end
 
