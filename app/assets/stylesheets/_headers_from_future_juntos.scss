@@ -7,6 +7,11 @@
     width: 960px;
     margin: auto;
   }
+
+  .w-row-header {
+    width: 1100px;
+    margin: auto;
+  }
 }
 
 #search-form {
@@ -90,6 +95,35 @@
   bottom: 5px;
   display: inline;
   height: 44px;
+}
+
+.btn-translation{
+  position: static;
+  top: 5px;
+  right: -73px;
+  display: inline-block;
+  margin: 5px 5px 5px 0px;
+  padding: 8px 8px;
+  border-radius: 4px;
+  -webkit-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+  background-color:#FFB74D;
+  color: #f1f2f3;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+
+.btn-translation:last-child{
+  background-color: #fff;
+  color:#000;
+}
+
+.btn-translation:hover,
+.btn-translation:last-child:hover{
+  background-color: #000;
+  color:#fff;
 }
 
 .btn-dark {
