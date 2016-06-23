@@ -1,5 +1,5 @@
 .main-header
-  .w-row
+  .w-row-header
     .w-col.w-col-9.w-col-small-6.w-col-tiny-6.w-clearfix
       - @channel ||= channel
       - if namespace == 'channels' || (request.subdomains.first.present? && request.subdomains.first != 'www' && @channel.present?)
@@ -46,4 +46,3 @@
         = link_to t('layouts.header.signin'), new_user_session_path, class: 'w-nav-link header-link w-nav-link u-right highlight'
 
       /= link_to t('layouts.header.help'), CatarseSettings[:support_forum], target: :_blank, class: 'w-nav-link w-hidden-small w-hidden-tiny header-link w-nav-link u-right',  id: 'guidelines_header_modal' if CatarseSettings[:support_forum].present?
-
