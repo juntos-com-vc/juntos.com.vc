@@ -69,6 +69,8 @@ en:
     reminder:
       ok: 'Ok! We will send an email reminder to you 48 hours before the end of funding period'
     send_to_analysis: 'Thank you to send this project. Our team will contact you soon.'
+    recurring:
+      send_to_analysis_error: 'Pease, insert yout bank account info.'
     twitter:
       take_a_look: 'Take a look at %{name}'
     video_embed:
