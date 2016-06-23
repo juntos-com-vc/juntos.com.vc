@@ -67,6 +67,7 @@ pt:
         traffic_sources: 'Como você conheceu o Juntos.com.vc?'
         first_contributions: "Quem são as primeiras pessoas que você vai pedir para apoiar o seu projeto?"
         project_partners: 'Parceiros'
+        recipient: 'Dados bancários'
       user:
         address_city: Cidade
         address_complement: Complemento
@@ -203,6 +204,8 @@ pt:
             headline:
               blank: "A frase de efeito do projeto não pode ficar em branco"
               too_long: "A frase de efeito é muito longa. Você pode usar um máximo de 140 caracteres."
+            recipient:
+              blank: 'Insira corretamente todos os campos de dados bancários'
         user:
           attributes:
             email:

@@ -66,7 +66,11 @@ class ProjectsController < ApplicationController
   def send_to_analysis
     authorize resource
 
-    if resource.send_to_analysis
+    if resource.recurring? && !resource.recipient
+      flash[:alert] = t('projects.recurring.send_to_analysis_error')
+      redirect_to project_by_slug_path(@project.reload.permalink,
+                                       anchor: 'basics')
+    elsif resource.send_to_analysis
       resource.update_attribute(:referal_link, referal_link) if referal_link.present?
 
       flash[:notice] = t('projects.send_to_analysis')
@@ -82,7 +86,12 @@ class ProjectsController < ApplicationController
     authorize resource
     update! do |format|
       if channel && channel.recurring? && params[:bank_account]
-        RecipientWorker.perform_async(@project.id, params[:bank_account])
+        if params[:bank_account].values.include? ""
+          resource.errors.add(:recipient, t('activerecord.errors.models.project.attributes.recipient.blank'))
+          params[:anchor] = 'basics'
+        else
+          RecipientWorker.perform_async(@project.id, params[:bank_account])
+        end
       end
 
       format.html do
@@ -92,11 +101,7 @@ class ProjectsController < ApplicationController
           flash[:notice] = t('project.update.success')
         end
 
-        if params[:anchor] == 'posts'
-          redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'posts')
-        else
-          redirect_to project_by_slug_path(@project.reload.permalink, anchor: 'dashboard_project')
-        end
+        redirect_to project_by_slug_path(@project.reload.permalink, anchor: (params[:anchor] || 'dashboard_project') )
       end
     end
   end
