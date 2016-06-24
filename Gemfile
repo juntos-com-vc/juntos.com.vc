@@ -163,7 +163,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.7.2'
 end
 
-source 'https://rails-assets.tenex.tech' do
+source 'http://rails-assets.tenex.tech' do
   gem 'rails-assets-underscore', '~> 1.4.4'
 end
 

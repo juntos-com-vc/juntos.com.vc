@@ -52,7 +52,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.tenex.tech/
+  remote: http://rails-assets.tenex.tech/
   specs:
     RedCloth (4.2.9)
     actionmailer (4.1.14.1)
