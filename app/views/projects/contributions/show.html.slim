@@ -23,7 +23,8 @@
       .title
         h1 = t('.header_title')
       .project_info
-        h2= t('.text_title_html', link: link_to(@project.name, project_by_slug_url(permalink: @project.permalink)))
+        h2= t('.text_title_html', link: link_to(@project.name, 
+                                                format_url_to_remove_secure(project_by_slug_url(permalink: @project.permalink), @project)))
         #review_text
           - if @contribution.payment_method == 'MoIP' && @contribution.payment_id
             = t('.moip_message', code: @contribution.payment_id).html_safe
