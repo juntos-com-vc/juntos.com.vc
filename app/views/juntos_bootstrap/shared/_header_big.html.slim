@@ -8,8 +8,8 @@
   = link_to t('layouts.header.how_it_works'), start_path, class: 'header-link w-nav-link'
 
 
-  = link_to 'PT', @post, class: 'btn-translation'
+  = link_to 'PT', url_for(locale: 'pt'), class: 'btn-translation'
 
-  = link_to 'EN', @post, class: 'btn-translation'
+  = link_to 'EN', url_for(locale: 'en'), class: 'btn-translation'
 
 = render 'shared/header'
