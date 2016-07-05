@@ -66,6 +66,7 @@ en:
         video_url: 'Video URL'
         permalink: 'URL of your project'
         traffic_sources: 'How did you hear about Juntos.com.vc?'
+        recipient: 'Bank account info'
     errors:
       models:
         contribution: 'An error occurred while trying to save the contribution'
@@ -92,6 +93,8 @@ en:
             headline:
               blank: "The project's headline cannot be blank"
               too_long: "The project's headline is too long. You can use only 140 characters"
+            recipient:
+              blank: 'Insert all fields in bank account info'
         user:
           attributes:
             email:
