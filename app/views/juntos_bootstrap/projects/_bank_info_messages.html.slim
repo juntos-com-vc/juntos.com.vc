@@ -1,0 +1,6 @@
+  div class=("card card-#{status} u-radius zindex-10 u-marginbottom-30")
+    .fontsize-smaller.fontweight-bold.u-marginbottom-10= t(".#{status}.title")
+    .fontsize-smaller = t(".#{status}.message")
+    - if(status == 'waiting') 
+      = image_tag('loading.gif', class: 'loader')
+

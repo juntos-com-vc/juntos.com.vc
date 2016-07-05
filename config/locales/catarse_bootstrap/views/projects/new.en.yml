@@ -3,6 +3,11 @@ en:
     new:
       page-title: 'Start your project'
 
+      sidebar:
+        control_panel: Control Panel
+        hi: Hi
+        message: To edit your project info, download reports, and receive campaign tips access this page from computer or tablet. You will have access to your project control panel ;)
+
       faq:
         titles:
           support: 'Support'

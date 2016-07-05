@@ -5,6 +5,7 @@ html
 
     = stylesheet_link_tag 'juntos_bootstrap/catarse'
     = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+    = stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'
     = content_for(:stylesheets)
     = favicon_link_tag 'favicon.ico'
     = csrf_meta_tag
@@ -44,6 +45,7 @@ html
   - else
     = render 'shared/footer_big'
   = javascript_include_tag :application
+  = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'
   = render_google_analytics_script
   = render_mixpanel_script
   = render '/layouts/new_zendesk'

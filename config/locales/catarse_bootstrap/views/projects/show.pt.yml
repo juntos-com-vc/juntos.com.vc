@@ -61,6 +61,22 @@ pt:
       support: 'Suporte'
       form:
         submit: 'Salvar'
+    project_bank_info:
+      title: Insira aqui os seus dados bancários
+      subtitle: Para poder receber as doações insira os dados bancários de onde você deseja recebê-las.
+      form:
+        submit: Salvar
+    bank_info_messages:
+      waiting:
+        title: Aguarde
+        message: Aguarde enquanto processamos os dados.
+      error:
+        title: Um erro ocorreu
+        message: Verifique os dados cadastrados e envie novamente.
+      success:
+        title: Enviado com sucesso 
+        message: Seus dados foram enviados com sucesso.
+
     metrics:
       titles:
         confirmed_by_day: 'Total de apoios confirmados por dia'
@@ -111,6 +127,7 @@ pt:
         basics: 'Básico'
         project: 'Projeto'
         rewards: 'Recompensas'
+        bank_info: 'Dados bancários'
         subgoals: 'Submetas'
         preview: 'Preview'
         send_to_analysis: 'Enviar projeto para análise'
