@@ -100,6 +100,9 @@ gem 'catarse_juntos_gift_cards', github: 'danielweinmann/catarse_juntos_gift_car
 # Location by IP
 gem 'geo_ip', '~> 0.5.0'
 
+# Catch errors
+  gem 'rollbar'
+
 group :production do
   # Gem used to handle image uploading
   gem 'fog', '>= 1.3.1'
@@ -119,10 +122,7 @@ group :production do
   gem 'newrelic_rpm', '3.6.5.130'
 
   gem 'clockwork', '~> 1.0.0'
-
-  # Catch errors
-  gem 'rollbar'
-
+  
   # Using dalli and memcachier have not presented significative performance gains
   # Probably this is due to our pattern of cache usage
   # + the lack of concurrent procs in our deploy
