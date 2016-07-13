@@ -114,10 +114,12 @@ pt:
         send_to_analysis: 'Enviar projeto para análise'
       contribution_style: 'TUDO OU NADA'
       proposed_by: 'Proposto por'
+      goal: 'Metas'
       twitter_profile: "Perfil no Twitter"
       facebook_profile: "Perfil no Facebook"
       author_website: "Site do autor"
       share: "Compartilhe"
+      facebook: "Facebook"
       tweet: "Tweet"
       contact_author: "Enviar mensagem"
       user_documents: >
@@ -135,6 +137,7 @@ pt:
           waiting_funds: "Aguardando a confirmação de boletos para saber se este projeto será financiado."
           draft: "Esse projeto é apenas um rascunho e ainda não está aberto para receber apoios."
         submit: Apoiar este projeto
+        submit-mobile: APOIAR
         cancel: Cancelar apoio
         already_contributing: Você já apoia este projeto
       project_by: projeto por
@@ -144,6 +147,8 @@ pt:
         without_city: "Um projeto de"
         with_city: "Um projeto de %{category_name} por %{author} em %{city}"
       menu:
+        result: Resultados
+        reward: Recompensas
         about: Sobre
         add_reward: Adicionar recompensa
         comments: Comentários
