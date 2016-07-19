@@ -11,6 +11,8 @@ class Project < ActiveRecord::Base
   #include Project::CustomValidators
   include Project::RemindersHandler
 
+  include Shared::UnionScope
+
   has_notifications
   acts_as_copy_target
 
@@ -79,7 +81,7 @@ class Project < ActiveRecord::Base
   scope :successful, ->{ with_state('successful') }
   scope :failed, ->{ with_state('failed') }
   scope :with_project_totals, -> { joins('LEFT OUTER JOIN project_totals ON project_totals.project_id = projects.id') }
-  scope :without_toddynho, -> { where.not(permalink: 'toddynho') }
+  scope :without_pepsico_channel, -> { joins(:channels).where.not('"channels"."permalink" = \'pepsico\'') }
 
   scope :by_progress, ->(progress) { joins(:project_total).where("project_totals.pledged >= projects.goal*?", progress.to_i/100.to_f) }
   scope :by_channel, ->(channel_id) { joins(:channels).where("channels.id = ?", channel_id) }
@@ -142,7 +144,11 @@ class Project < ActiveRecord::Base
 
   scope :recurring, -> { joins(:channels).merge(Channel.recurring(true)) }
 
-  scope :without_recurring, -> { where('projects.id NOT IN (?)', recurring.map(&:id)) unless recurring.empty? }
+  scope :with_channel_without_recurring, -> { joins(:channels).merge(Channel.recurring(false)) }
+
+  scope :without_channel, -> { joins('LEFT JOIN "channels_projects" ON "channels_projects"."project_id" = "projects"."id" WHERE "channels_projects"."project_id" is NULL') }
+
+  scope :without_recurring_and_pepsico_channel, -> { union_scope(with_channel_without_recurring.without_pepsico_channel, without_channel) }
 
   attr_accessor :accepted_terms, :new_record
 

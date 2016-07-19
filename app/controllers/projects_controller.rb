@@ -12,20 +12,20 @@ class ProjectsController < ApplicationController
     index! do |format|
       format.html do
         if request.xhr?
-          @projects = apply_scopes(Project.visible.order_status.without_toddynho.without_recurring)
+          @projects = apply_scopes(Project.without_recurring_and_pepsico_channel.visible.order_status)
             .most_recent_first
             .includes(:project_total, :user, :category)
             .page(params[:page]).per(6)
           return render partial: 'project', collection: @projects, layout: false
         else
-          @projects = apply_scopes(Project.without_toddynho.without_recurring)
+          @projects = apply_scopes(Project.without_recurring_and_pepsico_channel)
 
           @title = t("site.title")
 
           @recommends = ProjectsForHome.recommends.includes(:project_total)
           @projects_near = Project.with_state('online').near_of(current_user.address_state).order("random()").limit(3).includes(:project_total) if current_user
           @expiring = ProjectsForHome.expiring.where(recommended: false).includes(:project_total)
-          @recent   = apply_scopes(Project.without_toddynho.without_recurring).with_state('online').where(recommended: false).order("random()").limit(6).includes(:project_total)
+          @recent   = apply_scopes(Project.without_recurring_and_pepsico_channel).with_state('online').where(recommended: false).order("random()").limit(6).includes(:project_total)
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
           @site_partners = @featured_partners + @regular_partners
