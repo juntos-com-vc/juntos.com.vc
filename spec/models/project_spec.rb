@@ -749,15 +749,16 @@ RSpec.describe Project, type: :model do
 
   describe 'recurring related scopes' do
     let(:channel) { create :channel, recurring: true }
-    let!(:normal_projects) { create_list :project, 2 }
+    let(:channel_not_recurring) { create :channel }
+    let!(:normal_projects) { create_list :project, 2, channels: [channel_not_recurring] }
     let!(:recurring_projects) {
       create_list :project, 2,
         channels: [channel],
         category: nil
     }
 
-    describe '.without_recurring' do
-      subject { described_class.without_recurring }
+    describe '.with_channel_without_recurring' do
+      subject { described_class.with_channel_without_recurring }
 
       it { is_expected.to match_array normal_projects }
       it { is_expected.to have(2).itens }
