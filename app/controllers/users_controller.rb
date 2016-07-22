@@ -91,7 +91,7 @@ class UsersController < ApplicationController
   end
 
   def projects
-    @projects ||= policy_scope(resource.projects.with_channel_without_recurring)
+    @projects ||= policy_scope(resource.projects)
   end
 
   private
