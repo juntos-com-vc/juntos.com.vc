@@ -3190,7 +3190,8 @@ section.devise-body-section .access-type-field input {
   }
   .project-stats {
     padding: 20px 30px;
-    border-top: 1px solid #e9e9ec;
+    border-top: 1px solid $border-gray;
+    border-bottom: 1px solid $border-gray;
     text-align: center;
   }
   .project-share {
@@ -4092,4 +4093,15 @@ p .project-basics-icons{
   color:#f8bc1c;
   font-size: 1.3em;
   margin-right:0.5em;
+}
+.suport-text-mobile{
+  font-size: 1.6em;
+  font-weight: bold;
+}
+@media(max-width:768px){
+  .img-stats-mobile{
+    margin: 0 auto;
+    float:none;
+    margin-bottom: 0.5em;
+  }
 }
