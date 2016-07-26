@@ -566,3 +566,13 @@
     font-size: 0.8em;
   }
 }
+@media(max-width:768px){
+  .btn-login-mobile{
+    background-color: $white;
+    color: $lighten-orange;
+    font-weight: bold;
+    margin: 0.5em 0;
+    border-radius:3px;
+    padding:10px 25px;
+  }
+}

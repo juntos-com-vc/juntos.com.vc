@@ -90,9 +90,9 @@
             = link_to t('layouts.user.logout'), destroy_user_session_path, method: :delete, class: 'w-dropdown-link dropdown-link fontsize-smaller'
       - else
 
-        = link_to t('layouts.header.signup'), new_user_registration_path, class: 'w-nav-link header-link w-nav-link u-right'
+        = link_to t('layouts.header.signup'), new_user_registration_path, class: 'w-nav-link header-link w-nav-link u-right w-hidden-small w-hidden-tiny'
 
-        = link_to t('layouts.header.signin'), new_user_session_path, class: 'w-nav-link header-link w-nav-link u-right highlight'
+        = link_to t('layouts.header.signin'), new_user_session_path, class: 'w-nav-link  w-nav-link u-right highlight btn-login-mobile'
 
 
     .w-col.w-col-small-12.w-col-tiny-12
