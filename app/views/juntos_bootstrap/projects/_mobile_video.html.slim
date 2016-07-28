@@ -19,9 +19,8 @@
     = link_to t('projects.project_about.read_more'), about_mobile_project_path(@project), class: "mobile-read-more uppercase fontsize-small"
 .w-container.w-hidden-main.w-hidden-medium.project-stats
   .w-row.w-hidden-main.w-hidden-medium.mobile-container-subgoals
-    .all-or-nothing-text
-      p.small.align-centered Tudo ou Nada por submeta: ao atingir cada submeta abaixo, o proponente garante o repasse do respectivo valor
-    .w-col.w-col-8.w-col-small-8.w-col-tiny-8
+
+    .w-col.w-col-12.w-col-small-12.w-col-tiny-12
       = render 'subgoals_mobile'
     .w-col.w-col-4.w-col-small-4.w-col-tiny-4
       .project-progress-description
