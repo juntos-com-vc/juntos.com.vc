@@ -103,6 +103,7 @@ en:
       contributions: 'donors'
       goal: achieved of %{total}
     show:
+      all_or_nothing: 'All or nothing: Upon reaching each subject below , the tenderer guarantees the transfer of respective value'
       dashboard_nav:
         basics: 'Basics'
         project: 'Project'
