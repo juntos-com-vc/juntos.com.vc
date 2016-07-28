@@ -106,6 +106,7 @@ pt:
       contributions: doadores
       goal: atingidos de %{total}
     show:
+      all_or_nothing: 'Tudo ou Nada por submeta: ao atingir cada submeta abaixo, o proponente garante o repasse do respectivo valor'
       dashboard_nav:
         basics: 'Básico'
         project: 'Projeto'
