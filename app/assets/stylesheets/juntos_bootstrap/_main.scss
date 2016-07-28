@@ -4090,9 +4090,9 @@ div .w-container .w-row .nav-tabs .mobile-tab.selected{
   float:right;
 }
 p .project-basics-icons{
-  color:#f8bc1c;
+  color: #f8bc1c;
   font-size: 1.3em;
-  margin-right:0.5em;
+  margin-right: 0.5em;
 }
 
 .suport-text-mobile{
@@ -4104,5 +4104,11 @@ p .project-basics-icons{
     margin: 0 auto;
     float:none;
     margin-bottom: 0.5em;
+  }
+
+  .mobile-container-subgoals{
+    padding-bottom: 1em;
+    border-bottom: 1px solid $border-gray;
+
   }
 }

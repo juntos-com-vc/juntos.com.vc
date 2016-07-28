@@ -1,3 +1,5 @@
+$tablet-size: 768px;
+
 .main-header {
   height: 50px;
   padding-left: 15px;
@@ -77,7 +79,7 @@
   }
 }
 
-@media(max-width:678px){
+@media(max-width: $tablet-size){
   .header-link{
     color:#fff;
   }
@@ -566,7 +568,8 @@
     font-size: 0.8em;
   }
 }
-@media(max-width:768px){
+
+@media(max-width: $tablet-size){
   .btn-login-mobile{
     background-color: $white;
     color: $lighten-orange;
@@ -574,5 +577,9 @@
     margin: 0.5em 0;
     border-radius:3px;
     padding:10px 25px;
+  }
+
+  .margin-link{
+    margin: 0 1em;
   }
 }

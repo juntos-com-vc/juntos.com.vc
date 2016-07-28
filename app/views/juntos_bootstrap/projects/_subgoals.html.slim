@@ -14,7 +14,7 @@
       - if (@project.pledged >= subgoal.value)
         .subgoals-bar[style="color: #fff; background-color: #{subgoal.color};"]
           p = number_to_currency(subgoal.value, precision: 2)
-      - else
+      - else  
         .subgoals-bar
           p = number_to_currency(subgoal.value, precision: 2)
       p.subgoal-description.small.align-right = subgoal.description
