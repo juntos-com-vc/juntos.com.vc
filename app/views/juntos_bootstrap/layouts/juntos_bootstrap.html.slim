@@ -29,6 +29,8 @@ html
     javascript:
       var wl = new WebLibras();
 
+
+
   body#catarse_bootstrap[data-namespace=namespace data-controller-name=controller_name data-action=action_name data-user="#{current_user.try(:to_analytics_json)}"]
     = render_facebook_sdk
     = render 'layouts/flash' if notice.present?
