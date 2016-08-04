@@ -1,33 +1,60 @@
-.w-row.project-progress-stats
-  .w-col.w-col-small-6.w-tiny-6
-    p.goal-text = t('projects.show.goal')
-    .bar-container style=("height: 350px;")
-      .goal-bar
-        .bar-wrap
+.container
+  - if @project.subgoals.any?
+    .all-or-nothing-text
+      p.small.align-centered = t('projects.show.all_or_nothing')
+    .w-row.project-progress-stats.w-col.w-col-small-8.w-col-tiny-8
+      .one-subgoal.subgoal-width
+        .subgoals-bar
+          - if @project.current_subgoal
+            .partial-paint.w-hidden-main.partial-width[style="height: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
+            .partial-paint.w-hidden-medium.w-hidden-small.w-hidden-tiny[style="width: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
+          - else
+            .partial-paint.w-hidden-main.partial-width[style="height: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
+            .partial-paint.w-hidden-medium.w-hidden-small.w-hidden-tiny[style="width: #{@project.display_subgoals.first.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
+          p[style="z-index: 10"] = number_to_currency(@project.goal, precision: 2)
 
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          hr.bar-line/
-          .bar style=("transform: translateY(55%);")
-            .bar-info
-              p.goal-percentual 30%
-          span.bar-label
-        .bar-labels
-          span.bar-label 500
-          span.bar-label 450
-          span.bar-label 400
-          span.bar-label 350
-          span.bar-label 300
-          span.bar-label 250
-          span.bar-label 200
-          span.bar-label 150
-          span.bar-label 100
-          span.bar-label 50
-          span.bar-label 0
+      - @project.display_subgoals.each do |subgoal|
+        .one-subgoal[style="width: 25%; height: #{subgoal.percentual_from_total}%;"]
+          - if (@project.pledged >= subgoal.value)
+            .subgoals-bar[style="background-color: #{subgoal.color};"]
+              p = number_to_currency(subgoal.value, precision: 2)
+          - else
+            .subgoals-bar
+              p = number_to_currency(subgoal.value, precision: 2)
+          p.subgoal-description.small.align-right.w-hidden-medium.w-hidden-small.w-hidden-tiny = subgoal.description
+    .w-col.w-col-4.w-col-small-4.w-col-tiny-4
+      .project-progress-description
+        .w-col.w-col-12.w-col-small-12.w-col-tiny-12.fontweight-semibold.total-supporters
+          .w-col.w-col-12
+            = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
+          .fontsize-largest = @project.total_contributions
+          .fontsize-smaller = t('projects.show.sidebar.contributions')
+        .w-col.w-col-12.w-col-small-12.w-col-tiny-12.fontweight-semibold
+          .w-col.w-col-12
+            = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
+          .fontsize-largest = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : 1)
+          .fontsize-smaller = t('projects.show.sidebar.goal', total: @project.display_goal)
+        .w-col.w-col-12.w-col-small-12.w-col-tiny-12.fontweight-semibold
+          .w-col.w-col-12
+            = image_tag('juntos/project_calendar.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
+          .fontsize-largest = @project.remaining_days
+          .fontsize-smaller #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
+
+  - else
+    .project-progress-description
+      .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold.total-supporters
+        .w-col.w-col-12
+           = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
+        .fontsize-largest = @project.total_contributions
+        .fontsize-smaller = t('projects.show.sidebar.contributions')
+      .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
+        .w-col.w-col-12
+          = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
+        .fontsize-largest = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : 1)
+        .fontsize-smaller = t('projects.show.sidebar.goal', total: @project.display_goal)
+      .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
+        .w-col.w-col-12
+          = image_tag('juntos/project_calendar.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
+        .fontsize-largest = @project.remaining_days
+        .fontsize-smaller #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
+        

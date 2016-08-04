@@ -7,4 +7,8 @@ $(document).ready(function() {
     }
   });
   $(".project-progress-stats").css("margin-bottom", (absolute_height - 20) + "px");
+
+  if ($(window).width() < 991){
+    $(".project-progress-stats").css("margin-bottom", (absolute_height - 130) + "px");
+  }
 });
