@@ -98,6 +98,7 @@ pt:
         com boleto impresso
       link_reward: Baixar relatório dos apoiadores da recompensa de %{value}
     project_about:
+      read_more: 'LEIA MAIS'
       embed: < embed >
       embed_title: Incorpore este projeto no seu site
       active_btn: ' Lembrar-me'
@@ -139,7 +140,7 @@ pt:
           waiting_funds: "Aguardando a confirmação de boletos para saber se este projeto será financiado."
           draft: "Esse projeto é apenas um rascunho e ainda não está aberto para receber apoios."
         submit: Apoiar este projeto
-        submit-mobile: APOIAR
+        submit-mobile: Apoiar este projeto
         cancel: Cancelar apoio
         already_contributing: Você já apoia este projeto
       project_by: projeto por

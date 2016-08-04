@@ -95,6 +95,7 @@ en:
       link_reports_waiting_confirmation: 'Download reports from billet payment'
       link_reward: 'Download report from donors that have chosen the %{value} reward'
     project_about:
+      read_more: 'READ MORE'
       embed: < embed >
       embed_title: 'Embed it on your site'
       active_btn: ' Remember me'
