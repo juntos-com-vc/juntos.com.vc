@@ -22,20 +22,3 @@
 
     .w-col.w-col-12.w-col-small-12.w-col-tiny-12
       = render 'subgoals_mobile'
-    .w-col.w-col-4.w-col-small-4.w-col-tiny-4
-      .project-progress-description
-        .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold.total-supporters
-          .w-col.w-col-12
-            = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
-          .fontsize-largest = @project.total_contributions
-          .fontsize-smaller = t('projects.show.sidebar.contributions')
-        .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
-          .w-col.w-col-12
-            = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
-          .fontsize-largest = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : 1)
-          .fontsize-smaller = t('projects.show.sidebar.goal', total: @project.display_goal)
-        .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
-          .w-col.w-col-12
-            = image_tag('juntos/project_calendar.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
-          .fontsize-largest = @project.remaining_days
-          .fontsize-smaller #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
