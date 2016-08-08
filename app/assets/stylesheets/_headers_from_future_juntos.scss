@@ -579,7 +579,10 @@ $tablet-size: 768px;
     padding:10px 25px;
   }
 
-  .margin-link{
-    margin: 0 1em;
+  .mobile-header-link{
+    padding-top: 1em;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 1.3em;
   }
 }
