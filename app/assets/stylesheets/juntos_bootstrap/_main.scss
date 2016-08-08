@@ -4093,6 +4093,7 @@ p .project-basics-icons{
   color: #f8bc1c;
   font-size: 1.3em;
   margin-right: 0.5em;
+  display: block;
 }
 
 .suport-text-mobile{
@@ -4111,4 +4112,22 @@ p .project-basics-icons{
     border-bottom: 1px solid $border-gray;
 
   }
+}
+
+.no-padding-bottom{
+  padding-bottom: 0;
+}
+
+.no-margin-bottom{
+  margin-bottom: 0;
+}
+
+.btn-support-fixed{
+  position: fixed;
+  bottom: 0;
+  border-radius: 60px;
+  right: 20px;
+  text-decoration: none;
+  color: $white;
+  padding: 36px 14px;
 }

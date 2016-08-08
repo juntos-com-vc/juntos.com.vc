@@ -141,6 +141,7 @@ en:
         cancel: 'Cancel support'
         already_contributing: 'You are already contributing with this project'
       project_by: 'project by'
+      donate: DONATE
       funding_period: 'Campaign period'
       project_header:
         subtitle_html: 'A project of %{link}'
