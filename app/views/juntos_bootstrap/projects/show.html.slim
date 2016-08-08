@@ -41,9 +41,6 @@
 
 - project_aumigo = @project.id == 481
 
-/- if @project.draft?
-  /= render 'shared/header'
-/- else
 - if channel.present?
   = render 'shared/header_channel'
 - else
@@ -102,15 +99,24 @@ nav.project-nav.w-hidden-main.w-hidden-medium
 - if policy(@project).update?
   nav.dashboard-nav.w-hidden-small.w-hidden-tiny
     .w-container
+
       = link_to '#basics', id: 'basics_link', class: 'dashboard-nav-link ' , data: {target: '#project_basics'} do
         span.fa.fa-check-circle
           span.u-marginleft-10 = t('.dashboard_nav.basics')
+
       = link_to '#dashboard_project', id: 'dashboard_project_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_project'} do
         span.fa.fa-check-circle
           span.u-marginleft-10 = t('.dashboard_nav.project')
+
       = link_to '#dashboard_rewards', id: 'dashboard_rewards_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_rewards'} do
         span.fa.fa-check-circle
           span.u-marginleft-10 = t('.dashboard_nav.rewards')
+
+      - if @project.recurring?
+        = link_to '#project_bank_info', id: 'project_bank_info_link', class: 'dashboard-nav-link ' , data: {target: '#project_bank_info'} do
+          span.fa.fa-check-circle
+            span.u-marginleft-10 = t('.dashboard_nav.bank_info')
+
       - if current_user.admin?
         = link_to '#dashboard_subgoals', id: 'dashboard_subgoals_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_subgoals'} do
           span.fa.fa-check-circle
@@ -119,6 +125,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
       - if @project.draft?
         .btn-send-draft
            = link_to t('.dashboard_nav.send_to_analysis'), send_to_analysis_project_path(@project), class: 'btn btn-small'
+
 .w-container
   .w-row
     article
@@ -153,6 +160,9 @@ nav.project-nav.w-hidden-main.w-hidden-medium
 
       #dashboard_rewards.content.w-hidden
         = render 'dashboard_reward'
+      - if @project.recurring?
+        #project_bank_info.content.w-hidden
+          = render 'project_bank_info'
       - if current_user and current_user.admin?
         #dashboard_subgoals.content.w-hidden
           = render 'dashboard_subgoals'
@@ -193,7 +203,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
 
       #project_comments.content.w-col.w-col-8.w-hidden
 
-    #project-sidebar.aside.w-col.w-col-4
+    #project-sidebar.aside.w-col.w-col-4 data="project-owner-sidebar"
       .project-contribution-card
         - if @recurring_active
           .u-text-center

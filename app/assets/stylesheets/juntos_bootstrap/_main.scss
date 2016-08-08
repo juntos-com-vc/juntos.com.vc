@@ -1,6 +1,6 @@
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #3f4752;
+  color: $blue-one;
   font-size: 14px;
   line-height: 20px;
 }
@@ -44,9 +44,9 @@ p {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  border: 1px solid #FFB74D !important;
+  border: 1px solid $border-yellow !important;
   border-radius: 5px;
-  background-color: #FFB74D !important;
+  background-color: $border-yellow !important;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
@@ -91,7 +91,7 @@ p {
   position: relative;
   top: -2px;
   margin-top: 31px;
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .btn.bt-dark:hover {
   background-color: #505966;
@@ -120,17 +120,17 @@ p {
 }
 .section.header {
   padding: 14px 24px 12px;
-  background-color: #3f4752;
+  background-color: $blue-one;
   color: #434f5e;
 }
 .section.header.header-blue-one {
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .section.section-gray-one {
   background-color: #f1f4f4;
 }
 .section.negative {
-  background-color: #3f4752;
+  background-color: $blue-one;
   color: #f1f4f4;
 }
 .bootstrap-color-swatch {
@@ -144,7 +144,7 @@ p {
   border-radius: 10px;
 }
 .bootstrap-color-swatch.blue-one {
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .bootstrap-color-swatch.green-button {
   background-color: #00b22d;
@@ -163,28 +163,48 @@ p {
 }
 .bootstrap-color-swatch.blue-light {
   background-color: rgba(64, 155, 255, 0.09);
-  color: #3f4752;
+  color: $blue-one;
 }
+
+// select2 in recurring form
+.select2-container {
+  width: 100% !important;
+}
+.selection span.select2-selection {
+  height: 40px;
+  border: 1px solid $border-yellow;
+  padding-top: 6px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.select2-selection__rendered {
+  color: $blue-one !important;
+}
+.select2-selection__arrow {
+  height: inherit !important; 
+}
+
 .text-field {
   display: block;
   height: 40px;
   margin-top: 0px;
   margin-bottom: 20px;
-  border: 1px solid #FFB74D;
+  border: 1px solid $border-yellow;
   border-radius: 5px;
   background-color: white;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
-  color: #FFB74D;
+  color: $border-yellow;
   font-weight: bold;
   font-size: 15px;
 }
 .text-field:hover {
-  border-color: #FFB74D;
+  border: 1px solid $border-yellow;
+  border-color: $border-yellow;
 }
 .text-field:focus {
-  border-color: #FFB74D;
+  border-color: $border-yellow;
 }
 .text-field.text-field-url {
   position: relative;
@@ -204,7 +224,7 @@ p {
   width: 60%;
   margin-top: 0px;
   float: right;
-  color: #3f4752;
+  color: $blue-one;
 }
 .text-field.text-field-creditcard {
   display: inline-block;
@@ -270,7 +290,7 @@ p {
   height: 290px;
 }
 .field-label {
-  color: #3f4752;
+  color: $blue-one;
   font-size: 16px;
   font-weight: 400;
 }
@@ -474,7 +494,7 @@ p {
   line-height: 1;
   margin-top: 35px;
   span {
-    color: #3F4752;
+    color: $blue-one;
     display: block;
     font-size: 12px;
     font-weight: normal;
@@ -507,11 +527,11 @@ p {
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
-  color: #3f4752;
+  color: $blue-one;
   text-decoration: none;
 }
 .link-hidden:hover {
-  color: #3f4752;
+  color: $blue-one;
   text-decoration: underline;
 }
 .paragraph3 {
@@ -519,7 +539,7 @@ p {
   margin-top: 16px;
   margin-bottom: 9px;
   padding-top: 0px;
-  color: #3f4752;
+  color: $blue-one;
   font-size: 14px;
   line-height: 19px;
 }
@@ -547,7 +567,7 @@ p {
   padding: 15px 15px 0px;
   border-radius: 5px 5px 0px 0px;
   background-color: rgba(64, 155, 255, 0.09);
-  color: #3f4752;
+  color: $blue-one;
 }
 .project-author.get-contact {
   margin-top: 0px;
@@ -604,7 +624,7 @@ p {
   opacity: 1;
 }
 .alt-link {
-  color: #FFB74D;
+  color: $border-yellow;
   text-decoration: none;
 }
 .alt-link:hover {
@@ -615,10 +635,10 @@ p {
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
-  color: #FFB74D;
+  color: $border-yellow;
 }
 .alt-link.alt-link-2:hover {
-  color: #FFB74D;
+  color: $border-yellow;
 }
 .alt-link.alt-link-fb {
   position: relative;
@@ -640,7 +660,7 @@ p {
   padding-bottom: 8px;
   padding-left: 15px;
   border-bottom: 1px solid rgba(37, 49, 57, 0.6);
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .img-logo {
   margin-top: 8px;
@@ -709,7 +729,7 @@ p {
   margin-left: auto;
   padding-top: 46px;
   padding-bottom: 54px;
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .headingcenter {
   position: static;
@@ -754,7 +774,7 @@ p {
   position: static;
   margin-top: 80px;
   padding-bottom: 45px;
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .link-footer {
   position: static;
@@ -898,7 +918,7 @@ p {
   padding: 13px 13px 8px;
   border-radius: 4px 4px 0px 0px;
   background-color: white;
-  color: #3f4752;
+  color: $blue-one;
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
@@ -917,7 +937,7 @@ p {
 }
 .project-nav-tab.project-nav-tab--off:hover {
   background-color: white;
-  color: #3f4752;
+  color: $blue-one;
   font-weight: 400;
 }
 .project-nav-tab.admin {
@@ -1070,7 +1090,7 @@ p {
   line-height: 100%;
 }
 .blue-one {
-  color: #3f4752;
+  color: $blue-one;
 }
 .bold {
   font-weight: 600;
@@ -1113,7 +1133,7 @@ p {
 .col-right-bootstrap-buttons.bg-blue-one {
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .col-right-bootstrap-buttons.bg-blue-one.versao-2 {
   margin-top: 0px;
@@ -1182,7 +1202,7 @@ p {
   text-align: center;
 }
 .project-sub-heading {
-  color: #3f4752;
+  color: $blue-one;
   text-align: center;
 }
 .page-header {
@@ -1192,7 +1212,7 @@ p {
 }
 .page-header.negative {
   border-top: 1px none rgba(0, 0, 0, 0.2);
-  background-color: #3f4752;
+  background-color: $blue-one;
   color: #f1f4f4;
 }
 .page-header .project-image {
@@ -1289,7 +1309,7 @@ p {
   font-weight: 600;
 }
 .link-hidden-dark {
-  color: #3f4752;
+  color: $blue-one;
   text-decoration: none;
 }
 .link-hidden-dark:hover {
@@ -1305,10 +1325,10 @@ p {
 }
 .project-stats-status.status--waiting {
   background-color: #ffcc40;
-  color: #3f4752;
+  color: $blue-one;
 }
 .project-stats-status.status--draft {
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .project-author-city {
   margin-bottom: 10px;
@@ -1329,13 +1349,13 @@ p {
   padding-top: 4px;
   border-style: solid solid solid none;
   border-width: 1px;
-  border-color: #FFB74D;
+  border-color: $border-yellow;
   border-radius: 0px 5px 5px 0px;
   background-color: white;
   -webkit-transition: all 500ms ease;
   -o-transition: all 500ms ease;
   transition: all 500ms ease;
-  color: #FFB74D;
+  color: $border-yellow;
   font-size: 44px;
   font-weight: 400;
 }
@@ -1344,7 +1364,7 @@ p {
   height: 45px;
   span {
     float: left;
-    color: #FFB74D;
+    color: $border-yellow;
     margin: 9px 10px;
   }
   #contribution_platform_value {
@@ -1353,30 +1373,16 @@ p {
   }
 }
 .back-reward-input-reward:hover {
-  border-color: #FFB74D;
-  color: #FFB74D;
+  border-color: $border-yellow;
+  color: $border-yellow;
 }
 .back-reward-input-reward:active {
-  border-top-color: #FFB74D;
+  border-top-color: $border-yellow;
 }
 .back-reward-input-reward:focus {
-  border-top-color: #FFB74D;
+  border-top-color: $border-yellow;
 }
-/*.back-reward-input-reward.placeholder {*/
-  /*font-size: 15px;*/
-  /*display: inline-block;*/
-  /*width: 160px;*/
-  /*margin-right: 0px;*/
-  /*margin-bottom: 0px;*/
-  /*padding-top: 15px;*/
-  /*padding-left: 17px;*/
-  /*float: left;*/
-  /*border-style: solid none solid solid;*/
-  /*border-color: #FFB74D;*/
-  /*border-radius: 10px 0px 0px 10px;*/
-  /*background-color: rgba(255, 255, 255, 0.74);*/
-  /*color: #CCCCCC;*/
-/*}*/
+
 .back-reward-radio-reward {
   display: block;
   margin-top: 0px;
@@ -1419,7 +1425,7 @@ p {
   background-color: #f1f4f4;
 }
 .back-faq-box.blue-one {
-  background-color: #3f4752;
+  background-color: $blue-one;
   color: white;
 }
 .back-reward-input-reward--10 {
@@ -1476,7 +1482,7 @@ p {
   margin-top: 80px;
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .project-embed {
   position: fixed;
@@ -1697,7 +1703,7 @@ p {
 }
 .back-payment-info-reward-edit-link {
   float: right;
-  color: #3f4752;
+  color: $blue-one;
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
@@ -1792,7 +1798,7 @@ p {
 .project-admin-nav-section {
   padding-top: 11px;
   padding-bottom: 11px;
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .project-admin-nav-section.test {
   border-bottom: 1px solid #ddd;
@@ -1808,7 +1814,7 @@ p {
 }
 .dashboard-nav-link {
   display: inline-block;
-  margin-right: 20px;
+  margin-right: 15px;
   padding: 10px;
   border-bottom: 3px solid white;
   color: #79808b;
@@ -1849,7 +1855,7 @@ p {
   right: 0px;
   z-index: 3;
   padding-bottom: 12px;
-  background-color: #3f4752;
+  background-color: $blue-one;
 }
 .bootstrap-header-title {
   position: static;
@@ -1884,7 +1890,7 @@ p {
 .bootstrap-header-dropdown-link {
   padding-top: 5px;
   padding-bottom: 5px;
-  color: #3f4752;
+  color: $blue-one;
 }
 .bootstrap-header-dropdown-link:hover {
   background-color: rgba(121, 128, 139, 0.09);
@@ -1945,7 +1951,7 @@ p {
 .back-payment-creditcard-records-number {
   display: inline-block;
   float: none;
-  color: #3f4752;
+  color: $blue-one;
   font-weight: 600;
   text-align: right;
 }
@@ -2094,7 +2100,7 @@ p {
   border-top: 1px solid #e9e9ec;
 }
 .text-success {
-  color: #FFB74D;
+  color: $border-yellow;
 }
 .header-search {
   display: inline-block;
@@ -2215,13 +2221,13 @@ p {
   text-decoration: none;
 }
 .btn-dark {
-  border: 1px solid #3f4752 !important;
-  background-color: #3f4752 !important;
+  border: 1px solid $blue-one !important;
+  background-color: $blue-one !important;
   color: white;
   text-decoration: none;
 }
 .btn-dark:hover {
-  border-color: #3f4752;
+  border-color: $blue-one;
   background-color: #30353d;
 }
 .btn-dark.btn-attached {
@@ -2311,7 +2317,7 @@ p {
   text-decoration: none;
 }
 .link-hidden-light:hover {
-  color: #3f4752;
+  color: $blue-one;
   text-decoration: underline;
 }
 .u-marginbottom-40 {
@@ -2372,7 +2378,7 @@ p {
 }
 .badge-attention {
   background-color: #faf64d;
-  color: #3f4752;
+  color: $blue-one;
 }
 .badge-gone {
   background-color: #79808b;
@@ -2501,8 +2507,8 @@ p {
   background-color: #faf64d;
 }
 .card-dark {
-  border: 1px solid #3f4752;
-  background-color: #3f4752;
+  border: 1px solid $blue-one;
+  background-color: $blue-one;
   color: white;
 }
 .fa.fa-clock-o:hover {
@@ -2536,13 +2542,13 @@ p {
   margin-top: 20px;
 }
 .badge-success {
-  background-color: #FFB74D;
+  background-color: $border-yellow;
   color: white;
 }
 .btn-secondary {
-  border: 1px solid #3f4752;
+  border: 1px solid $blue-one;
   background-color: transparent;
-  color: #3f4752;
+  color: $blue-one;
 }
 .btn-secondary:hover {
   color: white;
@@ -2689,7 +2695,7 @@ p {
   float: right;
 }
 .link-edit {
-  color: #3f4752;
+  color: $blue-one;
   text-decoration: none;
 }
 .link-edit:hover {
@@ -2735,7 +2741,7 @@ section.devise-body-section {
   padding: 25px 0;
 
   .access-type-field {
-    color: #3f4752;
+    color: $blue-one;
     display: inline-block;
     margin-left: 20px;
   }
@@ -2746,7 +2752,7 @@ section.devise-body-section {
   }
 }
 section.devise-body-section .access-type-field {
-  color: #3f4752;
+  color: $blue-one;
   display: inline-block;
   margin-left: 20px;
 }
@@ -3457,7 +3463,7 @@ section.devise-body-section .access-type-field input {
     display: inline-block;
     margin-left: 10px;
     float: left;
-    color: #3f4752;
+    color: $blue-one;
     font-size: 16px;
     font-weight: 600;
   }
@@ -3929,8 +3935,8 @@ section.devise-body-section .access-type-field input {
 .text-field.back-reward-input-reward {
   border-style: solid solid solid solid !important;
   border-radius: 10px 10px 10px 10px;
-  border-color: #FFB74D;
-  color: #FFB74D;
+  border-color: $border-yellow;
+  color: $border-yellow;
   background-color: white;
   font-size: 38px;
   font-weight: bold;
@@ -3948,12 +3954,12 @@ section.devise-body-section .access-type-field input {
 .minimum-value {
   font-size: 12px;
   a {
-    color: #FFB74D;
+    color: $border-yellow;
   }
 }
 .choose-reward {
   span {
-    color: #FFB74D;
+    color: $border-yellow;
   }
 }
 .project-metrics {

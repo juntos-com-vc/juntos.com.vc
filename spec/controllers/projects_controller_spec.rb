@@ -82,7 +82,7 @@ RSpec.describe ProjectsController, type: :controller do
   describe "PUT update" do
     shared_examples_for "updatable project" do
       context "with valid permalink" do
-        before { put :update, id: project.id, project: { name: 'My Updated Title' },locale: :pt }
+        before { put :update, id: project.id, project: { name: 'My Updated Title' }, locale: :pt }
         it {
           project.reload
           expect(project.name).to eq('My Updated Title')
@@ -99,11 +99,11 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     shared_examples_for "protected project" do
-      before { put :update, id: project.id, project: { name: 'My Updated Title' },locale: :pt }
-      xit {
-        project.reload
-        expect(project.name).to eq('Foo bar')
-      }
+      let(:project){ create(:project, name: 'Foo bar', state: 'draft') }
+      
+      before { put :update, id: project.id, project: { name: 'My Updated Title' }, locale: :pt }
+      
+      it { expect(project.reload.name).to eq('Foo bar') }
     end
 
     context "when user is a guest" do
@@ -172,7 +172,7 @@ RSpec.describe ProjectsController, type: :controller do
       let(:project){ create(:project) }
       let(:project_post){ create(:project_post, project: project) }
       before{ get :show, permalink: project.permalink, project_post_id: project_post.id, locale: :pt }
-      xit("should assign update to @update"){ expect(assigns(:post)).to eq(project_post) }
+      it("should assign update to @update"){ expect(assigns(:post)).to eq(project_post) }
     end
   end
 
@@ -191,6 +191,61 @@ RSpec.describe ProjectsController, type: :controller do
       before { get :video, locale: :pt, url: 'http://????' }
 
       its(:body){ should == nil.to_json }
+    end
+  end
+
+  describe 'PATCH save_recipient' do 
+    let(:bank_account) {
+      {
+        bank_code: '001',
+        agencia: '0001',
+        conta: '000001',
+        conta_dv: '00',
+        document_number: '111.111.111-11',
+        legal_name: 'Juntos com você API'
+      }
+    }
+
+    context 'when user is not allowed' do
+      it 'should not succeed' do
+        patch :save_recipient, id: project.id, bank_account: bank_account, locale: :pt
+        expect(response).not_to be_success
+      end
+    end
+
+    context 'when user is allowed' do
+      let(:current_user){ project.user }
+
+      context 'and params are present' do
+        it 'perform a sidekiq job' do
+          allow(HandleProjectRecipientWorker).to receive(:perform_async)
+
+          patch :save_recipient, format: :js, id: project.id, bank_account: bank_account, locale: :pt
+
+          expect(HandleProjectRecipientWorker).to have_received(:perform_async).once
+        end
+      end
+
+      context 'and no params are present' do
+        it 'do not perform a sidekiq job' do
+          allow(HandleProjectRecipientWorker).to receive(:perform_async)
+
+          patch :save_recipient, format: :js, id: project.id, bank_account: {}, locale: :pt
+
+          expect(HandleProjectRecipientWorker).not_to have_received(:perform_async)
+        end
+      end
+
+      context 'and one param is missing' do
+        it 'do not perform a sidekiq job' do
+          allow(HandleProjectRecipientWorker).to receive(:perform_async)
+
+          bank_account.delete(:agencia)
+          patch :save_recipient, format: :js, id: project.id, bank_account: bank_account, locale: :pt
+
+          expect(HandleProjectRecipientWorker).not_to have_received(:perform_async)
+        end
+      end
     end
   end
 end

@@ -3,6 +3,11 @@ pt:
     new:
       page-title: "Comece seu projeto"
 
+      sidebar:
+        control_panel: Painel de controle
+        hi: Olá
+        message: Para editar as informações do seu projeto, baixar relatórios e receber dicas de campanha, acesse esta página no seu computador ou tablet. Lá você vai ter acesso ao painel de controle do seu projeto ;)
+
       faq:
         titles:
           support: "Suporte"

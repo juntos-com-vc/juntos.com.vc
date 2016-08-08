@@ -8,6 +8,8 @@ gem 'protected_attributes', '~> 1.0.5' # When upgrade to strong_parameters, remo
 gem 'rails-observers', '~> 0.1.2'
 
 gem 'sidekiq',  '~> 3.1.3'
+gem 'sidekiq-status'
+
 gem 'sinatra', require: nil
 
 # Turns every field on a editable one
@@ -35,7 +37,7 @@ gem 'user_notifier', '~> 0.0.5'
 gem 'mixpanel-ruby'
 
 # Payment engines
-gem 'pagarme', '2.0.0'
+gem 'pagarme', '2.1.2'
 gem 'catarse_paypal_express', '3.0.1'
 gem 'catarse_moip', github: 'codelandev/catarse_moip'
 gem 'catarse_credits', '1.0.0'
@@ -163,7 +165,7 @@ group :test do
   gem 'rspec-html-matchers', '~> 0.7.2'
 end
 
-source 'https://rails-assets.tenex.tech' do
+source 'https://rails-assets.org' do
   gem 'rails-assets-underscore', '~> 1.4.4'
 end
 

@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       get 'embed_panel'
       get 'send_to_analysis'
       get :cancel_recurring, to: 'projects/recurring_contributions#cancel'
+      patch 'save_recipient', defaults: { format: 'js' }
     end
   end
   resources :users do
@@ -202,4 +203,6 @@ Rails.application.routes.draw do
   get '/bancodehistorias', to: redirect('http://juntoscomvc.wix.com/bancodehistorias')
 
   get "/:permalink" => "projects#show", as: :project_by_slug
+
+  get '/jobs/:id/status' => 'jobs#status'
 end

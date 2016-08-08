@@ -82,18 +82,26 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def save_recipient
+    authorize resource
+
+    respond_to do |format|
+      format.js do
+        all_bank_account_params = extract_bank_account_params
+
+        if all_bank_account_params.present?
+          @worker = HandleProjectRecipientWorker.perform_async(
+            @project.id,
+            all_bank_account_params
+          )
+        end
+      end
+    end
+  end
+
   def update
     authorize resource
     update! do |format|
-      if channel && channel.recurring? && params[:bank_account]
-        if params[:bank_account].values.include? ""
-          resource.errors.add(:recipient, t('activerecord.errors.models.project.attributes.recipient.blank'))
-          params[:anchor] = 'basics'
-        else
-          RecipientWorker.perform_async(@project.id, params[:bank_account])
-        end
-      end
-
       format.html do
         if resource.errors.present?
           flash[:alert] = resource.errors.full_messages.to_sentence
@@ -117,14 +125,18 @@ class ProjectsController < ApplicationController
     @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
 
     if @channel && @channel.recurring?
-      @banks = Bank.to_collection
+      @banks = Bank.order(:code).to_collection
       @recurring_active = RecurringContribution.where({
         project: @project,
         user: current_user
       }).active.any?
 
-      recipient = PagarmeService.find_recipient_by_id(@project.recipient)
-      @bank_account = recipient.try(:bank_account) || PagarMe::BankAccount.new
+      @bank_account = params[:bank_account] || {}
+ 
+      if @project.recipient
+        recipient = FindRemoteRecipient.call(@project.recipient)
+        @bank_account = recipient.bank_account
+      end
     end
 
     @color = (channel.present? && channel.main_color) || @project.color
@@ -173,5 +185,20 @@ class ProjectsController < ApplicationController
 
   def use_catarse_boostrap
     ["new", "create", "show", "about_mobile"].include?(action_name) ? 'juntos_bootstrap' : 'application'
+  end
+
+  def extract_bank_account_params
+    expected_keys = [:bank_code, :agencia, :conta, :conta_dv,
+                     :document_number, :legal_name]
+
+    bank_account_params = (params[:bank_account] || {}).slice(*expected_keys)
+
+    if all_bank_account_params?(bank_account_params, expected_keys)
+      bank_account_params
+    end
+  end
+
+  def all_bank_account_params?(bank_account_params, expected_params)
+    bank_account_params.values.count(&:present?) == expected_params.count
   end
 end

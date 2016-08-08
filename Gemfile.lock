@@ -52,7 +52,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.tenex.tech/
+  remote: https://rails-assets.org/
   specs:
     RedCloth (4.2.9)
     actionmailer (4.1.14.1)
@@ -368,7 +368,7 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
-    pagarme (2.0.0)
+    pagarme (2.1.2)
       multi_json
       rest-client
     pg (0.17.1)
@@ -510,6 +510,8 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    sidekiq-status (0.6.0)
+      sidekiq (>= 2.7)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -647,7 +649,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook (= 1.4.0)
   omniauth-twitter
-  pagarme (= 2.0.0)
+  pagarme (= 2.1.2)
   pg
   pg_search
   poltergeist
@@ -675,6 +677,7 @@ DEPENDENCIES
   selenium-webdriver (~> 2.51.0)
   shoulda
   sidekiq (~> 3.1.3)
+  sidekiq-status
   simple_form
   sinatra
   slick_rails

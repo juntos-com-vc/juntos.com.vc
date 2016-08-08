@@ -61,6 +61,21 @@ en:
       support: 'Support'
       form:
         submit: 'Save'
+    project_bank_info:
+      title: Insert here your bank info
+      subtitle: In order to receive donations, insert the bank info where do you whant to receive it.
+      form:
+        submit: Save
+    bank_info_messages:
+      waiting:
+        title: Wait
+        message: Wait while we proccess your bank info.
+      error:
+        title: An error occurred
+        message: Verify your info and try again.
+      success:
+        title: Success
+        message: Your data was send successfully.
     metrics:
       titles:
         confirmed_by_day: 'Confirmed contributions by day'
@@ -108,6 +123,7 @@ en:
         basics: 'Basics'
         project: 'Project'
         rewards: 'Rewards'
+        bank_info: 'Bank info'
         subgoals: 'Subgoals'
         preview: 'Preview'
         send_to_analysis: 'Send project to analysis'
