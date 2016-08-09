@@ -178,13 +178,11 @@ nav.project-nav.w-hidden-main.w-hidden-medium
 
       #project_posts.content.w-col.w-col-12.w-hidden
         = render 'dashboard_posts'
-      #project_contributions.content.w-col.w-col-12.w-hidden
-
+      #project_contributions.content.w-col.w-col-8.w-hidden
         .w-row
-          .w-col.w-col-small-12.w-col-tiny-12
-            .w-hidden-main.w-hidden-medium
-              h1.align-center.total-supporters   = "#{@project.total_contributions} #{t('.supporters')}"
-            = render @contributions
+          .w-hidden-main.w-hidden-medium
+            h1.align-center.total-supporters   = "#{@project.total_contributions} #{t('.supporters')}"
+          = render @contributions
         - if policy(@project).update?
           .w-row
             .w-col.w-col-small-6.w-col-tiny-6
