@@ -1,17 +1,32 @@
 - if contribution.anonymous
-  .w-col.w-col-small-4.w-col-tiny-4
+  .w-col.w-col-small-4.w-col-tiny-4.w-hidden-main.w-hidden-medium
     .contribution.u-margintop-10
       = link_to '#', title: t('projects.contributions.contribution.anonymous_contribution') do
-        .contribution-thumb[style="background-image: url('#{asset_url('user.png')}'); background-size: cover; background-position: center;margin: 0 auto;"]
+        .contribution-thumb.thumb-contribution-mobile[style="background-image: url('#{asset_url('user.png')}');"]
         p.align-center  = a = contribution.user.name
+  .w-hidden-small.w-hidden-tiny.display-contribution
+    .contribution.u-margintop-10
+      = link_to '#', title: t('projects.contributions.contribution.anonymous_contribution') do
+        .border-contribution.contribution-thumb.thumb-contribution-mobile[style="background-image: url('#{asset_url('user.png')}');"]
+        p.align-center  = a = contribution.user.name
+
 - else
-  .w-col.w-col-small-4.w-col-tiny-4
+  .w-col.w-col-small-4.w-col-tiny-4.w-hidden-main.w-hidden-medium
     .contribution.u-margintop-10
       = link_to user_path(contribution.user), title: contribution.user.name do
-        .contribution-thumb[style="background-image: url('#{contribution.user.display_image}'); background-size: cover; background-position: center;margin: 1em auto;"]
+        .contribution-thumb.thumb-contribution-desktop[style="background-image: url('#{contribution.user.display_image}');"]
         .w-hidden-main.w-hidden-medium
-        - name = contribution.user.name
-        p.align-center = name.split.first
+          - name = contribution.user.name
+          p.align-center = name.split.first
+  .w-hidden-small.w-hidden-tiny.display-contribution
+    .contribution.u-margintop-10
+      = link_to user_path(contribution.user), title: contribution.user.name do
+        .border-contribution.contribution-thumb.thumb-contribution-desktop[style="background-image: url('#{contribution.user.display_image}');"]
+        .w-hidden-main.w-hidden-medium
+          - name = contribution.user.name
+          p.align-center = name.split.first
+
+
 /- if contribution.anonymous
   /.w-clearfix.u-marginbottom-20
 

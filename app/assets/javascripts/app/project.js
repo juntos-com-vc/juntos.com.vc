@@ -43,7 +43,7 @@ App.addChild('Project', _.extend({
 
       var links = ['project_metrics_link', 'project_reports_link', 'basics_link', 'dashboard_project_link', 'dashboard_rewards_link', 'dashboard_subgoals_link', 'project_bank_info_link'];
 
-      $('[data="project-owner-sidebar"]').toggle( ($.inArray($tab.prop('id'), links) == -1) );
+      $('[data-project-owner-sidebar]').toggle( ($.inArray($tab.prop('id'), links) == -1) );
     }
   },
 

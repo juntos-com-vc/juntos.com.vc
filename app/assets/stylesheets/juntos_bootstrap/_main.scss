@@ -181,7 +181,7 @@ p {
   color: $blue-one !important;
 }
 .select2-selection__arrow {
-  height: inherit !important; 
+  height: inherit !important;
 }
 
 .text-field {
@@ -2814,9 +2814,7 @@ section.devise-body-section .access-type-field input {
 .u-marginleft--200 {
   margin-left: -200px !important;
 }
-#project_contributions .contribution {
 
-}
 #project_contributions .contribution .contribution-thumb {
   width: 119px;
   height: 121px;
@@ -4136,4 +4134,27 @@ p .project-basics-icons{
   text-decoration: none;
   color: $white;
   padding: 36px 14px;
+}
+
+.display-contribution{
+  display: inline-block;
+}
+
+.border-contribution{
+  border: solid 2px $border-strong;
+}
+
+.thumb-contribution-desktop,
+.thumb-contribution-mobile{
+  background-size: cover;
+  background-position: center;
+}
+
+
+.thumb-contribution-desktop{
+  margin: 1em auto;
+}
+
+.thumb-contribution-mobile{
+   margin: 0 auto;
 }

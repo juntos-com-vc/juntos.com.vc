@@ -1,5 +1,4 @@
-App.views.Project.addChild('ProjectSidebar', {
-  el: '#project-sidebar',
+var baseSidebar = {
 
   events:{
     "click .show_reward_form": "showRewardForm",
@@ -16,6 +15,7 @@ App.views.Project.addChild('ProjectSidebar', {
     this.$rewards = this.$('#rewards');
     this.sortableRewards();
     this.reloadRewards();
+
   },
 
   reloadRewards: function() {
@@ -70,5 +70,14 @@ App.views.Project.addChild('ProjectSidebar', {
 
     this.$($target.data('target')).fadeIn('fast');
   }
-});
 
+};
+
+App.views.Project.addChild('ProjectSidebar', _.extend({
+  el: '#project-sidebar'
+}, baseSidebar));
+
+
+App.views.Project.addChild('ProjectSidebarMobile', _.extend({
+  el: '#project-sidebar-mobile'
+}, baseSidebar))
