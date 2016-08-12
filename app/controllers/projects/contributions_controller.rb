@@ -15,6 +15,8 @@ class Projects::ContributionsController < ApplicationController
   def edit
     authorize resource
     @payment_engines = avaiable_payment_engines
+    @countries = ISO3166::Country.all_names_with_codes(I18n.locale)
+
     if resource.preferred_payment_engine.present?
       @payment_engines.select! { |engine| engine.name == resource.preferred_payment_engine }
     end

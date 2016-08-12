@@ -139,10 +139,10 @@ en:
       facebook: 'Facebook'
       tweet: 'Tweet'
       contact_author: 'Send a message'
-      user_documents: >
+      user_documents_html: >
         You do not have the documentation correct yet. This documentation is required
         for the approval of the project . You can send the necessary documentation
-        <a href="%{url}" style="%{color}">here</a>.
+        <a href="%{url}">here</a>.
       contribute_project:
         display_status:
           reached_goal: 'This project will be successful and funded at %{date}'
@@ -154,6 +154,8 @@ en:
           waiting_funds: 'Waiting contributions to be confirmed to know if this project will be successful'
           draft: 'This project is only a draft and is not yet open to receive support'
         submit: 'Support this project'
+        submit-mobile: 'Support this project'
+        donate: 'DONATE'
         cancel: 'Cancel support'
         already_contributing: 'You are already contributing with this project'
         donate: DONATE

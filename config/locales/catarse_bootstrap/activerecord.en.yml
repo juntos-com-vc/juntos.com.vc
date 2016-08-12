@@ -13,14 +13,32 @@ en:
       transparency_report: 'Transparency Report'
     attributes:
       bank_account:
-        bank: 'Bank'
-        bank_id: 'Bank'
-        owner_name: 'Owner Name'
-        owner_document: 'Owner CPF / CNPJ'
-        agency: 'Agency'
-        agency_digit: 'Agency digit'
-        account: 'Account number'
-        account_digit: 'Digit account'
+        bank: Bank
+        bank_id: Bank
+        owner_name: Name
+        owner_document: 'CPF / CNPJ'
+        agency: Agency
+        agency_digit: Agency digit
+        account: Account
+        account_digit: Account digit
+      contribution:
+        payer_name: Name
+        payer_email: Email
+        country_code: Country
+        address_street: Address
+        address_number: Number
+        address_complement: Address 2
+        address_neighbourhood: Neighbourhood
+        address_state: State
+        address_city: City
+        address_zip_code: Zip code
+        address_phone_number: Phone
+        value: donation value
+        project_value: donation value
+        reward: reward
+        project: project
+      reward:
+        deliver_at: Deliver at
       user:
         address_city: 'City'
         address_complement: 'Complement'

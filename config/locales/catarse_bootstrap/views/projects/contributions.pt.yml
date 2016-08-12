@@ -19,12 +19,15 @@ pt:
         reward: 'Recompensa selecionada'
         edit: 'Editar'
       edit:
+        data_review: Preencha e revise os dados para pagamento
+        data_inform: Esses dados serão informados ao realizador do projeto
         payment_slip_disclaimer: "Caso o projeto não seja bem-sucedido, nós faremos o reembolso do seu apoio. Os dados bancários informados aqui serão usados para isso."
         review_errors_title: "Verifique os dados informados"
         review_errors: "Alguma informação está faltando ou não foi informada corretamente, corrija todos os campos marcados em vermelho e tesnte novamente"
         anonymous_confirmation_title: "Você tem certeza que quer que seu apoio seja anônimo?"
         anonymous_confirmation: "Acreditamos que ao deixar seu nome visível, você pode motivar outras pessoas a também doarem e assim juntos fazermos a diferença neste projeto."
         anonymous_contribution: "Quero que minha contribuição apareça anônima na plataforma"
+        address: Endereço
         form_labels:
           user_another_card: "Usar outro cartão de crédito"
           payment_card_number: 'Número do cartão de crédito'
@@ -39,7 +42,7 @@ pt:
           payment_card_installments: 'Parcelas'
         installment_with_tax: 'com juros'
         transaction_error: 'Transação recusada, por favor verifique novamente seus dados ou entre em contato com o banco/emissor do cartão para maiores informações.'
-        pagarme_warning_html: "O Catarse está em fase de teste de um novo meio de pagamento que facilitará o apoio financeiro e o eventual reembolso dos valores aos apoiadores. Dessa forma, alertamos que poderão ser exigidos dados extras, além daqueles mencionados nos Termos de Uso para apoiar este projeto. Qualquer dúvida ou dificuldade, entre em contato conosco pelo e-mail %{mailto} . Obrigado."
+        pagarme_warning_html: "A Juntos está em fase de teste de um novo meio de pagamento que facilitará o apoio financeiro e o eventual reembolso dos valores aos apoiadores. Dessa forma, alertamos que poderão ser exigidos dados extras, além daqueles mencionados nos Termos de Uso para apoiar este projeto. Qualquer dúvida ou dificuldade, entre em contato conosco pelo e-mail %{mailto} . Obrigado."
         payment_save_card: 'Quero salvar meu cartão de crédito para facilitar apoios futuros.'
         reward_sold_out: Essa recompensa está esgotada. Inicie um novo apoio.
         page-title: Apoie o %{name}

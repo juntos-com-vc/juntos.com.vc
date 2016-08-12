@@ -20,58 +20,56 @@ en:
         reward: 'Selected reward'
         edit: 'Edit'
       edit:
-        payment_slip_disclaimer: "Caso o projeto não seja bem-sucedido, nós faremos o reembolso do seu apoio. Os dados bancários informados aqui serão usados para isso."
-        review_errors_title: "Verifique os dados informados"
-        review_errors: "Alguma informação está faltando ou não foi informada corretamente, corrija todos os campos marcados em vermelho e tesnte novamente"
-        anonymous_confirmation_title: "Você tem certeza que quer que seu apoio seja anônimo?"
-        anonymous_confirmation: "Acreditamos que ao deixar seu nome visível, você pode motivar outras pessoas a também doarem e assim juntos fazermos a diferença neste projeto."
-        anonymous_contribution: "Quero que minha contribuição apareça anônima na plataforma"
+        data_review: Fill in and review your payment info  
+        data_inform: The owner of this project will receive this information  
+        payment_slip_disclaimer: You will be refounded if this project does not achieve its goals. Your bank info informed here will be used for this purpose.
+        review_errors_title: Verify your information
+        review_errors: Some information is missing or is incorrect, please verify all fields in red and try again.
+        anonymous_confirmation_title: Are you sure that you want an anonymous donation?
+        anonymous_confirmation: We belive that leaving your name visible, you motivate other people to donate too, that way we can make together a difference in this project.
+        anonymous_contribution: I want my donation anonymous in this website. 
+        address: Address
         form_labels:
-          user_another_card: "Usar outro cartão de crédito"
-          payment_card_number: 'Número do cartão de crédito'
-          payment_card_cpf: 'CPF'
-          payment_card_phone: 'Telefone'
-          payment_card_birth: 'Data de Nascimento'
-          payment_card_flag: 'Bandeira'
-          payment_card_source: 'Cód. Segurança'
-          payment_card_source_short: 'CVC'
-          payment_card_date: 'Expiração'
-          payment_card_name: 'Nome impresso no cartão de crédito'
-          payment_card_installments: 'Parcelas'
-        installment_with_tax: 'com juros'
-        transaction_error: 'Transação recusada, por favor verifique novamente seus dados ou entre em contato com o banco/emissor do cartão para maiores informações.'
-        pagarme_warning_html: "O Catarse está em fase de teste de um novo meio de pagamento que facilitará o apoio financeiro e o eventual reembolso dos valores aos apoiadores. Dessa forma, alertamos que poderão ser exigidos dados extras, além daqueles mencionados nos Termos de Uso para apoiar este projeto. Qualquer dúvida ou dificuldade, entre em contato conosco pelo e-mail %{mailto} . Obrigado."
-        payment_save_card: 'Quero salvar meu cartão de crédito para facilitar apoios futuros.'
-        reward_sold_out: Essa recompensa está esgotada. Inicie um novo apoio.
-        page-title: Apoie o %{name}
-        credits_preview_html: "Você possui <strong>%{credits}</strong> em créditos para realizar esse apoio <strong>até o dia 10/11</strong>, conforme <a href='http://blog.catarse.me/simplificacao-dos-reembolsos-e-o-fim-dos-creditos/' target='__blank'>novas regras</a> divulgadas pelo Catarse."
-        credits_submit: 'Efetuar pagamento'
-        credits_title: 'Pagamento com créditos'
-        insufficient_credits: "Você possui %{credits} em créditos. Esse valor não é suficiente para realizar o apoio, por favor escolha outro meio de pagamento."
-        choose_payment: "Escolha o meio de pagamento"
-        choose_payment_subtitle: "PAGAMENTO SEGURO"
-        cpf: 'Para prosseguir, por favor informe:'
-        credits_notice_html: Este apoio será pago com seus créditos. Após a confirmação,
-          você ficará com um saldo de <strong>%{credits}</strong> em créditos para
-          apoiar outros projetos.
-        live_in_brazil: Moro no Brasil. ( Desmarque caso o seu apoio seja internacional
-          )
-        number_card: Dados do cartão
-        owner_card: Dados do titular do cartão
-        payment_account: Pagamento com Débito em Conta
-        payment_boleto: Pagamento com Boleto
-        payment_card: Pagamento com Cartão
-        review_with_reward_html: 'Você irá apoiar com <strong>%{value}</strong> e
-          ganhará a seguinte recompensa:'
-        select_account: 'Você será redirecionado para o site do seu banco:'
-        select_boleto: 'Para prosseguir, por favor selecione:'
+          user_another_card: Use other creedit card
+          payment_card_number: Credit card number
+          payment_card_cpf: CPF
+          payment_card_phone: Phone
+          payment_card_birth: Date of birth
+          payment_card_flag: Card flag
+          payment_card_source: Security code
+          payment_card_source_short: CVC
+          payment_card_date: Expired at
+          payment_card_name: Name printed in credit card
+          payment_card_installments: Installments
+        installment_with_tax: With tax
+        transaction_error: Transaction erros, please check credit card / bank information or contac your credit card issuer for more information.
+        pagarme_warning_html: We are testing a new way of payment that will make donations and refound easier. Thus, we can ask for extra data moreover we aready mention in Tems of Use to donate for this project. If you have any questions, contact us %{mailto}. Thank you.
+        payment_save_card: I want to save my credid card number in order to make future donations easier.
+        reward_sold_out: This reward is soud out.
+        page-title: Donate for %{name}
+        credits_preview_html: You have <strong>%{credits}</strong> credits to donate <strong>until 10/11</strong>, <a href='http://blog.catarse.me/simplificacao-dos-reembolsos-e-o-fim-dos-creditos/' target='__blank'>novas regras</a> divulgadas pelo Catarse."
+        credits_submit: Make a payment
+        credits_title: Payment with credits
+        insufficient_credits: You have %{credits} credits. This value is not enough to donate, please choose other payment method.         
+        choose_payment: Choose payment method
+        choose_payment_subtitle: SAFE PAYMENT
+        cpf: 'To continue, please inform:'
+        credits_notice_html: Donation will be paid with your credits. After confirmation, you will have <strong>%{credits}</strong> credits to use in other project.
+        live_in_brazil: I live in Brazil. ( If you are doing an international donation, unmark this option )
+        number_card: Card number
+        owner_card: Card owner
+        payment_account: Debit payment
+        payment_boleto: Boleto payment
+        payment_card: Credit payment
+        review_with_reward_html: 'You will donate <strong>%{value}</strong> and your reward:'
+        select_account: You will be redirect to your bank website
+        select_boleto: 'Choose to continue:'
         submit:
-          credits: Confirmar
-          moip: Efetuar pagamento pelo MoIP
-        subtitle: Estes dados serão informados ao organizador do projeto.
-        title: Preencha e revise os dados para pagamento
-        you_are_about_html: Você está prestes a fazer parte do grupo que faz de tudo
-          para o %{link} acontecer.
+          credits: Confirm
+          moip: Payment with MoIP
+        subtitle: These data will be reported to the project owner
+        title: Fill and review your payment info
+        you_are_about_html: You are about to be part of the group that made it happend for %{link}.
       new:
         page-title: 'Support %{name}'
         title: 'Oohh yeah!'
@@ -101,35 +99,32 @@ en:
         validate_gift_card: 'Validate gift card'
       review:
         PayPal:
-          name: 'PayPal'
-          description: "Pagamento internacional"
+          name: PayPal
+          description: International payment
         JuntosGiftCard:
-          name: 'Cartão doação'
-          description: "Cartão doação"
+          name: Gift Card
+          description: Gift Card
         MoIP:
-          name: 'MoIP'
-          description: "Pagamento nacional"
+          name: MoIP
+          description: National payment
         Credits:
-          name: 'Créditos'
-          description: 'Créditos'
-        error: Ooops. Ocorreu um erro ao registrar seu apoio. Por favor, tente novamente.
+          name: Credits
+          description: Credits
+        error: Ooops. Something happend during your donation. Please, try again.
         juntos_gift_cards_info:
-          title: Pagar com cartão doação
-          coupon: Código do cartão
-          accept_terms_html: 'Ao clicar, você concorda com os <a href="#" target="_blank">termos de uso</a> e a <a href="#" target="_blank">política de privacidade</a> do cartão doação.'
-          submit: Usar cartão doação
-          success: "Pagamento com cartão doação realizado com sucesso!"
-          error: "Ooops. Ocorreu um erro ao enviar seu pagamento com cartão doação. Por favor, tente novamente."
-          error_duplicate: "Este cartão doação já foi utilizado."
-          error_value: "Este cartão doação não é deste valor informado."
-          error_coupon: "Cartão doação não encontrado."
+          title: Pay with gift card
+          coupon: Card code
+          accept_terms_html: I agree with <a href="#" target="_blank">terms of use</a> and <a href="#" target="_blank">privacy policy</a> of donation gift card.
+          submit: Use gift card
+          success: Payment with gift card succeed
+          error: Ooops. Something happend during your donation with gift card. Please, try again.
+          error_duplicate: This gift card is already used.
+          error_value: This gift card does not have the value that was informed.
+          error_coupon: Gift card not founded.
       show:
-        header_subtitle: Sem você talvez este projeto não tivesse uma chance. Bem-vindo
-          ao time!
-        header_title: Contribuição realizada com sucesso!
-        moip_message: A verificação da sua transação está em andamento e o código
-          Moip é “%{code}″.<br>Caso tenha alguma dúvida referente a transação, entre
-          em contato com o Moip. Um email será enviado quando o pagamento for confirmado.
-        recommended_projects: 'Você também poderá curtir esses projetos:'
-        text_title_html: Obrigado por contribuir para o projeto %{link}.
-        title: 'Muito obrigado'
+        header_subtitle: Maybe, this project will not have a chance without you. You are welcome to the team!
+        header_title: Donation succeed!
+        moip_message: We are processing your transaction, your Moip code is %{code}. <br/>If you have any question, please contact Moip. When payment is confirmed an email will be send to you.
+        recommended_projects: 'You can also enjoy these projects:'
+        text_title_html: Thanks to your donation to the project %{link}.
+        title: Thank you
