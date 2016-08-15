@@ -74,7 +74,7 @@ pt:
         title: Um erro ocorreu
         message: Verifique os dados cadastrados e envie novamente.
       success:
-        title: Enviado com sucesso 
+        title: Enviado com sucesso
         message: Seus dados foram enviados com sucesso.
 
     metrics:
@@ -159,9 +159,9 @@ pt:
           draft: "Esse projeto é apenas um rascunho e ainda não está aberto para receber apoios."
         submit: Apoiar este projeto
         submit-mobile: Apoiar este projeto
-        donate: DOAR
         cancel: Cancelar apoio
         already_contributing: Você já apoia este projeto
+        donate: DOAR
       project_by: projeto por
       funding_period: Período de campanha
       project_header:

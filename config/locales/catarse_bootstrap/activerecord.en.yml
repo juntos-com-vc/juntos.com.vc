@@ -12,6 +12,15 @@ en:
       page: 'Page'
       transparency_report: 'Transparency Report'
     attributes:
+      bank_account:
+        bank: 'Bank'
+        bank_id: 'Bank'
+        owner_name: 'Owner Name'
+        owner_document: 'Owner CPF / CNPJ'
+        agency: 'Agency'
+        agency_digit: 'Agency digit'
+        account: 'Account number'
+        account_digit: 'Digit account'
       user:
         address_city: 'City'
         address_complement: 'Complement'
