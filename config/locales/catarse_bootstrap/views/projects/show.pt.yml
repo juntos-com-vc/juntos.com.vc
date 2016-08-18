@@ -143,10 +143,10 @@ pt:
       facebook: "Facebook"
       tweet: "Tweet"
       contact_author: "Enviar mensagem"
-      user_documents: >
+      user_documents_html: >
         Você ainda não está com a documentação de sua ONG em dia. Esta documentação
         é necessária para a aprovação do projeto. Você pode enviar a documentação
-        necessária <a href="" sttyle="%{color}">aqui</a>
+        necessária <a href="%{url}">aqui</a>
       contribute_project:
         display_status:
           reached_goal: "Este projeto será bem-sucedido e financiado em %{date}"

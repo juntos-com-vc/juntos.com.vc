@@ -234,10 +234,10 @@ nav.project-nav.w-hidden-main.w-hidden-medium
           - if current_user.present? && current_user == @project.user
             - if current_user.pending_documents?
               .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
-                = raw "Você ainda não está com a documentação em dia. Esta documentação é necessária para a aprovação do projeto. Você pode enviar a documentação necessária #{link_to 'aqui', user_path(current_user, anchor: 'settings'), style: 'color: #FDB64C;'}"
+                = t('.user_documents_html', url: user_path(current_user, anchor: 'settings'))
             - if !@project.user.approved?
               .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
-                = t('.user_documents', url: user_path(current_user, anchor: 'settings'), color: '#FDB64C')
+                = t('.user_documents_html', url: user_path(current_user, anchor: 'settings'))
           - unless (%w(bolsasdazmina marcha2016 toddynho asa paranaue jornaljoca projetooca).include? @project.permalink.downcase) || @project.recurring?
             .u-marginbottom-10.w-hidden-small.w-hidden-tiny.project-style= t('.contribution_style')
       .card.card-user.u-marginbottom-10.w-hidden-small.w-hidden-tiny

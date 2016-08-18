@@ -3,7 +3,7 @@ App.addChild('ReviewForm', _.extend({
 
   events: {
     'blur input' : 'checkInput',
-    'change #contribution_country_id' : 'onCountryChange',
+    'change #contribution_country_code' : 'onCountryChange',
     'change #contribution_anonymous' : 'toggleAnonymousConfirmation',
     'click #next-step' : 'onNextStepClick',
     'click [data-recurring=true]' : 'sendRecurringContribution'
@@ -82,16 +82,7 @@ App.addChild('ReviewForm', _.extend({
   },
 
   validateZipAndPhone: function() {
-    if (this.validateMasked("#contribution_address_phone_number")) {
-      if (this.$country.val() !== '36') {
-        return true;
-      } else if (this.validateMasked("#contribution_address_zip_code")) {
-        return true;
-      }
-    }
-
-    // this.$('input.error:visible:first').select();
-    return false;
+    return (this.validateMasked(this.$phone) && this.validateMasked(this.$zip));
   },
 
   onNextStepClick: function(){
@@ -112,7 +103,9 @@ App.addChild('ReviewForm', _.extend({
   },
 
   onCountryChange: function(){
-    if(this.$country.val() == '36'){
+    this.loadStates();
+
+    if(this.$country.val() == 'BR'){
       this.nationalAddress();
     }
     else{
@@ -120,9 +113,36 @@ App.addChild('ReviewForm', _.extend({
     }
   },
 
+  loadStates: function(){
+    var url = '/countries/' + this.$country.val() + '/states';
+    var state = this.$state;
+    var stateVal = state.val();
+    this.clearStates();
+    
+    $.get(url, function(data){
+      $.each(data, function(index, value){
+        var selected = (stateVal == value[0]);
+        state.append(new Option(value[1], value[0], false, selected));
+      }); 
+    }); 
+  },
+
+  clearStates: function(){
+    this.$state.html('<option></option>');
+  },
+  
+  nationalAddress: function(){
+    this.parent.payment.loadPaymentChoices();
+    this.makeFieldsRequired();
+    this.maskFields();
+  },
+
+  maskFields: function(){
+    this.$phone.mask('(99)9999-9999?9');
+    this.$zip.mask('99999-999');
+  },
+
   internationalAddress: function(){
-    this.$state.data('old_value', this.$state.val());
-    this.$state.val('outro / other')
     this.makeFieldsOptional();
   },
 
@@ -130,8 +150,6 @@ App.addChild('ReviewForm', _.extend({
     this.$('[data-required-in-brazil]').prop('required', 'required');
     this.$('[data-required-in-brazil]').parent().removeClass('optional').addClass('required');
 
-    this.$(".contribution_address_zip_code").show();
-    this.$(".contribution_address_state").show();
     $("div.cpf").show();
   },
 
@@ -139,17 +157,7 @@ App.addChild('ReviewForm', _.extend({
     this.$('[data-required-in-brazil]').prop('required', false);
     this.$('[data-required-in-brazil]').parent().removeClass('required').addClass('optional');
 
-    this.$(".contribution_address_zip_code").hide();
-    this.$(".contribution_address_state").hide();
     $("div.cpf").hide();
-  },
-
-  nationalAddress: function(){
-    if(this.$state.data('old_value')){
-      this.$state.val(this.$state.data('old_value'))
-    }
-    this.parent.payment.loadPaymentChoices();
-    this.makeFieldsRequired();
   },
 
   acceptTerms: function(){
@@ -162,9 +170,11 @@ App.addChild('ReviewForm', _.extend({
   },
 
   activate: function(){
-    this.$country = this.$('#contribution_country_id');
-    this.$country.val('36');
+    this.$country = this.$('#contribution_country_code');
     this.$state = this.$('#contribution_address_state');
+    this.$phone = this.$('#contribution_address_phone_number');
+    this.$zip = this.$('#contribution_address_zip_code');
+
     this.$errorMessage = this.$('#error-message');
     this.setupForm();
     this.onCountryChange();
@@ -213,7 +223,7 @@ App.addChild('ReviewForm', _.extend({
       partner_indication: this.$('#contribution_partner_indication').prop('checked')
     };
 
-    if(contribution_data.country_id !== "36" || (contribution_data.address_zip_code !== '' && contribution_data.address_phone_number !== '')) {
+    if(contribution_data.address_zip_code !== '' && contribution_data.address_phone_number !== '') {
       $.post(this.$el.data('update-info-path'), {
         _method: 'put',
         contribution: contribution_data

@@ -205,4 +205,6 @@ Rails.application.routes.draw do
   get "/:permalink" => "projects#show", as: :project_by_slug
 
   get '/jobs/:id/status' => 'jobs#status'
+
+  get '/countries/:country_code/states' => 'countries#states'
 end
