@@ -9,7 +9,7 @@ en:
         no_credits: 'You do not have credits enough to support this project'
         success: 'Your donation was successful. Thank you!'
       contribution:
-        anonymous_contribution: 'Anonymous donor'
+        anonymous_contribution: 'Anonymous'
         anonymous_description: 'Chose to be anonymous'
         no_reward: 'This donator did not select any reward'
       selected_reward:

@@ -3,12 +3,12 @@
     .contribution.u-margintop-10
       = link_to '#', title: t('projects.contributions.contribution.anonymous_contribution') do
         .contribution-thumb.thumb-contribution-mobile[style="background-image: url('#{asset_url('user.png')}');"]
-        p.align-center  = a = contribution.user.name
+        p.align-center  = a =  t('projects.contributions.contribution.anonymous_contribution') 
   .w-hidden-small.w-hidden-tiny.display-contribution
     .contribution.u-margintop-10
       = link_to '#', title: t('projects.contributions.contribution.anonymous_contribution') do
         .border-contribution.contribution-thumb.thumb-contribution-mobile[style="background-image: url('#{asset_url('user.png')}');"]
-        p.align-center  = a = contribution.user.name
+        p.align-center  = a =  t('projects.contributions.contribution.anonymous_contribution')
 
 - else
   .w-col.w-col-small-4.w-col-tiny-4.w-hidden-main.w-hidden-medium
