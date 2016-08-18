@@ -9,7 +9,7 @@ pt:
         no_credits: Você não possui créditos suficientes para realizar este apoio.
         success: Seu apoio foi realizado com sucesso. Muito obrigado!
       contribution:
-        anonymous_contribution: Apoiador anônimo
+        anonymous_contribution: Anônimo
         anonymous_description: Optou por permanecer incógnito
         no_reward: Este apoiador não selecionou nenhuma recompensa
       selected_reward:
