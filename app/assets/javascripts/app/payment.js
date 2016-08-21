@@ -45,7 +45,7 @@ App.addChild('Payment', _.extend({
     this.onTabClick({currentTarget: this.$('#MoIP')});
   },
 
-  loadPaymentChoicesPerNationality: function(national = true) {
+  loadPaymentChoicesPerNationality: function(national) {
     if(national) {
       this.showNationalPayment();
       this.selectNationalPayment();
@@ -57,4 +57,3 @@ App.addChild('Payment', _.extend({
     this.on('selectTab', this.updatePaymentMethod);
   }
 }, Skull.Tabs));
-
