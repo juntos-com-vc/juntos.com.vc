@@ -133,3 +133,9 @@ pt:
         recommended_projects: 'Você também poderá curtir esses projetos:'
         text_title_html: Obrigado por contribuir para o projeto %{link}.
         title: 'Muito obrigado'
+          
+  catarse_moip:
+    moip:
+      review:
+        review_errors_title: Verifique os dados informados
+        review_errors: "Alguma informação está faltando ou não foi informada corretamente, corrija todos os campos marcados em vermelho e tesnte novamente"
