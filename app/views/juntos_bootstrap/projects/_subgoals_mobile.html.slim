@@ -8,9 +8,7 @@
           - if @project.current_subgoal
             .partial-paint.w-hidden-main.partial-width[style="height: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
             .partial-paint.w-hidden-medium.w-hidden-small.w-hidden-tiny[style="width: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: #{@project.current_subgoal.color}"]
-          - else
-            .partial-paint.w-hidden-main.partial-width[style="height: #{@project.current_subgoal.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
-            .partial-paint.w-hidden-medium.w-hidden-small.w-hidden-tiny[style="width: #{@project.display_subgoals.first.percentual_from_total(@project.pledged)}%; background-color: steelblue"]
+
           p[style="z-index: 10"] = number_to_currency(@project.goal, precision: 2)
 
       - @project.display_subgoals.each do |subgoal|
