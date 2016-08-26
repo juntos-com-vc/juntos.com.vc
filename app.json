@@ -1,0 +1,68 @@
+{
+  "name": "juntos.com.vc",
+  "scripts": {
+  },
+  "env": {
+    "AWS_ACCESS_KEY": {
+      "required": true
+    },
+    "AWS_BUCKET": {
+      "required": true
+    },
+    "AWS_SECRET_KEY": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "PAGARME_API_KEY": {
+      "required": true
+    },
+    "PAGARME_ENCRYPTION_KEY": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    },
+    "DATABASE_URL": {
+      "required": true
+    },
+    "ENVIRONMENT": {
+      "required": true
+    }
+  },
+  "formation": {
+    "clock": {
+      "quantity": 0
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    },
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+    "logentries",
+    "newrelic",
+    "papertrail",
+    "heroku-postgresql",
+    "redistogo",
+    "rollbar",
+    "sendgrid",
+    "zerigo_dns"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
