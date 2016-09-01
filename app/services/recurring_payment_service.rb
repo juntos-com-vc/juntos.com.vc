@@ -34,8 +34,7 @@ class RecurringPaymentService
         payment_service_fee: transaction.cost.to_f / 100
       })
     else
-      RecurringContributionService.create_contribution(recurring_contribution,
-                                                       transaction)
+      CreateContribution.new(recurring_contribution, transaction).call
     end
   end
 end

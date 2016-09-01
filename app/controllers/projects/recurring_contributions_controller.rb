@@ -1,11 +1,12 @@
 class Projects::RecurringContributionsController < ApplicationController
   def cancel
-    contribution = RecurringContribution.where({
+    recurring_contribution = RecurringContribution.where({
       project: params[:id],
       user: current_user
-    }).active.first
+    }).active.order(updated_at: :desc).first
 
-    contribution.cancel
+    CancelRecurringContribution.new(recurring_contribution).call
+
     redirect_to :back
   end
 end

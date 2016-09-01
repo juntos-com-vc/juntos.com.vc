@@ -41,6 +41,7 @@ RSpec.describe RecurringPaymentService do
         cost: 50
       })
     end
+    let(:create_contribution_instance) { double(call: contribution) }
 
     subject { described_class.perform(recurring_contribution.id) }
 
@@ -52,7 +53,9 @@ RSpec.describe RecurringPaymentService do
       allow(PagarMe::Card).to receive(:find_by_id).and_return(card)
       allow(described_class).to receive(:create_card)
       allow(transaction).to receive(:charge)
-      allow(RecurringContributionService).to receive(:create_contribution)
+      allow(CreateContribution).to receive(:new)
+        .with(recurring_contribution, transaction)
+        .and_return(create_contribution_instance)
     end
 
     context 'when it is a new recurring contribution' do
@@ -110,11 +113,9 @@ RSpec.describe RecurringPaymentService do
     end
 
     it 'creates a new contribution resource' do
-      expect(RecurringContributionService)
-        .to receive(:create_contribution)
-        .with(recurring_contribution, transaction)
-
       subject
+
+      expect(create_contribution_instance).to have_received(:call).once
     end
   end
 end

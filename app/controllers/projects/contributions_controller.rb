@@ -86,7 +86,7 @@ class Projects::ContributionsController < ApplicationController
         end
         success.html do
           if @project.recurring?
-            RecurringContributionService.create(@contribution)
+            CreateRecurringContribution.new(@contribution).call
           end
 
           flash[:notice] = nil

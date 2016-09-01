@@ -11,8 +11,10 @@ RSpec.describe Users::ContributionsController, type: :controller do
   let(:unconfirmed_contribution) { create(:contribution, state: 'pending', user: user, project: failed_project) }
   let(:current_user){ nil }
   let(:format){ 'json' }
+
   before do
     CatarseSettings[:base_url] = 'http://catarse.me'
+    CatarseSettings[:email_payments] = 'financial@administrator.com'
     allow(controller).to receive(:current_user).and_return(current_user)
     successful_contribution
     failed_contribution
@@ -20,6 +22,7 @@ RSpec.describe Users::ContributionsController, type: :controller do
     other_contribution
     successful_project.update_attributes state: 'successful'
     failed_project.update_attributes state: 'failed'
+    create(:user, email: CatarseSettings[:email_payments])
   end
 
   describe "GET index" do
