@@ -15,7 +15,6 @@ class RecurringContribution < ActiveRecord::Base
   end
 
   def cancel
-    self.cancelled_at = Time.current
-    save
+    update_attribute(:cancelled_at, Time.current)
   end
 end

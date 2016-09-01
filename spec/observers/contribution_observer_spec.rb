@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ContributionObserver do
   let(:contribution){ create(:contribution, key: 'should be updated', payment_method: 'should be updated', state: 'confirmed', confirmed_at: nil) }
+
   subject{ contribution }
 
   describe "after_create" do
@@ -141,10 +142,11 @@ RSpec.describe ContributionObserver do
 
   describe '#from_confirmed_to_canceled' do
     before do
-      CatarseSettings[:email_payments] = 'finan@c.me'
+      CatarseSettings[:email_payments] = 'financial@administrator.com'
+      create(:user, email: CatarseSettings[:email_payments])
     end
 
-    let(:user_finan) { create(:user, email: 'finan@c.me') }
+    let(:financial_administrator) { User.find_by(email: 'financial@administrator.com') } 
 
     context "when contribution is confirmed and change to canceled" do
       before do
@@ -152,7 +154,7 @@ RSpec.describe ContributionObserver do
 
         expect(ContributionNotification).to receive(:notify_once).with(
           :contribution_canceled_after_confirmed,
-          user_finan,
+          financial_administrator,
           contribution,
           {}
         )
@@ -172,6 +174,13 @@ RSpec.describe ContributionObserver do
       before do
         contribution.update_attributes payment_choice: 'BoletoBancario'
         contribution.confirm
+        
+        expect(ContributionNotification).to receive(:notify_once).with(
+          :contribution_canceled_after_confirmed,
+          financial_administrator,
+          contribution,
+          {}
+        )
 
         expect(ContributionNotification).to receive(:notify_once).with(
           :contribution_canceled_slip,
