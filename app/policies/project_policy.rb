@@ -43,11 +43,10 @@ class ProjectPolicy < ApplicationPolicy
       p_attr << [posts_attributes: [:title, :comment, :exclusive, :user_id]]
       {project: p_attr.flatten}
     elsif is_owned_by?(user)
-      {project: [:about, :video_url, :uploaded_image, :headline,
+      {project: [:about, :video_url, :uploaded_image, :headline, :name, :permalink, :category_id,
         posts_attributes: [:title, :comment, :exclusive, :user_id]]}
     else
       {project: [:about, :video_url, :uploaded_image, :headline]}
     end
   end
 end
-
