@@ -4005,7 +4005,7 @@ input.partner-label {
   padding: 0;
 }
 .mobile-tab{
-  display: flex;
+  display: -webkit-box;
   padding: 10px 20px;
   color:#fff;
   margin: 0;
@@ -4021,7 +4021,7 @@ div .w-container .w-row .nav-tabs .mobile-tab.selected{
     color:#000;
 }
 .scroll-tabs{
-  display: flex;
+  display: -webkit-inline-box;
   max-width: 100%;
   overflow-x: auto;
 }
@@ -4055,9 +4055,7 @@ div .w-container .w-row .nav-tabs .mobile-tab.selected{
   font-weight: bold;
   bottom: 0;
 }
-.total-supporters{
-  margin: 1em 0;
-}
+
 .div-height{
   height: 200px;
 }

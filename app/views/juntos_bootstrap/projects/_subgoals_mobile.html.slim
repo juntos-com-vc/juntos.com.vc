@@ -25,7 +25,7 @@
         .w-col.w-col-12.w-col-small-12.w-col-tiny-12.fontweight-semibold.total-supporters
           .w-col.w-col-12
             = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
-          .fontsize-largest.block-components = @project.total_contributions
+          .fontsize-largest.inline-components = @project.total_contributions
           .fontsize-smaller.block-components = t('projects.show.sidebar.contributions')
         .w-col.w-col-12.w-col-small-12.w-col-tiny-12.fontweight-semibold
           .w-col.w-col-12
@@ -41,7 +41,7 @@
   - else
     -  if @project.recurring?
       .project-progress-description
-        .w-col.w-col-6.w-col-small-6.w-col-tiny-6.fontweight-semibold.total-supporters
+        .w-col.w-col-6.w-col-small-6.w-col-tiny-6.fontweight-semibold
           .w-col.w-col-12
              = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
           .fontsize-largest.inline-components = @project.total_contributions
@@ -54,7 +54,7 @@
 
     -  else
         .project-progress-description
-          .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold.total-supporters
+          .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
             .w-col.w-col-12
                = image_tag('juntos/project_donors.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
             .fontsize-largest.inline-components = @project.total_contributions
