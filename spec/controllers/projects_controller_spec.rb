@@ -100,9 +100,9 @@ RSpec.describe ProjectsController, type: :controller do
 
     shared_examples_for "protected project" do
       let(:project){ create(:project, name: 'Foo bar', state: 'draft') }
-      
+
       before { put :update, id: project.id, project: { name: 'My Updated Title' }, locale: :pt }
-      
+
       it { expect(project.reload.name).to eq('Foo bar') }
     end
 
@@ -126,9 +126,10 @@ RSpec.describe ProjectsController, type: :controller do
 
         context "when I try to update the project name and the about field" do
           before{ put :update, id: project.id, project: { name: 'new_title', about: 'new_description' }, locale: :pt }
-          it "should not update title" do
+          it "should update title" do
             project.reload
-            expect(project.name).not_to eq('new_title')
+
+            expect(project.name).to eq('new_title')
           end
         end
 
@@ -194,7 +195,7 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
-  describe 'PATCH save_recipient' do 
+  describe 'PATCH save_recipient' do
     let(:bank_account) {
       {
         bank_code: '001',
