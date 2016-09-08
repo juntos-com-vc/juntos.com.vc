@@ -17,6 +17,7 @@ class RecurringPaymentService
     transaction = PagarMe::Transaction.new({
       amount: recurring_contribution.value.to_f * 100,
       card: PagarMe::Card.find_by_id(recurring_contribution.credit_card),
+      postback_url: Rails.application.routes.url_helpers.transaction_status_update_url,
       split_rules: [{
         recipient_id: recurring_contribution.project.recipient,
         percentage: 100,
@@ -30,7 +31,7 @@ class RecurringPaymentService
     if contribution
       contribution.update_attributes({
         payment_method: 'PagarMe',
-        payment_id: transaction.tid,
+        payment_id: transaction.id,
         payment_service_fee: transaction.cost.to_f / 100
       })
     else

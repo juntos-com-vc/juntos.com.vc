@@ -197,6 +197,7 @@ pt:
         key: Chave
         no_contributions: "Nenhum apoiador encontrado."
         project: Projeto
+        project_state: Estado
         refunded: "Estorno realizado?"
         requested_refund: "Solicitou estorno?"
         reward: Recompensa
@@ -207,12 +208,15 @@ pt:
         total_contribution: apoios
         total_users: usuários
         user: Usuário
+        user_id: Id do usuário
         value: Valor
         credits: Créditos
         platform_contributions: Contribuições para a plataforma
         platform_value: Valor para a plataforma
         project_value: Valor para o projeto
         partner_indication: Indicação de parceiros
+        search_report: Exportar CSV
+        emails: Emails
 
     statistics:
       index:
