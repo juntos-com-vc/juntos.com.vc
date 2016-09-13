@@ -117,8 +117,8 @@ class Contribution < ActiveRecord::Base
   end
 
   def notify_to_backoffice(template_name, options = {})
-    _user = User.find_by(email: CatarseSettings[:email_payments])
-    notify_once(template_name, _user, self, options) if _user
+    financial_administrator = User.find_by!(email: CatarseSettings.get_without_cache(:email_payments))
+    notify_once(template_name, financial_administrator, self, options) if financial_administrator
   end
 
   # Used in payment engines

@@ -84,6 +84,9 @@ RSpec.describe Admin::ContributionsController, type: :controller do
     subject { contribution.canceled? }
 
     before do
+      CatarseSettings[:email_payments] = 'financial@administrator.com'
+      create(:user, email: CatarseSettings[:email_payments])
+
       put :cancel, id: contribution.id, locale: :pt
     end
 
