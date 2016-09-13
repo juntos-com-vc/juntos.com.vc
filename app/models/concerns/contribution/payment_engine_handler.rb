@@ -26,6 +26,7 @@ module Contribution::PaymentEngineHandler
     end
 
     def update_current_billing_info
+      self.country_code = 'BR'
       self.address_street = user.address_street
       self.address_number = user.address_number
       self.address_neighbourhood = user.address_neighbourhood
