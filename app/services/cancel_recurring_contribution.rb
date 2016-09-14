@@ -6,6 +6,10 @@ class CancelRecurringContribution
   def call
     @recurring_contribution.cancel
 
-    CancelRecurringContributionWorker.perform_async(@recurring_contribution.id)
+    contribution = @recurring_contribution.contributions.first
+
+    contribution.notify_to_contributor(:recurring_contribution_canceled)
+
+    contribution.notify_to_backoffice(:contribution_canceled_after_confirmed) 
   end
 end
