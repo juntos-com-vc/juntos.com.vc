@@ -61,7 +61,7 @@ class ApplicationPolicy
   end
 
   def is_project_channel_admin?
-    user.present? && record.channels.try(:first).try(:users).try(:include?, user)
+    user.present? && record.try(:channels).try(:first).try(:users).try(:include?, user)
   end
 
   def is_channel_admin?

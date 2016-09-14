@@ -8,14 +8,12 @@ Rails.application.routes.draw do
   end
 
   def ssl_options
-    if CatarseSettings.get_without_cache(:secure_host)
-      if ENV['USE_SSL']
-        {protocol: 'https', host: CatarseSettings.get_without_cache(:secure_host)}
-      else
-        {protocol: 'http', host: CatarseSettings.get_without_cache(:secure_host)}
-      end
+    secure_host = CatarseSettings.get_without_cache(:secure_host) || ENV['SECURE_HOST']
+
+    if ENV['USE_SSL']
+      { protocol: 'https', host: secure_host }
     else
-      {}
+      { protocol: 'http', host: secure_host }
     end
   end
 
@@ -32,7 +30,7 @@ Rails.application.routes.draw do
     post '/sign_up', {to: 'registrations#create', as: :sign_up}
   end
 
-  get '/obrigado' => "static#thank_you"
+  get '/obrigado(/:contribution)', { to: 'static#thank_you', as: :obrigado }
 
   filter :locale, exclude: /\/auth\//
 
