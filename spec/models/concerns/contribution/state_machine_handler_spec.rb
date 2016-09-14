@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Contribution::StateMachineHandler, type: :model do
+  before do
+    CatarseSettings[:email_payments] = 'financial@administrator.com'
+    create(:user, email: CatarseSettings[:email_payments])
+  end
+
   describe 'state_machine' do
     let(:contribution) { create(:contribution, state: initial_state) }
     let(:initial_state){ 'pending' }
