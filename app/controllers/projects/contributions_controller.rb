@@ -35,7 +35,7 @@ class Projects::ContributionsController < ApplicationController
       RecurringPaymentService.perform(resource.recurring_contribution.id,
                                       resource, params[:payment_card_hash])
 
-      redirect_to obrigado_path
+      redirect_to obrigado_path(contribution: resource.id)
       return
     end
 
@@ -150,10 +150,6 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def project_contribution_url_options
-    if CatarseSettings.get_without_cache(:secure_host)
-      { protocol: params[:protocol], host: params[:host]}
-    else
-      {}
-    end
+    { protocol: params[:protocol], host: params[:host] }
   end
 end

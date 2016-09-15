@@ -64,7 +64,8 @@ RSpec.configure do |config|
     allow(Blog).to receive(:fetch_last_posts).and_return([])
 
     # Default configurations
-    CatarseSettings[:base_domain] = 'localhost'
+    CatarseSettings[:base_domain] = 'www.example.com'
+    CatarseSettings[:secure_host] = 'www.secure.example.com'
     CatarseSettings[:email_contact] = 'foo@bar.com'
     CatarseSettings[:email_projects] = 'foo@bar.com'
     CatarseSettings[:email_system] = 'system@catarse.me'

@@ -14,7 +14,7 @@ RSpec.describe StaticController, type: :controller do
         get :thank_you, { locale: :pt }
       end
 
-      it{ is_expected.to redirect_to(project_contribution_path(contribution.project, contribution)) }
+      it{ is_expected.to redirect_to(project_contribution_url(contribution.project, contribution)) }
     end
 
     context 'without session' do

@@ -6,6 +6,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
   let(:contribution){ create(:contribution, value: 10.00, credits: true, project: project, state: 'pending') }
   let(:user){ nil }
   let(:contribution_info){ { address_city: 'Porto Alegre', address_complement: '24', address_neighbourhood: 'Rio Branco', address_number: '1004', address_phone_number: '(51)2112-8397', address_state: 'RS', address_street: 'Rua Mariante', address_zip_code: '90430-180', payer_email: 'diogo@biazus.me', payer_name: 'Diogo de Oliveira Biazus' } }
+  let(:ssl_options) {{ protocol: 'http', host: CatarseSettings[:secure_host] }}
 
   subject{ response }
 
@@ -19,7 +20,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
 
     before do
       set_expectations
-      put :update, { locale: :pt, project_id: project.id, id: contribution.id, contribution: contribution_info, format: :json }
+      put :update, { locale: :pt, project_id: project.id, id: contribution.id, contribution: contribution_info, format: :json }.merge(ssl_options)
     end
 
     context "when no user is logged in" do
@@ -48,7 +49,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
   describe "GET edit" do
     before do
       request.env['REQUEST_URI'] = "/test_path"
-      get :edit, {locale: :pt, project_id: project.id, id: contribution.id}
+      get :edit, { locale: :pt, project_id: project.id, id: contribution.id }.merge(ssl_options)
     end
 
     context "when no user is logged" do
@@ -76,7 +77,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
     let(:value){ '20.00' }
     before do
       request.env['REQUEST_URI'] = "/test_path"
-      post :create, {locale: :pt, project_id: project.id, contribution: { value: value, reward_id: nil, anonymous: '0' }}
+      post :create, { locale: :pt, project_id: project.id, contribution: { value: value, reward_id: nil, anonymous: '0' } }.merge(ssl_options)
     end
 
     context "when no user is logged" do
@@ -120,7 +121,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
       allow_any_instance_of(Project).to receive(:online?).and_return(online)
       allow(controller).to receive(:browser).and_return(browser)
       allow_any_instance_of(ApplicationController).to receive(:detect_old_browsers).and_call_original
-      get :new, {locale: :pt, project_id: project.id}
+      get :new, { locale: :pt, project_id: project.id }.merge(ssl_options)
     end
 
     context "when browser is IE 9" do
@@ -159,7 +160,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
   describe "GET show" do
     let(:contribution){ create(:contribution, value: 10.00, credits: false, state: 'confirmed') }
     before do
-      get :show, { locale: :pt, project_id: contribution.project.id, id: contribution.id }
+      get :show, { locale: :pt, project_id: contribution.project.id, id: contribution.id }.merge(ssl_options)
     end
 
     context "when no user is logged in" do
@@ -185,7 +186,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
               reward: create(:reward, project: project, description: 'Test Reward'),
               project: project,
               user: create(:user, name: 'Foo Bar'))
-      get :index, { locale: :pt, project_id: project.id }
+      get :index, { locale: :pt, project_id: project.id }.merge(ssl_options)
     end
     its(:status){ should eq 200 }
   end
