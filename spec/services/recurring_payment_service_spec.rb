@@ -37,7 +37,7 @@ RSpec.describe RecurringPaymentService do
     let(:transaction) do
       double(PagarMe::Transaction, {
         status: 'paid',
-        tid: '1457977601018',
+        id: '184270',
         cost: 50
       })
     end
@@ -76,7 +76,7 @@ RSpec.describe RecurringPaymentService do
           .to change { contribution.reload.payment_method }
               .from(nil).to('PagarMe')
           .and change { contribution.reload.payment_id }
-              .from(contribution.payment_id).to(transaction.tid)
+              .from(contribution.payment_id).to(transaction.id)
           .and change { contribution.reload.payment_service_fee }
               .from(nil).to(transaction.cost.to_f / 100)
       end
@@ -90,11 +90,15 @@ RSpec.describe RecurringPaymentService do
     end
 
     it 'instantiates a new transaction' do
+      postback_url = Rails.application.routes.url_for(controller: :pagarme_transactions, 
+                                                      action: :update_status)
+
       expect(PagarMe::Transaction)
         .to receive(:new)
         .with({
           amount: recurring_contribution.value.to_f * 100,
           card: card,
+          postback_url: postback_url,
           split_rules: [{
             recipient_id: project_recipient,
             percentage: 100,

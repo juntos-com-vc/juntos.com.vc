@@ -205,4 +205,6 @@ Rails.application.routes.draw do
   get '/jobs/:id/status' => 'jobs#status'
 
   get '/countries/:country_code/states' => 'countries#states'
+
+  post '/transaction/status/update' => 'pagarme_transactions#update_status'
 end

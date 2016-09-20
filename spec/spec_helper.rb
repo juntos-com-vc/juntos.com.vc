@@ -70,6 +70,7 @@ RSpec.configure do |config|
     CatarseSettings[:email_projects] = 'foo@bar.com'
     CatarseSettings[:email_system] = 'system@catarse.me'
     CatarseSettings[:company_name] = 'Foo Bar Company'
+    CatarseSettings[:email_payments] = 'financial@administrator.com'
 
     # Email notification defaults
     UserNotifier.system_email     = CatarseSettings[:email_system]

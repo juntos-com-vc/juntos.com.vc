@@ -251,4 +251,6 @@ RSpec.describe Contribution, type: :model do
       it{ is_expected.to eq(0) }
     end
   end
+
+
 end
