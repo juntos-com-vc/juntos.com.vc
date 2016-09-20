@@ -210,7 +210,9 @@ nav.project-nav.w-hidden-main.w-hidden-medium
             .fontsize-large.fontweight-light.u-margintop-30
               = t('.contribute_project.already_contributing')
             .fontsize-smallest.fontweight-light.u-marginbottom-30
-              = link_to t('.contribute_project.cancel'), cancel_recurring_project_path(@project)
+              = link_to t('.contribute_project.cancel'), 
+                  cancel_recurring_project_path(@project), 
+                  data: { confirm: t('.contribute_project.confirm') }
         - else
           - if @project.online? && !@project.expired? && @project.id != 629
             - if project_aumigo

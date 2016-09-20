@@ -160,6 +160,7 @@ pt:
         submit: Apoiar este projeto
         submit-mobile: Apoiar este projeto
         cancel: Cancelar apoio
+        confirm: Tem certeza que voce deseja cancelar seu apoio a este projeto?
         already_contributing: Você já apoia este projeto
         donate: DOAR
       project_by: projeto por

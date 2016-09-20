@@ -157,6 +157,7 @@ en:
         submit-mobile: 'Support this project'
         donate: 'DONATE'
         cancel: 'Cancel support'
+        confirm: Are you sure that you want cancel your support?
         already_contributing: 'You are already contributing with this project'
         donate: DONATE
       project_by: 'project by'
