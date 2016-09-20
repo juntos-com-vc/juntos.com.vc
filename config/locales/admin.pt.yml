@@ -163,7 +163,6 @@ pt:
           acquirer_name: 'Operadora de cartão'
           installments: 'Parcelas'
           created_at: 'Iniciado em'
-
         placeholders:
           project: 'Permalink ou nome do projeto'
           acquirer: 'Nome da operadora de cartão'
@@ -217,6 +216,8 @@ pt:
         partner_indication: Indicação de parceiros
         search_report: Exportar CSV
         emails: Emails
+        only_recurring: Somente recorrentes
+        only_cancelled_recurring: Recorrentes canceladas
 
     statistics:
       index:

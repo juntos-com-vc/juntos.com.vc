@@ -78,6 +78,10 @@ class Contribution < ActiveRecord::Base
   # Contributions already refunded or with requested_refund should appear so that the user can see their status on the refunds list
   scope :can_refund, ->{ where("contributions.can_refund") }
 
+  scope :only_recurring, ->{ where.not(recurring_contribution: nil) }
+  scope :only_cancelled_recurring, -> { only_recurring.includes(:recurring_contribution)
+                                          .where.not(recurring_contributions: { cancelled_at: nil }) }
+
   attr_protected :state
 
   def self.between_values(start_at, ends_at)

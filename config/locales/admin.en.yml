@@ -163,7 +163,6 @@ en:
           acquirer_name: 'Acquirer name'
           installments: 'Installments'
           created_at: 'Created at'
-
         placeholders:
           project: 'Project name or permalink'
           acquirer: 'Acquirer name'
@@ -213,6 +212,8 @@ en:
         platform_value: 'Amount to the platform'
         project_value: 'Amount to the project'
         partner_indication: 'Partner indication'
+        only_recurring: Only recurring 
+        only_cancelled_recurring: Recurring cancelled 
 
     statistics:
       index:

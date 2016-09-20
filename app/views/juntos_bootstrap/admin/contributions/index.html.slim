@@ -42,6 +42,12 @@
           = form.input :platform_contributions, as: :boolean, label: t('.platform_contributions')
         .w-col-2.w-col
           = form.input :partner_indications, as: :boolean, label: t('.partner_indication')
+        .w-col-2.w-col
+          = form.input :only_recurring, as: :boolean, label: t('.only_recurring')
+        .w-col-2.w-col
+          = form.input :only_cancelled_recurring, as: :boolean, label: t('.only_cancelled_recurring')
+      .w-row
+        .w-col-8.w-col
         .w-col.w-col-2.u-margintop-20
           = link_to t('.search_report'), admin_contributions_path(params: params,format: :csv), class: 'btn bt-medium'
         .w-col-2.w-col.u-margintop-20
