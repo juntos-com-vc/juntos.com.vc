@@ -8,6 +8,9 @@ class Admin::ContributionsController < Admin::BaseController
   has_scope :platform_contributions, type: :boolean
   has_scope :between_values, using: [ :start_at, :ends_at ], allow_blank: true
   has_scope :partner_indications, type: :boolean
+  has_scope :only_recurring, type: :boolean
+  has_scope :only_cancelled_recurring, type: :boolean
+
   before_filter :set_title
 
   def self.contribution_actions

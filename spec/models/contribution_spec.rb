@@ -252,5 +252,37 @@ RSpec.describe Contribution, type: :model do
     end
   end
 
+  describe '.only_recurring' do
+    subject { Contribution.only_recurring }
 
+    context 'when we dont have any recurring contribution' do
+      it { is_expected.to have(0).item }
+    end
+
+    context 'when we have recurring contributions' do
+      before do
+        recurring_contribution = create(:recurring_contribution, contributions: [contribution])
+        contribution.update_attributes(recurring_contribution: recurring_contribution)
+      end
+
+      it { is_expected.to have(1).item }
+    end
+  end
+
+  describe '.only_cancelled_recurring' do
+    subject { Contribution.only_recurring }
+
+    context 'when we dont have any cancelled recurring contribution' do
+      it { is_expected.to have(0).item }
+    end
+
+    context 'when we have cancelled recurring contributions' do
+      before do
+        recurring_contribution = create(:recurring_contribution, contributions: [contribution], cancelled_at: Time.now)
+        contribution.update_attributes(recurring_contribution: recurring_contribution)
+      end
+
+      it { is_expected.to have(1).item }
+    end
+  end
 end
