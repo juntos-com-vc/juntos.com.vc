@@ -10,7 +10,7 @@ class Admin::UsersController < Admin::BaseController
       format.html { collection }
       format.csv do
         self.response_body = Enumerator.new do |y|
-          collection.copy_to do |line|
+          collection(false).copy_to do |line|
             y << line
           end
         end
@@ -19,8 +19,12 @@ class Admin::UsersController < Admin::BaseController
   end
 
   protected
-  def collection
-    @users ||= apply_scopes(end_of_association_chain).with_user_totals.order_by(params[:order_by] || 'coalesce(user_totals.sum, 0) DESC').includes(:user_total).page(params[:page])
+  def collection(with_pagination = true)
+    if with_pagination
+      @users ||= apply_scopes(end_of_association_chain).with_user_totals.order_by(params[:order_by]).includes(:user_total).page(params[:page])
+    else
+      apply_scopes(end_of_association_chain).with_user_totals.order_by(params[:order_by])
+    end
   end
 end
 
