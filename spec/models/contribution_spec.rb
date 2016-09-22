@@ -285,4 +285,30 @@ RSpec.describe Contribution, type: :model do
       it { is_expected.to have(1).item }
     end
   end
+
+  describe '#with_cause' do
+    let(:category_with_project) { create :category }
+    let(:category_without_project) { create :category }
+    let(:project) { create(:project, state: 'online', category: category_with_project) }
+
+    before do
+      3.times {
+        create(:contribution, state: 'confirmed', project: project)
+      }
+    end
+
+    context 'when category does not have a project' do
+      it 'does not find a contributions having the category as a cause' do
+        contributions = Contribution.with_cause(category_without_project.id)
+        expect(contributions).to have(0).items
+      end
+    end
+
+    context 'when category have registered projects' do
+      it 'does find contributions having the category as a cause' do
+        contributions = Contribution.with_cause(category_with_project.id)
+        expect(contributions).to have(3).items
+      end
+    end
+  end
 end
