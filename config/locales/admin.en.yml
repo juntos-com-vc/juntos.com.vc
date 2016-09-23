@@ -8,7 +8,11 @@ en:
         edit: 'Edit'
     site_partners:
       index:
+        title: "Juntos's Partners"
         menu: 'Partners'
+        new: 'New Partner'
+        edit: 'Edit'
+        remove: 'Remove'
     channels:
       index:
         menu: 'Channels'
@@ -59,6 +63,7 @@ en:
         by_state: 'By state'
         between_expires_at: 'Expires between'
         by_progress: 'By progress %'
+        no_projects: 'No projects were found'
         details:
           name: 'Legal name'
           bank_data: 'Bank account info'
@@ -108,6 +113,8 @@ en:
       confirm: 'Confirm'
     users:
       index:
+        id: 'ID'
+        email: 'E-mail'
         title: 'Donors management'
         menu: 'Users'
         credits: 'Credits'
@@ -132,6 +139,7 @@ en:
         only_organizations: 'NGOs only'
         access_type: 'Access type'
         search_report: 'Export CSV'
+        no_users: 'No users were found'
     contributions:
       messages:
         successful:
@@ -153,6 +161,10 @@ en:
         user_cpf: 'Registered CPF/CNPJ'
         created_at: 'Created at'
       index:
+        user_id: 'User ID'
+        search_report: 'Search report'
+        project_state: 'State'
+        emails: 'Emails'
         details:
           payer_email: 'Payment'
           user_email: 'At Juntos.com.vc'
@@ -212,8 +224,8 @@ en:
         platform_value: 'Amount to the platform'
         project_value: 'Amount to the project'
         partner_indication: 'Partner indication'
-        only_recurring: Only recurring 
-        only_cancelled_recurring: Recurring cancelled 
+        only_recurring: Only recurring
+        only_cancelled_recurring: Recurring cancelled
 
     statistics:
       index:
@@ -237,6 +249,7 @@ en:
         last_year: 'Last year'
     home_banners:
       index:
+        id: 'ID'
         menu: 'Homepage banners'
         edit: 'Edit'
         destroy: 'Delete'

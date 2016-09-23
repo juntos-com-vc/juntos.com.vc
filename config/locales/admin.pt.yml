@@ -59,6 +59,7 @@ pt:
         by_state: 'Por estado'
         between_expires_at: 'Expiram entre'
         by_progress: Por progresso %
+        no_projects: 'Nenhum projeto encontrado'
         details:
           name: 'Razão social'
           bank_data: 'Dados bancarios'
@@ -108,6 +109,8 @@ pt:
       confirm: 'Confirmar'
     users:
       index:
+        id: 'ID'
+        email: 'E-mail'
         title: "Gerenciamento de apoiadores"
         menu: "Usuários"
         credits: "Créditos"
@@ -132,6 +135,7 @@ pt:
         only_organizations: 'Somente ONGs'
         access_type: 'Tipo de Acesso'
         search_report: 'Exportar CSV'
+        no_users: 'Nenhum usuário encontrado'
     contributions:
       messages:
         successful:
@@ -241,6 +245,7 @@ pt:
         last_year: "Ano anterior"
     home_banners:
       index:
+        id: 'ID'
         menu: 'Banners da home'
         edit: 'Editar'
         destroy: 'Apagar'
