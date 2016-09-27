@@ -287,27 +287,35 @@ RSpec.describe Contribution, type: :model do
   end
 
   describe '#with_cause' do
-    let(:category_with_project) { create :category }
-    let(:category_without_project) { create :category }
-    let(:project) { create(:project, state: 'online', category: category_with_project) }
+    let(:category) { create(:category) }
+    let(:project) { create(:project) }
 
     before do
-      3.times {
-        create(:contribution, state: 'confirmed', project: project)
-      }
+      create(:contribution, project: project, payer_email: 'test1@test.com')
+      create(:contribution, project: project, payer_email: 'test2@test.com')
+      create(:contribution, project: project, payer_email: 'test3@test.com')
+      create(:contribution, payer_email: 'test4@test.com')
     end
 
     context 'when category does not have a project' do
       it 'does not find a contributions having the category as a cause' do
-        contributions = Contribution.with_cause(category_without_project.id)
+        contributions = Contribution.with_cause(category.id)
         expect(contributions).to have(0).items
       end
     end
 
     context 'when category have registered projects' do
+      before do
+        @contributions = Contribution.with_cause(project.category_id)
+        @payer_emails = @contributions.map(&:payer_email)
+      end
+
       it 'does find contributions having the category as a cause' do
-        contributions = Contribution.with_cause(category_with_project.id)
-        expect(contributions).to have(3).items
+        expect(@payer_emails).to match_array(['test1@test.com', 'test2@test.com', 'test3@test.com'])
+      end
+
+      it 'ommits contributions without the category as a cause' do
+        expect(@payer_emails).not_to include('test4@test.com')
       end
     end
   end
