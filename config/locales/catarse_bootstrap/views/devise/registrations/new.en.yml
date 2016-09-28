@@ -22,7 +22,7 @@ en:
             name: 'Full name/Corporate name'
             password: 'Password'
             newsletter: 'I want to receive news on my e-mail'
-            accept: 'When you register, you are accepting our <a href="%{terms_url}" class="alt-link fontcolor-alternative" target="_blank">terms of use and privacy</a>'
+            accept_html: 'When you register, you are accepting our <a href="%{terms_url}" class="alt-link fontcolor-alternative" target="_blank">terms of use and privacy</a>'
           hint:
             password_length: 'Must be at least 6 characters.'
           inputs:

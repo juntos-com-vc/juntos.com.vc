@@ -16,11 +16,10 @@ pt:
             name: 'Nome completo/Razão social'
             password: 'Senha'
             newsletter: 'Quero receber novidades meu email'
-            accept: 'Ao efetuar cadastro, você está aceitando nossos <a href="%{terms_url}" class="alt-link fontcolor-alternative" target="_blank">termos de uso e privacidade</a>'
+            accept_html: 'Ao efetuar cadastro, você está aceitando nossos <a href="%{terms_url}" class="alt-link fontcolor-alternative" target="_blank">termos de uso e privacidade</a>'
             access_type: 'Sou um(a)'
           hint:
             password_length: 'Mínimo de 6 caracteres'
           inputs:
             submit: 'Realizar cadastro'
             facebook: 'Cadastre-se com Facebook'
-

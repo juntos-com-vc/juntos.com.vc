@@ -40,4 +40,4 @@ section.devise-body-section
               label.w-form-label.fontsize-smallest= t('.form.labels.newsletter')
             = form.button :submit, t('.form.inputs.submit'), class:'btn btn-medium'
         .fontsize-smallest.u-text-center.u-marginbottom-30
-          = t(".form.labels.accept", terms_url: CatarseSettings[:terms_url]).html_safe
+          = t(".form.labels.accept_html", terms_url: terms_of_use_path)
