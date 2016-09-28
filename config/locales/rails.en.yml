@@ -193,6 +193,7 @@ en:
   time:
     am: am
     formats:
+      simple: "%m/%d/%Y, %H:%M h"
       estimate: "%B/%Y"
       default: ! '%a, %d %b %Y %H:%M:%S %z'
       long: ! '%B %d, %Y %H:%M'
@@ -206,4 +207,3 @@ en:
   activerecord:
     errors:
       <<: *errors
-
