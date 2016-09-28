@@ -51,8 +51,16 @@
     = simple_form_for '', url:  move_project_to_channel_admin_projects_path , method: :post do |form|
       h3.admin-form-title = t('admin.projects.move_projects.title')
       .w-row
+
         .w-col.w-col-5
-          = form.input :project_id, collection: Project.without_channel, label: 'Projetos'
+            = form.input :name,
+              label: t('channels.admin.filter.pg_search') do
+              = select_tag "project_id",
+                options_from_collection_for_select(Project.order(:name).draft_and_without_channel, "id", "name"),
+                class: 'select required w-select text-field',
+                prompt: t('simple_form.prompts.project.select'),
+                required: true,
+                data: 'select2'
         .w-col.w-col-5
           =form.input :channel_id, collection: Channel.all, label: 'Canais'
         .w-col.w-col-2

@@ -121,5 +121,16 @@ RSpec.describe Admin::ProjectsController, type: :controller do
       end
     end
   end
-end
 
+  describe "POST move_project_to_channel" do
+    let (:project) { FactoryGirl.create(:project) }
+    let (:channel) { FactoryGirl.create(:channel) }
+
+    it "shouldn't have a channel" do
+      expect {
+        post :move_project_to_channel, { :project_id => project.id, :channel_id => channel.id }
+      }.to change{ project.channels.count }.from(0).to(1)
+    end
+  end
+
+end

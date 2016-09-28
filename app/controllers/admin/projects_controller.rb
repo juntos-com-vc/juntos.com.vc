@@ -70,8 +70,4 @@ class Admin::ProjectsController < Channels::Admin::BaseController
   def reject_params
     params.require(:project).permit(:reject_reason)
   end
-
-  def move_project_to_channels_params
-    params.require
-  end
 end
