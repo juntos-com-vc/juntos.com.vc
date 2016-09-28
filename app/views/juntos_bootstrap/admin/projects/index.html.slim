@@ -48,6 +48,15 @@
         .w-col-2.w-col.u-margintop-10
           = form.button :submit, t('channels.admin.filter.submit'), class: 'btn bt-medium'
 
+    = simple_form_for '', url:  move_project_to_channel_admin_projects_path , method: :post do |form|
+      h3.admin-form-title = t('admin.projects.move_projects.title')
+      .w-row
+        .w-col.w-col-5
+          = form.input :project_id, collection: Project.without_channel, label: 'Projetos'
+        .w-col.w-col-5
+          =form.input :channel_id, collection: Channel.all, label: 'Canais'
+        .w-col.w-col-2
+          = form.button :submit, t('admin.actions.move'), class: 'btn btn-move-project-channel'
   br
   br
   = paginate @projects

@@ -66,6 +66,8 @@ en:
           email: 'E-mail'
           permalink: "Project's permalink"
     projects:
+      move_projects:
+        title: 'Move a project to a channel'
       index:
         with_state: 'By state'
         by_category: 'By category'
@@ -106,6 +108,7 @@ en:
         search_report: 'Export CSV'
     actions:
       confirm: 'Confirm'
+      move: 'Move'
     users:
       index:
         title: 'Donors management'
@@ -212,8 +215,8 @@ en:
         platform_value: 'Amount to the platform'
         project_value: 'Amount to the project'
         partner_indication: 'Partner indication'
-        only_recurring: Only recurring 
-        only_cancelled_recurring: Recurring cancelled 
+        only_recurring: Only recurring
+        only_cancelled_recurring: Recurring cancelled
 
     statistics:
       index:

@@ -66,6 +66,8 @@ pt:
           email: 'E-mail'
           permalink: 'Permalink do projeto'
     projects:
+      move_projects:
+        title: 'Mover um projeto para um canal'
       index:
         with_state: 'Por estado'
         by_category: 'Por categoria'
@@ -106,6 +108,7 @@ pt:
         search_report: 'Exportar CSV'
     actions:
       confirm: 'Confirmar'
+      move: 'Mover'
     users:
       index:
         title: "Gerenciamento de apoiadores"
