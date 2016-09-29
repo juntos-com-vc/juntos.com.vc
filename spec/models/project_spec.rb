@@ -696,54 +696,70 @@ RSpec.describe Project, type: :model do
   end
 
   describe '#project_images_limit?' do
-    let(:project) { create :project }
-
-    subject { project.reload.project_images_limit? }
+    subject(:project) { create :project }
 
     before { CatarseSettings[:project_images_limit] = '8' }
 
     context 'when project has no images' do
-      it { is_expected.to be_falsey }
+      it { is_expected.to_not be_project_images_limit }
     end
 
     context 'when project has less than eight images' do
-      let!(:project_images) { create_list :project_image, 5, project: project }
+      it 'should not be in the project images limit' do
+        create_list :project_image, 5, project: project
 
-      it { is_expected.to be_falsey }
+        expect(project).to_not be_project_images_limit
+      end
     end
 
     context 'when project has reached the images limit' do
-      let!(:project_images) { create_list :project_image, 8, project: project }
+      it 'should be in the project images limit' do
+        create_list :project_image, 8, project: project
 
-      it { is_expected.to be_truthy }
+        expect(project).to be_project_images_limit
+      end
+    end
+
+    context 'when project has over than eight images' do
+      it 'should not be in the project images limit' do
+        create_list :project_image, 9, project: project
+
+        expect(project).to_not be_project_images_limit
+      end
     end
   end
 
   describe '#project_partners_limit?' do
-    let(:project) { create :project }
-
-    subject { project.reload.project_partners_limit? }
+    subject(:project) { create :project }
 
     before { CatarseSettings[:project_partners_limit] = '3' }
 
     context 'when project has no partners' do
-      it { is_expected.to be_falsey }
+      it { is_expected.to_not be_project_partners_limit }
     end
 
     context 'when project has less than three partners' do
-      let!(:project_partner) do
+      it 'should not be in the project partners limit' do
         create_list :project_partner, 1, project: project
-      end
 
-      it { is_expected.to be_falsey }
+        expect(project).to_not be_project_partners_limit
+      end
     end
 
     context 'when project has reached the partners limit' do
-      let!(:project_partner) do
+      it 'should be in the project partners limit' do
         create_list :project_partner, 3, project: project
-      end
 
-      it { is_expected.to be_truthy }
+        expect(project).to be_project_partners_limit
+      end
+    end
+
+    context 'when project has over than three partners' do
+      it 'should not be in the project partners limit' do
+        create_list :project_image, 4, project: project
+
+        expect(project).to_not be_project_partners_limit
+      end
     end
   end
 
