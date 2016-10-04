@@ -469,20 +469,112 @@ RSpec.describe Project, type: :model do
   end
 
   describe "#pledged" do
-    subject{ project.pledged }
+    subject(:pledged_value){ project.pledged }
+
     context "when project_total is nil" do
       before do
         allow(project).to receive(:project_total).and_return(nil)
       end
       it{ is_expected.to eq(0) }
     end
+
     context "when project_total exists" do
-      before do
-        project_total = double()
-        allow(project_total).to receive(:pledged).and_return(10.0)
-        allow(project).to receive(:project_total).and_return(project_total)
+      context "when two contributions with state confirmed and/or requested_refund exists" do
+        before do
+          create(:contribution, :confirmed, project_value: 100, project: project)
+          create(:contribution, :requested_refund, project_value: 75, project: project)
+        end
+
+        it 'expect sum of contributions' do
+          expect(pledged_value).to eq(175.0)
+        end
       end
-      it{ is_expected.to eq(10.0) }
+
+      context "when contribution with pending state exists" do
+        before do
+          create(:contribution, :pending, project_value: 100, project: project)
+        end
+
+        it 'is not added' do
+          expect(pledged_value).to eq(0)
+        end
+      end
+
+      context "when contribution with waiting_confirmation state exists" do
+        before do
+          create(:contribution, project_value: 100, state: 'waiting_confirmation', project: project)
+        end
+
+        it 'is not added' do
+          expect(pledged_value).to eq(0)
+        end
+      end
+
+      context "when contribution with canceled state exists" do
+        before do
+          create(:contribution, :canceled, project_value: 100, project: project)
+        end
+
+        it 'is not added' do
+          expect(pledged_value).to eq(0)
+        end
+      end
+
+      context "when contribution with refunded state exists" do
+        before do
+          create(:contribution, :refunded, project_value: 100, project: project)
+        end
+
+        it 'is not added' do
+          expect(pledged_value).to eq(0)
+        end
+      end
+
+      context "when contribution with refunded_and_canceled state exists" do
+        before do
+          create(:contribution, :refunded_and_canceled, project_value: 100, project: project)
+        end
+
+        it 'is not added' do
+          expect(pledged_value).to eq(0)
+        end
+      end
+
+      context "when contribution with deleted state exists" do
+        before do
+          create(:contribution, :deleted, project_value: 100, project: project)
+        end
+
+        it 'is not added' do
+          expect(pledged_value).to eq(0)
+        end
+      end
+
+      context "when contribution with invalid_payment state exists" do
+        before do
+          create(:contribution, :invalid_payment, project_value: 100, project: project)
+        end
+
+        it 'is not added' do
+          expect(pledged_value).to eq(0)
+        end
+      end
+
+      context "when there are contributions with requested_refund and confirmed states and contributions with an invalid state" do
+        before do
+          ['pending', 'waiting_confirmation', 'canceled',
+           'refunded', 'refunded_and_canceled', 'deleted',
+           'invalid_payment'].each do |state|
+             create(:contribution, state: state, project_value: 100, project: project)
+           end
+          create(:contribution, :requested_refund, project_value: 171, project: project)
+          create(:contribution, :confirmed, project_value: 15, project: project)
+        end
+
+        it 'expect sum only of the contributions with requested_refund and confirmed states' do
+          expect(pledged_value).to eq(186.0)
+        end
+      end
     end
   end
 
