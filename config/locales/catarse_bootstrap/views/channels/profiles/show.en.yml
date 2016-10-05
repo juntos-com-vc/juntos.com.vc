@@ -1,0 +1,11 @@
+pt:
+  channels:
+    profiles:
+      show:
+        transparency:
+          brl_amount: 'amount in R$'
+          raised: 'RAISED'
+          donations: 'donations'
+          performed: 'PERFORMACE'
+          projects: 'projects'
+          supported: 'supporteds'

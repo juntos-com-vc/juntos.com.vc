@@ -86,6 +86,24 @@ FactoryGirl.define do
     end
   end
 
+  factory :project_total do |f|
+    f.association :project
+    f.pledged 10
+    f.progress 10
+    f.total_payment_service_fee 10
+    f.total_contributions 10
+    f.platform_fee 0
+  end
+
+  factory :project_total do |f|
+    f.association :project
+    f.pledged 10
+    f.progress 10
+    f.total_payment_service_fee 10
+    f.total_contributions 10
+    f.platform_fee 0
+  end
+
   factory :channels_subscriber do |f|
     f.association :user
     f.association :channel

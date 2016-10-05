@@ -4172,6 +4172,35 @@ p .project-basics-icons{
 
 .admin-form-title{
   margin: 1em 0;
+
+.statistics-content{
+  color: $white;
+  margin-bottom: 3em;
+  padding: 8px 20px;
+  border-left: solid 2px $white;
+  border-right: solid 2px $white;
+}
+
+.statistics-title{
+  float: left;
+  margin-top: 0.1em;
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-right: 5px;
+  text-align: right;
+  width: 60%;
+}
+
+.statistics-b{
+  display: block;
+}
+
+.statistics-span{
+  text-transform: uppercase;
+}
+
+.channel-recurring-color{
+  background-color: #FEB84C;
 }
 
 .partner-table{
