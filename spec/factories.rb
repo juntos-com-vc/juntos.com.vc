@@ -31,6 +31,16 @@ FactoryGirl.define do
     f.password "123456"
     f.email { generate(:email) }
     f.bio "This is Foo bar's biography."
+
+    factory :user_with_projects do
+      transient do
+        projects_count 1
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:project, evaluator.projects_count, user: user)
+      end
+    end
   end
 
   factory :category do |f|
