@@ -126,10 +126,12 @@ RSpec.describe Admin::ProjectsController, type: :controller do
     let (:project) { FactoryGirl.create(:project) }
     let (:channel) { FactoryGirl.create(:channel) }
 
-    it "shouldn't have a channel" do
-      expect {
-        post :move_project_to_channel, { :project_id => project.id, :channel_id => channel.id }
-      }.to change{ project.channels.count }.from(0).to(1)
+    it "Adds project to channel" do
+      expect(channel.projects).to be_empty
+
+      post :move_project_to_channel, { :project_id => project.id, :channel_id => channel.id }
+
+      expect(channel.reload.projects).to include(project)
     end
   end
 
