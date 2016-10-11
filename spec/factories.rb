@@ -89,6 +89,42 @@ FactoryGirl.define do
     f.state 'confirmed'
     f.credits false
     f.payment_id '1.2.3'
+
+    trait :confirmed do
+      state 'confirmed'
+    end
+
+    trait :requested_refund do
+      state 'requested_refund'
+    end
+
+    trait :pending do
+      state 'pending'
+    end
+
+    trait :waiting_confirmation do
+      state 'waiting_confirmation'
+    end
+
+    trait :canceled do
+      state 'canceled'
+    end
+
+    trait :refunded do
+      state 'refunded'
+    end
+
+    trait :refunded_and_canceled do
+      state 'refunded_and_canceled'
+    end
+
+    trait :deleted do
+      state 'deleted'
+    end
+
+    trait :invalid_payment do
+      state 'invalid_payment'
+    end
   end
 
   factory :payment_notification do |f|
