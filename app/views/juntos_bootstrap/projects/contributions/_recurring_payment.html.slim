@@ -29,7 +29,7 @@
             label: t(:payment_card_phone,
               scope: [:projects, :contributions, :edit, :form_labels]) do
             = text_field_tag 'payment_card_phone', nil, required: true,
-              data: { mask: '(99) 9999-9999?9', payment_card_phone: true },
+              data: { mask: '(99) 9999-9999Z', payment_card_phone: true },
               class: 'string w-input text-field'
 
         .w-col.w-col-6.w-sub-col

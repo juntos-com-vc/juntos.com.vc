@@ -137,7 +137,7 @@ App.addChild('ReviewForm', _.extend({
   },
 
   maskFields: function(){
-    this.$phone.mask('(99)9999-9999?9');
+    this.$phone.mask('(99)9999-9999Z', { translation:  {'Z': { pattern: /[0-9]/, optional: true }}});
     this.$zip.mask('99999-999');
   },
 
