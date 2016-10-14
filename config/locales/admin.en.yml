@@ -71,6 +71,8 @@ en:
           email: 'E-mail'
           permalink: "Project's permalink"
     projects:
+      move_projects:
+        title: 'Move a project to a channel'
       index:
         with_state: 'By state'
         by_category: 'By category'
@@ -111,6 +113,7 @@ en:
         search_report: 'Export CSV'
     actions:
       confirm: 'Confirm'
+      move: 'Move'
     users:
       index:
         id: 'ID'

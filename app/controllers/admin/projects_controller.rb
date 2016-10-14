@@ -29,6 +29,11 @@ class Admin::ProjectsController < Channels::Admin::BaseController
     end
   end
 
+  def move_project_to_channel
+    MoveProjectToChannel.new(params[:project_id],params[:channel_id]).call
+    redirect_to :back
+  end
+
   def destroy
     @project = Project.find params[:id]
     if @project.can_push_to_trash?

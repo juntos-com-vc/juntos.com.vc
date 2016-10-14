@@ -51,6 +51,13 @@ FactoryGirl.define do
     f.first_contributions 'Foo bar'
     f.video_url 'http://vimeo.com/17298435'
     f.state 'online'
+
+    factory :project_with_channel do
+      after(:create) do |project|
+        channel = create :channel
+        project.channels << channel
+      end
+    end
   end
 
   factory :channels_subscriber do |f|

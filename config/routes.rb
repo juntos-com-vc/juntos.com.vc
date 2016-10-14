@@ -164,6 +164,9 @@ Rails.application.routes.draw do
         put 'push_to_draft'
         put 'push_to_trash'
       end
+
+      post :move_project_to_channel, on: :collection
+
     end
 
     resources :categories, except: [ :show, :destroy ]
