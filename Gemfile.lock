@@ -377,7 +377,7 @@ GEM
       multi_json
       rest-client
     pg (0.17.1)
-    pg_search (0.7.8)
+    pg_search (1.0.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
@@ -657,7 +657,7 @@ DEPENDENCIES
   omniauth-twitter
   pagarme (= 2.1.2)
   pg
-  pg_search
+  pg_search (~> 1.0.6)
   poltergeist
   postgres-copy
   protected_attributes (~> 1.0.5)
