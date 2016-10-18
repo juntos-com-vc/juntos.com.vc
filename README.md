@@ -25,6 +25,8 @@ To run this project you need to have:
   * Windows - [PostgreSQL for Windows](http://www.postgresql.org/download/windows/)
 
   **IMPORTANT**: Make sure you have postgresql-contrib ([Aditional Modules](http://www.postgresql.org/docs/9.3/static/contrib.html)) installed on your system.
+* XML Library
+  * Linux = `$ sudo apt-get install libxml2-dev`
 
 ### Setup the project
 
