@@ -118,13 +118,13 @@ App.addChild('ReviewForm', _.extend({
     var state = this.$state;
     var stateVal = state.val();
     this.clearStates();
-    
+
     $.get(url, function(data){
       $.each(data, function(index, value){
         var selected = (stateVal == value[0]);
         state.append(new Option(value[1], value[0], false, selected));
-      }); 
-    }); 
+      });
+    });
   },
 
   clearStates: function(){

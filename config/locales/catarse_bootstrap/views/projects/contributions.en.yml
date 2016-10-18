@@ -42,6 +42,16 @@ en:
           payment_card_name: Name printed in credit card
           payment_card_installments: Installments
           payment_card_error: 'Verifique o CPF ou CNPJ'
+        errors:
+          payment_errors_name: 'Please enter the name of the cardholder'
+          payment_errors_cpf: 'Check the CPF'
+          payment_errors_phone: 'Please enter the contact phone'
+          payment_errors_birth: 'Please enter the date of birth'
+          payment_errors_number: 'Please check the Credit Card Number'
+          payment_errors_security_code: 'Please check the card security code'
+          payment_errors_expired: 'What is the expiration date on the card?'
+          payment_boleto_link: 'Após clicar no botão abaixo, você receberá um link com o boleto para completar o pagamento.'
+          payment_boleto_email: 'Você também receberá um email com esse boleto.'
         installment_with_tax: With tax
         transaction_error: Transaction erros, please check credit card / bank information or contac your credit card issuer for more information.
         pagarme_warning_html: We are testing a new way of payment that will make donations and refound easier. Thus, we can ask for extra data moreover we aready mention in Tems of Use to donate for this project. If you have any questions, contact us %{mailto}. Thank you.
