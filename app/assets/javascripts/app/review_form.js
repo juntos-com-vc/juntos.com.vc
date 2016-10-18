@@ -118,13 +118,13 @@ App.addChild('ReviewForm', _.extend({
     var state = this.$state;
     var stateVal = state.val();
     this.clearStates();
-    
+
     $.get(url, function(data){
       $.each(data, function(index, value){
         var selected = (stateVal == value[0]);
         state.append(new Option(value[1], value[0], false, selected));
-      }); 
-    }); 
+      });
+    });
   },
 
   clearStates: function(){
@@ -134,11 +134,19 @@ App.addChild('ReviewForm', _.extend({
   unMaskFields: function(){
     this.$phone.unmask();
     this.$zip.unmask();
+    this.$cpf.unmask();
+    this.$payment_phone.unmask();
+    this.$payment_birth.unmask();
+    this.$payment_date.unmask();
   },
 
   maskFields: function(){
     this.$phone.mask('(99)9999-9999Z', { translation:  {'Z': { pattern: /[0-9]/, optional: true }}});
     this.$zip.mask('99999-999');
+    this.$cpf.mask('999.999.999-99');
+    this.$payment_phone.mask('(99)9999-9999Z', { translation:  {'Z': { pattern: /[0-9]/, optional: true }}});
+    this.$payment_birth.mask('99/99/9999');
+    this.$payment_date.mask('99');
   },
 
   nationalAddress: function(){
@@ -177,6 +185,10 @@ App.addChild('ReviewForm', _.extend({
     this.$state = this.$('#contribution_address_state');
     this.$phone = this.$('#contribution_address_phone_number');
     this.$zip = this.$('#contribution_address_zip_code');
+    this.$cpf = this.$("#payment_card_cpf");
+    this.$payment_phone = this.$("#payment_card_phone");
+    this.$payment_birth = this.$("#payment_card_birth");
+    this.$payment_date = this.$("#payment_card_date");
 
     this.$errorMessage = this.$('#error-message');
     this.setupForm();

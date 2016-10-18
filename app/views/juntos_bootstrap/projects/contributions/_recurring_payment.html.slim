@@ -20,7 +20,6 @@
             label: t(:payment_card_cpf,
               scope: [:projects, :contributions, :edit, :form_labels]) do
             = text_field_tag 'payment_card_cpf', nil, required: true,
-              data: { mask: '999.999.999-99', payment_card_cpf: true },
               class: 'string w-input text-field'
 
       .w-row
@@ -29,7 +28,7 @@
             label: t(:payment_card_phone,
               scope: [:projects, :contributions, :edit, :form_labels]) do
             = text_field_tag 'payment_card_phone', nil, required: true,
-              data: { mask: '(99) 9999-9999Z', payment_card_phone: true },
+              data: { payment_card_phone: true },
               class: 'string w-input text-field'
 
         .w-col.w-col-6.w-sub-col
@@ -37,7 +36,7 @@
             label: t(:payment_card_birth,
               scope: [:projects, :contributions, :edit, :form_labels]) do
             = text_field_tag 'payment_card_birth', nil, required: true,
-              data: { mask: '99/99/9999', payment_card_birth: true },
+              data: {  payment_card_birth: true },
               class: 'string w-input text-field'
 
       .w-row
@@ -68,13 +67,13 @@
             .w-row
               .w-col.w-col-6.w-sub-col
                 = text_field_tag 'payment_card_date', nil, required: true,
-                  data: { mask: '99', payment_card_expiration_month: true },
+                  data: { payment_card_expiration_month: true },
                   class: 'string w-input text-field month'
               .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
                 data-error-for="card_expiration_year"]
               .w-col.w-col-6.w-sub-col
                 = text_field_tag 'payment_card_date', nil, required: true,
-                  data: { mask: '99', payment_card_expiration_year: true },
+                  data: { payment_card_expiration_year: true },
                   class: 'string w-input text-field year'
               .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[
                 data-error-for="card_expiration_month"]

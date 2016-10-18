@@ -1,0 +1,107 @@
+= javascript_include_tag 'catarse_moip'
+#catarse_moip_form
+  = form_tag 'javascript:void(0);', class: 'moip' do
+    .back-payment-moip-options.next_step_after_valid_document
+      .w-row.list_payment.w-form
+        .w-col.w-col-7.w-col-small-7.back-payment-moip-options-column
+          .w-radio.w-clearfix
+            = radio_button_tag 'payment_type', "cards", false, class: 'w-radio-input back-payment-radio-button'
+            = label_tag :payment_type_cards, nil, class: "cards w-form-label" do
+              = image_tag 'catarse_bootstrap/payment_cards.jpg'
+        .w-col.w-col-5.w-col-small-5.back-payment-moip-options-column
+          .w-radio.w-clearfix
+            = radio_button_tag 'payment_type', "boleto", false, class: 'w-radio-input back-payment-radio-button'
+            = label_tag :payment_type_boleto, class: "boleto w-form-label" do
+              = image_tag 'catarse_bootstrap/payment_boleto.png'
+    .formwrapper
+      #payment_type_cards_section.payment_section
+        .w-row
+          .w-col.w-col-6.w-sub-col
+            = label_tag :payment_card_name, t('projects.contributions.edit.form_labels.payment_card_name'), class: 'field-label fontweight-semibold'
+            = text_field_tag :payment_card_name, nil, class: 'w-input text-field', required: true
+            .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="payment_card_name"]
+              = t('projects.contributions.edit.errors.payment_errors_name')
+          .w-col.w-col-6.cpf
+            = label_tag :payment_card_cpf, t('projects.contributions.edit.form_labels.payment_card_cpf'), class: 'field-label fontweight-semibold'
+            = text_field_tag :payment_card_cpf, nil, class: 'w-input text-field', data: {mask: '999.999.999-99'}, required: true
+            .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="payment_card_cpf"]
+              = t('projects.contributions.edit.errors.payment_errors_cpf')
+
+        .w-row
+          .w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle.phone
+            = label_tag :payment_card_phone, t('projects.contributions.edit.form_labels.payment_card_phone'), class: 'field-label fontweight-semibold'
+            = text_field_tag :payment_card_phone, nil, class: 'w-input text-field', data: { mask: '(99) 9999-99999', payment_card_phone: true }, required: true
+            .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="payment_card_phone"]
+              = t('projects.contributions.edit.errors.payment_errors_phone')
+
+          .w-col.w-col-6.w-col-small-6.w-col-tiny-6.birth
+            = label_tag :payment_card_birth, t('projects.contributions.edit.form_labels.payment_card_birth'), class: 'field-label fontweight-semibold'
+            = text_field_tag :payment_card_birth, nil, class: 'w-input text-field', data: {mask: '99/99/9999'}, required: true
+            .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="payment_card_birth"]
+              = t('projects.contributions.edit.errors.payment_errors_birth')
+
+        .w-row
+          .w-col.w-col-6.w-sub-col.number
+            = label_tag :payment_card_number, t('projects.contributions.edit.form_labels.payment_card_number') , class: 'field-label fontweight-semibold'
+            .w-row
+              .w-col.w-col-9.w-col-small-9.w-col-tiny-9
+                = text_field_tag :payment_card_number, nil, class: 'w-input text-field prefix', required: true
+              .w-col.w-col-3.w-col-small-3.w-col-tiny-3.text-field.postfix.no-hover
+                #payment_card_flag.fontsize-smallest.fontcolor-secondary.u-text-center
+            .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="payment_card_number"]
+              = t('projects.contributions.edit.errors.payment_errors_number')
+
+          .w-col.w-col-6
+            .w-row
+              .w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-sub-col-middle.source
+                = label_tag :payment_card_source, t('projects.contributions.edit.form_labels.payment_card_source'), class: 'field-label fontweight-semibold w-hidden-medium'
+                = label_tag :payment_card_source, t('projects.contributions.edit.form_labels.payment_card_source_short'), class: 'field-label fontweight-semibold w-hidden-main w-hidden-small w-hidden-tiny'
+                = text_field_tag :payment_card_source, nil, class: 'w-input text-field', required: true
+                .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="payment_card_source"]
+                  = t('projects.contributions.edit.errors.payment_errors_security_code')
+
+              .w-col.w-col-6.w-col-small-6.w-col-tiny-6.date
+                = label_tag :payment_card_date, t('projects.contributions.edit.form_labels.payment_card_date'), class: 'field-label fontweight-semibold'
+                = text_field_tag :payment_card_date, nil, class: 'w-input text-field', data: {mask: '99/99'}, required: true
+                .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="payment_card_date"]
+                  = t('projects.contributions.edit.errors.payment_errors_expired')
+
+        .w-row
+          .w-col.w-col-12
+            .payment-error-message.card.card-error.u-radius.zindex-10.u-marginbottom-30.w-hidden
+              .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('.review_errors_title')
+              .message-text.fontsize-smaller = t('.review_errors')
+        .w-row
+          .w-col.w-col-push-3.w-col-6
+            .loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "catarse_bootstrap/loader.gif"
+            = submit_tag t('projects.contributions.review.form.labels.submit'), class: 'btn btn-large u-marginbottom-20', id: "credit_card_submit"
+            = render partial: 'terms'
+      #payment_type_boleto_section.w-hidden.payment_section
+        .w-row
+          .w-col.w-col-6
+            = label_tag 'user_document_payment_slip', t('projects.contributions.review.form.labels.document'), class: 'field-label fontweight-semibold'
+            = text_field_tag 'user_document_payment_slip', nil, { autocomplete: 'off', class: 'w-input text-field', required: true }
+            .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="user_document_payment_slip"]
+              = t('projects.contributions.edit.form_labels.payment_card_source')
+        .w-row
+          .w-col.w-col-12
+            #payment-slip-instructions.card.card-message.u-radius.fontsize-small.zindex-10.u-marginbottom-30
+              = t('projects.contributions.edit.errors.payment_boleto_link')
+
+        .w-row
+          .w-col.w-col-12
+            .payment-error-message.card.card-error.u-radius.zindex-10.u-marginbottom-30.w-hidden
+              .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('.review_errors_title')
+              .message-text.fontsize-smaller = t('.review_errors')
+        .w-row
+          .w-col.w-col-12
+            #payment-slip-link.card.card-message.fontsize-small.u-radius.u-marginbottom-30.zindex-10.w-hidden
+              .link_content.fontsize-smaller
+              .fontsize-smaller = t('projects.contributions.edit.errors.payment_boleto_email')
+        .w-row
+          .w-col.w-col-push-3.w-col-6
+            #card-loading.loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "catarse_bootstrap/loader.gif"
+            = submit_tag t('projects.contributions.review.form.labels.build_boleto'), class: 'btn btn-large u-marginbottom-20', id: "build_boleto"
+            = render 'terms'
+
+= javascript_include_tag js_moip_index_path
