@@ -23,7 +23,7 @@ gem 's3_direct_upload', github: 'waynehoover/s3_direct_upload'
 # Database and data related
 gem 'pg'
 gem 'postgres-copy'
-gem 'pg_search'
+gem 'pg_search', '~> 1.0.6'
 gem 'i18n_alchemy'
 
 gem 'schema_plus'
@@ -124,7 +124,7 @@ group :production do
   gem 'newrelic_rpm', '3.6.5.130'
 
   gem 'clockwork', '~> 1.0.0'
-  
+
   # Using dalli and memcachier have not presented significative performance gains
   # Probably this is due to our pattern of cache usage
   # + the lack of concurrent procs in our deploy

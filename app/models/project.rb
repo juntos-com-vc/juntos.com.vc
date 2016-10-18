@@ -77,6 +77,12 @@ class Project < ActiveRecord::Base
     using: {tsearch: {dictionary: "portuguese"}},
     ignoring: :accents
 
+  pg_search_scope :user_name_contains, associated_against: {
+      user: :name
+    },
+    using: {tsearch: {dictionary: "portuguese"}},
+    ignoring: :accents
+
   # Used to simplify a has_scope
   scope :successful, ->{ with_state('successful') }
   scope :failed, ->{ with_state('failed') }
@@ -98,7 +104,6 @@ class Project < ActiveRecord::Base
   scope :recommended, -> { where(recommended: true) }
   scope :in_funding, -> { not_expired.with_states(['online']) }
   scope :name_contains, ->(term) { where("unaccent(upper(name)) LIKE ('%'||unaccent(upper(?))||'%')", term) }
-  scope :user_name_contains, ->(term) { joins(:user).where("unaccent(upper(users.name)) LIKE ('%'||unaccent(upper(?))||'%')", term) }
   scope :near_of, ->(address_state) { where("EXISTS(SELECT true FROM users u WHERE u.id = projects.user_id AND lower(u.address_state) = lower(?))", address_state) }
   scope :to_finish, ->{ expired.with_states(['online', 'waiting_funds']) }
   scope :visible, -> { without_states(['draft', 'rejected', 'deleted', 'in_analysis']) }
