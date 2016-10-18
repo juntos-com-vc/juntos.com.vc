@@ -1,11 +1,15 @@
-pt:
+en:
   channels:
     profiles:
       show:
+        accessibility:
+          link_to_twitter: "Link to channel twitter"
+          link_to_facebook: "Link to channel facebook"
+          link_to_website: "Link to channel external website"
         transparency:
           brl_amount: 'amount in R$'
-          raised: 'RAISED'
+          raised: 'raised'
           donations: 'donations'
-          performed: 'PERFORMACE'
+          performed: 'performed'
           projects: 'projects'
           supported: 'supporteds'

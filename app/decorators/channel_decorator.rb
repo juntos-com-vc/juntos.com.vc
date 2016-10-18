@@ -1,5 +1,7 @@
+
 class ChannelDecorator < Draper::Decorator
   decorates :channel
+  delegate_all
 
   def display_facebook
     last_fragment(source.facebook)
@@ -7,6 +9,10 @@ class ChannelDecorator < Draper::Decorator
 
   def display_twitter
     "@#{last_fragment(source.twitter)}"
+  end
+
+  def statistics_background_color
+    channel.main_color ? main_color : "#FEB84C"
   end
 
   def display_website

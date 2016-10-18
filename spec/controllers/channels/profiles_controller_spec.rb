@@ -1,19 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe Channels::ProfilesController, type: :controller do
-  let(:channel){ FactoryGirl.create(:channel) }
-  let (:project) { FactoryGirl.create(:project) }
-
+  let! (:channel) { create(:channel) }
+  let! (:project) { create(:project) }
+  let! (:contribution) { create(:contribution, value: 10, project: project) }
+  let! (:contribution2) { create(:contribution, value: 10, project: project) }
 
   describe "GET show" do
     before do
       channel.projects << project
       allow(request).to receive(:subdomain).and_return(channel.permalink)
-      get :show, id: 'sample'
+      get :show, id: 'sample', locale: 'pt'
     end
 
     it 'should return status 200' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_success
     end
 
     context 'Show statistics' do
@@ -22,11 +23,11 @@ RSpec.describe Channels::ProfilesController, type: :controller do
       end
 
       it 'Count how many contributions a channel has' do
-        expect(assigns(:total_contributions)).to eq(0)
+        expect(assigns(:total_contributions)).to eq(2)
       end
 
       it 'Sum pledged from all projects inside a channel' do
-
+        expect(assigns(:total_pledged)).to eq(20)
       end
 
     end

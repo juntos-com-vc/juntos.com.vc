@@ -16,31 +16,16 @@
       - if @profile.facebook.present?
         = link_to image_tag("facebook.png"), @profile.facebook, title: t('.accessibility.link_to_facebook'), class: [:"icon-facebook"], target: :blank
 
-- if channel.recurring?
-  .w-row
-    .w-col.w-col-4.statistics-content.channel-recurring-color
-      h3.statistics-title =  @total_pledged
-      b.statistics-b = t('.transparency.brl_amount')
-      span = t('.transparency.raised')
-    .w-col.w-col-4.statistics-content.channel-recurring-color
-      h3.statistics-title = @total_contributions
-      b.statistics-b = t('.transparency.donations')
-      span.statistics-spans = t('.transparency.performed')
-    .w-col.w-col-4.statistics-content.channel-recurring-color
-      h3.statistics-title = @total_projects
-      b.statistics-b = t('.transparency.projects')
-      span.statistics-span = t('.transparency.supported')
-
 .w-row
-  .w-col.w-col-4.statistics-content style="background-color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )}"
+  .w-col.w-col-4.statistics-content style="background-color: #{ channel.statistics_background_color }"
     h3.statistics-title =  @total_pledged
     b.statistics-b = t('.transparency.brl_amount')
-    span = t('.transparency.raised')
-  .w-col.w-col-4.statistics-content style="background-color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )}"
+    span.upcase = t('.transparency.raised')
+  .w-col.w-col-4.statistics-content style="background-color: #{ channel.statistics_background_color }"
     h3.statistics-title = @total_contributions
     b.statistics-b = t('.transparency.donations')
-    span.statistics-spans = t('.transparency.performed')
-  .w-col.w-col-4.statistics-content style="background-color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )}"
+    span.statistics-spans.upcase = t('.transparency.performed')
+  .w-col.w-col-4.statistics-content style="background-color: #{ channel.statistics_background_color }"
     h3.statistics-title = @total_projects
     b.statistics-b = t('.transparency.projects')
     span.statistics-span = t('.transparency.supported')
