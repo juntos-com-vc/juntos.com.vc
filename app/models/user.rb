@@ -259,7 +259,7 @@ class User < ActiveRecord::Base
   end
 
   def self.staff_descriptions
-    STAFFS.keys.map { |description| User.human_attribute_name("staff/#{description}") }
+    STAFFS.keys.map { |description| User.human_attribute_name("staff.#{description}") }
   end
 
   def approved?
