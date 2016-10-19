@@ -258,10 +258,8 @@ class User < ActiveRecord::Base
     raw
   end
 
-  def self.staff_array
-    STAFFS.map do |name, value|
-      [User.human_attribute_name("staff/#{name}"), value]
-    end
+  def self.staff_descriptions
+    STAFFS.keys.map { |description| User.human_attribute_name("staff/#{description}") }
   end
 
   def approved?
