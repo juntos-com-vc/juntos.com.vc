@@ -6,6 +6,14 @@ RSpec.describe User, type: :model do
   let(:successful_project){ create(:project, state: 'online') }
   let(:failed_project){ create(:project, state: 'online') }
   let(:facebook_provider){ create :oauth_provider, name: 'facebook' }
+  let(:staff_attributes) do
+    [
+      User.human_attribute_name('staff.team'),
+      User.human_attribute_name('staff.financial_board'),
+      User.human_attribute_name('staff.technical_board'),
+      User.human_attribute_name('staff.advice_board'),
+    ]
+  end
 
   describe '::STAFFS' do
     it 'defines a constant' do
@@ -39,23 +47,10 @@ RSpec.describe User, type: :model do
     it{ is_expected.to validate_uniqueness_of(:email) }
   end
 
-  describe '.staff_array' do
-    let(:attributes) do
-      [
-        User.human_attribute_name('staff/team'),
-        User.human_attribute_name('staff/financial_board'),
-        User.human_attribute_name('staff/technical_board'),
-        User.human_attribute_name('staff/advice_board'),
-      ]
+  describe '.staff_descriptions' do
+    it "should return an array matching all the STAFF's constant keys" do
+      expect(described_class.staff_descriptions).to match staff_attributes
     end
-
-    let(:expected_array) do
-      attributes.each_with_index.map { |name, index| [name, index] }
-    end
-
-    subject { described_class.staff_array }
-
-    it { is_expected.to match expected_array }
   end
 
   describe ".to_send_category_notification" do
