@@ -39,6 +39,11 @@ en:
         project: project
       reward:
         deliver_at: Deliver at
+      user/staff:
+        team: 'Team'
+        financial_board: 'Financial council'
+        technical_board: 'Technical council'
+        advice_board: 'Council'
       user:
         address_city: 'City'
         address_complement: 'Complement'
@@ -71,10 +76,6 @@ en:
         gender/male: 'Male'
         gender/female: 'Female'
         staff: 'Staff'
-        staff/team: 'Team'
-        staff/financial_board: 'Financial council'
-        staff/technical_board: 'Technical council'
-        staff/advice_board: 'Council'
         original_doc12_url: 'RG e CPF ou CNH'
         original_doc13_url: 'Proof of residence of the person or institution'
         job_title: 'Role'
