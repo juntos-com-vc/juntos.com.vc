@@ -39,7 +39,13 @@
         .w-col-3.w-col
           = form.input :with_state, collection: Project.state_names, label: t('channels.admin.filter.with_state'), as: :select, selected: params[:with_state], include_blank: true, input_html: { class: 'w-input text-field' }
         .w-col-3.w-col
-          = form.input :by_channel, as: :select, collection: Channel.all, selected: params[:by_channel], include_blank: true, input_html: { class: 'w-input text-field' }
+          - if channel
+            = form.input :by_channel, as: :hidden, input_html: { value: channel.id }
+            = form.input :by_channel, as: :select, collection: Channel.all, selected: channel.id,
+              include_blank: true, input_html: { disabled: true, class: 'w-input text-field' }
+          - else
+            = form.input :by_channel, as: :select, collection: Channel.all, selected: params[:by_channel],
+              include_blank: true, input_html: { class: 'w-input text-field' }
 
       .w-row
         .w-col-8.w-col
