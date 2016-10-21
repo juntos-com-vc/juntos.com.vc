@@ -78,60 +78,42 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :unsubscribes, allow_destroy: true rescue puts "No association found for name 'unsubscribes'. Has it been defined yet?"
   accepts_nested_attributes_for :bank_account, allow_destroy: true
 
-  scope :active, ->{ where('deactivated_at IS NULL') }
-  scope :with_user_totals, -> {
-    joins("LEFT OUTER JOIN user_totals on user_totals.user_id = users.id")
-  }
+  scope :active,                      -> { where(deactivated_at: nil) }
+  scope :staff,                       -> { where(staff_members_query) }
+  scope :has_credits,                 -> { joins(:user_total).where('credits > ?', 0) }
+  scope :only_organizations,          -> { where(access_type: User.access_types[:legal_entity]) }
+  scope :by_email,                    -> (email) { where('email ~* ?', email) }
+  scope :order_by,                    -> (sort_field) { order(sort_field) }
+  scope :by_name,                     -> (name) { where('users.name ~* ?', name) }
+  scope :by_id,                       -> (id) { where(id: id) }
+  scope :by_contribution_key,         -> (key) { joins(:contributions).merge(Contribution.by_key(key)) }
+  scope :subscribed_to_posts,         -> { where.not(id: Unsubscribe.where(project_id: nil).select(:user_id)) }
+  scope :who_contributed_project,     -> (project_id) { includes(:contributions).merge(Contribution.confirmed_state).where(contributions: { project_id: project_id } ) }
+  scope :with_visible_projects,       -> { joins(:projects).where.not(projects: { state: ['draft', 'rejected', 'deleted', 'in_analysis'] } ) }
+  scope :subscribed_to_project, -> (project_id) do
+    user_ids = Unsubscribe.where(project_id: project_id).select(:user_id)
 
-  scope :who_contributed_project, ->(project_id) {
-    where("id IN (SELECT user_id FROM contributions WHERE contributions.state = 'confirmed' AND project_id = ?)", project_id)
-  }
+    who_contributed_project(project_id).where.not(id: user_ids)
+  end
+  scope :by_payer_email, ->(email) { joins(:contributions => :payment_notifications).where('extra_data ~* ?', email) }
+  scope :to_send_category_notification, -> (category_id) do
+    user_ids = CategoryNotification.where(
+                template_name: 'categorized_projects_of_the_week',
+                category_id: category_id
+                ).where('created_at >= ?', Time.current-7.days).select(:user_id)
 
-  scope :subscribed_to_posts, -> {
-     where("id NOT IN (
-       SELECT user_id
-       FROM unsubscribes
-       WHERE project_id IS NULL)")
-   }
+    where.not(id: user_ids)
+  end
+  scope :already_used_credits, -> do
+    user_ids = Contribution.credits.confirmed_state.select(:user_id)
 
-  scope :subscribed_to_project, ->(project_id) {
-    who_contributed_project(project_id).
-    where("id NOT IN (SELECT user_id FROM unsubscribes WHERE project_id = ?)", project_id)
-  }
+    has_credits.where(id: user_ids)
+  end
+  scope :has_not_used_credits_last_month, -> do
+    user_ids = Contribution.credits.confirmed_state.where("created_at < ?", Time.now-1.month).select(:user_id)
 
-  scope :by_email, ->(email){ where('email ~* ?', email) }
-  scope :by_payer_email, ->(email) {
-    where('EXISTS(
-      SELECT true
-      FROM contributions
-      JOIN payment_notifications ON contributions.id = payment_notifications.contribution_id
-      WHERE contributions.user_id = users.id AND payment_notifications.extra_data ~* ?)', email)
-  }
-  scope :by_name, ->(name){ where('users.name ~* ?', name) }
-  scope :by_id, ->(id){ where(id: id) }
-  scope :by_key, ->(key){ where('EXISTS(SELECT true FROM contributions WHERE contributions.user_id = users.id AND contributions.key ~* ?)', key) }
-  scope :has_credits, -> { where('user_totals.credits > 0') }
-  scope :only_organizations, -> { where(access_type: 1) }
-  scope :already_used_credits, -> {
-    has_credits.
-    where("EXISTS (SELECT true FROM contributions b WHERE b.credits AND b.state = 'confirmed' AND b.user_id = users.id)")
-  }
-  scope :has_not_used_credits_last_month, -> { has_credits.
-    where("NOT EXISTS (SELECT true FROM contributions b WHERE current_timestamp - b.created_at < '1 month'::interval AND b.credits AND b.state = 'confirmed' AND b.user_id = users.id)")
-  }
-
-  scope :to_send_category_notification, -> (category_id) {
-    where("NOT EXISTS (
-          select true from category_notifications n
-          where n.template_name = 'categorized_projects_of_the_week' AND
-          n.category_id = ? AND
-          (n.created_at AT TIME ZONE '#{Time.zone.tzinfo.name}' + '7 days'::interval) >= current_timestamp AT TIME ZONE '#{Time.zone.tzinfo.name}' AND
-          n.user_id = users.id)", category_id)
-  }
-  scope :order_by, ->(sort_field){ order(sort_field) }
-  scope :with_visible_projects, -> { joins(:projects).where.not(projects: {state: ['draft', 'rejected', 'deleted', 'in_analysis']}) }
-
-  scope :staff, -> { where(staff_members_query) }
+    has_credits.where(id: user_ids)
+  end
 
   def self.find_active!(id)
     self.active.where(id: id).first!
@@ -139,10 +121,6 @@ class User < ActiveRecord::Base
 
   def following_this_category?(category_id)
     category_followers.pluck(:category_id).include?(category_id)
-  end
-
-  def failed_contributed_projects
-    contributed_projects.where(state: 'failed')
   end
 
   def send_credits_notification
@@ -311,5 +289,9 @@ class User < ActiveRecord::Base
 
   def self.staff_members_query
     STAFFS.values.map { |value| "staffs @> ARRAY[#{value}]" }.join(' OR ')
+  end
+
+  def failed_contributed_projects
+    contributed_projects.where(state: 'failed')
   end
 end

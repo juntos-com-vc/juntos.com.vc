@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::BaseController
   layout 'juntos_bootstrap'
   inherit_resources
-  has_scope :by_id, :by_name, :by_email, :by_payer_email, :by_key, only: :index
+  has_scope :by_id, :by_name, :by_email, :by_payer_email, :by_contribution_key, only: :index
   has_scope :has_credits, type: :boolean, only: :index
   has_scope :only_organizations, type: :boolean, only: :index
 
@@ -21,9 +21,9 @@ class Admin::UsersController < Admin::BaseController
   protected
   def collection(with_pagination = true)
     if with_pagination
-      @users ||= apply_scopes(end_of_association_chain).with_user_totals.order_by(params[:order_by]).includes(:user_total).page(params[:page])
+      @users ||= apply_scopes(end_of_association_chain).order_by(params[:order_by]).includes(:user_total).page(params[:page])
     else
-      apply_scopes(end_of_association_chain).with_user_totals.order_by(params[:order_by])
+      apply_scopes(end_of_association_chain).order_by(params[:order_by]).includes(:user_total)
     end
   end
 end

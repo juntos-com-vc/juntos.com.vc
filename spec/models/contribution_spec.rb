@@ -74,6 +74,20 @@ RSpec.describe Contribution, type: :model do
     it { is_expected.to have(3).itens }
   end
 
+  describe ".confirmed_state" do
+    let(:contribution_confirmed_list) { create_list(:contribution, 3, state: 'confirmed') }
+
+    before do
+      create_list(:contribution, 3, :requested_refund)
+      create_list(:contribution, 3, :refunded)
+      create_list(:contribution, 3, :waiting_confirmation)
+    end
+
+    subject { Contribution.confirmed_state }
+
+    it { is_expected.to match_array(contribution_confirmed_list) }
+  end
+
   describe ".confirmed_today" do
     before do
       3.times { create(:contribution, state: 'confirmed', confirmed_at: 2.days.ago) }
