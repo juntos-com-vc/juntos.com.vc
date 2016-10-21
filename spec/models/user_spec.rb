@@ -63,13 +63,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '.staff_descriptions' do
-    subject { described_class.staff_array }
-
     it "should return an array matching all the STAFF's constant keys" do
-      expect(described_class.staff_descriptions).to match staff_attributes
+      expect(described_class.staff_descriptions).to match(staff_attributes)
     end
-
-    it { is_expected.to match(expected_array) }
   end
 
   describe ".find_active!" do
