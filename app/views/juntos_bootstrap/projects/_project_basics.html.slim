@@ -20,14 +20,7 @@
                     .w-col.w-col-5
                       label.field-label.fontweight-semibold for="name-8"= t('.online_date')
                     .w-col.w-col-7
-                      .w-row
-                        .w-col.w-col-4.w-sub-col
-                          = form.input :online_date, as: :datetime, include_blank: true
-                .w-row.u-marginbottom-20.card.card-terciary
-                  .w-col.w-col-5
-                    label.field-label.fontweight-semibold for="name-8"= t('.user_id')
-                  .w-col.w-col-7
-                    = form.input_field :user_id, as: :string, class: 'positive'
+                      = form.input :online_date, as: :datetime, label: '', include_blank: true
                 - if policy(@project).edit_partner?
                   .w-row.u-marginbottom-20.card.card-terciary
                     .w-col.w-col-5

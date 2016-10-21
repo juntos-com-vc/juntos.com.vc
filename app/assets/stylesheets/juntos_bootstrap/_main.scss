@@ -4244,3 +4244,31 @@ p .project-basics-icons{
 .partner-form-actions-width{
   width: $four-columns-actions-width;
 }
+
+.w-row .rewards-form-padding{
+  padding: 0 0.5em;
+}
+
+.rewards-form-btn-padding:first-child{
+  padding-right: 0.5em;
+}
+
+.rewards-form-btn-padding:last-child{
+  padding-left: 0.5em;
+}
+
+.reward-form-icons{
+  margin-right: 0.5em;
+  padding: 8px;
+  font-size: 1.5em;
+  border: none;
+  background-color: $blue-facebook;
+
+  &:hover{
+    color: $white;
+  }
+}
+
+.date-time-margin{
+  margin-right: 0.5em;
+}
