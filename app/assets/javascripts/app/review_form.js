@@ -85,12 +85,27 @@ App.addChild('ReviewForm', _.extend({
     return (this.validateMasked(this.$phone) && this.validateMasked(this.$zip));
   },
 
+  maskPhone: function(field) {
+    var BRPhoneMaskBehavior = function(val) {
+      return val.replace(/\D/g, '').length === 11 ? '(00)00000-0000' : '(00)0000-00009';
+    };
+
+    BRPhoneOptions = {
+      onKeyPress: function(val, e, field, options) {
+        field.mask(BRPhoneMaskBehavior.apply({}, arguments), options);
+      }
+    };
+
+    field.mask(BRPhoneMaskBehavior, BRPhoneOptions);
+  },
+
   onNextStepClick: function(){
     if(this.validate() && this.validateZipAndPhone()){
       if(this.updateContribution()) {
         this.$errorMessage.hide();
         this.$('#next-step').hide();
         this.parent.payment.show();
+        this.maskPhone($("#payment_card_phone"));
       }
     }
     else{
@@ -134,19 +149,19 @@ App.addChild('ReviewForm', _.extend({
   unMaskFields: function(){
     this.$phone.unmask();
     this.$zip.unmask();
-    this.$cpf.unmask();
-    this.$payment_phone.unmask();
-    this.$payment_birth.unmask();
-    this.$payment_date.unmask();
   },
 
   maskFields: function(){
-    this.$phone.mask('(99)9999-9999Z', { translation:  {'Z': { pattern: /[0-9]/, optional: true }}});
+    this.maskPhone(this.$phone);
     this.$zip.mask('99999-999');
-    this.$cpf.mask('999.999.999-99');
-    this.$payment_phone.mask('(99)9999-9999Z', { translation:  {'Z': { pattern: /[0-9]/, optional: true }}});
-    this.$payment_birth.mask('99/99/9999');
-    this.$payment_date.mask('99');
+  },
+
+  maskRecurringFields: function(){
+    this.maskPhone($("#payment_card_phone"));
+    $("#payment_card_cpf").mask('999.999.999-99');
+    $("#payment_card_birth").mask('99/99/9999');
+    $("#payment_card_date.month").mask('99');
+    $("#payment_card_date.year").mask('99');
   },
 
   nationalAddress: function(){
@@ -185,14 +200,14 @@ App.addChild('ReviewForm', _.extend({
     this.$state = this.$('#contribution_address_state');
     this.$phone = this.$('#contribution_address_phone_number');
     this.$zip = this.$('#contribution_address_zip_code');
-    this.$cpf = this.$("#payment_card_cpf");
-    this.$payment_phone = this.$("#payment_card_phone");
-    this.$payment_birth = this.$("#payment_card_birth");
-    this.$payment_date = this.$("#payment_card_date");
 
     this.$errorMessage = this.$('#error-message');
     this.setupForm();
     this.onCountryChange();
+
+    if (this.$('[data-recurring=true]')) {
+      this.maskRecurringFields();
+    }
   },
 
   onUserDocumentKeyup: function(e) {
