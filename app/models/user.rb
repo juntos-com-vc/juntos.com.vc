@@ -6,8 +6,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   # :validatable
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :omniauthable
+  devise          :database_authenticatable,
+                  :registerable,
+                  :recoverable,
+                  :rememberable,
+                  :trackable,
+                  :omniauthable
 
   delegate  :display_name, :display_image, :short_name, :display_image_html,
     :medium_name, :display_credits, :display_total_of_contributions, :contributions_text,
@@ -15,55 +19,59 @@ class User < ActiveRecord::Base
     :larger_display_image, :projects_count, to: :decorator
 
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :name, :image_url, :uploaded_image, :bio, :newsletter, :full_name,
-    :address_street, :address_number, :address_complement, :address_city,
-    :address_neighbourhood, :address_state, :address_zip_code, :phone_number,
-    :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link,
-    :moip_login, :deactivated_at, :reactivate_token, :bank_account_attributes,
-    :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
-    :staffs, :job_title, :birth_date, :admin, :original_doc1_url,
-    :original_doc2_url, :original_doc3_url, :original_doc4_url,
-    :original_doc5_url, :original_doc6_url, :original_doc7_url,
-    :original_doc8_url, :original_doc9_url, :original_doc10_url,
-    :original_doc11_url, :original_doc12_url, :original_doc13_url
+                  :name, :image_url, :uploaded_image, :bio, :newsletter, :full_name,
+                  :address_street, :address_number, :address_complement, :address_city,
+                  :address_neighbourhood, :address_state, :address_zip_code, :phone_number,
+                  :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link,
+                  :moip_login, :deactivated_at, :reactivate_token, :bank_account_attributes,
+                  :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
+                  :staffs, :job_title, :birth_date, :admin, :original_doc1_url,
+                  :original_doc2_url, :original_doc3_url, :original_doc4_url,
+                  :original_doc5_url, :original_doc6_url, :original_doc7_url,
+                  :original_doc8_url, :original_doc9_url, :original_doc10_url,
+                  :original_doc11_url, :original_doc12_url, :original_doc13_url
 
   enum access_type: [:individual, :legal_entity]
-  enum gender: [:male, :female]
+  enum gender:      [:male, :female]
 
   STAFFS = {
-    team: 0,
-    financial_board: 1,
-    technical_board: 2,
-    advice_board: 3
+    team:             0,
+    financial_board:  1,
+    technical_board:  2,
+    advice_board:     3
   }
 
   mount_uploader :uploaded_image, UserUploader
 
-  validates_length_of :bio, maximum: 140
-
-  validates_presence_of :email, :access_type
-  validates_uniqueness_of :email, allow_blank: true, if: :email_changed?, message: I18n.t('activerecord.errors.models.user.attributes.email.taken')
-  validates_format_of :email, with: Devise.email_regexp, allow_blank: true, if: :email_changed?
-
-  validates_presence_of :password, if: :password_required?
-  validates_confirmation_of :password, if: :password_confirmation_required?
-  validates_length_of :password, within: Devise.password_length, allow_blank: true
+  validates :bio, length: { maximum: 140 }
+  validates :access_type, presence: true
+  validates :email, presence: true
+  validates :email,
+              allow_blank: true,
+              uniqueness: true,
+              format: { with: Devise.email_regexp },
+              if: :email_changed?
+  validates :password,
+              presence: { if: :password_required? },
+              confirmation: { if: :password_confirmation_required? },
+              length: { within: Devise.password_length },
+              allow_blank: true
 
   belongs_to :channel
   belongs_to :country
-  has_one :user_total
-  has_one :bank_account
-  has_many :credit_cards
-  has_many :contributions
-  has_many :authorizations
-  has_many :channel_posts
-  has_many :channels_subscribers
-  has_many :projects
-  has_many :unsubscribes
-  has_many :project_posts
-  has_many :contributed_projects, -> { where(contributions: { state: 'confirmed' } ).uniq } ,through: :contributions, source: :project
-  has_many :category_followers
-  has_many :categories, through: :category_followers
+  has_one    :user_total
+  has_one    :bank_account
+  has_many   :credit_cards
+  has_many   :contributions
+  has_many   :authorizations
+  has_many   :channel_posts
+  has_many   :channels_subscribers
+  has_many   :projects
+  has_many   :unsubscribes
+  has_many   :project_posts
+  has_many   :contributed_projects, -> { where(contributions: { state: 'confirmed' } ).uniq } ,through: :contributions, source: :project
+  has_many   :category_followers
+  has_many   :categories, through: :category_followers
   has_and_belongs_to_many :recommended_projects, join_table: :recommendations, class_name: 'Project'
   has_and_belongs_to_many :subscriptions, join_table: :channels_subscribers, class_name: 'Channel'
 
