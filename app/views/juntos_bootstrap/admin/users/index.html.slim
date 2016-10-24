@@ -62,7 +62,7 @@ br
             td= user.user_total ? user.user_total.sum : 0
             td= user.credits
             td.w-col-1.w-col.project-events-dropdown
-              .project-admin-menu.card-infos-bottom-right
+              .project-admin-menu
                 = link_to '', 'javascript:void(0);', data: {toggle: 'dropdown'}, class: 'w-dropdown-btn dropdown-toggle fa fa-sort-down'
               nav.w-dropdown-list.dropdown-list.user-menu
                 = link_to user_path(user), method: :put, class:'w-dropdown-link dropdown-link fontsize-smaller' do
