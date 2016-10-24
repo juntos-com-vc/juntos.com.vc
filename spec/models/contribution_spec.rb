@@ -319,4 +319,35 @@ RSpec.describe Contribution, type: :model do
       end
     end
   end
+
+  describe '#project_name_contains' do
+    let(:great_name_project){ create(:project, name: 'Great project') }
+    let(:great_headline_project){ create(:project, headline: 'Great project') }
+    let(:great_permalink_project){ create(:project, permalink: 'great') }
+    let(:great_project_contributions){ Contribution.project_name_contains('great') }
+
+    before(:each) do
+      create(:contribution, project: great_name_project, project_value: 50)
+      create(:contribution, project: great_headline_project, project_value: 40)
+      create(:contribution, project: great_permalink_project, project_value: 30)
+    end
+
+    context 'when there are contributions made to project that matches the term searched' do
+      it 'returns the contributions made to project found' do
+        expect(great_project_contributions.map(&:project_value)).to contain_exactly(40.0, 30.0, 50.0)
+      end
+
+      it "returns the contributions in the right order of Project.search_on_name's against param rules" do
+        all_great_project_contributions = great_project_contributions.map { |c| c.project_value.to_f }
+        expect(all_great_project_contributions).to eq([50.0, 40.0, 30.0])
+      end
+    end
+
+    context 'when contributions to a project that name matches the term searched do not exist' do
+      it 'does not return contributions' do
+        cool_project_contributions = Contribution.project_name_contains('cool')
+        expect(cool_project_contributions).to be_empty
+      end
+    end
+  end
 end
