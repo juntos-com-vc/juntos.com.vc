@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user){ create(:user) }
+  subject(:user) { create(:user) }
   let(:unfinished_project){ create(:project, state: 'online') }
   let(:successful_project){ create(:project, state: 'online') }
   let(:failed_project){ create(:project, state: 'online') }
@@ -29,14 +29,25 @@ RSpec.describe User, type: :model do
   end
 
   describe "validations" do
-    before{ user }
-    it{ is_expected.to allow_value('foo@bar.com').for(:email) }
-    it{ is_expected.not_to allow_value('foo').for(:email) }
-    it{ is_expected.not_to allow_value('foo@bar').for(:email) }
-    it{ is_expected.to allow_value('a'.center(139)).for(:bio) }
-    it{ is_expected.to allow_value('a'.center(140)).for(:bio) }
-    it{ is_expected.not_to allow_value('a'.center(141)).for(:bio) }
-    it{ is_expected.to validate_uniqueness_of(:email) }
+    describe "presence validations" do
+      it { is_expected.to validate_presence_of(:email) }
+      it { is_expected.to validate_presence_of(:access_type) }
+    end
+
+    describe "length validations" do
+      it { is_expected.to ensure_length_of(:bio).is_at_most(140) }
+      it { is_expected.to ensure_length_of(:password).is_at_least(6).is_at_most(128) }
+    end
+
+    describe "uniqueness validations" do
+      it { is_expected.to validate_uniqueness_of(:email) }
+    end
+
+    describe "format validations" do
+      it { is_expected.to allow_value('foo@bar.com').for(:email) }
+      it { is_expected.not_to allow_value('foo').for(:email) }
+      it { is_expected.not_to allow_value('foo@bar').for(:email) }
+    end
   end
 
   describe '.staff_array' do
