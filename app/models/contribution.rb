@@ -59,7 +59,7 @@ class Contribution < ActiveRecord::Base
   scope :user_cpf_contains, ->(term) { joins(:user).where("unaccent(upper(users.cpf)) LIKE ('%'||unaccent(upper(?))||'%')", term) }
   scope :payer_email_contains, ->(term) { where("unaccent(upper(payer_email)) LIKE ('%'||unaccent(upper(?))||'%')", term) }
   scope :project_name_contains, ->(term) {
-    where('project_id in (?)', Project.search_on_name(term).map(&:id))
+      where(project_id: Project.search_on_name(term).pluck(:id))
   }
   scope :anonymous, -> { where(anonymous: true) }
   scope :credits, -> { where("credits OR lower(payment_method) = 'credits'") }
