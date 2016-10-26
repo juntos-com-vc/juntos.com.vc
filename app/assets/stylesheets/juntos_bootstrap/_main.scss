@@ -2067,7 +2067,8 @@ p {
 .dropdown-list.user-menu.w--open {
   position: absolute;
   z-index: 10;
-  margin-top: 8px;
+  right: -30px;
+  margin-top: 10px;
   margin-left: -150px;
   min-width: 200px;
 }
