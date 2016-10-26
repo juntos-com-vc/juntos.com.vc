@@ -17,9 +17,9 @@
               - if current_user.admin? || (channel && channel.users.include?(current_user))
                 - if @project.in_analysis? || current_user.admin?
                   .w-row.card.card-terciary.u-marginbottom-20
-                    .w-col.w-col-5
+                    .w-col.w-col-12
                       label.field-label.fontweight-semibold for="name-8"= t('.online_date')
-                    .w-col.w-col-7
+                    .w-col.w-col-12
                       = form.input :online_date, as: :datetime, label: '', include_blank: true
                 - if policy(@project).edit_partner?
                   .w-row.u-marginbottom-20.card.card-terciary

@@ -26,11 +26,3 @@
 //= require slick
 //= require jquery.minicolors
 //= require s3_direct_upload
-
-
-$(document).ready(function(){
-  for(var i = 0;i <=5;i++){
-    $('#project_online_date_' + i + 'i' ).addClass('w-col w-col-2 date-time-margin');
-
-  }
-});

@@ -22,7 +22,7 @@
               .card.card-terciary
                 label.field-label.fontweight-semibold= t('.about')
                 label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20= t('.about_hint_html')
-                = form.input_field :about, as: :text, class: 'bottom jumbo positive'
+                = form.input_field :about, as: :text, class: 'bottom jumbo-project positive'
               .card.card-terciary
                 label.field-label.fontweight-semibold= t('.thank_you')
                 label.field-label.fontsize-smallest.fontcolor-secondary.u-marginbottom-20= t('.thank_you_hint_html')
@@ -77,7 +77,7 @@
               = s3_uploader_form callback_param: 'project[images]',
                 max_file_size: 5.megabytes, data: {s3_uploader: true},
                 key: "uploads/project/image/#{@project.id}/${filename}" do
-                  = file_field_tag :file, multiple: true, id: 'gallery-upload',
+                  = file_field_tag :file, multiple: true, id: 'gallery-upload',  class: 'w-input text-field',
                     data: {url: s3_uploader_url}, disabled: @project.project_images_limit?
 
           .w-row.u-marginbottom-30
@@ -106,7 +106,7 @@
               = s3_uploader_form callback_param: 'project[partners]',
                 max_file_size: 5.megabytes, data: {s3_uploader: true},
                 key: "uploads/project/image/#{@project.id}/partner/${filename}" do
-                  = file_field_tag :file, multiple: true, id: 'parner-upload',
+                  = file_field_tag :file, multiple: true, id: 'parner-upload',  class: 'w-input text-field',
                     data: {url: s3_uploader_url}, disabled: @project.project_partners_limit?
 
           .w-row.u-marginbottom-30
@@ -133,7 +133,7 @@
                 = s3_uploader_form callback_param: 'project[images]',
                   max_file_size: 5.megabytes, data: {s3_uploader: true},
                   key: "uploads/project/uploaded_image/#{@project.id}/${filename}" do
-                    = file_field_tag :file, id: 'uploaded-image-upload',
+                    = file_field_tag :file, id: 'uploaded-image-upload', class: 'w-input text-field',
                       data: {url: s3_uploader_url}
 
                 = hidden_field_tag 'project[original_uploaded_image]', nil,
@@ -146,7 +146,7 @@
                 = s3_uploader_form callback_param: 'project[images]',
                   max_file_size: 5.megabytes, data: {s3_uploader: true},
                   key: "uploads/project/uploaded_cover_image/#{@project.id}/${filename}" do
-                    = file_field_tag :file, id: 'uploaded-cover-image-upload',
+                    = file_field_tag :file, id: 'uploaded-cover-image-upload',  class: 'w-input text-field',
                       data: {url: s3_uploader_url}
 
                 = hidden_field_tag 'project[original_uploaded_cover_image]', nil,
