@@ -27,9 +27,9 @@
       var google_conversion_currency = "USD";
       var google_remarketing_only = false;
       /* ]]> */
-    script src="//www.googleadservices.com/pagead/conversion.js" type="text/javascript" 
+    script src="//www.googleadservices.com/pagead/conversion.js" type="text/javascript"
     noscript
-      div style="display:inline;" 
+      div style="display:inline;"
         img alt="" height="1" src="//www.googleadservices.com/pagead/conversion/988885353/?value=1.00&amp;currency_code=USD&amp;label=1y4HCIeHugYQ6eLE1wM&amp;guid=ON&amp;script=0" style="border-style:none;" width="1" /
 
 - if @banners.any?
@@ -87,29 +87,17 @@
 
     aside.main-sidebar
       section.main-sidebar-division
-        h3.title = t(:blog, scope: [:projects, :index, :sidebar, :titles])
-        ul.blog
-          - (Blog.fetch_last_posts rescue [])[0..2].each do |post|
-            li.post
-              h2
-                = link_to post.url, target: '__blank', class: 'post-title' do
-                  = truncate(post.title, length: 80)
-              p.post-author= "#{t('.box.by')} #{post.author} #{t('.box.when')} #{l(post.published.to_date)}"
-              = link_to post.url, target: '__blank', class: 'post-resume' do
-                = truncate(post.summary, length: 130).html_safe
-      /section.main-sidebar-division
-        /h3.title= t('.sidebar.titles.newsletter')
-        /= render 'layouts/newsletter'
-
-
-      section.main-sidebar-division
-        .fb-like-box data-href="#{CatarseSettings['facebook_url']}" data-width="200" data-height="300" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"
-
-      section.main-sidebar-division
         .channels
           h3.title = t(:meet_channels, scope: [:projects, :index, :sidebar, :titles])
           - @channels.each do |channel|
             .channel= link_to channel.name, "http://#{channel.permalink}.juntos.com.vc/", class: "post-title", target: :blank
+
+      /section.main-sidebar-division
+        /h3.title= t('.sidebar.titles.newsletter')
+        /= render 'layouts/newsletter'
+
+      section.main-sidebar-division
+        .fb-like-box data-href="#{CatarseSettings['facebook_url']}" data-width="200" data-height="300" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"
 
       section.main-sidebar-division
         .awards
@@ -152,4 +140,3 @@
               focusOnSelect: true,
           });
         });
-
