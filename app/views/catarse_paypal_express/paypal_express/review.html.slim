@@ -1,0 +1,11 @@
+
+= javascript_include_tag 'catarse_paypal_express'
+
+h3= t('projects.contributions.review.international.section_title')
+
+#catarse_paypal_express_form
+  = form_tag pay_paypal_express_path(params[:id]) do
+    .clearfix
+    .bootstrap-twitter
+      .loader.hide= image_tag 'loading.gif'
+      = submit_tag t('projects.contributions.review.international.button'), :class => 'btn btn-primary btn-large'
