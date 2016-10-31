@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { create(:user) }
-  let(:unfinished_project){ create(:project, state: 'online') }
-  let(:successful_project){ create(:project, state: 'online') }
-  let(:failed_project){ create(:project, state: 'online') }
-  let(:facebook_provider){ create :oauth_provider, name: 'facebook' }
+  subject(:user)           { create(:user) }
+  let(:unfinished_project) { create(:project, :online) }
+  let(:successful_project) { create(:project, :online) }
+  let(:facebook_provider)  { create :oauth_provider, name: 'facebook' }
   let(:staff_attributes) do
     [
       User.human_attribute_name('staff.team'),
@@ -22,18 +21,23 @@ RSpec.describe User, type: :model do
   end
 
   describe "associations" do
-    it{ is_expected.to have_many :contributions }
-    it{ is_expected.to have_many :projects }
-    it{ is_expected.to have_many :notifications }
-    it{ is_expected.to have_many :project_posts }
-    it{ is_expected.to have_many :unsubscribes }
-    it{ is_expected.to have_many :authorizations }
-    it{ is_expected.to have_many :channels_subscribers }
-    it{ is_expected.to have_one :user_total }
-    it{ is_expected.to have_one :bank_account }
-    it{ is_expected.to belong_to :channel }
-    it{ is_expected.to belong_to :country }
-    it{ is_expected.to have_and_belong_to_many :subscriptions }
+    it { is_expected.to belong_to(:channel) }
+    it { is_expected.to belong_to(:country) }
+    it { is_expected.to have_one(:user_total) }
+    it { is_expected.to have_one(:bank_account) }
+    it { is_expected.to have_many(:credit_cards) }
+    it { is_expected.to have_many(:contributions) }
+    it { is_expected.to have_many(:authorizations) }
+    it { is_expected.to have_many(:channel_posts) }
+    it { is_expected.to have_many(:channels_subscribers) }
+    it { is_expected.to have_many(:projects) }
+    it { is_expected.to have_many(:unsubscribes) }
+    it { is_expected.to have_many(:project_posts) }
+    it { is_expected.to have_many(:contributed_projects) }
+    it { is_expected.to have_many(:category_followers) }
+    it { is_expected.to have_many(:categories) }
+    it { is_expected.to have_many(:notifications) }
+    it { is_expected.to have_and_belong_to_many(:subscriptions) }
   end
 
   describe "validations" do
@@ -60,19 +64,287 @@ RSpec.describe User, type: :model do
 
   describe '.staff_descriptions' do
     it "should return an array matching all the STAFF's constant keys" do
-      expect(described_class.staff_descriptions).to match staff_attributes
+      expect(described_class.staff_descriptions).to match(staff_attributes)
     end
+  end
+
+  describe ".find_active!" do
+    let!(:deactivated_user) { create(:user, :deactivated) }
+
+    it "should raise error when user is inactive" do
+      expect { User.find_active!(deactivated_user) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it "should return user when active" do
+      expect(User.find_active!(user.id)).to eq(user)
+    end
+  end
+
+  describe ".active" do
+    subject { User.active }
+
+    context "when there is no deactivated user" do
+      it { is_expected.to contain_exactly(user) }
+    end
+
+    context "when there are deactivated users" do
+      before do
+        create_list(:user, 3, :deactivated)
+      end
+
+      it { is_expected.to contain_exactly(user) }
+    end
+  end
+
+  describe ".staff" do
+    subject { User.staff }
+
+    context "when the user is a staff member" do
+      let(:staff_member) { create :user, staffs: [1] }
+
+      it { is_expected.to include(staff_member) }
+    end
+
+    context "when the user is not a staff member" do
+      let(:non_staff_user) { create :user }
+
+      it { is_expected.not_to include(non_staff_user) }
+    end
+  end
+
+  describe ".has_credits" do
+    let!(:failed_contribution_project) { create(:contribution, project_value: 200, state: 'confirmed', user: user) }
+
+    subject { User.has_credits }
+
+    context "when project fails" do
+      let!(:failed_contribution_project) { create(:failed_contribution_project, project_value: 200, state: 'confirmed', user: user) }
+
+      it "the user should have credits" do
+        is_expected.to eq([user])
+      end
+    end
+
+    context "when project does not fail" do
+      it "the user should not have credits" do
+        is_expected.to eq([])
+      end
+    end
+  end
+
+  describe ".only_organizations" do
+    let!(:individual_users) { create_list(:user, 3, :individual) }
+    let!(:legal_entity_users) { create_list(:user, 3, :legal_entity) }
+
+    subject { User.only_organizations }
+
+    context "when user is individual" do
+      it "should not return individual_users" do
+        is_expected.not_to match_array(individual_users)
+      end
+    end
+
+    context "when user is legal entity" do
+      it "should return legal_entity" do
+        is_expected.to match_array(legal_entity_users)
+      end
+    end
+  end
+
+  describe ".by_email" do
+    let!(:user) { create(:user, email: 'foo@bar.com') }
+    let!(:user_2) { create(:user, email: 'another_email@bar.com') }
+
+    subject { User.by_email('foo@bar') }
+
+    it { is_expected.to eq([user]) }
+  end
+
+  describe ".order_by" do
+    let!(:user_z) { create(:user, name: 'Ze Joseph') }
+    let!(:user_b) { create(:user, name: 'Bruno Bar') }
+    let!(:user_j) { create(:user, name: 'Joana Francisco') }
+    let!(:user_a) { create(:user, name: 'Aluisio Moura') }
+
+    context "when order by name" do
+      it "should return a name ordained list of users" do
+        expect(User.order_by(:name)).to eq([user_a, user_b, user_j, user_z])
+      end
+    end
+
+    context "when order by id" do
+      it "should return an id ordained list of users" do
+        expect(User.order_by(:id)).to eq([user_z, user_b, user_j, user_a])
+      end
+    end
+  end
+
+  describe ".by_name" do
+    let(:user) { create(:user, name: 'Baz Qux') }
+    let!(:users) { create_list(:user, 4) }
+
+    subject { User.by_name('Baz') }
+
+    it { is_expected.to eq([user]) }
+  end
+
+  describe ".by_id" do
+    before { create_list(:user, 5) }
+
+    subject { User.by_id(user.id) }
+
+    it { is_expected.to eq([user]) }
+  end
+
+  describe ".by_contribution_key" do
+    let(:contribution) { create(:contribution, user: user) }
+    let(:contribution_second) { create(:contribution, user: user) }
+    let(:contribution_third) { create(:contribution, user: user) }
+
+    before do
+      contribution.key = 'abc'
+      contribution.save!
+
+      contribution_second.key = 'abcde'
+      contribution_second.save!
+
+      contribution_third.key = 'def'
+      contribution_third.save!
+    end
+
+    subject { User.by_contribution_key('def') }
+
+    it { is_expected.to eq([contribution.user]) }
+  end
+
+  describe ".subscribed_to_posts" do
+    subject { User.subscribed_to_posts }
+
+    context "when a user has not unsubscribed to all projects" do
+      it { is_expected.to eq([user]) }
+    end
+
+    context "when a user has unsubscribed to all projects" do
+      let!(:unsubscribe) { create(:unsubscribe, project: nil, user: user ) }
+      let!(:users) { create_list(:user, 4) }
+
+      it { is_expected.to match_array(users) }
+    end
+  end
+
+  describe ".failed_contributed_projects" do
+    let!(:failed_contribution_project) { create(:contribution, user: user) }
+    subject { user.failed_contributed_projects }
+
+    context "when there is no failed project" do
+      it { is_expected.to eq([]) }
+    end
+
+    context "when there is one failed contributed project" do
+      let(:failed_contribution_project) { create(:failed_contribution_project, user: user) }
+
+      it { is_expected.to eq([failed_contribution_project.project]) }
+    end
+
+    context "when there are many failed contributed projects" do
+      let(:failed_contribution_projects) { create_list(:failed_contribution_project, 4, user: user) }
+      let(:failed_projects) { failed_contribution_projects.map(&:project) }
+
+      it { is_expected.to match_array(failed_projects) }
+    end
+  end
+
+  describe ".who_contributed_project" do
+    let(:contribution) { create(:contribution, state: 'confirmed', project: successful_project) }
+
+    subject { User.who_contributed_project(successful_project) }
+
+    context "when there are pending projects" do
+      before do
+        create_list(:contribution, 3, state: 'pending', project: successful_project)
+      end
+
+      it { is_expected.to eq([]) }
+    end
+
+    context "when a single user has contributed on many projects" do
+      before do
+        create_list(:contribution, 4, state: 'confirmed', project: successful_project, user: contribution.user)
+      end
+
+      it { is_expected.to eq([contribution.user]) }
+    end
+  end
+
+  describe ".with_visible_projects" do
+    let(:users_with_visible_project) { create_list(:user, 3) }
+
+    before do
+      create(:project, state: 'draft')
+      create(:project, state: 'rejected')
+      create(:project, state: 'deleted')
+      create(:project, state: 'in_analysis')
+      create(:project, :online, user: users_with_visible_project[0])
+      create(:project, user: users_with_visible_project[1], state: 'successful')
+      create(:project, user: users_with_visible_project[2], state: 'waiting_funds')
+    end
+
+    subject { User.with_visible_projects }
+
+    it "should return only users who has visible projects" do
+      is_expected.to eq(users_with_visible_project)
+    end
+  end
+
+  describe ".subscribed_to_project" do
+    let(:contribution) { create(:contribution, state: 'confirmed', project: successful_project) }
+
+    subject { User.subscribed_to_project(successful_project) }
+
+    context "when a user has no unsubscribed project" do
+      it { is_expected.to eq([]) }
+    end
+
+    context "when a user has unsubscribed to a project" do
+      before do
+        contribution
+        create(:unsubscribe, project_id: successful_project.id, user: user)
+      end
+
+      it { is_expected.to eq([contribution.user]) }
+    end
+  end
+
+  describe ".by_payer_email" do
+    let(:payment_notification) { create(:payment_notification) }
+    let(:payment_notification_second) { create(:payment_notification) }
+    let(:payment_notification_third) { create(:payment_notification) }
+
+    before do
+      payment_notification.extra_data = { 'payer_email' => 'foo@bar.com' }
+      payment_notification.save!
+
+      payment_notification_second.extra_data = { 'payer_email' => 'another_email@bar.com' }
+      payment_notification_second.save!
+
+      payment_notification_third.extra_data = { 'payer_email' => 'another_email@bar.com' }
+      payment_notification_third.save!
+    end
+
+    subject { User.by_payer_email('foo@bar.com') }
+
+    it { is_expected.to eq([payment_notification.contribution.user]) }
   end
 
   describe ".to_send_category_notification" do
     let(:category) { create(:category) }
-    let(:user_1) { create(:user) }
-    let(:user_2) { create(:user) }
+    let(:user_second) { create(:user) }
+    let(:user_third) { create(:user) }
 
     before do
       create(:project, category: category, user: user)
-      category.users << user_1
-      category.users << user_2
+      category.users << user_second
+      category.users << user_third
       category.deliver_projects_of_week_notification
       category.users << user
     end
@@ -80,152 +352,38 @@ RSpec.describe User, type: :model do
     subject { User.to_send_category_notification(category.id) }
 
     it { is_expected.to eq([user]) }
-
   end
 
-  describe ".find_active!" do
-    it "should raise error when user is inactive" do
-      @inactive_user = create(:user, deactivated_at: Time.now)
-      expect(->{ User.find_active!(@inactive_user.id) }).to raise_error(ActiveRecord::RecordNotFound)
-    end
+  describe ".already_used_credits" do
+    let!(:failed_contribution_project) { create(:failed_contribution_project, project_value: 1000, user: user) }
+    subject { User.already_used_credits }
 
-    it "should return user when active" do
-      expect(User.find_active!(user.id)).to eq user
-    end
-  end
-
-  describe ".active" do
-    subject{ User.active }
-
-    before do
-      user
-      create(:user, deactivated_at: Time.now)
-    end
-
-    it{ is_expected.to eq [user] }
-  end
-
-  describe '.staff' do
-    subject { described_class.staff }
-
-    context 'when the user is a staff member' do
-      let(:staff_member) { create :user, staffs: [1] }
-
-      it { is_expected.to include staff_member }
-    end
-
-    context 'when the user is not a staff member' do
-      let(:non_staff_user) { create :user }
-
-      it { is_expected.not_to include non_staff_user }
-    end
-
-  end
-
-  describe ".has_credits" do
-    subject{ User.has_credits }
-
-    context "when he has credits in the user_total" do
+    context "when the user contributes using credit as payment_method" do
       before do
-        b = create(:contribution, state: 'confirmed', value: 100, project: failed_project)
-        failed_project.update_attributes state: 'failed'
-        @u = b.user
-        b = create(:contribution, state: 'confirmed', value: 100, project: successful_project)
+        create(:contribution, project_value: 100, payment_method: 'credits', user: user)
       end
-      xit{ is_expected.to eq([@u]) }
+
+      it { is_expected.to eq([user]) }
+    end
+
+    context "when the user has not use its credits" do
+      it { is_expected.to eq([]) }
     end
   end
 
   describe ".has_not_used_credits_last_month" do
-    subject{ User.has_not_used_credits_last_month }
+    let!(:failed_contribution_project) { create(:failed_contribution_project, state: 'confirmed', value: 100, payment_method: 'credits', user: user) }
+    subject { User.has_not_used_credits_last_month }
 
-    context "when he has used credits in the last month" do
-      before do
-        b = create(:contribution, state: 'confirmed', value: 100, credits: true)
-        @u = b.user
-      end
-      xit{ is_expected.to eq([]) }
+    context "when user has used credits in the last month" do
+      it { is_expected.to eq([]) }
     end
-    context "when he has not used credits in the last month" do
-      before do
-        b = create(:contribution, state: 'confirmed', value: 100, project: failed_project)
-        failed_project.update_attributes state: 'failed'
-        @u = b.user
-      end
-      xit{ is_expected.to eq([@u]) }
-    end
-  end
 
-  describe ".by_payer_email" do
-    before do
-      p = create(:payment_notification)
-      contribution = p.contribution
-      @u = contribution.user
-      p.extra_data = {'payer_email' => 'foo@bar.com'}
-      p.save!
-      p = create(:payment_notification, contribution: contribution)
-      p.extra_data = {'payer_email' => 'another_email@bar.com'}
-      p.save!
-      p = create(:payment_notification)
-      p.extra_data = {'payer_email' => 'another_email@bar.com'}
-      p.save!
-    end
-    subject{ User.by_payer_email 'foo@bar.com' }
-    it{ is_expected.to eq([@u]) }
-  end
+    context "when user has not used credits in the last month" do
+      before { failed_contribution_project.update_attribute(:created_at, Time.now-2.month) }
 
-  describe ".by_key" do
-    before do
-      b = create(:contribution)
-      @u = b.user
-      b.key = 'abc'
-      b.save!
-      b = create(:contribution, user: @u)
-      b.key = 'abcde'
-      b.save!
-      b = create(:contribution)
-      b.key = 'def'
-      b.save!
+      it { is_expected.to eq([user]) }
     end
-    subject{ User.by_key 'abc' }
-    it{ is_expected.to eq([@u]) }
-  end
-
-  describe ".by_id" do
-    before do
-      @u = create(:user)
-      create(:user)
-    end
-    subject{ User.by_id @u.id }
-    it{ is_expected.to eq([@u]) }
-  end
-
-  describe ".by_name" do
-    before do
-      @u = create(:user, name: 'Foo Bar')
-      create(:user, name: 'Baz Qux')
-    end
-    subject{ User.by_name 'Bar' }
-    it{ is_expected.to eq([@u]) }
-  end
-
-  describe ".by_email" do
-    before do
-      @u = create(:user, email: 'foo@bar.com')
-      create(:user, email: 'another_email@bar.com')
-    end
-    subject{ User.by_email 'foo@bar' }
-    it{ is_expected.to eq([@u]) }
-  end
-
-  describe ".who_contributed_project" do
-    subject{ User.who_contributed_project(successful_project.id) }
-    before do
-      @contribution = create(:contribution, state: 'confirmed', project: successful_project)
-      create(:contribution, state: 'confirmed', project: successful_project, user: @contribution.user)
-      create(:contribution, state: 'pending', project: successful_project)
-    end
-    it{ is_expected.to eq([@contribution.user]) }
   end
 
   describe ".create" do
@@ -237,8 +395,8 @@ RSpec.describe User, type: :model do
         u.facebook_link = 'facebook.com/test'
       end
     end
-    its(:twitter){ should == 'dbiazus' }
-    its(:facebook_link){ should == 'http://facebook.com/test' }
+    its(:twitter) { should == 'dbiazus' }
+    its(:facebook_link) { should == 'http://facebook.com/test' }
   end
 
   describe "#change_locale" do
@@ -266,10 +424,11 @@ RSpec.describe User, type: :model do
       user.notify(:heartbleed)
     end
 
-    it "should create notification" do
-      notification = UserNotification.last
-      expect(notification.user).to eq user
-      expect(notification.template_name).to eq 'heartbleed'
+    context "when creating notification" do
+      before { @notification = UserNotification.last }
+
+      it { expect(@notification.user).to eq(user) }
+      it { expect(@notification.template_name).to eq('heartbleed') }
     end
   end
 
@@ -295,11 +454,11 @@ RSpec.describe User, type: :model do
     end
 
     it "should send user_deactivate notification" do
-      expect(UserNotification.last.template_name).to eq 'user_deactivate'
+      expect(UserNotification.last.template_name).to eq('user_deactivate')
     end
 
     it "should set all contributions as anonymous" do
-      expect(@contribution.reload.anonymous).to eq(true)
+      expect(@contribution.reload.anonymous).to be_truthy
     end
 
     it "should set reatiactivate_token" do
@@ -312,19 +471,17 @@ RSpec.describe User, type: :model do
   end
 
   describe "#total_contributed_projects" do
-    let(:user) { create(:user) }
-    let(:project) { create(:project) }
     subject { user.total_contributed_projects }
 
     before do
-      create(:contribution, state: 'confirmed', user: user, project: project)
-      create(:contribution, state: 'confirmed', user: user, project: project)
-      create(:contribution, state: 'confirmed', user: user, project: project)
+      create(:contribution, state: 'confirmed', user: user, project: successful_project)
+      create(:contribution, state: 'confirmed', user: user, project: successful_project)
+      create(:contribution, state: 'confirmed', user: user, project: successful_project)
       create(:contribution, state: 'confirmed', user: user)
       user.reload
     end
 
-    it { is_expected.to eq(2)}
+    it { is_expected.to eq(2) }
   end
 
   describe "#created_today?" do
@@ -336,7 +493,7 @@ RSpec.describe User, type: :model do
         allow(user).to receive(:sign_in_count).and_return(0)
       end
 
-      it { is_expected.to eq(true) }
+      it { is_expected.to be_truthy }
     end
 
     context "when user is created today and already signed in more that once time" do
@@ -345,7 +502,7 @@ RSpec.describe User, type: :model do
         allow(user).to receive(:sign_in_count).and_return(2)
       end
 
-      it { is_expected.to eq(false) }
+      it { is_expected.to be_falsey }
     end
 
     context "when user is created yesterday and not sign in yet" do
@@ -354,12 +511,12 @@ RSpec.describe User, type: :model do
         allow(user).to receive(:sign_in_count).and_return(1)
       end
 
-      it { is_expected.to eq(false) }
+      it { is_expected.to be_falsey }
     end
   end
 
   describe "#to_analytics_json" do
-    subject{ user.to_analytics_json }
+    subject { user.to_analytics_json }
     it do
       is_expected.to eq({
         id: user.id,
@@ -376,119 +533,117 @@ RSpec.describe User, type: :model do
 
   describe "#credits" do
     before do
-      @u = create(:user)
-      create(:contribution, state: 'confirmed', credits: false, value: 100, user_id: @u.id, project: successful_project)
-      create(:contribution, state: 'confirmed', credits: false, value: 100, user_id: @u.id, project: unfinished_project)
-      create(:contribution, state: 'confirmed', credits: false, value: 200, user_id: @u.id, project: failed_project)
-      create(:contribution, state: 'confirmed', credits: true, value: 100, user_id: @u.id, project: successful_project)
-      create(:contribution, state: 'confirmed', credits: true, value: 50, user_id: @u.id, project: unfinished_project)
-      create(:contribution, state: 'confirmed', credits: true, value: 100, user_id: @u.id, project: failed_project)
-      create(:contribution, state: 'requested_refund', credits: false, value: 200, user_id: @u.id, project: failed_project)
-      create(:contribution, state: 'refunded', credits: false, value: 200, user_id: @u.id, project: failed_project)
-      failed_project.update_attributes state: 'failed'
-      successful_project.update_attributes state: 'successful'
+      create(:contribution, state: 'confirmed', credits: false, project_value: 100, user_id: user.id, project: successful_project)
+      create(:contribution, state: 'confirmed', credits: false, project_value: 100, user_id: user.id, project: unfinished_project)
+      create(:failed_contribution_project, state: 'confirmed', credits: false, project_value: 200, user_id: user.id)
+      create(:contribution, state: 'confirmed', credits: true, project_value: 100, user_id: user.id, project: successful_project)
+      create(:contribution, state: 'confirmed', credits: true, project_value: 50, user_id: user.id, project: unfinished_project)
+      create(:failed_contribution_project, state: 'confirmed', credits: true, project_value: 100, user_id: user.id)
+      create(:failed_contribution_project, state: 'requested_refund', credits: false, project_value: 200, user_id: user.id)
+      create(:failed_contribution_project, state: 'refunded', credits: false, project_value: 200, user_id: user.id)
+      successful_project.update_attribute(:state, 'successful')
     end
 
-    subject{ @u.credits }
+    subject { user.credits }
 
-    xit{ is_expected.to eq(50.0) }
+    it{ is_expected.to eq(50.0) }
   end
 
   describe "#update_attributes" do
     context "when I try to update moip_login" do
       before do
-        user.update_attributes moip_login: 'test'
+        user.update_attribute(:moip_login, 'test')
       end
-      it("should perform the update"){ expect(user.moip_login).to eq('test') }
+
+      it("should perform the update") { expect(user.moip_login).to eq('test') }
     end
   end
 
   describe "#recommended_project" do
-    subject{ user.recommended_projects }
+    subject { user.recommended_projects }
+
     before do
       other_contribution = create(:contribution, state: 'confirmed')
       create(:contribution, state: 'confirmed', user: other_contribution.user, project: unfinished_project)
       create(:contribution, state: 'confirmed', user: user, project: other_contribution.project)
     end
-    it{ is_expected.to eq([unfinished_project])}
+
+    it { is_expected.to eq([unfinished_project]) }
   end
 
   describe "#posts_subscription" do
-    subject{user.posts_subscription}
+    let(:unsubscribe) { create(:unsubscribe, project: nil, user: user ) }
+    subject { user.posts_subscription }
+
     context "when user is subscribed to all projects" do
-      it{ is_expected.to be_new_record }
+      it { is_expected.to be_new_record }
     end
+
     context "when user is unsubscribed from all projects" do
-      before { @u = create(:unsubscribe, project_id: nil, user_id: user.id )}
-      it{ is_expected.to eq(@u)}
+      before { unsubscribe }
+
+      it { is_expected.to eq(unsubscribe) }
     end
   end
 
   describe "#project_unsubscribes" do
-    subject{user.project_unsubscribes}
+    let(:unsubscribe) { create(:unsubscribe, project: successful_project, user: user) }
+    subject { user.project_unsubscribes }
+
     before do
-      @p1 = create(:project)
-      create(:contribution, user: user, project: @p1)
-      @u1 = create(:unsubscribe, project_id: @p1.id, user_id: user.id )
+      create(:contribution, user: user, project: successful_project)
+      unsubscribe
     end
-    it{ is_expected.to eq([@u1])}
+
+    it { is_expected.to eq([unsubscribe]) }
   end
 
   describe "#contributed_projects" do
-    subject{user.contributed_projects}
-    before do
-      @p1 = create(:project)
-      create(:contribution, user: user, project: @p1)
-      create(:contribution, user: user, project: @p1)
-    end
-    it{is_expected.to eq([@p1])}
-  end
+    subject { user.contributed_projects }
 
-  describe "#failed_contributed_projects" do
-    subject{user.failed_contributed_projects}
     before do
-      @failed_project = create(:project, state: 'online')
-      @online_project = create(:project, state: 'online')
-      create(:contribution, user: user, project: @failed_project)
-      create(:contribution, user: user, project: @online_project)
-      @failed_project.update_columns state: 'failed'
+      create_list(:contribution, 2, user: user, project: successful_project)
     end
-    it{is_expected.to eq([@failed_project])}
+
+    it { is_expected.to eq([successful_project]) }
   end
 
   describe "#fix_facebook_link" do
-    subject{ user.facebook_link }
+    subject { user.facebook_link }
+
     context "when user provides invalid url" do
-      let(:user){ create(:user, facebook_link: 'facebook.com/foo') }
-      it{ is_expected.to eq('http://facebook.com/foo') }
+      let(:user) { create(:user, facebook_link: 'facebook.com/foo') }
+
+      it { is_expected.to eq('http://facebook.com/foo') }
     end
+
     context "when user provides valid url" do
-      let(:user){ create(:user, facebook_link: 'http://facebook.com/foo') }
-      it{ is_expected.to eq('http://facebook.com/foo') }
+      let(:user) { create(:user, facebook_link: 'http://facebook.com/foo') }
+
+      it { is_expected.to eq('http://facebook.com/foo') }
     end
   end
 
   describe "#made_any_contribution_for_this_project?" do
-    let(:project) { create(:project) }
-    subject { user.made_any_contribution_for_this_project?(project.id) }
+    subject { user.made_any_contribution_for_this_project?(successful_project.id) }
 
     context "when user have contributions for the project" do
       before do
-        create(:contribution, project: project, state: 'confirmed', user: user)
+        create(:contribution, project: successful_project, state: 'confirmed', user: user)
       end
 
-      it { is_expected.to eq(true) }
+      it { is_expected.to be_truthy }
     end
 
     context "when user don't have contributions for the project" do
-      it { is_expected.to eq(false) }
+      it { is_expected.to be_falsey }
     end
   end
 
   describe "#following_this_category?" do
-    let(:category) { create(:category) }
+    let(:category)       { create(:category) }
     let(:category_extra) { create(:category) }
-    let(:user) { create(:user) }
+
     subject { user.following_this_category?(category.id)}
 
     context "when is following the category" do
@@ -496,7 +651,7 @@ RSpec.describe User, type: :model do
         user.categories << category
       end
 
-      it { is_expected.to eq(true) }
+      it { is_expected.to be_truthy }
     end
 
     context "when not following the category" do
@@ -504,11 +659,11 @@ RSpec.describe User, type: :model do
         user.categories << category_extra
       end
 
-      it { is_expected.to eq(false) }
+      it { is_expected.to be_falsey }
     end
 
     context "when not following any category" do
-      it { is_expected.to eq(false) }
+      it { is_expected.to be_falsey }
     end
   end
 
@@ -521,14 +676,14 @@ RSpec.describe User, type: :model do
         (1..13).map { |n| "original_doc#{n}_url".to_sym }
       end
 
-      it { is_expected.to match_array legal_entity_documents }
+      it { is_expected.to match_array(legal_entity_documents) }
     end
 
     context 'when user is an individual' do
       let(:user) { create :user, access_type: 'individual' }
       let(:individual_documents) { [:original_doc12_url, :original_doc13_url] }
 
-      it { is_expected.to match_array individual_documents }
+      it { is_expected.to match_array(individual_documents) }
     end
   end
 end

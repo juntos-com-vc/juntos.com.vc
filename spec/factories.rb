@@ -41,6 +41,18 @@ FactoryGirl.define do
         create_list(:project, evaluator.projects_count, user: user)
       end
     end
+
+    trait :deactivated do
+      deactivated_at Time.now
+    end
+
+    trait :legal_entity do
+      access_type 'legal_entity'
+    end
+
+    trait :individual do
+      access_type 'individual'
+    end
   end
 
   factory :category do |f|
@@ -67,6 +79,10 @@ FactoryGirl.define do
         channel = create :channel
         project.channels << channel
       end
+    end
+
+    trait :online do
+      state 'online'
     end
   end
 
@@ -106,6 +122,12 @@ FactoryGirl.define do
     f.state 'confirmed'
     f.credits false
     f.payment_id '1.2.3'
+
+    factory :failed_contribution_project do
+      after(:create) do |contribution|
+        contribution.project.update_attribute(:state, 'failed')
+      end
+    end
 
     trait :confirmed do
       state 'confirmed'
