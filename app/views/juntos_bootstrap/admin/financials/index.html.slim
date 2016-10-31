@@ -13,9 +13,9 @@ br
         .w-col-5.w-col
           .w-row
             .w-col-5.w-col
-              = form.input "between_expires_at[start_at]", as: :string, label: t(".between_expires_at"), input_html: {value: params[:between_expires_at] && params[:between_expires_at][:start_at], data: { mask: '99/99/9999' } }
+              = form.input "between_expires_at[start_at]", as: :string, label: t(".between_expires_at"), input_html: { value: params[:between_expires_at] && params[:between_expires_at][:start_at], data: { mask: 'date'} }
             .w-col-5.w-col.u-margintop-10.u-marginleft-20
-              = form.input "between_expires_at[ends_at]", as: :string, label: '', input_html: {value: params[:between_expires_at] && params[:between_expires_at][:ends_at], data: { mask: '99/99/9999' } }
+              = form.input "between_expires_at[ends_at]", as: :string, label: '', input_html: {  value: params[:between_expires_at] && params[:between_expires_at][:ends_at], data: { mask: 'date'} }
         .w-col-2.w-col
           = form.input :by_progress, as: :string, label: t('.by_progress'), input_html: {value: params[:by_progress]}
       .w-row
