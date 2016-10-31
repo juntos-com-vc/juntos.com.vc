@@ -81,8 +81,19 @@ App.addChild('ReviewForm', _.extend({
     return validInput
   },
 
+  validatePhone: function(input) {
+    var $this = $(input);
+    var phonePattern = /^\({1}\d{2}\)(\d{4}|\d{5})-\d{4}/
+    var phone = $this.val();
+    if(!phonePattern.test(phone)) {
+      $this.trigger('invalid');
+      return false;
+    }
+    return true;
+  },
+
   validateZipAndPhone: function() {
-    return (this.validateMasked(this.$phone) && this.validateMasked(this.$zip));
+    return (this.validatePhone(this.$phone) && this.validateMasked(this.$zip));
   },
 
   maskPhone: function(field) {
