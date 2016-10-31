@@ -58,7 +58,7 @@ class Admin::ProjectsController < Channels::Admin::BaseController
   def unpaginated_collection
     @scoped_projects = apply_scopes(end_of_association_chain).with_project_totals.without_state('deleted')
     if channel
-      @scoped_projects = @scoped_projects.where("id IN (SELECT project_id FROM channels_projects WHERE channel_id = #{channel.id})")
+      @scoped_projects = @scoped_projects.by_channel(channel.id)
     end
     @scoped_projects
   end

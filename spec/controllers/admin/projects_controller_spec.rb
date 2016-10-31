@@ -65,7 +65,7 @@ RSpec.describe Admin::ProjectsController, type: :controller do
 
 
   describe "GET index" do
-    context "when I'm not logged in" do
+    context "when a user is not logged in" do
       let(:current_user){ nil }
       before do
         get :index, locale: :pt
@@ -73,11 +73,37 @@ RSpec.describe Admin::ProjectsController, type: :controller do
       it{ is_expected.to redirect_to new_user_registration_path }
     end
 
-    context "when I'm logged as admin" do
-      before do
-        get :index, locale: :pt
+    context "when a user is logged as admin" do
+      let!(:url_namespace_channel){ create(:channel) }
+      let!(:out_of_channel_projects){ create_list(:project, 3) }
+      let!(:channel_projects){ create_list(:project, 2, channels: [url_namespace_channel]) }
+      let!(:channel_failed_project){ create(:project,  channels: [url_namespace_channel], state: 'deleted') }
+
+      context 'is inside a channel' do
+        before do
+          allow(controller).to receive(:channel) { url_namespace_channel }
+          get :index, locale: :pt
+        end
+
+        it "should return only projects registered on the admin's current channel" do
+          expect(assigns(:projects)).to eq(channel_projects)
+        end
+
+        its(:status){ should == 200 }
       end
-      its(:status){ should == 200 }
+
+      context 'is not inside a channel' do
+        before do
+          allow(controller).to receive(:channel) { nil }
+          get :index, locale: :pt
+        end
+
+        it 'should return all non-deleted projects' do
+          expect(assigns(:projects)).to eq(out_of_channel_projects + channel_projects)
+        end
+
+        its(:status){ should == 200 }
+      end
     end
   end
 

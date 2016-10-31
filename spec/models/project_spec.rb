@@ -935,4 +935,29 @@ RSpec.describe Project, type: :model do
       end
     end
   end
+
+  describe '#by_channel' do
+    let(:foo_channel){ create(:channel, name: 'Foo Channel', users: [ user ]) }
+    let(:foo_channel_projects){ Project.by_channel(foo_channel.id) }
+
+    before(:each) do
+      create_list(:project, 10)
+    end
+
+    context 'when channel does not have registered projects' do
+      it 'does not return projects' do
+        expect(foo_channel_projects.count).to eq(0)
+      end
+    end
+
+    context 'when channel have registered projects' do
+      before do
+        create(:project, name: 'Project Bar in Foo Channel', channels: [foo_channel])
+      end
+
+      it "should return only projects that belongs to the channel passed as param" do
+        expect(foo_channel_projects.map(&:name)).to match(['Project Bar in Foo Channel'])
+      end
+    end
+  end
 end
