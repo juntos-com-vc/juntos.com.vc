@@ -4173,3 +4173,44 @@ p .project-basics-icons{
 .admin-form-title{
   margin: 1em 0;
 }
+
+.partner-table{
+  margin-bottom: 5em;
+}
+
+.partner-form-btn-new{
+  color: $white;
+  background-color: $lighten-orange;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.patner-form-btn-edit, .patner-form-btn-delete{
+  color: $white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.patner-form-btn-edit{
+  background: $blue-three;
+}
+
+.patner-form-btn-delete{
+  background: $red-two;
+}
+
+.partner-form-img{
+  width: 100px;
+}
+
+.partner-form-tr{
+  height: 60px;
+  td{
+    border: solid 1px $gray-two;
+  }
+}
+
+.partner-form-actions-width{
+  width: $four-columns-actions-width;
+}
