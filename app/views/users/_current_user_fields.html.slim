@@ -43,9 +43,13 @@
           - if current_user.try(:admin?)
             .profile
               h3.u-marginbottom-20 Campos do admin
-              = f.input :staffs, as: :select, collection: User.staff_array,
-                label: t('activerecord.attributes.user.staff'), multiple: true
-              = f.input :admin, as: :boolean, label: t('activerecord.attributes.user.admin')
+              .w-col.w-col-12
+                = f.input :admin, as: :boolean, label: t('activerecord.attributes.user.admin'),
+                  input_html: { class: 'w-col w-col-12' }
+              .w-col.w-col-12
+                = f.input :staffs, label: t('activerecord.attributes.user.staff'), as: :check_boxes,
+                  collection: User::STAFFS.values, member_label: Proc.new { |c| User.staff_descriptions[c] },
+                  input_html: { class: 'w-col w-col-12' }
           .socialmidia
             = f.input :moip_login, label: t('activerecord.attributes.user.moip_login')
             = f.input :phone_number, required: false, as: :string

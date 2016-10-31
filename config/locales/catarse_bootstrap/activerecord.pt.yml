@@ -57,6 +57,11 @@ pt:
         first_contributions: "Quem são as primeiras pessoas que você vai pedir para apoiar o seu projeto?"
         project_partners: 'Parceiros'
         recipient: 'Dados bancários'
+      user/staff:
+        team: 'Time'
+        financial_board: 'Conselho Financeiro'
+        technical_board: 'Conselho Técnico'
+        advice_board: 'Conselho'
       user:
         address_city: Cidade
         address_complement: Complemento
@@ -89,10 +94,6 @@ pt:
         gender/male: 'Masculino'
         gender/female: 'Feminino'
         staff: 'Departamento'
-        staff/team: 'Time'
-        staff/financial_board: 'Conselho Financeiro'
-        staff/technical_board: 'Conselho Técnico'
-        staff/advice_board: 'Conselho'
         original_doc1_url: Estatuto social registrado em cartório
         original_doc2_url: Última ata de assembleia geral registrada em cartório
         original_doc3_url: Último parecer do conselho fiscal
