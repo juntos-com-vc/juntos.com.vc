@@ -32,9 +32,9 @@
           .w-col-3.w-col.u-margintop-10
             = form.input "#{between_field}[ends_at]", as: :string, label: false, label: '', input_html: { value: params[between_field] && params[between_field][:ends_at], class: 'w-input text-field', data: { mask: 'date'}}
         .w-col-3.w-col
-          = form.input "goal_between[start_at]", as: :string, label: t(".#{'goal_between'}"), input_html: {value: params['goal_between'] && params['goal_between'][:start_at], class: 'w-input text-field'}
+          = form.input "goal_between[start_at]", as: :integer, label: t(".#{'goal_between'}"), input_html: {value: params['goal_between'] && params['goal_between'][:start_at], class: 'w-input text-field'}
         .w-col-3.w-col.u-margintop-10
-          = form.input "goal_between[ends_at]", as: :string, label: false, label: '', input_html: { value: params['goal_between'] && params['goal_between'][:ends_at], class: 'w-input text-field'}
+          = form.input "goal_between[ends_at]", as: :integer, label: false, label: '', input_html: { value: params['goal_between'] && params['goal_between'][:ends_at], class: 'w-input text-field'}
         .w-col-3.w-col
           = form.input :with_state, collection: Project.state_names, label: t('channels.admin.filter.with_state'), as: :select, selected: params[:with_state], include_blank: true, input_html: { class: 'w-input text-field' }
         .w-col-3.w-col
