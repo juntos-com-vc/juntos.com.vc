@@ -4,27 +4,12 @@
       h1 = t('.title')
       h2 = t('.meet_our_partners')
 
-      .site-partners-nav
+      .site-partners
         - @site_partners.each do |partner|
-          .partner
-            = image_tag partner.logo.regular.url
+            = link_to partner.url, target: '_blank' do
+              = image_tag partner.logo.regular.url, title: partner.bio, class: 'partner-space'
 
 
-      .partners-details
-        - @site_partners.each do |partner|
-          .partner-details
-            h3 = partner.name
-            h4
-              span = t('.address')
-              =< partner.address
-            h4
-              span = t('.contact')
-              =< partner.phone
-            h4
-              span = t('.site')
-              =< link_to partner.url, partner.url, target: '_blank'
-            p
-              = partner.bio
 
       = content_for :custom_javascripts do
         javascript:
@@ -46,6 +31,3 @@
                 nextArrow: '<button type="button" class="slick-next custom-arrow"></button>'
             });
           });
-
-
-
