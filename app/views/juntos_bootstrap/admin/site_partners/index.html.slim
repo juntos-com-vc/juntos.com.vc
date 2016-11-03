@@ -6,22 +6,25 @@ br
     .w-row.admin
       .w-col.w-col-5
         h1= @title = t('.title')
-      .w-col.w-col-3.w-col-push-3
-        = link_to t('.new'), new_admin_site_partner_path, class: 'link'
+      .w-col.w-col-7.align-right
+        = link_to t('.new'), new_admin_site_partner_path, class: 'link partner-form-btn-new'
 
-  table.table.u-margintop-30
+  table.table.u-margintop-30.w-container.partner-table
     thead.card.card-secondary
       tr
         th = SitePartner.human_attribute_name(:name)
         th = SitePartner.human_attribute_name(:url)
         th = SitePartner.human_attribute_name(:logo)
         th Ações
-    tbody
+    tbody.align-center
       - @site_partners.each do |site_partner|
-        tr class=cycle("even", "odd")
+        tr.partner-form-tr class=cycle("even", "odd")
           td = site_partner.name
           td = site_partner.url
-          td = image_tag site_partner.logo.regular.url
-          td
-            = link_to t('.edit'), edit_admin_site_partner_path(site_partner)
-            = button_to t('.remove'), admin_site_partner_path(site_partner), method: :delete
+          td = image_tag site_partner.logo.regular.url, class: 'partner-form-img'
+          td.partner-form-actions-width
+            .row
+              .w-col.w-col-6
+                = link_to t('.edit'), edit_admin_site_partner_path(site_partner), class: 'patner-form-btn-edit'
+              .w-col.w-col-6
+                = link_to t('.remove'), admin_site_partner_path(site_partner), method: :delete, class: 'patner-form-btn-delete'

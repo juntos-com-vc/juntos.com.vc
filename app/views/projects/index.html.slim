@@ -29,7 +29,7 @@
       /* ]]> */
     script src="//www.googleadservices.com/pagead/conversion.js" type="text/javascript"
     noscript
-      div style="display:inline;"
+      .inline
         img alt="" height="1" src="//www.googleadservices.com/pagead/conversion/988885353/?value=1.00&amp;currency_code=USD&amp;label=1y4HCIeHugYQ6eLE1wM&amp;guid=ON&amp;script=0" style="border-style:none;" width="1" /
 
 - if @banners.any?
@@ -118,12 +118,12 @@
         - @featured_partners.each do |partner|
           .featured
             = link_to partner.url, target: '_blank' do
-              = image_tag partner.logo.featured.url, title: partner.name
+              = image_tag partner.logo.featured.url, title: partner.bio
       .logos[class="#{'js-regular-partners' if @regular_partners.count > 6}"]
         - @regular_partners.each do |partner|
           .regular
             = link_to partner.url, target: '_blank' do
-              = image_tag partner.logo.featured.url, title: partner.name
+              = image_tag partner.logo.featured.url, title: partner.bio
 
       javascript:
         $(document).ready(function(){
