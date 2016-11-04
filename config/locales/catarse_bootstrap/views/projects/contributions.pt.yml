@@ -111,6 +111,10 @@ pt:
           acima "Sua doação" e logo em seguida clique no botão "Validar sua doação".
         validate_gift_card: 'Validar cartão doação'
       review:
+        accept: 'Ao apoiar, você concorda com os '
+        user_terms: 'Termos de Uso '
+        privacy_policy: 'Política de Privacidade. '
+        donate_problem: 'Caso tenha algum problema para efetuar a sua doação, envie uma mensagem para contato@juntos.com.vc '
         PayPal:
           name: 'PayPal'
           description: "Pagamento internacional"
