@@ -8,13 +8,13 @@ RSpec.describe "Users", type: :feature do
   end
 
   describe "redirect to the last page after login" do
+    let!(:project) { create(:project) }
     before do
-      @project = create(:project)
-      visit project_by_slug_path(permalink: @project.permalink)
+      visit project_by_slug_path(permalink: project.permalink)
       login
     end
 
-    xit { expect(current_path).to eq(project_by_slug_path(permalink: @project.permalink)) }
+    it { expect(current_path).to eq(project_by_slug_path(permalink: project.permalink)) }
   end
 
   describe "the notification tab" do
@@ -31,4 +31,3 @@ RSpec.describe "Users", type: :feature do
     end
   end
 end
-

@@ -11,8 +11,11 @@ module Concerns
     end
 
     def auth_error(exception)
-      session[:return_to] = request.env['REQUEST_URI']
       message = exception.message
+
+      unless ajax_request?
+        session[:return_to] = request.env['REQUEST_URI']
+      end
 
       if current_user.nil?
         redirect_to new_user_registration_url, alert: I18n.t('devise.failure.unauthenticated')

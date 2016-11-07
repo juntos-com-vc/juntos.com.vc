@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     session[:referal_link]
   end
 
+  def ajax_request?
+    request.xhr? == 0
+  end
+
   private
   def referal_it!
     session[:referal_link] = params[:ref] if params[:ref].present?
@@ -67,7 +71,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_user_back_after_login
-    if request.env['REQUEST_URI'].present? && !request.xhr?
+    if request.env['REQUEST_URI'].present? && !ajax_request?
       session[:return_to] = request.env['REQUEST_URI']
     end
   end
