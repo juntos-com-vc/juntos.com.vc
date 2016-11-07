@@ -157,6 +157,16 @@ class Project < ActiveRecord::Base
 
   scope :without_recurring_and_pepsico_channel, -> { union_scope(with_channel_without_recurring.without_pepsico_channel, without_channel) }
 
+  scope :goal_between, -> (value_starts_at, value_ends_at) do
+    if value_starts_at && value_ends_at
+      where(goal: value_starts_at..value_ends_at)
+    elsif value_starts_at
+      where('goal >= ?', value_starts_at)
+    elsif value_ends_at
+      where('goal <= ?', value_ends_at)
+    end
+  end
+
   attr_accessor :accepted_terms, :new_record
 
   validates_acceptance_of :accepted_terms, on: :create
@@ -183,10 +193,6 @@ class Project < ActiveRecord::Base
     expiring_in_less_of('7 days').find_each do |project|
       project.notify_owner(:verify_moip_account, { from_email: CatarseSettings[:email_payments]})
     end
-  end
-
-  def self.goal_between(starts_at, ends_at)
-    where("goal BETWEEN ? AND ?", starts_at, ends_at)
   end
 
   def self.order_by(sort_field)
