@@ -6,3 +6,10 @@ pt:
           link_to_twitter: "Link para o twitter do canal"
           link_to_facebook: "Link para o facebook do canal"
           link_to_website: "Link para o site externo do canal"
+        transparency:
+          brl_amount: 'valor em R$'
+          raised: 'ARRECADADOS'
+          donations: 'doações'
+          performed: 'REALIZADOS'
+          projects: 'projetos'
+          supported: 'apoiados'

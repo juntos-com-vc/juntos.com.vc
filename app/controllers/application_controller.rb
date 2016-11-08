@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
   before_action :referal_it!
 
   def channel
-    Channel.find_by_permalink(request.subdomain.to_s)
+    channel = Channel.find_by_permalink(request.subdomain.to_s)
+    channel.decorator if channel
   end
 
   def referal_link

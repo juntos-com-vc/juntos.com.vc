@@ -8,6 +8,27 @@ RSpec.describe ChannelDecorator do
     it{ is_expected.to eq('foobar') }
   end
 
+  describe "#statistics_background_color" do
+    context "when channel hasn't a color" do
+      let(:channel) { build :channel }
+
+      subject { channel.decorator.statistics_background_color }
+
+      it "return the default color" do
+        is_expected.to eq('#FEB84C')
+      end
+    end
+    context "when a channel has a color" do
+      let(:channel) { build :channel, recurring: false, main_color: '#000' }
+
+      subject { channel.decorator.statistics_background_color }
+
+      it "return the channel color" do
+        is_expected.to eq('#000')
+      end
+    end
+  end
+
   describe "#display_twitter" do
     subject{ channel.display_twitter }
     it{ is_expected.to eq('@foobar') }
@@ -68,4 +89,3 @@ RSpec.describe ChannelDecorator do
     end
   end
 end
-
