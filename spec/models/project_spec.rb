@@ -689,6 +689,36 @@ RSpec.describe Project, type: :model do
     it { is_expected.to eq([reward_01, reward_03]) }
   end
 
+  describe '#accept_contributions?' do
+    context 'when project is online' do
+      context 'and is not expired' do
+        context 'and is available for contribution' do
+          let(:project) { create(:project, :online, :not_expired, available_for_contribution: true) }
+
+          it { expect(project).to be_accept_contributions }
+        end
+
+        context 'and not available for contribution' do
+          let(:project) { create(:project, :online, :not_expired, available_for_contribution: false) }
+
+          it { expect(project).not_to be_accept_contributions }
+        end
+      end
+
+      context 'and is expired' do
+        let(:project) { create(:project, :online, :expired, available_for_contribution: true) }
+
+        it { expect(project).not_to be_accept_contributions }
+      end
+    end
+
+    context 'when project is not online' do
+      let(:project) { create(:project, state: 'failed') }
+
+      it { expect(project).not_to be_accept_contributions }
+    end
+  end
+
   describe "#last_channel" do
     let(:channel){ create(:channel) }
     let(:project){ create(:project, channels: [ create(:channel), channel ]) }

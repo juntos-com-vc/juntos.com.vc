@@ -75,10 +75,11 @@ section.section
 .w-container
   .w-row
     article
-      #project_basics.content.w-hidden
-        = render 'project_basics'
-      #dashboard_project.content.w-hidden
-        = render 'dashboard_project'
+      - if policy(@project).update?
+        #project_basics.content.w-hidden
+          = render 'project_basics'
+        #dashboard_project.content.w-hidden
+          = render 'dashboard_project'
       #project_about.content.w-col.w-col-8 = render 'project_about'
 
       #project_posts.content.w-col.w-col-8.w-hidden[data-path=project_posts_path(project_id: @project.id)]
@@ -123,7 +124,7 @@ section.section
               .fontsize-largest = @project.remaining_days
               .fontsize-small #{@project.time_to_go[:unit].capitalize} #{pluralize_without_number(@project.time_to_go[:time], t('remaining_singular'), t('remaining_plural'))}
 
-        - if @project.online? && !@project.expired?
+        - if @project.accept_contributions?
           = link_to t('.contribute_project.submit'), new_project_contribution_path(@project), id: 'contribute_project_form', class: "btn btn-large u-marginbottom-20"
 
         .fontsize-smaller.u-marginbottom-30[class=@project.display_card_class]
