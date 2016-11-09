@@ -206,7 +206,6 @@ FactoryGirl.define do
   end
 
   factory :channel do |f|
-    f.association :category
     name "Test"
     email "email+channel@foo.bar"
     description "Lorem Ipsum"

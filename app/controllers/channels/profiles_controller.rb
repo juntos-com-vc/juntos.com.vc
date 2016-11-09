@@ -22,8 +22,8 @@ class Channels::ProfilesController < Channels::BaseController
 
   def create
     @profile = Channel.new channel_params
-    binding.pry
     if @profile.save
+      CreateMultiCategoriesChannel.new(params[:category_id], @profile).call
       redirect_to :back
     else
       render :new
