@@ -109,6 +109,10 @@ en:
           "Validate your Donation" button.
         validate_gift_card: 'Validate gift card'
       review:
+        accept: 'By supporting, you agree to the '
+        user_terms: 'User terms '
+        privacy_policy: 'Privacy Policy. '
+        donate_problem: If you have any trouble making your donation, send a message to contato@juntos.com.vc
         PayPal:
           name: PayPal
           description: International payment
