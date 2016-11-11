@@ -84,6 +84,16 @@ FactoryGirl.define do
     trait :online do
       state 'online'
     end
+
+    trait :expired do
+      online_date 10.days.ago
+      online_days 1
+    end
+
+    trait :not_expired do
+      online_date Date.current
+      online_days 10
+    end
   end
 
   factory :channels_subscriber do |f|

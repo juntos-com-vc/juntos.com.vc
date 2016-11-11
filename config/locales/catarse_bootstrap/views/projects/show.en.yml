@@ -53,6 +53,8 @@ en:
       online_days: 'Deadline for the raising'
       online_days_label: 'On average the projects are aired for 40 days. The maximum campaign period is 60 days.'
       online_days_addon: 'days'
+      available_for_contributions: 'Available for online contributions?'
+      available_for_contributions_label: 'Check the box to allow users to contribute to this project.'
       value: 'Amount to the raised'
       value_secondary: 'A great part of the support will be from people close to you. Think about how to get at least 50% of the target value within your network.'
       bank_account_job_running_title: 'Warning: '

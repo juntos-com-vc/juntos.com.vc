@@ -243,7 +243,7 @@ class Project < ActiveRecord::Base
   end
 
   def accept_contributions?
-    online? && !expired?
+    online? && !expired? && available_for_contribution?
   end
 
   def reached_goal?

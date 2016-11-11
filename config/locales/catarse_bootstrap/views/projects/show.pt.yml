@@ -53,6 +53,8 @@ pt:
       online_days: 'Prazo para arrecadação'
       online_days_label: 'Em média os projetos ficam no ar por 40 dias. O prazo máximo da campanha é de 60 dias.'
       online_days_addon: 'dias'
+      available_for_contributions: 'Disponível para receber contribuições online?'
+      available_for_contributions_label: 'Marque a opção para que os usuários possam contribuir para este projeto.'
       value: 'Valor a ser arrecadado'
       value_secondary: 'Grande parte dos apoios serão de pessoas próximas a você. Pense como conseguir pelo menos 50% do valor da meta dentro da sua rede de contatos.'
       bank_account_job_running_title: 'Atenção:'
