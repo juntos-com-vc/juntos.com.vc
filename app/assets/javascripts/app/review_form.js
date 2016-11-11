@@ -93,7 +93,10 @@ App.addChild('ReviewForm', _.extend({
   },
 
   validateZipAndPhone: function() {
-    return (this.validatePhone(this.$phone) && this.validateMasked(this.$zip));
+    if(this.$country.val() == 'BR'){
+      return (this.validatePhone(this.$phone) && this.validateMasked(this.$zip));
+    }
+    return true;
   },
 
   maskPhone: function(field) {
