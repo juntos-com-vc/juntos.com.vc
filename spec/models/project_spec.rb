@@ -293,17 +293,43 @@ RSpec.describe Project, type: :model do
   end
 
   describe '.goal_between' do
-    let(:start_at) { 100 }
-    let(:ends_at) { 200 }
-    subject { Project.goal_between(start_at, ends_at).order(:id) }
-
     before do
-      @project_01 = create(:project, goal: 100)
-      @project_02 = create(:project, goal: 200)
-      @project_03 = create(:project, created_at: 300)
+      create(:project, goal: 199, name: 'with_goal_199')
+      create(:project, goal: 200, name: 'with_goal_200')
+      create(:project, goal: 300, name: 'with_goal_300')
+      create(:project, goal: 400, name: 'with_goal_400')
+      create(:project, goal: 401, name: 'with_goal_401')
     end
 
-    it { is_expected.to eq([@project_01, @project_02]) }
+    subject { Project.goal_between(start_at, ends_at).map(&:name) }
+
+    context "when there are both start_at and ends_at" do
+      let(:start_at) { 200 }
+      let(:ends_at)  { 300 }
+
+      it { is_expected.to contain_exactly('with_goal_200', 'with_goal_300') }
+    end
+
+    context "when there is only ends_at filter" do
+      let(:start_at) { nil }
+      let(:ends_at)  { 300 }
+
+      it { is_expected.to contain_exactly('with_goal_199', 'with_goal_200', 'with_goal_300') }
+    end
+
+    context "when there is only start_at filter" do
+      let(:start_at) { 200 }
+      let(:ends_at)  { nil }
+
+      it { is_expected.to contain_exactly('with_goal_200', 'with_goal_300', 'with_goal_400', 'with_goal_401') }
+    end
+
+    context "when there is neither start_at and ends_at" do
+      let(:start_at) { nil }
+      let(:ends_at)  { nil }
+
+      it { is_expected.to contain_exactly('with_goal_199', 'with_goal_200', 'with_goal_300', 'with_goal_400', 'with_goal_401') }
+    end
   end
 
 
