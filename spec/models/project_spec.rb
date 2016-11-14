@@ -17,6 +17,7 @@ RSpec.describe Project, type: :model do
     it{ is_expected.to have_many :rewards }
     it{ is_expected.to have_many :posts }
     it{ is_expected.to have_many :notifications }
+    it{ is_expected.to have_many :subscriptions }
     it{ is_expected.to have_and_belong_to_many :channels }
   end
 
