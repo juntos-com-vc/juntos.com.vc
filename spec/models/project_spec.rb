@@ -4,43 +4,68 @@ require 'sidekiq/testing'
 Sidekiq::Testing.fake!
 
 RSpec.describe Project, type: :model do
-  let(:project){ build(:project, goal: 3000) }
-  let(:user){ create(:user) }
-  let(:channel){ create(:channel, users: [ user ]) }
-  let(:channel_project){ create(:project, channels: [ channel ]) }
+  subject(:project)     { create(:project) }
+  let(:user)            { create(:user) }
+  let(:channel)         { create(:channel, users: [ user ]) }
+  let(:channel_project) { create(:project, channels: [ channel ]) }
 
   describe "associations" do
-    it{ is_expected.to belong_to :user }
-    it{ is_expected.to belong_to :category }
-    it{ is_expected.to have_many :contributions }
-    it{ is_expected.to have_one  :project_total }
-    it{ is_expected.to have_many :rewards }
-    it{ is_expected.to have_many :posts }
-    it{ is_expected.to have_many :notifications }
-    it{ is_expected.to have_and_belong_to_many :channels }
+    it { is_expected.to belong_to :user }
+    it { is_expected.to belong_to :category }
+    it { is_expected.to have_one  :project_total }
+    it { is_expected.to have_many :rewards }
+    it { is_expected.to have_many :contributions }
+    it { is_expected.to have_many :posts }
+    it { is_expected.to have_many :unsubscribes }
+    it { is_expected.to have_many :project_images }
+    it { is_expected.to have_many :project_partners }
+    it { is_expected.to have_many :subgoals }
+    it { is_expected.to have_many :notifications }
+    it { is_expected.to have_and_belong_to_many :channels }
   end
 
   describe "validations" do
-    %w[name user category permalink].each do |field|
-      it{ is_expected.to validate_presence_of field }
+    describe "presence validations" do
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:user) }
+      it { is_expected.to validate_presence_of(:permalink) }
+      it { is_expected.to validate_presence_of(:about) }
+      it { is_expected.to validate_presence_of(:category) }
     end
-    it{ is_expected.to validate_numericality_of(:goal) }
-    it{ is_expected.to allow_value(10).for(:goal) }
-    it{ is_expected.not_to allow_value(8).for(:goal) }
-    it{ is_expected.to ensure_length_of(:headline).is_at_most(140).is_at_least(1) }
-    it{ is_expected.to ensure_length_of(:about).is_at_least(1) }
-    it{ is_expected.to allow_value('http://vimeo.com/12111').for(:video_url) }
-    it{ is_expected.to allow_value('vimeo.com/12111').for(:video_url) }
-    it{ is_expected.to allow_value('https://vimeo.com/12111').for(:video_url) }
-    it{ is_expected.to allow_value('http://youtube.com/watch?v=UyU-xI').for(:video_url) }
-    it{ is_expected.to allow_value('youtube.com/watch?v=UyU-xI').for(:video_url) }
-    it{ is_expected.to allow_value('https://youtube.com/watch?v=UyU-xI').for(:video_url) }
-    it{ is_expected.not_to allow_value('http://www.foo.bar').for(:video_url) }
-    it{ is_expected.to allow_value('testproject').for(:permalink) }
-    it{ is_expected.to allow_value(1).for(:online_days) }
-    it{ is_expected.not_to allow_value(0).for(:online_days) }
-    it{ is_expected.not_to allow_value(61).for(:online_days) }
-    xit{ is_expected.not_to allow_value('users').for(:permalink) }
+
+    describe "online_days acceptance validations" do
+      it { is_expected.to     allow_value(1).for(:online_days) }
+      it { is_expected.not_to allow_value(0).for(:online_days) }
+      it { is_expected.not_to allow_value(61).for(:online_days) }
+    end
+
+    describe "video_url acceptance validations" do
+      it { is_expected.to     allow_value('http://vimeo.com/12111').for(:video_url) }
+      it { is_expected.to     allow_value('vimeo.com/12111').for(:video_url) }
+      it { is_expected.to     allow_value('https://vimeo.com/12111').for(:video_url) }
+      it { is_expected.to     allow_value('http://youtube.com/watch?v=UyU-xI').for(:video_url) }
+      it { is_expected.to     allow_value('youtube.com/watch?v=UyU-xI').for(:video_url) }
+      it { is_expected.to     allow_value('https://youtube.com/watch?v=UyU-xI').for(:video_url) }
+      it { is_expected.not_to allow_value('http://www.foo.bar').for(:video_url) }
+    end
+
+    describe "goal acceptance validations" do
+      it { is_expected.to     allow_value(10).for(:goal) }
+      it { is_expected.not_to allow_value(8).for(:goal) }
+    end
+
+    describe "permalink acceptance validations" do
+      it { is_expected.to      allow_value('testproject').for(:permalink) }
+      it { is_expected.not_to allow_value('@users').for(:permalink) }
+    end
+
+    describe "numericality validations" do
+      it { is_expected.to validate_numericality_of(:goal) }
+    end
+
+    describe "length of validations" do
+      it { is_expected.to ensure_length_of(:headline).is_at_most(140).is_at_least(1) }
+    end
   end
 
   describe ".of_current_week" do
