@@ -68,6 +68,126 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe ".search_on_name" do
+    before do
+      category = create(:category, name_pt: 'teste_pt', name_en: 'test_en')
+      create(:project, name: 'project_name', category: category)
+      create(:project, name: 'foo_1')
+      create(:project, name: 'foo_2')
+    end
+
+    context "when project is found" do
+      context "and it searches on category name" do
+        context "and it's in portuguese" do
+          subject { Project.search_on_name('teste_pt').map(&:name) }
+
+          it { is_expected.to contain_exactly('project_name') }
+        end
+
+        context "and it's in english" do
+          subject { Project.search_on_name('test_en').map(&:name) }
+
+          it { is_expected.to contain_exactly('project_name') }
+        end
+      end
+
+      context "and it searches on project name" do
+        subject { Project.search_on_name('project_name').map(&:name) }
+
+        it { is_expected.to contain_exactly('project_name') }
+
+        context "and the search ignores accents" do
+          subject { Project.search_on_name('prôject_nãmé').map(&:name) }
+
+          it { is_expected.to contain_exactly('project_name') }
+        end
+      end
+    end
+
+    context "when project is not found" do
+      subject{ Project.search_on_name('lorem') }
+
+      it{ is_expected.to contain_exactly() }
+    end
+  end
+
+  describe ".pg_search" do
+    let(:user)     { create(:user, name: 'fulano', address_city: 'some_address_far_away') }
+    let(:category) { create(:category, name_pt: 'teste_pt', name_en: 'test_en') }
+    let!(:project) { create(:project, name: 'foo', category: category, user: user) }
+
+    context "when project is found" do
+      context "and it searches on category name" do
+        context "and it's in portuguese" do
+          subject { Project.pg_search('teste_pt').map(&:name) }
+
+          it { is_expected.to contain_exactly(project.name) }
+        end
+
+        context "and it's in english" do
+          subject { Project.pg_search('test_en').map(&:name) }
+
+          it { is_expected.to contain_exactly(project.name) }
+        end
+      end
+
+      context "and it searches on user" do
+        context "name field" do
+          subject { Project.pg_search('fulano').map(&:name) }
+
+          it { is_expected.to contain_exactly(project.name) }
+        end
+
+        context "address_city field" do
+          subject { Project.pg_search('some_address_far_away').map(&:name) }
+
+          it { is_expected.to contain_exactly(project.name) }
+        end
+      end
+
+      context "and it searches on project name" do
+        subject { Project.pg_search('foo').map(&:name) }
+
+        it { is_expected.to contain_exactly(project.name) }
+
+        context "and the search ignores accents" do
+          subject { Project.pg_search('fóõ').map(&:name) }
+
+          it { is_expected.to contain_exactly(project.name) }
+        end
+      end
+    end
+
+    context "when project is not found" do
+      subject{ Project.pg_search('lorem') }
+
+      it{ is_expected.to contain_exactly() }
+    end
+  end
+
+  describe ".user_name_contains" do
+    let(:user)     { create(:user, name: 'fulano', address_city: 'some_address_far_away') }
+    let!(:project) { create(:project, user: user) }
+
+    context "when project is found" do
+      subject { Project.user_name_contains('fulano').map(&:name) }
+
+      it { is_expected.to contain_exactly(project.name) }
+
+      context "and the search ignores accents" do
+        subject { Project.user_name_contains('fūlåñö').map(&:name) }
+
+        it { is_expected.to contain_exactly(project.name) }
+      end
+    end
+
+    context "when project is not found" do
+      subject { Project.user_name_contains('user_does_not_exist').map(&:name) }
+
+      it { is_expected.to contain_exactly() }
+    end
+  end
+
   describe ".of_current_week" do
     subject { Project.of_current_week }
     before do
@@ -482,30 +602,6 @@ RSpec.describe Project, type: :model do
     context 'when project expiration time is not more on time to wait' do
       let(:contribution) { create(:contribution, created_at: 1.week.ago) }
       it {is_expected.to eq(false)}
-    end
-  end
-
-  describe "#search_on_name" do
-    before { @p = create(:project, name: 'foo') }
-    context "when project exists" do
-      subject{ [Project.search_on_name('foo'), Project.pg_search('fóõ')] }
-      it{ is_expected.to eq([[@p],[@p]]) }
-    end
-    context "when project is not found" do
-      subject{ Project.search_on_name('lorem') }
-      it{ is_expected.to eq([]) }
-    end
-  end
-
-  describe "#pg_search" do
-    before { @p = create(:project, name: 'foo') }
-    context "when project exists" do
-      subject{ [Project.pg_search('foo'), Project.pg_search('fóõ')] }
-      it{ is_expected.to eq([[@p],[@p]]) }
-    end
-    context "when project is not found" do
-      subject{ Project.pg_search('lorem') }
-      it{ is_expected.to eq([]) }
     end
   end
 
