@@ -1,6 +1,6 @@
 - contribution = @notification.contribution
-p Olá, <strong>#{contribution.user.display_name}</strong>!
-p Seu apoio para o projeto #{link_to(contribution.project.name, project_by_slug_url(permalink: contribution.project.permalink))} foi confirmado com sucesso. 
+p Olá, <strong>#{contribution.user.decorate.display_name}</strong>!
+p Seu apoio para o projeto #{link_to(contribution.project.name, project_by_slug_url(permalink: contribution.project.permalink))} foi confirmado com sucesso.
 - if contribution.project.thank_you.present?
   p= contribution.project.thank_you.gsub('\n', '<br/>')
 p Até o momento você e outras #{contribution.project.total_contributions} pessoas estão tornando esse projeto uma realidade.

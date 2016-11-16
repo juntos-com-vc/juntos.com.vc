@@ -1,6 +1,6 @@
 p Seguem todos os dados do pagamento:
 p
-  | Nome do apoiador: #{(contribution.payer_name || contribution.user.display_name)}
+  | Nome do apoiador: #{(contribution.payer_name || contribution.user.decorate.display_name)}
   br/
   | CPF/CNPJ do apoiador: #{(contribution.payer_document || contribution.user.cpf)}
   br/
@@ -21,7 +21,7 @@ p
     br/
   | ID do apoio: #{contribution.payment_id}
   br/
-  | Nome/Razão Social do realizador: #{contribution.project.user.display_name}
+  | Nome/Razão Social do realizador: #{contribution.project.user.decorate.display_name}
   br/
   | CPF/CNPJ do realizador: #{contribution.project.user.cpf}
 

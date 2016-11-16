@@ -1,7 +1,7 @@
 - contribution = @notification.contribution
 - company_name = CatarseSettings[:company_name]
 - contact_email = CatarseSettings[:email_contact]
-- user = @notification.contribution.user
+- user = @notification.contribution.user.decorate
 - bank_account = user.bank_account
 
 |Olá, <strong>#{contribution.user.display_name}</strong>!

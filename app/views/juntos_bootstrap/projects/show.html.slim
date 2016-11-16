@@ -151,7 +151,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
             .fontsize-small.fontweight-semibold.lineheight-tighter.align-center = @project.name
             .align-center.u-marginbottom-10.no-margin-bottom
               p.inline-components = t('.proposed_by')
-              p.inline-components = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden'
+              p.inline-components = link_to @project.user.decorate.display_name, user_path(@project.user), class: 'link-hidden'
 
         = render 'mobile_video'
         .w-hidden-small.w-hidden-tiny
@@ -234,12 +234,8 @@ nav.project-nav.w-hidden-main.w-hidden-medium
               - elsif ! %w(bolsasdazmina amigosdobem jornaljoca marcha2016 paranaue projetooca).include? @project.permalink.downcase
                 = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
           - if current_user.present? && current_user == @project.user
-            - if current_user.pending_documents?
-              .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
-                = t('.user_documents_html', url: user_path(current_user, anchor: 'settings'))
-            - if !@project.user.approved?
-              .fontsize-smaller.fontweight-light.u-marginbottom-30.u-radius.card.card-message
-                = t('.user_documents_html', url: user_path(current_user, anchor: 'settings'))
+            = current_user.display_pending_documents
+            = @project.user.decorate.display_project_not_approved
           - unless (%w(bolsasdazmina marcha2016 toddynho asa paranaue jornaljoca projetooca).include? @project.permalink.downcase) || @project.recurring?
             .u-marginbottom-10.w-hidden-small.w-hidden-tiny.project-style= t('.contribution_style')
       .card.card-user.u-marginbottom-10.w-hidden-small.w-hidden-tiny
@@ -247,8 +243,8 @@ nav.project-nav.w-hidden-main.w-hidden-medium
           .header
             = t('.proposed_by')
         .w-clearfix
-          = image_tag @project.user.display_image, width: "100", class: "thumb u-left u-radius u-marginbottom-30"
-          .fontsize-small.fontweight-semibold.lineheight-tighter = link_to @project.user.display_name, user_path(@project.user), class: 'link-hidden'
+          = image_tag @project.user.decorate.display_image, width: "100", class: "thumb u-left u-radius u-marginbottom-30"
+          .fontsize-small.fontweight-semibold.lineheight-tighter = link_to @project.user.decorate.display_name, user_path(@project.user), class: 'link-hidden'
           .fontsize-smallest.lineheight-tighter = @project.user.bio
           .project-author-contacts
             ul.w-list-unstyled.fontweight-semibold
@@ -258,7 +254,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
                     i.fa.fa-facebook-square.fa-2x
               - if @project.user.twitter
                 li
-                  = link_to @project.user.twitter_link, target: '_blank', class: 'link-hidden' do
+                  = link_to @project.user.decorate.twitter_link, target: '_blank', class: 'link-hidden' do
                     i.fa.fa-twitter-square.fa-2x
               - if @project.user.other_link
                 li
@@ -268,7 +264,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
           ul.w-list-unstyled.fontweight-light
             li
               i.fa.fa-heart
-              .created_projects.fontsize-smallest= t('created_project', count: @project.user.projects_count)
+              .created_projects.fontsize-smallest= t('created_project', count: @project.user.decorate.projects_count)
             li
               i.fa.fa-star
               .contributed_projects.fontsize-smallest = t('contributed_project', count: @project.user.total_contributed_projects)

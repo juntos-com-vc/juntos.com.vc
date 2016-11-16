@@ -3,7 +3,7 @@
 - project_link = project_by_slug_url(permalink: project.permalink)
 - company_name = CatarseSettings[:company_name]
 
-|Oi, #{project.user.display_name},
+|Oi, #{project.user.decorate.display_name},
 br/
 br/
 | Infelizmente o projeto #{link_to project.name, project_link } não alcançou a meta estipulada por você no #{company_name}.
