@@ -5,7 +5,7 @@ class ProjectPostWorker
   def perform post_id
     post = ProjectPost.find post_id
     post.project.subscribed_users.each do |user|
-      post.notify_once(:posts, user, post, {from_email: post.project.user.email, from_name: post.project.user.display_name})
+      post.notify_once(:posts, user, post, { from_email: post.project.user.email, from_name: post.project.user.decorate.display_name })
     end
   end
 end
