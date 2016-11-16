@@ -101,6 +101,34 @@ FactoryGirl.define do
       state 'online'
     end
 
+    trait :failed do
+      state 'failed'
+    end
+
+    trait :rejected do
+      state 'rejected'
+    end
+
+    trait :deleted do
+      state 'deleted'
+    end
+
+    trait :in_analysis do
+      state 'in_analysis'
+    end
+
+    trait :draft do
+      state 'draft'
+    end
+
+    trait :successful do
+      state 'successful'
+    end
+
+    trait :waiting_funds do
+      state 'waiting_funds'
+    end
+
     trait :expired do
       online_date 10.days.ago
       online_days 1

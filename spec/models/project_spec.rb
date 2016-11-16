@@ -4,6 +4,8 @@ require 'sidekiq/testing'
 Sidekiq::Testing.fake!
 
 RSpec.describe Project, type: :model do
+  include ActiveSupport::Testing::TimeHelpers
+
   subject(:project)     { create(:project) }
   let(:user)            { create(:user) }
   let(:channel)         { create(:channel, users: [ user ]) }
@@ -107,7 +109,7 @@ RSpec.describe Project, type: :model do
     context "when project is not found" do
       subject{ Project.search_on_name('lorem') }
 
-      it{ is_expected.to contain_exactly() }
+      it{ is_expected.to be_empty }
     end
   end
 
@@ -161,111 +163,884 @@ RSpec.describe Project, type: :model do
     context "when project is not found" do
       subject{ Project.pg_search('lorem') }
 
-      it{ is_expected.to contain_exactly() }
+      it{ is_expected.to be_empty }
     end
   end
 
   describe ".user_name_contains" do
-    let(:user)     { create(:user, name: 'fulano', address_city: 'some_address_far_away') }
-    let!(:project) { create(:project, user: user) }
+    let(:user) { create(:user, name: 'fulano', address_city: 'some_address_far_away') }
+    before     { create(:project, name: 'fulanos_project', user: user) }
 
     context "when project is found" do
       subject { Project.user_name_contains('fulano').map(&:name) }
 
-      it { is_expected.to contain_exactly(project.name) }
+      it { is_expected.to contain_exactly('fulanos_project') }
 
       context "and the search ignores accents" do
         subject { Project.user_name_contains('fūlåñö').map(&:name) }
 
-        it { is_expected.to contain_exactly(project.name) }
+        it { is_expected.to contain_exactly('fulanos_project') }
       end
     end
 
     context "when project is not found" do
       subject { Project.user_name_contains('user_does_not_exist').map(&:name) }
 
-      it { is_expected.to contain_exactly() }
+      it { is_expected.to be_empty }
     end
   end
 
-  describe ".of_current_week" do
-    subject { Project.of_current_week }
+  describe ".successful" do
     before do
-      3.times { create(:project, state: 'online', online_date: DateTime.now) }
-      3.times { create(:project, state: 'draft', online_date: 3.days.ago) }
-      3.times { create(:project, state: 'successful', online_date: 6.days.ago) }
-      5.times { create(:project, state: 'online', online_date: 8.days.ago) }
-      5.times { create(:project, state: 'online', online_date: 2.weeks.ago) }
-      2.times { create(:project, state: 'in_analysis', online_date: 3.days.from_now)}
+      create(:project, :successful, name: 'successful_project_1')
+      create(:project, :successful, name: 'successful_project_2')
+      create(:project, :online)
+      create(:project, :failed)
+      create(:project, :draft)
+      create(:project, :rejected)
+      create(:project, :deleted)
+      create(:project, :in_analysis)
     end
 
-    it "should return a collection with projects of current week" do
-      is_expected.to have(11).itens
+    subject { Project.successful.map(&:name) }
+
+    it { is_expected.to contain_exactly('successful_project_1', 'successful_project_2') }
+  end
+
+  describe ".failed" do
+    before do
+      create(:project, :failed, name: 'failed_project_1')
+      create(:project, :failed, name: 'failed_project_2')
+      create(:project, :successful)
+      create(:project, :online)
+      create(:project, :draft)
+      create(:project, :rejected)
+      create(:project, :deleted)
+      create(:project, :in_analysis)
+    end
+
+    subject { Project.failed.map(&:name) }
+
+    it { is_expected.to contain_exactly('failed_project_1', 'failed_project_2') }
+  end
+
+  describe ".draft" do
+    before do
+      create(:project, :draft, name: 'draft_1')
+      create(:project, :draft, name: 'draft_2')
+      create(:project, :failed)
+      create(:project, :successful)
+      create(:project, :online)
+      create(:project, :rejected)
+      create(:project, :deleted)
+      create(:project, :in_analysis)
+    end
+
+    subject { Project.draft.map(&:name) }
+
+    it { is_expected.to contain_exactly('draft_1', 'draft_2') }
+  end
+
+  describe ".with_project_totals" do
+    before  do
+      project = create(:project, name: 'with_project_totals')
+      create(:contribution, project: project)
+    end
+
+    subject { Project.with_project_totals.map(&:name) }
+
+    it { is_expected.to contain_exactly('with_project_totals') }
+  end
+
+  describe ".without_pepsico_channel" do
+    let(:channel) { create(:channel) }
+    before { create(:project, name: 'without_pepsico', channels: [channel]) }
+
+    subject { Project.without_pepsico_channel.map(&:name) }
+
+    context "when the permalink is not 'pepsico'" do
+      it { is_expected.to contain_exactly('without_pepsico') }
+    end
+
+    context "when the permalink is 'pepsico'" do
+      let(:channel) { create(:channel, permalink: 'pepsico') }
+
+      it { is_expected.to be_empty }
     end
   end
 
-  describe ".expiring_in_less_of" do
-    subject { Project.expiring_in_less_of('7 days') }
+  describe ".draft_and_without_channel" do
+    let(:channel) { create(:channel) }
+    subject       { Project.draft_and_without_channel.map(&:name) }
 
-    before do
-      @project_01 = create(:project, state: 'online', online_date: DateTime.now, online_days: 3)
-      @project_02 = create(:project, state: 'online', online_date: DateTime.now, online_days: 30)
-      @project_03 = create(:project, state: 'draft')
-      @project_04 = create(:project, state: 'online', online_date: DateTime.now, online_days: 3)
-    end
+    context "when project state is 'draft'" do
+      context "and it has no channel" do
+        before { create(:project, :draft, name: 'draft_project') }
 
-    it "should return a collection with projects that is expiring time less of the time in param" do
-      is_expected.to eq([@project_01, @project_04])
-    end
-  end
-
-  describe ".with_contributions_confirmed_today" do
-    let(:project_01) { create(:project, state: 'online') }
-    let(:project_02) { create(:project, state: 'online') }
-    let(:project_03) { create(:project, state: 'online') }
-
-    subject { Project.with_contributions_confirmed_today }
-
-    before do
-      project_01
-      project_02
-      project_03
-    end
-
-    context "when have confirmed contributions today" do
-      before do
-
-        #TODO: need to investigate this timestamp issue when
-        # use DateTime.now or Time.now
-        create(:contribution, state: 'confirmed', project: project_01, confirmed_at: Time.now )
-        create(:contribution, state: 'confirmed', project: project_02, confirmed_at: 2.days.ago )
-        create(:contribution, state: 'confirmed', project: project_03, confirmed_at: Time.now )
+        it { is_expected.to contain_exactly('draft_project') }
       end
 
-      it { is_expected.to have(2).items }
-      it { expect(subject.include?(project_02)).to eq(false) }
+      context "and it has channel" do
+        before { create(:project, :draft, channels: [channel]) }
+
+        it { is_expected.to be_empty }
+      end
     end
 
-    context "when does not have any confirmed contribution today" do
-      before do
-        create(:contribution, state: 'confirmed', project: project_01, confirmed_at: 1.days.ago )
-        create(:contribution, state: 'confirmed', project: project_02, confirmed_at: 2.days.ago )
-        create(:contribution, state: 'confirmed', project: project_03, confirmed_at: 5.days.ago )
+    context "when project state is not 'draft'" do
+      before { create(:project, :online) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_progress" do
+    let(:fifth_percent) { 50 }
+    let(:project)       { create(:project, name: 'project_in_progress', goal: 100) }
+
+    subject { Project.by_progress(fifth_percent).map(&:name) }
+
+    context "when project value is smaller than half goal" do
+      before { create(:contribution, project: project, project_value: 10) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when project value is greater than half goal" do
+      before { create(:contribution, project: project, project_value: 51) }
+
+      it { is_expected.to contain_exactly('project_in_progress') }
+    end
+  end
+
+  describe ".by_channel" do
+    let(:channel) { create(:channel) }
+
+    subject { Project.by_channel(channel).map(&:name) }
+
+    context "when a project has the channel" do
+      before { create(:project, name: 'project_by_channel', channels: [channel]) }
+
+      it { is_expected.to contain_exactly('project_by_channel') }
+    end
+
+    context "when a project has not the channel" do
+      before { create(:project) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_user_email" do
+    let(:user_email) { 'user_email_@test.com' }
+    let(:user) { create(:user, email: user_email) }
+
+    subject { Project.by_user_email(user_email).map(&:name) }
+
+    context "when project belongs to the user" do
+      before { create(:project, name: 'project_user', user: user) }
+
+      it { is_expected.to contain_exactly('project_user') }
+    end
+
+    context "when project does not belong to the user" do
+      let!(:project) { create(:project) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_id" do
+    subject { Project.by_id(10003).map(&:name) }
+
+    context "when the project id is 10003" do
+      before { create(:project, name: 'id_10003', id: 10003) }
+
+      it { is_expected.to contain_exactly('id_10003') }
+    end
+
+    context "when the project id is not 10003" do
+      before { create(:project, id: 1002) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_goal" do
+    subject { Project.by_goal(1009).map(&:name) }
+
+    context "when project goal is 1009" do
+      before { create(:project, name: 'goal_1009', goal: 1009) }
+
+      it { is_expected.to contain_exactly('goal_1009') }
+    end
+
+    context "when project goal is not 1009" do
+      before { create(:project, goal: 1234) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_category_id" do
+    let(:category) { create(:category, id: 2001) }
+    subject        { Project.by_category_id(2001).map(&:name) }
+
+    context "when category id is 2001" do
+      before { create(:project, name: 'project_category_2001', category: category) }
+
+      it { is_expected.to contain_exactly('project_category_2001') }
+    end
+
+    context "when category id is not 2001" do
+      before { create(:project) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_online_date" do
+    let(:online_date) { Time.current }
+    subject { Project.by_online_date(online_date).map(&:name) }
+
+    context "when online_date is today" do
+      before { create(:project, name: 'project_today', online_date: online_date) }
+
+      it { is_expected.to contain_exactly('project_today') }
+    end
+
+    context "when online_date is not today" do
+      before { create(:project, online_date: 5.days.from_now) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_expires_at" do
+    before             { travel_to Time.new(2016, 11, 28, 10, 00, 00) }
+    after              { travel_back }
+    let(:expires_at)   { 2.day.from_now.utc.to_date }
+    subject            { Project.by_expires_at(expires_at).map(&:name) }
+
+    context "when expires next day" do
+      before { create(:project, name: 'project_next_day', online_date: Time.current.utc, online_days: 1) }
+
+      it { is_expected.to contain_exactly('project_next_day') }
+    end
+
+    context "when does not expire next day" do
+      before { create(:project, online_date: Time.current.utc, online_days: 5) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_updated_at" do
+    let(:updated_at) { Time.current }
+    subject { Project.by_updated_at(updated_at).map(&:name) }
+
+    context "when project updated_at is now" do
+      before { create(:project, name: 'project_updated_at', updated_at: updated_at) }
+
+      it { is_expected.to contain_exactly('project_updated_at') }
+    end
+
+    context "when project updated_at is not now" do
+      before { create(:project, updated_at: 5.days.from_now) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_permalink" do
+    subject{ Project.by_permalink('foo').map(&:name) }
+
+    context "when permalink is found" do
+      context "when project is deleted" do
+        before { create(:project, :deleted, permalink: 'foo') }
+
+        it { is_expected.to be_empty }
       end
 
-      it { is_expected.to have(0).items }
+      context "when project is not deleted" do
+        before { create(:project, name: 'project_permalink', permalink: 'foo') }
+
+        it { is_expected.to contain_exactly('project_permalink') }
+      end
+    end
+
+    context "when permalink is not found" do
+      before { create(:project, :deleted, permalink: 'bar') }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".recommended" do
+    subject { Project.recommended.map(&:name) }
+
+    context "when the project is recommended" do
+      before { create(:project, name: 'recommended_project', recommended: true) }
+
+      it { is_expected.to contain_exactly('recommended_project') }
+    end
+
+    context "when the project is not recommended" do
+      before { create(:project, recommended: false) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".in_funding" do
+    subject { Project.in_funding.map(&:name) }
+
+    context "when project is expired" do
+      before { create(:project, online_date: 2.days.ago, online_days: 1) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when project is not expired" do
+      context "and state is online" do
+        before { create(:project, :online, name: 'project_in_funding') }
+
+        it { is_expected.to contain_exactly('project_in_funding') }
+      end
+
+      context "and state is not online" do
+        before { create(:project, :draft, name: 'project_in_funding') }
+
+        it { is_expected.to be_empty }
+      end
+    end
+  end
+
+  describe ".name_contains" do
+    subject { Project.name_contains('project_name').map(&:name) }
+
+    context "when project name is found" do
+      context "and it is exactly the same" do
+        before { create(:project, name: 'project_name') }
+
+        it { is_expected.to contain_exactly('project_name') }
+      end
+
+      context "and it contains more characters" do
+        before { create(:project, name: 'it is has bigger project_name than search criteria') }
+
+        it { is_expected.to contain_exactly('it is has bigger project_name than search criteria') }
+      end
+
+      context "and it is a mix of upper and lower cases" do
+        before { create(:project, name: 'PrOjeCt_nAMe') }
+
+        it { is_expected.to contain_exactly('PrOjeCt_nAMe') }
+      end
+    end
+
+    context "when project name is not found" do
+      before { create(:project, name: 'test_some_name') }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".near_of" do
+    subject { Project.near_of('RN').map(&:name) }
+
+    context "when project is found" do
+      before do
+        user = create(:user, address_state: 'RN')
+        create(:project, name: 'project_near_of', user: user)
+      end
+
+      it { is_expected.to contain_exactly('project_near_of') }
+    end
+
+    context "when project is not found" do
+      before do
+        user = create(:user, address_state: 'SP')
+        create(:project, user: user)
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '.to_finish' do
+    subject { Project.to_finish.map(&:name) }
+
+    context "when project is found" do
+      context "and is expired" do
+        context "and state is 'online' or 'waiting_funds'" do
+          before do
+            create(:project, :online, name: 'project_to_finish_1', online_date: 10.days.ago, online_days: 1)
+            create(:project, :waiting_funds, name: 'project_to_finish_2', online_date: 10.days.ago, online_days: 1)
+          end
+
+          it { is_expected.to contain_exactly('project_to_finish_1', 'project_to_finish_2') }
+        end
+
+        context "and state is not 'online' nor 'waiting_funds'" do
+          before do
+            create(:project, :rejected, online_date: Date.current, online_days: 4)
+            create(:project, :failed, online_date: Date.current, online_days: 4)
+            create(:project, :deleted, online_date: Date.current, online_days: 4)
+            create(:project, :successful, online_date: Date.current, online_days: 4)
+          end
+
+          it { is_expected.to be_empty }
+        end
+      end
+
+      context "and is not expired" do
+        before { create(:project, online_date: Date.current, online_days: 10) }
+
+        it { is_expected.to be_empty }
+      end
     end
   end
 
   describe ".visible" do
-    before do
-      [:draft, :rejected, :deleted, :in_analysis].each do |state|
-        create(:project, state: state)
+    subject { Project.visible.map(&:name) }
+
+    context "when the projects are visible" do
+      before do
+        create(:project, :online, name: 'online')
+        create(:project, :successful, name: 'successful')
+        create(:project, :failed, name: 'failed')
+        create(:project, :waiting_funds, name: 'waiting_funds')
       end
-      @project = create(:project, state: :online)
+
+      it { is_expected.to contain_exactly('online', 'successful', 'failed', 'waiting_funds') }
     end
-    subject{ Project.visible }
-    it{ is_expected.to eq([@project]) }
+
+    context "when the projects are not visible" do
+      before do
+        create(:project, :draft)
+        create(:project, :rejected)
+        create(:project, :deleted)
+        create(:project, :in_analysis)
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".financial" do
+    subject { Project.financial.map(&:name) }
+
+    context "when the projects are found" do
+      context "when state is 'online', 'successful' or 'waiting_funds'" do
+        context "when the project has expired for less than 15 days or is not expired" do
+          before do
+            create(:project, :online, name: 'financial_project_1', online_date: 15.days.ago, online_days: 2)
+            create(:project, :successful, name: 'financial_project_2', online_date: Date.current, online_days: 2)
+            create(:project, :waiting_funds, name: 'financial_project_3')
+          end
+
+          it { is_expected.to contain_exactly('financial_project_1', 'financial_project_2', 'financial_project_3') }
+        end
+
+        context "when the project is expired for 15 or more days" do
+          before do
+            create(:project, :online, online_date: 20.days.ago, online_days: 4)
+            create(:project, :successful, online_date: 20.days.ago, online_days: 4)
+            create(:project, :waiting_funds, online_date: 20.days.ago, online_days: 4)
+          end
+
+          it { is_expected.to be_empty }
+        end
+      end
+
+      context "when state is not 'online', 'successful' nor 'waiting_funds'" do
+        before do
+          create(:project, :failed)
+          create(:project, :deleted)
+          create(:project, :rejected)
+          create(:project, :in_analysis)
+        end
+
+        it { is_expected.to be_empty }
+      end
+    end
+  end
+
+  describe ".expired" do
+    subject { Project.expired.map(&:name) }
+
+    context "when project is expired" do
+      before { create(:project, name: 'expired_project', online_date: 2.days.ago, online_days: 1) }
+
+      it { is_expected.to contain_exactly('expired_project') }
+    end
+
+    context "when project is not expired" do
+      before { create(:project, online_date: Date.current, online_days: 15) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".not_expired" do
+    subject { Project.not_expired.map(&:name) }
+
+    context "when project is not expired" do
+      before { create(:project, name: 'not_expired_project', online_date: Date.current, online_days: 2) }
+
+      it { is_expected.to contain_exactly('not_expired_project') }
+    end
+
+    context "when project is expired" do
+      before { create(:project, online_days: 1, online_date: Date.current - 2.days) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".expiring" do
+    subject { Project.expiring.map(&:name) }
+
+    context "when project is expiring in two weeks" do
+      before { create(:project, name: 'expiring_project', online_date: Date.current, online_days: 13) }
+
+      it { is_expected.to contain_exactly('expiring_project') }
+    end
+
+    context "when project expires_at is longer than two weeks" do
+      before { create(:project, online_date: Date.current, online_days: 50) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when project is already expired" do
+      before { create(:project, online_date: 10.days.ago, online_days: 1) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".not_expiring" do
+    subject { Project.not_expiring.map(&:name) }
+
+    context "when there are no projects expiring" do
+      before { create(:project, name: 'not_expiring_project', online_date: Date.current, online_days: 15) }
+
+      it { is_expected.to contain_exactly('not_expiring_project') }
+    end
+
+    context "when there are projects expiring" do
+      before { create(:project, online_date: 2.days.ago, online_days: 1) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".recent" do
+    subject { Project.recent.map(&:name) }
+
+    context "when there are recent projects" do
+      before { create(:project, name: '4_days_ago', online_date: 4.days.ago) }
+
+      it { is_expected.to contain_exactly('4_days_ago') }
+    end
+
+    context "when there is no project created in the last 6 days" do
+      before { create(:project, online_date: 6.days.ago) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".order_status" do
+    subject { Project.order_status.map(&:name) }
+
+    before {
+      create(:project, :waiting_funds, name: 'waiting_funds')
+      create(:project, :online, name: 'online')
+      create(:project, :failed, name: 'failed')
+      create(:project, :successful, name: 'successful')
+    }
+
+    it { is_expected.to contain_exactly('online', 'waiting_funds', 'successful', 'failed') }
+  end
+
+  describe ".most_recent_first" do
+    subject { Project.most_recent_first.map(&:name) }
+
+    before do
+      create(:project, name: 'project_2', online_date: Date.current)
+      create(:project, name: 'project_4', online_date: 10.days.ago)
+      create(:project, name: 'project_3', online_date: 4.days.ago)
+      create(:project, name: 'project_1', online_date: 4.days.from_now)
+    end
+
+    it { is_expected.to contain_exactly('project_1', 'project_2', 'project_3', 'project_4') }
+  end
+
+  describe ".order_for_admin" do
+    subject { Project.order_for_admin.map(&:name) }
+
+    before {
+      create(:project, :waiting_funds, name: 'waiting_funds')
+      create(:project, :online, name: 'in_analysis')
+      create(:project, :failed, name: 'failed')
+      create(:project, :successful, name: 'successful')
+    }
+
+    it { is_expected.to contain_exactly('in_analysis', 'waiting_funds', 'successful', 'failed') }
+  end
+
+  describe ".from_channels" do
+    let(:channel) { create(:channel) }
+    subject       { Project.from_channels(channel.id).map(&:name) }
+
+    context "when the project could be found by the channel" do
+      before { create(:project, name: 'project_by_channel', channels: [channel]) }
+
+      it { is_expected.to contain_exactly('project_by_channel') }
+    end
+
+    context "when the project could not be found by the channel" do
+      before { create(:project) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".with_contributions_confirmed_today" do
+    let(:project_01) { create(:project, :online, name: 'with_contribution_1') }
+    let(:project_02) { create(:project, :online, name: 'with_contribution_2') }
+    let(:project_03) { create(:project, :online) }
+
+    subject { Project.with_contributions_confirmed_today.map(&:name) }
+
+    context "when have confirmed contributions today" do
+      before do
+        create(:contribution, :confirmed, project: project_01, confirmed_at: Time.current )
+        create(:contribution, :confirmed, project: project_02, confirmed_at: Time.current )
+        create(:contribution, :confirmed, project: project_03, confirmed_at: 2.days.ago )
+      end
+
+      it { is_expected.to contain_exactly('with_contribution_1', 'with_contribution_2') }
+    end
+
+    context "when does not have any confirmed contribution today" do
+      before do
+        create(:contribution, :confirmed, project: project_01, confirmed_at: 1.days.ago )
+        create(:contribution, :confirmed, project: project_02, confirmed_at: 2.days.ago )
+        create(:contribution, :confirmed, project: project_03, confirmed_at: 5.days.ago )
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".expiring_in_less_of" do
+    subject { Project.expiring_in_less_of('7 days').map(&:name) }
+
+    context "when the project is online" do
+      context "when expiring date is in less than 7 days" do
+        before do
+          create(:project, :online, name: 'expires_in_3_days', online_date: DateTime.current, online_days: 3)
+          create(:project, :online, name: 'expires_in_5_days', online_date: DateTime.current, online_days: 5)
+        end
+
+        it { is_expected.to contain_exactly('expires_in_3_days', 'expires_in_5_days') }
+      end
+
+      context "when expiring date is over 7 days" do
+        before do
+          create(:project, :online, online_date: DateTime.current, online_days: 30)
+          create(:project, :draft)
+        end
+
+        it { is_expected.to be_empty }
+      end
+    end
+
+    context "when the project is not online" do
+      before do
+        create(:project, :failed)
+        create(:project, :draft)
+        create(:project, :rejected)
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".of_current_week" do
+    subject { Project.of_current_week.map(&:name) }
+
+    context "when the online_date is any day from last week" do
+      before do
+        create(:project, name: 'today', online_date: DateTime.current)
+        create(:project, name: 'in_3_days', online_date: 3.days.from_now)
+        create(:project, name: 'in_30_days', online_date: 30.days.from_now)
+        create(:project, name: 'six_days_ago', online_date: 6.days.ago)
+      end
+
+      it { is_expected.to contain_exactly('today', 'in_3_days', 'in_30_days', 'six_days_ago') }
+    end
+
+    context "when the online_date is earlier than last week" do
+      before do
+        create(:project, online_date: 9.year.ago)
+        create(:project, online_date: 8.days.ago)
+        create(:project, online_date: 10.weeks.ago)
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '.recurring' do
+    let(:channel)               { create :channel, recurring: true }
+    let(:channel_not_recurring) { create :channel }
+    subject { Project.recurring.map(&:name) }
+
+    context "when there are recurring projects" do
+      before do
+        create(:project, name: 'recurring_project_1', channels: [channel], category: nil)
+        create(:project, name: 'recurring_project_2', channels: [channel], category: nil)
+      end
+
+      it { is_expected.to contain_exactly('recurring_project_1', 'recurring_project_2') }
+    end
+
+    context "when there are not recurring_projects" do
+      before do
+        create(:project, channels: [channel_not_recurring])
+        create(:project, channels: [channel_not_recurring])
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '.with_channel_without_recurring' do
+    let(:channel)               { create :channel, recurring: true }
+    let(:channel_not_recurring) { create :channel }
+    subject { Project.with_channel_without_recurring.map(&:name) }
+
+    context "when there are recurring projects" do
+      before do
+        create(:project, channels: [channel], category: nil)
+        create(:project, channels: [channel], category: nil)
+      end
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when there are not recurring_projects" do
+      before do
+        create(:project, name: 'normal_project_1', channels: [channel_not_recurring])
+        create(:project, name: 'normal_project_2', channels: [channel_not_recurring])
+      end
+
+      it { is_expected.to contain_exactly('normal_project_1', 'normal_project_2') }
+    end
+  end
+
+  describe ".without_channel" do
+    subject { Project.without_channel.map(&:name) }
+
+    context "when there are projects without channel" do
+      before do
+        create(:project, name: 'project_1')
+        create(:project, name: 'project_2')
+        create(:project, name: 'project_3')
+      end
+
+      it { is_expected.to contain_exactly('project_1', 'project_2', 'project_3') }
+    end
+
+    context "when there are projects with channel" do
+      before do
+        create(:project_with_channel)
+        create(:project_with_channel)
+        create(:project_with_channel)
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".without_recurring_and_pepsico_channel" do
+    let(:channel)           { create(:channel) }
+    let(:recurring_channel) { create(:channel, recurring: true) }
+    let(:channel_pepsico)     { create(:channel, permalink: 'pepsico') }
+    subject { Project.without_recurring_and_pepsico_channel.map(&:name) }
+
+    context "when there are projects not recurring" do
+      context "and the project has channel" do
+        context "and the channel is not pepsico" do
+          before { create(:project, name: 'project_with_channel', channels: [channel]) }
+
+          it { is_expected.to contain_exactly('project_with_channel') }
+        end
+
+        context "and the channel is pepsico" do
+          before { create(:project, channels: [channel_pepsico]) }
+
+          it { is_expected.to be_empty }
+        end
+      end
+
+      context "and the project has no channel" do
+        before { create(:project, name: 'project_without_channel') }
+
+        it { is_expected.to contain_exactly('project_without_channel') }
+      end
+    end
+
+    context "when there are recurring projects" do
+      before { create(:project, channels: [recurring_channel], category: nil ) }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '.goal_between' do
+    before do
+      create(:project, goal: 199, name: 'with_goal_199')
+      create(:project, goal: 200, name: 'with_goal_200')
+      create(:project, goal: 300, name: 'with_goal_300')
+      create(:project, goal: 400, name: 'with_goal_400')
+      create(:project, goal: 401, name: 'with_goal_401')
+    end
+
+    subject { Project.goal_between(start_at, ends_at).map(&:name) }
+
+    context "when there are both start_at and ends_at" do
+      let(:start_at) { 200 }
+      let(:ends_at)  { 300 }
+
+      it { is_expected.to contain_exactly('with_goal_200', 'with_goal_300') }
+    end
+
+    context "when there is only ends_at filter" do
+      let(:start_at) { nil }
+      let(:ends_at)  { 300 }
+
+      it { is_expected.to contain_exactly('with_goal_199', 'with_goal_200', 'with_goal_300') }
+    end
+
+    context "when there is only start_at filter" do
+      let(:start_at) { 200 }
+      let(:ends_at)  { nil }
+
+      it { is_expected.to contain_exactly('with_goal_200', 'with_goal_300', 'with_goal_400', 'with_goal_401') }
+    end
+
+    context "when there is neither start_at and ends_at" do
+      let(:start_at) { nil }
+      let(:ends_at)  { nil }
+
+      it { is_expected.to contain_exactly('with_goal_199', 'with_goal_200', 'with_goal_300', 'with_goal_400', 'with_goal_401') }
+    end
   end
 
   describe '.state_names' do
@@ -274,69 +1049,6 @@ RSpec.describe Project, type: :model do
     subject { Project.state_names }
 
     it { is_expected.to eq(states) }
-  end
-
-  describe '.near_of' do
-    before do
-      mg_user = create(:user, address_state: 'MG')
-      sp_user = create(:user, address_state: 'SP')
-      3.times { create(:project, user: mg_user) }
-      6.times { create(:project, user: sp_user) }
-    end
-
-    let(:state) { 'MG' }
-
-    subject { Project.near_of(state) }
-
-    it { is_expected.to have(3).itens }
-  end
-
-  describe ".by_permalink" do
-    context "when project is deleted" do
-      before do
-        @p = create(:project, permalink: 'foo', state: 'deleted')
-        create(:project, permalink: 'bar')
-      end
-      subject{ Project.by_permalink('foo') }
-      it{ is_expected.to eq([]) }
-    end
-    context "when project is not deleted" do
-      before do
-        @p = create(:project, permalink: 'foo')
-        create(:project, permalink: 'bar')
-      end
-      subject{ Project.by_permalink('foo') }
-      it{ is_expected.to eq([@p]) }
-    end
-  end
-
-  describe '.by_progress' do
-    subject { Project.by_progress(20) }
-
-    before do
-      @project_01 = create(:project, goal: 100)
-      @project_02 = create(:project, goal: 100)
-      @project_03 = create(:project, goal: 100)
-
-      create(:contribution, value: 10, project: @project_01)
-      create(:contribution, value: 10, project: @project_01)
-      create(:contribution, value: 30, project: @project_02)
-      create(:contribution, value: 10, project: @project_03)
-    end
-
-    xit { is_expected.to have(2).itens }
-  end
-
-  describe '.by_goal' do
-    subject { Project.by_goal(200) }
-
-    before do
-      @project_01 = create(:project, goal: 100)
-      @project_02 = create(:project, goal: 200)
-
-    end
-
-    it { should = [@project_02] }
   end
 
   describe '.video_url' do
@@ -389,29 +1101,6 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.by_online_date' do
-    subject { Project.by_online_date(Time.now.to_date.to_s) }
-
-    before do
-      @project_01 = create(:project, online_date: Time.now.to_s)
-      @project_02 = create(:project, online_date: 2.weeks.ago)
-
-    end
-
-    it { should = [@project_01] }
-  end
-
-  describe '.by_expires_at' do
-    subject { Project.by_expires_at('10/10/2013') }
-
-    before do
-      @project_01 = create(:project, online_date: '10/10/2013', online_days: 1)
-      @project_02 = create(:project, online_date: '09/10/2013', online_days: 1)
-    end
-
-    it { should = [@project_01] }
-  end
-
   describe '.order_by' do
     subject { Project.last.name }
 
@@ -438,47 +1127,6 @@ RSpec.describe Project, type: :model do
     it { is_expected.to eq([@project_01]) }
   end
 
-  describe '.goal_between' do
-    before do
-      create(:project, goal: 199, name: 'with_goal_199')
-      create(:project, goal: 200, name: 'with_goal_200')
-      create(:project, goal: 300, name: 'with_goal_300')
-      create(:project, goal: 400, name: 'with_goal_400')
-      create(:project, goal: 401, name: 'with_goal_401')
-    end
-
-    subject { Project.goal_between(start_at, ends_at).map(&:name) }
-
-    context "when there are both start_at and ends_at" do
-      let(:start_at) { 200 }
-      let(:ends_at)  { 300 }
-
-      it { is_expected.to contain_exactly('with_goal_200', 'with_goal_300') }
-    end
-
-    context "when there is only ends_at filter" do
-      let(:start_at) { nil }
-      let(:ends_at)  { 300 }
-
-      it { is_expected.to contain_exactly('with_goal_199', 'with_goal_200', 'with_goal_300') }
-    end
-
-    context "when there is only start_at filter" do
-      let(:start_at) { 200 }
-      let(:ends_at)  { nil }
-
-      it { is_expected.to contain_exactly('with_goal_200', 'with_goal_300', 'with_goal_400', 'with_goal_401') }
-    end
-
-    context "when there is neither start_at and ends_at" do
-      let(:start_at) { nil }
-      let(:ends_at)  { nil }
-
-      it { is_expected.to contain_exactly('with_goal_199', 'with_goal_200', 'with_goal_300', 'with_goal_400', 'with_goal_401') }
-    end
-  end
-
-
   describe '.between_expires_at' do
     let(:start_at) { '17/01/2013' }
     let(:ends_at) { '22/01/2013' }
@@ -497,61 +1145,6 @@ RSpec.describe Project, type: :model do
     it { is_expected.to eq([project_02, project_01]) }
   end
 
-  describe '.to_finish' do
-    before do
-      expect(Project).to receive(:expired).and_call_original
-      expect(Project).to receive(:with_states).with(['online', 'waiting_funds']).and_call_original
-    end
-    it "should call scope expired and filter states that can be finished" do
-      Project.to_finish
-    end
-  end
-
-  describe ".expired" do
-    before do
-      @p = create(:project, online_days: 1, online_date: Time.now - 2.days)
-      create(:project, online_days: 1)
-    end
-    subject{ Project.expired}
-    it{ is_expected.to eq([@p]) }
-  end
-
-  describe ".not_expired" do
-    before do
-      @p = create(:project, online_days: 1)
-      create(:project, online_days: 1, online_date: Time.now - 2.days)
-    end
-    subject{ Project.not_expired }
-    it{ is_expected.to eq([@p]) }
-  end
-
-  describe ".expiring" do
-    before do
-      @p = create(:project, online_date: Time.now, online_days: 13)
-      create(:project, online_date: Time.now, online_days: 1, online_date: Time.now - 2.days)
-    end
-    subject{ Project.expiring }
-    it{ is_expected.to eq([@p]) }
-  end
-
-  describe ".not_expiring" do
-    before do
-      @p = create(:project, online_days: 15)
-      create(:project, online_days: 1, online_date: Time.now - 2.days)
-    end
-    subject{ Project.not_expiring }
-    it{ is_expected.to eq([@p]) }
-  end
-
-  describe ".recent" do
-    before do
-      @p = create(:project, online_date: (Time.now - 4.days))
-      create(:project, online_date: (Time.now - 15.days))
-    end
-    subject{ Project.recent }
-    it{ is_expected.to eq([@p]) }
-  end
-
   describe "send_verify_moip_account_notification" do
     before do
       @p = create(:project, state: 'online', online_date: DateTime.now, online_days: 3)
@@ -563,16 +1156,6 @@ RSpec.describe Project, type: :model do
         with(:verify_moip_account, @p.user, @p, {from_email: CatarseSettings[:email_payments]})
       Project.send_verify_moip_account_notification
     end
-  end
-
-  describe ".from_channels" do
-    let(:channel){create(:channel)}
-    before do
-      @p = create(:project, channels: [channel])
-      create(:project, channels: [])
-    end
-    subject{ Project.from_channels([channel.id]) }
-    xit{ is_expected.to eq([@p]) }
   end
 
   describe '#reached_goal?' do
@@ -1017,31 +1600,6 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe 'recurring related scopes' do
-    let(:channel) { create :channel, recurring: true }
-    let(:channel_not_recurring) { create :channel }
-    let!(:normal_projects) { create_list :project, 2, channels: [channel_not_recurring] }
-    let!(:recurring_projects) {
-      create_list :project, 2,
-        channels: [channel],
-        category: nil
-    }
-
-    describe '.with_channel_without_recurring' do
-      subject { described_class.with_channel_without_recurring }
-
-      it { is_expected.to match_array normal_projects }
-      it { is_expected.to have(2).itens }
-    end
-
-    describe '.recurring' do
-      subject { described_class.recurring }
-
-      it { is_expected.to match_array recurring_projects }
-      it { is_expected.to have(2).itens }
-    end
-  end
-
   context 'when a project belongs to a recurring channel' do
     let(:recurring_channel) { create :channel, recurring: true }
     subject {
@@ -1110,31 +1668,6 @@ RSpec.describe Project, type: :model do
           projects = Project.pg_search('john').user_name_contains('Steve')
           expect(projects.count(:all)).to eq(0)
         end
-      end
-    end
-  end
-
-  describe '#by_channel' do
-    let(:foo_channel){ create(:channel, name: 'Foo Channel', users: [ user ]) }
-    let(:foo_channel_projects){ Project.by_channel(foo_channel.id) }
-
-    before(:each) do
-      create_list(:project, 10)
-    end
-
-    context 'when channel does not have registered projects' do
-      it 'does not return projects' do
-        expect(foo_channel_projects.count).to eq(0)
-      end
-    end
-
-    context 'when channel have registered projects' do
-      before do
-        create(:project, name: 'Project Bar in Foo Channel', channels: [foo_channel])
-      end
-
-      it "should return only projects that belongs to the channel passed as param" do
-        expect(foo_channel_projects.map(&:name)).to match(['Project Bar in Foo Channel'])
       end
     end
   end
