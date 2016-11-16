@@ -19,7 +19,7 @@ class WhoWeAreController < ApplicationController
   private
 
   def staff_members
-    @staff_members ||= User.staff
+    @staff_members ||= User.staff.decorate
   end
 
   def team_members
