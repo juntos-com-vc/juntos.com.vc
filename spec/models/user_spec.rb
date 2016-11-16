@@ -5,14 +5,6 @@ RSpec.describe User, type: :model do
   let(:unfinished_project) { create(:project, :online) }
   let(:successful_project) { create(:project, :online) }
   let(:facebook_provider)  { create :oauth_provider, name: 'facebook' }
-  let(:staff_attributes) do
-    [
-      User.human_attribute_name('staff.team'),
-      User.human_attribute_name('staff.financial_board'),
-      User.human_attribute_name('staff.technical_board'),
-      User.human_attribute_name('staff.advice_board'),
-    ]
-  end
 
   describe '::STAFFS' do
     it 'defines a constant' do
@@ -63,21 +55,36 @@ RSpec.describe User, type: :model do
   end
 
   describe '.staff_descriptions' do
+    let(:staff_attributes) do
+      [
+        User.human_attribute_name('staff.team'),
+        User.human_attribute_name('staff.financial_board'),
+        User.human_attribute_name('staff.technical_board'),
+        User.human_attribute_name('staff.advice_board'),
+      ]
+    end
+
     it "should return an array matching all the STAFF's constant keys" do
       expect(described_class.staff_descriptions).to match(staff_attributes)
     end
   end
 
-  describe ".find_active!" do
+  describe ".find_first_active" do
     let!(:deactivated_user) { create(:user, :deactivated) }
 
     it "should raise error when user is inactive" do
-      expect { User.find_active!(deactivated_user) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect { User.find_first_active(deactivated_user) }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "should return user when active" do
-      expect(User.find_active!(user.id)).to eq(user)
+      expect(User.find_first_active(user.id)).to eq(user)
     end
+  end
+
+  describe ".staff_members_query" do
+    subject { User.staff_members_query }
+
+    it { is_expected.to include("staffs @>", "ARRAY[") }
   end
 
   describe ".active" do
@@ -254,10 +261,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe ".who_contributed_project" do
+  describe ".with_project_contributions_in" do
     let(:contribution) { create(:contribution, state: 'confirmed', project: successful_project) }
 
-    subject { User.who_contributed_project(successful_project) }
+    subject { User.with_project_contributions_in(successful_project) }
 
     context "when there are pending projects" do
       before do
@@ -293,25 +300,6 @@ RSpec.describe User, type: :model do
 
     it "should return only users who has visible projects" do
       is_expected.to eq(users_with_visible_project)
-    end
-  end
-
-  describe ".subscribed_to_project" do
-    let(:contribution) { create(:contribution, state: 'confirmed', project: successful_project) }
-
-    subject { User.subscribed_to_project(successful_project) }
-
-    context "when a user has no unsubscribed project" do
-      it { is_expected.to eq([]) }
-    end
-
-    context "when a user has unsubscribed to a project" do
-      before do
-        contribution
-        create(:unsubscribe, project_id: successful_project.id, user: user)
-      end
-
-      it { is_expected.to eq([contribution.user]) }
     end
   end
 
@@ -403,17 +391,13 @@ RSpec.describe User, type: :model do
     let(:user) { create(:user, locale: 'pt') }
 
     context "when user already has a locale" do
-      before do
-        expect(user).not_to receive(:update_attributes).with(locale: 'pt')
-      end
+      before { expect(user).not_to receive(:update_attribute).with(:locale, 'pt') }
 
       it { user.change_locale('pt') }
     end
 
     context "when locale is diff from the user locale" do
-      before do
-        expect(user).to receive(:update_attributes).with(locale: 'en')
-      end
+      before { expect(user).to receive(:update_attribute).with(:locale, 'en') }
 
       it { user.change_locale('en') }
     end
@@ -516,7 +500,8 @@ RSpec.describe User, type: :model do
   end
 
   describe "#to_analytics_json" do
-    subject { user.to_analytics_json }
+    subject { user.decorate.to_analytics_json }
+
     it do
       is_expected.to eq({
         id: user.id,
@@ -546,7 +531,7 @@ RSpec.describe User, type: :model do
 
     subject { user.credits }
 
-    it{ is_expected.to eq(50.0) }
+    it { is_expected.to eq(50.0) }
   end
 
   describe "#update_attributes" do
@@ -572,7 +557,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "#posts_subscription" do
-    let(:unsubscribe) { create(:unsubscribe, project: nil, user: user ) }
+    let(:unsubscribe) { create(:unsubscribe, project: nil, user: user) }
     subject { user.posts_subscription }
 
     context "when user is subscribed to all projects" do
@@ -601,9 +586,7 @@ RSpec.describe User, type: :model do
   describe "#contributed_projects" do
     subject { user.contributed_projects }
 
-    before do
-      create_list(:contribution, 2, user: user, project: successful_project)
-    end
+    before { create_list(:contribution, 2, user: user, project: successful_project) }
 
     it { is_expected.to eq([successful_project]) }
   end
@@ -643,8 +626,9 @@ RSpec.describe User, type: :model do
   describe "#following_this_category?" do
     let(:category)       { create(:category) }
     let(:category_extra) { create(:category) }
+    let(:user) { create(:user) }
 
-    subject { user.following_this_category?(category.id)}
+    subject { user.decorate.following_this_category?(category.id) }
 
     context "when is following the category" do
       before do
@@ -684,6 +668,26 @@ RSpec.describe User, type: :model do
       let(:individual_documents) { [:original_doc12_url, :original_doc13_url] }
 
       it { is_expected.to match_array(individual_documents) }
+    end
+  end
+
+  describe ".subscribed_to_project" do
+    let(:project) { create(:project) }
+    let(:contribution) { create(:contribution, state: 'confirmed', project: project) }
+
+    subject { User.subscribed_to_project(project) }
+
+    context "when a user has no project" do
+      it { should eq([contribution.user]) }
+    end
+
+    context "when a user has unsubscribed to project" do
+      before do
+        contribution
+        create(:unsubscribe, project_id: project.id, user: user)
+      end
+
+      it { is_expected.to eq([contribution.user]) }
     end
   end
 end

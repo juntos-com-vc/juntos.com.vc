@@ -58,7 +58,7 @@ RSpec.describe Projects::ContributionsController, type: :controller do
     end
 
     context "when user is logged in" do
-      let(:user){ create(:user) }
+      let(:user){ create(:user).decorate }
       let(:contribution){ create(:contribution, value: 10.00, credits: true, project: project, state: 'pending', user: user) }
       its(:body){ should =~ /#{I18n.t('projects.contributions.edit.title')}/ }
       its(:body){ should =~ /#{project.name}/ }
@@ -96,25 +96,25 @@ RSpec.describe Projects::ContributionsController, type: :controller do
     end
 
     context "without value" do
-      let(:user){ create(:user) }
-      let(:value){ '' }
+      let(:user) { create(:user).decorate }
+      let(:value) { '' }
 
-      it{ is_expected.to render_template(:new) }
+      it { is_expected.to render_template(:new) }
     end
 
     context "with invalid contribution values" do
-      let(:user){ create(:user) }
+      let(:user) { create(:user).decorate }
       let(:value) { "2" }
 
-      it{ is_expected.to render_template(:new) }
+      it { is_expected.to render_template(:new) }
     end
   end
 
   describe "GET new" do
-    let(:secure_review_host){ nil }
-    let(:user){ create(:user) }
-    let(:online){ true }
-    let(:browser){ double("browser", ie9?: false, modern?: true) }
+    let(:secure_review_host) { nil }
+    let(:user) { create(:user).decorate }
+    let(:online) { true }
+    let(:browser) { double("browser", ie9?: false, modern?: true) }
 
     before do
       CatarseSettings[:secure_review_host] = secure_review_host
@@ -125,8 +125,8 @@ RSpec.describe Projects::ContributionsController, type: :controller do
     end
 
     context "when browser is IE 9" do
-      let(:browser){ double("browser", ie9?: true, modern?: true) }
-      it{ is_expected.to redirect_to page_path("bad_browser") }
+      let(:browser) { double("browser", ie9?: true, modern?: true) }
+      it { is_expected.to redirect_to page_path("bad_browser") }
     end
 
     context "when browser is old" do
@@ -135,18 +135,18 @@ RSpec.describe Projects::ContributionsController, type: :controller do
     end
 
     context "when no user is logged" do
-      let(:user){ nil }
+      let(:user) { nil }
       it{ is_expected.to redirect_to new_user_registration_path }
     end
 
     context "when user is logged in but project.online? is false" do
-      let(:online){ false }
-      it{ is_expected.to redirect_to root_path }
+      let(:online) { false }
+      it { is_expected.to redirect_to root_path }
     end
 
     context "when project.online? is true" do
-      it{ should render_template("projects/contributions/new") }
-      
+      it { should render_template("projects/contributions/new") }
+
       skip 'temporarily skipped' do
         its(:body) { should =~ /#{I18n.t('projects.contributions.new.title')}/ }
         its(:body) { should =~ /#{I18n.t('projects.contributions.new.next_step')}/ }
@@ -158,25 +158,25 @@ RSpec.describe Projects::ContributionsController, type: :controller do
   end
 
   describe "GET show" do
-    let(:contribution){ create(:contribution, value: 10.00, credits: false, state: 'confirmed') }
+    let(:contribution) { create(:contribution, value: 10.00, credits: false, state: 'confirmed') }
     before do
       get :show, { locale: :pt, project_id: contribution.project.id, id: contribution.id }.merge(ssl_options)
     end
 
     context "when no user is logged in" do
-      it{ is_expected.to redirect_to new_user_registration_path }
+      it { is_expected.to redirect_to new_user_registration_path }
     end
 
     context "when user logged in is different from contribution" do
-      let(:user){ create(:user) }
-      xit{ is_expected.to redirect_to root_path }
-      xit('should set flash failure'){ expect(request.flash[:alert]).not_to be_empty }
+      let(:user) { create(:user) }
+      xit { is_expected.to redirect_to root_path }
+      xit('should set flash failure') { expect(request.flash[:alert]).not_to be_empty }
     end
 
     context "when contribution is logged in" do
-      let(:user){ contribution.user }
-      it{ is_expected.to be_successful }
-      its(:body){ should =~ /#{I18n.t('projects.contributions.show.title')}/ }
+      let(:user) { contribution.user.decorate }
+      it { is_expected.to be_successful }
+      its(:body) { should =~ /#{I18n.t('projects.contributions.show.title')}/ }
     end
   end
 

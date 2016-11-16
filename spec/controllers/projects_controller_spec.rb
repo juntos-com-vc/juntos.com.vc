@@ -74,7 +74,8 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     context "when user is a registered user" do
-      let(:current_user){ create(:user, admin: false) }
+      let(:user) { create(:user, admin: false) }
+      let(:current_user) { user.decorate }
       it { is_expected.to be_success }
     end
   end

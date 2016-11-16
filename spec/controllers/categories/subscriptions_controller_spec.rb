@@ -20,7 +20,8 @@ RSpec.describe Categories::SubscriptionsController, type: :controller do
     end
 
     context "with user" do
-      let(:current_user) { create(:user) }
+      let(:user) { create(:user) }
+      let(:current_user) { user.decorate }
 
       before do
         allow(controller).to receive(:authenticate_user!).and_return(true)
@@ -57,7 +58,8 @@ RSpec.describe Categories::SubscriptionsController, type: :controller do
       end
 
       context "with user" do
-        let(:current_user) { create(:user) }
+        let(:user) { create(:user) }
+        let(:current_user) { user.decorate }
 
         before do
           allow(controller).to receive(:authenticate_user!).and_return(true)
@@ -68,7 +70,8 @@ RSpec.describe Categories::SubscriptionsController, type: :controller do
       end
 
       context "with user already subscribed" do
-        let(:current_user) { create(:user) }
+        let(:user) { create(:user) }
+        let(:current_user) { user.decorate }
 
         before do
           allow(controller).to receive(:authenticate_user!).and_return(true)
