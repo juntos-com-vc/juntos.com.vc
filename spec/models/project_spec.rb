@@ -1115,34 +1115,47 @@ RSpec.describe Project, type: :model do
 
   describe '.between_created_at' do
     let(:start_at) { '17/01/2013' }
-    let(:ends_at) { '20/01/2013' }
-    subject { Project.between_created_at(start_at, ends_at) }
+    let(:ends_at)  { '20/01/2013' }
+    subject        { Project.between_created_at(start_at, ends_at).map(&:name) }
 
-    before do
-      @project_01 = create(:project, created_at: '19/01/2013')
-      @project_02 = create(:project, created_at: '23/01/2013')
-      @project_03 = create(:project, created_at: '26/01/2013')
+    context "when there are projects in the between range" do
+      before do
+        create(:project, name: 'project_1', created_at: '19/01/2013')
+        create(:project, name: 'project_2', created_at: '18/01/2013')
+      end
+
+      it { is_expected.to contain_exactly('project_1', 'project_2') }
     end
 
-    it { is_expected.to eq([@project_01]) }
+    context "when there are no projects in the between range" do
+      before do
+        create(:project, created_at: '23/01/2013')
+        create(:project, created_at: '26/01/2013')
+      end
+
+      it { is_expected.to be_empty }
+    end
   end
 
   describe '.between_expires_at' do
     let(:start_at) { '17/01/2013' }
-    let(:ends_at) { '22/01/2013' }
-    subject { Project.between_expires_at(start_at, ends_at).order("id desc") }
+    let(:ends_at)  { '22/01/2013' }
+    subject        { Project.between_expires_at(start_at, ends_at).map(&:name) }
 
-    let(:project_01) { create(:project) }
-    let(:project_02) { create(:project) }
-    let(:project_03) { create(:project) }
+    context "when there are projects in the between range" do
+      before do
+        create(:project, name: 'project_17_01', online_date: '17/01/2013', online_days: 1)
+        create(:project, name: 'project_21_01', online_date: '21/01/2013', online_days: 1)
+      end
 
-    before do
-      project_01.update_attributes({ online_date: '17/01/2013', online_days: 1 })
-      project_02.update_attributes({ online_date: '21/01/2013', online_days: 1 })
-      project_03.update_attributes({ online_date: '23/01/2013', online_days: 1 })
+      it { is_expected.to contain_exactly('project_17_01', 'project_21_01') }
     end
 
-    it { is_expected.to eq([project_02, project_01]) }
+    context "when there are no project in the between range" do
+      before { create(:project, online_date: '23/01/2013', online_days: 1) }
+
+      it { is_expected.to be_empty }
+    end
   end
 
   describe "send_verify_moip_account_notification" do
@@ -1380,18 +1393,31 @@ RSpec.describe Project, type: :model do
   end
 
   describe '#selected_rewards' do
-    let(:project){ create(:project) }
-    let(:reward_01) { create(:reward, project: project) }
-    let(:reward_02) { create(:reward, project: project) }
-    let(:reward_03) { create(:reward, project: project) }
+    let(:project)   { create(:project) }
+    let(:reward_01) { create(:reward, description: 'reward_1', project: project) }
+    let(:reward_02) { create(:reward, description: 'reward_2', project: project) }
+    let(:reward_03) { create(:reward, description: 'reward_3', project: project) }
+    subject         { project.selected_rewards.map(&:description) }
 
-    before do
-      create(:contribution, state: 'confirmed', project: project, reward: reward_01)
-      create(:contribution, state: 'confirmed', project: project, reward: reward_03)
+    context "when there are confirmed contributions" do
+      before do
+        create(:contribution, :confirmed, project: project, reward: reward_01)
+        create(:contribution, :confirmed, project: project, reward: reward_03)
+      end
+
+      it { is_expected.to contain_exactly('reward_1', 'reward_3') }
     end
 
-    subject { project.selected_rewards }
-    it { is_expected.to eq([reward_01, reward_03]) }
+    context "when there are not confirmed contributions" do
+      before do
+        create(:contribution, :pending, project: project, reward: reward_01)
+        create(:contribution, :waiting_confirmation, project: project, reward: reward_03)
+        create(:contribution, :canceled, project: project, reward: reward_03)
+        create(:contribution, :refunded, project: project, reward: reward_03)
+      end
+
+      it { is_expected.to be_empty }
+    end
   end
 
   describe '#accept_contributions?' do
@@ -1471,17 +1497,26 @@ RSpec.describe Project, type: :model do
   end
 
   describe ".enabled_to_use_pagarme" do
-    before do
-      @project_01 = create(:project, permalink: 'a')
-      @project_02 = create(:project, permalink: 'b')
-      @project_03 = create(:project, permalink: 'c')
+    subject { Project.enabled_to_use_pagarme.map(&:name) }
+    before  { CatarseSettings[:projects_enabled_to_use_pagarme] = 'a, c' }
 
-      CatarseSettings[:projects_enabled_to_use_pagarme] = 'a, c'
+    context "when there are projects enabled to use pagarme" do
+      before do
+        create(:project, name: 'permalink_a', permalink: 'a')
+        create(:project, name: 'permalink_c', permalink: 'c')
+      end
+
+      it { is_expected.to contain_exactly('permalink_a', 'permalink_c') }
     end
 
-    subject { Project.enabled_to_use_pagarme }
+    context "when there are not projects enabled to use pagarme" do
+      before do
+        create(:project, name: 'permalink_k', permalink: 'k')
+        create(:project, name: 'permalink_b', permalink: 'b')
+      end
 
-    it { is_expected.to match_array([@project_01, @project_03])}
+      it { is_expected.to be_empty }
+    end
   end
 
   describe "#using_pagarme?" do
