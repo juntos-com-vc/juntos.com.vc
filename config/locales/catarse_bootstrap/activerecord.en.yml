@@ -118,9 +118,11 @@ en:
               less_than_or_equal_to: "The project's deadline should be less than or equals to 60 days"
             about:
               blank: "The project's description cannot be blank"
+              too_short: "The project's description is too short. Please, use at least 1 character"
             headline:
               blank: "The project's headline cannot be blank"
               too_long: "The project's headline is too long. You can use only 140 characters"
+              too_short: "The project's headline is too short. Please, use at least 1 character"
             recipient:
               blank: 'Insert all fields in bank account info'
         user:

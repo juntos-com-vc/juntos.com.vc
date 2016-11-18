@@ -191,9 +191,11 @@ pt:
               less_than_or_equal_to: "O prazo para arrecadação deve ser menor que 60 dias"
             about:
               blank: "A descrição do projeto não pode ficar em branco"
+              too_short: "A descrição do projeto é muito curta. Por favor, use no mínimo 1 caractere"
             headline:
               blank: "A frase de efeito do projeto não pode ficar em branco"
-              too_long: "A frase de efeito é muito longa. Você pode usar um máximo de 140 caracteres."
+              too_long: "A frase de efeito é muito longa. Você pode usar um máximo de 140 caracteres"
+              too_short: "A frase de efeito é muito curta. Por favor, use no mínimo 1 caractere"
             recipient:
               blank: 'Insira corretamente todos os campos de dados bancários'
         user:
