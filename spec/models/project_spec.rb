@@ -763,7 +763,7 @@ RSpec.describe Project, type: :model do
       create(:project, :successful, name: 'successful')
     }
 
-    it { is_expected.to contain_exactly('online', 'waiting_funds', 'successful', 'failed') }
+    it { is_expected.to eq(['online', 'waiting_funds', 'successful', 'failed']) }
   end
 
   describe ".most_recent_first" do
@@ -784,12 +784,12 @@ RSpec.describe Project, type: :model do
 
     before {
       create(:project, :waiting_funds, name: 'waiting_funds')
-      create(:project, :online, name: 'in_analysis')
+      create(:project, :in_analysis, name: 'in_analysis')
       create(:project, :failed, name: 'failed')
       create(:project, :successful, name: 'successful')
     }
 
-    it { is_expected.to contain_exactly('in_analysis', 'waiting_funds', 'successful', 'failed') }
+    it { is_expected.to eq(['in_analysis', 'waiting_funds', 'successful', 'failed']) }
   end
 
   describe ".from_channels" do
@@ -1043,6 +1043,109 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe ".send_verify_moip_account_notification" do
+    let(:user) { create(:user) }
+    let!(:project) { create(:project, :online, user: user, online_date: Time.current, online_days: 3) }
+
+    before do
+      allow(ProjectNotification).to receive(:notify_once)
+
+      Project.send_verify_moip_account_notification
+    end
+
+    context "when a project is expiring in less than seven days" do
+      it "should have created notification for all projects that is expiring" do
+        expect(ProjectNotification).to have_received(:notify_once).
+          with(:verify_moip_account, user, project, {from_email: CatarseSettings[:email_payments]})
+      end
+    end
+
+    context "when a project is expiring in over seven days" do
+      let!(:project) { create(:project, :online, user: user, online_date: Time.current, online_days: 8) }
+
+      it "should not have created a notification for the project" do
+        expect(ProjectNotification).to_not have_received(:notify_once)
+      end
+    end
+  end
+
+  describe ".order_by" do
+    before do
+      create(:project, name: 'a_goal_1000', goal: 1000)
+      create(:project, name: 'b_goal_400', goal: 400)
+      create(:project, name: 'c_goal_10', goal: 10)
+    end
+
+    subject { Project.order_by(order_by_query).map(&:name) }
+
+    context "when the order by query is valid" do
+      context "and order by goal" do
+        context "and it is ascending" do
+          let(:order_by_query) { "goal asc" }
+
+          it { is_expected.to eq(['c_goal_10', 'b_goal_400', 'a_goal_1000']) }
+        end
+
+        context "and it is descending" do
+          let(:order_by_query) { "goal desc" }
+
+          it { is_expected.to eq(['a_goal_1000', 'b_goal_400', 'c_goal_10']) }
+        end
+      end
+
+      context "and order by name" do
+        context "and it is ascending" do
+          let(:order_by_query) { "name asc" }
+
+          it { is_expected.to eq(['a_goal_1000', 'b_goal_400', 'c_goal_10']) }
+        end
+
+        context "and it is descending" do
+          let(:order_by_query) { "name desc" }
+
+          it { is_expected.to eq(['c_goal_10', 'b_goal_400', 'a_goal_1000']) }
+        end
+      end
+    end
+
+    context "when the order by query is invalid" do
+      context "and it has sql injection" do
+        let(:order_by_query) { "select * from projects; goal asc" }
+
+        it { is_expected.to eq(['a_goal_1000', 'b_goal_400', 'c_goal_10']) }
+      end
+
+      context "by having invalid characters" do
+        let(:order_by_query) { "goal" }
+
+        it { is_expected.to eq(['a_goal_1000', 'b_goal_400', 'c_goal_10']) }
+      end
+    end
+  end
+
+  describe ".enabled_to_use_pagarme" do
+    subject { Project.enabled_to_use_pagarme.map(&:name) }
+    before  { CatarseSettings[:projects_enabled_to_use_pagarme] = 'a, c' }
+
+    context "when there are projects enabled to use pagarme" do
+      before do
+        create(:project, name: 'permalink_a', permalink: 'a')
+        create(:project, name: 'permalink_c', permalink: 'c')
+      end
+
+      it { is_expected.to contain_exactly('permalink_a', 'permalink_c') }
+    end
+
+    context "when there are not projects enabled to use pagarme" do
+      before do
+        create(:project, name: 'permalink_k', permalink: 'k')
+        create(:project, name: 'permalink_b', permalink: 'b')
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
   describe '.state_names' do
     let(:states) { [:draft, :rejected, :online, :successful, :waiting_funds, :failed, :in_analysis] }
 
@@ -1101,18 +1204,6 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.order_by' do
-    subject { Project.last.name }
-
-    before do
-      create(:project, name: 'lorem')
-      #testing for sql injection
-      Project.order_by("goal asc;update projects set name ='test';select * from projects ").first #use first so the sql is actually executed
-    end
-
-    it { is_expected.to eq('lorem') }
-  end
-
   describe '.between_created_at' do
     let(:start_at) { '17/01/2013' }
     let(:ends_at)  { '20/01/2013' }
@@ -1155,19 +1246,6 @@ RSpec.describe Project, type: :model do
       before { create(:project, online_date: '23/01/2013', online_days: 1) }
 
       it { is_expected.to be_empty }
-    end
-  end
-
-  describe "send_verify_moip_account_notification" do
-    before do
-      @p = create(:project, state: 'online', online_date: DateTime.now, online_days: 3)
-      create(:project, state: 'draft')
-    end
-
-    it "should create notification for all projects that is expiring" do
-      expect(ProjectNotification).to receive(:notify_once).
-        with(:verify_moip_account, @p.user, @p, {from_email: CatarseSettings[:email_payments]})
-      Project.send_verify_moip_account_notification
     end
   end
 
@@ -1493,29 +1571,6 @@ RSpec.describe Project, type: :model do
     context "when project does belong to a channel" do
       let(:project) { channel_project }
       xit{ is_expected.to eq(:foo_channel) }
-    end
-  end
-
-  describe ".enabled_to_use_pagarme" do
-    subject { Project.enabled_to_use_pagarme.map(&:name) }
-    before  { CatarseSettings[:projects_enabled_to_use_pagarme] = 'a, c' }
-
-    context "when there are projects enabled to use pagarme" do
-      before do
-        create(:project, name: 'permalink_a', permalink: 'a')
-        create(:project, name: 'permalink_c', permalink: 'c')
-      end
-
-      it { is_expected.to contain_exactly('permalink_a', 'permalink_c') }
-    end
-
-    context "when there are not projects enabled to use pagarme" do
-      before do
-        create(:project, name: 'permalink_k', permalink: 'k')
-        create(:project, name: 'permalink_b', permalink: 'b')
-      end
-
-      it { is_expected.to be_empty }
     end
   end
 
