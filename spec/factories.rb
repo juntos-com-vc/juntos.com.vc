@@ -75,6 +75,13 @@ FactoryGirl.define do
     f.name_pt { generate(:name) }
   end
 
+  factory :subgoal do |f|
+    f.association :project, factory: :project
+    f.color 'foo'
+    f.value 15.0
+    f.description "Lorem Ipsum"
+  end
+
   factory :project do |f|
     f.name "Foo bar"
     f.permalink { generate(:permalink) }

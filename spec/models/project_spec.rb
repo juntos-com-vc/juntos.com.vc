@@ -1146,6 +1146,646 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe "#using_pagarme?" do
+    let(:project) { create(:project, permalink: 'foo') }
+
+    subject { project.using_pagarme? }
+
+    context "when project is using pagarme" do
+      before { CatarseSettings[:projects_enabled_to_use_pagarme] = 'foo' }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context "when project is not using pagarme" do
+      before { CatarseSettings[:projects_enabled_to_use_pagarme] = nil }
+
+      it { is_expected.to be_falsey }
+    end
+  end
+
+  describe "#subscribed_users" do
+    let(:project) { create(:project) }
+    let(:user_1)  { create(:user, name: 'user_1') }
+    let(:user_2)  { create(:user, name: 'user_2') }
+    let(:user_3)  { create(:user, name: 'user_3') }
+
+    subject { project.subscribed_users.map(&:name) }
+
+    context "when there are contributions for the project" do
+      before do
+        create(:contribution, :confirmed, user: user_1, project: project)
+        create(:contribution, :confirmed, user: user_2, project: project)
+        create(:contribution, :confirmed, user: user_3, project: project)
+      end
+
+      it { is_expected.to contain_exactly('user_1', 'user_2', 'user_3') }
+    end
+
+    context "when there are not contributions for the project" do
+      before do
+        project_1 = create(:project, name: 'project_1', user: user_1)
+
+        create(:contribution, :confirmed, user: user_1, project: project_1)
+        create(:contribution, :confirmed, user: user_2, project: project_1)
+        create(:contribution, :confirmed, user: user_3, project: project_1)
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe "#expires_at" do
+    let(:expires_at) { project.expires_at }
+
+    subject { expires_at }
+
+    context "when we do not have an online_date" do
+      let(:project) { build(:project, online_date: nil, online_days: 1) }
+
+      it { is_expected.to be_nil }
+    end
+
+    context "when we have an online_date" do
+      before                 { travel_to Time.new(2016, 11, 10, 10, 00, 00) }
+      after                  { travel_back }
+      subject                { expires_at.utc.to_date }
+      let(:expires_tomorrow) { 2.day.from_now.utc.to_date }
+      let(:project)          { create(:project, online_date: Time.current.utc, online_days: 1)}
+
+      it { is_expected.to eq(expires_tomorrow) }
+    end
+  end
+
+  describe "#pledged" do
+    subject { project.pledged }
+
+    context "when there are no contributions for the project" do
+      it { is_expected.to be_zero }
+    end
+
+    context "when there are contributions for the project" do
+      context "and the contribution state is valid for pledged" do
+        before do
+          create(:contribution, :confirmed, project_value: 185, project: project)
+          create(:contribution, :requested_refund, project_value: 15, project: project)
+        end
+
+        it 'expect sum of both contributions' do
+          is_expected.to eq(200)
+        end
+      end
+
+      context "and the contribution state is invalid for pledged" do
+        before do
+          create(:contribution, :pending, project_value: 100, project: project)
+          create(:contribution, :canceled, project_value: 100, project: project)
+          create(:contribution, :refunded, project_value: 100, project: project)
+          create(:contribution, :deleted, project_value: 100, project: project)
+          create(:contribution, :invalid_payment, project_value: 100, project: project)
+          create(:contribution, :waiting_confirmation, project_value: 100, project: project)
+          create(:contribution, :refunded_and_canceled, project_value: 100, project: project)
+        end
+
+        it { is_expected.to be_zero }
+      end
+    end
+  end
+
+  describe "#total_contributions" do
+    subject { project.total_contributions }
+
+    context "when there are no contributions for the project" do
+      it { is_expected.to be_zero }
+    end
+
+    context "when there are contributions for the project" do
+      context "and the contribution state is valid" do
+        before do
+          create(:contribution, :confirmed, project: project)
+          create(:contribution, :requested_refund, project: project)
+        end
+
+        it { is_expected.to eq(2) }
+      end
+
+      context "and the contribution state is invalid" do
+        before do
+          create(:contribution, :pending, project_value: 100, project: project)
+          create(:contribution, :canceled, project_value: 100, project: project)
+          create(:contribution, :refunded, project_value: 100, project: project)
+          create(:contribution, :deleted, project_value: 100, project: project)
+          create(:contribution, :invalid_payment, project_value: 100, project: project)
+          create(:contribution, :waiting_confirmation, project_value: 100, project: project)
+          create(:contribution, :refunded_and_canceled, project_value: 100, project: project)
+        end
+
+        it { is_expected.to be_zero }
+      end
+    end
+  end
+
+  describe "#total_payment_service_fee" do
+    subject { project.total_payment_service_fee }
+
+    context "when there are no contribution for the project" do
+      it { is_expected.to be_zero }
+    end
+
+    context "when there are contributions for the project" do
+      context "and the contribution status is valid" do
+        before do
+          create(:contribution, :confirmed, project: project, payment_service_fee: 30)
+          create(:contribution, :requested_refund, project: project, payment_service_fee: 20)
+        end
+
+        it { is_expected.to eq(50) }
+      end
+
+      context "and the contribution status is invalid" do
+        before do
+          create(:contribution, :pending, project: project, payment_service_fee: 50)
+          create(:contribution, :canceled, project: project, payment_service_fee: 50)
+          create(:contribution, :refunded, project: project, payment_service_fee: 50)
+          create(:contribution, :deleted, project: project, payment_service_fee: 50)
+          create(:contribution, :invalid_payment, project: project, payment_service_fee: 50)
+          create(:contribution, :waiting_confirmation, project: project, payment_service_fee: 50)
+          create(:contribution, :refunded_and_canceled, project: project, payment_service_fee: 50)
+        end
+
+        it { is_expected.to be_zero }
+      end
+    end
+  end
+
+  describe '#selected_rewards' do
+    let(:project)   { create(:project) }
+    let(:reward_01) { create(:reward, description: 'reward_1', project: project) }
+    let(:reward_02) { create(:reward, description: 'reward_2', project: project) }
+    let(:reward_03) { create(:reward, description: 'reward_3', project: project) }
+    subject         { project.selected_rewards.map(&:description) }
+
+    context "when there are confirmed contributions" do
+      before do
+        create(:contribution, :confirmed, project: project, reward: reward_01)
+        create(:contribution, :confirmed, project: project, reward: reward_03)
+      end
+
+      it { is_expected.to contain_exactly('reward_1', 'reward_3') }
+    end
+
+    context "when there are not confirmed contributions" do
+      before do
+        create(:contribution, :pending, project: project, reward: reward_01)
+        create(:contribution, :waiting_confirmation, project: project, reward: reward_03)
+        create(:contribution, :canceled, project: project, reward: reward_03)
+        create(:contribution, :refunded, project: project, reward: reward_03)
+      end
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe '#accept_contributions?' do
+    context 'when project is online' do
+      context 'and is not expired' do
+        context 'and is available for contribution' do
+          let(:project) { create(:project, :online, :not_expired, available_for_contribution: true) }
+
+          it { expect(project).to be_accept_contributions }
+        end
+
+        context 'and not available for contribution' do
+          let(:project) { create(:project, :online, :not_expired, available_for_contribution: false) }
+
+          it { expect(project).not_to be_accept_contributions }
+        end
+      end
+
+      context 'and is expired' do
+        let(:project) { create(:project, :online, :expired, available_for_contribution: true) }
+
+        it { expect(project).not_to be_accept_contributions }
+      end
+    end
+
+    context "when project is not online" do
+      let(:project) { create(:project, :failed) }
+
+      it { expect(project).not_to be_accept_contributions }
+    end
+  end
+
+  describe '#reached_goal?' do
+    let(:project) { create(:project, goal: 3000) }
+
+    context "when there are no contributions" do
+      it { expect(project).not_to be_reached_goal }
+    end
+
+    context "when there are contributions" do
+      context "and the contributions value sum equals the goal" do
+        before do
+          create(:contribution, :confirmed, project_value: 1500, project: project)
+          create(:contribution, :confirmed, project_value: 1500, project: project)
+        end
+
+        it { expect(project).to be_reached_goal }
+      end
+
+      context "and the contributions value sum is over the goal" do
+        before do
+          create(:contribution, :confirmed, project_value: 1500, project: project)
+          create(:contribution, :confirmed, project_value: 4500, project: project)
+        end
+
+        it { expect(project).to be_reached_goal }
+      end
+
+      context "and the contributions value sum is under the goal" do
+        before do
+          create_list(:contribution, 2, :confirmed, project_value: 500, project: project)
+        end
+
+        it { expect(project).not_to be_reached_goal }
+      end
+    end
+  end
+
+  describe "#expired?" do
+    context "the project is not expired yet" do
+      context "when online_date is nil" do
+        let(:project) { create(:project, online_date: nil) }
+
+        it { expect(project.expired?).to be_nil }
+      end
+
+      context "when expires_at is in the future" do
+        let(:project) { create(:project, online_date: 2.days.from_now, online_days: 1) }
+
+        it { expect(project).not_to be_expired }
+      end
+    end
+
+    context "when expires_at is in the past" do
+      let(:project) { create(:project, online_date: 3.days.ago, online_days: 1) }
+
+      it { expect(project).to be_truthy }
+    end
+  end
+
+  describe '#in_time_to_wait?' do
+    context "when there is waiting_confirmation contribution" do
+      before { create(:contribution, :waiting_confirmation, project: project) }
+
+      it { expect(project).to be_in_time_to_wait }
+    end
+
+    context 'when there are contributions with no waiting_confirmation state' do
+      before do
+        create(:contribution, :pending, project: project, payment_service_fee: 50)
+        create(:contribution, :canceled, project: project, payment_service_fee: 50)
+        create(:contribution, :refunded, project: project, payment_service_fee: 50)
+        create(:contribution, :deleted, project: project, payment_service_fee: 50)
+        create(:contribution, :invalid_payment, project: project, payment_service_fee: 50)
+        create(:contribution, :confirmed, project: project, payment_service_fee: 50)
+        create(:contribution, :refunded_and_canceled, project: project, payment_service_fee: 50)
+      end
+
+      it { expect(project).not_to be_in_time_to_wait }
+    end
+  end
+
+  describe '#pending_contributions_reached_the_goal?' do
+    let(:project) { create(:project, goal: 200) }
+
+    context "when the contribution state is confirmed or waiting_confirmation" do
+      context "and the goal has reached" do
+        before do
+          create(:contribution, :waiting_confirmation, project: project, project_value: 120)
+          create(:contribution, :confirmed, project: project, project_value: 120)
+        end
+
+        it { expect(project).to be_pending_contributions_reached_the_goal }
+      end
+
+      context "and the goal has not reached" do
+        before do
+          create(:contribution, :waiting_confirmation, project: project, project_value: 60)
+          create(:contribution, :confirmed, project: project, project_value: 40)
+        end
+
+        it { expect(project).not_to be_pending_contributions_reached_the_goal }
+      end
+    end
+
+    context "when the contribution state is not confirmed neither waiting_confirmation" do
+      before do
+        create(:contribution, :pending, project: project, payment_service_fee: 500)
+        create(:contribution, :canceled, project: project, payment_service_fee: 510)
+        create(:contribution, :refunded, project: project, payment_service_fee: 520)
+        create(:contribution, :deleted, project: project, payment_service_fee: 503)
+        create(:contribution, :invalid_payment, project: project, payment_service_fee: 50)
+        create(:contribution, :refunded_and_canceled, project: project, payment_service_fee: 50)
+      end
+
+      it { expect(project).not_to be_pending_contributions_reached_the_goal }
+    end
+  end
+
+  describe "#pledged_and_waiting" do
+    subject { project.pledged_and_waiting }
+
+    context "when the contribution state is confirmed or waiting_confirmation" do
+      before do
+        create(:contribution, :waiting_confirmation, project: project, project_value: 80)
+        create(:contribution, :confirmed, project: project, project_value: 20)
+      end
+
+      it { is_expected.to eq(100) }
+    end
+
+    context "when the contribution state is not confirmed neither waiting_confirmation" do
+      before do
+        create(:contribution, :pending, project: project, payment_service_fee: 500)
+        create(:contribution, :canceled, project: project, payment_service_fee: 510)
+        create(:contribution, :refunded, project: project, payment_service_fee: 520)
+        create(:contribution, :deleted, project: project, payment_service_fee: 503)
+        create(:contribution, :invalid_payment, project: project, payment_service_fee: 50)
+        create(:contribution, :refunded_and_canceled, project: project, payment_service_fee: 50)
+      end
+
+      it { is_expected.to be_zero }
+    end
+  end
+
+  describe "#new_draft_recipient" do
+    before do
+      CatarseSettings[:email_projects] = 'admin_projects@foor.bar'
+      create(:user, name: 'email_project_user', email: CatarseSettings[:email_projects])
+    end
+
+    subject { project.new_draft_recipient.name }
+
+    it { is_expected.to eq('email_project_user') }
+  end
+
+  describe "#last_channel" do
+    let(:channel_last) { create(:channel, name: 'last_channel') }
+    let(:channel_02)   { create(:channel) }
+    let!(:project)     { create(:project, channels: [ channel_02, create(:channel), channel_last ]) }
+    subject            { project.last_channel.name }
+
+    it { is_expected.to eq('last_channel') }
+  end
+
+  describe "#recurring?" do
+    context "when the project has exactly one recurring channel" do
+      let(:channel) { create(:channel, recurring: true) }
+      let(:project) { create(:project, channels: [channel]) }
+
+      it { expect(project).to be_recurring }
+    end
+
+    context "when the project has many recurring channels" do
+      let(:channels) { create_list(:channel, 3, recurring: true) }
+      let(:project)    { create :project, channels: channels }
+
+      it { expect(project).not_to be_recurring }
+    end
+
+    context 'when a project does not have a recurring channel' do
+      let(:project) { create :project }
+
+      it { expect(project).not_to be_recurring }
+    end
+  end
+
+  describe '#color' do
+    before  { CatarseSettings[:default_color] = '#ff8a41' }
+    subject { project.color }
+
+    context 'when a project has a recurring channel' do
+      let(:default_color) { CatarseSettings[:default_color] }
+      let(:channel)       { create :channel, recurring: true }
+      let(:project)       { create :project, channels: [channel] }
+
+      it 'should return the default color' do
+        is_expected.to eq(default_color)
+      end
+    end
+
+    context 'when a project is not related to a recurring channel' do
+      let(:category) { create :category }
+      let(:project)  { create :project, category: category }
+
+      it 'should return the category color' do
+        is_expected.to eq category.color
+      end
+    end
+  end
+
+  describe "#notification_type" do
+    subject { project.notification_type(:foo) }
+
+    context "when project does not have any channel" do
+      it { is_expected.to eq(:foo) }
+    end
+
+    context "when project has a channel" do
+      let(:channel) { create(:channel) }
+      let(:project) { create(:project, channels: [channel]) }
+
+      it { is_expected.to eq(:foo_channel) }
+    end
+  end
+
+  describe "#should_fail?" do
+    context "when the project has expired" do
+      context "and has not reached the goal" do
+        let(:project) { create(:project, :expired, goal: 10000) }
+
+        it { expect(project).to be_should_fail }
+      end
+
+      context "but has reached the goal" do
+        let(:project) { create(:project, :expired, goal: 100) }
+        let!(:contribution) { create(:contribution, :confirmed, project: project, project_value: 101) }
+
+        it { expect(project).not_to be_should_fail }
+      end
+    end
+
+    context "when the project has not expired" do
+      let(:project) { create(:project, online_date: Time.current, online_days: 10) }
+
+      it { expect(project).not_to be_should_fail }
+    end
+  end
+
+  describe "#notify_owner" do
+    let(:user)     { create(:user) }
+    let!(:project) { create(:project, :online, user: user, online_date: Time.current, online_days: 3) }
+
+    before do
+      allow(ProjectNotification).to receive(:notify_once)
+
+      project.notify_owner(:template, { options: 'test' })
+    end
+
+    it "should notify the owner" do
+      expect(ProjectNotification).to have_received(:notify_once).
+        with(:template, user, project, { options: 'test' })
+    end
+  end
+
+  describe "#notify_to_backoffice" do
+    let(:project)         { create(:project) }
+    let(:backoffice_user) { nil }
+    let(:template_name)   { nil }
+    let(:options)         { { from_name: 'test' } }
+
+    before { CatarseSettings[:email_payments] = 'foo@bar.com' }
+
+    context "when backoffice_user is nil" do
+      subject { project.notify_to_backoffice(template_name, options, backoffice_user) }
+
+      it { is_expected.to be_nil }
+    end
+
+    context "when backoffice_user is not nil" do
+      context "and template_name is :new_draft_project" do
+        let(:backoffice_user) { create(:user) }
+        let(:template_name)   { :new_draft_project }
+
+        before do
+          allow(ProjectNotification).to receive(:notify)
+
+          project.notify_to_backoffice(template_name, options, backoffice_user)
+        end
+
+        it "should notify the backoffice_user" do
+          expect(ProjectNotification).to have_received(:notify).
+            with(template_name, backoffice_user, project, options)
+        end
+      end
+
+      context "and template_name is not :new_draft_project" do
+        let(:backoffice_user) { create(:user) }
+        let(:template_name)   { :template }
+
+        before do
+          allow(ProjectNotification).to receive(:notify_once)
+
+          project.notify_to_backoffice(template_name, options, backoffice_user)
+        end
+
+        it "should notify_once the backoffice_user" do
+          expect(ProjectNotification).to have_received(:notify_once).
+            with(template_name, backoffice_user, project, options)
+        end
+      end
+    end
+  end
+
+  describe "#have_partner?" do
+    context "when there is partner" do
+      let(:project) { create(:project, partner_name: 'foo_bar') }
+
+      it { expect(project).to be_have_partner }
+    end
+
+    context "when there is no partner" do
+      let(:project) { create(:project) }
+
+      it { expect(project).not_to be_have_partner }
+    end
+  end
+
+  describe "#channel_json" do
+    let(:project) { create(:project, name: 'foo', permalink: 'bar') }
+    let!(:contribution) { create(:contribution, :confirmed, project: project) }
+    let(:response) { {"name"=>"foo", "permalink"=>"bar", "total_contributions"=>1} }
+
+    subject { project.channel_json }
+
+    it { is_expected.to eq(response) }
+  end
+
+  describe "#current_subgoal" do
+    let(:project) { create(:project) }
+    subject       { project.current_subgoal }
+
+    context "when there are subgoals" do
+      before do
+        create(:subgoal, project: project, value: 30)
+        create(:subgoal, project: project, value: 50)
+        create(:subgoal, description: 'last_subgoal', project: project, value: 20)
+      end
+
+      context "and the subgoals values are greater than pledged" do
+        subject { project.current_subgoal.description }
+
+        it { is_expected.to eq('last_subgoal') }
+      end
+
+      context "and the subgoals values are smaller than pledged" do
+        before do
+          create(:contribution, :confirmed, project_value: 185, project: project)
+          create(:contribution, :requested_refund, project_value: 15, project: project)
+        end
+
+        it { is_expected.to be_nil }
+      end
+    end
+
+    context "when there are no subgoals" do
+      it { is_expected.to be_nil }
+    end
+  end
+
+  describe "#project_images_limit?" do
+    before        { CatarseSettings[:project_images_limit] = '8' }
+    let(:project) { create(:project) }
+
+    context "when the project has no images" do
+      it { expect(project).not_to be_project_images_limit }
+    end
+
+    context "when the project has less than eight images" do
+      before { create_list(:project_image, 5, project: project) }
+
+      it { expect(project).not_to be_project_images_limit }
+    end
+
+    context "when project has reached the images limit" do
+      before { create_list(:project_image, 8, project: project) }
+
+      it { expect(project).to be_project_images_limit }
+    end
+  end
+
+  describe "#project_partners_limit?" do
+    before        { CatarseSettings[:project_partners_limit] = '3' }
+    let(:project) { create :project }
+
+    context "when project has no partners" do
+      it { expect(project).not_to be_project_partners_limit }
+    end
+
+    context "when project has less than three partners" do
+      before { create(:project_partner, project: project) }
+
+      it { expect(project).not_to be_project_partners_limit }
+    end
+
+    context "when project has reached the partners limit" do
+      before { create_list(:project_partner, 3, project: project) }
+
+      it { expect(project).to be_project_partners_limit }
+    end
+  end
+
   describe '.state_names' do
     let(:states) { [:draft, :rejected, :online, :successful, :waiting_funds, :failed, :in_analysis] }
 
@@ -1246,447 +1886,6 @@ RSpec.describe Project, type: :model do
       before { create(:project, online_date: '23/01/2013', online_days: 1) }
 
       it { is_expected.to be_empty }
-    end
-  end
-
-  describe '#reached_goal?' do
-    let(:project) { create(:project, goal: 3000) }
-    subject { project.reached_goal? }
-
-    context 'when sum of all contributions hit the goal' do
-      before do
-        create(:contribution, value: 4000, project: project)
-      end
-      xit { is_expected.to eq(true) }
-    end
-
-    context "when sum of all contributions don't hit the goal" do
-      it { is_expected.to eq(false) }
-    end
-  end
-
-  describe '#in_time_to_wait?' do
-    let(:contribution) { create(:contribution, state: 'waiting_confirmation') }
-    subject { contribution.project.in_time_to_wait? }
-
-    context 'when project expiration is in time to wait' do
-      it { is_expected.to eq(true) }
-    end
-
-    context 'when project expiration time is not more on time to wait' do
-      let(:contribution) { create(:contribution, created_at: 1.week.ago) }
-      it {is_expected.to eq(false)}
-    end
-  end
-
-  describe "#pledged_and_waiting" do
-    subject{ project.pledged_and_waiting }
-    before do
-      @confirmed = create(:contribution, value: 10, state: 'confirmed', project: project)
-      @waiting = create(:contribution, value: 10, state: 'waiting_confirmation', project: project)
-      create(:contribution, value: 100, state: 'refunded', project: project)
-      create(:contribution, value: 1000, state: 'pending', project: project)
-    end
-    it{ is_expected.to eq(@confirmed.value + @waiting.value) }
-  end
-
-  describe "#pledged" do
-    subject(:pledged_value){ project.pledged }
-
-    context "when project_total is nil" do
-      before do
-        allow(project).to receive(:project_total).and_return(nil)
-      end
-      it{ is_expected.to eq(0) }
-    end
-
-    context "when project_total exists" do
-      context "when two contributions with state confirmed and/or requested_refund exists" do
-        before do
-          create(:contribution, :confirmed, project_value: 100, project: project)
-          create(:contribution, :requested_refund, project_value: 75, project: project)
-        end
-
-        it 'expect sum of contributions' do
-          expect(pledged_value).to eq(175.0)
-        end
-      end
-
-      context "when contribution with pending state exists" do
-        before do
-          create(:contribution, :pending, project_value: 100, project: project)
-        end
-
-        it 'is not added' do
-          expect(pledged_value).to eq(0)
-        end
-      end
-
-      context "when contribution with waiting_confirmation state exists" do
-        before do
-          create(:contribution, project_value: 100, state: 'waiting_confirmation', project: project)
-        end
-
-        it 'is not added' do
-          expect(pledged_value).to eq(0)
-        end
-      end
-
-      context "when contribution with canceled state exists" do
-        before do
-          create(:contribution, :canceled, project_value: 100, project: project)
-        end
-
-        it 'is not added' do
-          expect(pledged_value).to eq(0)
-        end
-      end
-
-      context "when contribution with refunded state exists" do
-        before do
-          create(:contribution, :refunded, project_value: 100, project: project)
-        end
-
-        it 'is not added' do
-          expect(pledged_value).to eq(0)
-        end
-      end
-
-      context "when contribution with refunded_and_canceled state exists" do
-        before do
-          create(:contribution, :refunded_and_canceled, project_value: 100, project: project)
-        end
-
-        it 'is not added' do
-          expect(pledged_value).to eq(0)
-        end
-      end
-
-      context "when contribution with deleted state exists" do
-        before do
-          create(:contribution, :deleted, project_value: 100, project: project)
-        end
-
-        it 'is not added' do
-          expect(pledged_value).to eq(0)
-        end
-      end
-
-      context "when contribution with invalid_payment state exists" do
-        before do
-          create(:contribution, :invalid_payment, project_value: 100, project: project)
-        end
-
-        it 'is not added' do
-          expect(pledged_value).to eq(0)
-        end
-      end
-
-      context "when there are contributions with requested_refund and confirmed states and contributions with an invalid state" do
-        before do
-          ['pending', 'waiting_confirmation', 'canceled',
-           'refunded', 'refunded_and_canceled', 'deleted',
-           'invalid_payment'].each do |state|
-             create(:contribution, state: state, project_value: 100, project: project)
-           end
-          create(:contribution, :requested_refund, project_value: 171, project: project)
-          create(:contribution, :confirmed, project_value: 15, project: project)
-        end
-
-        it 'expect sum only of the contributions with requested_refund and confirmed states' do
-          expect(pledged_value).to eq(186.0)
-        end
-      end
-    end
-  end
-
-  describe "#total_payment_service_fee" do
-    subject { project.total_payment_service_fee }
-
-    context "when project_total is nil" do
-      before { allow(project).to receive(:project_total).and_return(nil) }
-      it { is_expected.to eq(0) }
-    end
-
-    context "when project_total exists" do
-      before do
-        project_total = double()
-        allow(project_total).to receive(:total_payment_service_fee).and_return(4.0)
-        allow(project).to receive(:project_total).and_return(project_total)
-      end
-
-      it { is_expected.to eq(4.0) }
-    end
-  end
-
-  describe "#total_contributions" do
-    subject{ project.total_contributions }
-    context "when project_total is nil" do
-      before do
-        allow(project).to receive(:project_total).and_return(nil)
-      end
-      it{ is_expected.to eq(0) }
-    end
-    context "when project_total exists" do
-      before do
-        project_total = double()
-        allow(project_total).to receive(:total_contributions).and_return(1)
-        allow(project).to receive(:project_total).and_return(project_total)
-      end
-      it{ is_expected.to eq(1) }
-    end
-  end
-
-  describe "#expired?" do
-    subject{ project.expired? }
-
-    context "when online_date is nil" do
-      let(:project){ Project.new online_date: nil, online_days: 0 }
-      it{ is_expected.to eq(nil) }
-    end
-
-    context "when expires_at is in the future" do
-      let(:project){ Project.new online_date: 2.days.from_now, online_days: 0 }
-      it{ is_expected.to eq(nil) }
-    end
-
-    context "when expires_at is in the past" do
-      let(:project){ build(:project, online_date: 3.days.ago, online_days: 1) }
-      before{project.save!}
-      it{ is_expected.to eq(true) }
-    end
-  end
-
-  describe "#expires_at" do
-    subject{ project.expires_at }
-    context "when we do not have an online_date" do
-      let(:project){ build(:project, online_date: nil, online_days: 1) }
-      it{ is_expected.to be_nil }
-    end
-    context "when we have an online_date" do
-      let(:project){ create(:project, online_date: Time.now, online_days: 1)}
-      before{project.save!}
-      it{ is_expected.to eq(Time.zone.tomorrow.end_of_day.to_s(:db)) }
-    end
-  end
-
-  describe '#selected_rewards' do
-    let(:project)   { create(:project) }
-    let(:reward_01) { create(:reward, description: 'reward_1', project: project) }
-    let(:reward_02) { create(:reward, description: 'reward_2', project: project) }
-    let(:reward_03) { create(:reward, description: 'reward_3', project: project) }
-    subject         { project.selected_rewards.map(&:description) }
-
-    context "when there are confirmed contributions" do
-      before do
-        create(:contribution, :confirmed, project: project, reward: reward_01)
-        create(:contribution, :confirmed, project: project, reward: reward_03)
-      end
-
-      it { is_expected.to contain_exactly('reward_1', 'reward_3') }
-    end
-
-    context "when there are not confirmed contributions" do
-      before do
-        create(:contribution, :pending, project: project, reward: reward_01)
-        create(:contribution, :waiting_confirmation, project: project, reward: reward_03)
-        create(:contribution, :canceled, project: project, reward: reward_03)
-        create(:contribution, :refunded, project: project, reward: reward_03)
-      end
-
-      it { is_expected.to be_empty }
-    end
-  end
-
-  describe '#accept_contributions?' do
-    context 'when project is online' do
-      context 'and is not expired' do
-        context 'and is available for contribution' do
-          let(:project) { create(:project, :online, :not_expired, available_for_contribution: true) }
-
-          it { expect(project).to be_accept_contributions }
-        end
-
-        context 'and not available for contribution' do
-          let(:project) { create(:project, :online, :not_expired, available_for_contribution: false) }
-
-          it { expect(project).not_to be_accept_contributions }
-        end
-      end
-
-      context 'and is expired' do
-        let(:project) { create(:project, :online, :expired, available_for_contribution: true) }
-
-        it { expect(project).not_to be_accept_contributions }
-      end
-    end
-
-    context 'when project is not online' do
-      let(:project) { create(:project, state: 'failed') }
-
-      it { expect(project).not_to be_accept_contributions }
-    end
-  end
-
-  describe "#last_channel" do
-    let(:channel){ create(:channel) }
-    let(:project){ create(:project, channels: [ create(:channel), channel ]) }
-    subject{ project.last_channel }
-    xit{ is_expected.to eq(channel) }
-  end
-
-  describe '#pending_contributions_reached_the_goal?' do
-    let(:project) { create(:project, goal: 200) }
-
-    subject { project.pending_contributions_reached_the_goal? }
-
-    context 'when reached the goal with pending contributions' do
-      before { 2.times { create(:contribution, project: project, value: 120, state: 'waiting_confirmation') } }
-
-      xit { is_expected.to eq(true) }
-    end
-
-    context 'when dont reached the goal with pending contributions' do
-      before { 2.times { create(:contribution, project: project, value: 30, state: 'waiting_confirmation') } }
-
-      it { is_expected.to eq(false) }
-    end
-  end
-
-  describe "#new_draft_recipient" do
-    subject { project.new_draft_recipient }
-    before do
-      CatarseSettings[:email_projects] = 'admin_projects@foor.bar'
-      @user = create(:user, email: CatarseSettings[:email_projects])
-    end
-    it{ is_expected.to eq(@user) }
-  end
-
-  describe "#notification_type" do
-    subject { project.notification_type(:foo) }
-    context "when project does not belong to any channel" do
-      it { is_expected.to eq(:foo) }
-    end
-
-    context "when project does belong to a channel" do
-      let(:project) { channel_project }
-      xit{ is_expected.to eq(:foo_channel) }
-    end
-  end
-
-  describe "#using_pagarme?" do
-    let(:project) { create(:project, permalink: 'foo') }
-
-    subject { project.using_pagarme? }
-
-    context "when project is using pagarme" do
-      before do
-        CatarseSettings[:projects_enabled_to_use_pagarme] = 'foo'
-      end
-
-      it { is_expected.to be_truthy }
-    end
-
-    context "when project is not using pagarme" do
-      before do
-        CatarseSettings[:projects_enabled_to_use_pagarme] = nil
-      end
-
-      it { is_expected.to be_falsey }
-    end
-  end
-
-  describe '#recurring?' do
-    subject { project.recurring? }
-
-    context 'when a project belongs to a recurring channel' do
-      let(:channel) { create :channel, recurring: true }
-      let(:project) { create :project, channels: [channel] }
-
-      it { is_expected.to be_truthy }
-    end
-
-    context 'when a project does not belong to a recurring channel' do
-      let(:project) { create :project }
-
-      it { is_expected.to be_falsey }
-    end
-  end
-
-  describe '#color' do
-    subject { project.color }
-
-    before { CatarseSettings[:default_color] = '#ff8a41' }
-
-    context 'when a project belongs to a recurring channel' do
-      let(:default_color) { CatarseSettings[:default_color] }
-      let(:channel) { create :channel, recurring: true }
-      let(:project) { create :project, channels: [channel] }
-
-      it 'returns the default color' do
-        expect(subject).to eq default_color
-      end
-    end
-
-    context 'when a project is not related to a recurring channel' do
-      let(:category) { create :category }
-      let(:project) { create :project, category: category }
-
-      it 'returns the category color' do
-        expect(subject).to eq category.color
-      end
-    end
-  end
-
-  describe '#project_images_limit?' do
-    let(:project) { create :project }
-
-    subject { project.reload.project_images_limit? }
-
-    before { CatarseSettings[:project_images_limit] = '8' }
-
-    context 'when project has no images' do
-      it { is_expected.to be_falsey }
-    end
-
-    context 'when project has less than eight images' do
-      let!(:project_images) { create_list :project_image, 5, project: project }
-
-      it { is_expected.to be_falsey }
-    end
-
-    context 'when project has reached the images limit' do
-      let!(:project_images) { create_list :project_image, 8, project: project }
-
-      it { is_expected.to be_truthy }
-    end
-  end
-
-  describe '#project_partners_limit?' do
-    let(:project) { create :project }
-
-    subject { project.reload.project_partners_limit? }
-
-    before { CatarseSettings[:project_partners_limit] = '3' }
-
-    context 'when project has no partners' do
-      it { is_expected.to be_falsey }
-    end
-
-    context 'when project has less than three partners' do
-      let!(:project_partner) do
-        create_list :project_partner, 1, project: project
-      end
-
-      it { is_expected.to be_falsey }
-    end
-
-    context 'when project has reached the partners limit' do
-      let!(:project_partner) do
-        create_list :project_partner, 3, project: project
-      end
-
-      it { is_expected.to be_truthy }
     end
   end
 
