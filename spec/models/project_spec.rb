@@ -28,6 +28,7 @@ RSpec.describe Project, type: :model do
     it{ is_expected.to allow_value(10).for(:goal) }
     it{ is_expected.not_to allow_value(8).for(:goal) }
     it{ is_expected.to ensure_length_of(:headline).is_at_most(140).is_at_least(1) }
+    it{ is_expected.to ensure_length_of(:about).is_at_least(1) }
     it{ is_expected.to allow_value('http://vimeo.com/12111').for(:video_url) }
     it{ is_expected.to allow_value('vimeo.com/12111').for(:video_url) }
     it{ is_expected.to allow_value('https://vimeo.com/12111').for(:video_url) }
