@@ -16,7 +16,7 @@ class ProjectObserver < ActiveRecord::Observer
     if project.online? && project.online_date.present?
       project.notify_to_backoffice(:online_project_updated, {
         from_email: project.user.email,
-        from_name: project.user.display_name
+        from_name: project.user.decorate.display_name
       }, project.new_draft_recipient)
     end
   end
@@ -29,7 +29,7 @@ class ProjectObserver < ActiveRecord::Observer
   def from_draft_to_in_analysis(project)
     project.notify_to_backoffice(:new_draft_project, {
       from_email: project.user.email,
-      from_name: project.user.display_name
+      from_name: project.user.decorate.display_name
     }, project.new_draft_recipient)
 
     deliver_default_notification_for(project, :in_analysis_project)

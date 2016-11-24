@@ -4,7 +4,7 @@
 - project_link = project_by_slug_url(permalink: project.permalink)
 - company_name = CatarseSettings[:company_name]
 
-| Olá, <strong>#{project.user.display_name}</strong>!
+| Olá, <strong>#{project.user.decorate.display_name}</strong>!
 br
 br
 | Hoje, seu projeto teve #{confirmed_contributions_today.length} apoios!
@@ -23,7 +23,7 @@ table width="500" border="1" cellpadding="10" cellspacing="0" style='font-size: 
   tbody
     - confirmed_contributions_today.each do |contribution|
       tr
-        td= contribution.user.display_name
+        td= contribution.user.decorate.display_name
         td= contribution.user.email
         td= contribution.display_value
         td= contribution.reward.try(:display_description)

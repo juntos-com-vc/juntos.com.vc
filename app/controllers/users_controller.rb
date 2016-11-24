@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   after_filter :verify_authorized, except: %i[reactivate]
   inherit_resources
-  defaults finder: :find_active!
+  defaults finder: :find_first_active
   actions :show, :update, :update_password, :unsubscribe_notifications, :credits, :destroy
   respond_to :json, only: [:contributions, :projects]
 
@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
   def show
     authorize resource
+    @user = @user.decorate
     show!{
       fb_admins_add(@user.facebook_id) if @user.facebook_id
       @title = "#{@user.display_name}"
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def approve
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]).decorate
     authorize @user
     @user.update_attribute(:approved_at, Time.now)
     @user.save

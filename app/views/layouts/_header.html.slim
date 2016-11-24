@@ -33,8 +33,7 @@ header.header
             ul.dropdown.user
               li= link_to t('.profile'), user_path(current_user, anchor: 'settings')
               li= link_to t('layouts.user.my_contributions'), user_path(current_user, anchor: 'contributions')
-              - if current_user.project_owner?
-                li= link_to t('.projects'), user_path(current_user, anchor: 'projects')
+              li= current_user.display_user_projects_link
               li
                 = link_to t('layouts.user.my_credits'), user_path(current_user, anchor: 'credits')
                 .small

@@ -89,10 +89,10 @@ br
                 tbody
                   tr
                     td
-                      = project.user.display_bank_account
+                      = project.user.decorate.display_bank_account
                       br/
-                      = project.user.display_bank_account_owner
-                    td= project.user.display_name
+                      = project.user.decorate.display_bank_account_owner
+                    td= project.user.decorate.display_name
                     td= project.user.cpf
                     td= project.user.email
                     td= link_to project.permalink, project_by_slug_path(permalink: project.permalink), target: '_blank'

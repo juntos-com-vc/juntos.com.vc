@@ -35,7 +35,7 @@ module Contribution::PaymentEngineHandler
       self.address_state = user.address_state
       self.address_phone_number = user.phone_number
       self.payer_document = user.cpf
-      self.payer_name = user.display_name
+      self.payer_name = user.decorate.display_name
       self.payer_email = user.email
     end
 

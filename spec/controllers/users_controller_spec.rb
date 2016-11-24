@@ -170,6 +170,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET show" do
+    let(:current_user) { user.decorate }
     before do
       get :show, id: user.id, locale: 'pt'
     end

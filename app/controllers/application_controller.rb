@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :channel, :namespace, :referal_link
+  helper_method :devise_current_user
 
   before_filter :set_locale
 
@@ -29,6 +30,10 @@ class ApplicationController < ActionController::Base
 
   def ajax_request?
     request.xhr? == 0
+  end
+
+  def current_user
+    UserDecorator.decorate(super) unless super.nil?
   end
 
   private

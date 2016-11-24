@@ -1,5 +1,5 @@
 - contribution = @notification.contribution
-|Hi, <strong>#{contribution.user.display_name}</strong>!
+|Hi, <strong>#{contribution.user.decorate.display_name}</strong>!
 br
 br
 |Your pledge to #{link_to(contribution.project.name, project_by_slug_url(permalink: contribution.project.permalink))} was confirmed by <strong>#{contribution.payment_method}</strong>

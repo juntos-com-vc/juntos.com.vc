@@ -61,9 +61,9 @@
             td.project_info title=contribution.project.name
               = link_to project_by_slug_path(permalink: contribution.project.permalink) do
                 = image_tag contribution.project.display_image, class: 'project_img'
-            td.user_info title=contribution.user.display_name
+            td.user_info title=contribution.user.decorate.display_name
               = link_to user_path(contribution.user) do
-                = image_tag contribution.user.display_image, class: 'user_img'
+                = image_tag contribution.user.decorate.display_image, class: 'user_img'
               .user_id= best_in_place [:admin, contribution], :user_id, method: :put, type: :input
             td= best_in_place [:admin, contribution], :value, method: :put, type: :input
 

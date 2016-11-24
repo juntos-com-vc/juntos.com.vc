@@ -14,14 +14,14 @@
   .w-col.w-col-small-4.w-col-tiny-4.w-hidden-main.w-hidden-medium
     .contribution.u-margintop-10
       = link_to user_path(contribution.user), title: contribution.user.name do
-        .contribution-thumb.thumb-contribution-desktop[style="background-image: url('#{contribution.user.display_image}');"]
+        .contribution-thumb.thumb-contribution-desktop[style="background-image: url('#{contribution.user.decorate.display_image}');"]
         .w-hidden-main.w-hidden-medium
           - name = contribution.user.name
           p.align-center = name.split.first
   .w-hidden-small.w-hidden-tiny.display-contribution
     .contribution.u-margintop-10
       = link_to user_path(contribution.user), title: contribution.user.name do
-        .border-contribution.contribution-thumb.thumb-contribution-desktop[style="background-image: url('#{contribution.user.display_image}');"]
+        .border-contribution.contribution-thumb.thumb-contribution-desktop[style="background-image: url('#{contribution.user.decorate.display_image}');"]
         .w-hidden-main.w-hidden-medium
           - name = contribution.user.name
           p.align-center = name.split.first

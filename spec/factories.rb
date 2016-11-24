@@ -42,6 +42,22 @@ FactoryGirl.define do
       end
     end
 
+    trait :without_id_document do
+      original_doc12_url nil
+    end
+
+    trait :with_id_document do
+      original_doc12_url '903.123.209-43'
+    end
+
+    trait :without_proof_of_residence do
+      original_doc13_url nil
+    end
+
+    trait :with_proof_of_residence do
+      original_doc13_url 'proof of residence'
+    end
+
     trait :deactivated do
       deactivated_at Time.now
     end
@@ -93,6 +109,22 @@ FactoryGirl.define do
     trait :not_expired do
       online_date Date.current
       online_days 10
+    end
+
+    trait :successful do
+      state 'successful'
+    end
+
+    trait :waiting_funds do
+      state 'waiting_funds'
+    end
+
+    trait :failed do
+      state 'failed'
+    end
+
+    trait :deleted do
+      state 'deleted'
     end
   end
 
