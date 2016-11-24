@@ -1,0 +1,166 @@
+$green: #00B22D;
+$blue-one: #3F4752;
+$blue-two: #79808B;
+$orange: #FF8A41;
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  i, em {
+    font-style: italic;
+  }
+
+  b, strong {
+    font-weight: 700;
+  }
+
+  .partners {
+    background-color: #CCCCCC;
+
+    .content {
+      @include grid-system(16);
+
+      .title {
+        @include grid(16);
+
+        display: block;
+        float: none;
+
+        h2 {
+          padding: 20px 10px;
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          color: #808080;
+          font-size: 30px;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+
+      .logos {
+        padding: 0 20px 20px 20px;
+        text-align: center;
+
+        .featured {
+          display: inline-block;
+          height: 60px;
+          margin-right: 10px;
+          width: 180px;
+        }
+
+        .regular {
+          display: inline-block;
+          height: 50px;
+          margin-right: 10px;
+          width: 150px;
+        }
+      }
+    }
+  }
+
+  #page_content {
+    .container {
+      @include grid-system(16);
+
+      padding: 0 10px 0 10px;
+      background: white;
+      padding-bottom: 40px;
+
+      .main {
+        padding-top: 17px;
+
+        @include grid(12);
+      }
+
+      .sidebar {
+        @include grid(4);
+
+        @include omega;
+      }
+
+      .list {
+        float: left;
+      }
+
+      .list-title {
+        float: left;
+        min-width: 103px;
+        height: 30px;
+
+        a {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          color: $orange;
+          font-size: 30px;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+
+      .more-projects {
+        float: right;
+        color: $orange;
+        text-decoration: none;
+        margin: 8px 0;
+        font-size: 15px;
+
+        //padding: 0 20px 0 0
+        text-indent: -25px;
+        text-align: right;
+        width: 250px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .projects {
+        //border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        display: inline-block;
+        padding-top: 15px;
+        margin-bottom: 20px;
+        width: 700px;
+      }
+    }
+  }
+
+  #logos {
+    @include grid-container;
+
+    @include grid-system(16);
+
+    @include border-radius(8px);
+
+    padding: 0 10px 30px 10px;
+    margin-top: 60px;
+
+    .multide {
+      @include grid(2);
+
+      @include grid-suffix(4);
+
+      a {
+        margin-left: 10px;
+      }
+    }
+
+    .comum {
+      @include grid(3);
+
+      @include grid-suffix(3);
+
+      a {
+        float: left;
+        margin-top: 5px;
+        margin-left: 10px;
+      }
+    }
+
+    .power {
+      @include grid(4);
+
+      a {
+        margin-top: -15px;
+        float: right;
+      }
+    }
+  }
+}
