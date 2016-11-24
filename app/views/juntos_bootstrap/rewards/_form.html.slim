@@ -4,15 +4,14 @@
       = t('.reward_count', number: parent.rewards.count + 1)
     - else
       = t('.edit_reward')
-  .w-col.w-col-8
+  .w-col.w-col-12
     .card
       .w-form
         = simple_form_for [parent, resource], html: { id: 'project_reward_form' } do |form|
           = render 'devise/shared/alert'
-          .w-row.u-marginbottom-20
-            .w-col.w-col-5
+          .w-row
+            .w-col.w-col-6.rewards-form-padding
               label.fontsize-smaller = t('.minimum_value')
-            .w-col.w-col-7
               .w-row
                 .w-col.w-col-3.text-field.positive.prefix.no-hover
                   .fontsize-smallest.fontcolor-secondary.u-text-center
@@ -20,19 +19,19 @@
                 .w-col.w-col-9
                   = form.input_field :minimum_value, class: 'postfix positive', required: true
               .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_minimum_value"] = t('simple_form.validation_texts.reward.minimum_value')
+            .w-col.w-col-6.rewards-form-padding
+              .w-row
+                .w-col.w-col-12
+                  .w-checkbox
+                    input#checkbox.w-checkbox-input data-name="Checkbox" name="checkbox" type="checkbox"
+                      label.w-form-label for="checkbox" = t('.limit')
+                .w-col.w-col-12
+                  = form.input_field :maximum_contributions, class: 'u-marginbottom-30 positive', placeholder: t('.available')
           .w-row
-            .w-col.w-col-5
+            .w-col.w-col-12
               label.fontsize-smaller = t('.description')
-            .w-col.w-col-7
               = form.input_field :description, as: :text,  class: 'positive', placeholder: t('.description_placeholder'), required: true
               .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="reward_description"] = t('simple_form.validation_texts.reward.description')
-          .w-row
-            .w-col.w-col-5
-              .w-checkbox
-                input#checkbox.w-checkbox-input data-name="Checkbox" name="checkbox" type="checkbox"
-                  label.w-form-label for="checkbox" = t('.limit')
-            .w-col.w-col-7
-              = form.input_field :maximum_contributions, class: 'u-marginbottom-30 positive', placeholder: t('.available')
           .w-row
             .w-col.w-col-6.w-sub-col
               = form.button :submit, t('.save'),  class:'btn btn-small'

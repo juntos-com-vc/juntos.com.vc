@@ -214,10 +214,13 @@ p {
   clear: right;
 }
 .text-field.jumbo {
-  height: 640px;
+  height: 40.000em;
+}
+.text-field.jumbo-project{
+  height: 25.000em;
 }
 .text-field.form-footer {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .text-field.dashboard-edit {
   display: inline-block;
@@ -4243,4 +4246,38 @@ p .project-basics-icons{
 
 .partner-form-actions-width{
   width: $four-columns-actions-width;
+}
+
+.w-row .rewards-form-padding{
+  padding: 0 0.5em;
+}
+
+.rewards-form-btn-padding:first-child{
+  padding-right: 0.5em;
+}
+
+.rewards-form-btn-padding:last-child{
+  padding-left: 0.5em;
+}
+
+.btn .reward-form-icons{
+  margin-right: 0.5em;
+  padding: 0.500em;
+  font-size: 1.5em;
+  border: none;
+  background-color: $blue-facebook;
+
+  &:hover{
+    color: $white;
+  }
+}
+
+div .w-col-12 .date-time-margin{
+  display: inline-block;
+  width: 17%;
+  margin-right: 0.5em;
+}
+
+.fa-lg{
+  padding-top: 0.7em;
 }
