@@ -7,7 +7,8 @@ var baseSidebar = {
 
   selectReward: function(event){
     var url = this.$(event.currentTarget).data('new_contribution_url');
-    this.navigate(url);
+    var acceptContributions = this.$(event.currentTarget).data('accept-contributions');
+    if (acceptContributions) { this.navigate(url); }
     return false;
   },
 
