@@ -128,8 +128,8 @@ RSpec.describe Contribution, type: :model do
 
     context "when contribution is by bank transfer and is passed the confirmation time" do
       before do
-        create(:contribution, state: 'waiting_confirmation', payment_choice: 'DebitoBancario', created_at: 9.weekdays_ago)
-        create(:contribution, state: 'waiting_confirmation', payment_choice: 'DebitoBancario', created_at: 8.weekdays_ago)
+        create(:contribution, state: 'waiting_confirmation', payment_choice: 'DebitoBancario', created_at: 2.weekdays_ago)
+        create(:contribution, state: 'waiting_confirmation', payment_choice: 'DebitoBancario', created_at: 0.weekdays_ago)
       end
       it { is_expected.to have(1).item }
     end
@@ -137,7 +137,7 @@ RSpec.describe Contribution, type: :model do
     context "when we have contributions that is passed the confirmation time" do
       before do
         create(:contribution, state: 'waiting_confirmation', created_at: 3.weekdays_ago)
-        create(:contribution, state: 'waiting_confirmation', created_at: 9.weekdays_ago)
+        create(:contribution, state: 'waiting_confirmation', created_at: 6.weekdays_ago)
       end
       it { is_expected.to have(1).itens }
     end
