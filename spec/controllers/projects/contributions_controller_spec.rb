@@ -110,7 +110,83 @@ RSpec.describe Projects::ContributionsController, type: :controller do
     end
   end
 
-  describe "GET new" do
+  describe 'project' do
+    let(:user){ create(:user).decorate }
+
+    before do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    end
+
+    context 'when the project state is different than online' do
+      let(:project) { create(:project, :failed) }
+
+      context 'when the request is a get' do
+        before do
+          get :new, { locale: :pt, project_id: project.id }.merge(ssl_options)
+        end
+
+        it 'should redirect to root path' do
+          is_expected.to redirect_to root_path
+        end
+
+        it_behaves_like 'when a flash notice is raised because the project state is not online'
+      end
+
+      context 'when the request is a post' do
+        before do
+          post :create, { locale: :pt, project_id: project.id, contribution: attributes_for(:contribution) }.merge(ssl_options)
+        end
+
+        it 'should redirect to root path' do
+          is_expected.to redirect_to root_path
+        end
+
+        it_behaves_like 'when a flash notice is raised because the project state is not online'
+      end
+    end
+
+    context 'when the project is online' do
+      it_behaves_like 'when no hooks are triggered on new and create methods' do
+        let(:project) { create(:project, :online) }
+      end
+    end
+
+    context 'when the project is unavailable for contributions' do
+      let(:project) { create(:project, :unavailable_for_contributions) }
+
+      before do
+        get :new, { locale: :pt, project_id: project.id }.merge(ssl_options)
+      end
+
+      context 'when the request is a get' do
+        it 'should redirect to project show page' do
+          is_expected.to redirect_to project_path(project)
+        end
+
+        it_behaves_like 'when a flash notice is raised because the project is unavailable for contributions'
+      end
+
+      context 'when the request is a post' do
+        before do
+          post :create, { locale: :pt, project_id: project.id, contribution: attributes_for(:contribution) }.merge(ssl_options)
+        end
+
+        it 'should redirect to project show page' do
+          is_expected.to redirect_to project_path(project)
+        end
+
+        it_behaves_like 'when a flash notice is raised because the project is unavailable for contributions'
+      end
+    end
+
+    context 'when the project is available for contributions' do
+      it_behaves_like 'when no hooks are triggered on new and create methods' do
+        let(:project) { create(:project, :available_for_contributions) }
+      end
+    end
+  end
+
+  describe 'GET new' do
     let(:secure_review_host) { nil }
     let(:user) { create(:user).decorate }
     let(:online) { true }
