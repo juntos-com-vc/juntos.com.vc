@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Channels::ProfilesController, type: :controller do
-  let! (:channel) { create(:channel) }
-  let! (:project) { create(:project) }
+  let (:channel) { create(:channel) }
+  let (:project) { create(:project) }
   let! (:contribution) { create(:contribution, value: 10, project: project) }
   let! (:contribution2) { create(:contribution, value: 10, project: project) }
 
   describe "GET show" do
     before do
+      project.update_attribute(:state, 'successful')
       channel.projects << project
       allow(request).to receive(:subdomain).and_return(channel.permalink)
       get :show, id: 'sample', locale: 'pt'
