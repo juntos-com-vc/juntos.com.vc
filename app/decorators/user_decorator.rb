@@ -1,6 +1,5 @@
 class UserDecorator < Draper::Decorator
   delegate_all
-  include Draper::LazyHelpers
 
   def contributions_text
     i18n_scope = 'user.contributions_text'
@@ -42,21 +41,21 @@ class UserDecorator < Draper::Decorator
     div_style = "width: #{options[:width]}px; height: #{options[:height]}px"
     image_style = "width: #{options[:width]}px; height: auto"
 
-    content_tag :div, class: "avatar_wrapper", style: div_style do
-      image_tag(display_image, alt: "User", style: image_style)
+    h.content_tag :div, class: "avatar_wrapper", style: div_style do
+      h.image_tag(display_image, alt: "User", style: image_style)
     end
   end
 
   def short_name
-    truncate display_name, length: 20
+    h.truncate display_name, length: 20
   end
 
   def medium_name
-    truncate display_name, length: 42
+    h.truncate display_name, length: 42
   end
 
   def display_credits
-    number_to_currency source.credits
+    h.number_to_currency source.credits
   end
 
   def display_bank_account
@@ -76,7 +75,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def display_total_of_contributions
-    number_to_currency source.contributions.with_state('confirmed').sum(:value)
+    h.number_to_currency source.contributions.with_state('confirmed').sum(:value)
   end
 
   def display_requested_refund_contributions_count
@@ -140,7 +139,7 @@ class UserDecorator < Draper::Decorator
   private
 
   def user_documents_div
-    url = user_path(current_user, anchor: 'settings')
+    url = h.user_path(h.current_user, anchor: 'settings')
     css_classes = [
       "fontsize-smaller",
       "fontweight-light",
@@ -151,11 +150,11 @@ class UserDecorator < Draper::Decorator
     ]
     text = I18n.t('user_documents_html', url: url, scope: 'projects.show')
 
-    content_tag(:div, text, class: css_classes)
+    h.content_tag(:div, text, class: css_classes)
   end
 
   def display_projects_link(font_smaller=false)
-    url = user_path(current_user, anchor: 'projects')
+    url = h.user_path(h.current_user, anchor: 'projects')
 
     css_class = if font_smaller
                   [
@@ -165,8 +164,8 @@ class UserDecorator < Draper::Decorator
                   ]
                 end
 
-    content_tag :div, class: css_class do
-      link_to(I18n.t('projects', scope: 'shared.header'), url)
+    h.content_tag :div, class: css_class do
+      h.link_to(I18n.t('projects', scope: 'shared.header'), url)
     end
   end
 end
