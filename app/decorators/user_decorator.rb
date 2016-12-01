@@ -1,6 +1,10 @@
 class UserDecorator < Draper::Decorator
   delegate_all
 
+  def channel_owner?(channel)
+    source.channel == channel
+  end
+
   def contributions_text
     i18n_scope = 'user.contributions_text'
 

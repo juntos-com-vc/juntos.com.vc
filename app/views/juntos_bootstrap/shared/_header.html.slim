@@ -1,9 +1,9 @@
 .main-header.w-hidden-small.w-hidden-tiny
   .w-row-header
     .w-col.w-col-9.w-col-small-6.w-col-tiny-6.w-clearfix
-      - @channel ||= channel
-      - if namespace == 'channels' || (request.subdomains.first.present? && request.subdomains.first != 'www' && @channel.present?)
-        = link_to (image_tag (@profile || @channel).image.header.url), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
+      - @current_channel ||= channel
+      - if namespace == 'channels' || (request.subdomains.first.present? && request.subdomains.first != 'www' && @current_channel.present?)
+        = link_to (image_tag (@profile || @current_channel).image.header.url), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
       - else
         = link_to (image_tag "juntos/logo-small.png"), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
       - if params[:controller] == 'projects' && params[:action] == 'index'
@@ -25,7 +25,7 @@
               .fontsize-smallest.text-success
                 | (#{current_user.display_credits})
             = link_to t('layouts.user.refund_link'), user_path(current_user, anchor: 'credits'), class: 'w-dropdown-link dropdown-link fontsize-smaller'
-            - if current_user.admin? || current_user.channel
+            - if current_user.admin? || current_user.channel_owner?(@current_channel)
               .divider
               - for menu, path in controller.menu do
                 = link_to menu, path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
@@ -50,9 +50,9 @@
 .main-header.w-hidden-main.w-hidden-medium
   .w-col.w-w-col-12
     .w-col.w-col-6.w-col-small-6.w-col-tiny-6.w-clearfix
-      - @channel ||= channel
-      - if namespace == 'channels' || (request.subdomains.first.present? && request.subdomains.first != 'www' && @channel.present?)
-        = link_to (image_tag (@profile || @channel).image.header.url), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
+      - @current_channel ||= channel
+      - if namespace == 'channels' || (request.subdomains.first.present? && request.subdomains.first != 'www' && @current_channel.present?)
+        = link_to (image_tag (@profile || @current_channel).image.header.url), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
       - else
         = link_to (image_tag "juntos/logo-mobile.png"), root_path, class: 'header-logo w-nav-brand', :title => CatarseSettings[:company_name]
       - if params[:controller] == 'projects' && params[:action] == 'index'
@@ -73,7 +73,7 @@
               .fontsize-smallest.text-success
                 | (#{current_user.display_credits})
             = link_to t('layouts.user.refund_link'), user_path(current_user, anchor: 'credits'), class: 'w-dropdown-link dropdown-link fontsize-smaller'
-            - if current_user.admin? || current_user.channel
+            - if current_user.admin? || current_user.channel_owner?(@current_channel)
               .divider
               - for menu, path in controller.menu do
                 = link_to menu, path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
@@ -112,7 +112,7 @@
               .fontsize-smallest.text-success
                 | (#{current_user.display_credits})
             = link_to t('layouts.user.refund_link'), user_path(current_user, anchor: 'credits'), class: 'w-dropdown-link dropdown-link fontsize-smaller'
-            - if current_user.admin? || current_user.channel
+            - if current_user.admin? || current_user.channel_owner?(@current_channel)
               .divider
               - for menu, path in controller.menu do
                 = link_to menu, path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
