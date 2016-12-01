@@ -17,9 +17,6 @@ class Projects::ContributionsController < ApplicationController
     @payment_engines = avaiable_payment_engines
     @countries = ISO3166::Country.all_names_with_codes(I18n.locale)
 
-    if resource.preferred_payment_engine.present?
-      @payment_engines.select! { |engine| engine.name == resource.preferred_payment_engine }
-    end
     if resource.reward.try(:sold_out?)
       flash[:alert] = t('.reward_sold_out')
       return redirect_to new_project_contribution_path(@project)
