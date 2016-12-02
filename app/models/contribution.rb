@@ -71,7 +71,7 @@ class Contribution < ActiveRecord::Base
     with_state('confirmed').where("contributions.payment_method in ('PayPal', 'Pagarme') OR contributions.payment_choice = 'CartaoDeCredito'")
   }
   scope :partner_indications, -> { where(partner_indication: true) }
-  scope :can_cancel, -> { where("contributions.can_cancel") }
+  scope :can_cancel, -> { with_state('waiting_confirmation').where('created_at < ?', 8.weekdays_ago.to_date) }
   scope :with_cause, ->(cause_id) {
     joins(:project).where(projects: { category_id: cause_id })
   }

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Contribution, type: :model do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:user){ create(:user) }
   let(:failed_project){ create(:project, state: 'online') }
   let(:unfinished_project){ create(:project, state: 'online') }
@@ -117,29 +119,32 @@ RSpec.describe Contribution, type: :model do
   end
 
   describe ".can_cancel" do
-    subject { Contribution.can_cancel}
+    around do |test_case|
+      travel_to(Time.new(2016, 11, 28)) { test_case.run }
+    end
+    after   { travel_back }
+    subject { Contribution.can_cancel }
 
     context "when contribution is in time to wait the confirmation" do
       before do
-        create(:contribution, state: 'waiting_confirmation', created_at: 3.weekdays_ago)
+        create(:contribution, :waiting_confirmation, created_at: 8.weekdays_ago)
+        create(:contribution, :waiting_confirmation, created_at: 1.weekdays_ago)
       end
+
       it { is_expected.to have(0).item }
     end
 
-    context "when contribution is by bank transfer and is passed the confirmation time" do
+    context "when we have contributions that are ahead of confirmation time" do
       before do
-        create(:contribution, state: 'waiting_confirmation', payment_choice: 'DebitoBancario', created_at: 2.weekdays_ago)
-        create(:contribution, state: 'waiting_confirmation', payment_choice: 'DebitoBancario', created_at: 0.weekdays_ago)
+        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 8.weekdays_ago)
+        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 7.weekdays_ago)
+        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 1.weekdays_ago)
+        create(:contribution, :waiting_confirmation, created_at: 8.weekdays_ago)
+        create(:contribution, :waiting_confirmation, created_at: 5.weekdays_ago)
       end
-      it { is_expected.to have(1).item }
-    end
+      let!(:old_contribution) { create(:contribution, :waiting_confirmation, :slip_payment, created_at: 9.weekdays_ago) }
 
-    context "when we have contributions that is passed the confirmation time" do
-      before do
-        create(:contribution, state: 'waiting_confirmation', created_at: 3.weekdays_ago)
-        create(:contribution, state: 'waiting_confirmation', created_at: 6.weekdays_ago)
-      end
-      it { is_expected.to have(1).itens }
+      it { is_expected.to contain_exactly(old_contribution) }
     end
   end
 

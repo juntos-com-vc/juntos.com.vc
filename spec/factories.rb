@@ -171,6 +171,10 @@ FactoryGirl.define do
       end
     end
 
+    trait :slip_payment do
+      payment_choice 'DebitoBancario'
+    end
+
     trait :confirmed do
       state 'confirmed'
     end
