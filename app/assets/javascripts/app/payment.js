@@ -42,7 +42,9 @@ App.addChild('Payment', _.extend({
   },
 
   selectNationalPayment: function() {
-    this.onTabClick({currentTarget: this.$('#MoIP')});
+    var tabTarget = $('#payment-methods').data('preferredEngine');
+
+    this.onTabClick({currentTarget: this.$(tabTarget)});
   },
 
   loadPaymentChoicesPerNationality: function(national) {

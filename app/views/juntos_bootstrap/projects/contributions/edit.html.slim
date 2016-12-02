@@ -67,7 +67,7 @@
                 span.fa.fa-lock
                 |&nbsp;&nbsp;&nbsp;
                 = t('.choose_payment_subtitle')
-            #payment-methods.nav-light.u-marginbottom-30[class=(@payment_engines.size == 1 ? 'w-hidden' : '')]
+            #payment-methods.nav-light.u-marginbottom-30[data-preferred-engine=(@contribution.preferred_payment_engine.present? ? "##{@contribution.preferred_payment_engine}" : "#MoIP")]
               - @payment_engines.each do |engine|
                 .nav-tab.nav-tab-light[id=engine.name data-target="##{engine.name}_payment"]
                   = t("projects.contributions.review.#{engine.name}.description")
