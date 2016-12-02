@@ -56,6 +56,21 @@ To run this project you need to have:
 
         $ rake db:create db:migrate
 
+* Import the database from production
+  * Create a backup
+
+          $ heroku pg:backups capture --app juntoscomvc
+
+  * Download the backup generated locally
+
+          $ curl -o latest.dump \`heroku pg:backups public-url --app juntoscomvc\`
+
+  * Restore the backup to local database
+
+          $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -U <database-username> -d <database-name> latest.dump
+
+  For further information of importing database from production, please, see https://devcenter.heroku.com/articles/heroku-postgres-import-export.
+
 If everything goes OK, you can now run the project!
 
 ### Running the project
