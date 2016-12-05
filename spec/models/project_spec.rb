@@ -6,10 +6,8 @@ Sidekiq::Testing.fake!
 RSpec.describe Project, type: :model do
   include ActiveSupport::Testing::TimeHelpers
 
-  subject(:project)     { create(:project) }
-  let(:user)            { create(:user) }
-  let(:channel)         { create(:channel, users: [ user ]) }
-  let(:channel_project) { create(:project, channels: [ channel ]) }
+  subject       { project }
+  let(:project) { create(:project) }
 
   describe "associations" do
     it { is_expected.to belong_to :user }
@@ -67,6 +65,77 @@ RSpec.describe Project, type: :model do
 
     describe "length of validations" do
       it { is_expected.to ensure_length_of(:headline).is_at_most(140).is_at_least(1) }
+    end
+
+    describe "exceptions" do
+      describe ".category" do
+        context "when a project belongs to a recurring channel" do
+          let(:recurring_channel) { create :channel, recurring: true }
+          subject { build(:project, channels: [recurring_channel], category: nil, online_days: nil) }
+
+          it { is_expected.not_to validate_presence_of(:category) }
+        end
+      end
+
+      describe ".video_url" do
+        before  { CatarseSettings[:minimum_goal_for_video] = 5000 }
+
+        context "when project state requires a video url" do
+          context "state is online" do
+            context "and goal is equals minimum" do
+              let(:project) { create(:project, :online, goal: 5000) }
+
+              it { is_expected.not_to allow_value(nil).for(:video_url) }
+            end
+
+            context "and goal is above minimum" do
+              let(:project) { create(:project, :online, goal: 5001) }
+
+              it { is_expected.not_to allow_value(nil).for(:video_url) }
+            end
+
+            context "and goal is below minimum" do
+              let(:project) { create(:project, :online, goal: 4999) }
+
+              it { is_expected.to allow_value(nil).for(:video_url) }
+            end
+          end
+
+          context "state is in analysis" do
+            context "and goal is equals minimum" do
+              let(:project) { create(:project, :in_analysis, goal: 5000) }
+
+              it { is_expected.not_to allow_value(nil).for(:video_url) }
+            end
+
+            context "and goal is above minimum" do
+              let(:project) { create(:project, :in_analysis, goal: 5001) }
+
+              it { is_expected.not_to allow_value(nil).for(:video_url) }
+            end
+
+            context "and goal is below minimum" do
+              let(:project) { create(:project, :in_analysis, goal: 4999) }
+
+              it { is_expected.to allow_value(nil).for(:video_url) }
+            end
+          end
+        end
+
+        context "when project state does not require a video url" do
+          context "state is waiting_funds" do
+            let(:project) { create(:project, :waiting_funds) }
+
+            it { is_expected.to allow_value(nil).for(:video_url) }
+          end
+
+          context "state is successful" do
+            let(:project) { create(:project, :successful) }
+
+            it { is_expected.to allow_value(nil).for(:video_url) }
+          end
+        end
+      end
     end
   end
 
@@ -1794,56 +1863,6 @@ RSpec.describe Project, type: :model do
     it { is_expected.to eq(states) }
   end
 
-  describe '.video_url' do
-    subject { project }
-
-    before do
-      CatarseSettings[:minimum_goal_for_video] = 5000
-    end
-
-    context 'when goal is above minimum' do
-      context 'and project is online' do
-        let(:project) { create :project, goal: 6000, state: 'online' }
-
-        it { is_expected.not_to allow_value(nil).for(:video_url) }
-      end
-
-      context 'and project is in analysis' do
-        let(:project) { create :project, goal: 6000, state: 'in_analysis' }
-
-        it { is_expected.not_to allow_value(nil).for(:video_url) }
-      end
-    end
-
-    context 'when goal is below minimum' do
-      context 'and project is online' do
-        let(:project) { create :project, goal: 4000, state: 'online' }
-
-        it { is_expected.to allow_value(nil).for(:video_url) }
-      end
-
-      context 'and project is in analysis' do
-        let(:project) { create :project, goal: 4000, state: 'in_analysis' }
-
-        it { is_expected.to allow_value(nil).for(:video_url) }
-      end
-    end
-
-    context 'when goal is minimum' do
-      context 'and project is online' do
-        let(:project) { build :project, goal: 5000, state: 'online' }
-
-        it { is_expected.not_to allow_value(nil).for(:video_url) }
-      end
-
-      context 'and project is in analysis' do
-        let(:project) { build :project, goal: 5000, state: 'in_analysis' }
-
-        it { is_expected.not_to allow_value(nil).for(:video_url) }
-      end
-    end
-  end
-
   describe '.between_created_at' do
     let(:start_at) { '17/01/2013' }
     let(:ends_at)  { '20/01/2013' }
@@ -1886,20 +1905,6 @@ RSpec.describe Project, type: :model do
       before { create(:project, online_date: '23/01/2013', online_days: 1) }
 
       it { is_expected.to be_empty }
-    end
-  end
-
-  context 'when a project belongs to a recurring channel' do
-    let(:recurring_channel) { create :channel, recurring: true }
-    subject {
-      build :project,
-        channels: [recurring_channel],
-        category: nil,
-        online_days: nil
-    }
-
-    describe 'validations' do
-      it { is_expected.not_to validate_presence_of :category }
     end
   end
 end
