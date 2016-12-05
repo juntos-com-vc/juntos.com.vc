@@ -18,15 +18,15 @@
 
 .w-row
   .w-col.w-col-4.statistics-content style="background-color: #{ channel.statistics_background_color }"
-    h3.statistics-title =  @total_pledged
+    h3.statistics-title =  @channel_statistics.total_pledged
     b.statistics-b = t('.transparency.brl_amount')
     span.upcase = t('.transparency.raised')
   .w-col.w-col-4.statistics-content style="background-color: #{ channel.statistics_background_color }"
-    h3.statistics-title = @total_contributions
+    h3.statistics-title = @channel_statistics.contributions_count
     b.statistics-b = t('.transparency.donations')
     span.statistics-spans.upcase = t('.transparency.performed')
   .w-col.w-col-4.statistics-content style="background-color: #{ channel.statistics_background_color }"
-    h3.statistics-title = @total_projects
+    h3.statistics-title = @channel_statistics.successful_projects_count
     b.statistics-b = t('.transparency.projects')
     span.statistics-span = t('.transparency.supported')
 .w-container
