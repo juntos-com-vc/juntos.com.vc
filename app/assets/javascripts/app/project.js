@@ -59,5 +59,5 @@ App.addChild('Project', _.extend({
 }, Skull.Tabs));
 
 $(document).ready(function() {
-  $('[data="select2"]').select2();
+  if ($('[data="select2"]').length > 0) { $('[data="select2"]').select2(); }
 });
