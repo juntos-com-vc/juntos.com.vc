@@ -637,7 +637,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.to_finish' do
+  describe ".to_finish" do
     subject { Project.to_finish.map(&:name) }
 
     context "when project is found" do
@@ -965,7 +965,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.recurring' do
+  describe ".recurring" do
     let(:channel)               { create :channel, recurring: true }
     let(:channel_not_recurring) { create :channel }
     subject { Project.recurring.map(&:name) }
@@ -989,7 +989,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.with_channel_without_recurring' do
+  describe ".with_channel_without_recurring" do
     let(:channel)               { create :channel, recurring: true }
     let(:channel_not_recurring) { create :channel }
     subject { Project.with_channel_without_recurring.map(&:name) }
@@ -1072,7 +1072,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.goal_between' do
+  describe ".goal_between" do
     before do
       create(:project, goal: 199, name: 'with_goal_199')
       create(:project, goal: 200, name: 'with_goal_200')
@@ -1387,7 +1387,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '#selected_rewards' do
+  describe "#selected_rewards" do
     let(:project)   { create(:project) }
     let(:reward_01) { create(:reward, description: 'reward_1', project: project) }
     let(:reward_02) { create(:reward, description: 'reward_2', project: project) }
@@ -1415,23 +1415,23 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '#accept_contributions?' do
-    context 'when project is online' do
-      context 'and is not expired' do
-        context 'and is available for contribution' do
+  describe "#accept_contributions?" do
+    context "when project is online" do
+      context "and is not expired" do
+        context "and is available for contribution" do
           let(:project) { create(:project, :online, :not_expired, available_for_contribution: true) }
 
           it { expect(project).to be_accept_contributions }
         end
 
-        context 'and not available for contribution' do
+        context "and not available for contribution" do
           let(:project) { create(:project, :online, :not_expired, available_for_contribution: false) }
 
           it { expect(project).not_to be_accept_contributions }
         end
       end
 
-      context 'and is expired' do
+      context "and is expired" do
         let(:project) { create(:project, :online, :expired, available_for_contribution: true) }
 
         it { expect(project).not_to be_accept_contributions }
@@ -1445,7 +1445,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '#reached_goal?' do
+  describe "#reached_goal?" do
     let(:project) { create(:project, goal: 3000) }
 
     context "when there are no contributions" do
@@ -1503,14 +1503,14 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '#in_time_to_wait?' do
+  describe "#in_time_to_wait?" do
     context "when there is waiting_confirmation contribution" do
       before { create(:contribution, :waiting_confirmation, project: project) }
 
       it { expect(project).to be_in_time_to_wait }
     end
 
-    context 'when there are contributions with no waiting_confirmation state' do
+    context "when there are contributions with no waiting_confirmation state" do
       before do
         create(:contribution, :pending, project: project, payment_service_fee: 50)
         create(:contribution, :canceled, project: project, payment_service_fee: 50)
@@ -1525,7 +1525,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '#pending_contributions_reached_the_goal?' do
+  describe "#pending_contributions_reached_the_goal?" do
     let(:project) { create(:project, goal: 200) }
 
     context "when the contribution state is confirmed or waiting_confirmation" do
@@ -1623,32 +1623,32 @@ RSpec.describe Project, type: :model do
       it { expect(project).not_to be_recurring }
     end
 
-    context 'when a project does not have a recurring channel' do
+    context "when a project does not have a recurring channel" do
       let(:project) { create :project }
 
       it { expect(project).not_to be_recurring }
     end
   end
 
-  describe '#color' do
+  describe "#color" do
     before  { CatarseSettings[:default_color] = '#ff8a41' }
     subject { project.color }
 
-    context 'when a project has a recurring channel' do
+    context "when a project has a recurring channel" do
       let(:default_color) { CatarseSettings[:default_color] }
       let(:channel)       { create :channel, recurring: true }
       let(:project)       { create :project, channels: [channel] }
 
-      it 'should return the default color' do
+      it "should return the default color" do
         is_expected.to eq(default_color)
       end
     end
 
-    context 'when a project is not related to a recurring channel' do
+    context "when a project is not related to a recurring channel" do
       let(:category) { create :category }
       let(:project)  { create :project, category: category }
 
-      it 'should return the category color' do
+      it "should return the category color" do
         is_expected.to eq category.color
       end
     end
@@ -1855,7 +1855,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.state_names' do
+  describe ".state_names" do
     let(:states) { [:draft, :rejected, :online, :successful, :waiting_funds, :failed, :in_analysis] }
 
     subject { Project.state_names }
@@ -1863,7 +1863,7 @@ RSpec.describe Project, type: :model do
     it { is_expected.to eq(states) }
   end
 
-  describe '.between_created_at' do
+  describe ".between_created_at" do
     let(:start_at) { '17/01/2013' }
     let(:ends_at)  { '20/01/2013' }
     subject        { Project.between_created_at(start_at, ends_at).map(&:name) }
@@ -1887,7 +1887,7 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe '.between_expires_at' do
+  describe ".between_expires_at" do
     let(:start_at) { '17/01/2013' }
     let(:ends_at)  { '22/01/2013' }
     subject        { Project.between_expires_at(start_at, ends_at).map(&:name) }
