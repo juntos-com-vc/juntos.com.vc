@@ -1,6 +1,9 @@
 en:
   projects:
     contributions:
+      warnings:
+        project_must_be_online: Donations only can be made for online projects.
+        project_does_not_accept_contributions: This project is not available for online contributions.
       no_estimate: 'Not available'
       you_selected: 'You chose this reward!'
       contribute_text:
