@@ -82,6 +82,9 @@ class Contribution < ActiveRecord::Base
   scope :only_recurring, ->{ where.not(recurring_contribution: nil) }
   scope :only_cancelled_recurring, -> { only_recurring.includes(:recurring_contribution)
                                           .where.not(recurring_contributions: { cancelled_at: nil }) }
+  scope :valid_for_channel_statistics_by_projects, ->(project) {
+    with_states(['confirmed', 'refunded', 'requested_refund']).where(project_id: project)
+  }
 
   attr_protected :state
 
