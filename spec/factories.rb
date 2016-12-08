@@ -75,6 +75,13 @@ FactoryGirl.define do
     f.name_pt { generate(:name) }
   end
 
+  factory :subgoal do |f|
+    f.association :project, factory: :project
+    f.color 'foo'
+    f.value 15.0
+    f.description "Lorem Ipsum"
+  end
+
   factory :project do |f|
     f.name "Foo bar"
     f.permalink { generate(:permalink) }
@@ -99,6 +106,34 @@ FactoryGirl.define do
 
     trait :online do
       state 'online'
+    end
+
+    trait :failed do
+      state 'failed'
+    end
+
+    trait :rejected do
+      state 'rejected'
+    end
+
+    trait :deleted do
+      state 'deleted'
+    end
+
+    trait :in_analysis do
+      state 'in_analysis'
+    end
+
+    trait :draft do
+      state 'draft'
+    end
+
+    trait :successful do
+      state 'successful'
+    end
+
+    trait :waiting_funds do
+      state 'waiting_funds'
     end
 
     trait :expired do
