@@ -113,17 +113,17 @@ Channel.create(name: 'Recurring channel', description: 'Recurring channel descri
 
 # creating projects
 3.times do |i|
-  Project.create(name: "Project ##{i}", permalink: "project#{i}", headline: "Headline ##{i}", about: "Project ##{i} about", goal: i*100, online_days: i*10, user: random_record(User), category: random_record(Category))
+  Project.create(name: "Project ##{i}", permalink: "project#{i}", headline: "Headline ##{i}", about: "Project ##{i} about", video_url: 'https://www.youtube.com/watch?v=nRZ0CsqVY4U', goal: i*100, online_days: i*10, user: random_record(User), category: random_record(Category))
 end
 
 # creating projects in channels
 4.upto(6) do |i|
-  Project.create(name: "Project ##{i}", permalink: "project#{i}", headline: "Headline ##{i}", about: "Project ##{i} about", goal: i*100, online_days: i*10, user: random_record(User), channels: [ random_record(Channel.recurring(false)) ])
+  Project.create(name: "Project ##{i}", permalink: "project#{i}", headline: "Headline ##{i}", about: "Project ##{i} about", video_url: 'https://www.youtube.com/watch?v=tH5Q9-M6t8c', goal: i*100, online_days: i*10, user: random_record(User), channels: [ random_record(Channel.recurring(false)) ])
 end
 
 # creating projects in recurring channel
 7.upto(9) do |i|
-  Project.create(name: "Project ##{i}", permalink: "project#{i}", headline: "Headline ##{i}", about: "Project ##{i} about", goal: i*100, user: random_record(User), channels: [ Channel.recurring(true).first ])
+  Project.create(name: "Project ##{i}", permalink: "project#{i}", headline: "Headline ##{i}", about: "Project ##{i} about", video_url: 'https://www.youtube.com/watch?v=-RGhSADIGOY', goal: i*100, user: random_record(User), channels: [ Channel.recurring(true).first ])
 end
 
 # making projects online and add contributions
