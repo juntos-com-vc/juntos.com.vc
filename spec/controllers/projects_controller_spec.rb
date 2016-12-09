@@ -250,4 +250,73 @@ RSpec.describe ProjectsController, type: :controller do
       end
     end
   end
+
+
+  describe "online_days" do
+    context "when has a value greater than 60" do
+      let(:online_days_error_message) {
+        I18n.t('activerecord.attributes.project.online_days') + ' ' + \
+        I18n.t('activerecord.errors.models.project.attributes.online_days.less_than_or_equal_to')
+      }
+
+      before(:each) do
+        user_decorated = UserDecorator.new(user)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_decorated)
+      end
+
+      context "when the request is a POST" do
+        before do
+          post :create, { locale: :pt, project: project.attributes }
+        end
+
+        context "when the current_user is a juntos' admin" do
+          let(:user) { create(:user, admin: true) }
+          let(:project) { build(:project, permalink: 'available_permalink', online_days: 61) }
+
+          it "should not show any error message" do
+            expect(flash[:alert]).to be_nil
+          end
+        end
+
+        context "when the current_user is a normal user" do
+          let(:user) { create(:user, admin: false) }
+          let(:project) { build(:project, permalink: 'other_available_permalink', online_days: 61) }
+
+          it "should return a flash error message for the online_days field" do
+            expect(flash[:alert]).to match online_days_error_message
+          end
+
+          it "should redirect back to projects new path" do
+            is_expected.to render_template('projects/new')
+          end
+        end
+      end
+
+      context "when the request is a PUT" do
+        let(:project) { build(:project, online_days: 61) }
+
+        before(:each) do
+          put :update, id: project.id, project: { online_days: 61 }, locale: :pt
+        end
+
+        context "when the current_user is a juntos' admin" do
+          let(:user) { create(:user, admin: true) }
+          let(:project) { create(:project, online_days: 15, user: user) }
+
+          it "should not show any error message" do
+            expect(flash[:alert]).to be_nil
+          end
+        end
+
+        context "when the current_user is a normal user" do
+          let(:user) { create(:user, admin: false) }
+          let(:project) { create(:project, online_days: 15, user: user) }
+
+          it 'should return a flash error message for the online_days field' do
+            expect(flash[:alert]).to match online_days_error_message
+          end
+        end
+      end
+    end
+  end
 end
