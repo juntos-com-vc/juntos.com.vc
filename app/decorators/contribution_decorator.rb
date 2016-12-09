@@ -2,6 +2,14 @@ class ContributionDecorator < Draper::Decorator
   decorates :contribution
   include Draper::LazyHelpers
 
+  def default_payment_method
+    if source.preferred_payment_engine.present?
+      "##{source.preferred_payment_engine}"
+    elsif source.user.credits > 0
+      "#Credits"
+    end
+  end
+
   def display_value
     number_to_currency source.localized.value
   end

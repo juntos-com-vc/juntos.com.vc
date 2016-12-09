@@ -37,12 +37,10 @@ App.addChild('Payment', _.extend({
     this.$('#PayPal_payment').hide();
   },
 
-  selectInternationalPayment: function() {
-    this.onTabClick({currentTarget: this.$('#PayPal')});
-  },
-
-  selectNationalPayment: function() {
+  selectPayment: function(defaultPaymentMethod) {
     var tabTarget = $('#payment-methods').data('preferredEngine');
+
+    tabTarget = tabTarget || defaultPaymentMethod;
 
     this.onTabClick({currentTarget: this.$(tabTarget)});
   },
@@ -50,10 +48,10 @@ App.addChild('Payment', _.extend({
   loadPaymentChoicesPerNationality: function(national) {
     if(national) {
       this.showNationalPayment();
-      this.selectNationalPayment();
+      this.selectPayment("#MoIP");
     } else {
       this.hideNationalPayment();
-      this.selectInternationalPayment();
+      this.selectPayment("#PayPal");
     }
 
     this.on('selectTab', this.updatePaymentMethod);

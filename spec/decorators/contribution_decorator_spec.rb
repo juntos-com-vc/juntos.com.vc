@@ -5,6 +5,33 @@ RSpec.describe ContributionDecorator do
     I18n.locale = :pt
   end
 
+  describe "#default_payment_method" do
+    subject { contribution.decorate.default_payment_method }
+
+    context "when user selects gift card payment" do
+      let(:contribution) { create(:contribution, preferred_payment_engine: 'JuntosGiftCard') }
+
+      it { is_expected.to eq('#JuntosGiftCard') }
+    end
+
+    context "when user has credits" do
+      let(:user)         { create(:user) }
+      let(:contribution) { create(:contribution, user: user.reload) }
+
+      before do
+        create(:failed_contribution_project, project_value: 100, user: user)
+      end
+
+      it { is_expected.to eq('#Credits') }
+    end
+
+    context "when it is default payment" do
+      let(:contribution) { create(:contribution) }
+
+      it { is_expected.to be_nil }
+    end
+  end
+
   describe "#display_confirmed_at" do
     subject{ contribution.display_confirmed_at }
     context "when confirmet_at is not nil" do
