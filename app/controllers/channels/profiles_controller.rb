@@ -21,11 +21,8 @@ class Channels::ProfilesController < Channels::BaseController
   end
 
   private
-  def show_statistics
-    successful_projects = resource.projects.with_state('successful')
 
-    @total_pledged = successful_projects.map(&:project_total).compact.sum(&:pledged).to_f
-    @total_projects = successful_projects.count
-    @total_contributions = successful_projects.joins(:contributions).count
+  def show_statistics
+    @channel_statistics = ChannelStatisticsQuery.new(resource)
   end
 end

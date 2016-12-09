@@ -167,6 +167,8 @@ class Project < ActiveRecord::Base
     end
   end
 
+  scope :valid_for_channel_statistics, -> { with_states(['successful', 'online', 'waiting_funds']) }
+
   attr_accessor :accepted_terms, :new_record
 
   validates_acceptance_of :accepted_terms, on: :create
