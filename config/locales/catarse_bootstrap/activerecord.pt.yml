@@ -43,7 +43,7 @@ pt:
         channels: Canais
         category: Categoria
         expires_at: Prazo
-        online_days: "Quantos dias você precisa para atingir sua meta? O tempo máximo é de 60 dias"
+        online_days: "Quantidade de dias online"
         headline: "Uma frase de efeito sobre o seu projeto. Máximo de 140 caracteres."
         image_url: "URL da imagem"
         name: "Nome do projeto"
@@ -188,7 +188,7 @@ pt:
             online_days:
               greater_than: "O prazo para arrecadação deve ser maior que 0 dias"
               not_a_number: "O prazo para arrecadação deve ser um número de dias"
-              less_than_or_equal_to: "O prazo para arrecadação deve ser menor que 60 dias"
+              less_than_or_equal_to: "deve ser menor que 60 dias"
             about:
               blank: "A descrição do projeto não pode ficar em branco"
               too_short: "A descrição do projeto é muito curta. Por favor, use no mínimo 1 caractere"

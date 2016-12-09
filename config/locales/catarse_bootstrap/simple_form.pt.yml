@@ -57,3 +57,5 @@ pt:
         video_url: "Insira aqui o link do seu vídeo. Ele deve estar hospedado no Youtube ou no Vimeo. Se ainda não o tiver, tudo bem, você pode adicioná-lo depois. O vídeo é muito importante para o sucesso de sua campanha e obrigatório para projetos com metas de R$ 5.000 ou mais."
         about: '(Não se preocupe, você poderá mudar ela depois)'
         headline: '(Não se preocupe, você poderá mudar ela depois)'
+        online_days: 'Quantos dias você precisa para atingir sua meta? O tempo máximo é de 60 dias'
+        admin_online_days: '(Como administrador da Juntos, você pode inserir um valor maior que 60)'

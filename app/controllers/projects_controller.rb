@@ -52,10 +52,16 @@ class ProjectsController < ApplicationController
 
     @project = Project.new params[:project].merge(options)
     authorize @project
-    session[:new_project] = true
-    @project.save
+    @project_create = Project::Create.new(current_user, params[:project].merge(options))
 
-    create! { project_by_slug_path(@project.permalink, anchor: 'basics') }
+    if @project_create.process
+      @project = @project_create.project
+      session[:new_project] = true
+      redirect_to project_by_slug_path(@project.permalink, anchor: 'basics')
+    else
+      flash[:alert] = @project_create.project.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   def destroy
@@ -101,17 +107,16 @@ class ProjectsController < ApplicationController
 
   def update
     authorize resource
-    update! do |format|
-      format.html do
-        if resource.errors.present?
-          flash[:alert] = resource.errors.full_messages.to_sentence
-        else
-          flash[:notice] = t('project.update.success')
-        end
+    @project_update = Project::Update.new(current_user, params[:project], resource)
 
-        redirect_to project_by_slug_path(@project.reload.permalink, anchor: (params[:anchor] || 'dashboard_project') )
-      end
+    if @project_update.process
+      @project = @project_update.project
+      flash[:notice] = t('project.update.success')
+    else
+      flash[:alert] = @project_update.project.errors.full_messages.to_sentence
     end
+
+    redirect_to project_by_slug_path(@project.reload.permalink, anchor: (params[:anchor] || 'dashboard_project') )
   end
 
   def show
@@ -132,7 +137,7 @@ class ProjectsController < ApplicationController
       }).active.any?
 
       @bank_account = params[:bank_account] || {}
- 
+
       if @project.recipient
         recipient = FindRemoteRecipient.call(@project.recipient)
         @bank_account = recipient.bank_account

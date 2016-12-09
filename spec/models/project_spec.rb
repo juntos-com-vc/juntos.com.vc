@@ -36,7 +36,6 @@ RSpec.describe Project, type: :model do
     describe "online_days acceptance validations" do
       it { is_expected.to     allow_value(1).for(:online_days) }
       it { is_expected.not_to allow_value(0).for(:online_days) }
-      it { is_expected.not_to allow_value(61).for(:online_days) }
     end
 
     describe "video_url acceptance validations" do

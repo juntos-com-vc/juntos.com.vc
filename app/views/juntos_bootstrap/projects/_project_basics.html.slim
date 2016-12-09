@@ -74,6 +74,8 @@
                   .w-col.w-col-5.w-sub-col
                     label.field-label.fontweight-semibold for="name-8"=t('.online_days')
                     label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.online_days_label')
+                    - if current_user.admin?
+                      p = form.hint :admin_online_days
                   .w-col.w-col-7
                     .w-row
                       .w-col.w-col-8.w-col-small-6.w-col-tiny-6

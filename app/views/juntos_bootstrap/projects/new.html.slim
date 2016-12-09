@@ -42,6 +42,9 @@
             - unless channel && channel.recurring?
               .u-marginbottom-40
                 = form.label :online_days, class: 'fontsize-large', required: true, as: :string
+                p = form.hint :online_days
+                - if current_user.admin?
+                  p = form.hint :admin_online_days
                 .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :name
                 = form.input_field :online_days, class: 'medium', as: :string
             - if !channel.present?
