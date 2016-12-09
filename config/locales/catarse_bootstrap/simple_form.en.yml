@@ -57,3 +57,5 @@ en:
         video_url: "Insira aqui o link do seu vídeo. Ele deve estar hospedado no Youtube ou no Vimeo. Se ainda não o tiver, tudo bem, você pode adicioná-lo depois. O vídeo é muito importante para o sucesso de sua campanha e obrigatório para projetos com metas de R$ 5.000 ou mais."
         about: '(Do not worry, you can change it later)'
         headline: '(Do not worry, you can change it later)'
+        online_days: "How many days do you need in order to achieve your goal? The maximum time is 60 days."
+        admin_online_days: "(As a Juntos' administrator you can insert a value greater than 60)"

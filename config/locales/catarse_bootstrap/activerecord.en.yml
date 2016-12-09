@@ -84,7 +84,7 @@ en:
         channels: 'Channels'
         category: 'Category'
         expires_at: 'Expires at'
-        online_days: 'How many days do you need in order to achieve your goal? The maximum time is 60 days.'
+        online_days: 'Online days number'
         headline: 'A soundbite about your project. 140 characters at most.'
         image_url: 'Image URL'
         name: 'Name of the project'
@@ -115,7 +115,7 @@ en:
             online_days:
               greater_than: "The project's deadline should be greater than 0"
               not_a_number: "The project's deadline should be a number"
-              less_than_or_equal_to: "The project's deadline should be less than or equals to 60 days"
+              less_than_or_equal_to: "must be less than or equals to 60 days"
             about:
               blank: "The project's description cannot be blank"
               too_short: "The project's description is too short. Please, use at least 1 character"
