@@ -199,14 +199,26 @@ $tablet-size: 768px;
   width: 86.4%;
 }
 .btn-edit {
-  border-color: #409bff !important;
-  background-color: #409bff !important;
+  border-color: $blue-note !important;
+  background-color: $blue-note !important;
   color: white !important;
   text-decoration: none !important;
+
+  &:hover {
+    border-color: $blue-facebook !important;
+    background-color: $blue-facebook !important;
+  }
 }
-.btn-edit:hover {
-  border-color: #409bff !important;
-  background-color: #2f8bed !important;
+.btn-delete {
+  border-color: $red !important;
+  background-color: $red !important;
+  color: white !important;
+  text-decoration: none !important;
+
+  &:hover {
+    border-color: $red-two !important;
+    background-color: $red-two !important;
+  }
 }
 .footer-news-icon {
   margin-top: 7px;
