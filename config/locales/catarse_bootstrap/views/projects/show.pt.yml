@@ -121,6 +121,7 @@ pt:
       embed_title: Incorpore este projeto no seu site
       active_btn: ' Lembrar-me'
       deactive_btn: ' Lembrete ativo'
+      unavailable_reminder: 'O projeto precisa estar online para adicionar lembrete'
       contributions: doadores
       goal: atingidos de %{total}
     show:

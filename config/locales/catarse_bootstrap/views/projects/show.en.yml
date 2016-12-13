@@ -117,6 +117,7 @@ en:
       embed_title: 'Embed it on your site'
       active_btn: ' Remember me'
       deactive_btn: ' Reminder active'
+      unavailable_reminder: 'The project must be online for to be reminded'
       contributions: 'donors'
       goal: achieved of %{total}
     show:
