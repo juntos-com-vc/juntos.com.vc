@@ -38,7 +38,8 @@ pt:
         minimum_value: 'Preencha o valor mínimo para a recompensa'
         description: 'Preencha o campo descrição'
       subgoal:
-        minimum_value: 'Preencha o valor mínimo para a recompensa'
+        minimum_value: 'Preencha o valor mínimo para a submeta'
+        description: 'Você precisa inserir uma descrição para a submeta'
     prompts:
       project:
         category: "Selecione uma categoria"

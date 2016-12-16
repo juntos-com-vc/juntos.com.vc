@@ -40,4 +40,4 @@
             - if resource.persisted? && policy(resource).destroy?
               .w-col.w-col-1
                 = link_to [parent, resource], method: :delete, data: {confirm: t('.are_you_sure')} do
-                  .btn.btn-small.btn-terciary.fa.fa-lg.fa-trash.btn-no-border
+                  .btn.btn-small.btn-terciary.btn-delete.fa.fa-lg.fa-trash.btn-no-border
