@@ -2,11 +2,10 @@ class Projects::RemindersController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    unless current_user.has_valid_contribution_for_project?(params[:id]) && project.user_already_in_reminder?(current_user.id)
-      reminder_at = project.expires_at - 48.hours
-      ReminderProjectWorker.perform_at(reminder_at, current_user.id, project.id)
+    if Project::ReminderService.call(current_user, project)
+      flash[:notice] = t('projects.reminder.ok')
     end
-    flash[:notice] = t('projects.reminder.ok')
+
     redirect_to project_by_slug_path(project.permalink)
   end
 
@@ -16,7 +15,6 @@ class Projects::RemindersController < ApplicationController
 
     redirect_to project_by_slug_path(project.permalink)
   end
-
 
   protected
 

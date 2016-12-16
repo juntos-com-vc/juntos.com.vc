@@ -1,0 +1,9 @@
+- if @project.expires_at.present?
+  - if user_signed_in? && @project.user_already_in_reminder?(current_user.id)
+    .fontsize-small
+      = link_to t('projects.project_about.deactive_btn'), reminder_project_path(@project), class: 'fa fa-clock-o link-hidden-success u-right', method: :delete
+  - else
+    .fontsize-small
+      = link_to t('projects.project_about.active_btn'), reminder_project_path(@project), class: 'fa fa-clock-o link-hidden u-right fontcolor-secondary'
+- else
+  = t('projects.project_about.unavailable_reminder')
