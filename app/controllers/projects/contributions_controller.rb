@@ -7,9 +7,11 @@ class Projects::ContributionsController < ApplicationController
   #has_scope :page, default: 1
   after_filter :verify_authorized, except: [:index]
   belongs_to :project
-  before_filter :detect_old_browsers, only: [:new, :create]
-  before_filter :load_channel, only: [:edit, :new]
+  before_action :detect_old_browsers, only: [:new, :create]
+  before_action :load_channel, only: [:edit, :new]
   before_action :set_country_payment_engine
+  before_action :project_is_online?, only: [:new, :create]
+  before_action :project_accepts_contributions?, only: [:new, :create]
   helper_method :avaiable_payment_engines
 
   def edit
@@ -97,6 +99,21 @@ class Projects::ContributionsController < ApplicationController
   end
 
   protected
+
+  def project_is_online?
+    unless parent.online?
+      flash[:notice] = t('projects.contributions.warnings.project_must_be_online')
+      redirect_to root_path
+    end
+  end
+
+  def project_accepts_contributions?
+    unless parent.accept_contributions?
+      flash[:notice] = t('projects.contributions.warnings.project_does_not_accept_contributions')
+      redirect_to project_path(parent)
+    end
+  end
+
   def load_channel
     @channel = parent.channels.first
   end

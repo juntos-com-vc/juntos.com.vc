@@ -161,6 +161,14 @@ FactoryGirl.define do
     trait :deleted do
       state 'deleted'
     end
+
+    trait :available_for_contributions do
+      available_for_contribution true
+    end
+
+    trait :unavailable_for_contributions do
+      available_for_contribution false
+    end
   end
 
   factory :channels_subscriber do |f|

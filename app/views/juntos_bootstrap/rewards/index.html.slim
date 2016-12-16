@@ -2,7 +2,7 @@
 - collection.rank(:row_order).each do |reward|
   - new_contribution = project_aumigo ? 'http://acaochego.doemaisdoemelhor.org.br/br/doacao/1/acaochego/aumigo-seu-apoio-e-nossa-esperanca/checkout?step=1' : new_project_contribution_path(parent, reward_id: reward.id)
   - sold_out = reward.sold_out?
-  .card.card-secondary.card-reward.u-radius.u-marginbottom-10[id="reward_#{reward.id}" data-new_contribution_url=new_contribution data-update_url=sort_project_reward_path(parent, reward) class="#{(policy(reward).update? ? 'clickable_owner sortable' : '')} #{(parent.online? && !policy(reward).update?  ? 'clickable'  : '' )} #{sold_out ? 'card-gone' : 'card-reward'} "]
+  .card.card-secondary.card-reward.u-radius.u-marginbottom-10[id="reward_#{reward.id}" data-accept-contributions="#{parent.accept_contributions?}" data-new_contribution_url=new_contribution data-update_url=sort_project_reward_path(parent, reward) class="#{(policy(reward).update? ? 'clickable_owner sortable' : '')} #{(parent.online? && !policy(reward).update?  ? 'clickable'  : '' )} #{sold_out ? 'card-gone' : 'card-reward'} "]
     .u-marginbottom-20
       .fontsize-base.fontweight-semibold.text-left = t('.reward_title', minimum: reward.display_minimum).html_safe
       div
@@ -34,8 +34,9 @@
         .fontsize-smallest = "Modificado em: #{I18n.l(reward.updated_at.to_date)} #{parent.online_date.nil? ? '' : ((parent.online_date > reward.updated_at)? '(draft)' : '(online)')}"
 
     - unless sold_out
-      .project-reward-box-hover
-        .project-reward-box-select-text.t-text-center = t('.select_reward')
+      - if parent.accept_contributions?
+        .project-reward-box-hover
+          .project-reward-box-select-text.t-text-center = t('.select_reward')
 
     .w-hidden-main.w-hidden-medium.w-col-12.div-btn-select-rewards
       = link_to t('.support') , @post , class: "uppercase btn-select-reward-mobile u-marginbottom-20 u-margintop-20"
