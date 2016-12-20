@@ -81,7 +81,7 @@
               - if @project.permalink == 'aumigo'
                 | 4618
               - else
-                = @project.contributions.available_to_count.count
+                = @project.total_contributions
             li.u-marginleft-20.fontsize-smallest
               = t('projects.project_about.contributions')
         - unless @channel && @channel.recurring?
