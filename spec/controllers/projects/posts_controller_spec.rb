@@ -24,12 +24,12 @@ RSpec.describe Projects::PostsController, type: :controller do
 
     context 'When user is admin' do
       let(:current_user) { FactoryGirl.create(:user, admin: true) }
-      its(:status) { should == 200}
+      its(:status) { should == 302 }
     end
 
     context 'When user is project_owner' do
       let(:current_user) { project_post.project.user }
-      its(:status) { should == 200}
+      its(:status) { should == 302 }
     end
   end
 
