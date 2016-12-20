@@ -107,7 +107,7 @@ class ProjectsController < ApplicationController
 
   def update
     authorize resource
-    @project_update = Project::Update.new(current_user, params[:project], resource)
+    @project_update = Project::Update.new(current_user, project_params, resource)
 
     if @project_update.process
       @project = @project_update.project
@@ -182,6 +182,10 @@ class ProjectsController < ApplicationController
       p[:project][:posts_attributes]['0'].merge!({user: current_user})
     end
     p
+  end
+
+  def project_params
+    permitted_params[:project]
   end
 
   def resource

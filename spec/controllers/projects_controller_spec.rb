@@ -293,27 +293,27 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       context "when the request is a PUT" do
-        let(:project) { build(:project, online_days: 61) }
+        context 'and it updates the online_days' do
+          let(:project) { create(:project, :draft, online_days: 15, user: user) }
 
-        before(:each) do
-          put :update, id: project.id, project: { online_days: 61 }, locale: :pt
-        end
-
-        context "when the current_user is a juntos' admin" do
-          let(:user) { create(:user, admin: true) }
-          let(:project) { create(:project, online_days: 15, user: user) }
-
-          it "should not show any error message" do
-            expect(flash[:alert]).to be_nil
+          before(:each) do
+            put :update, id: project.id, project: { online_days: 61 }, locale: :pt
           end
-        end
 
-        context "when the current_user is a normal user" do
-          let(:user) { create(:user, admin: false) }
-          let(:project) { create(:project, online_days: 15, user: user) }
+          context "when the current_user is a juntos' admin" do
+            let(:user) { create(:user, admin: true) }
 
-          it 'should return a flash error message for the online_days field' do
-            expect(flash[:alert]).to match online_days_error_message
+            it "should not show any error message" do
+              expect(flash[:alert]).to be_nil
+            end
+          end
+
+          context "when the current_user is a normal user" do
+            let(:user) { create(:user, admin: false) }
+
+            it 'should return a flash error message for the online_days field' do
+              expect(flash[:alert]).to match online_days_error_message
+            end
           end
         end
       end
