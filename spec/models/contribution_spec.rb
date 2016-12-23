@@ -127,7 +127,7 @@ RSpec.describe Contribution, type: :model do
 
     context "when contribution is in time to wait the confirmation" do
       before do
-        create(:contribution, :waiting_confirmation, created_at: 8.weekdays_ago)
+        create(:contribution, :waiting_confirmation, created_at: 5.weekdays_ago)
         create(:contribution, :waiting_confirmation, created_at: 1.weekdays_ago)
       end
 
@@ -136,13 +136,12 @@ RSpec.describe Contribution, type: :model do
 
     context "when we have contributions that are ahead of confirmation time" do
       before do
-        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 8.weekdays_ago)
-        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 7.weekdays_ago)
-        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 1.weekdays_ago)
-        create(:contribution, :waiting_confirmation, created_at: 8.weekdays_ago)
+        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 5.weekdays_ago)
+        create(:contribution, :waiting_confirmation, :slip_payment, created_at: 3.weekdays_ago)
+        create(:contribution, :waiting_confirmation, created_at: 4.weekdays_ago)
         create(:contribution, :waiting_confirmation, created_at: 5.weekdays_ago)
       end
-      let!(:old_contribution) { create(:contribution, :waiting_confirmation, :slip_payment, created_at: 9.weekdays_ago) }
+      let!(:old_contribution) { create(:contribution, :waiting_confirmation, :slip_payment, created_at: 6.weekdays_ago) }
 
       it { is_expected.to contain_exactly(old_contribution) }
     end
