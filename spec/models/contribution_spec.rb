@@ -357,7 +357,7 @@ RSpec.describe Contribution, type: :model do
 
       it "returns the contributions in the right order of Project.search_on_name's against param rules" do
         all_great_project_contributions = great_project_contributions.map { |c| c.project_value.to_f }
-        expect(all_great_project_contributions).to eq([50.0, 40.0, 30.0])
+        expect(all_great_project_contributions).to contain_exactly(50.0, 40.0, 30.0)
       end
     end
 
