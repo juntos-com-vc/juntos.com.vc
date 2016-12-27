@@ -31,7 +31,7 @@ task :move_pending_contributions_to_trash => [:environment] do
   Contribution.where("state in('pending') and created_at + interval '15 days' < current_timestamp").update_all({state: 'deleted'})
 end
 
-desc "Cancel all waiting_confirmation contributions that is passed 4 weekdays"
+desc "Cancel all waiting_confirmation contributions that has passed 5 weekdays"
 task :cancel_expired_waiting_confirmation_contributions => :environment do
   Contribution.can_cancel.update_all(state: 'canceled')
 end
