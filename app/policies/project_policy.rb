@@ -31,22 +31,57 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    if user.present? && (user.admin? || is_project_channel_admin? || (record.draft? || record.rejected? || record.in_analysis?))
+    return project_attributes_for_admin if admin? || not_visible_project?
+    return project_attributes_for_owner if visible_and_owned_by_user?
+    return basic_project_attributes
+  end
 
-      p_attr = [
-        channel_ids: [],
-        project_images_attributes: [:original_image_url, :caption, :id, :_destroy],
-        project_partners_attributes: [:original_image_url, :link, :id, :_destroy]
+  private
+
+  def not_visible_project?
+    !record.visible?
+  end
+
+  def visible_and_owned_by_user?
+    record.visible? && is_owned_by?(user)
+  end
+
+  def admin?
+    return false unless user.present?
+
+    user.admin? || is_project_channel_admin?
+  end
+
+  def project_attributes_for_admin
+    { project: project_attributes + project_nested_attributes + post_attributes }
+  end
+
+  def project_attributes
+    record.attribute_names.map(&:to_sym) - [:created_at, :updated_at]
+  end
+
+  def post_attributes
+    [posts_attributes: [:title, :comment, :exclusive, :user_id]]
+  end
+
+  def project_nested_attributes
+    [
+      channel_ids: [],
+      project_images_attributes: [:original_image_url, :caption, :id, :_destroy],
+      project_partners_attributes: [:original_image_url, :link, :id, :_destroy]
+    ]
+  end
+
+  def project_attributes_for_owner
+    { project: [
+        :video_url, :about, :thank_you, :uploaded_image,
+        project_partners_attributes: [:original_image_url, :link, :id, :_destroy],
+        posts_attributes: [:title, :comment, :exclusive, :user_id]
       ]
+    }
+  end
 
-      p_attr << record.attribute_names.map(&:to_sym)
-      p_attr << [posts_attributes: [:title, :comment, :exclusive, :user_id]]
-      {project: p_attr.flatten}
-    elsif is_owned_by?(user)
-      {project: [:about, :video_url, :uploaded_image, :headline, :name, :permalink, :category_id,
-        posts_attributes: [:title, :comment, :exclusive, :user_id]]}
-    else
-      {project: [:about, :video_url, :uploaded_image, :headline]}
-    end
+  def basic_project_attributes
+    { project: [:about, :video_url, :uploaded_image, :headline] }
   end
 end
