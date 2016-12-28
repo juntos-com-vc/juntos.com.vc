@@ -30,26 +30,27 @@ RSpec.describe ProjectPolicy do
       let(:user) { create(:user) }
 
       before do
-        @draft = create(:project, state: 'draft', user: user)
-        @online = create(:project, state: 'online', user: user)
-        @in_analysis = create(:project, state: 'in_analysis', user: user)
+        create(:project, :draft, name: 'draft', user: user)
+        create(:project, :online, name: 'online', user: user)
+        create(:project, :in_analysis, name: 'in_analysis', user: user)
       end
 
-      subject { ProjectPolicy::UserScope.new(current_user, user, user.projects).resolve.order('created_at desc') }
+      subject { ProjectPolicy::UserScope.new(current_user, user, user.projects).resolve.order('created_at desc').map(&:name) }
 
       context "when user is admin" do
         let(:current_user) { create(:user, admin: true) }
 
-        it { is_expected.to have(3).itens }
+        it { is_expected.to match_array(['draft', 'online', 'in_analysis']) }
       end
 
       context "when user is a project owner" do
         let(:current_user) { user }
-        it { is_expected.to eq [@in_analysis, @online, @draft] }
+
+        it { is_expected.to eq(['in_analysis', 'online', 'draft']) }
       end
 
       context "when user is not an admin and project owner" do
-        it { is_expected.to eq [@online] }
+        it { is_expected.to eq(['online']) }
       end
     end
   end
@@ -88,52 +89,109 @@ RSpec.describe ProjectPolicy do
     end
   end
 
-  describe "#permitted_for?" do
-    context "when user is nil and I want to update about" do
-      let(:policy){ ProjectPolicy.new(nil, Project.new) }
-      subject{ policy.permitted_for?(:about, :update) }
-      it{ is_expected.to eq(false) }
+  describe '#permitted_attributes' do
+    let(:policy)  { ProjectPolicy.new(user, project) }
+    let(:project) { create(:project, :online) }
+    let(:basic_project_attributes) do
+      [:about, :video_url, :uploaded_image, :headline]
+    end
+    let(:all_project_attributes) do
+      project_attributes +
+      nested_project_attributes +
+      post_attributes
+    end
+    let(:project_attributes) do
+      Project.attribute_names.map(&:to_sym) - [:created_at, :updated_at]
+    end
+    let(:project_owner_allowed_attributes) do
+      [
+        :video_url, :about, :thank_you, :uploaded_image,
+        project_partners_attributes: [:original_image_url, :link, :id, :_destroy],
+        posts_attributes: [:title, :comment, :exclusive, :user_id]
+      ]
+    end
+    let(:nested_project_attributes) do
+      [
+        channel_ids: [],
+        project_images_attributes: [:original_image_url, :caption, :id, :_destroy],
+        project_partners_attributes: [:original_image_url, :link, :id, :_destroy]
+      ]
+    end
+    let(:post_attributes) do
+      [ posts_attributes: [:title, :comment, :exclusive, :user_id] ]
     end
 
-    context "when user is project owner and I want to update about" do
-      let(:project){ create(:project) }
-      let(:policy){ ProjectPolicy.new(project.user, project) }
-      subject{ policy.permitted_for?(:about, :update) }
-      it{ is_expected.to eq(true) }
-    end
-  end
+    subject { policy.permitted_attributes.values.first }
 
-  describe "#permitted?" do
-    context "when user is nil" do
-      let(:policy){ ProjectPolicy.new(nil, Project.new) }
-      [:about, :video_url, :uploaded_image, :headline].each do |field|
-        context "when field is #{field}" do
-          subject{ policy.permitted?(field) }
-          it{ is_expected.to eq(true) }
+    context 'when user is nil' do
+      let(:user) { nil }
+
+      it { is_expected.to match_array(basic_project_attributes) }
+    end
+
+    context 'when user is not nil' do
+      let(:user) { create(:user) }
+
+      context 'and user is admin' do
+        let(:user) { create(:user, admin: true) }
+
+        it 'should have all the project attributes' do
+          is_expected.to match_array(all_project_attributes)
         end
       end
-      context "when field is title" do
-        subject{ policy.permitted?(:title) }
-        it{ is_expected.to eq(false) }
-      end
-    end
-    context "when user is admin" do
-      let(:user){ create(:user) }
-      let(:project){ create(:project) }
-      let(:policy){ ProjectPolicy.new(user, project) }
 
-      before do
-        user.admin = true
-        user.save!
-      end
+      context 'and user is not admin' do
+        context 'and user is channel admin' do
+          let(:channel) { create(:channel, users: [user]) }
+          let(:project) { create(:project, channels: [channel]) }
 
-      Project.attribute_names.each do |field|
-        context "when field is #{field}" do
-          subject{ policy.permitted?(field.to_sym) }
-          it{ is_expected.to eq(true) }
+          it 'should have all the project attributes' do
+            is_expected.to match_array(all_project_attributes)
+          end
+        end
+
+        context 'and user is not channel admin' do
+          context 'and project is visible' do
+            let(:project) { create(:project, :online) }
+
+            context 'and user owns the project' do
+              let(:project) { create(:project, :online, user: user) }
+
+              it { is_expected.to match_array(project_owner_allowed_attributes) }
+            end
+
+            context 'and user does not own the project' do
+              it { is_expected.to match_array(basic_project_attributes) }
+            end
+          end
+
+          context 'and project is invisible' do
+            context 'and project is draft' do
+              let(:project) { create(:project, :draft) }
+
+              it 'should have all the project attributes' do
+                is_expected.to match_array(all_project_attributes)
+              end
+            end
+
+            context 'and project is rejected' do
+              let(:project) { create(:project, :rejected) }
+
+              it 'should have all the project attributes' do
+                is_expected.to match_array(all_project_attributes)
+              end
+            end
+
+            context 'and project is in_analysis' do
+              let(:project) { create(:project, :in_analysis) }
+
+              it 'should have all the project attributes' do
+                is_expected.to match_array(all_project_attributes)
+              end
+            end
+          end
         end
       end
     end
   end
-
 end
