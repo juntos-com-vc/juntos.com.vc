@@ -344,6 +344,10 @@ class Project < ActiveRecord::Base
     project_partners.count == CatarseSettings[:project_partners_limit].to_i
   end
 
+  def visible?
+    %w(draft rejected deleted in_analysis).exclude?(state)
+  end
+
   private
 
   def check_url

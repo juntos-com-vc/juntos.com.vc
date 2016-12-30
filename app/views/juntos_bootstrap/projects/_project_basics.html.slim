@@ -20,24 +20,24 @@
                     .w-col.w-col-12
                       label.field-label.fontweight-semibold for="name-8"= t('.online_date')
                     .w-col.w-col-12
-                      = form.input :online_date, as: :datetime, label: '', include_blank: true
+                      = form.input :online_date, as: :datetime, label: '', include_blank: true, disabled: @project.editable_field?
                 - if policy(@project).edit_partner?
                   .w-row.u-marginbottom-20.card.card-terciary
                     .w-col.w-col-5
                       label.field-label.fontweight-semibold for="name-8"= t('.partner_name')
                     .w-col.w-col-7
-                      = form.input_field :partner_name, as: :string, class: 'positive'
+                      = form.input_field :partner_name, as: :string, class: 'positive', disabled: @project.editable_field?
                   .w-row.u-marginbottom-20.card.card-terciary
                     .w-col.w-col-5
                       label.field-label.fontweight-semibold for="name-8"= t('.partner_message')
                     .w-col.w-col-7
-                      = form.input_field :partner_message, as: :string, class: 'positive'
+                      = form.input_field :partner_message, as: :string, class: 'positive', disabled: @project.editable_field?
               .w-row.u-marginbottom-30.card.card-terciary
                 .w-col.w-col-5.w-sub-col
                   label.field-label.fontweight-semibold for="name-8"= t('.name')
                   label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"=t('.name_label')
                 .w-col.w-col-7
-                  = form.input_field :name, as: :string, class: 'positive'
+                  = form.input_field :name, as: :string, class: 'positive', disabled: @project.editable_field?
                     .text-error.fontsize-smallest
                       span.fa.fa-exclamation-triangle .
                       | \&nbsp;This is some text inside of a div block.
@@ -50,14 +50,14 @@
                     .w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.prefix.no-hover
                       .fontcolor-secondary.u-text-center.fontsize-smallest juntos.com.vc/
                     .w-col.w-col-8.w-col-small-6.w-col-tiny-6
-                      = form.input_field :permalink, as: :string, class: 'postfix positive', required: false
+                      = form.input_field :permalink, as: :string, class: 'postfix positive', required: false, disabled: @project.editable_field?
               - unless @channel && @channel.recurring?
                 .w-row.u-marginbottom-30.card.card-terciary
                   .w-col.w-col-5.w-sub-col
                     label.field-label.fontweight-semibold for="name-8"= t('.category')
                     label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.category_label')
                   .w-col.w-col-7
-                    = form.association :category, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'w-select text-field positive', label: '', required: false, hint: ''
+                    = form.association :category, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'w-select text-field positive', label: '', required: false, hint: '', disabled: @project.editable_field?
               .w-row.u-marginbottom-30.card.card-terciary
                 .w-col.w-col-5.w-sub-col
                   label.field-label.fontweight-semibold for="project_goal"= t('.value')
@@ -68,7 +68,7 @@
                     .w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.prefix.no-hover
                       .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest R$
                     .w-col.w-col-8.w-col-small-6.w-col-tiny-6
-                      = form.input_field :goal, as: :string, class: 'positive'
+                      = form.input_field :goal, as: :string, class: 'positive', disabled: @project.editable_field?
               - unless @channel && @channel.recurring?
                 .w-row.card.card-terciary
                   .w-col.w-col-5.w-sub-col
@@ -79,7 +79,7 @@
                   .w-col.w-col-7
                     .w-row
                       .w-col.w-col-8.w-col-small-6.w-col-tiny-6
-                        = form.input_field :online_days, class: 'prefix positive', as: :string
+                        = form.input_field :online_days, class: 'prefix positive', as: :string, disabled: @project.editable_field?
                       .w-col.w-col-4.w-col-small-6.w-col-tiny-6.text-field.postfix.no-hover
                         .fontcolor-secondary.u-text-center.fontsize-base.lineheight-tightest = t('.online_days_addon')
               - if current_user.admin?
@@ -88,7 +88,7 @@
                     label.field-label.fontweight-semibold for="name-8"=t('.available_for_contributions')
                     label.field-label.fontsize-smallest.fontcolor-secondary for="name-8"= t('.available_for_contributions_label')
                   .w-col.w-col-7
-                        = form.input :available_for_contribution, as: :boolean, label: '', input_html: { class: 'w-col w-col-12' }
+                        = form.input :available_for_contribution, as: :boolean, label: '', input_html: { class: 'w-col w-col-12' }, disabled: @project.editable_field?
 
         = render 'project_sidebar_faq'
 
@@ -98,5 +98,5 @@
         .w-row
           .w-col.w-col-4
           .w-col.w-col-4
-            = form.button :submit, t('.form.submit'), class:'btn btn-large'
+            = form.button :submit, t('.form.submit'), class:'btn btn-large', disabled: @project.editable_field?
           .w-col.w-col-4

@@ -134,7 +134,7 @@
                   max_file_size: 5.megabytes, data: {s3_uploader: true},
                   key: "uploads/project/uploaded_image/#{@project.id}/${filename}" do
                     = file_field_tag :file, id: 'uploaded-image-upload', class: 'w-input text-field',
-                      data: {url: s3_uploader_url}
+                      data: {url: s3_uploader_url}, disabled: @project.editable_field?
 
                 = hidden_field_tag 'project[original_uploaded_image]', nil,
                   data: {image_field: true}
@@ -147,7 +147,7 @@
                   max_file_size: 5.megabytes, data: {s3_uploader: true},
                   key: "uploads/project/uploaded_cover_image/#{@project.id}/${filename}" do
                     = file_field_tag :file, id: 'uploaded-cover-image-upload',  class: 'w-input text-field',
-                      data: {url: s3_uploader_url}
+                      data: {url: s3_uploader_url}, disabled: @project.editable_field?
 
                 = hidden_field_tag 'project[original_uploaded_cover_image]', nil,
                   data: {image_field: true}
@@ -156,7 +156,7 @@
               label.field-label.fontweight-semibold= t('.headline')
               label.field-label.fontsize-smallest.fontcolor-secondary= t('.headline_hint')
             .w-col.w-col-7
-              = form.input_field :headline, as: :text, class: 'positive'
+              = form.input_field :headline, as: :text, class: 'positive', disabled: @project.editable_field?
         .w-col.w-col-4
           = render @project
   .divider

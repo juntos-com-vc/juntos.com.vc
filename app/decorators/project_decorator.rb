@@ -1,5 +1,5 @@
 class ProjectDecorator < Draper::Decorator
-  decorates :project
+  delegate_all
   include Draper::LazyHelpers
 
   def remaining_text
@@ -116,6 +116,10 @@ class ProjectDecorator < Draper::Decorator
     else
       I18n.t('projects.partner_message', partner: source.partner_name)
     end
+  end
+
+  def editable_field?
+    source.visible? && source.user == current_user
   end
 
   private
