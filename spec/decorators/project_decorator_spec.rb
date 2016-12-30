@@ -287,5 +287,72 @@ RSpec.describe ProjectDecorator do
     end
 
   end
+
+  describe "#editable_field?" do
+    let(:current_user) { create(:user) }
+    let(:project) { create(:project, :draft, user: current_user) }
+    before { sign_in current_user }
+
+    context "when there is no user" do
+      let(:current_user) { nil }
+      let(:project) { create(:project) }
+
+      it { expect(project.decorate).not_to be_editable_field }
+    end
+
+    context "when the current user does not own the project" do
+      let(:project) { create(:project) }
+
+      it { expect(project.decorate).not_to be_editable_field }
+    end
+
+    context "when the current user owns the project" do
+      context "and the project is 'draft'" do
+        it { expect(project.decorate).not_to be_editable_field }
+      end
+
+      context "and the project is 'rejected'" do
+        let(:project) { create(:project, :rejected, user: current_user) }
+
+        it { expect(project.decorate).not_to be_editable_field }
+      end
+
+      context "and the project is 'deleted'" do
+        let(:project) { create(:project, :deleted, user: current_user) }
+
+        it { expect(project.decorate).not_to be_editable_field }
+      end
+
+      context "and the project is 'in_analysis'" do
+        let(:project) { create(:project, :in_analysis, user: current_user) }
+
+        it { expect(project.decorate).not_to be_editable_field }
+      end
+
+      context "and the project is 'online'" do
+        let(:project) { create(:project, :online, user: current_user) }
+
+        it { expect(project.decorate).to be_editable_field }
+      end
+
+      context "and the project is 'waiting_funds'" do
+        let(:project) { create(:project, :waiting_funds, user: current_user) }
+
+        it { expect(project.decorate).to be_editable_field }
+      end
+
+      context "and the project is 'successful'" do
+        let(:project) { create(:project, :successful, user: current_user) }
+
+        it { expect(project.decorate).to be_editable_field }
+      end
+
+      context "and the project is 'failed'" do
+        let(:project) { create(:project, :failed, user: current_user) }
+
+        it { expect(project.decorate).to be_editable_field }
+      end
+    end
+  end
 end
 
