@@ -48,14 +48,18 @@ RSpec.describe RecurringContribution do
 
   describe 'state changes' do
     describe '#cancel' do
-      Timecop.freeze do
-        subject { contribution.cancel }
-
-        it 'updates the cancelled_at field to current date' do
-          expect { subject }
-            .to change { contribution.reload.cancelled_at.to_s }
-            .from('').to(Time.current.to_s)
+      around do |test_case|
+        Timecop.freeze do
+          test_case.run
         end
+      end
+
+      subject { contribution.cancel }
+
+      it 'updates the cancelled_at field to current date' do
+        expect { subject }
+          .to change { contribution.reload.cancelled_at.to_s }
+          .from('').to(Time.current.to_s)
       end
     end
   end
