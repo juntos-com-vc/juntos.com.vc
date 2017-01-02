@@ -42,8 +42,5 @@ module Catarse
       :project_post_observer, :project_observer, :channel_post_observer,
       :mixpanel_observer, '::CatarseMonkeymail::MonkeyProjectObserver',
     ]
-
-    # TODO: remove
-    config.active_record.whitelist_attributes = false
   end
 end

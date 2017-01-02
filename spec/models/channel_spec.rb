@@ -4,8 +4,7 @@ RSpec.describe Channel, type: :model do
   describe "Validations & Assoaciations" do
 
     [:name, :description, :permalink, :category_id].each do |attribute|
-      it { is_expected.to validate_presence_of      attribute }
-      it { is_expected.to allow_mass_assignment_of  attribute }
+      it { is_expected.to validate_presence_of attribute }
     end
 
     xit "validates uniqueness of permalink" do
