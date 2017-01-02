@@ -4,11 +4,23 @@ class Admin::ChannelsController < Admin::BaseController
   defaults resource_class: Channel, collection_name: 'channels', instance_name: 'channel'
 
   def create
+    @channel = Channel.new(channel_params)
     create! { admin_channels_path }
   end
 
   def update
-    update! { admin_channels_path }
+    @channel = Channel.find(params[:id])
+    if @channel.update(channel_params)
+      redirect_to admin_channels_path
+    else
+      render 'new'
+    end
   end
 
+  private
+
+  def channel_params
+    allow_attributes = %i(name email description recurring custom_submit_text permalink category_id)
+    params[:channel].permit(allow_attributes)
+  end
 end

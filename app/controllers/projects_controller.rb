@@ -50,16 +50,16 @@ class ProjectsController < ApplicationController
     options = {user: current_user}
     options.merge!(channels: [channel]) if channel
 
-    @project = Project.new params[:project].merge(options)
+    @project = Project.new(user: current_user, new_record: true)
     authorize @project
-    @project_create = Project::Create.new(current_user, params[:project].merge(options))
+    response = Project::Create.new(current_user, project_params.merge(options))
 
-    if @project_create.process
-      @project = @project_create.project
+    if response.process
+      @project = response.project
       session[:new_project] = true
       redirect_to project_by_slug_path(@project.permalink, anchor: 'basics')
     else
-      flash[:alert] = @project_create.project.errors.full_messages.to_sentence
+      flash[:alert] = response.project.errors.full_messages.to_sentence
       render :new
     end
   end

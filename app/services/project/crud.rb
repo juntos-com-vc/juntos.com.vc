@@ -3,7 +3,7 @@ class Project::Crud
 
   def initialize(current_user, params)
     @current_user = current_user
-    @params = params
+    @params = params.with_indifferent_access
   end
 
   def valid?
@@ -31,6 +31,6 @@ class Project::Crud
   end
 
   def online_days_param
-    @params['online_days'].to_i
+    @params[:online_days].to_i
   end
 end

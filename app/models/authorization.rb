@@ -1,5 +1,4 @@
 class Authorization < ActiveRecord::Base
-  attr_accessible :oauth_provider, :oauth_provider_id, :uid, :user_id, :user
   belongs_to :user
   belongs_to :oauth_provider
 

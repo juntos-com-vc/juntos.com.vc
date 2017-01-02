@@ -11,19 +11,6 @@ class User < ActiveRecord::Base
                   :trackable,
                   :omniauthable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :name, :image_url, :uploaded_image, :bio, :newsletter, :full_name,
-                  :address_street, :address_number, :address_complement, :address_city,
-                  :address_neighbourhood, :address_state, :address_zip_code, :phone_number,
-                  :cpf, :state_inscription, :locale, :twitter, :facebook_link, :other_link,
-                  :moip_login, :deactivated_at, :reactivate_token, :bank_account_attributes,
-                  :access_type, :responsible_name, :responsible_cpf, :mobile_phone, :gender,
-                  :staffs, :job_title, :birth_date, :admin, :original_doc1_url,
-                  :original_doc2_url, :original_doc3_url, :original_doc4_url,
-                  :original_doc5_url, :original_doc6_url, :original_doc7_url,
-                  :original_doc8_url, :original_doc9_url, :original_doc10_url,
-                  :original_doc11_url, :original_doc12_url, :original_doc13_url
-
   enum access_type: [:individual, :legal_entity]
   enum gender:      [:male, :female]
 
