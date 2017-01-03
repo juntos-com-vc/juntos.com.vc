@@ -86,8 +86,6 @@ class Contribution < ActiveRecord::Base
     with_states(['confirmed', 'refunded', 'requested_refund']).where(project_id: project)
   }
 
-  attr_protected :state
-
   def self.between_values(start_at, ends_at)
     return all unless start_at.present? && ends_at.present?
     where("value between ? and ?", start_at, ends_at)

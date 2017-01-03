@@ -76,7 +76,7 @@ class UsersController < ApplicationController
 
   def update_password
     authorize resource
-    if @user.update_with_password(params[:user])
+    if @user.update_with_password(permitted_password_params)
       flash[:notice] = t('users.current_user_fields.updated')
     else
       flash[:error] = @user.errors.full_messages.to_sentence
@@ -103,6 +103,10 @@ class UsersController < ApplicationController
 
   def permitted_params
     params.permit(policy(resource).permitted_attributes)
+  end
+
+  def permitted_password_params
+    params[:user].permit(:current_password, :password, :password_confirmation)
   end
 
   def update_staffs

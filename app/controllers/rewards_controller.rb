@@ -25,8 +25,11 @@ class RewardsController < ApplicationController
   end
 
   def create
-    @reward = Reward.new(params[:reward].merge(project: parent))
+    @reward = Reward.new(project_id: params[:project_id])
+
     authorize resource
+
+    @reward = Reward.new(reward_params)
     create!(notice: t('project.update.success')) { project_by_slug_path(permalink: parent.permalink) + '#dashboard_rewards' }
   end
 
@@ -44,5 +47,9 @@ class RewardsController < ApplicationController
   private
   def permitted_params
     params.permit(policy(resource).permitted_attributes)
+  end
+
+  def reward_params
+    permitted_params[:reward].merge(project_id: params[:project_id])
   end
 end
