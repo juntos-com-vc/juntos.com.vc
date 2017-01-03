@@ -299,7 +299,7 @@ RSpec.describe User, type: :model do
     subject { User.with_visible_projects }
 
     it "should return only users who has visible projects" do
-      is_expected.to eq(users_with_visible_project)
+      is_expected.to match_array(users_with_visible_project)
     end
   end
 
