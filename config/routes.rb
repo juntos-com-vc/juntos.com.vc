@@ -214,6 +214,4 @@ Rails.application.routes.draw do
   post '/transaction/status/update' => 'transactions#update_status'
 
   post '/subscription/status/update' => 'projects/subscriptions#update_status'
-
-  post '/subscription/cancel' => 'projects/subscriptions#cancel'
 end

@@ -28,8 +28,4 @@ RSpec.describe SubscriptionPolicy do
   permissions :create? do
     it_behaves_like "create permissions"
   end
-
-  permissions :cancel? do
-    it_behaves_like "create permissions"
-  end
 end

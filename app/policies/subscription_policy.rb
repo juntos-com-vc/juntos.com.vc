@@ -3,6 +3,7 @@ class SubscriptionPolicy < ApplicationPolicy
     done_by_owner_or_admin?
   end
 
-  alias_method :update?, :create?
-  alias_method :cancel?, :create?
+  def update?
+    done_by_owner_or_admin?
+  end
 end
