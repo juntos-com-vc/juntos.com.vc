@@ -107,6 +107,10 @@ pt:
         order_created_at: 'Data de envio'
         last_modification: 'Ultima atualização'
         search_report: 'Exportar CSV'
+      reject:
+        messages:
+          successful: 'O projeto foi rejeitado'
+          error: 'O projeto já está rejeitado'
     actions:
       confirm: 'Confirmar'
       move: 'Mover'

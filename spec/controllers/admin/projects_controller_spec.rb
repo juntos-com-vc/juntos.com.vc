@@ -19,15 +19,28 @@ RSpec.describe Admin::ProjectsController, type: :controller do
 
   describe 'PUT reject' do
     let(:project)       { create(:project, :in_analysis) }
-    let(:reject_reason) { 'Lorem Ipsum' }
+    let(:reject_reason) { 'reject reason' }
 
     before do
       put :reject, id: project, locale: :pt, project: { reject_reason: reject_reason }
+      project.reload
     end
 
-    it { expect(project.reload).to be_rejected }
+    context 'when the project is in analysis' do
+      it { expect(project).to be_rejected }
 
-    it { expect(project.reload.reject_reason).to eq('Lorem Ipsum') }
+      it { expect(project.reject_reason).to eq(reject_reason) }
+
+      it { expect(flash[:notice]).to eq('O projeto foi rejeitado') }
+    end
+
+    context 'when the project is already rejected' do
+      let(:project) { create(:project, :rejected) }
+
+      it { expect(project.reject_reason).not_to eq(reject_reason) }
+
+      it { expect(flash[:notice]).to eq('O projeto já está rejeitado') }
+    end
   end
 
   describe 'PUT push_to_draft' do

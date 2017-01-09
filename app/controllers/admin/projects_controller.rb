@@ -49,9 +49,15 @@ class Admin::ProjectsController < Channels::Admin::BaseController
 
   def reject
     @project = Project.find(params[:id])
-    @project.update_attributes(reject_params)
-    @project.reject!
-    redirect_to admin_projects_path, notice: 'Projeto rejeitado'
+
+    if @project.reject
+      @project.update_attributes(reject_params)
+
+      message = t('.messages.successful')
+    else
+      message = t('.messages.error')
+    end
+    redirect_to admin_projects_path, notice: message
   end
 
   protected

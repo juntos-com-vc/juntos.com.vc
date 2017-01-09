@@ -111,6 +111,10 @@ en:
         order_created_at: 'Created at'
         last_modification: 'Last update'
         search_report: 'Export CSV'
+      reject:
+        messages:
+          successful: 'The project was rejected'
+          error: 'The project is already rejected'
     actions:
       confirm: 'Confirm'
       move: 'Move'
