@@ -41,12 +41,12 @@ class Project < ActiveRecord::Base
   has_many :subgoals, -> { order 'value DESC' }
 
   accepts_nested_attributes_for :project_images,
-    limit: CatarseSettings[:project_images_limit].to_i,
+    limit: -> { CatarseSettings[:project_images_limit].to_i },
     allow_destroy: true,
     reject_if: :reject_project_image
 
   accepts_nested_attributes_for :project_partners,
-    limit: CatarseSettings[:project_partners_limit].to_i,
+    limit: -> { CatarseSettings[:project_partners_limit].to_i },
     allow_destroy: true,
     reject_if: :reject_project_image
 
@@ -342,6 +342,10 @@ class Project < ActiveRecord::Base
 
   def project_partners_limit?
     project_partners.count == CatarseSettings[:project_partners_limit].to_i
+  end
+
+  def visible?
+    %w(draft rejected deleted in_analysis).exclude?(state)
   end
 
   private

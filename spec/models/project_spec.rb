@@ -1854,6 +1854,56 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe "#visible?" do
+    context "when the project is 'draft'" do
+      let(:project) { create(:project, :draft) }
+
+      it { expect(project).not_to be_visible }
+    end
+
+    context "when the project is 'rejected'" do
+      let(:project) { create(:project, :rejected) }
+
+      it { expect(project).not_to be_visible }
+    end
+
+    context "when the project is 'deleted'" do
+      let(:project) { create(:project, :deleted) }
+
+      it { expect(project).not_to be_visible }
+    end
+
+    context "when the project is 'in_analysis'" do
+      let(:project) { create(:project, :in_analysis) }
+
+      it { expect(project).not_to be_visible }
+    end
+
+    context "when the project is 'online'" do
+      let(:project) { create(:project, :online) }
+
+      it { expect(project).to be_visible }
+    end
+
+    context "when the project is 'successful'" do
+      let(:project) { create(:project, :successful) }
+
+      it { expect(project).to be_visible }
+    end
+
+    context "when the project is 'failed'" do
+      let(:project) { create(:project, :failed) }
+
+      it { expect(project).to be_visible }
+    end
+
+    context "when the project is 'waiting_funds'" do
+      let(:project) { create(:project, :waiting_funds) }
+
+      it { expect(project).to be_visible }
+    end
+  end
+
   describe ".state_names" do
     let(:states) { [:draft, :rejected, :online, :successful, :waiting_funds, :failed, :in_analysis] }
 

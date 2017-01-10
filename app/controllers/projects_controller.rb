@@ -189,7 +189,7 @@ class ProjectsController < ApplicationController
   end
 
   def resource
-    @project ||= (params[:permalink].present? ? Project.by_permalink(params[:permalink]).first! : Project.find(params[:id]))
+    @project ||= (params[:permalink].present? ? Project.by_permalink(params[:permalink]).first! : Project.find(params[:id])).decorate
   end
 
   def use_catarse_boostrap

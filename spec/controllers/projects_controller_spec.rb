@@ -100,52 +100,50 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     shared_examples_for "protected project" do
-      let(:project){ create(:project, name: 'Foo bar', state: 'draft') }
+      let(:project_attributes) do
+        {
+          headline:  'updated_headline',
+          name:      'updated_name',
+          permalink: 'updated_permalink'
+        }
+      end
 
-      before { put :update, id: project.id, project: { name: 'My Updated Title' }, locale: :pt }
+      before do
+        put :update, id: project.id, project: project_attributes, locale: :pt
+        project.reload
+      end
 
-      it { expect(project.reload.name).to eq('Foo bar') }
+      it { expect(project.headline).not_to eq('updated_headline') }
+
+      it { expect(project.name).not_to eq('updated_name') }
+
+      it { expect(project.permalink).not_to eq('updated_permalink') }
     end
 
     context "when user is a guest" do
+      let(:project) { create(:project, :draft) }
+
       it_should_behave_like "protected project"
     end
 
     context "when user is a project owner" do
-      let(:current_user){ project.user }
+      let(:current_user) { project.user }
 
-      context "when project is offline" do
+      context "and the project is offline" do
         it_should_behave_like "updatable project"
       end
 
-      context "when project is online" do
-        let(:project) { create(:project, state: 'online') }
+      context "and the project is online" do
+        let(:project) { create(:project, :online) }
 
-        before do
-          allow(controller).to receive(:current_user).and_return(project.user)
-        end
-
-        context "when I try to update the project name and the about field" do
-          before{ put :update, id: project.id, project: { name: 'new_title', about: 'new_description' }, locale: :pt }
-          it "should update title" do
-            project.reload
-
-            expect(project.name).to eq('new_title')
-          end
-        end
-
-        context "when I try to update only the about field" do
-          before{ put :update, id: project.id, project: { about: 'new_description' }, locale: :pt }
-          it "should update it" do
-            project.reload
-            expect(project.about).to eq('new_description')
-          end
-        end
+        it_should_behave_like "protected project"
       end
     end
 
     context "when user is a registered user" do
-      let(:current_user){ create(:user, admin: false) }
+      let(:current_user) { create(:user, admin: false) }
+      let(:project)      { create(:project, :online) }
+
       it_should_behave_like "protected project"
     end
 
