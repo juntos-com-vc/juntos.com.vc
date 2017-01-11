@@ -4,10 +4,6 @@ class SubgoalsController < ApplicationController
   belongs_to :project
   respond_to :html, :json
 
-  def index
-    render layout: false
-  end
-
   def new
     @subgoal = Subgoal.new(project: parent)
     authorize @subgoal
@@ -25,8 +21,10 @@ class SubgoalsController < ApplicationController
   end
 
   def create
-    @subgoal = Subgoal.new(params[:subgoal].merge(project: parent))
+    @subgoal = Subgoal.new(subgoal_params)
+
     authorize resource
+
     create!(notice: t('project.update.success')) { project_by_slug_path(permalink: parent.permalink) + '#dashboard_subgoals' }
   end
 
@@ -42,7 +40,13 @@ class SubgoalsController < ApplicationController
   end
 
   private
+
   def permitted_params
     params.permit(policy(resource).permitted_attributes)
+  end
+
+  def subgoal_params
+    allow = %i(color value description)
+    params[:subgoal].permit(allow).merge(project: parent)
   end
 end

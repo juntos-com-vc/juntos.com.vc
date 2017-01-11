@@ -57,7 +57,7 @@ Rails.application.routes.draw do
         post 'sort'
       end
     end
-    resources :subgoals, only: [ :index, :create, :update, :destroy, :new, :edit ]
+    resources :subgoals, only: [ :create, :update, :destroy, :new, :edit ]
     resources :contributions, {controller: 'projects/contributions'}.merge(ssl_options) do
       member do
         put 'credits_checkout'
