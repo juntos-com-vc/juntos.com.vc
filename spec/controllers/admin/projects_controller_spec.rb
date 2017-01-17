@@ -17,6 +17,47 @@ RSpec.describe Admin::ProjectsController, type: :controller do
     it { expect(project.reload).to be_online }
   end
 
+  describe "PUT update" do
+    let(:project) { create(:project, recommended: false, name: 'old name') }
+
+    before { put :update, id: project, locale: :pt, project: project_new_attributes }
+
+    context "when all the attributes sent are valid" do
+      let(:project_new_attributes) do
+        {
+          name: 'new_name',
+          recommended: true
+        }
+      end
+
+      let(:success_message) { I18n.t('activerecord.project.update.success') }
+
+      it "returns an error flash message indicating the invalid attribute" do
+        expect(flash[:notice]).to match success_message
+      end
+
+      it { expect(project.reload).to have_attributes(project_new_attributes) }
+    end
+
+    context "when an invalid attribute value is sent" do
+      let(:project_new_attributes) do
+        {
+          name: '',
+          recommended: true
+        }
+      end
+
+      let(:error_message) do
+        I18n.t('activerecord.attributes.project.name') + " " +
+        I18n.t('activerecord.errors.models.project.attributes.name.blank')
+      end
+
+      it "returns an error flash message indicating the invalid attribute" do
+        expect(flash[:alert]).to match error_message
+      end
+    end
+  end
+
   describe 'PUT reject' do
     let(:project)       { create(:project, :in_analysis) }
     let(:reject_reason) { 'reject reason' }
