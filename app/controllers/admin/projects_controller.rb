@@ -29,6 +29,20 @@ class Admin::ProjectsController < Channels::Admin::BaseController
     end
   end
 
+  def update
+    @project = Project.find(params[:id])
+
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to [:admin, @project], flash: { notice: t('activerecord.project.update.success') } }
+        format.json { respond_with_bip(@project) }
+      else
+        format.html { redirect_to admin_projects_path, flash: { alert: @project.errors.full_messages.to_sentence } }
+        format.json { respond_with_bip(@project) }
+      end
+    end
+  end
+
   def move_project_to_channel
     MoveProjectToChannel.new(params[:project_id],params[:channel_id]).call
     redirect_to :back
@@ -67,6 +81,14 @@ class Admin::ProjectsController < Channels::Admin::BaseController
       @scoped_projects = @scoped_projects.by_channel(channel.id)
     end
     @scoped_projects
+  end
+
+  def permitted_params
+    params.permit(ProjectPolicy.new(current_user, @project).permitted_attributes)
+  end
+
+  def project_params
+    permitted_params[:project]
   end
 
   def collection
