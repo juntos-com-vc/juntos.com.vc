@@ -45,6 +45,7 @@ pt:
       online_date: 'Data de entrada no ar'
       user_id: 'Id do usuário'
       name: 'Nome do projeto'
+      id: "Id do projeto"
       name_label: ''
       url: 'URL do projeto'
       url_label: 'É o endereço do seu projeto, deve ser fácil de memorizar. Evite underline, hífen e símbolos'
