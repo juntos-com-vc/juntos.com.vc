@@ -24,6 +24,16 @@ RSpec.describe Channel, type: :model do
     #it { is_expected.to have_and_belong_to_many :subscribers }
   end
 
+  describe ".visible" do
+    let(:visible_channels)  { create_list(:channel, 5, :visible) }
+    let(:invisible_channel) { create(:channel, :invisible) }
+
+    subject { described_class.visible }
+
+    it { is_expected.to match_array visible_channels }
+    it { is_expected.not_to include invisible_channel }
+  end
+
   describe ".by_permalink" do
     before do
       @c1 = create(:channel, permalink: 'foo')

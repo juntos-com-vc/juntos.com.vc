@@ -33,8 +33,9 @@ class Channel < ActiveRecord::Base
   mount_uploader :image, ProfileUploader
   mount_uploader :email_header_image, ProfileUploader
 
-  scope :by_permalink, ->(p) { where("lower(channels.permalink) = lower(?)", p) }
-  scope :recurring, -> (value) { where(recurring: value) }
+  scope :by_permalink, -> (permalink) { where("lower(channels.permalink) = lower(?)", permalink) }
+  scope :recurring,    -> (value) { where(recurring: value) }
+  scope :visible,      -> { where(visible: true) }
 
   def self.find_by_permalink!(string)
     self.by_permalink(string).first!

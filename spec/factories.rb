@@ -300,6 +300,14 @@ FactoryGirl.define do
     email "email+channel@foo.bar"
     description "Lorem Ipsum"
     sequence(:permalink) { |n| "#{n}-test-page" }
+
+    trait :visible do
+      visible true
+    end
+
+    trait :invisible do
+      visible false
+    end
   end
 
   factory :state do
