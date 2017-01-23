@@ -44,9 +44,10 @@ en:
       project_start_subtitle: 'After going through all the steps above, you can submit your project for analysis'
       online_date: 'Online date'
       user_id: "User's id"
-      name: 'Name of the project'
+      name: "Project's name"
+      id: "Project's id"
       name_label: ''
-      url: 'URL of the project'
+      url: "Project's URL"
       url_label: 'It is the address of your project. It should be easy to remember. Avoid using underscores, hyphens and symbols.'
       category: 'Category'
       category_label: 'Explore and by inspired by other projects in the same category as yours.'

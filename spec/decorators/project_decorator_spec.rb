@@ -243,6 +243,12 @@ RSpec.describe ProjectDecorator do
     end
   end
 
+  describe "#display_id" do
+    subject { project.decorate.display_id }
+
+    it { is_expected.to eq("##{project.id}") }
+  end
+
   describe "#status_flag" do
     let(:project) { create(:project) }
 

@@ -83,6 +83,10 @@ class ProjectDecorator < Draper::Decorator
     source.subgoals.where("value <= ?", source.goal)
   end
 
+  def display_id
+    "##{source.id}"
+  end
+
   def progress_bar
     width = source.progress > 100 ? 100 : source.progress
     content_tag(:div, nil, id: :progress, class: 'meter-fill', style: "width: #{width}%;")
