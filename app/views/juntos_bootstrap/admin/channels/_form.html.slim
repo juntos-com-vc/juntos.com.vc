@@ -9,6 +9,7 @@
   .w-row
     .w-col.w-col-6
       = form.input :name, as: :string, required: true
+  .w-row
     .w-col.w-col-6
       = form.input :permalink, as: :string, required: true
   .w-row
@@ -16,16 +17,24 @@
       = form.input :category_id, as: :select, class: 'medium',
         collection: Category.order(:name_pt),
         prompt: t('simple_form.prompts.project.category')
-    .w-col.w-col-6
+  .w-row
+    .w-col.w-col-2
       = form.input :recurring, as: :select, collection: [:true, :false],
         prompt: false, required: true
+  .w-row
+    .w-row
+      .w-col.w-col-12
+        label.field-label = t('.project_visibility')
+    .w-row
+      .w-col.w-col-2
+        = form.input_field :visible, as: :select, collection: [:true, :false],
+          prompt: true
   .w-row
     .w-col.w-col-6
       = form.input :custom_submit_text, as: :string
   .w-row
-    .w-col.w-col-12
-      = form.input :description, as: :text, required: true
-
+    .w-col.w-col-6
+      = form.input :description, as: :text, required: true, input_html: { rows: 6 }
   .w-row
     .w-col.w-col-3.u-margintop-20.u-marginbottom-30
       = form.button :submit, class: 'btn btn-medium'

@@ -1,0 +1,5 @@
+en:
+  admin:
+    channels:
+      form:
+        project_visibility: "Should this project be visible on the channels' menu?"

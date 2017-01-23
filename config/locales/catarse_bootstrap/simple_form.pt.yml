@@ -5,6 +5,9 @@ pt:
         recurring:
           "true": "Sim"
           "false": "Não"
+        visible:
+          "true": "Sim"
+          "false": "Não"
     collections:
       project:
         traffic_sources:
