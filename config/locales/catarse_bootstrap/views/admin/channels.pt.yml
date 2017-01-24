@@ -1,0 +1,5 @@
+pt:
+  admin:
+    channels:
+      form:
+        project_visibility: "Esse projeto ficará visível no menu de canais?"

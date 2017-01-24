@@ -20,7 +20,7 @@ class Admin::ChannelsController < Admin::BaseController
   private
 
   def channel_params
-    allow_attributes = %i(name email description recurring custom_submit_text permalink category_id)
+    allow_attributes = %i(name email description recurring custom_submit_text permalink visible category_id)
     params[:channel].permit(allow_attributes)
   end
 end

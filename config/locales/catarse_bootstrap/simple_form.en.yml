@@ -5,6 +5,9 @@ en:
         recurring:
           "true": "Yes"
           "false": "No"
+        visible:
+          "true": "Yes"
+          "false": "No"
     collections:
       project:
         traffic_sources:
