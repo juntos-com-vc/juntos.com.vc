@@ -140,65 +140,87 @@ RSpec.describe ContributionObserver do
     end
   end
 
-  describe '#from_confirmed_to_canceled' do
+  describe "#from_confirmed_to_canceled" do
+    let(:financial_email) { 'financial@administrator.com' }
+    let(:financial_administrator) { User.find_by(email: financial_email) }
+
     before do
-      CatarseSettings[:email_payments] = 'financial@administrator.com'
+      CatarseSettings[:email_payments] = financial_email
       create(:user, email: CatarseSettings[:email_payments])
     end
 
-    let(:financial_administrator) { User.find_by(email: 'financial@administrator.com') } 
+    context "when the contribution is canceled from 'confirmed' status" do
+      let(:contribution) { create(:contribution, :confirmed) }
 
-    context "when contribution is confirmed and change to canceled" do
       before do
-        contribution.confirm
-
-        expect(ContributionNotification).to receive(:notify_once).with(
-          :contribution_canceled_after_confirmed,
-          financial_administrator,
-          contribution,
-          {}
-        )
-
-        expect(ContributionNotification).to receive(:notify_once).with(
-          :contribution_canceled,
-          contribution.user,
-          contribution,
-          {}
-        )
+        allow(contribution).to receive(:notify_to_backoffice).with(:contribution_canceled_after_confirmed)
       end
 
-      it { contribution.cancel }
+      context "and the contribution is slip payment" do
+        let(:contribution) { create(:contribution, :confirmed, :slip_payment) }
+
+        before do
+          allow(contribution).to receive(:notify_to_contributor).with(:contribution_canceled_slip)
+
+          contribution.cancel
+        end
+
+        it "should notify the office that a contribution has canceled after confirmed" do
+          expect(contribution).to have_received(:notify_to_backoffice).with(:contribution_canceled_after_confirmed).once
+        end
+
+        it "should notify the contributor that its slip contribution has canceled after confirmed" do
+          expect(contribution).to have_received(:notify_to_contributor).with(:contribution_canceled_slip).once
+        end
+      end
+
+      context "and the contribution is not slip payment" do
+        before do
+          allow(contribution).to receive(:notify_to_contributor).with(:contribution_canceled)
+
+          contribution.cancel
+        end
+
+        it "should notify the office that a contribution has canceled after confirmed" do
+          expect(contribution).to have_received(:notify_to_backoffice).with(:contribution_canceled_after_confirmed).once
+        end
+
+        it "should notify the contributor that its contribution has canceled after confirmed" do
+          expect(contribution).to have_received(:notify_to_contributor).with(:contribution_canceled).once
+        end
+      end
     end
 
-    context "when contribution is made with Boleto and canceled" do
-      before do
-        contribution.update_attributes payment_choice: 'BoletoBancario'
-        contribution.confirm
-        
-        expect(ContributionNotification).to receive(:notify_once).with(
-          :contribution_canceled_after_confirmed,
-          financial_administrator,
-          contribution,
-          {}
-        )
+    context "when the contribution is canceled" do
+      let(:contribution) { create(:contribution, state) }
 
-        expect(ContributionNotification).to receive(:notify_once).with(
-          :contribution_canceled_slip,
-          contribution.user,
-          contribution,
-          {}
-        )
+      before do
+        allow(contribution).to receive(:notify_to_backoffice)
+        allow(contribution).to receive(:notify_to_contributor)
       end
 
-      it { contribution.cancel }
-    end
+      [
+        :requested_refund,
+        :pending,
+        :waiting_confirmation,
+        :canceled,
+        :refunded,
+        :refunded_and_canceled,
+        :deleted,
+        :invalid_payment
+      ].each do |state|
+        context "from '#{state.to_s}' state" do
+          let(:state) { state }
 
-    context "when contribution change to confirmed" do
-      before do
-        expect(ContributionNotification).not_to receive(:notify).with(:contribution_canceled_after_confirmed, anything)
+          it "should not notify the office" do
+            expect(contribution).not_to have_received(:notify_to_backoffice)
+          end
+
+          it "should not notify the contributor" do
+            expect(contribution).not_to have_received(:notify_to_contributor)
+          end
+        end
       end
-
-      it { contribution.confirm }
     end
   end
 end
