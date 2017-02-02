@@ -65,6 +65,7 @@
             th= t('.project')
             th= t('.project_state')
             th= t('.user')
+            th= t('.cpf_cnpj')
             th= t('.value')
             th= t('.project_value')
             th= t('.platform_value')
@@ -84,6 +85,8 @@
               = contribution.project.state
             td.user_info
               = link_to contribution.user.name, user_path(contribution.user)
+            td
+              = contribution.user_document
             td
               = best_in_place [:admin, contribution], :value, method: :put, type: :input
             td

@@ -193,6 +193,7 @@ en:
         payer_email: "Payer's email"
         payment_id: 'Payment ID'
         user_email: 'Registed email'
+        cpf_cnpj: 'CPF/CNPJ'
         user_cpf: 'Registered CPF/CNPJ'
         push_to_trash: 'Delete donation'
         cancel: 'Cancel donation'
