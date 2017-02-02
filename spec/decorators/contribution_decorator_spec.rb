@@ -69,5 +69,25 @@ RSpec.describe ContributionDecorator do
       it{ is_expected.to match(/www\.moip\.com\.br/) }
     end
   end
-end
 
+  describe "#user_document" do
+    let(:contribution) { build(:contribution, user: user) }
+    subject { contribution.user_document }
+
+    context "when the user have a registered CPF or CNPJ" do
+      let(:user) { create(:user, cpf: '777.777.777-77') }
+
+      it "returns the document number" do
+        expect(subject).to eq '777.777.777-77'
+      end
+    end
+
+    context "when the user does not have a registered CPF or CNPJ" do
+      let(:user) { create(:user, cpf: nil) }
+
+      it "returns a hyphen signal" do
+        expect(subject).to eq '-'
+      end
+    end
+  end
+end

@@ -185,6 +185,7 @@ pt:
         payer_email: 'Email do meio de pagamento'
         payment_id: 'Id de pagamento'
         user_email: 'Email utilizado no Juntos.com.vc'
+        cpf_cnpj: 'CPF/CNPJ'
         user_cpf: 'CPF/CNPJ utilizado no Juntos.com.vc'
         push_to_trash: 'Deletar apoio'
         cancel: 'Cancelar apoio'

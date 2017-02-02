@@ -11,7 +11,7 @@ class Contribution < ActiveRecord::Base
   include Contribution::PaymentEngineHandler
   include Contribution::PaymentMethods
 
-  delegate :display_value, :display_project_value, :display_platform_value, :display_confirmed_at, :display_slip_url, to: :decorator
+  delegate :display_value, :display_project_value, :display_platform_value, :display_confirmed_at, :display_slip_url, :user_document, to: :decorator
 
   before_validation :update_value
 

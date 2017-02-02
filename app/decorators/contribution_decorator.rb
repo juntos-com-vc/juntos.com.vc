@@ -30,5 +30,8 @@ class ContributionDecorator < Draper::Decorator
     return source.slip_url if source.slip_url.present?
     "https://www.moip.com.br/Boleto.do?id=#{source.payment_id.gsub('.', '').to_i}"
   end
-end
 
+  def user_document
+    source.user.cpf.presence || '-'
+  end
+end
