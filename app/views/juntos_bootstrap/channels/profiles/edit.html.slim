@@ -3,7 +3,11 @@
 
 = render 'shared/header_channel'
 = content_for :title, @profile.name
+
 .w-container.u-margintop-40.u-marginbottom-40
+  .w-row
+    .w-col.w-col-12
+      = render partial: 'devise/shared/alert', locals: { resource: @profile }
   .w-row
     = simple_form_for @profile, as: 'profile', url: '/profile', html: { method: 'patch' }, class: 'channel-edit' do |form|
       - if current_user.admin

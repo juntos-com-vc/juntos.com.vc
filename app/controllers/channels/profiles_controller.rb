@@ -13,14 +13,28 @@ class Channels::ProfilesController < Channels::BaseController
 
   def update
     authorize resource
-    update!
+
+    if resource.update(permitted_params)
+      flash[:notice] = t('success', scope: 'channels.profiles.update')
+      redirect_to channels_profile_path(resource)
+    else
+      flash[:alert] = resource.errors.full_messages.to_sentence
+      render :edit
+    end
   end
+
+  private
 
   def resource
     @profile ||= channel
   end
 
-  private
+  def permitted_params
+    params.require(:profile).permit(:ga_code, :name, :description, :original_image_url,
+                                    :original_email_header_image_url, :main_color,
+                                    :secondary_color, :facebook, :website, :how_it_works,
+                                    :terms, :contacts)
+  end
 
   def show_statistics
     @channel_statistics = ChannelStatisticsQuery.new(resource)

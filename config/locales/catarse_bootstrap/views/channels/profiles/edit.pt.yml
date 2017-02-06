@@ -1,0 +1,5 @@
+pt:
+  channels:
+    profiles:
+      update:
+        success: 'As informações foram atualizadas'
