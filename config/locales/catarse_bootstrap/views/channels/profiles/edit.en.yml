@@ -1,0 +1,5 @@
+en:
+  channels:
+    profiles:
+      update:
+        success: 'Channel has been updated'
