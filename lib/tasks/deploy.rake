@@ -10,11 +10,11 @@ namespace :deploy do
   end
 
   desc 'Deploy app to staging'
-  task :staging => [:set_staging_app, :off, :push, :migrate, :on, :tag]
+  task :staging => [:set_staging_app, :off, :push, :migrate, :restart, :on, :tag]
   task :staging_rollback => [:set_staging_app, :off, :push_previous, :restart, :on]
 
   desc 'Deploy app to production'
-  task :production => [:set_production_app, :off, :push, :migrate, :on, :tag]
+  task :production => [:set_production_app, :off, :push, :migrate, :restart, :on, :tag]
   task :production_rollback => [:set_production_app, :off, :push_previous, :restart, :on]
 
 
