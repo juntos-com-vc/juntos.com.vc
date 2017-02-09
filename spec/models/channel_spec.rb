@@ -64,6 +64,19 @@ RSpec.describe Channel, type: :model do
     end
   end
 
+  describe "#updatable_recurring?" do
+    let(:channel) { create(:channel) }
+
+    context "when the channel has projects associated" do
+      before { create(:project, channels: [channel]) }
+
+      it { expect(channel.reload).not_to be_updatable_recurring }
+    end
+
+    context "when the channel has no projects associated" do
+      it { expect(channel).to be_updatable_recurring }
+    end
+  end
 
   describe "#has_subscriber?" do
     let(:channel) { create(:channel) }

@@ -19,6 +19,10 @@ pt:
         title: 'Novo canal'
       edit:
         title: 'Editar canal'
+      messages:
+        recurring:
+          error:
+            update: 'Não é possível atualizar a recorrência de um canal que possui projetos associados.'
     pages:
       index:
         menu: 'Admin Quem Somos'

@@ -23,6 +23,10 @@ en:
         title: 'New channel'
       edit:
         title: 'Edit channel'
+      messages:
+        recurring:
+          error:
+            update: 'Cannot update the recurrence for a channel that has associated projects.'
     pages:
       index:
         menu: 'Admin Who we are'

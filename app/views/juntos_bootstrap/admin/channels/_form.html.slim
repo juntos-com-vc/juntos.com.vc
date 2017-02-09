@@ -20,7 +20,7 @@
   .w-row
     .w-col.w-col-2
       = form.input :recurring, as: :select, collection: [:true, :false],
-        prompt: false, required: true
+        prompt: false, required: true, input_html: { disabled: !@channel.updatable_recurring? }
   .w-row
     .w-row
       .w-col.w-col-12
