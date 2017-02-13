@@ -13,6 +13,7 @@ class Admin::ChannelsController < Admin::BaseController
     if @channel.update(channel_params)
       redirect_to admin_channels_path
     else
+      flash[:alert] = @channel.errors.full_messages.to_sentence
       render 'new'
     end
   end

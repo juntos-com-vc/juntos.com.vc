@@ -11,6 +11,8 @@ class Channel < ActiveRecord::Base
 
   validates_presence_of :category_id, unless: :recurring?
 
+  validate :must_be_updatable_recurring, if: :recurring_changed?
+
   has_and_belongs_to_many :projects, -> { order_status.most_recent_first }
   has_many :subscribers, class_name: 'User', through: :channels_subscribers, source: :user
   has_many :channels_subscribers
@@ -39,6 +41,10 @@ class Channel < ActiveRecord::Base
 
   def self.find_by_permalink!(string)
     self.by_permalink(string).first!
+  end
+
+  def updatable_recurring?
+    projects.empty?
   end
 
   def has_subscriber? user
@@ -78,5 +84,9 @@ class Channel < ActiveRecord::Base
       ChannelImagesProcessWorker.perform_async(self.id, original_image_url,
                                                original_email_header_image_url)
     end
+  end
+
+  def must_be_updatable_recurring
+    errors.add(:recurring, I18n.t('update', scope: 'admin.channels.messages.recurring.error')) unless updatable_recurring?
   end
 end

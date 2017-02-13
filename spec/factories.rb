@@ -308,6 +308,14 @@ FactoryGirl.define do
     trait :invisible do
       visible false
     end
+
+    trait :recurring do
+      recurring true
+    end
+
+    trait :non_recurring do
+      recurring false
+    end
   end
 
   factory :state do
