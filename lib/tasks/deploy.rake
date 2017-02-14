@@ -33,7 +33,7 @@ namespace :deploy do
 
   task :restart do
     puts 'Restarting app servers ...'
-    heroku_cmd "heroku restart --app #{APP}"
+    heroku_cmd "restart --app #{APP}"
   end
 
   task :tag do
