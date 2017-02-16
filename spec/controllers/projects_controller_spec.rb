@@ -101,21 +101,13 @@ RSpec.describe ProjectsController, type: :controller do
 
     shared_examples_for "protected project" do
       let(:project_attributes) do
-        {
-          headline:  'updated_headline',
-          name:      'updated_name',
-          permalink: 'updated_permalink'
-        }
+        { permalink: 'updated_permalink' }
       end
 
       before do
         put :update, id: project.id, project: project_attributes, locale: :pt
         project.reload
       end
-
-      it { expect(project.headline).not_to eq('updated_headline') }
-
-      it { expect(project.name).not_to eq('updated_name') }
 
       it { expect(project.permalink).not_to eq('updated_permalink') }
     end

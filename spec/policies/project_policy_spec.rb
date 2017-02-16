@@ -105,7 +105,10 @@ RSpec.describe ProjectPolicy do
     end
     let(:project_owner_allowed_attributes) do
       [
-        :video_url, :about, :thank_you, :uploaded_image,
+        :name, :video_url, :about, :thank_you, :uploaded_image,
+        :uploaded_cover_image, :headline, :original_uploaded_image,
+        :original_uploaded_cover_image,
+        project_images_attributes: [:original_image_url, :caption, :id, :_destroy],
         project_partners_attributes: [:original_image_url, :link, :id, :_destroy],
         posts_attributes: [:title, :comment, :exclusive, :user_id]
       ]
