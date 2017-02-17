@@ -8,38 +8,39 @@
 br
 br
 | Obrigado por iniciar o processo de inscrição de um projeto no #{company_name}!
-| Este é apenas o passo inicial e quer dizer que você acabou de criar seu
-| <strong>#{link_to 'rascunho de projeto', project_link, target: '__blank'}</strong> no #{company_name}.
-br/
-br/
+br
+br
+| Este é apenas o passo inicial e quer dizer que você acabou de criar seu <strong>#{link_to 'rascunho de projeto', project_link, target: '__blank'}</strong> no #{company_name}.
+br
+br
 | As dicas fundamentais para estruturar o seu projeto podem ser encontradas em
 | diversos artigos na nossa #{link_to "Central de Suporte do #{company_name}", CatarseSettings[:support_forum], target: '__blank'}.
 | Ela pode ser utilizada como fonte de consulta para a maioria das dúvidas que você terá antes, durante e após a sua campanha.
 | Mesmo assim resolvemos destacar alguns pontos nesse email. Leia todos com bastante atenção:
-br/
-br/
+br
+br
 |Confira também:
-br/
+br
 = link_to "Como é feita a curadoria dos projetos?", 'http://juntoscomvc.uservoice.com/knowledgebase/articles/486544-como-é-feita-a-curadoria-dos-projetos', target: '__blank'
-br/
+br
 = link_to "E como os projetos são escolhidos?", 'http://juntoscomvc.uservoice.com/knowledgebase/articles/486542-e-como-os-projetos-são-escolhidos', target: '__blank'
-br/
-br/
+br
+br
 | Leia esses materiais e depois preencha tudo com bastante calma para aperfeiçoar seu projeto.
-br/
-| Você pode ficar o tempo que quiser montando a página do seu projeto antes de enviá-lo.
-br/
-br/
+br
+br
+| Você pode ficar o tempo que quiser montando a página do seu projeto antes de enviá-lo para análise.
+br
+br
 | Quando considerar que a sua página de projeto está pronta, basta clicar no botão “ENVIAR PROJETO” que entraremos em contato contigo.
-br/
-br/
+br
+br
 | Se ficou com alguma dúvida, entre em contato conosco respondendo a esta mensagem ou através do e-mail #{mail_to CatarseSettings[:email_projects]}
-br/
-br/
-| E por falar nisso, por favor <strong>não esqueça de incluir na sua lista de contatos os e-mails:</strong>
-| #{mail_to CatarseSettings[:email_projects]} e #{mail_to CatarseSettings[:email_contact]} para evitar que nossas mensagens caiam na sua caixa de spam devido a filtros do seu email.
-br/
-br/
+br
+br
+| E por falar nisso, por favor <strong>não esqueça de incluir na sua lista de contatos os e-mails:</strong> #{mail_to CatarseSettings[:email_contact]} e #{mail_to CatarseSettings[:email_projects]} para evitar que nossas mensagens caiam na sua caixa de spam devido a filtros de e-mail.
+br
+br
 | Um abraço,
-br/
+br
 = company_name

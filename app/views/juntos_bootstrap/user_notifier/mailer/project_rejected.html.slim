@@ -4,23 +4,26 @@
 - company_name = CatarseSettings[:company_name]
 
 | Olá #{user.name},
-br/
-br/
-| Infelizmente, o projeto #{link_to project.name, project_link, target: '__blank'} não foi aceito no #{company_name}.
-br/
-br/
-- if project.reject_reason.present?
-  = project.reject_reason
-  br/
-  br/
-| Caso queira tirar quaisquer outras dúvidas, ou deletar o seu rascunho recusado, responda a esta mensagem ou entre em contato conosco através do e-mail #{mail_to CatarseSettings[:email_projects]}
-br/
-br/
-| Lembrando que ter um projeto recusado não impede que você envie novos projetos para avaliação. 
-| Levanta, sacode a poeira e dá a volta por cima! Estude nossa #{link_to 'Central de Suporte', CatarseSettings[:support_forum], target: '__blank'} para que você saiba tudo sobre nossos pré-requisitos 
-| para a construção do seu próximo projeto. Para mais informações sobre requisitos para aprovação de um projeto no #{company_name}, basta acessar #{link_to 'esse artigo', 'http://juntoscomvc.uservoice.com/knowledgebase/articles/488679-itens-obrigat%C3%B3rios-para-um-projeto-ir-ao-ar', target: '__blank' }.
-br/
-br/
-| Um abraço,
-br/
-= company_name
+br
+br
+| Recebemos o projeto #{link_to project.name, project_link, target: '__blank'} e gostaríamos de passar algumas considerações.
+br
+br
+| Somos uma plataforma de financiamento coletivo, que tem como foco projetos de impacto socioambiental que tenham como foco uma transformação social coletiva.  
+br
+br
+| Analisamos cuidadosamente as propostas de campanhas onde avaliamos se o projeto tem aderência com a missão e os valores da #{link_to(company_name, 'http://juntos.com.vc/pt/quem-somos#transparency')}, se os objetivos estão bem definidos, se a comunicação é mobilizadora e se é realmente um projeto de impacto coletivo.
+br
+br
+| Além disso, pelas do questionário de análise de redes avaliamos, se a campanha tem potencial para a captação do recurso que necessita e baseados na nossa metodologia que nos possibilitou nestes últimos anos 80% de sucesso nas campanhas que colocamos no ar, avaliamos se este é o melhor momento para sua a sua campanha entrar no ar.
+br
+br
+| Infelizmente sua campanha não atendeu todos os requisitos necessários, neste momento para ser uma campanha de sucesso, lembrando que receber uma recusa não impede que você envie novos projetos ou reenvie seu projeto para avaliação. Não desanime, visite nossa plataforma, estude os projetos que já foram bem sucedidos, veja o que pode melhorar e tente novamente, não desista.
+br
+br
+| Caso queira tirar quaisquer outras dúvidas, ou que seu projeto retorne para rascunho para que seja editado, ou deletar o seu rascunho recusado, responda esta mensagem ou entre em contato conosco através do e-mail #{mail_to CatarseSettings[:email_projects]}. Deixamos como leitura auxiliar nosso #{link_to('Manual do Crowdfunding', 'https://s3-sa-east-1.amazonaws.com/juntoscomvc/uploads/Manual+Juntos.com.vc+2016.pdf')}.
+br
+br
+| Atenciosamente,
+br
+| Equipe #{company_name}
