@@ -16,12 +16,12 @@ br
   br
 br
 br
-|Pra não ficar dúvida, aqui vai um passo-a-passo pra utilização dos créditos:
+|Para não ficar dúvida, aqui vai um passo-a-passo pra utilização dos créditos:
 br
 br
 |1 - #{link_to('Escolher o projeto que quer apoiar;', explore_url)}
 br
-|2 - Clicar em Quero apoiar este projeto;
+|2 - Clicar em <strong>Quero apoiar este projeto</strong>;
 br
 |3 - Colocar o valor que quer apoiar e selecionar o campo confirmando que você quer usar seus créditos.
 br
@@ -33,8 +33,9 @@ br
 |Caso prefira, você pode pedir o reembolso do seu dinheiro clicando #{link_to("aqui", "#{CatarseSettings[:base_url]}/users/#{user.to_param}#credits")}.  Você conseguirá tirar a maioria das suas dúvidas sobre reembolso #{link_to('nesse artigo', 'http://juntoscomvc.uservoice.com')}.
 br
 br
-|Se tiver alguma outra dúvida, entre em contato conosco na nossa Central de Suporte: suporte.catarse.me.
+|Se tiver alguma outra dúvida, entre em contato conosco pelo e-mail: #{mail_to CatarseSettings[:email_contact]}
 br
 br
 |Um grande abraço,
-|Equipe Juntos.com.vc
+br
+|Equipe #{CatarseSettings[:company_name]}
