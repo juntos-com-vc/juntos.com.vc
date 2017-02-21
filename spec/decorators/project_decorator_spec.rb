@@ -21,14 +21,23 @@ RSpec.describe ProjectDecorator do
     let(:project){ build(:project) }
     let(:expires_at){ Time.zone.parse("23:00:00") }
     subject{ project.time_to_go }
+
     before do
       I18n.locale = :pt
       allow(project).to receive(:expires_at).and_return(expires_at)
     end
 
     context "when there is more than 1 day to go" do
-      let(:expires_at) { 2.days.from_now }
-      it{ is_expected.to eq({ time: 2, unit: "dias" }) }
+      let(:base_time) { Time.local(2017, 02, 21, 12, 0, 0) }
+      let(:expires_at) do
+        Timecop.freeze(base_time) { 2.days.from_now }
+      end
+
+      it "returns the time difference and pluralizes the unit value" do
+        Timecop.freeze(base_time) do
+          expect(subject).to eq({ time: 2, unit: "dias" })
+        end
+      end
     end
 
     context "when there is less than 1 day to go" do
@@ -361,4 +370,3 @@ RSpec.describe ProjectDecorator do
     end
   end
 end
-
