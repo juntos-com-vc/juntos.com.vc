@@ -53,9 +53,9 @@ class ProjectsController < ApplicationController
     @project = Project.new(user: current_user, new_record: true)
     authorize @project
     response = Project::Create.new(current_user, project_params.merge(options))
+    @project = response.project
 
     if response.process
-      @project = response.project
       session[:new_project] = true
       redirect_to project_by_slug_path(@project.permalink, anchor: 'basics')
     else
