@@ -13,6 +13,12 @@ class Channels::Admin::ImagesController < Channels::Admin::BaseController
     channel
   end
 
+  protected
+
+  def permitted_params
+    params.permit(channel_image: [:image])
+  end
+
   def collection
     @images ||= apply_scopes(end_of_association_chain.ordered.page(params[:page]))
   end
