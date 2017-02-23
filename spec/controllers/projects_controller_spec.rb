@@ -50,19 +50,58 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe "GET index" do
-    before do
-      get :index, locale: :pt
-    end
-    xit { is_expected.to be_success }
-
-    context "with referal link" do
-      subject { controller.session[:referal_link] }
-
+    describe "request status" do
       before do
-        get :index, locale: :pt, ref: 'referal'
+        get :index, locale: :pt
       end
 
-      xit { is_expected.to eq('referal') }
+      it { is_expected.to be_success }
+
+      context "with referal link" do
+        subject { controller.session[:referal_link] }
+
+        before do
+          get :index, locale: :pt, ref: 'referal'
+        end
+
+        it { is_expected.to eq('referal') }
+      end
+    end
+
+    describe "variables instantiating" do
+      context "@channels" do
+        let(:visible_channels)   { create_list(:channel, 5, :visible) }
+        let(:invisible_channels) { create_list(:channel, 3, :invisible) }
+        let!(:all_channels)      { visible_channels + invisible_channels }
+
+        before do
+          get :index, locale: :pt
+        end
+
+        context "when there is a logged user" do
+          context "and it is a normal user" do
+            let(:current_user) { create(:user, admin: false).decorate }
+
+            it "brings visible channels only" do
+              expect(assigns(:channels)).to match_array(visible_channels)
+            end
+          end
+
+          context "and it is an admin user" do
+            let(:current_user) { create(:user, admin: true).decorate }
+
+            it "brings both visible and invisible channels" do
+              expect(assigns(:channels)).to match_array(all_channels)
+            end
+          end
+        end
+
+        context "when there is no logged user" do
+          it "brings visible channels only" do
+            expect(assigns(:channels)).to match_array(visible_channels)
+          end
+        end
+      end
     end
   end
 
