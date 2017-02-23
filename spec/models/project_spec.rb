@@ -521,7 +521,23 @@ RSpec.describe Project, type: :model do
   end
 
   describe ".by_permalink" do
-    subject{ Project.by_permalink('foo').map(&:name) }
+    subject { Project.by_permalink('foo').map(&:name) }
+
+    context "when permalink is found" do
+      before { create(:project, name: 'project_permalink', permalink: 'foo') }
+
+      it { is_expected.to contain_exactly('project_permalink') }
+    end
+
+    context "when permalink is not found" do
+      before { create(:project, permalink: 'bar') }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".by_permalink_and_available" do
+    subject { Project.by_permalink_and_available('foo').map(&:name) }
 
     context "when permalink is found" do
       context "when project is deleted" do

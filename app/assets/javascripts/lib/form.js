@@ -21,6 +21,7 @@ Skull.Form = {
       var $target = this.$(event.currentTarget);
       $target.removeClass("error");
       this.$('[data-error-for=' + $target.prop('id') + ']').hide();
+      this.toggleDisableSubmit(false);
     }
   },
 
@@ -32,6 +33,7 @@ Skull.Form = {
     var $target = this.$(event.currentTarget);
     $target.addClass("error");
     this.$('[data-error-for=' + $target.prop('id') + ']').show();
+    this.toggleDisableSubmit(true);
   },
 
   validate: function(){
@@ -42,5 +44,11 @@ Skull.Form = {
 
     this.$('input.error:visible:first').select();
     return valid;
+  },
+
+  toggleDisableSubmit: function(state) {
+    var $target = $('input[type="submit"]');
+
+    $target.attr('disabled', state);
   }
 };

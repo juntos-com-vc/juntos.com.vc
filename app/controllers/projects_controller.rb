@@ -1,6 +1,6 @@
 # coding: utf-8
 class ProjectsController < ApplicationController
-  after_filter :verify_authorized, except: %i[index video video_embed embed embed_panel about_mobile supported_by_channel]
+  after_filter :verify_authorized, except: %i[index video video_embed embed embed_panel about_mobile supported_by_channel permalink_valid?]
   inherit_resources
   has_scope :pg_search, :by_category_id, :near_of
   has_scope :recent, :expiring, :failed, :successful, :in_funding, :recommended, :not_expired, type: :boolean
@@ -174,6 +174,14 @@ class ProjectsController < ApplicationController
     render json: channel.projects
   end
 
+  def permalink_valid?
+    @projects = Project.by_permalink(params[:permalink])
+
+    permalink_available = @projects.empty? || @projects.pluck(:id).include?(params[:project_id].to_i)
+
+    render json: { available_permalink: permalink_available }
+  end
+
   protected
 
   def permitted_params
@@ -189,7 +197,7 @@ class ProjectsController < ApplicationController
   end
 
   def resource
-    @project ||= (params[:permalink].present? ? Project.by_permalink(params[:permalink]).first! : Project.find(params[:id])).decorate
+    @project ||= (params[:permalink].present? ? Project.by_permalink_and_available(params[:permalink]).first! : Project.find(params[:id])).decorate
   end
 
   def use_catarse_boostrap

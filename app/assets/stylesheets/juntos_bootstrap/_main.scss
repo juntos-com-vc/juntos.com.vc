@@ -990,6 +990,11 @@ p {
   border-left-color: white;
   background-color: white;
 }
+
+input[type="submit"][disabled] {
+  opacity: .5;
+}
+
 .error-form {
   margin-top: 15px;
   margin-bottom: 28px;

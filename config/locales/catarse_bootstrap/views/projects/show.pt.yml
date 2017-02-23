@@ -64,6 +64,8 @@ pt:
       support: 'Suporte'
       form:
         submit: 'Salvar'
+        errors:
+          permalink: 'O permalink já está em uso, por favor insira outro.'
     project_bank_info:
       title: Insira aqui os seus dados bancários
       subtitle: Para poder receber as doações insira os dados bancários de onde você deseja recebê-las.
