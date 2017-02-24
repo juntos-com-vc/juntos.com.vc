@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
           @featured_partners = SitePartner.featured
           @regular_partners = SitePartner.regular
           @site_partners = @featured_partners + @regular_partners
-          @channels = Channel.visible
+          @channels = visible_channels
           @banners = HomeBanner.where.not(image: [nil, '']).order(numeric_order: :asc)
         end
       end
@@ -209,5 +209,15 @@ class ProjectsController < ApplicationController
 
   def all_bank_account_params?(bank_account_params, expected_params)
     bank_account_params.values.count(&:present?) == expected_params.count
+  end
+
+  private
+
+  def visible_channels
+    if current_user.present? && current_user.admin?
+      Channel.all
+    else
+      Channel.visible
+    end
   end
 end
