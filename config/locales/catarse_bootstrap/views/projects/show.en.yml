@@ -64,6 +64,8 @@ en:
       support: 'Support'
       form:
         submit: 'Save'
+        errors:
+          permalink: 'Permalink has already been taken, please insert a new one.'
     project_bank_info:
       title: Insert here your bank info
       subtitle: In order to receive donations, insert the bank info where do you whant to receive it.

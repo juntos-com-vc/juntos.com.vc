@@ -36,7 +36,7 @@
                 .w-col.w-col-5.w-sub-col
                   label.field-label.fontweight-semibold for="name-8"= t('.id')
                 .w-col.w-col-7
-                  label.field-label.fontweight-semibold for="name-8"= @project.display_id
+                  label.field-label.fontweight-semibold data-project-id="#{@project.id}" for="name-8"= @project.display_id
               .w-row.u-marginbottom-30.card.card-terciary
                 .w-col.w-col-5.w-sub-col
                   label.field-label.fontweight-semibold for="name-8"= t('.name')
@@ -56,6 +56,8 @@
                       .fontcolor-secondary.u-text-center.fontsize-smallest juntos.com.vc/
                     .w-col.w-col-8.w-col-small-6.w-col-tiny-6
                       = form.input_field :permalink, as: :string, class: 'postfix positive', required: false, disabled: @project.editable_field?
+                  .fontsize-smaller.text-error.u-marginbottom-20.u-margintop-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="project_permalink"]
+                    = t('.form.errors.permalink')
               - unless @channel && @channel.recurring?
                 .w-row.u-marginbottom-30.card.card-terciary
                   .w-col.w-col-5.w-sub-col

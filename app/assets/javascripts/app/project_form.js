@@ -38,18 +38,25 @@ App.views.ProjectForm.addChild('Permalink', _.extend({
   el: 'input#project_permalink',
 
   events: {
-    'timedKeyup' : 'checkPermalink'
+    'blur' : 'checkPermalink'
   },
 
-  checkPermalink: function(){
+  checkPermalink: function() {
     var that = this;
-    if(this.re.test(this.$el.val())){
-      $.get('/pt/' + this.$el.val()).complete(function(data){
-        if(data.status != 404){
-          that.$el.trigger('invalid');
-        }
-      });
+    var project_id = $('[data-project-id]').data("project-id");
+
+    if(this.$el.val() == '') {
+      that.$el.trigger('invalid');
+      return;
     }
+
+    $.getJSON('/pt/projects/validate/permalink', { permalink: this.$el.val(), project_id: project_id }).complete(function(data) {
+      var parsedData = $.parseJSON(data.responseText);
+
+      if(!parsedData.available_permalink) {
+        that.$el.trigger('invalid');
+      }
+    });
   },
 
   activate: function(){

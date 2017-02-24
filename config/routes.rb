@@ -210,4 +210,6 @@ Rails.application.routes.draw do
   get '/countries/:country_code/states' => 'countries#states'
 
   post '/transaction/status/update' => 'pagarme_transactions#update_status'
+
+  get '/projects/validate/permalink' => 'projects#permalink_valid?'
 end

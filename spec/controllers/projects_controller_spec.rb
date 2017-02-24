@@ -225,6 +225,33 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
+  describe "GET permalink_valid?" do
+    let(:permalink) { "peramlink_taken" }
+
+    subject { JSON.parse(response.body) }
+
+    context "when the permalink is already taken" do
+      let(:project) { create(:project) }
+
+      before do
+        create(:project, permalink: permalink)
+        get :permalink_valid?, permalink: permalink, project_id: project.id, locale: :pt, format: :js
+      end
+
+      it { expect(subject["available_permalink"]).to be_falsey }
+    end
+
+    context "when the permalink is available" do
+      let(:project) { create(:project, permalink: permalink) }
+
+      before do
+        get :permalink_valid?, permalink: permalink, project_id: project.id, locale: :pt, format: :js
+      end
+
+      it { expect(subject["available_permalink"]).to be_truthy }
+    end
+  end
+
   describe 'PATCH save_recipient' do
     let(:bank_account) {
       {
