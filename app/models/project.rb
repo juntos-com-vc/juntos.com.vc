@@ -100,7 +100,7 @@ class Project < ActiveRecord::Base
   scope :by_online_date, ->(online_date) { where("online_date::date = ?", online_date.to_date) }
   scope :by_expires_at, ->(expires_at) { where("projects.expires_at::date = ?", expires_at.to_date) }
   scope :by_updated_at, ->(updated_at) { where("updated_at::date = ?", updated_at.to_date) }
-  scope :by_permalink, ->(permalink) { where(permalink: permalink) }
+  scope :by_permalink, ->(permalink) { where("lower(permalink) = lower(?)", permalink) }
   scope :by_permalink_and_available, ->(permalink) { without_state('deleted').by_permalink(permalink) }
   scope :recommended, -> { where(recommended: true) }
   scope :in_funding, -> { not_expired.with_states(['online']) }

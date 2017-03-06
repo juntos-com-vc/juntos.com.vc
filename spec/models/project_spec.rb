@@ -524,9 +524,17 @@ RSpec.describe Project, type: :model do
     subject { Project.by_permalink('foo').map(&:name) }
 
     context "when permalink is found" do
-      before { create(:project, name: 'project_permalink', permalink: 'foo') }
+      context "and permalink is upper case" do
+        before { create(:project, name: 'project_permalink', permalink: 'FOO') }
 
-      it { is_expected.to contain_exactly('project_permalink') }
+        it { is_expected.to contain_exactly('project_permalink') }
+      end
+
+      context "and permalink is lower case" do
+        before { create(:project, name: 'project_permalink', permalink: 'foo') }
+
+        it { is_expected.to contain_exactly('project_permalink') }
+      end
     end
 
     context "when permalink is not found" do
