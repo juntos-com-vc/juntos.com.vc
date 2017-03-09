@@ -955,18 +955,82 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe ".with_visible_channel_and_without_channel" do
+    before do
+      create(:project, name: 'project_name', channels: channels)
+    end
+
+    subject { Project.with_visible_channel_and_without_channel.map(&:name) }
+
+    context "when there is no channel" do
+      let(:channels) { [] }
+
+      it { is_expected.to contain_exactly('project_name') }
+    end
+
+    context "when there is a channel" do
+      context "and the channel is visible" do
+        let(:channels) { [create(:channel, :visible)] }
+
+        it { is_expected.to contain_exactly('project_name') }
+      end
+
+      context "and the channel is invisible" do
+        let(:channels) { [create(:channel, :invisible)] }
+
+        it { is_expected.to be_empty }
+      end
+    end
+  end
+
+  describe ".with_visible_channel" do
+    subject { Project.with_visible_channel.map(&:name) }
+
+    context "when the project is in none channel" do
+      before { create(:project, channels: []) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when the project is in a channel" do
+      before { create(:project, name: 'project_bar', channels: [channel]) }
+
+      context "and the channel is visible" do
+        let(:channel) { create(:channel, :visible) }
+
+        it { is_expected.to contain_exactly('project_bar') }
+      end
+
+      context "and the channel is invisible" do
+        let(:channel) { create(:channel, :invisible) }
+
+        it { is_expected.to be_empty }
+      end
+    end
+  end
+
   describe ".of_current_week" do
     subject { Project.of_current_week.map(&:name) }
 
     context "when the online_date is any day from last week" do
       before do
-        create(:project, name: 'today', online_date: DateTime.current)
-        create(:project, name: 'in_3_days', online_date: 3.days.from_now)
-        create(:project, name: 'in_30_days', online_date: 30.days.from_now)
-        create(:project, name: 'six_days_ago', online_date: 6.days.ago)
+        create(:project, channels: [channel], name: 'today', online_date: DateTime.current)
+        create(:project, channels: [channel], name: 'in_3_days', online_date: 3.days.from_now)
+        create(:project, channels: [channel], name: 'in_30_days', online_date: 30.days.from_now)
+        create(:project, channels: [channel], name: 'six_days_ago', online_date: 6.days.ago)
       end
 
-      it { is_expected.to contain_exactly('today', 'in_3_days', 'in_30_days', 'six_days_ago') }
+      context "and the channel is invisible" do
+        let(:channel) { create(:channel, :invisible) }
+
+        it { is_expected.to be_empty }
+      end
+
+      context "and the channel is visible" do
+        let(:channel) { create(:channel, :visible) }
+
+        it { is_expected.to contain_exactly('today', 'in_3_days', 'in_30_days', 'six_days_ago') }
+      end
     end
 
     context "when the online_date is earlier than last week" do
