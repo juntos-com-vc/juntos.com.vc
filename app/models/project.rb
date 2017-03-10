@@ -106,6 +106,8 @@ class Project < ActiveRecord::Base
   scope :in_funding, -> { not_expired.with_states(['online']) }
   scope :name_contains, ->(term) { where("unaccent(upper(name)) LIKE ('%'||unaccent(upper(?))||'%')", term) }
   scope :near_of, ->(address_state) { where("EXISTS(SELECT true FROM users u WHERE u.id = projects.user_id AND lower(u.address_state) = lower(?))", address_state) }
+  scope :random_near_online_with_limit, ->(address_state, limit) { with_state('online').near_of(address_state).order("random()").limit(limit) }
+  scope :online_non_recommended_with_limit, ->(limit) { with_state('online').where(recommended: false).order("random()").limit(limit) }
   scope :to_finish, ->{ expired.with_states(['online', 'waiting_funds']) }
   scope :visible, -> { without_states(['draft', 'rejected', 'deleted', 'in_analysis']) }
   scope :financial, -> { with_states(['online', 'successful', 'waiting_funds']).where("projects.expires_at > (current_timestamp - '15 days'::interval)") }
@@ -144,17 +146,26 @@ class Project < ActiveRecord::Base
     with_state('online').where("(projects.expires_at - current_date) <= ?", time)
   }
 
+  scope :with_visible_channel_and_without_channel, -> {
+    union_scope(without_channel, with_visible_channel)
+  }
+
+  scope :with_visible_channel, -> {
+    joins(:channels).merge(Channel.visible)
+  }
+
   scope :of_current_week, -> {
-    where("
-      projects.online_date AT TIME ZONE '#{Time.zone.tzinfo.name}' >= (current_timestamp AT TIME ZONE '#{Time.zone.tzinfo.name}' - '7 days'::interval)
-    ")
+    with_visible_channel_and_without_channel.where('online_date >= ?', 7.days.ago)
   }
 
   scope :recurring, -> { joins(:channels).merge(Channel.recurring(true)) }
 
   scope :with_channel_without_recurring, -> { joins(:channels).merge(Channel.recurring(false)) }
 
-  scope :without_channel, -> { joins('LEFT JOIN "channels_projects" ON "channels_projects"."project_id" = "projects"."id" WHERE "channels_projects"."project_id" is NULL') }
+  scope :without_channel, -> do
+    joins('LEFT JOIN "channels_projects" ON "channels_projects"."project_id" = "projects"."id"')
+      .where(channels_projects: { project_id: nil})
+  end
 
   scope :without_recurring_and_pepsico_channel, -> { union_scope(with_channel_without_recurring.without_pepsico_channel, without_channel) }
 
@@ -169,6 +180,9 @@ class Project < ActiveRecord::Base
   end
 
   scope :valid_for_channel_statistics, -> { with_states(['successful', 'online', 'waiting_funds']) }
+
+  scope :expiring_for_home,    -> { expiring.where(recommended: false).with_state('online').order('random()').limit(3) }
+  scope :recommended_for_home, -> { recommended.with_state('online').order('random()').limit(3) }
 
   attr_accessor :accepted_terms, :new_record
 

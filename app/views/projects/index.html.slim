@@ -1,5 +1,5 @@
 - content_for(:title)
-  = t("site.projects.title")
+  = t("site.title") || t("site.projects.title")
 
 - content_for :meta_tags do
   meta name="robots" content="index, follow"
@@ -32,13 +32,13 @@
       .inline
         img alt="" height="1" src="//www.googleadservices.com/pagead/conversion/988885353/?value=1.00&amp;currency_code=USD&amp;label=1y4HCIeHugYQ6eLE1wM&amp;guid=ON&amp;script=0" style="border-style:none;" width="1" /
 
-- if @banners.any?
+- if @index_scope.banners.any?
   .banner-images
-    - @banners.each do |banner|
+    - @index_scope.banners.each do |banner|
       div[style="background-image: url('#{banner.image.url}')"]
         - if banner.link.present?
           = link_to '', banner.link, target: '_blank'
-  - if @banners.count > 1
+  - if @index_scope.banners.count > 1
     javascript:
       $('.banner-images').slick({autoplay: true, arrows: false, dots: true});
 - else
@@ -75,7 +75,7 @@
             = link_to t('.sections.recommended.title'), explore_path(anchor: :recommended)
           = link_to t('.links.see_more'), explore_path, class: "more-projects"
         .projects
-          == render @recommends
+          == render @index_scope.recommends
 
       section.recents_projects.list
         header
@@ -83,13 +83,13 @@
             = link_to t('.sections.recents.title'), explore_path(anchor: :recent)
           = link_to t('.links.recents'), explore_path, class: "more-projects"
         .projects
-          == render @recent
+          == render @index_scope.recent
 
     aside.main-sidebar
       section.main-sidebar-division
         .channels
           h3.title = t(:meet_channels, scope: [:projects, :index, :sidebar, :titles])
-          - @channels.each do |channel|
+          - @index_scope.channels.each do |channel|
             .channel= link_to channel.name, "http://#{channel.permalink}.juntos.com.vc/", class: "post-title", target: :blank
 
       /section.main-sidebar-division
@@ -114,13 +114,13 @@
     .content
       .title
         h2 = t(:title, scope: [:projects, :index, :sections, :partners])
-      .logos[class="#{'js-featured-partners' if @featured_partners.count > 4}"]
-        - @featured_partners.each do |partner|
+      .logos[class="#{'js-featured-partners' if @index_scope.featured_partners.count > 4}"]
+        - @index_scope.featured_partners.each do |partner|
           .featured
             = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.featured.url, title: partner.bio
-      .logos[class="#{'js-regular-partners' if @regular_partners.count > 6}"]
-        - @regular_partners.each do |partner|
+      .logos[class="#{'js-regular-partners' if @index_scope.regular_partners.count > 6}"]
+        - @index_scope.regular_partners.each do |partner|
           .regular
             = link_to partner.url, target: '_blank' do
               = image_tag partner.logo.featured.url, title: partner.bio

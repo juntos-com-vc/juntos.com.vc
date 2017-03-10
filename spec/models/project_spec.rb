@@ -652,6 +652,79 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe ".random_near_online_with_limit" do
+    let(:address_state) { 'RN' }
+    let(:limit) { 1 }
+
+    before do
+      user = create(:user, address_state: address_state)
+      create_list(:project, 8, state, user: user, name: 'project_name')
+    end
+
+    subject { Project.random_near_online_with_limit('RN', limit).map(&:name) }
+
+    context "when the project is online" do
+      let(:state) { :online }
+
+      it "returns the project with the specific address state" do
+        is_expected.to contain_exactly('project_name')
+      end
+
+      it "returns the projects with the passed limit" do
+        expect(subject.count).to eq(limit)
+      end
+
+      context "and it is in another address state" do
+        let(:address_state) { 'SP' }
+
+        it { is_expected.to be_empty }
+      end
+    end
+
+    context "when the project is not online" do
+      let(:state) { :successful }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".online_non_recommended_with_limit" do
+    let(:recommended) { false }
+    let(:limit) { 1 }
+
+    before do
+      create_list(:project, 8, state, recommended: recommended, name: 'project_name')
+    end
+
+    subject { Project.online_non_recommended_with_limit(limit).map(&:name) }
+
+    context "when the project is online" do
+      let(:state) { :online }
+
+      context "and it is non-recommended" do
+        let(:recommended) { false }
+
+        it { is_expected.to contain_exactly('project_name') }
+
+        it "returns the projects with the passed limit" do
+          expect(subject.count).to eq(limit)
+        end
+      end
+
+      context "and it is recommended" do
+        let(:recommended) { true }
+
+        it { is_expected.to be_empty }
+      end
+    end
+
+    context "when the project is not online" do
+      let(:state) { :successful }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
   describe ".to_finish" do
     subject { Project.to_finish.map(&:name) }
 
@@ -955,18 +1028,82 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe ".with_visible_channel_and_without_channel" do
+    before do
+      create(:project, name: 'project_name', channels: channels)
+    end
+
+    subject { Project.with_visible_channel_and_without_channel.map(&:name) }
+
+    context "when there is no channel" do
+      let(:channels) { [] }
+
+      it { is_expected.to contain_exactly('project_name') }
+    end
+
+    context "when there is a channel" do
+      context "and the channel is visible" do
+        let(:channels) { [create(:channel, :visible)] }
+
+        it { is_expected.to contain_exactly('project_name') }
+      end
+
+      context "and the channel is invisible" do
+        let(:channels) { [create(:channel, :invisible)] }
+
+        it { is_expected.to be_empty }
+      end
+    end
+  end
+
+  describe ".with_visible_channel" do
+    subject { Project.with_visible_channel.map(&:name) }
+
+    context "when the project is in none channel" do
+      before { create(:project, channels: []) }
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when the project is in a channel" do
+      before { create(:project, name: 'project_bar', channels: [channel]) }
+
+      context "and the channel is visible" do
+        let(:channel) { create(:channel, :visible) }
+
+        it { is_expected.to contain_exactly('project_bar') }
+      end
+
+      context "and the channel is invisible" do
+        let(:channel) { create(:channel, :invisible) }
+
+        it { is_expected.to be_empty }
+      end
+    end
+  end
+
   describe ".of_current_week" do
     subject { Project.of_current_week.map(&:name) }
 
     context "when the online_date is any day from last week" do
       before do
-        create(:project, name: 'today', online_date: DateTime.current)
-        create(:project, name: 'in_3_days', online_date: 3.days.from_now)
-        create(:project, name: 'in_30_days', online_date: 30.days.from_now)
-        create(:project, name: 'six_days_ago', online_date: 6.days.ago)
+        create(:project, channels: [channel], name: 'today', online_date: DateTime.current)
+        create(:project, channels: [channel], name: 'in_3_days', online_date: 3.days.from_now)
+        create(:project, channels: [channel], name: 'in_30_days', online_date: 30.days.from_now)
+        create(:project, channels: [channel], name: 'six_days_ago', online_date: 6.days.ago)
       end
 
-      it { is_expected.to contain_exactly('today', 'in_3_days', 'in_30_days', 'six_days_ago') }
+      context "and the channel is invisible" do
+        let(:channel) { create(:channel, :invisible) }
+
+        it { is_expected.to be_empty }
+      end
+
+      context "and the channel is visible" do
+        let(:channel) { create(:channel, :visible) }
+
+        it { is_expected.to contain_exactly('today', 'in_3_days', 'in_30_days', 'six_days_ago') }
+      end
     end
 
     context "when the online_date is earlier than last week" do
@@ -1124,6 +1261,103 @@ RSpec.describe Project, type: :model do
       let(:ends_at)  { nil }
 
       it { is_expected.to contain_exactly('with_goal_199', 'with_goal_200', 'with_goal_300', 'with_goal_400', 'with_goal_401') }
+    end
+  end
+
+  describe ".expiring_for_home" do
+    let(:recommended) { false }
+    let(:state) { :online }
+
+    before do
+      create(:project, state, online_date: expires_at, recommended: recommended, name: 'project_name', online_days: 1)
+    end
+
+    subject { Project.expiring_for_home.map(&:name) }
+
+    context "when the project's expires_at is within 2 weeks" do
+      let(:expires_at) { 1.week.from_now }
+
+      context "and the project is non-recommended" do
+        let(:recommended) { false }
+
+        context "and the project is online" do
+          let(:state) { :online }
+
+          it { is_expected.to contain_exactly('project_name') }
+        end
+
+        context "and there are over than 3 valid responses" do
+          before do
+            create_list(:project, 8, :online, online_date: expires_at, recommended: recommended, online_days: 1)
+          end
+
+          it { expect(subject.count).to eq(3) }
+        end
+
+        context "and the project is not online" do
+          let(:state) { :successful }
+
+          it { is_expected.to be_empty }
+        end
+      end
+
+      context "and the project is recommended" do
+        let(:recommended) { true }
+
+        it { is_expected.to be_empty }
+      end
+    end
+
+    context "when the project is already expired" do
+      let(:expires_at) { 2.days.ago }
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when the project's expires_at is over 2 weeks" do
+      let(:expires_at) { 3.weeks.from_now }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
+  describe ".recommended_for_home" do
+    let(:state) { :online }
+
+    before do
+      create(:project, state, recommended: recommended, name: 'project_name')
+    end
+
+    subject { Project.recommended_for_home.map(&:name) }
+
+    context "when the project is recommended" do
+      let(:recommended) { true }
+
+      context "and it is online" do
+        let(:state) { :online }
+
+        it { is_expected.to contain_exactly('project_name') }
+      end
+
+      context "and there are over than 3 valid responses" do
+        before do
+          create_list(:project, 8, :online, recommended: true)
+        end
+
+        it { expect(subject.count).to eq(3) }
+      end
+
+      context "and it is not online" do
+        let(:state) { :successful }
+
+        it { is_expected.to be_empty }
+      end
+    end
+
+    context "when the project is non-recommended" do
+      let(:recommended) { :false }
+
+      it { is_expected.to be_empty }
     end
   end
 

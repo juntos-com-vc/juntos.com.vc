@@ -378,4 +378,23 @@ FactoryGirl.define do
     f.attachment File.open("#{Rails.root}/spec/support/testimg.png")
     f.previous_attachment File.open("#{Rails.root}/spec/support/testimg.png")
   end
+
+  factory :site_partner do |f|
+    f.name 'foo_bar'
+    f.url  'foo_url_bar'
+    f.logo File.open("#{Rails.root}/spec/support/testimg.png")
+
+    trait :featured do
+      featured true
+    end
+
+    trait :regular do
+      featured false
+    end
+  end
+
+  factory :home_banner do |f|
+    f.numeric_order 10
+    f.image File.open("#{Rails.root}/spec/support/testimg.png")
+  end
 end

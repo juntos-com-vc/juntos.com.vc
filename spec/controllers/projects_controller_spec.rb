@@ -69,37 +69,86 @@ RSpec.describe ProjectsController, type: :controller do
     end
 
     describe "variables instantiating" do
-      context "@channels" do
-        let(:visible_channels)   { create_list(:channel, 5, :visible) }
-        let(:invisible_channels) { create_list(:channel, 3, :invisible) }
-        let!(:all_channels)      { visible_channels + invisible_channels }
+      describe "projects visibility" do
+        context "@projects" do
+          before do
+            projects = Project.all
+            allow(Project).to receive(:all).and_return(projects)
+            allow(Project).to receive(:with_visible_channel_and_without_channel).and_return(projects)
+            get :index, locale: :pt
+          end
 
+          context "when there is a logged user" do
+            context "and the user is admin" do
+              let(:current_user) { create(:user, admin: true).decorate }
+
+              it { expect(Project).to have_received(:all).at_least(:once) }
+
+              it { expect(Project).not_to have_received(:with_visible_channel_and_without_channel) }
+            end
+
+            context "and the user is not admin" do
+              let(:current_user) { create(:user, admin: false).decorate }
+
+              it { expect(Project).to have_received(:with_visible_channel_and_without_channel).once }
+            end
+          end
+
+          context "when there is no logged user" do
+            let(:current_user) { nil }
+
+            it { expect(Project).to have_received(:with_visible_channel_and_without_channel).once }
+          end
+        end
+      end
+
+      context "when it's an ajax request" do
         before do
+          create_list(:project, 10)
+          projects = Project.all
+          allow(Project).to receive(:visible).and_return(projects)
+          allow(Project).to receive(:order_status).and_return(projects)
+          allow(Project).to receive(:most_recent_first).and_return(projects)
+          xhr :get, :index, locale: :pt
+        end
+
+        it "returns the visible projects" do
+          expect(Project).to have_received(:visible).once
+        end
+
+        it "returns the projects ordered by status" do
+          expect(Project).to have_received(:order_status).once
+        end
+
+        it "returns the most recent first projects" do
+          expect(Project).to have_received(:most_recent_first).once
+        end
+
+        it "returns only six projects per page" do
+          expect(assigns(:projects).count).to eq(6)
+        end
+
+        it "renders the project partial" do
+          expect(response).to render_template(partial: '_project')
+        end
+
+        it "renders no layout" do
+          expect(response).to render_template(layout: [])
+        end
+      end
+
+      context "@index_scope" do
+        before do
+          projects     = Project.all
+          current_user = create(:user)
+          index_scope  = Project::IndexScope.new(projects, current_user)
+
+          allow(Project::IndexScope).to receive(:new).and_return(index_scope)
           get :index, locale: :pt
         end
 
-        context "when there is a logged user" do
-          context "and it is a normal user" do
-            let(:current_user) { create(:user, admin: false).decorate }
-
-            it "brings visible channels only" do
-              expect(assigns(:channels)).to match_array(visible_channels)
-            end
-          end
-
-          context "and it is an admin user" do
-            let(:current_user) { create(:user, admin: true).decorate }
-
-            it "brings both visible and invisible channels" do
-              expect(assigns(:channels)).to match_array(all_channels)
-            end
-          end
-        end
-
-        context "when there is no logged user" do
-          it "brings visible channels only" do
-            expect(assigns(:channels)).to match_array(visible_channels)
-          end
+        it "calls the index scope to instante the index variables" do
+          expect(Project::IndexScope).to have_received(:new).once
         end
       end
     end

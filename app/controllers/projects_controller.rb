@@ -11,26 +11,18 @@ class ProjectsController < ApplicationController
   def index
     index! do |format|
       format.html do
+        @projects = apply_scopes(visible_projects)
+
         if request.xhr?
-          @projects = apply_scopes(Project.without_recurring_and_pepsico_channel.visible.order_status)
-            .most_recent_first
-            .includes(:project_total, :user, :category)
-            .page(params[:page]).per(6)
+          @projects = @projects.visible.order_status
+                      .most_recent_first
+                      .includes(:project_total, :user, :category)
+                      .page(params[:page])
+                      .per(6)
+
           return render partial: 'project', collection: @projects, layout: false
         else
-          @projects = apply_scopes(Project.without_recurring_and_pepsico_channel)
-
-          @title = t("site.title")
-
-          @recommends = ProjectsForHome.recommends.includes(:project_total)
-          @projects_near = Project.with_state('online').near_of(current_user.address_state).order("random()").limit(3).includes(:project_total) if current_user
-          @expiring = ProjectsForHome.expiring.where(recommended: false).includes(:project_total)
-          @recent   = apply_scopes(Project.without_recurring_and_pepsico_channel).with_state('online').where(recommended: false).order("random()").limit(6).includes(:project_total)
-          @featured_partners = SitePartner.featured
-          @regular_partners = SitePartner.regular
-          @site_partners = @featured_partners + @regular_partners
-          @channels = visible_channels
-          @banners = HomeBanner.where.not(image: [nil, '']).order(numeric_order: :asc)
+          @index_scope = Project::IndexScope.new(@projects, current_user)
         end
       end
     end
@@ -221,11 +213,12 @@ class ProjectsController < ApplicationController
 
   private
 
-  def visible_channels
-    if current_user.present? && current_user.admin?
-      Channel.all
-    else
-      Channel.visible
-    end
+  def visible_projects
+    @visible_projects ||=
+      if current_user.present? && current_user.admin?
+        Project.without_recurring_and_pepsico_channel
+      else
+        Project.with_visible_channel_and_without_channel.without_recurring_and_pepsico_channel
+      end
   end
 end
