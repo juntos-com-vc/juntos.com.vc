@@ -99,6 +99,7 @@ RSpec.describe Contribution::PaymentEngineHandler, type: :model do
         address_street: 'test stret',
         address_number: '123',
         address_neighbourhood: 'test area',
+        address_complement: 'test complement',
         address_zip_code: 'test zipcode',
         address_city: 'test city',
         address_state: 'test state',
@@ -114,6 +115,7 @@ RSpec.describe Contribution::PaymentEngineHandler, type: :model do
     its(:address_street){ should eq(user.address_street) }
     its(:address_number){ should eq(user.address_number) }
     its(:address_neighbourhood){ should eq(user.address_neighbourhood) }
+    its(:address_complement){ should eq(user.address_complement) }
     its(:address_zip_code){ should eq(user.address_zip_code) }
     its(:address_city){ should eq(user.address_city) }
     its(:address_state){ should eq(user.address_state) }
@@ -128,6 +130,7 @@ RSpec.describe Contribution::PaymentEngineHandler, type: :model do
         address_street: contribution.address_street,
         address_number: contribution.address_number,
         address_neighbourhood: contribution.address_neighbourhood,
+        address_complement: contribution.address_complement,
         address_zip_code: contribution.address_zip_code,
         address_city: contribution.address_city,
         address_state: contribution.address_state,
@@ -142,6 +145,7 @@ RSpec.describe Contribution::PaymentEngineHandler, type: :model do
           address_street: contribution.address_street,
           address_number: contribution.address_number,
           address_neighbourhood: contribution.address_neighbourhood,
+          address_complement: contribution.address_complement,
           address_zip_code: contribution.address_zip_code,
           address_city: contribution.address_city,
           address_state: contribution.address_state,
