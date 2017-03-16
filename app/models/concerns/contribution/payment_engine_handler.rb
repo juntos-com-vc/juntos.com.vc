@@ -30,6 +30,7 @@ module Contribution::PaymentEngineHandler
       self.address_street = user.address_street
       self.address_number = user.address_number
       self.address_neighbourhood = user.address_neighbourhood
+      self.address_complement = user.address_complement
       self.address_zip_code = user.address_zip_code
       self.address_city = user.address_city
       self.address_state = user.address_state
@@ -44,6 +45,7 @@ module Contribution::PaymentEngineHandler
         address_street: address_street.presence || user.address_street,
         address_number: address_number.presence || user.address_number,
         address_neighbourhood: address_neighbourhood.presence || user.address_neighbourhood,
+        address_complement: address_complement.presence || user.address_complement,
         address_zip_code: address_zip_code.presence|| user.address_zip_code,
         address_city: address_city.presence || user.address_city,
         address_state: address_state.presence || user.address_state,
