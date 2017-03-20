@@ -1,4 +1,5 @@
 = render 'shared/header_big'
+= render 'layouts/flash' if notice.present?
 .admin
   .w-container
     br
@@ -53,15 +54,16 @@
         .w-col-2.w-col.u-margintop-10
           = form.button :submit, t('channels.admin.filter.submit'), class: 'btn bt-medium'
 
-    = simple_form_for '', url:  move_project_to_channel_admin_projects_path , method: :post do |form|
-      h3.admin-form-title = t('admin.projects.move_projects.title')
-      .w-row
+    - if current_user.admin?
+      = simple_form_for '', url:  move_project_to_channel_admin_projects_path , method: :post do |form|
+        h3.admin-form-title = t('admin.projects.move_projects.title')
+        .w-row
 
         .w-col.w-col-5
             = form.input :name,
               label: t('channels.admin.filter.pg_search') do
               = select_tag "project_id",
-                options_from_collection_for_select(Project.order(:name).draft_and_without_channel, "id", "name"),
+                options_from_collection_for_select(@available_projects_for_switch_channel, :id, :name),
                 class: 'select required w-select text-field',
                 prompt: t('simple_form.prompts.project.select'),
                 required: true,

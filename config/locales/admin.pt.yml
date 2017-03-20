@@ -73,6 +73,10 @@ pt:
     projects:
       move_projects:
         title: 'Mover um projeto para um canal'
+        success: 'O projeto foi movido para o canal com sucesso'
+        failure:
+          not_found: 'Por favor, selecione o projeto e o canal para onde deseja movê-lo'
+          unmovable: 'O projeto não pode ser movido para o canal'
       index:
         with_state: 'Por estado'
         by_category: 'Por categoria'

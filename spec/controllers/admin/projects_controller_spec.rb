@@ -194,18 +194,76 @@ RSpec.describe Admin::ProjectsController, type: :controller do
   end
 
   describe 'POST move_project_to_channel' do
-    let(:project) { create(:project, name: 'project_moved_to_channel') }
-    let(:channel) { create(:channel) }
-    subject       { channel.reload.projects.map(&:name) }
+    let(:project)    { create(:project) }
+    let(:channel)    { create(:channel) }
+    let(:project_id) { project.id }
+    let(:channel_id) { channel.id }
 
-    context 'when there is no project in the channel' do
-      it { is_expected.to be_empty }
+    before do
+      current_user = create(:user, admin: admin, channel_id: channel_id)
+      allow(controller).to receive(:current_user).and_return(current_user)
     end
 
-    context 'when moving a project to the channel' do
-      before { post :move_project_to_channel, { :project_id => project.id, :channel_id => channel.id } }
+    context "when the action finishes" do
+      it "redirects to back" do
+        request.env["HTTP_REFERER"] = "back"
+        post :move_project_to_channel, { project_id: project_id, channel_id: channel_id }
 
-      it { is_expected.to match_array('project_moved_to_channel') }
+        is_expected.to redirect_to("back")
+      end
+    end
+
+    context "when the user is admin" do
+      let(:admin) { true }
+
+      context "when the project is moved to the channel" do
+        it "returns a success message" do
+          allow(MoveProjectToChannel).to receive(:perform).and_return(true)
+          post :move_project_to_channel, { project_id: project_id, channel_id: channel_id }
+
+          expect(flash[:notice]).to eq(I18n.t("admin.projects.move_projects.success"))
+        end
+      end
+
+      context "when the project is not moved to the channel" do
+        it "returns an unmoved message" do
+          allow(MoveProjectToChannel).to receive(:perform).and_return(false)
+          post :move_project_to_channel, { project_id: project_id, channel_id: channel_id }
+
+          expect(flash[:notice]).to eq(I18n.t("admin.projects.move_projects.failure.unmovable"))
+        end
+      end
+    end
+
+    context "when the user is a channel admin only" do
+      let(:admin) { false }
+
+      it "returns an unmoved message" do
+        allow(controller).to receive(:channel) { channel }
+        post :move_project_to_channel, { project_id: project_id, channel_id: channel_id }
+
+        expect(flash[:notice]).to eq(I18n.t("admin.projects.move_projects.failure.unmovable"))
+      end
+    end
+
+    context "when the project id is nil" do
+      let(:admin) { true }
+
+      it "returns project is not found" do
+        post :move_project_to_channel, { project_id: nil, channel_id: channel_id }
+
+        expect(flash[:notice]).to eq(I18n.t("admin.projects.move_projects.failure.not_found"))
+      end
+    end
+
+    context "when the channel id is nil" do
+      let(:admin) { true }
+
+      it "returns channel is not found" do
+        post :move_project_to_channel, { project_id: project_id, channel_id: nil }
+
+        expect(flash[:notice]).to eq(I18n.t("admin.projects.move_projects.failure.not_found"))
+      end
     end
   end
 

@@ -337,28 +337,23 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe ".draft_and_without_channel" do
-    let(:channel) { create(:channel) }
-    subject       { Project.draft_and_without_channel.map(&:name) }
+  describe ".movable_to_channel" do
+    subject { Project.movable_to_channel.map(&:name) }
 
-    context "when project state is 'draft'" do
-      context "and it has no channel" do
-        before { create(:project, :draft, name: 'draft_project') }
+    %i(draft online successful failed in_analysis).each do |state|
+      context "when project state is '#{state}'" do
+        before { create(:project, state, name: "#{state}_project") }
 
-        it { is_expected.to contain_exactly('draft_project') }
-      end
-
-      context "and it has channel" do
-        before { create(:project, :draft, channels: [channel]) }
-
-        it { is_expected.to be_empty }
+        it { is_expected.to contain_exactly("#{state}_project") }
       end
     end
 
-    context "when project state is not 'draft'" do
-      before { create(:project, :online) }
+    %i(rejected waiting_funds deleted).each do |state|
+      context "when project state is '#{state}'" do
+        before { create(:project, state, name: "#{state}_project") }
 
-      it { is_expected.to be_empty }
+        it { is_expected.to be_empty }
+      end
     end
   end
 
@@ -1469,6 +1464,26 @@ RSpec.describe Project, type: :model do
       end
 
       it { is_expected.to be_empty }
+    end
+  end
+
+  describe "#able_to_move_to_channel?" do
+    subject { project.able_to_move_to_channel? }
+
+    %i(draft online successful failed in_analysis).each do |state|
+      context "when project state is '#{state}'" do
+        let(:project) { create(:project, state) }
+
+        it { is_expected.to be_truthy }
+      end
+    end
+
+    %i(rejected waiting_funds deleted).each do |state|
+      context "when project state is '#{state}'" do
+        let(:project) { create(:project, state) }
+
+        it { is_expected.to be_falsey }
+      end
     end
   end
 

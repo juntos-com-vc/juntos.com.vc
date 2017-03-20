@@ -90,7 +90,7 @@ class Project < ActiveRecord::Base
 
   scope :with_project_totals, -> { joins('LEFT OUTER JOIN project_totals ON project_totals.project_id = projects.id') }
   scope :without_pepsico_channel, -> { joins(:channels).where.not('"channels"."permalink" = \'pepsico\'') }
-  scope :draft_and_without_channel, ->{ draft & without_channel }
+  scope :movable_to_channel, -> { with_states([:draft, :online, :successful, :failed, :in_analysis]) }
   scope :by_progress, ->(progress) { joins(:project_total).where("project_totals.pledged >= projects.goal*?", progress.to_i/100.to_f) }
   scope :by_channel, ->(channel_id) { joins(:channels).where("channels.id = ?", channel_id) }
   scope :by_user_email, ->(email) { joins(:user).where("users.email = ?", email) }
@@ -226,6 +226,10 @@ class Project < ActiveRecord::Base
     end
 
     Project.where(permalink: permalinks)
+  end
+
+  def able_to_move_to_channel?
+    draft? || online? || successful? || failed? || in_analysis?
   end
 
   def using_pagarme?
