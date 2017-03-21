@@ -7,6 +7,7 @@ App.addChild('ProjectForm', _.extend({
 
   activate: function(){
     this.setupForm();
+    this.$el.find('#project_permalink').attr('pattern', '[a-zA-Z|-]+');
   }
 
 }, Skull.Form));
