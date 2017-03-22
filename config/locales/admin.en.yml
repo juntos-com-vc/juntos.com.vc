@@ -77,6 +77,10 @@ en:
     projects:
       move_projects:
         title: 'Move a project to a channel'
+        success: 'The project has been successfully moved to the channel'
+        failure:
+          not_found: 'Please, select both the project and the channel to move'
+          unmovable: 'The project cannot be moved to the channel'
       index:
         with_state: 'By state'
         by_category: 'By category'

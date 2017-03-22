@@ -18,7 +18,10 @@ class Admin::ProjectsController < Channels::Admin::BaseController
 
   def index
     respond_to do |format|
-      format.html { collection }
+      format.html do
+        @available_projects_for_switch_channel = Project.movable_to_channel.order(:name) if current_user.admin?
+        @projects = unpaginated_collection.page(params[:page])
+      end
       format.csv do
         self.response_body = Enumerator.new do |y|
           unpaginated_collection.copy_to do |line|
@@ -44,7 +47,18 @@ class Admin::ProjectsController < Channels::Admin::BaseController
   end
 
   def move_project_to_channel
-    MoveProjectToChannel.new(params[:project_id],params[:channel_id]).call
+    project = Project.find(params[:project_id])
+    channel = Channel.find(params[:channel_id])
+
+    if current_user.admin? && MoveProjectToChannel.perform(project, channel)
+      flash[:notice] = I18n.t("admin.projects.move_projects.success")
+    else
+      flash[:notice] = I18n.t("admin.projects.move_projects.failure.unmovable")
+    end
+
+    redirect_to :back
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = I18n.t("admin.projects.move_projects.failure.not_found")
     redirect_to :back
   end
 
