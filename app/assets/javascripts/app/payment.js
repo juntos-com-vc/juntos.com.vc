@@ -2,15 +2,25 @@ App.addChild('Payment', _.extend({
   el: '#payment-engines',
 
   events: {
-    'click .nav-tab' : 'onClickPayment'
+    'click .nav-tab' : 'onClickPayment',
+    'blur #user_document_payment_slip': 'checkUserDocumentErrors',
+  },
+
+  checkUserDocumentErrors: function (e) {
+    e.preventDefault();
+    var $el = $(e.currentTarget);
+    var $btn = this.$el.find('#build_boleto');
+
+    if ($el.hasClass('error')) {
+      $btn.prop('disabled', true);
+    } else {
+      $btn.removeAttr('disabled');
+    }
   },
 
   onClickPayment: function(event){
     this.$('.tab-loader img').show();
     this.onTabClick(event);
-  },
-
-  activate: function(){
   },
 
   show: function(){
@@ -55,6 +65,5 @@ App.addChild('Payment', _.extend({
     }
 
     this.on('selectTab', this.updatePaymentMethod);
-  }
+  },
 }, Skull.Tabs));
-
