@@ -51,7 +51,9 @@ gem 'draper'
 gem 'slim-rails'
 gem 'jquery-rails'
 gem 'jquery-minicolors-rails'
+gem 'jquery-ui-rails'
 gem 'browser'
+gem 'autoprefixer-rails'
 
 # Static pages
 gem 'high_voltage'
@@ -88,6 +90,8 @@ gem 'has_scope', '~> 0.6.0.rc'
 gem 'spectator-validates_email',  require: 'validates_email'
 gem 'video_info', '>= 1.1.1'
 gem 'httparty', '~> 0.6.1' # this version is required by moip gem, otherwise payment confirmation will break
+gem 'enumerize'
+gem 'enum_help'
 
 # Translations
 gem 'http_accept_language'
@@ -162,6 +166,7 @@ group :test do
   gem 'coveralls', require: false
   gem 'selenium-webdriver', '~> 2.51.0'
   gem 'rspec-html-matchers', '~> 0.7.2'
+  gem 'vcr'
 end
 
 source 'https://rails-assets.org' do
@@ -171,6 +176,7 @@ end
 # Rails simple carousel
 gem 'slick_rails'
 gem 'sass-rails', '~> 4.0.0'
+gem 'sass', '3.4.5'
 gem 'coffee-rails', '~> 4.0.0'
 gem "compass-rails"
 gem 'uglifier'

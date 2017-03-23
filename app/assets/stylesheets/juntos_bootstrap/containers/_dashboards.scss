@@ -1,0 +1,31 @@
+.dashboard {
+  position: relative;
+
+  .dashboard-menu {
+    .link {
+      border-bottom: .3px solid $border-strong;
+      color: $trout;
+      display: block;
+      opacity: .6;
+      padding: rem-calc(10);
+    }
+
+    .link:hover,
+    .selected {
+      background-color: $border-strong;
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
+
+  &.user-authorization-documents {
+    background-color: $border-gray;
+    border: .9px solid $border-gray;
+    border-radius: 4px;
+
+    .dashboard-content {
+      background-color: $white;
+      border-left: .9px solid $border-gray;
+    }
+  }
+}

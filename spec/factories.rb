@@ -397,4 +397,112 @@ FactoryGirl.define do
     f.numeric_order 10
     f.image File.open("#{Rails.root}/spec/support/testimg.png")
   end
+
+  factory :plan do |f|
+    sequence(:plan_code) { |n| n }
+    f.name 'Foo Plan'
+    f.amount 30
+    f.payment_methods [:credit_card, :bank_billet]
+
+    trait :invalid_payment_method do
+      payment_methods [:unknown]
+    end
+
+    trait :with_credit_card do
+      payment_methods [:credit_card]
+    end
+
+    trait :with_bank_billet do
+      payment_methods [:bank_billet]
+    end
+
+    trait :inactive do
+      active false
+    end
+  end
+
+  factory :subscription do |f|
+    f.subscription_code { rand(1..100) }
+    f.payment_method :credit_card
+    f.status :paid
+    f.charging_day 5
+    f.donator_cpf '777.777.777-77'
+    f.association :project, factory: :project
+    f.association :plan, factory: :plan
+    f.association :user, factory: :user
+
+    trait :bank_billet_payment do
+      payment_method 'bank_billet'
+    end
+
+    trait :credit_card_payment do
+      payment_method 'credit_card'
+    end
+
+    trait :waiting_for_charging_day do
+      status :waiting_for_charging_day
+    end
+
+    trait :paid do
+      status :paid
+    end
+
+    trait :unpaid do
+      status :unpaid
+    end
+
+    trait :pending_payment do
+      status :pending_payment
+    end
+
+    trait :canceled do
+      status :canceled
+    end
+
+    trait :not_expired do
+      expires_at Date.tomorrow
+    end
+
+    trait :expired do
+      expires_at Date.current
+    end
+  end
+
+  factory :user_authorization_document do
+    expires_at Date.current
+    category :uncategorized
+    association :attachment
+  end
+
+  factory :authorization_document do
+    expires_at Date.current
+    category :uncategorized
+    association :attachment
+  end
+
+  factory :attachment do
+    url 'http://foo.link.com'
+
+    trait :with_empty_url do
+      url ''
+    end
+  end
+
+  factory :transaction do |f|
+    f.transaction_code { rand(1..100) }
+    f.status :processing
+    f.amount 30
+    f.payment_method :credit_card
+    f.association :subscription, factory: :subscription
+  end
+
+  factory :credit_card, class: Hash do |f|
+    f.send(:card_number, '4929234122840114')
+    f.send(:card_holder_name, 'Jose da Silva')
+    f.send(:card_expiration_month, '03')
+    f.send(:card_expiration_year, '18')
+    f.send(:card_cvv, '875')
+
+    initialize_with {attributes.stringify_keys}
+  end
 end

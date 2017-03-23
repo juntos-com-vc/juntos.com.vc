@@ -29,6 +29,14 @@ pt:
         excerpt: 'Você tem alguma empresa que apoia a sua campanha de captação de recursos? Se você tiver, coloque o logo delas aqui! Você pode colocar até 3 logos, que serão exibidos a direita do projeto. Lembre-se: os apoiadores devem ser do seu projeto, não da sua ONG como um todo.'
         hint: 'Recomendamos imagens de 264x75 pixels.'
         link: 'Link do parceiro'
+    plans:
+      select_plans:
+        charging_recurrence: 'Cobrança mensal'
+      dashboard_project_plans:
+        title: 'Quais planos de contribuição estarão disponíveis no seu projeto?'
+        subtitle: 'Selecione quais planos estarão disponíveis aos doadores do seu projeto'
+        submit: 'Adicionar planos'
+        no_plans_available: 'Nenhum plano está disponível'
     dashboard_reward:
       title: 'Crie e edite aqui suas recompensas'
       subtitle: 'Pense bem como você irá entregá-las e coloque tudo isso no orçamento! Entregue suas recompensas, senão a confiabilidade do seu projeto pode ser prejudicada.'
@@ -92,6 +100,7 @@ pt:
     send_to_analysis: 'Obrigado pelo envio do projeto. Em breve a nossa equipe entrará em contato por e-mail.'
     recurring:
       send_to_analysis_error: 'Por favor, insira os dados bancários.'
+      report_waiting_to_be_ready: 'O relatório está sendo gerado. Por favor, recarregue a página em poucos minutos para baixar o relatório.'
     twitter:
       take_a_look: Confira o projeto %{name}
     video_embed:
@@ -114,6 +123,8 @@ pt:
     dashboard_reports:
       all_contributions_without_reward: Baixar relatório de todos os apoiadores
         que não selecionaram uma recompensa
+      link_generate_recurrent_report: Gerar relatório de contribuições recorrentes
+      link_recurrent_report: Baixar relatório de contribuições recorrentes gerado em %{generated_at}
       link_reports_confirmed: Baixar relatório de todos os apoiadores confirmados
       link_reports_waiting_confirmation: Baixar relatório de todos os apoiadores
         com boleto impresso
@@ -128,12 +139,16 @@ pt:
       contributions: doadores
       goal: atingidos de %{total}
     show:
+      no_plans_available: 'Nenhum plano está disponível'
       all_or_nothing: 'Tudo ou Nada por submeta: ao atingir cada submeta abaixo, o proponente garante o repasse do respectivo valor'
       dashboard_nav:
         basics: 'Básico'
         project: 'Projeto'
+        plans: 'Planos'
         rewards: 'Recompensas'
         bank_info: 'Dados bancários'
+        documents: 'Documentos'
+        required_documentation: 'Documentação Requerida'
         subgoals: 'Submetas'
         preview: 'Preview'
         send_to_analysis: 'Enviar projeto para análise'

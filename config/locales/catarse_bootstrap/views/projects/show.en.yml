@@ -29,6 +29,14 @@ en:
         excerpt: 'Do you have any company that supports your fundraising campaign? If you have, put them right here! You can put up to 3 logos that will be displayed to the right side of the project. Remember, supporters must be of your project, not your NGO as a whole.'
         hint: 'We recommend 264x75 pixels images.'
         link: "Partner's link"
+    plans:
+      select_plans:
+        charging_recurrence: 'Monthly charging'
+      dashboard_project_plans:
+        title: 'Which donation plans are available for your project?'
+        subtitle: "Choose the plans that will be available for your project's donators"
+        no_plans_available: 'No plans are available'
+        submit: 'Add plans'
     dashboard_reward:
       title: 'Create and edit you rewards here'
       subtitle: 'Think how you will deliver them and put all this in the budget! Deliver our rewards or the reliability of your project may be impaired.'
@@ -91,6 +99,7 @@ en:
     send_to_analysis: 'Thank you to send this project. Our team will contact you soon.'
     recurring:
       send_to_analysis_error: 'Pease, insert yout bank account info.'
+      report_waiting_to_be_ready: 'The report is being generated. Please, reload the page in few minutes to download it.'
     twitter:
       take_a_look: 'Take a look at %{name}'
     video_embed:
@@ -111,6 +120,8 @@ en:
         warning: 'Every notice goes directly to your donors email. So, review your text before you send it'
     dashboard_reports:
       all_contributions_without_reward: 'Download report from all donors that did not select a reward'
+      link_generate_recurrent_report: 'Generate the recurring contributions report'
+      link_recurrent_report: Download recurring contributions report generated on %{generated_at}
       link_reports_confirmed: 'Download confirmed donors report'
       link_reports_waiting_confirmation: 'Download reports from billet payment'
       link_reward: 'Download report from donors that have chosen the %{value} reward'
@@ -124,12 +135,16 @@ en:
       contributions: 'donors'
       goal: achieved of %{total}
     show:
+      no_plans_available: 'No plans are available'
       all_or_nothing: 'All or nothing: Upon reaching each subject below , the tenderer guarantees the transfer of respective value'
       dashboard_nav:
         basics: 'Basics'
         project: 'Project'
         rewards: 'Rewards'
+        plans: 'Plans'
         bank_info: 'Bank info'
+        documents: 'Documents'
+        required_documentation: 'Required Documentation'
         subgoals: 'Subgoals'
         preview: 'Preview'
         send_to_analysis: 'Send project to analysis'

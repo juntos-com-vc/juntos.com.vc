@@ -49,8 +49,10 @@ Rails.application.routes.draw do
       get :unsubscribe, to: 'categories/subscriptions#destroy'
     end
   end
+  resources :plans, only: :index
   resources :auto_complete_projects, only: [:index]
   resources :projects, only: [:index, :create, :update, :new, :show] do
+    resources :subscriptions, controller: 'projects/subscriptions', only: [:new, :create]
     resources :posts, controller: 'projects/posts', only: [ :index, :create, :destroy ]
     resources :rewards, only: [ :index, :create, :update, :destroy, :new, :edit ] do
       member do
@@ -66,6 +68,9 @@ Rails.application.routes.draw do
     collection do
       get 'video'
     end
+    collection do
+      get 'generate_subscriptions_report'
+    end
     member do
       get :reminder, to: 'projects/reminders#create'
       delete :reminder, to: 'projects/reminders#destroy'
@@ -77,10 +82,11 @@ Rails.application.routes.draw do
       get 'embed_panel'
       get 'send_to_analysis'
       get :cancel_recurring, to: 'projects/recurring_contributions#cancel'
-      patch 'save_recipient', defaults: { format: 'js' }
     end
   end
   resources :users do
+    put :associate_with_project , to: 'users/bank_accounts#update', as: :associate_bank_account_with_project
+    resources :bank_accounts, controller: 'users/bank_accounts', except: [:destroy, :edit, :update]
     resources :projects, controller: 'users/projects', only: [ :index ]
     resources :credit_cards, controller: 'users/credit_cards', only: [ :destroy ]
     member do
@@ -209,7 +215,11 @@ Rails.application.routes.draw do
 
   get '/countries/:country_code/states' => 'countries#states'
 
-  post '/transaction/status/update' => 'pagarme_transactions#update_status'
+  post '/transaction/status/update' => 'transactions#update_status'
+
+  post '/subscription/status/update' => 'projects/subscriptions#update_status'
+
+  post '/subscription/cancel' => 'projects/subscriptions#cancel'
 
   get '/projects/validate/permalink' => 'projects#permalink_valid?'
 end

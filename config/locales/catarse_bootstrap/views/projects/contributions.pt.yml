@@ -1,6 +1,13 @@
 pt:
   projects:
     contributions:
+      link_to_new:
+        recurring:
+          disabled_contributions: 'Contribuições desabilitadas'
+          without_plans: '* Esse projeto não possui nenhum plano de contribuição'
+        contribute_project:
+          submit: 'Apoiar este projeto'
+          donate: 'DOAR'
       warnings:
         project_must_be_online: Doações só podem ser feitas para projetos online.
         project_does_not_accept_contributions: Esse projeto não está disponível para doações pela plataforma.
@@ -41,6 +48,8 @@ pt:
           payment_card_source: 'Cód. Segurança'
           payment_card_source_short: 'CVC'
           payment_card_date: 'Expiração'
+          payment_card_month: 'Mês'
+          payment_card_year: 'Ano (últimos dígitos)'
           payment_card_name: 'Nome impresso no cartão de crédito'
           payment_card_error: 'Verifique o CPF ou CNPJ'
           payment_card_installments: 'Parcelas'

@@ -1,6 +1,13 @@
 en:
   projects:
     contributions:
+      link_to_new:
+        recurring:
+          disabled_contributions: 'Disabled contributions'
+          without_plans: '* This project has no contribution plans associated'
+        contribute_project:
+          submit: 'Support this project'
+          donate: 'DONATE'
       warnings:
         project_must_be_online: Donations only can be made for online projects.
         project_does_not_accept_contributions: This project is not available for online contributions.
@@ -42,6 +49,8 @@ en:
           payment_card_source: Security code
           payment_card_source_short: CVC
           payment_card_date: Expired at
+          payment_card_month: Month (last two digits)
+          payment_card_year: Year (last digits)
           payment_card_name: Name printed in credit card
           payment_card_installments: Installments
           payment_card_error: 'Check the CPF or CNPJ'

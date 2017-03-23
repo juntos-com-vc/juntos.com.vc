@@ -1,0 +1,15 @@
+en:
+  users:
+    bank_accounts:
+      management:
+        notification:
+          no_accounts_registered: "You don't have registered accounts, click on '+' to add a new account."
+        associated_account:
+          title: 'Associated account:'
+          documents: 'Documents:'
+        table:
+          bank: 'Bank'
+          account: 'Account'
+          agency: 'Agency'
+        button:
+          add: 'Add account'

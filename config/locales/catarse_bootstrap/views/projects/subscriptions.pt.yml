@@ -1,0 +1,24 @@
+pt:
+  projects:
+    subscriptions:
+      new:
+        page_title: Apoie o %{name}
+        donation: 'Sua doação'
+        plan_selection: 'Selecione um plano:'
+        personal_information: 'Informações pessoais:'
+        submit: 'Criar assinatura'
+        payment_methods: 'Formas de pagamento:'
+        user_preferences: 'Suas preferências:'
+        form:
+          payment_method:
+            credit_card: 'Cartão de crédito'
+            bank_billet: 'Boleto bancário'
+          card_number: 'Número do cartão:'
+          card_holder_name: 'Nome do titular do cartão:'
+          card_expiration_month: 'Mês de expiração:'
+          card_expiration_year: 'Ano de expiração:'
+          card_expiration_cvv: 'Código de segurança:'
+          cpf: 'CPF'
+          charging_day: 'Qual o melhor dia para realizar sua primeira contribuição?'
+          charging_day_observation: '* Suas contribuições serão realizadas a cada 30 dias (1 mês).'
+          expires_at: 'Por quantos meses você gostaria de doar?'

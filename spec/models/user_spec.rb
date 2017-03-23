@@ -12,11 +12,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '::LEGAL_ENTITY_AUTHORIZATION_DOCUMENTS' do
+    it 'defines a constant' do
+      expect(described_class.const_defined?(:LEGAL_ENTITY_AUTHORIZATION_DOCUMENTS))
+        .to be_truthy
+    end
+  end
+
   describe "associations" do
     it { is_expected.to belong_to(:channel) }
     it { is_expected.to belong_to(:country) }
     it { is_expected.to have_one(:user_total) }
-    it { is_expected.to have_one(:bank_account) }
+    it { is_expected.to have_many(:bank_accounts) }
     it { is_expected.to have_many(:credit_cards) }
     it { is_expected.to have_many(:contributions) }
     it { is_expected.to have_many(:authorizations) }
@@ -29,6 +36,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:category_followers) }
     it { is_expected.to have_many(:categories) }
     it { is_expected.to have_many(:notifications) }
+    it { is_expected.to have_many(:recurring_contributions) }
     it { is_expected.to have_and_belong_to_many(:subscriptions) }
   end
 

@@ -97,6 +97,8 @@ GEM
     auto_html (1.6.4)
       redcarpet (~> 3.1)
       rinku (~> 1.5.0)
+    autoprefixer-rails (6.3.7)
+      execjs
     bcrypt (3.1.7)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
@@ -198,8 +200,12 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     enumerate_it (1.2.8)
       activesupport (>= 3.0.0)
+    enumerize (2.0.1)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.40.0)
@@ -306,6 +312,8 @@ GEM
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
     jwt (0.1.13)
       multi_json (>= 1.5)
@@ -487,7 +495,7 @@ GEM
     ruby-ole (1.2.11.7)
     ruby-progressbar (1.7.5)
     rubyzip (1.1.7)
-    sass (3.4.6)
+    sass (3.4.5)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -581,6 +589,7 @@ GEM
       rails (>= 4.0.0)
       sidekiq
     valuable (0.9.8)
+    vcr (3.0.3)
     video_info (2.3.1)
       addressable
       htmlentities
@@ -599,6 +608,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   auto_html (= 1.6.4)
+  autoprefixer-rails
   best_in_place!
   better_errors
   binding_of_caller
@@ -623,6 +633,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   draper
+  enum_help
+  enumerize
   ezcrypto
   factory_girl_rails
   fakeweb
@@ -643,6 +655,7 @@ DEPENDENCIES
   jasmine-rails
   jquery-minicolors-rails
   jquery-rails
+  jquery-ui-rails
   kaminari
   launchy
   letter_opener
@@ -675,6 +688,7 @@ DEPENDENCIES
   rspec-its
   rspec-rails (~> 3.1)
   s3_direct_upload!
+  sass (= 3.4.5)
   sass-rails (~> 4.0.0)
   schema_plus
   selenium-webdriver (~> 2.51.0)
@@ -694,6 +708,7 @@ DEPENDENCIES
   uglifier
   unicorn
   user_notifier (~> 0.0.5)
+  vcr
   video_info (>= 1.1.1)
   weekdays
 

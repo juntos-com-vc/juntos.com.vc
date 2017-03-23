@@ -1,0 +1,15 @@
+.bold {
+  font-weight: bold;
+}
+
+.font-tiny {
+  font-size: rem-calc($font-tiny);
+}
+
+.font-default {
+  font-size: rem-calc($base-font-size);
+}
+
+.font-medium {
+  font-size: rem-calc($font-medium);
+}

@@ -22,10 +22,6 @@ class ProjectPolicy < ApplicationPolicy
     create?
   end
 
-  def save_recipient?
-    create?
-  end
-
   def edit_partner?
     is_admin?
   end
@@ -67,6 +63,7 @@ class ProjectPolicy < ApplicationPolicy
   def project_nested_attributes
     [
       channel_ids: [],
+      plan_ids: [],
       project_images_attributes: [:original_image_url, :caption, :id, :_destroy],
       project_partners_attributes: [:original_image_url, :link, :id, :_destroy]
     ]

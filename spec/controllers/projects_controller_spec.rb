@@ -301,61 +301,40 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
-  describe 'PATCH save_recipient' do
-    let(:bank_account) {
-      {
-        bank_code: '001',
-        agencia: '0001',
-        conta: '000001',
-        conta_dv: '00',
-        document_number: '111.111.111-11',
-        legal_name: 'Juntos com você API'
-      }
-    }
+  describe "GET generate_subscriptions_report" do
+    let(:channel) { create(:channel, :recurring) }
+    let(:user)    { create(:user) }
+    let(:project) { create(:project, channels: [channel], user: user) }
 
-    context 'when user is not allowed' do
-      it 'should not succeed' do
-        patch :save_recipient, id: project.id, bank_account: bank_account, locale: :pt
-        expect(response).not_to be_success
+    context "when the user is permitted to download the projects report" do
+      let(:subscriptions) { create_list(:subscription, 2, project_id: project.id) }
+      let(:file_path)     { "file_path" }
+
+      before do
+        request.env["HTTP_REFERER"] = "back"
+        allow(controller).to receive(:current_user).and_return(user)
+        allow(Reports::SubscriptionWorker).to receive(:perform_async)
+
+        get :generate_subscriptions_report, project_id: project.id, locale: :pt
       end
+
+      it { expect(Reports::SubscriptionWorker).to have_received(:perform_async) }
+      it { is_expected.to redirect_to("back") }
+      it { expect(flash[:notice]).to eq("O relatório está sendo gerado. Por favor, recarregue a página em poucos minutos para baixar o relatório.") }
     end
 
-    context 'when user is allowed' do
-      let(:current_user){ project.user }
+    context "when the user is unpermitted to download the projects report" do
+      let(:current_user) { create(:user, admin: false) }
 
-      context 'and params are present' do
-        it 'perform a sidekiq job' do
-          allow(HandleProjectRecipientWorker).to receive(:perform_async)
+      before do
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
 
-          patch :save_recipient, format: :js, id: project.id, bank_account: bank_account, locale: :pt
-
-          expect(HandleProjectRecipientWorker).to have_received(:perform_async).once
-        end
+        get :generate_subscriptions_report, project_id: project.id, locale: :pt
       end
 
-      context 'and no params are present' do
-        it 'do not perform a sidekiq job' do
-          allow(HandleProjectRecipientWorker).to receive(:perform_async)
-
-          patch :save_recipient, format: :js, id: project.id, bank_account: {}, locale: :pt
-
-          expect(HandleProjectRecipientWorker).not_to have_received(:perform_async)
-        end
-      end
-
-      context 'and one param is missing' do
-        it 'do not perform a sidekiq job' do
-          allow(HandleProjectRecipientWorker).to receive(:perform_async)
-
-          bank_account.delete(:agencia)
-          patch :save_recipient, format: :js, id: project.id, bank_account: bank_account, locale: :pt
-
-          expect(HandleProjectRecipientWorker).not_to have_received(:perform_async)
-        end
-      end
+      it { expect(response.status).to eq(401) }
     end
   end
-
 
   describe "online_days" do
     context "when has a value greater than 60" do
