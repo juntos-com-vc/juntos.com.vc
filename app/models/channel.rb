@@ -29,6 +29,8 @@ class Channel < ActiveRecord::Base
   delegate :display_facebook, :display_twitter, :display_website,
            :submit_your_project_text, :email_image, to: :decorator
 
+  delegate :name_with_locale, to: :category, allow_nil: true, prefix: true
+
   before_save :check_images_url
   after_commit :process_images_async, on: :update
 
