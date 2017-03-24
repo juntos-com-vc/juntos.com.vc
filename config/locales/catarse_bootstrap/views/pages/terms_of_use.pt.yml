@@ -1,254 +1,288 @@
 pt:
   pages:
     terms_of_use:
-      title: Termos de uso e Política de Privacidade
+      title: "Termos de uso e Política de Privacidade"
       content:
         start: "Bem-vindo ao Juntos.com.vc, serviço oferecido pela Associação Juntos com Você inscrita no CNPJ 15.539.377/0001-90."
-        start_text: 'O acesso ao conteúdo do site http://www.juntos.com.vc (“SITE”) dependerá da sua plena concordância com o Termo de Uso e Política de Privacidade (“TERMO DE USO”) aqui previstos, então a sua leitura e posterior aceitação são indispensáveis.
-        <br>
-O TERMO DE USO tem como objetivo estabelecer os direitos e obrigações aos doadores, entidades ou empreendedores sociais participantes, bem como parceiros fomentadores, e esclarecer qual o tratamento conferido aos dados e informações fornecidos por aqueles que se cadastrarem para acesso a qualquer área do SITE, conforme as regras e informações abaixo previstas: '
-        what_is: 'I. O QUE É A Juntos.com.vc'
-        what_is_text: 'A Juntos.com.vc, é uma plataforma “crowdfunding”, ou seja, um SITE que proporciona a realização colaborativa destinada a financiar projetos sociais de entidades beneficentes ou empreendedores sociais (“ENTIDADES”). Uma maneira inovadora e prática de viabilizar projetos sociais com a colaboração de diversas pessoas.
-<br>
-O SITE permite que as ENTIDADES apresentem projetos e angariem fundos através de doações feitas pelos participantes doadores (“PARTICIPANTES”) através do SITE.
-<br>
-A Juntos.com.vc não cobra nenhum tipo de comissão de nenhum PARTICIPANTE sobre as doações realizadas, exceto as taxas referentes ao sistema contratado para a realização das transações de doações, conforme as previsões contidas neste TERMO DE USO.
-<br>
-Embora não haja cobrança de nenhuma comissão, a Juntos.com,vc é uma associação sem fins lucrativos, que depende também de recursos de terceiros para que possa manter sua plataforma. Assim, o usuário que doar para algum projeto cadastrado no SITE também terá a opção de doar para a Juntos.com.vc, e com isto, colaborar ainda mais para a sustentabilidade da plataforma.'
-        partners_and_sharing: 'II. PARCEIROS ESTRATÉGICOS E COMPARTILHAMENTO DE PLATAFORMA'
-        partners_and_sharing_text: 'A Juntos.com.vc também apóia outros canais de captação de recursos para projetos, através do compartilhamento de sua plataforma, cadastro de usuários e outras funcionalidades, com o que o usuário desde já concorda.
-<br>
-No entanto, é de exclusiva responsabilidade de cada canal parceiro o gerenciamento de suas atividades, incluindo, mas não se limitando, a curadoria dos projetos candidatos, o controle de valores recebidos, e regras de uso da plataforma para seus projetos.'
-        guideline: 'III. UTILIZAÇÃO DA PLATAFORMA'
-        guideline_text: '1. Qualquer pessoa maior de 18 anos pode doar ou divulgar seu projeto através do SITE, sendo expressamente proibida a participação de menores de 18 anos, mesmo que com a prévia autorização dos pais ou responsáveis. Em caso de irregularidade, o SITE poderá cancelar o cadastro desta pessoa e suas eventuais doações ou ações realizadas no SITE
-<br>
-2. Ademais, o PARTICIPANTE é o único responsável pela segurança e controle de sua conta (nome de usuário e senha), que é pessoal e intransferível.
-<br>
-3. O PARTICIPANTE se compromete a manter seus dados sempre atualizados juntos ao SITE, sendo responsável pela veracidade das informações ali dispostas
-<br>
-4. Todos e quaisquer conteúdos enviados pelos usuários são de responsabilidade exclusiva do próprio usuário, não havendo qualquer responsabilidade solidária, subsidiária ou a qualquer título pelo SITE. Sendo assim, o SITE não se responsabiliza por quaisquer danos de qualquer natureza, em decorrência de conteúdos impróprios, ofensivos ou que violem direitos previstos na legislação brasileira
-<br>
-5. Caso haja qualquer suspeita de uso indevido ou não autorizado de sua conta, o usuário deve notificar imediatamente o SITE, pelo e-mail: contato@juntos.com.vc'
-        ngo_guideline: 'IV. REGRAS PARA USO DO SITE POR ENTIDADES E EMPREENDEDORES SOCIAIS'
-        ngo_guideline_text: '1. A entidade sem fins lucrativos ou empreendedores sociais que tenha interesse em candidatar seu projeto junto à plataforma/SITE, deverá candidatar seu respectivo projeto, por meio de seu responsável legal, clicando no link “Enviar seu projeto” do SITE e fornecendo as seguintes informações:
-<br>
-a - Nome da entidade, endereço, telefone, CNPJ e documentação que comprove sua situação de entidade sem fins lucrativos e/ou de empresa social;
-<br>
-b – Nome, RG e CPF do responsável pelo projeto a ser proposto e/ou para empreendedores sociais;
-<br>
-c – Nome, RG e CPF do representante legal da entidade ou empresa social, proponente do projeto;
-<br>
-d – Descrição do projeto que pretende desenvolver, o qual deverá ser necessariamente lícito;
-<br>
-e - Valor pretendido para financiamento do projeto;
-<br>
-f – Prazo que deseja obter o valor total destinado para financiar o projeto, observando o prazo mínimo de 15 (quinze) dias e prazo máximo de 60 (noventa) dias;
-<br>
-g – Indicar eventual reconhecimento aos doadores que financiarem o projeto, ou seja, gratificações que poderá dar ao seu financiador/doador, sendo de sua exclusiva responsabilidade, critério e ônus as formas e condições que eventualmente oferecerá esta
-gratificação;
-<br>
-h – ler na íntegra e aceitar este TERMO DE USO;
-<br>
-i - criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/) ou ao Paypal (https://www.paypal.com/), conforme indicado no Item VI abaixo.
-<br>
-1.1 Caso a entidade indique forma de gratificação aos seus doadores, esta será inteira e diretamente responsável pelo cumprimento da gratificação perante os doadores, não havendo qualquer responsabilidade, direta ou indireta, por parte do SITE.
-<br>
-1.2 A ENTIDADE deverá fornecer recibo de doação para declaração em imposto de renda do doador, caso assim indique.
-<br>
-2. Cada ENTIDADE poderá cadastrar mais de um projeto por CNPJ e/ou CPF, este último, para hipóteses de empreendedor social.'
-        project_selection: 'V. SELEÇÃO DO PROJETO'
-        project_selection_text: '1. Após a proposição do projeto junto ao SITE, a Juntos.com.vc avaliará cada projeto proposto, sendo que esta avaliação poderá ser realizada por diversas etapas ou em apenas uma etapa, conforme as informações que a Juntos.com.vc vier a indicar.
-<br>
-1.1 O objetivo do Juntos.com.vc é possibilitar a promoção de projetos que provoquem impacto positivo na sociedade e nas comunidades. Os projetos deverão obrigatoriamente estar vinculados a uma entidade sem fins lucrativos ou empresa social.
-<br>
-1.2. A aceitação dos projetos é de única e exclusiva decisão da equipe do SITE Juntos.com.vc.
-<br>
-1.3. Não serão aceitos projetos que:
-<br>
-a) prometam retorno financeiro aos doadores, tais como a venda de participações societárias ou de qualquer espécie de valor mobiliário, a promoção de rifas, sorteios e jogos de azar;
-<br>
-b) tenham conteúdo ilegal, imoral, obsceno, racista, ofensivo ou que esteja em desacordo com a moral e os bons costumes ou com a legislação vigente;
-<br>
-c) que descumpram qualquer condição estabelecida nesse TERMO DE USO.
-<br>
-1.4. Caso o projeto esteja de acordo com as condições estabelecidas nesse termo, bem como seja aceito pela equipe da Juntos.com.vc, a entidade responsável ou empreendedor social responsável pelo projeto receberá uma página do projeto no SITE , que
-ficará disponível durante o tempo que o SITE vier a aprovar.
-<br>
-1.5. Os projetos aprovados serão divididos em categorias, classificadas de acordo com a causa da entidade e foco do projeto.
-<br>
-1.6. O SITE poderá solicitar documentação extra para comprovação das informações cadastradas. Caso a entidade tenha agido de má fé, ou se recusou a enviar a documentação requerida, o SITE poderá retirar a sua página do ar, suspendendo seu cadastro para divulgação de seus projetos, o que poderá ocorrer temporariamente ou definitivamente, e devolvendo aos PARTICIPANTES os valores de doações ainda não repassados à ENTIDADE.
-<br>
-1.7 Nem todos os projetos publicados estarão expostos na página principal do SITE, pois a mecânica do SITE visa diversificar os projetos ali dispostos, buscando ao máximo o revezamento de projetos.
-<br>
-1.8. A ENTIDADE declara, por meio deste, ser a legítima detentora dos direitos de propriedade intelectual sobre os projetos que vier a candidatar, nos termos da legislação brasileira, não havendo nenhuma co-autoria ou participação do SITE e/ou doadores e/ou de terceiros não autorizados sobre a criação dos projetos.
-<br>
-1.9. Ademais, a ENTIDADE se responsabiliza por todo o conteúdo submetido ao SITE, tais como relatórios, fotos e vídeos, declarando que detêm os direitos sobre os materiais publicados, incluindo, mas não se limitando, a autorização para o uso de imagem de terceiros (como, por exemplo, autorização das pessoas que aparecem nas fotos que vier a publicar) e direitos autorais (como, por exemplo, os direitos do fotógrafo e do autor que criou um determinado texto).
-<br>
-1.10. Ao publicar ou enviar qualquer material/conteúdo para o SITE, a ENTIDADE automaticamente outorga à Juntos.com.vc uma licença mundial, não onerosa e não exclusiva para que possa publicar, exibir, reproduzir, editar ou de outra forma utilizar/divulgar o conteúdo submetido, em qualquer formato ou mídia, podendo, ainda, autorizar o uso dos materiais por terceiros. No entanto, a ENTIDADE está ciente e assume que, ao vincular seu projeto no SITE, seu projeto estará exposto e, com isso, aumenta o risco de que sua ideia seja plagiada/replicada e desenvolvida por terceiros, sem a devida autorização, não sendo de responsabilidade do SITE o controle desta situação.
-<br>
-1.11. A ENTIDADE reconhece que o SITE não fará controles prévios das opiniões dos internautas quanto ao projeto e/ou ENTIDADE, e que qualquer visitante do SITE terá acesso ao conteúdo de seu projeto e que poderá fazer comentários, curti-lo ou denunciá-lo. Logo, caso a ENTIDADE sinta-se desconfortável com qualquer manifestação de terceiros no SITE, poderá solicitar ao SITE a exclusão imediata do conteúdo, cabendo ao SITE realizar a avaliação sobre aquele pedido.'
-        donation_account: 'VI. CRIAÇÃO DE CONTA-DOAÇÃO PARA O PROJETO'
-        donation_account_text: '1. Durante o cadastro do projeto pela ENTIDADE para sua seleção, a ENTIDADE deverá criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/) ou ao Paypal (https://www.paypal.com/), sistemas que processam todas as transações financeiras do SITE, ou outro sistema que vier a ser indicado pela Juntos.com.vc.
-<br>
-1.1 O SITE não cobra nenhum tipo de comissão de nenhum PARTICIPANTE ou ENTIDADE sobre as doações realizadas, exceto as taxas do MoIP (sistema de pagamentos) que cobra a seguinte comissão para os projetos bem sucedidos: R$0,69 + 2,19% dos pagamentos à vista (Moip, débito online e boleto bancário), ou R$0,69 + 2,99% dos pagamentos feitos com cartão de crédito ou pelo Paypal R$0,15 + 4% fixo independente da forma de pagamento . Esses percentuais poderão ser alterados de tempos em tempos, de acordo com as regras do MoIP/Paypal. A transferência do recurso captado na plataforma para a conta do criador da campanha é de 30 dias após o término da campanha. Para qualquer esclarecimento vide os termos de uso da MoIP/Paypal.
-<br>
-2. Há possibilidade do adiantamento do repasse captado em 2 dias após o término da campanha com uma taxa extra de 3% sobre o valor líquido a ser repassado.
-<br>
-2.1. O proponente da campanha que tiver interesse em receber o valor adiantado deve solicitar à equipe da Juntos.com.vc.
-'
-        getting_updated: 'VII. ACOMPANHAMENTO DOS PROJETOS APROVADOS PELO SITE'
-        getting_updated_text: '1. Após executar o projeto com o valor arrecadado no SITE, a ENTIDADE deverá enviar ao SITE o material respectivo indicando a realização do projeto, tais como textos, fotos e vídeos. Essa atualização é muito importante para que os doadores possam ter
-informações sobre a doação realizada. Caso este material não seja enviado em até 10 dias úteis após a realização do projeto e/ou após solicitação feita pelo SITE, o CNPJ da ENTIDADE será bloqueado no SITE para fins de participação futura.
-<br>
-2. O SITE, muito embora não assuma a responsabilidade pelo conteúdo gerado pelas ENTIDADES, pesquisará sobre a veracidade das informações das mesmas e de seus projetos e, se reserva o direito de retirar do SITE quaisquer projetos publicados, a seu exclusivo critério e sem qualquer ônus.
-<br>
-3. O SITE apenas oferece a estrutura de seu SITE e não participa da concepção dos projetos nele veiculados, nem de sua implementação e realização. Logo, o SITE não garante que os projetos serão executados, nem que os reconhecimentos serão honrados, isentando-se de responsabilidade a respeito, com o que concordam expressamente as entidades criadoras de projetos e os doadores, que devem dirimir eventuais problemas diretamente entre si.'
-        donators_rules: 'VIII. REGRAS DE USO PARA DOADORES'
-        donators_rules_text: '1. Doador é o PARTICIPANTE interessado em financiar projetos de uma ou mais entidades, por meio de contribuições financeiras vinculadas a um ou mais projeto(s) determinado(s) através do SITE Juntos.com.vc.
-<br>
-2. O doador deverá observar as seguintes etapas e obrigações:
-<br>
-a) Cadastrar-se no SITE informando seu nome completo, CPF/ CNPJ, e-mail, endereço completo, e telefone fixo;
-<br>
-b) Ler na íntegra e aceitar este TERMO DE USO;
-<br>
-c ) Escolher o projeto que mais o agrada e que deseja apoiar;
-<br>
-d ) Estipular o valor que deseja doar para o projeto, devendo ainda observar, no momento da doação, se ratifica a opção previamente sinalizada para doação ao próprio SITE e/ou a campanhas específicas;
-<br>
-e ) Escolher, caso desejar, qual reconhecimento deseja receber diretamente da entidade responsável pelo projeto, nos termos das condições estabelecidas pela própria entidade para o projeto selecionado;
-<br>
-f) Preencher seus dados e selecionar a forma de doação que pretende realizar, sendo que esta etapa será gerenciada pela MoIP/Paypal, empresas de pagamentos online(vide termos de uso do MoIP/Paypal);
-<br>
-g) O valor doado irá para uma conta provisória do SITE, e ficará bloqueado até que o projeto da ENTIDADE escolhida atinja ou ultrapasse a meta de valor arrecadado para aquele projeto, quando então a doação será transferida para a conta da ENTIDADE, conforme as regras estabelecidas pela empresa gerenciadora destas contas.
-<br>
-2.1 – O SITE ressalta que as gratificações/ reconhecimentos ofertados pelas ENTIDADES aos doadores de seus projetos são de responsabilidade direta da própria entidade beneficiária desta doação, ciente o doador de que não há qualquer responsabilidade, direta ou indireta, por parte do SITE Juntos.com.vc a esse respeito.
-<br>
-2.2. Os PARTICIPANTES doadores reconhecem que seu nome, marca ou nome fantasia e imagem serão publicadas na página do projeto para o qual contribuiu no SITE, exceto quando optarem pela colaboração anônima.
-<br>
-2.3 O valor arrecadado para um projeto pelo SITE Juntos.com.vc só é transferido para a ENTIDADE e os reconhecimentos oferecidos só serão entregues aos doadores, caso a arrecadação atinja ou supere a meta financeira declarada pela ENTIDADE dentro do prazo pré-estabelecido por ela no momento de cadastro do projeto. Caso isto não ocorra, a entidade não receberá qualquer quantia relativa àquele projeto, os reconhecimentos não serão entregues e o doador recebe de volta o valor de sua doação pela agência MoiP/Paypal ou outra que o SITE vier a indicar.
-<br>
-2.4 Além de todas as informações públicas do SITE, quando um projeto atingir sua meta, a entidade responsável pelo projeto será informada sobre os nomes e e-mails de todos os doadores que aceitaram eventuais gratificações, a fim de acertarem sua entrega.
-<br>
-2.5 O PARTICIPANTE fica desde já ciente de que, caso deseje receber eventual gratificação por parte da ENTIDADE que receber sua doação, o SITE indicará seus dados a esta ENTIDADE, para que a mesma possa gratifica-lo.'
-        donation_card: 'IX. CARTÃO-DOAÇÃO'
-        donation_card_text: '1. Ao doar pelo SITE, o PARTICIPANTE também terá a opção de presentear uma terceira pessoa para que esta escolha o projeto que receberá a quantia doada, através do envio de um cartão-doação. Este cartão-doação conterá um código e data de validade, que deverá ser indicado pelo presenteado no momento de sua escolha de destinação do valor doado a um projeto, para que o SITE possa gerenciar e destinar o valor ao projeto elegido.
-<br>
-2. O PARTICIPANTE doador deverá cumprir com todas as regras previstas acima, exceto no tocante à escolha do projeto contemplado, que será de responsabilidade do presentado.
-<br>
-3. Caso o presenteado não utilize o cartão-doação durante o prazo de validade indicado, o SITE reserva o direito de direcionar o valor doado para qualquer projeto que estiver ativo durante aquele período, a seu exclusivo critério.
-<br>
-X. INFORMAÇÕES DE CONHECIMENTO DA COMUNIDADE EM GERAL E CONTROLE DE CONTEÚDO PELO SITE.
-<br>
-1. Qualquer pessoa que acessar o SITE poderá navegar por todas as páginas sem se cadastrar, exceto na parte restrita às doações e inserção/cadastro de projetos.
-<br>
-2. Os internautas/usuários não cadastrados no SITE poderão curtir projetos e compartilhar em redes sociais, que as ENTIDADES desde já expressamente concordam.
-<br>
-3 - Serão de conhecimento de qualquer pessoa que acesse o SITE as informações públicas disponíveis, como:
-<br>
-a) Na página de projetos (material de apresentação, pedidos e recompensas, número de doadores, valor arrecado em tempo real, dias restantes para finalização da captação de recursos, nome dos doadores não anônimos, doações feita pelos doadores que
-optarem por divulgar essa informação).
-<br>
-b) Na página perfil dos usuários cadastrados (nome, apelido, foto, e projetos publicados, quando o PARTICIPANTE optar por informar os projetos apoiados).
-<br>
-4. Todos os comentários e conteúdos publicados pelos usuários neste SITE são públicos e de divulgação imediata, todavia, serão avaliados por nossa equipe de moderação/monitoração. Assim, nos reservamos o direito de excluir, sem prévio aviso, todos os conteúdos em desconformidade com as políticas aplicáveis pelo SITE, tais como aqueles conteúdos que possuam caráter difamatório, de amaça a terceiros, assédio e/ou bullying, discurso de ódio (com base em raça, etnia, nacionalidade, gênero, deficiência ou qualquer doença), nudez, pornografia ou, ainda, mensagens com intuito comercial e/ou lucrativo ou que não tenha relação com o propósito deste SITE.
-<br>
-4.1. Os comentários ou opiniões expressos nesta página inseridos pelos usuários pertencem exclusivamente a quem os expressou, não sendo a Juntos.com.vc responsável em relação a estes comentários/materiais.
-<br>
-5. O SITE não será, em hipótese alguma, responsável por quaisquer danos decorrentes da interrupção do serviço desta página quando tal indisponibilidade ocorrer por culpa de terceiros, visto que foge ao controle e diligência da Juntos.com.vc.
-<br>
-6. O site Juntos.com.vc também não se responsabiliza por atos de terceiros, como hackers, que logrem êxito em coletar ou utilizar, por quaisquer meios, dados cadastrais e informações disponibilizadas pelo PARTICIPANTE.'
-        personal_infos: 'XI. GERENCIAMENTO DE INFORMAÇÕES PESSOAIS E ENVIO DE E-MAILS'
-        personal_infos_text: '1. Enviamos ao PARTICIPANTE e-mails relativos às suas transações pessoais e anúncios relacionados ao Juntos.com.vc e/ou outros serviços, porém só o fazemos quando autorizado.
-<br>
-1.1 Todas as informações cadastrais dos PARTICIPANTES enviadas para o SITE e/ou para parceiros do SITE que utilizem a mesma plataforma serão mantidas em nosso controle, e somente encaminhadas às ENTIDADES quando autorizado pelo PARTICIPANTE. No entanto, o PARTICIPANTE fica desde já ciente de que, caso deseje receber eventual gratificação por parte da ENTIDADE que receber sua doação, o SITE indicará seus dados a esta ENTIDADE, para que a mesma possa gratifica-lo.
-<br>
-2. O PARTICIPANTE fica ciente que, sempre que fundado em indício de ato ilícito, e solicitadas, por qualquer interessado, informações sobre a propriedade de um registro do usuário no PORTAL, será lícito ao SITE fornecer os dados cadastrais do PARTICIPANTE, a seu exclusivo critério, sem que tal ato constitua qualquer violação de sigilo.
-<br>
-2.1. Para os fins e efeitos do previsto no parágrafo anterior, o PARTICIPANTE concorda e declara, expressamente, que o fornecimento de seus meros dados cadastrais a terceiros não constitui violação de sua intimidade, vida privada, honra e/ou imagem, em virtude da natureza destes dados.
-<br>
-2.2. Para os fins e efeitos do previsto anteriormente, o PARTICIPANTE concorda e declara, expressamente, que, pela natureza dos dados que fornece ao SITE, estes não constituem correspondência, comunicação telegráfica, dados, ou comunicações telefônicas.
-<br>
-3. Reservamos o direito de divulgar suas informações pessoais conforme exigido por lei e quando acreditarmos que a divulgação é necessária para proteger os nossos direitos.
-<br>
-4. Embora o SITE Juntos.com.vc empregue seus melhores esforços para a proteção dos dados do PARTICIPANTE, considerando as características dos sistemas informáticos, e o constante avanço das técnicas de invasão, o SITE NÃO GARANTE A SEGURANÇA ABSOLUTA DE SEUS SISTEMAS, NEM SE RESPONSABILIZA POR ATOS DE TERCEIROS QUE, EVENTUALMENTE, LOGREM ÊXITO EM COLETAR OU UTILIZAR, POR QUAISQUER MEIOS, DADOS E/OU INFORMAÇÕES DISPONIBILIZADAS PELO PARTICIPANTE. Não obstante, caso venha a ser detectada qualquer invasão, a Juntos.com.vc indicará a todos os seus usuários o risco existente, em formato que for mais adequado.'
-        third_part: 'XII. SITES DE TERCEIROS'
-        third_part_text: 'Dentro do SITE, é possível que o PARTICIPANTE encontre links e atalhos que o direcionarão para sites de terceiros. O PARTICIPANTE declara estar ciente que o SITE não tem controle ou ingerência sobre estes sites de terceiros, por não possuírem qualquer ligação com o website Juntos.com.vc, que não tem conhecimento das políticas e regulamentos de privacidade destes sites, que podem ser constantemente alterados, inviabilizando sua verificação prévia pelo website Juntos.com.vc. Assim, constitui obrigação do PARTICIPANTE a verificação dos termos relativos à privacidade destes sites de terceiros, para os quais haja links e atalhos disponíveis no site Juntos.com.vc, quando do acesso a eles.
-Nos termos desta cláusula, o website Juntos.com.vc fica isento de qualquer responsabilidade decorrente de violações da privacidade do PARTICIPANTE pelos sites que eventualmente possuam link a partir do website Juntos.com.vc.'
-        privacy: 'XIII. POLÍTICA DE PRIVACIDADE'
-        privacy_text: 'XIII. POLÍTICA DE PRIVACIDADE
-<br>
-O SITE Juntos.com.vc foi desenvolvido visando assegurar que a privacidade on-line seja respeitada e que as informações pessoais dos PARTICIPANTES sejam devidamente protegidas, sendo a presente política necessária para demonstrar o compromisso e a transparência do site Juntos.com.vc quanto a este importante assunto.
-<br>
-A Juntos.com.vc respeita o direito constitucional à privacidade, intimidade e autodeterminação informativa.
-Conheça a seguir as providências que tomamos para proteger as informações pessoais que os nossos usuários e visitantes poderão compartilhar conosco, assim como as formas de utilização destas informações e, com quem estas poderão ser compartilhadas:
-<br>
-<b>A. INFORMAÇÕES COLETADAS E FUNCIONALIDADES DO SITE Juntos.com.vc</b>
-<br>
-O site Juntos.com.vc foi desenvolvido de maneira a oferecer uma plataforma para captação de recursos exclusivamente para projetos sociais que causem impacto positivo na sociedade. Ao preencher o nosso cadastro, você poderá verificar que algumas informações são obrigatórias e outras, embora opcionais, também são importantes para que a Juntos.com.vc possa lhe oferecer ainda mais facilidades. Poderemos lhe dar uma resposta melhor quando conhecemos mais sobre você. Se possível, preencha todos os itens do formulário. Ressaltamos que nenhuma informação cadastral é coletada sem a sua anuência.
-<br>
-Quando você utiliza o Juntos.com.vc, nos preocupamos em permitir que você tenha acesso às suas informações pessoais, inclusive para proceder com as correções, atualizações necessárias e até mesmo a exclusão das informações que tenham sido compartilhadas conosco. Procure sempre manter o seu cadastro atualizado. Caso verifique algum erro, podemos regularizá-lo(s) após recebermos a sua comunicação a respeito.
-Somente compartilhamos as suas informações disponíveis em nossos cadastros após o seu consentimento prévio, exceto nos casos já previstos acima pelo TERMO DE USO. Seus dados pessoais poderão ser compartilhados com os parceiros estratégicos da Juntos.com.vc como responsáveis por transações financeiras, de quem, exigimos o respeito às nossas orientações específicas, Termos e Condições Gerais e Política de Privacidade. Procuramos sempre empregar melhores esforços no sentido de conseguir a adequada confidencialidade e segurança no processamento dessas informações.
-<br>
-A sua senha para ter acesso às funcionalidades e facilidades oferecidas pela Juntos.com.vc é pessoal e intransferível, como a sua assinatura. Com ela, você terá privacidade e segurança no seu acesso. Não divulgue a sua senha a terceiros sob nenhuma circunstância. Você é o responsável por todos os atos que sejam realizados com o uso do seu login (nome de usuário) e senha pessoal, o que inclui a responsabilidade por prejuízos em decorrência da utilização indevida por terceiros.
-Se por qualquer razão, você desconfiar que alguém possa conhecer a sua senha pessoal, deverá modificá-la imediatamente. Nesse contexto, seguem algumas orientações importantes:
-<br>
-a) sempre crie senhas seguras, sem relação com informações que possam ser facilmente descobertas, como datas de aniversário, casamento, documentos pessoais, números de telefone e números repetitivos ou sequenciais, etc.;
-<br>
-b) prefira a combinação de letras e números para criação de sua senha;
-<br>
-c) troque as suas senhas regularmente;
-<br>
-d) evite deixá-las anotadas. É mais seguro decorá-las.
-<br>
-Procuramos adotar as melhores práticas em segurança de dados para tentar proteger os nossos sistemas e servidores contra acessos não autorizados, divulgação, alteração ou eliminação de dados. Todos os nossos procedimentos para coleta de informações, armazenamento e compartilhamento previamente autorizado são constantemente verificados e analisados, bem como submetidos a verificações de segurança no tráfego de informações em meios eletrônicos. Embora a Juntos.com.vc empregue os seus melhores esforços (considerando a vulnerabilidade dos sistemas informatizados e o constante avanço da tecnologia de invasões) não há como nos responsabilizarmos por atos de terceiros que logrem êxito em coletar ou utilizar, por quaisquer meios, dados cadastrais e informações disponibilizadas pelos usuários em nossos sites, sistemas de informações e tratamento de dados.
-<br>
-A Juntos.com.vc poderá ser obrigada por exigência legal, decisão judicial, determinação de autoridade pública dentro e fora do Brasil, a divulgar suas informações pessoais em casos especiais e previstos pela legislação em vigor. Nós também poderemos divulgar suas informações em caso de venda ou fusão do Juntos.com.vc, podendo submetê-las à política de privacidade diversa. Todavia, caso a finalidade dos dados seja diversa da originária, você será informado, e sua anuência para o tratamento dos dados será requerida.
-<br>
-A Juntos.com.vc poderá utilizar o seu endereço eletrônico (e-mail) para enviar correspondências, materiais promocionais e institucionais. O envio de e-mails pela Juntos.com.vc e/ou por seus parceiros estratégicos deverá ser autorizado previamente por você no momento do cadastro ou da atualização de seus dados.
-<br>
-<b>B. COOKIES, PIXEL TAGS/WEB BEACONS E TECNOLOGIAS SEMELHANTES</b>
-<br>
-O PARTICIPANTE compreende e autoriza que o website Juntos.com.vc utilize artifícios técnicos conhecidos como "cookies", ou semelhantes, para acessar informações sobre a conta do usuário a fim de oferecer um serviço melhor e mais personalizado.
-<br>
-O PARTICIPANTE declara estar ciente que existe a possibilidade de configurar seu navegador para ser avisado, na tela do computador, sobre a recepção dos "cookies", e para impedir a sua instalação no disco rígido. As informações pertinentes a esta configuração estão disponíveis em instruções e manuais do próprio navegador.
-<br>
-Para utilizar os serviços do website Juntos.com.vc não é necessário que o PARTICIPANTE permita a recepção de "cookies" enviados pelo website Juntos.com.vc, sem prejuízo de que, em tal caso, será necessário que o PARTICIPANTE se registre a cada vez que acessar uma área que requeira identificação prévia.
-<br>
-Sempre que a opção que impeça a instalação dos "cookies" não tenha sido ativada, o PARTICIPANTE poderá pesquisar o disco rígido de seu computador, conforme as instruções do próprio navegador, e remover manualmente quaisquer “cookies”.
-<br>
-<b>C. HYPERLINKS E CONEXÕES A OUTROS WEBSITES</b>
-<br>
-O site Juntos.com.vc pode conter hyperlinks ou frames de outros sites, que podem ou não ser nossos parceiros estratégicos. Estes links e frames são disponibilizados buscando, tão-somente, proporcionar mais um benefício para os nossos usuários. É importante destacar que a inclusão destes links e frames não significa que a Juntos.com.vc tenha conhecimento, concorde ou seja responsável por eles ou por seus respectivos conteúdos. Portanto, a Juntos.com.vc não pode ser responsabilizado por eventuais perdas ou danos sofridos em razão da utilização dos referidos links ou frames.
-<br>
-O site Juntos.com.vc procura manter todos os seus sites e hyperlinks com informações atualizadas e corretas, no entanto, não é possível garantir que todos os dados veiculados estejam publicados em nossos sites no exato momento da atualização dos arquivos principais em nossos servidores e sistemas de informação e tratamento de dados.
-<br>
-A Juntos.com.vc igualmente não é responsável pelo conteúdo e direcionamento para os mais variados serviços de terceiros disponíveis para interação com essas mídias, mesmo que por meio de hyperlinks originados a partir do site Juntos.com.vc e e-mails (mensagens eletrônicas) promocionais e/ou de divulgação institucional.
-<br>
-O site Juntos.com.vc também não tem nenhuma responsabilidade pelo conteúdo publicado por seus usuários (ou não) com a utilização dos recursos oferecidos por nosso site, notadamente: opiniões, fotos, vídeos, textos e semelhantes – e nem tem como garantir que os mesmos serão atualizados, corretos e capazes de atender a expectativa dos usuários dos nossos sites e destinatários das nossas mensagens eletrônicas.
-<br>
-<b>D. SEGURANÇA</b>
-<br>
-O SITE Juntos.com.vc sugere algumas orientações para aumentar a segurança e a privacidade dos seus usuários na Internet:
-<br>
-a) Utilize sempre um software antivírus atualizado e de qualidade – com possibilidade de verificar os arquivos de todos os dispositivos que você conectar em seu computador (CD, Pendrive (flashmemory), etc.) – e nos arquivos que você fizer download (carregar/baixar) pela Internet.
-<br>
-b) Sempre faça uso de programas de computador (software) originais e atualizados. Tenha especial atenção e cuidado quando acessar o site do Juntos.com.vc por meio de links contidos em e-mails. Certifique-se de que o hyperlink está realmente apontando para o endereço correto (URL) do nosso site (http://www.juntos.com.vc).
-<br>
-c) Fique atento a e-mails SPAM (mensagens eletrônicas não solicitadas). Estes e-mails aparentam vir de uma fonte segura ou de um amigo, mas na verdade podem ser desenvolvidos para que você faça download de um vírus ou que seja direcionado para um site fraudulento e revele informações confidenciais.
-<br>
-d) Não responda a e-mails que solicitem informações pessoais. Suspeite de qualquer e-mail proveniente de empresas ou pessoas que lhe perguntem senhas, número de identidade ou outras informações de alta sensibilidade.
-<br>
-e) Procure somente abrir e-mails provenientes de fontes conhecidas. Seja especialmente cuidadoso ao abrir e-mails com arquivos anexos e de desconhecidos. Até mesmo amigos podem acidentalmente lhe enviar um e-mail contendo vírus ou programa malicioso.'
-        general_info: 'XIV. DISPOSIÇÕES GERAIS'
-        general_info_text: '1. Todos os textos, imagens, sons e/ou aplicativos exibidos no SITE e que não corresponda aos materiais de propriedade das ENTIDADES são de propriedade da Juntos.com.vc, sendo proibido o seu uso por terceiros, exceto mediante prévia aprovação da Juntos.com.vc. Todos os direitos são reservados e todas as marcas registradas.
-<br>
-2. A utilização deste SITE não gera relação de trabalho, vínculo empregatício, associação, nem sociedade entre os usuários, nem representa transação comercial ou venda de produtos ou serviços.
-<br>
-3. O SITE reserva-se no direito de atualizar o TERMO DE USO a qualquer momento. As informações sobre as atualizações serão enviadas ao endereço de e-mail fornecido ou serão colocadas em local de destaque do site.
-<br>
-4. Este TERMO DE USO será regido, interpretado e executado de acordo com as leis da República Federativa do Brasil, independentemente dos conflitos dessas leis com leis de outros estados ou países, elegendo o Foro da Comarca de São Paulo, Capital, como competente para dirimir todas e quaisquer questões decorrentes deste acordo, com renúncia expressa a qualquer outro, por mais privilegiado ou especial que seja ou venha a ser.'
-        questions: 'XV. DÚVIDAS'
-        general_info_text: 'Caso ainda tenha alguma dúvida, a Juntos.com.vc está a disposição para receber e responder seus comentários e perguntas através do canal de ajuda disponibilizado no site www.juntos.com.vc.
-Você pode entrar em contato pelo e-mail: contato@juntos.com.vc. Teremos um enorme prazer em lhe ajudar a esclarecer quaisquer dúvidas.'
+        start_text: "O acesso ao conteúdo do site http://www.juntos.com.vc (\"SITE\") dependerá da sua plena concordância com o Termo de Uso e Política de Privacidade (\"TERMO DE USO\") aqui previstos, então a sua leitura e posterior aceitação são indispensáveis.
+                    <br><br>
+                    O TERMO DE USO tem como objetivo estabelecer os direitos e obrigações aos doadores, entidades ou empreendedores sociais participantes, bem como parceiros fomentadores, e esclarecer qual o tratamento conferido aos dados e informações fornecidos por aqueles que se cadastrarem para acesso a qualquer área do SITE, conforme as regras e informações abaixo previstas:"
+        what_is: "I. O QUE É A Juntos.com.vc"
+        what_is_text: "A Juntos.com.vc, é uma plataforma \"crowdfunding\", ou seja, um SITE que proporciona a realização colaborativa destinada a financiar projetos sociais de entidades beneficentes ou empreendedores sociais (\"ENTIDADES\"). Uma maneira inovadora e prática de viabilizar projetos sociais com a colaboração de diversas pessoas.
+                      <br><br>
+                      O SITE permite que as ENTIDADES apresentem projetos e angariem fundos através de doações feitas pelos participantes doadores (\"PARTICIPANTES\") através do SITE.
+                      <br><br>
+                      A Juntos.com.vc não cobra nenhum tipo de comissão de nenhum PARTICIPANTE sobre as doações realizadas, exceto as taxas referentes ao sistema contratado para a realização das transações de doações, conforme as previsões contidas neste TERMO DE USO.
+                      <br><br>
+                      Embora não haja cobrança de nenhuma comissão, a Juntos.com,vc é uma associação sem fins lucrativos, que depende também de recursos de terceiros para que possa manter sua plataforma. Assim, o usuário que doar para algum projeto cadastrado no SITE também terá a opção de doar para a Juntos.com.vc, e com isto, colaborar ainda mais para a sustentabilidade da plataforma."
+        partners_and_sharing: "II. PARCEIROS ESTRATÉGICOS E COMPARTILHAMENTO DE PLATAFORMA"
+        partners_and_sharing_text: "A Juntos.com.vc também apóia outros canais de captação de recursos para projetos, através do compartilhamento de sua plataforma, cadastro de usuários e outras funcionalidades, com o que o usuário desde já concorda.
+                                    <br><br>
+                                    No entanto, é de exclusiva responsabilidade de cada canal parceiro o gerenciamento de suas atividades, incluindo, mas não se limitando, a curadoria dos projetos candidatos, o controle de valores recebidos, e regras de uso da plataforma para seus projetos."
+        guideline: "III. UTILIZAÇÃO DA PLATAFORMA"
+        guideline_text: "1. Qualquer pessoa maior de 18 anos pode doar ou divulgar seu projeto através do SITE, sendo expressamente proibida a participação de menores de 18 anos, mesmo que com a prévia autorização dos pais ou responsáveis. Em caso de irregularidade, o SITE poderá cancelar o cadastro desta pessoa e suas eventuais doações ou ações realizadas no SITE
+                        <br><br>
+                        2. Ademais, o PARTICIPANTE é o único responsável pela segurança e controle de sua conta (nome de usuário e senha), que é pessoal e intransferível.
+                        <br><br>
+                        3. O PARTICIPANTE se compromete a manter seus dados sempre atualizados juntos ao SITE, sendo responsável pela veracidade das informações ali dispostas
+                        <br><br>
+                        4. Todos e quaisquer conteúdos enviados pelos usuários são de responsabilidade exclusiva do próprio usuário, não havendo qualquer responsabilidade solidária, subsidiária ou a qualquer título pelo SITE.
+                        <br><br>
+                        Sendo assim, o SITE não se responsabiliza por quaisquer danos de qualquer natureza, em decorrência de conteúdos impróprios, ofensivos ou que violem direitos previstos na legislação brasileira
+                        <br><br>
+                        5. Caso haja qualquer suspeita de uso indevido ou não autorizado de sua conta, o usuário deve notificar imediatamente o SITE, pelo e-mail: contato@juntos.com.vc"
+        ngo_guideline: "IV. REGRAS PARA USO DO SITE POR ENTIDADES E EMPREENDEDORES SOCIAIS"
+        ngo_guideline_text: "1. A entidade sem fins lucrativos ou empreendedores sociais que tenha interesse em candidatar seu projeto junto à plataforma/SITE, deverá candidatar seu respectivo projeto, por meio de seu responsável legal, clicando no link “Enviar seu projeto” do SITE e fornecendo as seguintes informações:
+                            <br><br>
+                            a - Nome da entidade, endereço, telefone, CNPJ e documentação que comprove sua situação de entidade sem fins lucrativos e/ou de empresa social;
+                            <br><br>
+                            b – Nome, RG e CPF do responsável pelo projeto a ser proposto e/ou para empreendedores sociais;
+                            <br><br>
+                            c – Nome, RG e CPF do representante legal da entidade ou empresa social, proponente do projeto;
+                            <br><br>
+                            d – Descrição do projeto que pretende desenvolver, o qual deverá ser necessariamente lícito;
+                            <br><br>
+                            e - Valor pretendido para financiamento do projeto;
+                            <br><br>
+                            f – Prazo que deseja obter o valor total destinado para financiar o projeto, observando o prazo mínimo de 15 (quinze) dias e prazo máximo de 60 (sessenta) dias;
+                            <br><br>
+                            g – Indicar eventual reconhecimento aos doadores que financiarem o projeto, ou seja, gratificações que poderá dar ao seu financiador/doador, sendo de sua exclusiva responsabilidade, critério e ônus as formas e condições que eventualmente oferecerá esta
+                            gratificação;
+                            <br><br>
+                            h – ler na íntegra e aceitar este TERMO DE USO;
+                            <br><br>
+                            i - criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/) e/ou ao Paypal (https://www.paypal.com/), conforme indicado no Item VI abaixo.
+                            <br><br>
+                            1.1 Caso a entidade indique forma de gratificação aos seus doadores, esta será inteira e diretamente responsável pelo cumprimento da gratificação perante os doadores, não havendo qualquer responsabilidade, direta ou indireta, por parte do SITE.
+                            <br><br>
+                            1.2 A ENTIDADE deverá fornecer recibo de doação para declaração em imposto de renda do doador, caso assim indique.
+                            <br><br>
+                            2. Cada ENTIDADE poderá cadastrar mais de um projeto por CNPJ e/ou CPF, este último, para hipóteses de empreendedor social.
+                            <br><br>
+                            3. Canal Recorrente – para uso por entidades sem fins lucrativos que tenha interesse em se candidatar para receber doações recorrentes de sua rede de apoiadores, que deverão estar cadastradas no SITE e já ter fornecido toda a documentação discriminada no item 1, deste tópico, e deverão acrescentar a documentação obrigatória.
+                             <br><br>
+                            a – Cadastro de sua conta bancária para transferência periódica dos valores depositados de forma recorrente pelos apoiadores da instituição;
+                            <br><br>
+                            b – Documento da instituição bancária que comprove que a conta informada pertence a instituição;
+                            <br><br>
+                            c – Carta em papel timbrado, assinada pelo responsável pela entidade com firma reconhecida, atestando que a pessoa indicada é realmente responsável pela movimentação da conta da organização para onde serão transferidas periodicamente as doações
+                            <br><br>
+                            d – Determinar o período de repasses, lembrando que a cada transação é cobrada uma taxa bancária de    R$ 3,47 (três reais e quarenta e sete centavos) 
+                            <br><br>
+                            Caberá a entidade criar seu projeto no SITE, seguindo as orientações e o passo a passo na aba “Recorrente”, para que o mesmo possa ser analisado e aprovado para captação.
+                            <br><br>
+                            A entidade criará os planos de recorrência, com valores pré-determinados e ofertará os períodos sugeridos pelo SITE, (3 meses, 6 meses, 1 ano e/ou indeterminado)
+                            <br><br>
+                            Os doadores poderão escolher qualquer um dos planos que podem ser interrompidos, a qualquer momento e poderão optar por doações via boleto bancário ou cartão de crédito, escolhendo o dia e o período que melhor lhes convierem.
+                            <br><br>
+                            As entidades poderão monitorar em tempo real suas doações e seus doadores, e se comunicar com eles por meio do SITE."
+        project_selection: "V. SELEÇÃO DO PROJETO"
+        project_selection_text: "1. Após a proposição do projeto junto ao SITE, a Juntos.com.vc avaliará cada projeto proposto, sendo que esta avaliação poderá ser realizada por diversas etapas ou em apenas uma etapa, conforme as informações que a Juntos.com.vc vier a indicar.
+                                <br><br>
+                                1.1 O objetivo do Juntos.com.vc é possibilitar a promoção de projetos que provoquem impacto positivo na sociedade e nas comunidades. Os projetos deverão obrigatoriamente estar vinculados a uma entidade sem fins lucrativos ou empresa social.
+                                <br><br>
+                                1.2. A aceitação dos projetos é de única e exclusiva decisão da equipe do SITE Juntos.com.vc.
+                                <br><br>
+                                1.3. Não serão aceitos projetos que:
+                                <br><br>
+                                a) prometam retorno financeiro aos doadores, tais como a venda de participações societárias ou de qualquer espécie de valor mobiliário, a promoção de rifas, sorteios e jogos de azar;
+                                <br><br>
+                                b) tenham conteúdo ilegal, imoral, obsceno, racista, ofensivo ou que esteja em desacordo com a moral e os bons costumes ou com a legislação vigente;
+                                <br><br>
+                                c) que descumpram qualquer condição estabelecida nesse TERMO DE USO.
+                                <br><br>
+                                1.4. Caso o projeto esteja de acordo com as condições estabelecidas nesse termo, bem como seja aceito pela equipe da Juntos.com.vc, a entidade responsável ou empreendedor social responsável pelo projeto receberá uma página do projeto no SITE , que
+                                ficará disponível durante o tempo que o SITE vier a aprovar.
+                                <br><br>
+                                1.5. Os projetos aprovados serão divididos em categorias, classificadas de acordo com a causa da entidade e foco do projeto.
+                                <br><br>
+                                1.6. O SITE poderá solicitar documentação extra para comprovação das informações cadastradas. Caso a entidade tenha agido de má fé, ou se recusou a enviar a documentação requerida, o SITE poderá retirar a sua página do ar, suspendendo seu cadastro para divulgação de seus projetos, o que poderá ocorrer temporariamente ou definitivamente, e devolvendo aos PARTICIPANTES os valores de doações ainda não repassados à ENTIDADE.
+                                <br><br>
+                                1.7 Nem todos os projetos publicados estarão expostos na página principal do SITE, pois a mecânica do SITE visa diversificar os projetos ali dispostos, buscando ao máximo o revezamento de projetos.
+                                <br><br>
+                                1.8. A ENTIDADE declara, por meio deste, ser a legítima detentora dos direitos de propriedade intelectual sobre os projetos que vier a candidatar, nos termos da legislação brasileira, não havendo nenhuma co-autoria ou participação do SITE e/ou doadores e/ou de terceiros não autorizados sobre a criação dos projetos.
+                                <br><br>
+                                1.9. Ademais, a ENTIDADE se responsabiliza por todo o conteúdo submetido ao SITE, tais como relatórios, fotos e vídeos, declarando que detêm os direitos sobre os materiais publicados, incluindo, mas não se limitando, a autorização para o uso de imagem de terceiros (como, por exemplo, autorização das pessoas que aparecem nas fotos que vier a publicar) e direitos autorais (como, por exemplo, os direitos do fotógrafo e do autor que criou um determinado texto).
+                                <br><br>
+                                1.10. Ao publicar ou enviar qualquer material/conteúdo para o SITE, a ENTIDADE automaticamente outorga à Juntos.com.vc uma licença mundial, não onerosa e não exclusiva para que possa publicar, exibir, reproduzir, editar ou de outra forma utilizar/divulgar o conteúdo submetido, em qualquer formato ou mídia, podendo, ainda, autorizar o uso dos materiais por terceiros. No entanto, a ENTIDADE está ciente e assume que, ao vincular seu projeto no SITE, seu projeto estará exposto e, com isso, aumenta o risco de que sua ideia seja plagiada/replicada e desenvolvida por terceiros, sem a devida autorização, não sendo de responsabilidade do SITE o controle desta situação.
+                                <br><br>
+                                1.11. A ENTIDADE reconhece que o SITE não fará controles prévios das opiniões dos internautas quanto ao projeto e/ou ENTIDADE, e que qualquer visitante do SITE terá acesso ao conteúdo de seu projeto e que poderá fazer comentários, curti-lo ou denunciá-lo. Logo, caso a ENTIDADE sinta-se desconfortável com qualquer manifestação de terceiros no SITE, poderá solicitar ao SITE a exclusão imediata do conteúdo, cabendo ao SITE realizar a avaliação sobre aquele pedido."
+        donation_account: "VI. CRIAÇÃO DE CONTA-DOAÇÃO PARA O PROJETO"
+        donation_account_text: "1. Durante o cadastro do projeto pela ENTIDADE para sua seleção, a ENTIDADE deverá criar uma conta denominada de “Conta de Negócios/Profissional”, junto ao MoIP (https://site.moip.com.br/) e/ou ao Paypal (https://www.paypal.com/), sistemas que processam todas as transações financeiras do SITE, ou outro sistema que vier a ser indicado pela Juntos.com.vc.
+                                <br><br>
+                                1.1 O SITE não cobra nenhum tipo de comissão de nenhum PARTICIPANTE ou ENTIDADE sobre as doações realizadas, exceto as taxas das operadoras de sistemas de pagamento:
+                                <br><br>
+                                a) o MOIP (sistema de pagamentos) cobra a seguinte comissão para as doações, que serão descontadas nas transferências dos projetos bem sucedidos:
+                                <br><br>
+                                 - R$0,69 + 2,19% dos pagamentos à vista (MOIP, débito online e boleto bancário),
+                                <br><br>
+                                 - ou R$0,69 + 2,99% dos pagamentos feitos com cartão de crédito
+                                <br><br>
+                                b) o Paypal (sistema de pagamentos) cobra a seguinte comissão para as doações, que serão descontadas nas transferências dos projetos bem sucedidos:
+                                <br><br>
+                                 - R$0,15 + 4% fixo independente da forma de pagamento.
+                                <br><br>
+                                Esses percentuais poderão ser alterados de tempos em tempos, de acordo com as regras do MOIP e/ou do Paypal.
+                                <br><br>
+                                A transferência do recurso captado na plataforma para a conta do criador da campanha bem sucedida é de 30 (trinta) dias após o término da campanha.
+                                <br><br>
+                                Para qualquer esclarecimento vide os termos de uso da MoIP e/ou PayPal diretamente no site das operadoras.
+                                <br><br>
+                                2. Há possibilidade do adiantamento do repasse captado em até 2 (dois) dias após o término da campanha com a cobrança de uma taxa extra de 3% sobre o valor líquido a ser repassado.
+                                <br><br>
+                                2.1. O proponente da campanha que tiver interesse em receber o valor adiantado deve solicitar à equipe da Juntos.com.vc."
+        getting_updated: "VII. ACOMPANHAMENTO DOS PROJETOS APROVADOS PELO SITE"
+        getting_updated_text: "1. Após executar o projeto com o valor arrecadado no SITE, a ENTIDADE deverá enviar ao SITE o material respectivo indicando a realização do projeto, tais como textos, fotos e vídeos. Essa atualização é muito importante para que os doadores possam ter
+                                informações sobre a doação realizada. Caso este material não seja enviado em até 10 dias úteis após a realização do projeto e/ou após solicitação feita pelo SITE, o CNPJ da ENTIDADE será bloqueado no SITE para fins de participação futura.
+                                <br><br>
+                                2. O SITE, muito embora não assuma a responsabilidade pelo conteúdo gerado pelas ENTIDADES, pesquisará sobre a veracidade das informações das mesmas e de seus projetos e, se reserva o direito de retirar do SITE quaisquer projetos publicados, a seu exclusivo critério e sem qualquer ônus.
+                                <br><br>
+                                3. O SITE apenas oferece a sua estrutura e não participa da concepção dos projetos nele veiculados, nem de sua implementação e realização. Logo, o SITE não garante que os projetos serão executados, nem que os reconhecimentos serão honrados, isentando-se de responsabilidade a respeito, com o que concordam expressamente as entidades criadoras de projetos e os doadores, que devem dirimir eventuais problemas diretamente entre si."
+        donators_rules: "VIII. REGRAS DE USO PARA DOADORES"
+        donators_rules_text: "1. Doador é o PARTICIPANTE interessado em financiar projetos de uma ou mais entidades, por meio de contribuições financeiras vinculadas a um ou mais projeto(s) determinado(s) através do SITE Juntos.com.vc.
+                              <br><br>
+                              2. O doador deverá observar as seguintes etapas e obrigações:
+                              <br><br>
+                              a) Cadastrar-se no SITE informando seu nome completo, CPF/ CNPJ, e-mail, endereço completo, e telefone fixo;
+                              <br><br>
+                              b) Ler na íntegra e aceitar este TERMO DE USO;
+                              <br><br>
+                              c ) Escolhe o projeto que mais o agrada e que deseja apoiar;
+                              <br><br>
+                              d ) Estipular o valor que deseja doar para o projeto, devendo ainda observar, no momento da doação, se ratifica a opção previamente sinalizada para doação ao próprio SITE e/ou a campanhas específicas;
+                              <br><br>
+                              e ) Escolher, caso desejar e caso existam e estejam discriminadas, qual reconhecimento (recompensa) deseja receber diretamente da entidade responsável pelo projeto, nos termos das condições estabelecidas pela própria entidade para o projeto selecionado;
+                              <br><br>
+                              f) Preencher seus dados e selecionar a forma de doação que pretende realizar, sendo que esta etapa será gerenciada pelas operadoras de sistemas de pagamento on-line MOIP e/ou PayPal, (vide termos de uso do MOIP e/ou PayPal diretamente no site das operadoras);
+                              <br><br>
+                              g) O valor doado irá para uma conta provisória do SITE, (MOIP e/ou PayPal da Juntos.com.vc) e ficará bloqueado até que o projeto da ENTIDADE escolhida atinja ou ultrapasse a meta de valor arrecadado para aquele projeto, quando então a doação será transferida para a conta da ENTIDADE, conforme as regras estabelecidas pela empresa gerenciadora destas contas.
+                              <br><br>
+                              2.1 – O SITE ressalta que as gratificações/reconhecimentos (recompensas) ofertados pelas ENTIDADES aos doadores de seus projetos são de responsabilidade direta da própria entidade beneficiária desta doação, ciente o doador de que não há qualquer responsabilidade, direta ou indireta, por parte do SITE Juntos.com.vc a esse respeito.
+                              <br><br>
+                              2.2. Os PARTICIPANTES doadores reconhecem que seu nome, marca ou nome fantasia e imagem serão publicadas na página do projeto para o qual contribuiu no SITE, exceto quando optarem pela colaboração anônima.
+                              <br><br>
+                              2.3 O valor arrecadado para um projeto pelo SITE Juntos.com.vc só é transferido para a ENTIDADE e os reconhecimentos oferecidos só serão entregues aos doadores, caso a arrecadação atinja ou supere a meta financeira declarada pela ENTIDADE dentro do prazo pré-estabelecido por ela no momento de cadastro do projeto. Caso isto não ocorra, a entidade não receberá qualquer quantia relativa àquele projeto, os reconhecimentos não serão entregues e o doador recebe de volta o valor de sua doação pelas operadoras MOIP e/ou PayPal ou outra que o SITE vier a indicar.
+                              <br><br>
+                              2.4 Além de todas as informações públicas do SITE, quando um projeto atingir sua meta, a entidade responsável pelo projeto será informada sobre os nomes e dados completos, de todos os doadores que aceitaram eventuais gratificações, a fim de acertarem sua entrega e facilitar o contato direto do proponente com seus apoiadores.
+                              <br><br>
+                              2.5 O PARTICIPANTE fica desde já ciente de que, caso deseje receber eventual gratificação por parte da ENTIDADE que receber sua doação, o SITE indicará seus dados a esta ENTIDADE, para que a mesma possa gratifica-lo."
+        donation_card: "IX. CARTÃO-DOAÇÃO"
+        donation_card_text: "1. Ao doar pelo SITE, o PARTICIPANTE também terá a opção de presentear uma terceira pessoa para que esta escolha o projeto que receberá a quantia doada, através do envio de um cartão-doação. Este cartão-doação conterá um código e data de validade, que deverá ser indicado pelo presenteado no momento de sua escolha de destinação do valor doado a um projeto, para que o SITE possa gerenciar e destinar o valor ao projeto elegido.
+                            <br><br>
+                            2. O PARTICIPANTE doador deverá cumprir com todas as regras previstas acima, exceto no tocante à escolha do projeto contemplado, que será de responsabilidade do presentado.
+                            <br><br>
+                            3. Caso o presenteado não utilize o cartão-doação durante o prazo de validade indicado, o SITE reserva o direito de direcionar o valor doado para qualquer projeto que estiver ativo durante aquele período, a seu exclusivo critério.
+                            <br><br>
+                            X. INFORMAÇÕES DE CONHECIMENTO DA COMUNIDADE EM GERAL E CONTROLE DE CONTEÚDO PELO SITE.
+                            <br><br>
+                            1. Qualquer pessoa que acessar o SITE poderá navegar por todas as páginas sem se cadastrar, exceto na parte restrita às doações e inserção/cadastro de projetos.
+                            <br><br>
+                            2. Os internautas/usuários não cadastrados no SITE poderão curtir projetos e compartilhar em redes sociais, que as ENTIDADES desde já expressamente concordam.
+                            <br><br>
+                            3 - Serão de conhecimento de qualquer pessoa que acesse o SITE as informações públicas disponíveis, como:
+                            <br><br>
+                            a) Na página de projetos (material de apresentação, pedidos e recompensas, número de doadores, valor arrecado em tempo real, dias restantes para finalização da captação de recursos, nome dos doadores não anônimos, doações feita pelos doadores que
+                            optarem por divulgar essa informação).
+                            <br><br>
+                            b) Na página perfil dos usuários cadastrados (nome, apelido, foto, e projetos publicados, quando o PARTICIPANTE optar por informar os projetos apoiados).
+                            <br><br>
+                            4. Todos os comentários e conteúdos publicados pelos usuários neste SITE são públicos e de divulgação imediata, todavia, serão avaliados por nossa equipe de moderação/monitoração. Assim, nos reservamos o direito de excluir, sem prévio aviso, todos os conteúdos em desconformidade com as políticas aplicáveis pelo SITE, tais como aqueles conteúdos que possuam caráter difamatório, de amaça a terceiros, assédio e/ou bullying, discurso de ódio (com base em raça, etnia, nacionalidade, gênero, deficiência ou qualquer doença), nudez, pornografia ou, ainda, mensagens com intuito comercial e/ou lucrativo ou que não tenha relação com o propósito deste SITE.
+                            <br><br>
+                            4.1. Os comentários ou opiniões expressos nesta página inseridos pelos usuários pertencem exclusivamente a quem os expressou, não sendo a Juntos.com.vc responsável em relação a estes comentários/materiais.
+                            <br><br>
+                            5. O SITE não será, em hipótese alguma, responsável por quaisquer danos decorrentes da interrupção do serviço desta página quando tal indisponibilidade ocorrer por culpa de terceiros, visto que foge ao controle e diligência da Juntos.com.vc.
+                            <br><br>
+                            6. O site Juntos.com.vc também não se responsabiliza por atos de terceiros, como hackers, que logrem êxito em coletar ou utilizar, por quaisquer meios, dados cadastrais e informações disponibilizadas pelo PARTICIPANTE."
+        personal_infos: "XI. GERENCIAMENTO DE INFORMAÇÕES PESSOAIS E ENVIO DE E-MAILS"
+        personal_infos_text: "1. Enviamos, automaticamente, ao PARTICIPANTE e-mails relativos às suas transações pessoais e anúncios relacionados ao Juntos.com.vc e/ou outros serviços, porém só o fazemos quando autorizado.
+                              <br><br>
+                              1.1 Todas as informações cadastrais dos PARTICIPANTES enviadas para o SITE e/ou para parceiros do SITE que utilizem a mesma plataforma serão mantidas em nosso controle, e somente encaminhadas às ENTIDADES quando autorizado pelo PARTICIPANTE. No entanto, o PARTICIPANTE fica desde já ciente de que, caso deseje receber eventual gratificação por parte da ENTIDADE que receber sua doação, o SITE indicará seus dados a esta ENTIDADE, para que a mesma possa gratifica-lo.
+                              <br><br>
+                              2. O PARTICIPANTE fica ciente que, sempre que fundado em indício de ato ilícito, e solicitadas, por qualquer interessado, informações sobre a propriedade de um registro do usuário no PORTAL, será lícito ao SITE fornecer os dados cadastrais do PARTICIPANTE, a seu exclusivo critério, sem que tal ato constitua qualquer violação de sigilo.
+                              <br><br>
+                              2.1. Para os fins e efeitos do previsto no parágrafo anterior, o PARTICIPANTE concorda e declara, expressamente, que o fornecimento de seus meros dados cadastrais a terceiros não constitui violação de sua intimidade, vida privada, honra e/ou imagem, em virtude da natureza destes dados.
+                              <br><br>
+                              2.2. Para os fins e efeitos do previsto anteriormente, o PARTICIPANTE concorda e declara, expressamente, que, pela natureza dos dados que fornece ao SITE, estes não constituem correspondência, comunicação telegráfica, dados, ou comunicações telefônicas.
+                              <br><br>
+                              3. Reservamos o direito de divulgar suas informações pessoais conforme exigido por lei e quando acreditarmos que a divulgação é necessária para proteger os nossos direitos.
+                              <br><br>
+                              4. Embora o SITE Juntos.com.vc empregue seus melhores esforços para a proteção dos dados do PARTICIPANTE, considerando as características dos sistemas informáticos, e o constante avanço das técnicas de invasão, o SITE NÃO GARANTE A SEGURANÇA ABSOLUTA DE SEUS SISTEMAS, NEM SE RESPONSABILIZA POR ATOS DE TERCEIROS QUE, EVENTUALMENTE, LOGREM ÊXITO EM COLETAR OU UTILIZAR, POR QUAISQUER MEIOS, DADOS E/OU INFORMAÇÕES DISPONIBILIZADAS PELO PARTICIPANTE. Não obstante, caso venha a ser detectada qualquer invasão, a Juntos.com.vc indicará a todos os seus usuários o risco existente, em formato que for mais adequado."
+        third_part: "XII. SITES DE TERCEIROS"
+        third_part_text: "Dentro do SITE, é possível que o PARTICIPANTE encontre links e atalhos que o direcionarão para sites de terceiros. O PARTICIPANTE declara estar ciente que o SITE não tem controle ou ingerência sobre estes sites de terceiros, por não possuírem qualquer ligação com o website Juntos.com.vc, que não tem conhecimento das políticas e regulamentos de privacidade destes sites, que podem ser constantemente alterados, inviabilizando sua verificação prévia pelo website Juntos.com.vc. Assim, constitui obrigação do PARTICIPANTE a verificação dos termos relativos à privacidade destes sites de terceiros, para os quais haja links e atalhos disponíveis no site Juntos.com.vc, quando do acesso a eles.
+                          Nos termos desta cláusula, o website Juntos.com.vc fica isento de qualquer responsabilidade decorrente de violações da privacidade do PARTICIPANTE pelos sites que eventualmente possuam link a partir do website Juntos.com.vc."
+        privacy: "XIII. POLÍTICA DE PRIVACIDADE"
+        privacy_text: "O SITE Juntos.com.vc foi desenvolvido visando assegurar que a privacidade on-line seja respeitada e que as informações pessoais dos PARTICIPANTES sejam devidamente protegidas, sendo a presente política necessária para demonstrar o compromisso e a transparência do site Juntos.com.vc quanto a este importante assunto.
+                        <br><br>
+                        A Juntos.com.vc respeita o direito constitucional à privacidade, intimidade e autodeterminação informativa.
+                        Conheça a seguir as providências que tomamos para proteger as informações pessoais que os nossos usuários e visitantes poderão compartilhar conosco, assim como as formas de utilização destas informações e, com quem estas poderão ser compartilhadas:
+                        <br><br>
+                        <b>A. INFORMAÇÕES COLETADAS E FUNCIONALIDADES DO SITE Juntos.com.vc</b>
+                        <br><br>
+                        O site Juntos.com.vc foi desenvolvido de maneira a oferecer uma plataforma para captação de recursos exclusivamente para projetos sociais que causem impacto positivo na sociedade. Ao preencher o nosso cadastro, você poderá verificar que algumas informações são obrigatórias e outras, embora opcionais, também são importantes para que a Juntos.com.vc possa lhe oferecer ainda mais facilidades. Poderemos lhe dar uma resposta melhor quando conhecemos mais sobre você. Se possível, preencha todos os itens do formulário. Ressaltamos que nenhuma informação cadastral é coletada sem a sua anuência.
+                        <br><br>
+                        Quando você utiliza o Juntos.com.vc, nos preocupamos em permitir que você tenha acesso às suas informações pessoais, inclusive para proceder com as correções, atualizações necessárias e até mesmo a exclusão das informações que tenham sido compartilhadas conosco. Procure sempre manter o seu cadastro atualizado.
+                        <br><br>
+                        Caso verifique algum erro, podemos regularizá-lo(s) após recebermos a sua comunicação a respeito. Somente compartilhamos as suas informações disponíveis em nossos cadastros após o seu consentimento prévio, exceto nos casos já previstos acima pelo TERMO DE USO.
+                        <br><br>
+                        Seus dados pessoais poderão ser compartilhados com os parceiros estratégicos da Juntos.com.vc como responsáveis por transações financeiras, de quem, exigimos o respeito às nossas orientações específicas, Termos e Condições Gerais e Política de Privacidade. Procuramos sempre empregar melhores esforços no sentido de conseguir a adequada confidencialidade e segurança no processamento dessas informações.
+                        <br><br>
+                        A sua senha para ter acesso às funcionalidades e facilidades oferecidas pela Juntos.com.vc é pessoal e intransferível, como a sua assinatura. Com ela, você terá privacidade e segurança no seu acesso. Não divulgue a sua senha a terceiros sob nenhuma circunstância.
+                        <br><br>
+                        Você é o responsável por todos os atos que sejam realizados com o uso do seu login (nome de usuário) e senha pessoal, o que inclui a responsabilidade por prejuízos em decorrência da utilização indevida por terceiros. Se por qualquer razão, você desconfiar que alguém possa conhecer a sua senha pessoal, deverá modificá-la imediatamente.
+                        <br><br>
+                        Nesse contexto, seguem algumas orientações importantes:
+                        <br><br>
+                        a) sempre crie senhas seguras, sem relação com informações que possam ser facilmente descobertas, como datas de aniversário, casamento, documentos pessoais, números de telefone e números repetitivos ou sequenciais, etc.;
+                        <br><br>
+                        b) prefira a combinação de letras e números para criação de sua senha;
+                        <br><br>
+                        c) troque as suas senhas regularmente;
+                        <br><br>
+                        d) evite deixá-las anotadas. É mais seguro decorá-las.
+                        <br><br>
+                        Procuramos adotar as melhores práticas em segurança de dados para tentar proteger os nossos sistemas e servidores contra acessos não autorizados, divulgação, alteração ou eliminação de dados.
+                        <br><br>
+                        Todos os nossos procedimentos para coleta de informações, armazenamento e compartilhamento previamente autorizado são constantemente verificados e analisados, bem como submetidos a verificações de segurança no tráfego de informações em meios eletrônicos. Embora a Juntos.com.vc empregue os seus melhores esforços (considerando a vulnerabilidade dos sistemas informatizados e o constante avanço da tecnologia de invasões) não há como nos responsabilizarmos por atos de terceiros que logrem êxito em coletar ou utilizar, por quaisquer meios, dados cadastrais e informações disponibilizadas pelos usuários em nossos sites, sistemas de informações e tratamento de dados.
+                        <br><br>
+                        A Juntos.com.vc poderá ser obrigada por exigência legal, decisão judicial, determinação de autoridade pública dentro e fora do Brasil, a divulgar suas informações pessoais em casos especiais e previstos pela legislação em vigor. Nós também poderemos divulgar suas informações em caso de venda ou fusão do Juntos.com.vc, podendo submetê-las à política de privacidade diversa.
+                        <br><br>
+                        Todavia, caso a finalidade dos dados seja diversa da originária, você será informado, e sua anuência para o tratamento dos dados será requerida.
+                        <br><br>
+                        A Juntos.com.vc poderá utilizar o seu endereço eletrônico (e-mail) para enviar correspondências, materiais promocionais e institucionais. O envio de e-mails pela Juntos.com.vc e/ou por seus parceiros estratégicos deverá ser autorizado previamente por você no momento do cadastro ou da atualização de seus dados.
+                        <br><br>
+                        <b>B. COOKIES, PIXEL TAGS/WEB BEACONS E TECNOLOGIAS SEMELHANTES</b>
+                        <br><br>
+                        O PARTICIPANTE compreende e autoriza que o website Juntos.com.vc utilize artifícios técnicos conhecidos como \"cookies\", ou semelhantes, para acessar informações sobre a conta do usuário a fim de oferecer um serviço melhor e mais personalizado.
+                        <br><br>
+                        O PARTICIPANTE declara estar ciente que existe a possibilidade de configurar seu navegador para ser avisado, na tela do computador, sobre a recepção dos \"cookies\", e para impedir a sua instalação no disco rígido. As informações pertinentes as estas configurações estão disponíveis em instruções e manuais do próprio navegador.
+                        <br><br>
+                        Para utilizar os serviços do website Juntos.com.vc não é necessário que o PARTICIPANTE permita a recepção de \"cookies\" enviados pelo website Juntos.com.vc, sem prejuízo de que, em tal caso, será necessário que o PARTICIPANTE se registre a cada vez que acessar uma área que requeira identificação prévia.
+                        <br><br>
+                        Sempre que a opção que impeça a instalação dos \"cookies\" não tenha sido ativada, o PARTICIPANTE poderá pesquisar o disco rígido de seu computador, conforme as instruções do próprio navegador, e remover manualmente quaisquer “cookies”.
+                        <br><br>
+                        <b>C. HYPERLINKS E CONEXÕES A OUTROS WEBSITES</b>
+                        <br><br>
+                        O site Juntos.com.vc pode conter hyperlinks ou frames de outros sites, que podem ou não ser nossos parceiros estratégicos. Estes links e frames são disponibilizados buscando, tão-somente, proporcionar mais um benefício para os nossos usuários. É importante destacar que a inclusão destes links e frames não significa que a Juntos.com.vc tenha conhecimento, concorde ou seja responsável por eles ou por seus respectivos conteúdos. Portanto, a Juntos.com.vc não pode ser responsabilizado por eventuais perdas ou danos sofridos em razão da utilização dos referidos links ou frames.
+                        <br><br>
+                        O site Juntos.com.vc procura manter todos os seus sites e hyperlinks com informações atualizadas e corretas, no entanto, não é possível garantir que todos os dados veiculados estejam publicados em nossos sites no exato momento da atualização dos arquivos principais em nossos servidores e sistemas de informação e tratamento de dados.
+                        <br><br>
+                        A Juntos.com.vc igualmente não é responsável pelo conteúdo e direcionamento para os mais variados serviços de terceiros disponíveis para interação com essas mídias, mesmo que por meio de hyperlinks originados a partir do site Juntos.com.vc e e-mails (mensagens eletrônicas) promocionais e/ou de divulgação institucional.
+                        <br><br>
+                        O site Juntos.com.vc também não tem nenhuma responsabilidade pelo conteúdo publicado por seus usuários (ou não) com a utilização dos recursos oferecidos por nosso site, notadamente: opiniões, fotos, vídeos, textos e semelhantes – e nem tem como garantir que os mesmos serão atualizados, corretos e capazes de atender a expectativa dos usuários dos nossos sites e destinatários das nossas mensagens eletrônicas.
+                        <br><br>
+                        <b>D. SEGURANÇA</b>
+                        <br><br>
+                        O SITE Juntos.com.vc sugere algumas orientações para aumentar a segurança e a privacidade dos seus usuários na Internet:
+                        <br><br>
+                        a) Utilize sempre um software antivírus atualizado e de qualidade – com possibilidade de verificar os arquivos de todos os dispositivos que você conectar em seu computador (CD, Pendrive (flashmemory), etc.) – e nos arquivos que você fizer download (carregar/baixar) pela Internet.
+                        <br><br>
+                        b) Sempre faça uso de programas de computador (software) originais e atualizados. Tenha especial atenção e cuidado quando acessar o site do Juntos.com.vc por meio de links contidos em e-mails. Certifique-se de que o hyperlink está realmente apontando para o endereço correto (URL) do nosso site (http://www.juntos.com.vc).
+                        <br><br>
+                        c) Fique atento a e-mails SPAM (mensagens eletrônicas não solicitadas). Estes e-mails aparentam vir de uma fonte segura ou de um amigo, mas na verdade podem ser desenvolvidos para que você faça download de um vírus ou que seja direcionado para um site fraudulento e revele informações confidenciais.
+                        <br><br>
+                        d) Não responda a e-mails que solicitem informações pessoais. Suspeite de qualquer e-mail proveniente de empresas ou pessoas que lhe perguntem senhas, número de identidade ou outras informações de alta sensibilidade.
+                        <br><br>
+                        e) Procure somente abrir e-mails provenientes de fontes conhecidas. Seja especialmente cuidadoso ao abrir e-mails com arquivos anexos e de desconhecidos. Até mesmo amigos podem acidentalmente lhe enviar um e-mail contendo vírus ou programa malicioso."
+        general_info: "XIV. DISPOSIÇÕES GERAIS"
+        general_info_text: "Caso ainda tenha alguma dúvida, a Juntos.com.vc está a disposição para receber e responder seus comentários e perguntas através do canal de ajuda disponibilizado no site www.juntos.com.vc. Você pode entrar em contato pelo e-mail: contato@juntos.com.vc. Teremos um enorme prazer em lhe ajudar a esclarecer quaisquer dúvidas."
 
