@@ -271,48 +271,31 @@ RSpec.describe UserDecorator do
   describe "#display_pending_documents" do
     subject { user.decorate.display_pending_documents }
 
-    context "when user is legal entity" do
-      let(:user) { create(:user, :legal_entity) }
+    before { sign_in user }
 
-      it { is_expected.to be_nil }
+    context "when the user is a legal entity" do
+      let(:user) { build(:user, :legal_entity) }
+
+      context "and does not have pending documents" do
+        before { allow(user).to receive(:pending_documents?).and_return(false) }
+
+        it { is_expected.to be_nil }
+      end
+
+      context "and has pending documents" do
+        before { allow(user).to receive(:pending_documents?).and_return(true) }
+
+        it "returns a div tag with a warning message" do
+          expect(subject)
+            .to have_tag(:div, text: I18n.t('user_documents_html', scope: 'projects.show'))
+        end
+      end
     end
 
-    context "when user is individual" do
-      before { sign_in user }
+    context "when the user is individual" do
+      let(:user) { create(:user, :individual) }
 
-      context "and has no ID document" do
-        let(:user) { create(:user, :without_id_document) }
-
-        it "should be pending documents" do
-          is_expected.to be_kind_of(String)
-        end
-      end
-
-      context "and has no proof of residence" do
-        let(:user) { create(:user, :without_proof_of_residence) }
-
-        it "should be pending documents" do
-          is_expected.to be_kind_of(String)
-        end
-      end
-
-      context "and has ID document" do
-        let(:user) { create(:user, :with_id_document, :without_proof_of_residence) }
-
-        context "but has no proof of residence" do
-          it "should be pending documents" do
-            is_expected.to be_kind_of(String)
-          end
-        end
-
-        context "and has proof of residence" do
-          let(:user) { create(:user, :with_id_document, :with_proof_of_residence) }
-
-          it "should not be pending documents" do
-            is_expected.to be_nil
-          end
-        end
-      end
+      it { is_expected.to be_nil }
     end
   end
 
