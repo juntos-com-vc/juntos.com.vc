@@ -163,7 +163,7 @@ en:
       user_documents_html: >
         You do not have the documentation correct yet. This documentation is required
         for the approval of the project . You can send the necessary documentation
-        <a href="%{url}">here</a>.
+        on the 'Required Documentation' tab.
       contribute_project:
         display_status:
           reached_goal: 'This project will be successful and funded at %{date}'

@@ -229,7 +229,6 @@ nav.project-nav.w-hidden-main.w-hidden-medium
               = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
         - if current_user.present? && current_user == @project.user
           = current_user.display_pending_documents
-          = @project.user.decorate.display_project_not_approved
         - unless (%w(bolsasdazmina marcha2016 toddynho asa paranaue jornaljoca projetooca).include? @project.permalink.downcase) || @project.recurring?
           .u-marginbottom-10.w-hidden-small.w-hidden-tiny.project-style= t('.contribution_style')
       .card.card-user.u-marginbottom-10.w-hidden-small.w-hidden-tiny

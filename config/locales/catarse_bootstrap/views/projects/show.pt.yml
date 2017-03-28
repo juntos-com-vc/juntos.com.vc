@@ -167,7 +167,7 @@ pt:
       user_documents_html: >
         Você ainda não está com a documentação de sua ONG em dia. Esta documentação
         é necessária para a aprovação do projeto. Você pode enviar a documentação
-        necessária <a href="%{url}">aqui</a>
+        necessária na aba 'Documentação Requerida'.
       contribute_project:
         display_status:
           reached_goal: "Este projeto será bem-sucedido e financiado em %{date}"
