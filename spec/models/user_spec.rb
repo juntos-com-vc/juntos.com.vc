@@ -698,4 +698,42 @@ RSpec.describe User, type: :model do
       it { is_expected.to eq([contribution.user]) }
     end
   end
+
+  describe ".pending_documents?" do
+    subject { user.pending_documents? }
+
+    context "when the user is a legal entity" do
+      let(:user) { build(:user, :legal_entity) }
+
+      context "and all the required documents are present" do
+        let(:user) { create(:user_with_legal_entity_authorization_documents, :legal_entity) }
+
+        context "and all documents are valid" do
+          it { is_expected.to eq false }
+        end
+
+        context "and there is an invalid document" do
+          let(:bylaw_registry_document) do
+            user.authorization_documents.find do |document|
+              document.category == 'bylaw_registry'
+            end
+          end
+
+          before { bylaw_registry_document.attachment = build(:attachment, url: '') }
+
+          it { is_expected.to eq true }
+        end
+      end
+
+      context "and there is a document missing" do
+        it { is_expected.to eq true }
+      end
+    end
+
+    context "when the user is individual" do
+      let(:user) { build(:user, :individual) }
+
+      it { is_expected.to eq false }
+    end
+  end
 end

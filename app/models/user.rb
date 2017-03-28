@@ -213,7 +213,9 @@ class User < ActiveRecord::Base
   end
 
   def pending_documents?
-    individual? && !(original_doc12_url? && original_doc13_url?)
+    return false if individual?
+
+    any_legal_entity_document_missing? || any_invalid_document?
   end
 
   def documents_list
@@ -233,6 +235,20 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def any_legal_entity_document_missing?
+    return true if authorization_documents.empty?
+
+    document_categories = authorization_documents.map do |document|
+      document.category.to_sym
+    end
+
+    (LEGAL_ENTITY_AUTHORIZATION_DOCUMENTS - document_categories).any?
+  end
+
+  def any_invalid_document?
+    authorization_documents.any?(&:invalid_document?)
+  end
 
   def password_required?
     !persisted? || !password || !password_confirmation
