@@ -32,9 +32,50 @@ RSpec.describe Contribution::StateMachineHandler, type: :model do
     end
 
     describe '#confirm' do
-      before { contribution.confirm }
-      it("should switch to confirmed state") { expect(contribution.confirmed?).to eq(true) }
-      it("should fill confirmed_at") { expect(contribution.confirmed_at).not_to be_nil }
+      around do |test_case|
+        Timecop.freeze do
+          test_case.run
+        end
+      end
+
+      before do
+        contribution.confirm
+        contribution.reload
+      end
+
+      context "when the contribution is confirmable" do
+        [:pending,
+         :confirmed,
+         :requested_refund,
+         :waiting_confirmation,
+         :canceled, :deleted].each do |state|
+          let(:contribution) { create(:contribution, state, confirmed_at: nil) }
+
+          it "confirms the contributibution" do
+            expect(contribution).to be_confirmed
+          end
+
+          it "sets the confirmed_at" do
+            expect(contribution.confirmed_at.to_s).to eq(Time.current.to_s)
+          end
+        end
+      end
+
+      context "when the contribution is not confirmable" do
+        [:refunded,
+         :refunded_and_canceled,
+         :invalid_payment].each do |state|
+          let(:contribution) { create(:contribution, state, confirmed_at: nil) }
+
+          it "does not confirm the contributibution" do
+            expect(contribution).not_to be_confirmed
+          end
+
+          it "does not set the confirmed_at" do
+            expect(contribution.confirmed_at).to be_nil
+          end
+        end
+      end
     end
 
     describe "#push_to_trash" do
