@@ -24,21 +24,21 @@ GIT
       nokogiri (>= 1.5.0)
 
 GIT
-  remote: git://github.com/codelandev/catarse_moip.git
-  revision: b99bacd08a250e318bce3079558c55a1dedeb24a
-  specs:
-    catarse_moip (3.0.3)
-      enumerate_it
-      libxml-ruby (~> 2.6.0)
-      rails (~> 4.0)
-
-GIT
   remote: git://github.com/danielweinmann/catarse_juntos_gift_cards.git
   revision: a865ff347c748934c1d872656c7e4984755d6d00
   ref: a865ff347c748934c1d872656c7e4984755d6d00
   specs:
     catarse_juntos_gift_cards (0.0.2)
       rails (~> 4.1.6)
+
+GIT
+  remote: git://github.com/juntos-com-vc/catarse_moip.git
+  revision: b9afd3ec6d80adb1d2d1eb9d75f344c3547948de
+  specs:
+    catarse_moip (3.0.3)
+      enumerate_it
+      libxml-ruby (~> 2.6.0)
+      rails (~> 4.0)
 
 GIT
   remote: git://github.com/waynehoover/s3_direct_upload.git
@@ -202,7 +202,7 @@ GEM
       request_store (~> 1.0)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
-    enumerate_it (1.2.8)
+    enumerate_it (1.4.1)
       activesupport (>= 3.0.0)
     enumerize (2.0.1)
       activesupport (>= 3.2)
@@ -716,4 +716,4 @@ RUBY VERSION
    ruby 2.1.8p440
 
 BUNDLED WITH
-   1.13.6
+   1.14.4
