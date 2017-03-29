@@ -127,7 +127,7 @@ class UserDecorator < Draper::Decorator
   private
 
   def user_documents_div
-    url = h.user_path(h.current_user, anchor: 'settings')
+    text = I18n.t('user_documents_html', scope: 'projects.show')
     css_classes = [
       "fontsize-smaller",
       "fontweight-light",
@@ -136,7 +136,6 @@ class UserDecorator < Draper::Decorator
       "card",
       "card-message"
     ]
-    text = I18n.t('user_documents_html', url: url, scope: 'projects.show')
 
     h.content_tag(:div, text, class: css_classes)
   end

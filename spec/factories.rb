@@ -42,6 +42,17 @@ FactoryGirl.define do
       end
     end
 
+    factory :user_with_legal_entity_authorization_documents do
+      after(:create) do |user|
+        User::LEGAL_ENTITY_AUTHORIZATION_DOCUMENTS.each do |category|
+          user.authorization_documents.build(
+            attributes_for(:user_authorization_document, category: category)
+              .merge({ attachment_attributes: { url: 'http://foo.com' } })
+          )
+        end
+      end
+    end
+
     trait :without_id_document do
       original_doc12_url nil
     end
