@@ -62,7 +62,6 @@ pt:
           payment_errors_security_code: 'Veja o código de segurança do cartão abaixo da tarja magnética'
           payment_errors_expired: 'Qual a data de expiração no cartão?'
           payment_boleto_link: 'Após clicar no botão abaixo, você receberá um link com o boleto para completar o pagamento.'
-          payment_boleto_email: 'Você também receberá um email com esse boleto.'
         installment_with_tax: 'com juros'
         transaction_error: 'Transação recusada, por favor verifique novamente seus dados ou entre em contato com o banco/emissor do cartão para maiores informações.'
         pagarme_warning_html: "A Juntos está em fase de teste de um novo meio de pagamento que facilitará o apoio financeiro e o eventual reembolso dos valores aos apoiadores. Dessa forma, alertamos que poderão ser exigidos dados extras, além daqueles mencionados nos Termos de Uso para apoiar este projeto. Qualquer dúvida ou dificuldade, entre em contato conosco pelo e-mail %{mailto} . Obrigado."
