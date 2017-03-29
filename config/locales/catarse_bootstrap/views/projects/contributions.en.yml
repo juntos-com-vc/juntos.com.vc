@@ -63,7 +63,6 @@ en:
           payment_errors_security_code: lease check the card security code
           payment_errors_expired: What is the expiration date on the card?
           payment_boleto_link: After click on button bellow, you'll receive a link with a billet to complete the payment.
-          payment_boleto_email: You'll also receive a emil with this billet
         installment_with_tax: With tax
         transaction_error: Transaction erros, please check credit card / bank information or contac your credit card issuer for more information.
         pagarme_warning_html: We are testing a new way of payment that will make donations and refound easier. Thus, we can ask for extra data moreover we aready mention in Tems of Use to donate for this project. If you have any questions, contact us %{mailto}. Thank you.
