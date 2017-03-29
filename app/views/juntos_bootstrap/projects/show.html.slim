@@ -106,11 +106,11 @@ nav.project-nav.w-hidden-main.w-hidden-medium
       = link_to '#dashboard_project', id: 'dashboard_project_link', class: 'dashboard-nav-link ' , data: {target: '#dashboard_project'} do
         span.fa.fa-check-circle
           span.u-marginleft-10 = t('.dashboard_nav.project')
-
-      - if @project.recurring?
+      - if current_user.legal_entity? || current_user.admin?
         = link_to '#dashboard_project_documents', id: 'dashboard_project_documents_link', class: 'dashboard-nav-link ' , data: {target: '#project_documentation'} do
           span.fa.fa-check-circle
             span.u-marginleft-10 = t('.dashboard_nav.required_documentation')
+      - if @project.recurring?
         = link_to '#dashboard_project_plans', id: 'dashboard_project_plans_link', class: 'dashboard-nav-link' , data: {target: '#dashboard_project_plans'} do
           span.fa.fa-check-circle
             span.u-marginleft-10 = t('.dashboard_nav.plans')
@@ -161,19 +161,17 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         .w-hidden-small.w-hidden-tiny
           = render 'project_about'
 
-
-
-
       #dashboard_rewards.content.w-hidden
         = render 'dashboard_reward'
       - if @project.recurring?
-        #project_documentation.content.w-hidden
-          = render "dashboard_documents", project_documentation: @project_documentation
         #dashboard_project_plans.content.w-hidden
           = render 'projects/plans/dashboard_project_plans', plans: @plans
-      - if current_user and current_user.admin?
+      - if current_user.try(:admin?)
         #dashboard_subgoals.content.w-hidden
           = render 'dashboard_subgoals'
+      - if current_user.try(:legal_entity?) || current_user.try(:admin?)
+        #project_documentation.content.w-hidden
+          = render 'dashboard_documents', project_documentation: @project_documentation
 
       #project_metrics.content.w-hidden
       - content_for :custom_javascripts do

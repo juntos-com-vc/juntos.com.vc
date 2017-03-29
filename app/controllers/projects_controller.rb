@@ -100,15 +100,13 @@ class ProjectsController < ApplicationController
     @contributions = @project.contributions.available_to_count
     @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
     @color = (channel.present? && channel.main_color) || @project.color
+    @project_documentation = ProjectDocumentationViewObject.new(
+      banks: Bank.order(:code).to_collection,
+      project: @project
+    )
 
     if @project.recurring?
       @plans = Plan.active
-
-      @project_documentation = ProjectDocumentationViewObject.new(
-        banks: Bank.order(:code).to_collection,
-        project: @project
-      )
-
       @last_subscription_report = @project.subscription_reports.try(:last)
     end
   end
