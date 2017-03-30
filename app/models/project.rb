@@ -256,6 +256,8 @@ class Project < ActiveRecord::Base
   end
 
   def pledged
+    return Project::SubscriptionsPledgedValueQuery.call(self) if recurring?
+
     project_total.try(:pledged).to_f
   end
 
