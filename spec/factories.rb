@@ -505,6 +505,34 @@ FactoryGirl.define do
     f.amount 30
     f.payment_method :credit_card
     f.association :subscription, factory: :subscription
+
+    trait :refunded do
+      status :refunded
+    end
+
+    trait :pending_payment do
+      status :pending_payment
+    end
+
+    trait :refused do
+      status :refused
+    end
+
+    trait :processing do
+      status :processing
+    end
+
+    trait :authorized do
+      status :authorized
+    end
+
+    trait :paid do
+      status :paid
+    end
+
+    trait :waiting_payment do
+      status :waiting_payment
+    end
   end
 
   factory :credit_card, class: Hash do |f|

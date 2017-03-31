@@ -1585,34 +1585,44 @@ RSpec.describe Project, type: :model do
   describe "#pledged" do
     subject { project.pledged }
 
-    context "when there are no contributions for the project" do
-      it { is_expected.to be_zero }
+    context "when it is recurring" do
+      before { allow(project).to receive(:recurring?).and_return(true) }
+
+      it "calls the SubscriptionsPledgedValueQuery class" do
+        expect(Project::SubscriptionsPledgedValueQuery)
+          .to receive(:call).with(project).once
+
+          subject
+      end
     end
 
-    context "when there are contributions for the project" do
-      context "and the contribution state is valid for pledged" do
-        before do
-          create(:contribution, :confirmed, project_value: 185, project: project)
-          create(:contribution, :requested_refund, project_value: 15, project: project)
-        end
-
-        it 'expect sum of both contributions' do
-          is_expected.to eq(200)
-        end
+    context "when it is not recurring" do
+      context "when there are not contributions for the project" do
+        it { is_expected.to be_zero }
       end
 
-      context "and the contribution state is invalid for pledged" do
-        before do
-          create(:contribution, :pending, project_value: 100, project: project)
-          create(:contribution, :canceled, project_value: 100, project: project)
-          create(:contribution, :refunded, project_value: 100, project: project)
-          create(:contribution, :deleted, project_value: 100, project: project)
-          create(:contribution, :invalid_payment, project_value: 100, project: project)
-          create(:contribution, :waiting_confirmation, project_value: 100, project: project)
-          create(:contribution, :refunded_and_canceled, project_value: 100, project: project)
+      context "when there are contributions for the project" do
+        context "and the contribution state is valid for pledged" do
+          before do
+            create(:contribution, :confirmed, project_value: 185, project: project)
+            create(:contribution, :requested_refund, project_value: 15, project: project)
+          end
+
+          it 'expect sum of both contributions' do
+            is_expected.to eq(200)
+          end
         end
 
-        it { is_expected.to be_zero }
+        context "and the contribution state is invalid for pledged" do
+          before do
+            [:pending, :canceled, :refunded, :deleted, :invalid_payment,
+             :waiting_confirmation, :refunded_and_canceled].each do |status|
+              create(:contribution, status, project_value: 100, project: project)
+            end
+          end
+
+          it { is_expected.to be_zero }
+        end
       end
     end
   end
