@@ -23,12 +23,41 @@ RSpec.describe Projects::SubscriptionsController, type: :controller do
     let(:project) { create(:project) }
 
     context "when there is a logged user" do
-      let(:current_user) { create(:user) }
+      before do
+        current_user = create(:user)
 
-      it "should instanciate a subscription" do
         sign_in current_user
-        get :new, { locale: :pt, project_id: project.id }.merge(ssl_options)
-        expect(assigns(:subscription)).to be_a_new(Subscription)
+      end
+
+      context "@subscription" do
+        it "instantiates @subscription" do
+          get :new, { locale: :pt, project_id: project.id }.merge(ssl_options)
+
+          expect(assigns(:subscription)).to be_a_new(Subscription)
+        end
+      end
+
+      context "@channel" do
+        context "when the project is in a channel" do
+          let(:channel) { create(:channel, permalink: 'permalink_test') }
+          let(:project) { create(:project, channels: [channel]) }
+
+          it "sets @channel to the project's channel" do
+            get :new, { locale: :pt, project_id: project.id }.merge(ssl_options)
+
+            expect(assigns(:channel).permalink).to eq('permalink_test')
+          end
+        end
+
+        context "when the project is not in a channel" do
+          let(:project) { create(:project, channels: []) }
+
+          it "sets @channel to nil" do
+            get :new, { locale: :pt, project_id: project.id }.merge(ssl_options)
+
+            expect(assigns(:channel)).to be_nil
+          end
+        end
       end
     end
 
