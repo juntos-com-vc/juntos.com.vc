@@ -61,7 +61,7 @@ gem 'high_voltage'
 # Authentication and Authorization
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-facebook', '~> 4.0.0'
 gem 'devise'
 gem 'ezcrypto'
 gem 'pundit'
