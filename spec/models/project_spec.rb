@@ -1936,30 +1936,6 @@ RSpec.describe Project, type: :model do
     end
   end
 
-  describe "#color" do
-    before  { CatarseSettings[:default_color] = '#ff8a41' }
-    subject { project.color }
-
-    context "when a project has a recurring channel" do
-      let(:default_color) { CatarseSettings[:default_color] }
-      let(:channel)       { create :channel, recurring: true }
-      let(:project)       { create :project, channels: [channel] }
-
-      it "should return the default color" do
-        is_expected.to eq(default_color)
-      end
-    end
-
-    context "when a project is not related to a recurring channel" do
-      let(:category) { create :category }
-      let(:project)  { create :project, category: category }
-
-      it "should return the category color" do
-        is_expected.to eq category.color
-      end
-    end
-  end
-
   describe "#notification_type" do
     subject { project.notification_type(:foo) }
 
