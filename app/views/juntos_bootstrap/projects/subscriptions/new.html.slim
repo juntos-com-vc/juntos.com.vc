@@ -14,7 +14,6 @@
         = render partial: 'devise/shared/alert', locals: { resource: @subscription }
     .w-row
       = simple_form_for @subscription, url: project_subscriptions_path(project: @project), html: { id: 'subscription_form', method: :post} do |form|
-        .w-col.w-col-6
         .w-col.w-col-6.w-col-tiny-12.donation.section
           h3 = t('.donation')
           p = t('.plan_selection')
