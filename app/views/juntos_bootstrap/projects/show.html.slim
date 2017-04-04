@@ -180,31 +180,11 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         = javascript_include_tag "//www.google.com/jsapi", "chartkick"
       #project_reports.content.w-hidden
         = render 'dashboard_reports'
-
-
       #project_posts.content.w-col.w-col-8.w-hidden
         = render 'dashboard_posts'
       #project_contributions.content.w-col.w-col-8.w-hidden
-        .w-row
-          .w-hidden-main.w-hidden-medium
-            h1.align-center.total-supporters
-              = "#{@project.total_contributions} #{t('.supporters')}"
-          = render @contributions
-        - if policy(@project).update?
-          .w-row
-            .w-col.w-col-small-6.w-col-tiny-6
-            br/
-            br/
-
-            .w-hidden-small.w-hidden-tiny
-              h1 = t('.pending_contributions')
-            .w-hidden-main.w-hidden-medium
-              h1.align-center.total-supporters = t('.pending_contributions')
-            = render @pending_contributions
-          .divider.u-marginbottom-20
-        .results
-          | &nbsp;
-        #contributions-loading.loader.u-text-center.w-col.w-col-12 = image_tag "loading.gif"
+        = render 'projects/supporters/list', project: @project, supporters: @supporters, contributions: @contributions
+        = render 'projects/contributions/pending', pending_contributions: @pending_contributions if policy(@project).update?
 
       #project_comments.content.w-col.w-col-8.w-hidden
 
