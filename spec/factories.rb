@@ -442,6 +442,20 @@ FactoryGirl.define do
     f.association :plan, factory: :plan
     f.association :user, factory: :user
 
+    factory :subscription_with_paid_transaction do
+      after(:create) do |subscription|
+        create(:transaction, :paid, subscription: subscription)
+      end
+    end
+
+    factory :subscription_without_paid_transactions do
+      after(:create) do |subscription|
+        [:refunded, :pending_payment, :refused, :processing, :waiting_payment, :authorized].each do |status|
+          create(:transaction, status, subscription: subscription)
+        end
+      end
+    end
+
     trait :bank_billet_payment do
       payment_method 'bank_billet'
     end

@@ -105,15 +105,23 @@ class User < ActiveRecord::Base
 
     where.not(id: user_ids)
   end
+
   scope :already_used_credits, -> do
     user_ids = Contribution.credits.confirmed_state.select(:user_id)
 
     has_credits.where(id: user_ids)
   end
+
   scope :has_not_used_credits_last_month, -> do
     user_ids = Contribution.credits.confirmed_state.where("created_at < ?", 1.month.ago).select(:user_id)
 
     has_credits.where(id: user_ids)
+  end
+
+  scope :with_paid_transactions_for_project, -> (project_id) do
+    joins(recurring_contributions: :transactions)
+      .where(subscriptions: { project_id: project_id })
+      .where(transactions: { status: Transaction.statuses[:paid] })
   end
 
   def send_credits_notification

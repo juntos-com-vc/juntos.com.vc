@@ -736,4 +736,27 @@ RSpec.describe User, type: :model do
       it { is_expected.to eq false }
     end
   end
+
+  describe ".with_paid_transactions_for_project" do
+    let(:project) { create(:project) }
+
+    subject { User.with_paid_transactions_for_project(project.id) }
+
+    context "when the project has subscribers" do
+      let(:john) { create(:user) }
+
+      before do
+        create(:subscription_with_paid_transaction, project: project, user: john)
+        create(:subscription_without_paid_transactions, project: project)
+      end
+
+      it "returns only the subscribers with paid transactions" do
+        expect(subject).to contain_exactly john
+      end
+    end
+
+    context "when the project does not have subscribers" do
+      it { is_expected.to be_empty }
+    end
+  end
 end
