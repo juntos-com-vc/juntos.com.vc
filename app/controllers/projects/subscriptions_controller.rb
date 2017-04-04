@@ -11,6 +11,7 @@ class Projects::SubscriptionsController < ApplicationController
 
   def new
     @project = Project.find(params[:project_id]).decorate
+    @channel = @project.channels.first
     @subscription = Subscription.new(user: current_user, project: @project)
     authorize @subscription
   end
