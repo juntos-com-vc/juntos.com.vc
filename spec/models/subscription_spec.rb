@@ -168,4 +168,29 @@ RSpec.describe Subscription, type: :model do
       expect(subject).to contain_exactly subscription_with_paid_transactions
     end
   end
+
+  describe ".current_transaction" do
+    let(:subscription) { create(:subscription) }
+
+    subject { subscription.current_transaction }
+
+    context "when the subscription has transactions" do
+      let!(:transaction) { create(:transaction, subscription: subscription) }
+
+      context "and there is a current transaction" do
+        it "returns the current transaction" do
+          current_transaction = create(:transaction, current: true, subscription: subscription)
+          expect(subject).to eq current_transaction
+        end
+      end
+
+      context "and there is no current transaction" do
+        it { is_expected.to be_nil }
+      end
+    end
+
+    context "when the subscription does not have transactions" do
+      it { is_expected.to be_nil }
+    end
+  end
 end

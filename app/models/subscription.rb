@@ -57,6 +57,10 @@ class Subscription < ActiveRecord::Base
     !canceled?
   end
 
+  def current_transaction
+    transactions.find_by(current: true)
+  end
+
   private
 
   def permitted_payment_methods
