@@ -1,0 +1,9 @@
+.w-row
+  .w-hidden-main.w-hidden-medium
+    h1.align-center.total-supporters
+      = "#{project.total_contributions} #{t('.title')}"
+  - if project.recurring?
+    - supporters.each do |supporter|
+      = render 'projects/supporters/card', supporter: supporter
+  - else
+    = render contributions

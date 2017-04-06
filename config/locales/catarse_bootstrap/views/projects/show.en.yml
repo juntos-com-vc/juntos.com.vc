@@ -1,5 +1,11 @@
 en:
   projects:
+    supporters:
+      list:
+        title: 'Supporters'
+    contributions:
+      pending:
+        title: 'Pending contributions'
     dashboard_project:
       start: 'Tell what you have to say to the world!'
       start_subtitle: 'Use the space below to tell us about your project and why people should get carried away with it and embrace your idea'

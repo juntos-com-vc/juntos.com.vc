@@ -1,0 +1,14 @@
+.w-row
+  .w-col.w-col-small-6.w-col-tiny-6
+  br/
+  br/
+
+  .w-hidden-small.w-hidden-tiny
+    h1 = t('.title')
+  .w-hidden-main.w-hidden-medium
+    h1.align-center.total-supporters = t('.title')
+  = render pending_contributions
+.divider.u-marginbottom-20
+.results
+| &nbsp;
+#contributions-loading.loader.u-text-center.w-col.w-col-12 = image_tag "loading.gif"

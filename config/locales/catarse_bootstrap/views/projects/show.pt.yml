@@ -1,5 +1,11 @@
 pt:
   projects:
+    supporters:
+      list:
+        title: 'Apoiadores'
+    contributions:
+      pending:
+        title: 'Contribuições pendentes'
     dashboard_project:
       start: "Conte o que você tem a dizer para o mundo!"
       start_subtitle: "Use esse espaço abaixo para contar sobre seu projeto e o porquê as pessoas deveriam se empolgar com ele e abraçar sua ideia"

@@ -1630,32 +1630,44 @@ RSpec.describe Project, type: :model do
   describe "#total_contributions" do
     subject { project.total_contributions }
 
-    context "when there are no contributions for the project" do
-      it { is_expected.to be_zero }
+    context "when it is a recurring project" do
+      before { allow(project).to receive(:recurring?).and_return(true) }
+
+      it "counts all users whose have a paid transaction for the project" do
+        expect(User).to receive_message_chain(:with_paid_transactions_for_project, :count)
+
+        subject
+      end
     end
 
-    context "when there are contributions for the project" do
-      context "and the contribution state is valid" do
-        before do
-          create(:contribution, :confirmed, project: project)
-          create(:contribution, :requested_refund, project: project)
-        end
-
-        it { is_expected.to eq(2) }
+    context "when it is not a recurring project" do
+      context "when there are no contributions for the project" do
+        it { is_expected.to be_zero }
       end
 
-      context "and the contribution state is invalid" do
-        before do
-          create(:contribution, :pending, project_value: 100, project: project)
-          create(:contribution, :canceled, project_value: 100, project: project)
-          create(:contribution, :refunded, project_value: 100, project: project)
-          create(:contribution, :deleted, project_value: 100, project: project)
-          create(:contribution, :invalid_payment, project_value: 100, project: project)
-          create(:contribution, :waiting_confirmation, project_value: 100, project: project)
-          create(:contribution, :refunded_and_canceled, project_value: 100, project: project)
+      context "when there are contributions for the project" do
+        context "and the contribution state is valid" do
+          before do
+            create(:contribution, :confirmed, project: project)
+            create(:contribution, :requested_refund, project: project)
+          end
+
+          it { is_expected.to eq(2) }
         end
 
-        it { is_expected.to be_zero }
+        context "and the contribution state is invalid" do
+          before do
+            create(:contribution, :pending, project_value: 100, project: project)
+            create(:contribution, :canceled, project_value: 100, project: project)
+            create(:contribution, :refunded, project_value: 100, project: project)
+            create(:contribution, :deleted, project_value: 100, project: project)
+            create(:contribution, :invalid_payment, project_value: 100, project: project)
+            create(:contribution, :waiting_confirmation, project_value: 100, project: project)
+            create(:contribution, :refunded_and_canceled, project_value: 100, project: project)
+          end
+
+          it { is_expected.to be_zero }
+        end
       end
     end
   end

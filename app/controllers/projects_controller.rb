@@ -97,7 +97,6 @@ class ProjectsController < ApplicationController
     @channel = resource.channels.first
     @posts_count = resource.posts.count(:all)
     @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
-    @contributions = @project.contributions.available_to_count
     @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
     @project_documentation = ProjectDocumentationViewObject.new(
       banks: Bank.order(:code).to_collection,
@@ -107,6 +106,9 @@ class ProjectsController < ApplicationController
     if @project.recurring?
       @plans = Plan.active
       @last_subscription_report = @project.subscription_reports.try(:last)
+      @supporters = User.with_paid_transactions_for_project(@project.id)
+    else
+      @contributions = @project.contributions.available_to_count
     end
   end
 
