@@ -35,10 +35,16 @@ class RecurringContribution::Subscriptions::UpdateJuntos
     transaction = Transaction.new(
       transaction_code: pagarme_subscription.current_transaction.id,
       status:           pagarme_subscription.current_transaction.status,
-      amount:           pagarme_subscription.current_transaction.amount
+      amount:           pagarme_subscription.current_transaction.amount,
+      bank_billet_url:  bank_billet_url,
+      current:          true
     )
 
     juntos_subscription.transactions << transaction
+  end
+
+  def bank_billet_url
+    juntos_subscription.bank_billet? ? pagarme_subscription.current_transaction.boleto_url : ''
   end
 
   def valid_pagarme_subscription?

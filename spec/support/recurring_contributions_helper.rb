@@ -16,11 +16,12 @@ module RecurringContributionsHelper
                    trial_days: trial_days)
   end
 
-  def build_transaction_mock(subscription_id = nil, id: 10)
+  def build_transaction_mock(subscription_id = nil, id: 10, boleto_url: '')
     double("Transaction", id: id,
                           status: 'waiting_payment',
                           amount: '31000',
                           payment_method: 'credit_card',
+                          boleto_url: boleto_url,
                           subscription_id: subscription_id)
 
   end

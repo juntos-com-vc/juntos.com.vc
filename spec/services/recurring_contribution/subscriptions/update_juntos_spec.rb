@@ -4,9 +4,7 @@ RSpec.describe RecurringContribution::Subscriptions::UpdateJuntos do
   describe "#process" do
     let(:pagarme_plan) { build_plan_mock(id: 10) }
     let!(:juntos_plan) { create(:plan, plan_code: pagarme_plan.id) }
-    let(:project) { create(:project) }
-    let(:user) { create(:user) }
-    let(:juntos_subscription) { create(:subscription, plan: juntos_plan, project: project, user: user, payment_method: 'credit_card') }
+    let(:juntos_subscription) { create(:subscription, :credit_card_payment, plan: juntos_plan) }
 
     context "when all the parameters sent are valid" do
       let(:pagarme_subscription) { build_subscription_mock('credit_card', pagarme_plan) }
@@ -22,12 +20,30 @@ RSpec.describe RecurringContribution::Subscriptions::UpdateJuntos do
         end
       end
 
+      context "when the payment method is 'bank_billet'" do
+        let(:juntos_subscription)  { create(:subscription, :bank_billet_payment, plan: juntos_plan) }
+        let(:pagarme_subscription) { build_subscription_mock('boleto', pagarme_plan) }
+        let(:pagarme_transaction)  { build_transaction_mock(boleto_url: 'https://pagar.me') }
+
+        it "saves the bank billet url on the juntos' created transaction" do
+          allow(pagarme_subscription).to receive(:current_transaction).and_return pagarme_transaction
+
+          expect(juntos_created_transaction.bank_billet_url).to eq 'https://pagar.me'
+        end
+      end
+
+      context "when the payment_method is 'credit_card'" do
+        it "keeps the bank_billet_url attribute as nil" do
+          expect(juntos_created_transaction.bank_billet_url).to be_empty
+        end
+      end
+
       it "should update the subscription with a subscription_code equal to pagarme's subscription id" do
         expect(service_response.subscription_code).to eq(pagarme_subscription.id)
       end
 
       it "should create the first transaction for the received juntos' subscription" do
-        expect(juntos_created_transaction).to have_attributes(status: 'waiting_payment', payment_method: 'credit_card')
+        expect(juntos_created_transaction).to have_attributes(status: 'waiting_payment', payment_method: 'credit_card', current: true)
       end
 
       it "should create a transaction model with transaction_code equal to pagarme's transaction id" do
