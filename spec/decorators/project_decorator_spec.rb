@@ -369,4 +369,51 @@ RSpec.describe ProjectDecorator do
       end
     end
   end
+
+  describe "#color" do
+    before { CatarseSettings[:default_color] = '#ff8a41' }
+
+    context "when the project is within a channel" do
+      context "and the channel's main color has value" do
+        let(:project) { create(:project, channels: [channel]) }
+        let(:channel) { create(:channel, main_color: 'main') }
+
+        it "returns the channel's main color" do
+          expect(project.decorate.color).to eq channel.main_color
+        end
+      end
+
+      context "and the channel's main color is empty" do
+        context "when the project has category" do
+          let(:project)  { create(:project, channels: [channel], category: category) }
+          let(:channel)  { create(:channel, :non_recurring, main_color: '') }
+          let(:category) { create(:category, color: 'c_color') }
+
+          it "returns the category's color" do
+            expect(project.decorate.color).to eq category.color
+          end
+        end
+
+        context "when the project does not have category" do
+          let(:project)       { create(:project, channels: [channel], category: nil) }
+          let(:channel)       { create(:channel, :recurring, main_color: '') }
+          let(:default_color) { CatarseSettings[:default_color] }
+
+          it "should return the default color" do
+            expect(project.decorate.color).to eq default_color
+          end
+        end
+      end
+    end
+
+    context "when the project is not in a channel" do
+      let(:project)        { create(:project, channels: [], category: category) }
+      let(:category)       { create(:category, color: category_color) }
+      let(:category_color) { 'c_color' }
+
+      it "returns the category's color" do
+        expect(project.decorate.color).to eq category_color
+      end
+    end
+  end
 end

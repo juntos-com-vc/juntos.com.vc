@@ -136,7 +136,19 @@ class ProjectDecorator < Draper::Decorator
     source.visible? && source.user == current_user
   end
 
+  def color
+    @color ||= channel_color || category_color || CatarseSettings[:default_color]
+  end
+
   private
+
+  def channel_color
+    source.last_channel.try(:main_color).presence
+  end
+
+  def category_color
+    source.category.try(:color)
+  end
 
   def use_uploaded_image(version)
     source.uploaded_image.send(version).url if source.uploaded_image.present?

@@ -99,7 +99,6 @@ class ProjectsController < ApplicationController
     @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
     @contributions = @project.contributions.available_to_count
     @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
-    @color = (channel.present? && channel.main_color) || @project.color
     @project_documentation = ProjectDocumentationViewObject.new(
       banks: Bank.order(:code).to_collection,
       project: @project

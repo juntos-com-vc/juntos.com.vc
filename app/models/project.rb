@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
             :display_image, :display_expires_at, :remaining_text, :time_to_go,
             :display_pledged, :display_goal, :remaining_days, :progress_bar,
             :status_flag, :state_warning_template, :display_card_class,
-            :category_image_url, :display_subgoals, to: :decorator
+            :category_image_url, :display_subgoals, :color, to: :decorator
 
   belongs_to :user
   belongs_to :category
@@ -307,10 +307,6 @@ class Project < ActiveRecord::Base
 
   def recurring?
     channels.one? { |c| c.recurring? }
-  end
-
-  def color
-    recurring? ? CatarseSettings[:default_color] : category.color
   end
 
   def notification_type type
