@@ -5,14 +5,9 @@ class RegistrationsController < Devise::RegistrationsController
     # add session information for tags
     session[:new_user_registration] = true;
 
-    # normal after_sign_up_path_for
     return_to = session[:return_to]
-    if return_to and return_to.include?('contributions')
-      return_to = session[:return_to]
-      session[:return_to] = nil
-      return return_to
-    else
-      return "/#{I18n.locale}/sign_up_success"
-    end
+    session[:return_to] = nil
+
+    return_to || sign_up_success_path
   end
 end
