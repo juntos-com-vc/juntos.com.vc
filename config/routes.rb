@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   resources :plans, only: :index
   resources :auto_complete_projects, only: [:index]
   resources :projects, only: [:index, :create, :update, :new, :show] do
-    resources :subscriptions, controller: 'projects/subscriptions', only: [:new, :create]
+    resources :subscriptions, controller: 'projects/subscriptions', only: [:new, :show, :create]
     resources :posts, controller: 'projects/posts', only: [ :index, :create, :destroy ]
     resources :rewards, only: [ :index, :create, :update, :destroy, :new, :edit ] do
       member do
