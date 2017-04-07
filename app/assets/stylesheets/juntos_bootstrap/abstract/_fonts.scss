@@ -2,6 +2,10 @@
   font-weight: bold;
 }
 
+.font-secondary {
+  color: $box-shadow-color-darken;
+}
+
 .font-tiny {
   font-size: rem-calc($font-tiny);
 }
@@ -12,4 +16,8 @@
 
 .font-medium {
   font-size: rem-calc($font-medium);
+}
+
+.font-big {
+  font-size: rem-calc($font-big);
 }
