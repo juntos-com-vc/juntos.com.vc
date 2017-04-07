@@ -4,8 +4,9 @@ pt:
       show:
         title: 'Doação realizada com sucesso!'
         subtitle_html: Obrigado por contribuir para o projeto %{link}.
-        message: 'Sua assinatura está sendo processada pelo nosso mecanismo de pagamentos(PagarMe), você receberá um e-mail com a confirmação.'
+        message: 'Sua assinatura está sendo processada pelo nosso mecanismo de pagamentos(PagarMe), você receberá um e-mail com a confirmação. Se você optou por doar em outro dia, a cobrança só será feita no dia escolhido.'
         bank_billet: '(Faça o download do boleto bancário)'
+        pending_bank_billet: '(Você receberá o boleto por e-mail no dia de cobrança escolhido).'
       new:
         page_title: Apoie o %{name}
         donation: 'Sua doação'
