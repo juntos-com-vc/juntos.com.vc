@@ -17,13 +17,29 @@ RSpec.describe SubscriptionDecorator do
 
     context "when the subscription has bank_billet as the payment method" do
       let(:subscription) { create(:subscription_with_transaction, :bank_billet_payment) }
+      let(:transaction) { create(:transaction, bank_billet_url: 'http://bankbillet.com', subscription: subscription) }
 
-      it "returns a link tag for the bank billet file" do
-        transaction = create(:transaction, bank_billet_url: 'http://bankbillet.com', subscription: subscription)
+      before do
         allow(subscription).to receive(:current_transaction).and_return transaction
+      end
 
-        expect(subject)
-          .to have_tag(:a, with: { href: transaction.bank_billet_url, class: 'link' })
+      context "and the subscription was charged on the same day of its creation" do
+        it "returns a link tag for the bank billet file" do
+          allow(subscription).to receive(:charge_scheduled_for_today?).and_return true
+
+          expect(subject)
+            .to have_tag(:a, with: { href: transaction.bank_billet_url, class: 'link' })
+        end
+      end
+
+      context "and the subscription was scheduled to be charged on a day different of the day of its creation" do
+        let(:peding_bank_billet_message) { I18n.t('projects.subscriptions.show.pending_bank_billet') }
+        it "returns a message informing that the bank billet is not generated yet" do
+          allow(subscription).to receive(:charge_scheduled_for_today?).and_return false
+
+          expect(subject)
+            .to have_tag(:span, text: peding_bank_billet_message)
+        end
       end
     end
 
