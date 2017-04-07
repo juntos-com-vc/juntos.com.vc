@@ -16,7 +16,7 @@ class Subscription < ActiveRecord::Base
   validates_presence_of :status, :payment_method, :charging_day,
                         :plan_id, :user_id, :project_id
 
-  validates_presence_of :donator_cpf, on: :create
+  validates_presence_of :donator_cpf, on: :create, if: :portuguese_language?
 
   validates_inclusion_of :payment_method, in: 'permitted_payment_methods',
                                           unless: 'plan.nil?'
@@ -65,5 +65,9 @@ class Subscription < ActiveRecord::Base
 
   def permitted_payment_methods
     plan.payment_methods
+  end
+
+  def portuguese_language?
+    I18n.locale.to_s == "pt"
   end
 end
