@@ -57,6 +57,10 @@ class Subscription < ActiveRecord::Base
     !canceled?
   end
 
+  def charge_scheduled_for_today?
+    charging_day == DateTime.current.day
+  end
+
   def current_transaction
     transactions.find_by(current: true)
   end
