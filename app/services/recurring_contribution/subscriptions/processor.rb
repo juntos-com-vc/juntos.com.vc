@@ -39,7 +39,7 @@ class RecurringContribution::Subscriptions::Processor
   end
 
   def charge_scheduled_for_today?
-    (subscription.charging_day == DateTime.current.day) && with_save
+    subscription.charge_scheduled_for_today? && with_save
   end
 
   def subscription_status

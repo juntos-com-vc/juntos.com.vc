@@ -4,8 +4,9 @@ en:
       show:
         title: 'Donation succeed!'
         subtitle_html: Thanks to your donation to the project %{link}.
-        message: "Your subscription has been processing by our payment service(PagarMe), you'll receive an e-mail with the confirmation."
+        message: "Your subscription has been processing by our payment service(PagarMe), you'll receive an e-mail with the confirmation. If you have scheduled your subscription to another day, the charging will be made only on that day."
         bank_billet: '(Download your bank billet)'
+        pending_bank_billet: '(You will receive the link to your bank billet when the charging day chosen by you has been reached).'
       new:
         page_title: 'Support %{name}'
         donation: 'Your donation'

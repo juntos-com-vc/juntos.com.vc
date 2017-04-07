@@ -204,4 +204,25 @@ RSpec.describe Subscription, type: :model do
       it { is_expected.to be_nil }
     end
   end
+
+  describe ".charge_scheduled_for_today?" do
+    let(:base_date) { DateTime.current.change(day: 15) }
+    subject { subscription.charge_scheduled_for_today? }
+
+    context "when the charging day is the same of the current day" do
+      let(:subscription)  { build(:subscription, charging_day: base_date.day) }
+
+      it "returns true" do
+        Timecop.freeze(base_date) do
+          expect(subject).to eq true
+        end
+      end
+    end
+
+    context "when the current day are different of the charging day" do
+      let(:subscription)  { build(:subscription, charging_day: base_date.day + 1) }
+
+      it { is_expected.to eq false }
+    end
+  end
 end
