@@ -442,6 +442,12 @@ FactoryGirl.define do
     f.association :plan, factory: :plan
     f.association :user, factory: :user
 
+    factory :subscription_with_transaction do
+      after(:create) do |subscription|
+        create(:transaction, :current, subscription: subscription)
+      end
+    end
+
     factory :subscription_with_paid_transaction do
       after(:create) do |subscription|
         create(:transaction, :paid, subscription: subscription)
@@ -518,7 +524,12 @@ FactoryGirl.define do
     f.status :processing
     f.amount 30
     f.payment_method :credit_card
+    f.bank_billet_url ''
     f.association :subscription, factory: :subscription
+
+    trait :current do
+      current true
+    end
 
     trait :refunded do
       status :refunded

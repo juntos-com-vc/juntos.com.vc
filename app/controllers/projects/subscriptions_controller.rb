@@ -9,6 +9,12 @@ class Projects::SubscriptionsController < ApplicationController
     render json: { error: 'invalid postback' }, status: :bad_request
   end
 
+  def show
+    subscription = Subscription.find(params[:id])
+    authorize subscription
+    @subscription = subscription.decorate
+  end
+
   def new
     @project = Project.find(params[:project_id]).decorate
     @channel = @project.channels.first
@@ -33,7 +39,7 @@ class Projects::SubscriptionsController < ApplicationController
       redirect_to new_project_subscription_path project_id: params[:project_id]
     else
       flash[:notice] = t('project.subscription.create.success')
-      redirect_to project_path @subscription.project
+      redirect_to project_subscription_path(id: @subscription.id, project_id: @subscription.project.id)
     end
   end
 

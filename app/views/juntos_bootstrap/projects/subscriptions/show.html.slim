@@ -1,0 +1,19 @@
+.w-container
+  .w-row.u-marginbottom-80
+  .w-row.u-marginbottom-20
+    .w-row.u-marginbottom-10
+      .w-col.w-col-12
+        h2.font-big.bold = t('.title')
+    - if @subscription.bank_billet?
+      .w-row.u-marginbottom-10
+        .w-col.w-col-12
+          = @subscription.bank_billet_link
+  .w-row
+    .w-row.u-marginbottom-10
+      .w-col.w-col-12
+        h3 = t('.subtitle_html', link: @subscription.project_profile_link)
+    .w-row
+      .w-col.w-col-12
+        p.font-tiny.font-secondary = t('.message')
+  .w-row.u-marginbottom-80
+  .w-row.u-marginbottom-80

@@ -1,6 +1,11 @@
 pt:
   projects:
     subscriptions:
+      show:
+        title: 'Doação realizada com sucesso!'
+        subtitle_html: Obrigado por contribuir para o projeto %{link}.
+        message: 'Sua assinatura está sendo processada pelo nosso mecanismo de pagamentos(PagarMe), você receberá um e-mail com a confirmação.'
+        bank_billet: '(Faça o download do boleto bancário)'
       new:
         page_title: Apoie o %{name}
         donation: 'Sua doação'

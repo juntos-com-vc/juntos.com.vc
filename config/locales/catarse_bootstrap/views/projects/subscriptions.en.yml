@@ -1,6 +1,11 @@
 en:
   projects:
     subscriptions:
+      show:
+        title: 'Donation succeed!'
+        subtitle_html: Thanks to your donation to the project %{link}.
+        message: "Your subscription has been processing by our payment service(PagarMe), you'll receive an e-mail with the confirmation."
+        bank_billet: '(Download your bank billet)'
       new:
         page_title: 'Support %{name}'
         donation: 'Your donation'

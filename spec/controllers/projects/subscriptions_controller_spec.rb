@@ -106,8 +106,9 @@ RSpec.describe Projects::SubscriptionsController, type: :controller do
           expect(flash[:notice]).to match I18n.t('project.subscription.create.success')
         end
 
-        it "should redirect_to project show page" do
-          expect(response).to redirect_to project_path(project)
+        it "redirects to the created subscription view" do
+          expect(response)
+            .to redirect_to project_subscription_path(id: subscription.id, project_id: project.id)
         end
       end
 
