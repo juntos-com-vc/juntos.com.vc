@@ -126,7 +126,7 @@ en:
         warning: 'Every notice goes directly to your donors email. So, review your text before you send it'
     dashboard_reports:
       all_contributions_without_reward: 'Download report from all donors that did not select a reward'
-      link_generate_recurrent_report: 'Generate the recurring contributions report'
+      link_generate_recurrent_report: 'Click here to generate an updated recurring contributions report'
       link_recurrent_report: Download recurring contributions report generated on %{generated_at}
       link_reports_confirmed: 'Download confirmed donors report'
       link_reports_waiting_confirmation: 'Download reports from billet payment'

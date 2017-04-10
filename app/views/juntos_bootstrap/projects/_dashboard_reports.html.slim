@@ -7,7 +7,7 @@
     .w-row
       - if @project.recurring?
         p.fontsize-base
-          = link_to t('.link_generate_recurrent_report'), generate_subscriptions_report_projects_path(project_id: @project.id)
+          = link_to t('.link_generate_recurrent_report'), generate_subscriptions_report_projects_path(project_id: @project.id), class: 'link default'
         p
           ul
             li.fontsize-base
@@ -103,4 +103,3 @@
                 /a.alt-link href="http://juntoscomvc.uservoice.com/" target="_blank"  Perguntas frequentes
               /li.fontsize-smaller.alt-link.u-marginbottom-10
                 /a.alt-link href="/pt/who-we-are" target="_blank"  Entre em contato com a gente
-
