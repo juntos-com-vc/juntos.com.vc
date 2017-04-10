@@ -262,7 +262,7 @@ class Project < ActiveRecord::Base
   end
 
   def total_contributions
-    return User.with_paid_transactions_for_project(id).count if recurring?
+    return User.with_paid_subscriptions_for_project(id).count if recurring?
 
     project_total.try(:total_contributions).to_i
   end

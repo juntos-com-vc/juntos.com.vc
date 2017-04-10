@@ -106,7 +106,7 @@ class ProjectsController < ApplicationController
     if @project.recurring?
       @plans = Plan.active
       @last_subscription_report = @project.subscription_reports.try(:last)
-      @supporters = User.with_paid_transactions_for_project(@project.id)
+      @supporters = User.with_paid_subscriptions_for_project(@project.id)
     else
       @contributions = @project.contributions.available_to_count
     end

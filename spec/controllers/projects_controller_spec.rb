@@ -254,6 +254,43 @@ RSpec.describe ProjectsController, type: :controller do
       before{ get :show, permalink: project.permalink, project_post_id: project_post.id, locale: :pt }
       it("should assign update to @update"){ expect(assigns(:post)).to eq(project_post) }
     end
+
+    context "@supporters" do
+      let(:project) { create(:project) }
+
+      before do
+        allow_any_instance_of(Project).to receive(:recurring?).and_return(true)
+      end
+
+      context "when there are paid subscriptions for the project" do
+        before do
+          user_1 = create(:user, name: 'user_1')
+          user_2 = create(:user, name: 'user_2')
+          create(:subscription, :paid, project: project, user: user_1)
+          create(:subscription, :paid, project: project, user: user_2)
+        end
+
+        it "returns the project's active subscribers" do
+          get :show, permalink: project.permalink, locale: :pt
+
+          expect(assigns(:supporters).map(&:name)).to contain_exactly('user_1', 'user_2')
+        end
+      end
+
+      context "when there are none paid subscriptions for the project" do
+        before do
+          %i(unpaid pending_payment canceled).each do |status|
+            create(:subscription, status, project: project)
+          end
+        end
+
+        it "returns no subscribers for the project" do
+          get :show, permalink: project.permalink, locale: :pt
+
+          expect(assigns(:supporters)).to be_empty
+        end
+      end
+    end
   end
 
   describe "GET video" do
