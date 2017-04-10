@@ -39,11 +39,10 @@ class Subscription < ActiveRecord::Base
   belongs_to :project
   belongs_to :plan
 
-  scope :charging_day_reached,   -> { waiting_for_charging_day.where(charging_day: Date.current.day) }
-  scope :expired,                -> { paid.where("expires_at <= ?", Date.current) }
-  scope :available,              -> { where.not(status: 'waiting_for_charging_day') }
-  scope :by_project,             -> (project_id) { where(project_id: project_id) }
-  scope :with_paid_transactions, -> { includes(:transactions).where(transactions: { status: Transaction.statuses[:paid] }) }
+  scope :charging_day_reached, -> { waiting_for_charging_day.where(charging_day: Date.current.day) }
+  scope :expired,              -> { paid.where("expires_at <= ?", Date.current) }
+  scope :available,            -> { where.not(status: 'waiting_for_charging_day') }
+  scope :by_project,           -> (project_id) { where(project_id: project_id) }
 
   def self.accepted_charge_options
     {}.tap do |h|

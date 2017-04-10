@@ -1634,7 +1634,7 @@ RSpec.describe Project, type: :model do
       before { allow(project).to receive(:recurring?).and_return(true) }
 
       it "counts all users whose have a paid transaction for the project" do
-        expect(User).to receive_message_chain(:with_paid_transactions_for_project, :count)
+        expect(User).to receive_message_chain(:with_paid_subscriptions_for_project, :count)
 
         subject
       end

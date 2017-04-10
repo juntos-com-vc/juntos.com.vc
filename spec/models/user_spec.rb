@@ -737,25 +737,32 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe ".with_paid_transactions_for_project" do
+  describe ".with_paid_subscriptions_for_project" do
     let(:project) { create(:project) }
 
-    subject { User.with_paid_transactions_for_project(project.id) }
+    subject { User.with_paid_subscriptions_for_project(project.id).map(&:name) }
 
-    context "when the project has subscribers" do
-      let(:john) { create(:user) }
-
+    context "when there are subscribers with paid subscriptions" do
       before do
-        create(:subscription_with_paid_transaction, project: project, user: john)
-        create(:subscription_without_paid_transactions, project: project)
+        user_1 = create(:user, name: 'subscriber_1')
+        user_2 = create(:user, name: 'subscriber_2')
+
+        create(:subscription, :paid, project: project, user: user_1)
+        create(:subscription, :paid, project: project, user: user_2)
       end
 
-      it "returns only the subscribers with paid transactions" do
-        expect(subject).to contain_exactly john
+      it "returns the subscribers with paid subscriptions" do
+        is_expected.to contain_exactly 'subscriber_1', 'subscriber_2'
       end
     end
 
-    context "when the project does not have subscribers" do
+    context "when there are no subscribers with paid subscriptions" do
+      before do
+        %i(unpaid pending_payment canceled).each do |status|
+          create(:subscription, status, project: project)
+        end
+      end
+
       it { is_expected.to be_empty }
     end
   end

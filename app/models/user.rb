@@ -118,10 +118,12 @@ class User < ActiveRecord::Base
     has_credits.where(id: user_ids)
   end
 
-  scope :with_paid_transactions_for_project, -> (project_id) do
-    joins(recurring_contributions: :transactions)
-      .where(subscriptions: { project_id: project_id })
-      .where(transactions: { status: Transaction.statuses[:paid] })
+  scope :with_paid_subscriptions_for_project, -> (project_id) do
+    joins(:recurring_contributions).where(
+      subscriptions: {
+        project_id: project_id,
+        status: Subscription.statuses[:paid]
+      })
   end
 
   def send_credits_notification

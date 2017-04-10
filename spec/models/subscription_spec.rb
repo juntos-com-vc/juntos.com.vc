@@ -161,25 +161,6 @@ RSpec.describe Subscription, type: :model do
     end
   end
 
-  describe ".with_paid_transactions" do
-    let(:subscription_with_paid_transactions) { create(:subscription) }
-    let(:subscription_without_paid_transactions) { create(:subscription) }
-
-    subject { described_class.with_paid_transactions }
-
-    before do
-      [:refunded, :pending_payment, :refused, :processing, :waiting_payment, :authorized].each do |status|
-        create(:transaction, status, subscription: subscription_without_paid_transactions)
-      end
-
-      create(:transaction, :paid, subscription: subscription_with_paid_transactions)
-    end
-
-    it "returns only the subscription's paid transactions" do
-      expect(subject).to contain_exactly subscription_with_paid_transactions
-    end
-  end
-
   describe ".current_transaction" do
     let(:subscription) { create(:subscription) }
 
