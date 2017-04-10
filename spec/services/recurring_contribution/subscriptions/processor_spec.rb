@@ -2,38 +2,42 @@ require 'rails_helper'
 
 RSpec.describe RecurringContribution::Subscriptions::Processor do
   describe ".process" do
+    let(:subscription) { build(:subscription, :bank_billet_payment) }
+
     context "when the 'with_save' parameter is true" do
       context "when the subscription instance has no invalid attributes" do
-        let(:subscription) { build(:subscription, :bank_billet_payment) }
-        subject { RecurringContribution::Subscriptions::Processor.process(subscription: subscription) }
-
-        it_behaves_like "subscription paid with credit_card"
-
-        it_behaves_like "subscription paid with bank_billet"
-
-        it { is_expected.to be_persisted }
+        subject { described_class.process(subscription: subscription) }
 
         context "and the charging_day choosen by the user is the same day of the process call" do
-          let(:day_of_process_call) { DateTime.current.change(day: 15) }
-          let(:subscription) { build(:subscription, :bank_billet_payment, charging_day: 15) }
+          before do
+            allow(subscription).to receive(:charge_scheduled_for_today?).and_return(true)
+          end
 
           it "creates a juntos subscription with :pending_payment status before the pagarme's creation" do
             allow_any_instance_of(RecurringContribution::Subscriptions::Create)
               .to receive(:process)
 
-            Timecop.freeze(day_of_process_call) do
-              expect(subject.status).to eq 'pending_payment'
-            end
+            expect(subject.status).to eq 'pending_payment'
           end
 
           it "creates the subscription on pagarme" do
-            Timecop.freeze(day_of_process_call) do
-              expect(RecurringContribution::Subscriptions::Create)
-                .to receive(:process).once
+            expect(RecurringContribution::Subscriptions::Create)
+              .to receive(:process).once
 
-              subject
-            end
+            subject
           end
+        end
+
+        context "and it is a scheduled process" do
+          before do
+            allow(subscription).to receive(:charge_scheduled_for_today?).and_return(false)
+          end
+
+          it_behaves_like "subscription paid with credit_card"
+
+          it_behaves_like "subscription paid with bank_billet"
+
+          it { is_expected.to be_persisted }
         end
       end
 
@@ -42,8 +46,11 @@ RSpec.describe RecurringContribution::Subscriptions::Processor do
 
     context "when the 'with_save' parameter is false" do
       context "when the subscription instance has no invalid attributes" do
-        let(:subscription) { build(:subscription, :bank_billet_payment) }
-        subject { RecurringContribution::Subscriptions::Processor.process(subscription: subscription, with_save: false) }
+        before do
+          allow_any_instance_of(Subscription).to receive(:charge_scheduled_for_today?).and_return(false)
+        end
+
+        subject { described_class.process(subscription: subscription, with_save: false) }
 
         it_behaves_like "subscription paid with credit_card"
 

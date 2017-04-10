@@ -43,6 +43,10 @@ RSpec.shared_examples "subscription paid with bank_billet" do
 end
 
 RSpec.shared_examples "when invalid attributes were sent to Subscriptions::Processor service" do
+  before do
+    allow_any_instance_of(Subscription).to receive(:charge_scheduled_for_today?).and_return(false)
+  end
+
   context "when the instance contains invalid attributes" do
     let(:subscription) { build(:subscription, :bank_billet_payment, plan_id: nil) }
 
@@ -52,22 +56,6 @@ RSpec.shared_examples "when invalid attributes were sent to Subscriptions::Proce
 
     it "should return a subscription instance with errors" do
       expect(subject.errors.any?).to be true
-    end
-
-    context "when the donator_cpf is nil" do
-      let(:subscription) { build(:subscription, :bank_billet_payment, donator_cpf: nil) }
-
-      it "returns an error" do
-        expect(subject.errors).to have_key(:donator_cpf)
-      end
-    end
-
-    context "when the donator_cpf is empty" do
-      let(:subscription) { build(:subscription, :bank_billet_payment, donator_cpf: '') }
-
-      it "returns an error" do
-        expect(subject.errors).to have_key(:donator_cpf)
-      end
     end
   end
 
