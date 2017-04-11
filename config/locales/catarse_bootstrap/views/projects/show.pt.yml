@@ -129,7 +129,7 @@ pt:
     dashboard_reports:
       all_contributions_without_reward: Baixar relatório de todos os apoiadores
         que não selecionaram uma recompensa
-      link_generate_recurrent_report: Gerar relatório de contribuições recorrentes
+      link_generate_recurrent_report: Clique aqui para gerar um relatório atualizado de contribuições recorrentes
       link_recurrent_report: Baixar relatório de contribuições recorrentes gerado em %{generated_at}
       link_reports_confirmed: Baixar relatório de todos os apoiadores confirmados
       link_reports_waiting_confirmation: Baixar relatório de todos os apoiadores
