@@ -42,6 +42,10 @@ module Project::StateMachineHandler
           project.expired? && project.pending_contributions_reached_the_goal?
         }
 
+        transition online: :successful, if: ->(project) {
+          project.expired? && project.reached_goal? && !project.in_time_to_wait?
+        }
+
         transition waiting_funds: :successful,  if: ->(project) {
           project.reached_goal? && !project.in_time_to_wait?
         }

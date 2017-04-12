@@ -100,76 +100,88 @@ RSpec.describe Project::StateMachineHandler, type: :model do
     end
 
     describe '#finish' do
-      let(:main_project) { create(:project, goal: 30_000, online_days: 1, online_date: Time.now - 2.days) }
-      subject { main_project }
+      before { allow(project).to receive(:expired?).and_return(true) }
 
-      context 'when project is not approved' do
-        before do
-          main_project.update_attributes state: 'draft'
+      context "when the project is online" do
+        let(:project) { create(:project, :online) }
+
+        context "and it has reached the goal" do
+          before { allow(project).to receive(:reached_goal?).and_return(true) }
+
+          context "and there is no waiting confirmation contributions" do
+            before { allow(project).to receive(:in_time_to_wait?).and_return(false) }
+
+            it "sets the project to successful" do
+              project.finish
+
+              expect(project.state).to eq 'successful'
+            end
+          end
+
+          context "and there are waiting confirmation contributions" do
+            before { allow(project).to receive(:pending_contributions_reached_the_goal?).and_return(true) }
+
+            it "sets the project to waiting funds" do
+              project.finish
+
+              expect(project.state).to eq 'waiting_funds'
+            end
+          end
         end
-        its(:finish) { should eq(false) }
+
+        context "and it has not reached the goal" do
+          before do
+            allow(project).to receive(:should_fail?).and_return(true)
+            allow(project).to receive(:pending_contributions_reached_the_goal?).and_return(false)
+          end
+
+          it "sets the project to failed" do
+            project.finish
+
+            expect(project.state).to eq 'failed'
+          end
+        end
       end
 
-      context 'when project is expired and the sum of the pending contributions and confirmed contributions dont reached the goal' do
-        before do
-          create(:contribution, value: 100, project: subject, created_at: 2.days.ago, payment_choice: 'BoletoBancario')
-          subject.finish
+      context "when the project is waiting for funds" do
+        let(:project) { create(:project, :waiting_funds) }
+
+        context "and it has reached the goal" do
+          before { allow(project).to receive(:reached_goal?).and_return(true) }
+
+          context "and there is no waiting confirmation contributions" do
+            before { allow(project).to receive(:in_time_to_wait?).and_return(false) }
+
+            it "sets the project to successful" do
+              project.finish
+
+              expect(project.state).to eq 'successful'
+            end
+          end
         end
 
-        its(:failed?) { should eq(true) }
-      end
+        context "and it has not reached the goal" do
+          before { allow(project).to receive(:should_fail?).and_return(true) }
 
-      xcontext 'when project is expired and have recent contributions without confirmation' do
-        before do
-          create(:contribution, value: 30_000, project: subject, state: 'waiting_confirmation')
-          subject.finish
-        end
+          context "and there is no waiting confirmation contributions" do
+            before { allow(project).to receive(:in_time_to_wait?).and_return(false) }
 
-        its(:waiting_funds?) { should eq(true) }
-      end
+            it "sets the project to failed" do
+              project.finish
 
-      context 'when project already hit the goal and passed the waiting_funds time' do
-        before do
-          main_project.update_attributes state: 'waiting_funds'
-          allow(subject).to receive(:pending_contributions_reached_the_goal?).and_return(true)
-          allow(subject).to receive(:reached_goal?).and_return(true)
-          subject.online_date = 2.weeks.ago
-          subject.online_days = 1
-          subject.online_date = Time.now - 2.days
-          subject.finish
-        end
-        its(:successful?) { should eq(true) }
-      end
+              expect(project.state).to eq 'failed'
+            end
+          end
 
-      context 'when project already hit the goal and still is in the waiting_funds time' do
-        before do
-          allow(subject).to receive(:pending_contributions_reached_the_goal?).and_return(true)
-          allow(subject).to receive(:reached_goal?).and_return(true)
-          create(:contribution, project: main_project, user: user, value: 20, state: 'waiting_confirmation')
-          main_project.update_attributes state: 'waiting_funds'
-          subject.finish
-        end
-        its(:successful?) { should eq(false) }
-      end
+          context "and there are waiting confirmation contributions" do
+            before { allow(project).to receive(:in_time_to_wait?).and_return(true) }
 
-      context 'when project not hit the goal' do
-        let(:user) { create(:user) }
-        let(:contribution) { create(:contribution, project: main_project, user: user, value: 20, payment_token: 'ABC', payment_choice: 'BoletoBancario') }
+            it "sets the project to waiting for funds" do
+              project.finish
 
-        before do
-          contribution
-          subject.online_date = 2.weeks.ago
-          subject.online_days = 1
-          subject.online_date = Time.now - 2.days
-          subject.finish
-        end
-
-        its(:failed?) { should eq(true) }
-
-        xit "should generate credits for users" do
-          contribution.confirm!
-          user.reload
-          expect(user.credits).to eq(20)
+              expect(project.state).to eq 'waiting_funds'
+            end
+          end
         end
       end
     end
