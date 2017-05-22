@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
 
   def get_login_and_register_url
     base_url = "https://secure.juntos.com.vc"
-    login_address = "/#{params[:locale]}/login"
+    login_address = "/#{params[:locale]}/login " + ENV['ENVIRONMENT'] + " /a"
     register_address = "/#{params[:locale]}/sign_up"
     if ENV['ENVIRONMENT'] == 'development'
       base_url = ""
