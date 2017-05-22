@@ -40,9 +40,9 @@
             = link_to t('layouts.user.logout'), destroy_user_session_path, method: :delete, class: 'w-dropdown-link dropdown-link fontsize-smaller'
       - else
 
-        = link_to t('layouts.header.signup'), new_user_registration_path, class: 'w-nav-link header-link w-nav-link u-right'
+        = link_to t('layouts.header.signup'), @url_register, class: 'w-nav-link header-link w-nav-link u-right'
 
-        = link_to t('layouts.header.signin'), new_user_session_path, class: 'w-nav-link header-link w-nav-link u-right highlight'
+        = link_to t('layouts.header.signin'), @url_login, class: 'w-nav-link header-link w-nav-link u-right highlight'
 
       /= link_to t('layouts.header.help'), CatarseSettings[:support_forum], target: :_blank, class: 'w-nav-link w-hidden-small w-hidden-tiny header-link w-nav-link u-right',  id: 'guidelines_header_modal' if CatarseSettings[:support_forum].present?
 
@@ -88,9 +88,9 @@
             = link_to t('layouts.user.logout'), destroy_user_session_path, method: :delete, class: 'w-dropdown-link dropdown-link fontsize-smaller'
       - else
 
-        = link_to t('layouts.header.signup'), new_user_registration_path, class: 'w-nav-link header-link w-nav-link u-right w-hidden-small w-hidden-tiny'
+        = link_to t('layouts.header.signup'), @url_register, class: 'w-nav-link header-link w-nav-link u-right w-hidden-small w-hidden-tiny'
 
-        = link_to t('layouts.header.signin'), new_user_session_path, class: 'w-nav-link  w-nav-link u-right highlight btn-login-mobile'
+        = link_to t('layouts.header.signin'), @url_login, class: 'w-nav-link  w-nav-link u-right highlight btn-login-mobile'
 
 
     .w-col.w-col-small-12.w-col-tiny-12.align-center
@@ -127,6 +127,6 @@
             = link_to t('layouts.user.logout'), destroy_user_session_path, method: :delete, class: 'w-dropdown-link dropdown-link fontsize-smaller'
       - else
 
-        = link_to t('layouts.header.signup'), new_user_registration_path, class: 'w-nav-link header-link w-nav-link u-right'
+        = link_to t('layouts.header.signup'), @url_register, class: 'w-nav-link header-link w-nav-link u-right'
 
-        = link_to t('layouts.header.signin'), new_user_session_path, class: 'w-nav-link header-link w-nav-link u-right highlight'
+        = link_to t('layouts.header.signin'), @url_login, class: 'w-nav-link header-link w-nav-link u-right highlight'

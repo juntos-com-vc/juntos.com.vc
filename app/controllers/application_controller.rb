@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   layout :use_catarse_boostrap
   protect_from_forgery
 
+  before_filter :get_login_and_register_url
   before_filter :redirect_user_back_after_login, unless: :devise_controller?
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
@@ -76,9 +77,21 @@ class ApplicationController < ActionController::Base
     (return_to || root_path)
   end
 
+  def get_login_and_register_url
+    base_url = "https://secure.juntos.com.vc"
+    login_address = "/#{params[:locale]}/login"
+    register_address = "/#{params[:locale]}/sign_up"
+    if ENV['ENVIRONMENT'] == 'development'
+      base_url = ""
+    end
+    @url_login = base_url + login_address
+    @url_register = base_url + register_address
+  end
+
   def redirect_user_back_after_login
     if request.env['REQUEST_URI'].present? && !ajax_request?
-      session[:return_to] = request.env['REQUEST_URI']
+      # session[:return_to] = request.env['REQUEST_URI']
+      session[:return_to] = request.original_url
     end
   end
 

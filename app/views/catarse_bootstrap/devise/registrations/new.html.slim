@@ -8,7 +8,7 @@
       .fontweight-semibold.u-text-center.fontsize-large.u-marginbottom-10= t '.titles.header'
       .fontsize-small.u-text-center.u-marginbottom-10
         span.fontcolor-secondary=> t '.have_account_html'
-        = link_to t('.links.login'), new_user_session_path, class: 'link alt-link fontweight-semibold'
+        = link_to t('.links.login'), @url_login, class: 'link alt-link fontweight-semibold'
       .login-fb
         = link_to t('.form.inputs.facebook'), user_omniauth_authorize_path(provider: :facebook, locale: nil), class: 'btn btn-medium btn-fb'
       .separator

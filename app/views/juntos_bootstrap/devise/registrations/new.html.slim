@@ -14,7 +14,7 @@ section.devise-body-section
       .w-col.w-col-6.box-login.w-col-push-3
         .fontsize-small.u-text-center.u-marginbottom-10
           span.fontcolor-secondary=> t '.have_account_html'
-          = link_to t('.links.login'), new_user_session_path, class: 'link alt-link fontweight-semibold fontcolor-alternative'
+          = link_to t('.links.login'), @url_login, class: 'link alt-link fontweight-semibold fontcolor-alternative'
         .login-fb
           .w-row
             .w-col.w-col-12.u-text-center
