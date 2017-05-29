@@ -7,9 +7,9 @@ class Channels::ProfilesController < Channels::BaseController
   before_action :show_statistics, only: [:show]
 
   def show
-    if resource.recurring?
-      redirect_to channels_about_path if Channel::RecurringChannelFirstTimeChecker.first_time?(current_user)
-    end
+    # if resource.recurring?
+    #   redirect_to channels_about_path if Channel::RecurringChannelFirstTimeChecker.first_time?(current_user)
+    # end
   end
 
   def edit
