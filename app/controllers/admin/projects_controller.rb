@@ -32,6 +32,15 @@ class Admin::ProjectsController < Channels::Admin::BaseController
     end
   end
 
+  def manual
+    # puts 'AAAAAAAAAAAAAA -----------------'
+    Project.to_finish.each do |project|
+      project.finish
+      # puts "#{project.name.inspect} <<<<-----------"
+    end
+    # redirect_to :back
+  end
+
   def update
     @project = Project.find(params[:id])
 

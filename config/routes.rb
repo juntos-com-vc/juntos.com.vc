@@ -117,6 +117,7 @@ Rails.application.routes.draw do
   get "/quem-somos" => 'who_we_are#show', id: 'who_we_are', as: 'who_we_are'
   get "/ongs" => 'ongs#index', id: 'ongs', as: :ongs
   get "/contato" => 'contact#index', id: 'ongs', as: :contact
+  get "/test-approve" => 'admin/projects#manual'
 
   # Channels
   constraints SubdomainConstraint do
