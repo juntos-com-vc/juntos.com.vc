@@ -33,6 +33,7 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :channels
   has_and_belongs_to_many :plans, join_table: 'projects_plans'
   has_one :project_total
+  has_one :summary
   has_one :bank_account
   has_many :rewards
   has_many :contributions

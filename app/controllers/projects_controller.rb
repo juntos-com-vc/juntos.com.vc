@@ -1,6 +1,6 @@
 # coding: utf-8
 class ProjectsController < ApplicationController
-  after_filter :verify_authorized, except: %i[index video video_embed embed embed_panel about_mobile supported_by_channel permalink_valid? generate_subscriptions_report]
+  after_filter :verify_authorized, except: %i[total index video video_embed embed embed_panel about_mobile supported_by_channel permalink_valid? generate_subscriptions_report]
   inherit_resources
   has_scope :pg_search, :by_category_id, :near_of
   has_scope :recent, :expiring, :failed, :successful, :in_funding, :recommended, :not_expired, type: :boolean
@@ -59,6 +59,11 @@ class ProjectsController < ApplicationController
   def destroy
     authorize resource
     destroy!
+  end
+
+  def total
+    projects = Project.visible.select{|p| p.progress >= 100 || p.state == 'successful'}.count
+    render json: projects
   end
 
   def send_to_analysis

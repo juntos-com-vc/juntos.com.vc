@@ -17,6 +17,7 @@ class ContributionObserver < ActiveRecord::Observer
   end
 
   def from_confirmed_to_refunded_and_canceled(contribution)
+    # update_summary(contribution, false)
     do_direct_refund(contribution)
   end
 
@@ -26,11 +27,13 @@ class ContributionObserver < ActiveRecord::Observer
   alias :from_confirmed_to_refunded :from_requested_refund_to_refunded
 
   def from_pending_to_invalid_payment(contribution)
+    # update_summary(contribution, false)
     contribution.notify_to_backoffice :invalid_payment
   end
   alias :from_waiting_confirmation_to_invalid_payment :from_pending_to_invalid_payment
 
   def from_confirmed_to_requested_refund(contribution)
+    # update_summary(contribution, false)
     contribution.notify_to_backoffice :refund_request, {from_email: contribution.user.email, from_name: contribution.user.name}
     do_direct_refund(contribution)
 
@@ -41,6 +44,7 @@ class ContributionObserver < ActiveRecord::Observer
   end
 
   def from_confirmed_to_canceled(contribution)
+    # update_summary(contribution, false)
     contribution.notify_to_backoffice :contribution_canceled_after_confirmed
     contribution.notify_to_contributor((contribution.slip_payment? ? :contribution_canceled_slip : :contribution_canceled))
   end
@@ -50,7 +54,24 @@ class ContributionObserver < ActiveRecord::Observer
     contribution.direct_refund if contribution.can_do_refund?
   end
 
+  def update_summary(contribution, confirmed)
+    summary = Summary.site.first
+    contributions = summary.contributions
+    total = summary.total
+    if confirmed
+      contributions += 1
+      total += contribution.value
+    else
+      contributions -= 1
+      total -= contribution.value
+    end
+    summary.contributions = contributions
+    summary.total = total
+    summary.save
+  end
+
   def notify_confirmation(contribution)
+    # update_summary(contribution, true)
     contribution.confirmed_at = Time.now
     contribution.notify_to_contributor(:confirm_contribution)
     if contribution.recurring_contribution_id.nil? &&

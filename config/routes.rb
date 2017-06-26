@@ -214,6 +214,8 @@ Rails.application.routes.draw do
 
   get '/jobs/:id/status' => 'jobs#status'
 
+  get '/ajax/get-projects' => 'projects#total'
+
   get '/countries/:country_code/states' => 'countries#states'
 
   post '/transaction/status/update' => 'transactions#update_status'

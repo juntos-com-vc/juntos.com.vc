@@ -10,23 +10,23 @@ class Project::IndexScope
   end
 
   def recommends
-    @recommends ||= projects.recommended_for_home.includes(:project_total)
+    @recommends ||= projects.recommended_for_home.includes([:project_total, :category, :user])
   end
 
   def projects_near
     @projects_near ||= projects
                         .random_near_online_with_limit(current_user.address_state, LIMIT_NEAR_PROJECT)
-                        .includes(:project_total) if current_user.persisted?
+                        .includes([:project_total, :category, :user]) if current_user.persisted?
   end
 
   def expiring
-    @expiring ||= projects.expiring_for_home.includes(:project_total)
+    @expiring ||= projects.expiring_for_home.includes([:project_total, :category, :user])
   end
 
   def recent
     @recent ||= projects
                  .online_non_recommended_with_limit(LIMIT_RECENT_PROJECT)
-                 .includes(:project_total)
+                 .includes([:project_total, :category, :user])
   end
 
   def featured_partners
@@ -35,6 +35,10 @@ class Project::IndexScope
 
   def regular_partners
     @regular_partners ||= SitePartner.regular
+  end
+
+  def summary
+    @summary ||= Summary.site.first
   end
 
   def site_partners

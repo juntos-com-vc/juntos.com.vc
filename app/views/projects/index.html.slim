@@ -62,7 +62,7 @@
       b = t(:donations, scope: [:projects, :index, :transparency])
       span = t(:made, scope: [:projects, :index, :transparency])
     .succesfull-projects
-      h2 = Project.visible.select{ |p| p.progress >= 100 || p.state == 'successful' }.count
+      h2#total_projects = 0
       b = t(:projects, scope: [:projects, :index, :transparency])
       span = t(:supported, scope: [:projects, :index, :transparency])
 
@@ -75,7 +75,7 @@
             = link_to t('.sections.recommended.title'), explore_path(anchor: :recommended)
           = link_to t('.links.see_more'), explore_path, class: "more-projects"
         .projects
-          == render @index_scope.recommends
+          = render @index_scope.recommends
 
       section.recents_projects.list
         header
@@ -138,5 +138,9 @@
               slidesToScroll: 1,
               centerMode: true,
               focusOnSelect: true,
+          });
+          $.get("/ajax/get-projects", function (data) {
+              console.log(data)
+              $("#total_projects").html(data)
           });
         });
