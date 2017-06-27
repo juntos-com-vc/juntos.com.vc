@@ -1,4 +1,6 @@
 # coding: utf-8
+include ActionView::Helpers::NumberHelper
+
 class ProjectsController < ApplicationController
   after_filter :verify_authorized, except: %i[total index video video_embed embed embed_panel about_mobile supported_by_channel permalink_valid? generate_subscriptions_report]
   inherit_resources
@@ -62,8 +64,11 @@ class ProjectsController < ApplicationController
   end
 
   def total
+    statistics = Statistics.first
+    contributed = number_with_precision(statistics.total_contributed, precision: 0)
+    total = statistics.total_contributions
     projects = Project.visible.select{|p| p.progress >= 100 || p.state == 'successful'}.count
-    render json: projects
+    render json: [:projects => projects, :contributed => contributed, :total => total]
   end
 
   def send_to_analysis

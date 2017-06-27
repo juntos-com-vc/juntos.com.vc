@@ -51,18 +51,17 @@
       .wihtout-comission
         = t(:without_comission, scope: [:projects, :index, :transparency])
 .transparency-values
-  - statistics = Statistics.first
   .transparency-wrapper
     .collectect-money
-      h2 = number_with_precision(statistics.total_contributed, precision: 0)
+      h2#contributed = ''
       b = t(:brl_amount, scope: [:projects, :index, :transparency])
       span = t(:raised, scope: [:projects, :index, :transparency])
     .donations-number
-      h2 = statistics.total_contributions
+      h2#total_contributions = ''
       b = t(:donations, scope: [:projects, :index, :transparency])
       span = t(:made, scope: [:projects, :index, :transparency])
     .succesfull-projects
-      h2#total_projects = 0
+      h2#total_projects = ''
       b = t(:projects, scope: [:projects, :index, :transparency])
       span = t(:supported, scope: [:projects, :index, :transparency])
 
@@ -140,7 +139,9 @@
               focusOnSelect: true,
           });
           $.get("/ajax/get-projects", function (data) {
-              console.log(data)
-              $("#total_projects").html(data)
+              let dt = data[0]
+              $("#total_projects").html(dt.projects)
+              $("#total_contributions").html(dt.total)
+              $("#contributed").html(dt.contributed)
           });
         });
