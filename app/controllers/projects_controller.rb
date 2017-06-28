@@ -64,11 +64,30 @@ class ProjectsController < ApplicationController
   end
 
   def total
-    statistics = Statistics.first
-    contributed = number_with_precision(statistics.total_contributed, precision: 0)
-    total = statistics.total_contributions
-    projects = Project.visible.select{|p| p.progress >= 100 || p.state == 'successful'}.count
-    render json: [:projects => projects, :contributed => contributed, :total => total]
+    summary = Summary.first
+    if summary
+      two_hours_ago = DateTime.now - (2/24.0)
+      step = 1
+      if summary.updated_at < two_hours_ago
+        step = 2
+        statistics = Statistics.first
+        projects = Project.visible.select{|p| p.progress >= 100 || p.state == 'successful'}.count
+        summary.total_projects = projects
+        summary.contributions = statistics.total_contributions
+        summary.total = statistics.total_contributed
+        summary.save
+      end
+    else
+      step = 3
+      statistics = Statistics.first
+      projects = Project.visible.select{|p| p.progress >= 100 || p.state == 'successful'}.count
+      summary = Summary.new(total_projects: projects, contributions: statistics.total_contributions, total: statistics.total_contributed)
+    end
+
+    contributed = number_with_precision(summary.total, precision: 0)
+    total = summary.contributions
+    projects = summary.total_projects
+    render json: [:projects => projects, :contributed => contributed, :total => total, :step => step]
   end
 
   def send_to_analysis
