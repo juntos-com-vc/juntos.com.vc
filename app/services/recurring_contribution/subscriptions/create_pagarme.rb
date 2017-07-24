@@ -8,9 +8,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
   end
 
   def process
-    puts('<<<<<<<<<<<=======================================')
     ::Pagarme::API.create_subscription(attributes)
-    puts('=======================================>>>>>>>>>>>')
   end
 
   private
@@ -35,8 +33,8 @@ class RecurringContribution::Subscriptions::CreatePagarme
           charge_processing_fee: true
         } ,
         {
-          recipient_id: owner.pagarme_recipient,
-          percentage: 100-ENV['PAGARME_SUBSCRIPTION_PERCENTAGE'],
+          recipient_id: @owner.pagarme_recipient,
+          percentage: 100-ENV['PAGARME_SUBSCRIPTION_PERCENTAGE'].to_i,
           liable: true,
           charge_processing_fee: true
         }
