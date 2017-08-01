@@ -11,8 +11,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
     ::Pagarme::API.create_subscription(attributes)
   #   Enviar e-mail
     puts('========================================== ENVIANDO EMAIL')
-    contribution = @juntos_subscription.contributions.first
-    contribution.notify_once(:subscription_sent)
+    @juntos_subscription.notify_contributor(:recurring_contribution_created)
     puts('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<FIM ENVIANDO EMAIL')
   end
 
