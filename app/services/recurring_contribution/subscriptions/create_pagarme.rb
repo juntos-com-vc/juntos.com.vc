@@ -9,6 +9,8 @@ class RecurringContribution::Subscriptions::CreatePagarme
 
   def process
     ::Pagarme::API.create_subscription(attributes)
+  #   Enviar e-mail
+    juntos_subscription.notify_to_contributor(:subscription_sent)
   end
 
   private
