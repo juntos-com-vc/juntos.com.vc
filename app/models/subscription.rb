@@ -75,13 +75,4 @@ class Subscription < ActiveRecord::Base
   def portuguese_language?
     I18n.locale.to_s == "pt"
   end
-
-  def notify_contributor(template_name, params = {})
-    notify_once(
-      template_name,
-      self.user,
-      self,
-      params
-    )
-  end
 end
