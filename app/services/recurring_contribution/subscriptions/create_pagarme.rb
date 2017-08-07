@@ -9,10 +9,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
 
   def process
     ::Pagarme::API.create_subscription(attributes)
-  #   Enviar e-mail
-    puts('========================================== ENVIANDO EMAIL')
     @juntos_subscription.notify(:recurring_contribution_created, @user)
-    puts('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<FIM ENVIANDO EMAIL')
   end
 
   private
