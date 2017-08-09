@@ -9,7 +9,6 @@ class RecurringContribution::Subscriptions::CreatePagarme
 
   def process
     ::Pagarme::API.create_subscription(attributes)
-    @juntos_subscription.notify(:recurring_contribution_created, @user)
   end
 
   private
@@ -34,7 +33,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
           charge_processing_fee: true
         } ,
         {
-          recipient_id: @owner.pagarme_recipient,
+          recipient_id: @juntos_subscription.project.recipient,
           percentage: 100-ENV['PAGARME_SUBSCRIPTION_PERCENTAGE'].to_i,
           liable: true,
           charge_processing_fee: true
