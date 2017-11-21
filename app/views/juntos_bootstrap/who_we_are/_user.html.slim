@@ -6,7 +6,5 @@
       = user.display_name.mb_chars.upcase.to_s
     .fontcolor-yellow.fontsize-smallest
       = user.job_title.try(:mb_chars).try(:upcase).try(:to_s)
-    .u-marginbottom-10.fontsize-smallest
-      = user.email
     .fontsize-smallest
       = user.bio
