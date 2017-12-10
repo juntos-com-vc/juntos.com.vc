@@ -23,15 +23,16 @@
             .w-row
               = form.input :payer_name, as: :string, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, required: true
               = form.input :payer_email, as: :email, wrapper_html: {class: 'w-col w-col-6'}, required: true
-            .w-row
-              .w-col.w-col-12
-                = form.input_field :anonymous, boolean_style: :inline, class: 'checkbox-fix'
-                label.w-form-label.fontsize-smallest[for="contribution[anonymous]"] = t('.anonymous_contribution')
-            .w-row
-              .w-col.w-col-12
-                #anonymous-confirmation.card.card-message.u-radius.zindex-10.fontsize-smallest.w-hidden
-                  .fontweight-bold = t('.anonymous_confirmation_title')
-                  = t('.anonymous_confirmation')
+            - if @project.permalink == 'natalsolidarioliberty'
+              .w-row
+                .w-col.w-col-12
+                  = form.input_field :anonymous, boolean_style: :inline, class: 'checkbox-fix'
+                  label.w-form-label.fontsize-smallest[for="contribution[anonymous]"] = t('.anonymous_contribution')
+              .w-row
+                .w-col.w-col-12
+                  #anonymous-confirmation.card.card-message.u-radius.zindex-10.fontsize-smallest.w-hidden
+                    .fontweight-bold = t('.anonymous_confirmation_title')
+                    = t('.anonymous_confirmation')
 
           .formwrapper
             .fontsize-base.fontweight-semibold.fontcolor-secondary.u-marginbottom-20 = t('.address')
