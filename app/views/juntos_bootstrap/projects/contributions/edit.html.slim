@@ -23,7 +23,7 @@
             .w-row
               = form.input :payer_name, as: :string, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, required: true
               = form.input :payer_email, as: :email, wrapper_html: {class: 'w-col w-col-6'}, required: true
-            - if @project.permalink != 'natalsolidarioliberty'
+            - if @project.permalink != 'natalsolidarioliberty' && @project.permalink != 'CharlesNossoSonho'
               .w-row
                 .w-col.w-col-12
                   = form.input_field :anonymous, boolean_style: :inline, class: 'checkbox-fix'
