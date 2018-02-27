@@ -35,6 +35,25 @@ class Users::BankAccountsController < ApplicationController
     authorize @bank_account
 
     if @bank_account.update(bank_account_params)
+      recipient = PagarMe::Recipient.new({
+        :anticipatable_volume_percentage => 0,
+        :automatic_anticipation_enabled => true,
+        :bank_account => {
+         :bank_code => @bank_account.bank_id,
+         :agencia => @bank_account.agency,
+         :agencia_dv => @bank_account.agency_digit,
+         :conta => @bank_account.account,
+         :conta_dv => @bank_account.account_digit,
+         :type => 'conta_corrente',
+         :document_number => @bank_account.owner_document,
+         :legal_name => @bank_account.owner_name
+        },
+        :transfer_day => "5",
+        :transfer_enabled => true,
+        :transfer_interval => "weekly"
+      }).create
+      project = @bank_account.project
+      project.update({:recipient => recipient.id})
       head :no_content
     else
       render json: { errors: @bank_account.errors.full_messages.to_sentence }, status: :bad_request

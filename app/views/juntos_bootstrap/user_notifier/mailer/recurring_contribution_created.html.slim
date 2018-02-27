@@ -5,10 +5,10 @@
 |Olá, <strong>#{subscription.user.decorate.display_name}</strong>!
 br
 br
-|Seu apoio para o projeto #{link_to subscription.project.name, project_by_slug_url(permalink: subscription.project.permalink, ref: 'notificacao_criado')} foi confirmado com sucesso.
+|Seu apoio para o projeto #{link_to subscription.project.name, project_by_slug_url(permalink: subscription.project.permalink, ref: 'notificacao_criado')} foi confirmado com sucesso.
 br
 br
-|Esse e-mail serve como um recibo <strong>provisório da sua contribuição</strong>.
+|Esse e-mail serve como um recibo <strong>provisório da sua contribuição</strong>.
 br
 br
 |Nome do apoiador: <strong>#{subscription.user.decorate.display_name}</strong>
@@ -17,7 +17,7 @@ br
 br
 |Data da confirmação do apoio: <strong>#{subscription.user.decorate.cpf}</strong>
 br
-|É importante ressaltar que a Juntos é apenas intermediador desse processo, portanto, se tiver alguma dúvida em relação ao projeto entre em contato diretamente com o realizador através do e-mail #{mail_to subscription.project.user.email}. Ah! Lembre-se de guardar este e-mail, pois ele contém informações importantes a respeito da sua contribuição ao projeto.
+|É importante ressaltar que a Juntos é apenas intermediador desse processo, portanto, se tiver alguma dúvida em relação ao projeto entre em contato diretamente com o realizador através do e-mail #{mail_to subscription.project.user.email}. Ah! Lembre-se de guardar este e-mail, pois ele contém informações importantes a respeito da sua contribuição ao projeto.
 |Se ficou com alguma dúvida, entre em contato conosco respondendo a esta mensagem ou através do e-mail #{mail_to contact_email}
 br
 br
