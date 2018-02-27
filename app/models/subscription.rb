@@ -34,8 +34,6 @@ class Subscription < ActiveRecord::Base
     for_a_year:       12
   }
 
-  has_notifications
-
   has_many   :transactions
   belongs_to :user, autosave: true
   belongs_to :project

@@ -4,7 +4,6 @@ class RecurringContribution::Subscriptions::CreatePagarme
     @payment_method = normalize_payment_method(juntos_subscription.payment_method)
     @plan_id = juntos_subscription.plan.plan_code
     @user = juntos_subscription.user
-    @owner = juntos_subscription.project.user
   end
 
   def process
@@ -24,21 +23,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
       plan: ::Pagarme::API.find_plan(plan_id),
       payment_method: payment_method,
       postback_url: postback_url,
-      customer: { email: user.email, cpf: user.cpf },
-      split_rules: [
-        {
-          recipient_id: ENV['PAGARME_RECIPIENT_ID'],
-          percentage: ENV['PAGARME_SUBSCRIPTION_PERCENTAGE'],
-          liable: true,
-          charge_processing_fee: true
-        } ,
-        {
-          recipient_id: @juntos_subscription.project.recipient,
-          percentage: 100-ENV['PAGARME_SUBSCRIPTION_PERCENTAGE'].to_i,
-          liable: true,
-          charge_processing_fee: true
-        }
-      ]
+      customer: { email: user.email }
     }
   end
 

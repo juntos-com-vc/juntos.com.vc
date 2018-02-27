@@ -53,6 +53,6 @@ class RecurringContribution::Subscriptions::UpdateJuntos
 
   def expires_at
     return if juntos_subscription.charges.zero?
-    Date.parse(pagarme_subscription.date_created) + juntos_subscription.charges.month
+    Date.parse(pagarme_subscription.current_period_start) + juntos_subscription.charges.month
   end
 end
