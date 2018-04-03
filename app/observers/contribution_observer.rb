@@ -78,7 +78,7 @@ class ContributionObserver < ActiveRecord::Observer
       tickets = (contribution.value / project.ticket_price).floor
       if tickets > 0
         for i in 1..tickets
-          tk = contribution.id + "-" + i
+          tk = contribution.id.to_s + "-" + i.to_s
           Ticket.new(project_id: project.id, user_id: user.id, ticket: tk)
         end
       end
