@@ -77,13 +77,12 @@ class ContributionObserver < ActiveRecord::Observer
     if project.ticket_price.present?
       tickets = (contribution.value / project.ticket_price).floor
       if tickets > 0
-        logger = Logger.new(STDOUT)
-        logger.debug "Teste de log"
+        # logger = Logger.new(STDOUT)
         for i in 1..tickets
           tk = contribution.id.to_s + "-" + i.to_s
-          logger.debug "Ticket: " + tk
-          logger.debug "Projeto: " + project.id.to_s
-          logger.debug "Usuario " + contribution.user.id.to_s
+          # logger.debug "Ticket: " + tk
+          # logger.debug "Projeto: " + project.id.to_s
+          # logger.debug "Usuario " + contribution.user.id.to_s
           Ticket.create(project_id: project.id, user_id: contribution.user.id, ticket: tk)
         end
       end

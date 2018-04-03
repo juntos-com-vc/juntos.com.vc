@@ -21,6 +21,7 @@ class Contribution < ActiveRecord::Base
   belongs_to :country
   belongs_to :recurring_contribution
   has_many :payment_notifications
+  has_many :tickets
 
   validates_presence_of :project, :user, :project_value
   validates_numericality_of :value,

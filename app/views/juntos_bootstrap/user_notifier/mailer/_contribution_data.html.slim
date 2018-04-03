@@ -23,6 +23,12 @@ p
   br/
   | CPF/CNPJ do realizador: #{contribution.project.user.cpf}
 
+  - if contribution.project.ticket_price.present? && contribution.value > contribution.project.ticket_price
+  p Você recebeu os seguintes Tickets:
+  ul
+    - contribution.tickets.each do |tk|
+      li
+        = tk.ticket
 p
   ' É importante ressaltar que a Juntos é apenas intermediador desse processo,
   ' portanto, se tiver alguma dúvida em relação ao projeto ou recompensa selecionada entre
