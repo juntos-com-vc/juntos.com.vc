@@ -81,13 +81,10 @@ class ContributionObserver < ActiveRecord::Observer
         logger.debug "Teste de log"
         for i in 1..tickets
           tk = contribution.id.to_s + "-" + i.to_s
-          Rails.logger.debug "Ticket: " + tk
           logger.debug "Ticket: " + tk
-          Rails.logger.debug "Projeto: " + project.id.to_s
           logger.debug "Projeto: " + project.id.to_s
-          Rails.logger.debug "Usuario " + contribution.user.id.to_s
           logger.debug "Usuario " + contribution.user.id.to_s
-          Ticket.new(project_id: project.id, user_id: contribution.user.id, ticket: tk)
+          Ticket.create(project_id: project.id, user_id: contribution.user.id, ticket: tk)
         end
       end
     end
