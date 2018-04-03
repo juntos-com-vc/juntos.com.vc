@@ -79,9 +79,9 @@ class ContributionObserver < ActiveRecord::Observer
       if tickets > 0
         for i in 1..tickets
           tk = contribution.id.to_s + "-" + i.to_s
-          Rails.loggerlogger.debug "Ticket: " + tk
-          Rails.loggerlogger.debug "Projeto: " + project.id.to_s
-          Rails.loggerlogger.debug "Usuario " + contribution.user.id.to_s
+          Rails.logger.debug "Ticket: " + tk
+          Rails.logger.debug "Projeto: " + project.id.to_s
+          Rails.logger.debug "Usuario " + contribution.user.id.to_s
           Ticket.new(project_id: project.id, user_id: contribution.user.id, ticket: tk)
         end
       end
