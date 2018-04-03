@@ -13,6 +13,7 @@ class ContributionObserver < ActiveRecord::Observer
   end
 
   def before_save(contribution)
+    # 
     notify_confirmation(contribution) if contribution.confirmed? && contribution.confirmed_at.nil?
   end
 
@@ -72,6 +73,16 @@ class ContributionObserver < ActiveRecord::Observer
 
   def notify_confirmation(contribution)
     # update_summary(contribution, true)
+    project = contribution.project
+    if project.ticket_price.present?
+      tickets = (contribution.value / project.ticket_price).floor
+      if tickets > 0
+        for i in 1..tickets
+          tk = contribution.id + "-" + i
+          Ticket.new(project_id: project.id, user_id: user.id, ticket: tk)
+        end
+      end
+    end
     contribution.confirmed_at = Time.now
     contribution.notify_to_contributor(:confirm_contribution)
     if contribution.recurring_contribution_id.nil? &&
