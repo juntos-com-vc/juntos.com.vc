@@ -83,7 +83,7 @@ class ContributionObserver < ActiveRecord::Observer
           # logger.debug "Ticket: " + tk
           # logger.debug "Projeto: " + project.id.to_s
           # logger.debug "Usuario " + contribution.user.id.to_s
-          Ticket.create(project_id: project.id, user_id: contribution.user.id, ticket: tk)
+          Ticket.create(project_id: project.id, user_id: contribution.user.id, ticket: tk, contribution_id: contribution.id)
         end
       end
     end
