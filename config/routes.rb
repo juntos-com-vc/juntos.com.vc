@@ -225,4 +225,5 @@ Rails.application.routes.draw do
   post '/subscription/cancel' => 'projects/subscriptions#cancel'
 
   get '/projects/validate/permalink' => 'projects#permalink_valid?'
+  get "/sorteio/:permalink" => 'admin/tickets#shuffle'
 end

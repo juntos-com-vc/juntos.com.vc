@@ -1,0 +1,19 @@
+ - @ticket.each do |row|
+  | Usuário
+  br
+  = row.user.name
+  br
+  br
+  | Contribuição
+  br
+  = row.contribution.id
+  br
+  br
+  | Contribuição Valor
+  br
+  = row.contribution.value
+  br
+  br
+  | Ticket
+  br
+  = row.ticket
