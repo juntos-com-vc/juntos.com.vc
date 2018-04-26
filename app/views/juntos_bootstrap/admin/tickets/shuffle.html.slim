@@ -1,19 +1,67 @@
  - @ticket.each do |row|
-  | Usuário
-  br
-  = row.user.name
-  br
-  br
-  | Contribuição
-  br
-  = row.contribution.id
-  br
-  br
-  | Contribuição Valor
-  br
-  = row.contribution.value
-  br
-  br
-  | Ticket
-  br
-  = row.ticket
+  - user = row.user.decorate
+  .card
+    = user.display_image_html
+    .user
+      = user.name
+    p.congratulations
+      | Parabéns!
+    p.additional_info
+      | O seu ticket 
+      span.ticket
+        = row.ticket
+      |  foi sorteado no projeto 
+      span.project_name
+       = @project.name
+    
+  = content_for :custom_css do
+    css:
+      body {
+        background-color: #f2f2f2;
+      }
+      .card {
+        background-color: #fff;
+        width: 320px;
+        border-radius: 15px;
+        padding: 20px;
+        height: 400px;
+        position: relative;
+        left: 50%;
+        margin-left: -160px;
+        text-align: center;
+        margin-top: 30px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      }
+      .card img {
+        border-radius: 50%;
+        width: 120px !important;
+        position: relative;
+        margin-left: 80px;
+      }
+      .card .user {
+        margin-top: 15px;
+        font-size: 22px;
+        font-weight: 200;
+      }
+      .card .additional_info {
+        font-size: 17px;
+        font-weight: 200;
+      }
+      .card .additional_info span {
+        font-weight: 500
+      }
+      .card .congratulations {
+        margin-top: 10px;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .main-footer {
+        display: none !important;
+      }
+
+  = content_for :custom_javascripts do
+    script type="text/javascript" src="/assets/lib/jquery.animateNumber.min.js"
+    javascript:
+      $(document).ready(function(){
+        $('.odometer').html(313131)
+      });
