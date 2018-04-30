@@ -1,21 +1,21 @@
 - content_for :header_controls do
   = link_to channel.submit_your_project_text,
     channels_about_path, class: 'header-link w-nav-link'
-  = link_to t(:terms_of_use, scope: [:layouts, :header]),
-      channels_terms_path, class: 'header-link w-nav-link'
-  = link_to t(:contacts, scope: [:layouts, :header]),
-    channels_contacts_path, class: 'header-link w-nav-link'
   - if @profile.to_s == "ADUS"
     .w-dropdown.adus-menu.header-link.w-nav-link
-      = link_to '#', id: 'adus-menu', style: 'color: #FEB84C' do
+      = link_to '#', id: 'adus-menu', style: 'color: #FEB84C;' do
         = "O Adus"
-      nav.w-dropdown-list.dropdown-list.adus-menu
+      nav.w-dropdown-list.dropdown-list.adus-menu-dd
         = link_to "Sobre",
           channels_adus_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
         = link_to "Aulas de Português",
           channels_adusportugues_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
         = link_to "Trabalho e Renda",
           channels_adustrabalho_path, class: 'w-dropdown-link dropdown-link fontsize-smaller'
+  = link_to t(:terms_of_use, scope: [:layouts, :header]),
+      channels_terms_path, class: 'header-link w-nav-link'
+  = link_to t(:contacts, scope: [:layouts, :header]),
+    channels_contacts_path, class: 'header-link w-nav-link'
 
   = link_to 'PT', url_for(locale: 'pt'), class: "btn-translation #{'active' if I18n.locale == :pt} w-hidden-small w-hidden-tiny"
   = link_to 'EN', url_for(locale: 'en'), class: "btn-translation #{'active' if I18n.locale == :en} w-hidden-small w-hidden-tiny"

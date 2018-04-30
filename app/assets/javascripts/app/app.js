@@ -79,7 +79,7 @@ var App = (window.App = Skull.View.extend({
   },
 
   toggleMenuAdus: function() {
-    this.$(".dropdown-list.adus-menu").toggleClass("w--open");
+    this.$(".dropdown-list.adus-menu-dd").toggleClass("w--open");
     return false;
   },
 
