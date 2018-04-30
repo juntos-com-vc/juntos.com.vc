@@ -2,8 +2,8 @@ class Channels::ProfilesController < Channels::BaseController
   layout 'juntos_bootstrap'
   inherit_resources
   actions :show, :edit, :update
-  custom_actions resource: [:how_it_works, :terms, :privacy, :contacts]
-  after_filter :verify_authorized, except: [:how_it_works, :show, :terms, :privacy, :contacts]
+  custom_actions resource: [:how_it_works, :terms, :privacy, :contacts, :adus, :portugues, :trabalho]
+  after_filter :verify_authorized, except: [:how_it_works, :show, :terms, :privacy, :contacts, :adus, :portugues, :trabalho]
   before_action :show_statistics, only: [:show]
 
   def show

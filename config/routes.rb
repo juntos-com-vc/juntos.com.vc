@@ -140,6 +140,9 @@ Rails.application.routes.draw do
       get '/terms', to: 'profiles#terms', as: :terms
       get '/privacy', to: 'profiles#privacy', as: :privacy
       get '/contacts', to: 'profiles#contacts', as: :contacts
+      get '/adus', to: 'profiles#adus', as: :adus
+      get '/portugues', to: 'profiles#portugues', as: :adusportugues
+      get '/trabalho-e-renda', to: 'profiles#trabalho', as: :adustrabalho
       resource :profile
       # NOTE We use index instead of create to subscribe comming back from auth via GET
       resource :channels_subscriber, only: [:show, :destroy], as: :subscriber
