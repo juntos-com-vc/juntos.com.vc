@@ -40,7 +40,7 @@
               = form.input_field :platform_value, value: @contribution.platform_value, as: :string, class: 'w-input  u-marginbottom-20'
               span R$ para a associação
             br/
-          - elsif !channel
+          - else
             .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only
               = t('.contribute_to_platform')
             p.minimum-value
