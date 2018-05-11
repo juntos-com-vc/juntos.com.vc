@@ -15,6 +15,10 @@ class Category < ActiveRecord::Base
     joins(:projects).merge(Project.with_state('online').of_current_week).uniq
   }
 
+  scope :available, -> {
+    where("available = :status", {status: true})
+  }
+
   def self.with_visible_projects
     order(self.name_with_locale).find(Project.visible.pluck(:category_id))
   end

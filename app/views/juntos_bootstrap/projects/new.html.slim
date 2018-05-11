@@ -51,7 +51,7 @@
               .u-marginbottom-40
                 = form.label :category, class: 'fontsize-large', required: false
                 .fontsize-small.fontcolor-secondary.u-marginbottom-10= form.hint :category
-                = form.association :category, as: :select, collection: Category.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'medium', label: '', hint: ''
+                = form.association :category, as: :select, collection: Category.available.order(:name_pt), prompt: t('simple_form.prompts.project.category'), class: 'medium', label: '', hint: ''
             - elsif !channel.recurring?
               = form.input :category_id, as: :hidden, input_html: {value: channel.category.id}
             .u-marginbottom-40
