@@ -8,7 +8,7 @@ class RecurringContribution::Subscriptions::Processor
       create_value = subscription.new_value.to_i*100;
       logger.debug {create_value}
       plan = ::Pagarme::API.create_plan({name: "Personalizado", days: 30, amount: create_value })
-      pl = Plan.create({plan_code: plan.id, name: 'Personalizado', amount: plan.amount, active: true})
+      pl = Plan.create({plan_code: plan.id, name: 'Personalizado', amount: plan.amount, active: true, payment_methods: [1,0]})
       logger.debug {'VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV'}
       logger.debug {pl}
       subscription.plan_id = pl.id
