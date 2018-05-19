@@ -2,7 +2,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
   def initialize(juntos_subscription)
     @juntos_subscription = juntos_subscription
     @payment_method = normalize_payment_method(juntos_subscription.payment_method)
-    # @plan_id = juntos_subscription.plan.plan_code > 0 ? juntos_subscription.plan.plan_code : 0
+    @plan_id = juntos_subscription.plan.plan_code
     @user = juntos_subscription.user
     @owner = juntos_subscription.project.user
   end
