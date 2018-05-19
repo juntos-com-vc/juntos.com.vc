@@ -4,7 +4,6 @@ class RecurringContribution::Subscriptions::CreatePagarme
     @payment_method = normalize_payment_method(juntos_subscription.payment_method)
     @plan_id = juntos_subscription.plan.plan_code
     @user = juntos_subscription.user
-    @new_value = juntos_subscription.new_value
     @owner = juntos_subscription.project.user
   end
 
@@ -13,7 +12,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
   end
 
   private
-  attr_reader :juntos_subscription, :payment_method, :plan_id, :user, :new_value
+  attr_reader :juntos_subscription, :payment_method, :plan_id, :user
 
   def attributes
     return default_attributes.merge(credit_card_id) if credit_card?
@@ -22,7 +21,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
 
   def default_attributes
     {
-      plan: plan_id == 0 ? ::Pagarme::API.create_plan({:name => "Personalizado", :days => 30, :amount => new_value }) : ::Pagarme::API.find_plan(plan_id),
+      plan: ::Pagarme::API.find_plan(plan_id),
       payment_method: payment_method,
       postback_url: postback_url,
       customer: { email: user.email, cpf: user.cpf },
