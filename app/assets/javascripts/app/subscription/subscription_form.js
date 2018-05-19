@@ -23,12 +23,12 @@ App.addChild('SubscriptionForm', _.extend({
 
   sendSubscription: function (e) {
     e.preventDefault();
-    let val = parseInt($('#subscription_new_value').val());
-    let msg = '';
-    if (!Number.isInteger(val))
+    var fieldVal = parseInt($('#subscription_new_value').val());
+    var msg = '';
+    if (!Number.isInteger(fieldVal))
       msg = 'Informe um valor válido (apenas inteiros e somento números)';
     else {
-      if(val < 10 || val > 3000)
+      if(fieldVal < 10 || fieldVal > 3000)
         msg = 'Informe um valor entre 10 e 3.000 reais para doação';
     }
     if(msg != '') {
