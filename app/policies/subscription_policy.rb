@@ -7,7 +7,8 @@ class SubscriptionPolicy < ApplicationPolicy
     :payment_method,
     :charging_day,
     :charges,
-    :donator_cpf
+    :donator_cpf,
+    :new_value
   ]
 
   def create?

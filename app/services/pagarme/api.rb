@@ -22,6 +22,10 @@ class Pagarme::API
       rescue_not_found { PagarMe::Transaction.find_by_id(transaction_id) }
     end
 
+    def create_plan(attributes)
+      rescue_invalid_attribute { PagarMe::Plan.create(attributes) }
+    end
+
     def create_subscription(attributes)
       rescue_invalid_attribute { PagarMe::Subscription.create(attributes) }
     end

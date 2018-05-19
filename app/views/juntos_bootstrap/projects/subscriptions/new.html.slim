@@ -6,6 +6,14 @@
 
 - content_for :custom_javascripts do
   = javascript_include_tag 'https://assets.pagar.me/js/pagarme.min.js'
+  javascript:
+    $('.plans-container input').on('change', function(){
+      let val = $(this).val();
+      if(val == 0)
+        $('.show-new').show();
+      else
+        $('.show-new').hide();
+    });
 
 #new-subscription.section
   .w-container
@@ -22,7 +30,21 @@
               = form.collection_radio_buttons :plan_id, @project.plans, :id, :formatted_amount, checked: @project.standard_plan_id do |input|
                 .w-col.w-col-4.w-col-small-3.w-col-tiny-4.u-marginbottom-10
                   = render 'projects/plans/select_plans', input: input, type: :radio_button
+                  .w-col.w-col-2.w-col-tiny-2.left.input-type
+              .w-col.w-col-4.w-col-small-3.w-col-tiny-4.u-marginbottom-10
+                label
+                  .plan.align-center
+                    .w-col.w-col-2.w-col-tiny-2.left.input-type
+                      = form.radio_button :plan_id, '0'
+                    .w.col.w-col-10.w-col-tiny-10.right.content.custom_value
+                      .u-text-center.value
+                        p.u-text-center.recurrence.bold
+                          = 'Personalizado'
           .w-row
+            .w-row.show-new style="display: none;"
+              .w-col.w-col-12.w-col-tiny-12
+                h4 = 'Valor Personalizado'
+                <input type="text" name="new_value" id="new_value" class="optional w-input text-field positive w-input" value="10" required />
             .w-row
               .w-col.w-col-12
                 h3 = t('.personal_information')

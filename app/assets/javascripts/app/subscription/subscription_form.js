@@ -23,7 +23,6 @@ App.addChild('SubscriptionForm', _.extend({
 
   sendSubscription: function (e) {
     e.preventDefault();
-
     if (this.bankBilletRadioButton.is(':checked')) {
       this.$el.submit();
     } else {

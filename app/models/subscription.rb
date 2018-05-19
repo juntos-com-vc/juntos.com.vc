@@ -10,6 +10,7 @@ class Subscription < ActiveRecord::Base
            :address_neighbourhood,
            :address_city,
            :address_state,
+           :new_value,
            :address_zip_code, to: :user, prefix: true
   delegate :formatted_amount, to: :plan, prefix: true
 
@@ -22,6 +23,7 @@ class Subscription < ActiveRecord::Base
                                           unless: 'plan.nil?'
 
   validates_numericality_of :charging_day, less_than_or_equal_to: 31, greater_than: 0
+  validates_numericality_of :new_value, greater_than_or_equal_to: 10.0
 
   enum payment_method: [ :credit_card, :bank_billet ]
 
