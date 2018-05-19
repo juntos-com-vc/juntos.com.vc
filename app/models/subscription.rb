@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessor :donator_cpf
+  attr_accessor :donator_cpf, :new_value
   delegate :name,
            :email,
            :phone_number,
@@ -22,6 +22,10 @@ class Subscription < ActiveRecord::Base
                                           unless: 'plan.nil?'
 
   validates_numericality_of :charging_day, less_than_or_equal_to: 31, greater_than: 0
+  validates_numericality_of :new_value, greater_than: 10, if: :null_plan?
+  def null_plan?
+    plan_id==0
+  end
 
   enum payment_method: [ :credit_card, :bank_billet ]
 

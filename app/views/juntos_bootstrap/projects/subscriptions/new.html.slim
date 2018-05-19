@@ -44,7 +44,7 @@
             .w-row.show-new style="display: none;"
               .w-col.w-col-12.w-col-tiny-12
                 h4 = 'Valor Personalizado'
-                <input type="text" name="new_value" id="new_value" class="optional w-input text-field positive w-input" value="10" required />
+                = form.input_field :new_value
             .w-row
               .w-col.w-col-12
                 h3 = t('.personal_information')
