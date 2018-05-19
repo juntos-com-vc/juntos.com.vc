@@ -2,10 +2,9 @@ class RecurringContribution::Subscriptions::Create
   def initialize(juntos_subscription)
     if juntos_subscription.plan_id == 0
       plan = ::Pagarme::API.create_plan({:name => "Personalizado", :days => 30, :amount => juntos_subscription.new_value*100 })
-      juntos_subscription.plan_id = plan.id
+      pl = Plan.create(plan_code: plan.id, name: 'Personalizado', amount: plan.amount, active: true)
+      juntos_subscription.plan_id = pl.id
     end
-    logger = Logger.new(STDOUT)
-    logger.debug { juntos_subscription.plan_id }
     @juntos_subscription = juntos_subscription
   end
 
@@ -14,8 +13,6 @@ class RecurringContribution::Subscriptions::Create
   end
 
   def process
-    logger = Logger.new(STDOUT)
-    logger.debug {'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKKKKKKKKKKKKKKKKKKKKKKKKKKKK'}
     pagarme_response = create_subscription_on_pagarme
     update_juntos_subscription(pagarme_response)
   end
