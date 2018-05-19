@@ -6,7 +6,6 @@ class RecurringContribution::Subscriptions::Processor
     if plid == 0
       logger = Logger.new(STDOUT)
       create_value = subscription.new_value.to_i*100;
-      logger.debug {subscription.new_value}
       logger.debug {create_value}
       plan = ::Pagarme::API.create_plan({name: "Personalizado", days: 30, amount: create_value })
       pl = Plan.create(plan_code: plan.id, name: 'Personalizado', amount: plan.amount, active: true)
@@ -15,6 +14,11 @@ class RecurringContribution::Subscriptions::Processor
     else
       subscription.new_value = 0
     end
+    logger.debug {'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'}
+    logger.debug {subscription.plan_id}
+    logger.debug {'NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN'}
+    logger.debug {subscription}
+    logger.debug {'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'}
     @subscription     = subscription
     @credit_card_hash = credit_card_hash
     @with_save        = with_save
