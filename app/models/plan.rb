@@ -6,7 +6,7 @@ class Plan < ActiveRecord::Base
             in: { credit_card: 0, bank_billet: 1 },
             multiple: true, i18n_scope: "enumerize.plan.payment_methods"
 
-  validates_presence_of :plan_code, :name, :amount, :payment_methods
+  validates_presence_of :plan_code, :name, :amount
 
   validates_uniqueness_of :plan_code
 
