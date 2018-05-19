@@ -25,7 +25,7 @@ class Projects::SubscriptionsController < ApplicationController
   def create
     plid = params[:subscription][:plan_id].to_i
     if plid == 0
-      plan = ::Pagarme::API.create_plan({:name => "Personalizado", :days => 30, :amount => params[:subscription][:new_value]*100 })
+      plan = PagarMe::Plan.create({:name => "Personalizado", :days => 30, :amount => params[:subscription][:new_value]*100 })
       pl = Plan.create(plan_code: plan.id, name: 'Personalizado', amount: plan.amount, active: true)
       plid = pl.id
     end
