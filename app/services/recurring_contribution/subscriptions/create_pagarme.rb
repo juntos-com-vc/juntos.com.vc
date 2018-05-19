@@ -8,12 +8,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
   end
 
   def process
-    logger = Logger.new(STDOUT)
-    logger.debug {'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'}
-    attri = attributes
-    logger.debug {attri}
-    logger.debug {'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'}
-    ::Pagarme::API.create_subscription(attri)
+    ::Pagarme::API.create_subscription(attributes)
   end
 
   private

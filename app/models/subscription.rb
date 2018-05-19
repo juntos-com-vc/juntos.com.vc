@@ -14,7 +14,7 @@ class Subscription < ActiveRecord::Base
   delegate :formatted_amount, to: :plan, prefix: true
 
   validates_presence_of :status, :payment_method, :charging_day,
-                        :plan_id, :user_id, :project_id
+                        :user_id, :project_id
 
   validates_presence_of :donator_cpf, on: :create, if: :portuguese_language?
 
@@ -22,10 +22,10 @@ class Subscription < ActiveRecord::Base
                                           unless: 'plan.nil?'
 
   validates_numericality_of :charging_day, less_than_or_equal_to: 31, greater_than: 0
-  # validates_numericality_of :new_value, greater_than: 10, if: :null_plan?
-  # def null_plan?
-  #   plan_id==0
-  # end
+  validates_numericality_of :new_value, greater_than: 10, if: :null_plan?
+  def null_plan?
+    plan_id==0
+  end
 
   enum payment_method: [ :credit_card, :bank_billet ]
 
