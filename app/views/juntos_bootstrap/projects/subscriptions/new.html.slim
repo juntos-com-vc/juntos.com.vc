@@ -9,10 +9,13 @@
   javascript:
     $('.plans-container input').on('change', function(){
       let val = $(this).val();
-      if(val == 0)
+      if(val == 0) {
         $('.show-new').show();
-      else
+        $('#subscription_new_value').val('');
+      } else {
         $('.show-new').hide();
+        $('#subscription_new_value').val(10);
+      }
     });
 
 #new-subscription.section
@@ -44,7 +47,8 @@
             .w-row.show-new style="display: none;"
               .w-col.w-col-12.w-col-tiny-12
                 h4 = 'Valor Personalizado'
-                = form.input_field :new_value
+                = form.input_field :new_value, value: 10, class: 'custom-field'
+                .w-col.w-col-12.w-col-tiny-12#error-msg
             .w-row
               .w-col.w-col-12
                 h3 = t('.personal_information')

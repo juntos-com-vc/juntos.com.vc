@@ -23,6 +23,19 @@ App.addChild('SubscriptionForm', _.extend({
 
   sendSubscription: function (e) {
     e.preventDefault();
+    let val = parseInt($('#subscription_new_value').val());
+    let msg = '';
+    if (!Number.isInteger(val))
+      msg = 'Informe um valor válido (apenas inteiros e somento números)';
+    else {
+      if(val < 10 || val > 3000)
+        msg = 'Informe um valor entre 10 e 3.000 reais para doação';
+    }
+    if(msg != '') {
+      $('#subscription_new_value').focus();
+      $('#error-msg').html(msg);
+      return false;
+    }
     if (this.bankBilletRadioButton.is(':checked')) {
       this.$el.submit();
     } else {
