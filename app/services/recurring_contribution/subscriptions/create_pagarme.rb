@@ -4,6 +4,7 @@ class RecurringContribution::Subscriptions::CreatePagarme
     @payment_method = normalize_payment_method(juntos_subscription.payment_method)
     @plan_id = juntos_subscription.plan.plan_code
     @user = juntos_subscription.user
+    @new_value = juntos_subscription.new_value
     @owner = juntos_subscription.project.user
   end
 
