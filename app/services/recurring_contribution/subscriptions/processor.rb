@@ -2,6 +2,19 @@ class RecurringContribution::Subscriptions::Processor
   attr_reader :subscription, :with_save
 
   def initialize(subscription, credit_card_hash, with_save:)
+    plid = subscription.plan_id.to_i
+    if plid == 0
+      logger = Logger.new(STDOUT)
+      create_value = subscription.new_value.to_i*100;
+      logger.debug {subscription.new_value}
+      logger.debug {create_value}
+      plan = ::Pagarme::API.create_plan({name: "Personalizado", days: 30, amount: create_value })
+      pl = Plan.create(plan_code: plan.id, name: 'Personalizado', amount: plan.amount, active: true)
+      subscription.plan_id = pl.id
+      subscription.new_value = plan.id
+    else
+      subscription.new_value = 0
+    end
     @subscription     = subscription
     @credit_card_hash = credit_card_hash
     @with_save        = with_save

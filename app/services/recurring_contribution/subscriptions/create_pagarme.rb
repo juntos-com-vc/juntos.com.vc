@@ -2,13 +2,18 @@ class RecurringContribution::Subscriptions::CreatePagarme
   def initialize(juntos_subscription)
     @juntos_subscription = juntos_subscription
     @payment_method = normalize_payment_method(juntos_subscription.payment_method)
-    @plan_id = juntos_subscription.plan.plan_code
+    @plan_id = juntos_subscription.new_value.to_i > 0 ? juntos_subscription.new_value.to_i : juntos_subscription.plan.plan_code
     @user = juntos_subscription.user
     @owner = juntos_subscription.project.user
   end
 
   def process
-    ::Pagarme::API.create_subscription(attributes)
+    logger = Logger.new(STDOUT)
+    logger.debug {'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'}
+    attri = attributes
+    logger.debug {attri}
+    logger.debug {'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'}
+    ::Pagarme::API.create_subscription(attri)
   end
 
   private
