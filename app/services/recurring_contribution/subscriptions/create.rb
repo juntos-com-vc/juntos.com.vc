@@ -1,10 +1,5 @@
 class RecurringContribution::Subscriptions::Create
   def initialize(juntos_subscription)
-    if juntos_subscription.plan_id == 0
-      plan = ::Pagarme::API.create_plan({:name => "Personalizado", :days => 30, :amount => juntos_subscription.new_value*100 })
-      pl = Plan.create(plan_code: plan.id, name: 'Personalizado', amount: plan.amount, active: true)
-      juntos_subscription.plan_id = pl.id
-    end
     @juntos_subscription = juntos_subscription
   end
 
