@@ -23,7 +23,7 @@ p
   br/
   | CPF/CNPJ do realizador: #{contribution.project.user.cpf}
 
-  - if contribution.project.ticket_price.present? && contribution.value > contribution.project.ticket_price
+  - if contribution.tickets.count > 0
   p Você recebeu os seguintes Tickets:
   ul
     - contribution.tickets.each do |tk|
