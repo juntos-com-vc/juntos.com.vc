@@ -64,7 +64,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
           => t('.menu.result')
             |&nbsp;
         - if @project.page1_title.present?
-          = link_to '#page1', id: 'page1_link', class: 'nav-tab' , data: {target: '#project_page1.content'}, style: "background-color: #{@project.color};" do
+          = link_to '#page1', id: 'page1_link', class: ' mobile-tab' , data: {target: '#project_page1.content'}, style: "background-color: #{@project.color};"  do
             => @project.page1_title
               |&nbsp;
 
@@ -72,7 +72,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
   nav.project-nav.w-hidden-small.w-hidden-tiny
     .w-container
       .w-row
-        .w-col.w-col-9
+        .w-col.w-col-12
           = link_to '#about', id: 'about_link', class: 'nav-tab selected', data: {target: '#project_about.content'}, style: "background-color: #{@project.color};" do
             = t('.menu.about')
           = link_to '#posts', id: 'posts_link', class: 'nav-tab' , data: {target: '#project_posts'}, style: "background-color: #{@project.color};" do
