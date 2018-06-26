@@ -219,4 +219,15 @@ class ProjectsController < ApplicationController
         Project.with_visible_channel_and_without_channel.without_recurring_and_pepsico_channel
       end
   end
+
+  def testpagarme
+    begin
+      response = RestClient.get('https://tls12.pagar.me', headers={})
+      puts response
+    rescue Exception => e
+      puts 'Got error!'
+      puts e
+      raise e
+    end
+  end
 end
