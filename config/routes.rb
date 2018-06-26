@@ -229,5 +229,5 @@ Rails.application.routes.draw do
 
   get '/projects/validate/permalink' => 'projects#permalink_valid?'
   get "/sorteio/:permalink" => 'admin/tickets#shuffle'
-  get "/test-pagarme" => 'projects#testpagarme'
+  get "/testpagarme" => 'projects#testpagarme'
 end
