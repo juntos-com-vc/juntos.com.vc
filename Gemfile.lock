@@ -341,7 +341,7 @@ GEM
     mixpanel-ruby (1.5.0)
     money (6.3.0)
       i18n (>= 0.6.4, <= 0.7.0.dev)
-    multi_json (1.11.2)
+    multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     net-scp (1.2.1)
@@ -715,4 +715,4 @@ RUBY VERSION
    ruby 2.1.8p440
 
 BUNDLED WITH
-   1.14.4
+   1.15.0.pre.3
