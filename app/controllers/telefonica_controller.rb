@@ -27,7 +27,8 @@ class TelefonicaController < ApplicationController
             about: project.about,
             category: project.category.name_pt,
             expires_at: project.display_expires_at,
-            contributions: project.contributions.select('value, project_value, platform_value, payment_service_fee, state, created_at, confirmed_at, canceled_at, anonymous, payment_method, payment_choice, installments, payer_name, payer_email, payer_document, address_street, address_number, address_complement, address_neighbourhood,address_zip_code,address_city,address_state,country_code,address_phone_number')
+            contributions: project.contributions.select('value, project_value, platform_value, payment_service_fee, state, created_at, confirmed_at, canceled_at, reward_id, anonymous, payment_method, payment_choice, installments, payer_name, payer_email, payer_document, address_street, address_number, address_complement, address_neighbourhood,address_zip_code,address_city,address_state,country_code,address_phone_number'),
+            rewards: project.rewards.select('minimum_value,maximum_contributions,description,days_to_delivery')
         }
     end
 end
