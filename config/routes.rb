@@ -230,4 +230,7 @@ Rails.application.routes.draw do
   get '/projects/validate/permalink' => 'projects#permalink_valid?'
   get "/sorteio/:permalink" => 'admin/tickets#shuffle'
   get "/testpagarme" => 'projects#testpagarme'
+  get "/telefonica/canal" => 'telefonica#channel'
+  get "/telefonica/projetos" => 'telefonica#projects'
+  get "/telefonica/projeto/:permalink" => 'telefonica#project'
 end
