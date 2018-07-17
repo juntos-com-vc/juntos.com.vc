@@ -86,6 +86,35 @@ class Contribution < ActiveRecord::Base
   scope :valid_for_channel_statistics_by_projects, ->(project) {
     with_states(['confirmed', 'refunded', 'requested_refund']).where(project_id: project)
   }
+  def as_json(options={})
+    { 
+      :value => self.value.to_f,
+      :project_value => self.project_value.to_f,
+      :platform_value => self.platform_value.to_f,
+      :payment_service_fee => self.payment_service_fee.to_f,
+      :state => self.state,
+      :created_at => self.created_at,
+      :confirmed_at => self.confirmed_at,
+      :canceled_at => self.canceled_at,
+      :reward_id => self.reward_id.to_i,
+      :anonymous => self.anonymous,
+      :payment_method => self.payment_method,
+      :payment_choice => self.payment_choice,
+      :installments => self.installments.to_i,
+      :payer_name => self.payer_name,
+      :payer_email => self.payer_email,
+      :payer_document => self.payer_document,
+      :address_street => self.address_street,
+      :address_number => self.address_number,
+      :address_complement => self.address_complement,
+      :address_neighbourhood => self.address_neighbourhood,
+      :address_zip_code => self.address_zip_code,
+      :address_city => self.address_city,
+      :address_state => self.address_state,
+      :country_code => self.country_code,
+      :address_phone_number => self.address_phone_number,
+    }
+  end
 
   def self.between_values(start_at, ends_at)
     return all unless start_at.present? && ends_at.present?

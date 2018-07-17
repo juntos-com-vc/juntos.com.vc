@@ -19,6 +19,15 @@ class Reward < ActiveRecord::Base
 
   before_save :log_changes
 
+  def as_json(options={})
+    { 
+      :minimum_value => self.minimum_value.to_f,
+      :maximum_contributions => self.maximum_contributions.to_f,
+      :description => self.description,
+      :days_to_delivery => self.days_to_delivery.to_i,
+    }
+  end
+
   def log_changes
     self.last_changes = self.changes.to_json
   end

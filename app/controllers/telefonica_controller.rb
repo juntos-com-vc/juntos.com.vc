@@ -19,16 +19,16 @@ class TelefonicaController < ApplicationController
             render :json => {
                 name: project.name,
                 permalink: project.permalink,
-                goal: project.goal,
-                pleged: project.pledged,
-                total_contributions: project.total_contributions,
+                goal: project.goal.to_f,
+                pledged: project.pledged.to_f,
+                total_contributions: project.total_contributions.to_i,
                 state: project.state,
                 about: project.about,
                 category: project.category.name_pt,
                 expires_at: project.display_expires_at,
-                contributions: project.contributions.select('value, project_value, platform_value, payment_service_fee, state, created_at, confirmed_at, canceled_at, reward_id, anonymous, payment_method, payment_choice, installments, payer_name, payer_email, payer_document, address_street, address_number, address_complement, address_neighbourhood,address_zip_code,address_city,address_state,country_code,address_phone_number'),
-                rewards: project.rewards.select('minimum_value,maximum_contributions,description,days_to_delivery')
-            }
+                contributions: project.contributions.as_json(),
+                rewards: project.rewards.as_json()
+            }.to_json
         end
     end
 end
