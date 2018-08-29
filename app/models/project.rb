@@ -97,6 +97,7 @@ class Project < ActiveRecord::Base
 
   scope :with_project_totals, -> { joins('LEFT OUTER JOIN project_totals ON project_totals.project_id = projects.id') }
   scope :without_pepsico_channel, -> { joins(:channels).where.not('"channels"."permalink" = \'pepsico\'') }
+  scope :without_teste_channel, -> { joins(:channels).where.not('"channels"."permalink" = \'teste\'') }
   scope :movable_to_channel, -> { with_states([:draft, :online, :successful, :failed, :in_analysis]) }
   scope :by_progress, ->(progress) { joins(:project_total).where("project_totals.pledged >= projects.goal*?", progress.to_i/100.to_f) }
   scope :by_channel, ->(channel_id) { joins(:channels).where("channels.id = ?", channel_id) }
@@ -116,7 +117,7 @@ class Project < ActiveRecord::Base
   scope :random_near_online_with_limit, ->(address_state, limit) { with_state('online').near_of(address_state).order("random()").limit(limit) }
   scope :online_non_recommended_with_limit, ->(limit) { with_state('online').where(recommended: false).order("random()").limit(limit) }
   scope :to_finish, ->{ expired.with_states(['online', 'waiting_funds']) }
-  scope :visible, -> { without_states(['draft', 'rejected', 'deleted', 'in_analysis']) }
+  scope :visible, -> { without_teste_channel.without_states(['draft', 'rejected', 'deleted', 'in_analysis']) }
   scope :financial, -> { with_states(['online', 'successful', 'waiting_funds']).where("projects.expires_at > (current_timestamp - '15 days'::interval)") }
   scope :expired, -> { where("projects.expires_at < current_timestamp") }
   scope :not_expired, -> { where("projects.expires_at >= current_timestamp") }
