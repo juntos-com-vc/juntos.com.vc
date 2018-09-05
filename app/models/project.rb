@@ -97,7 +97,7 @@ class Project < ActiveRecord::Base
 
   scope :with_project_totals, -> { joins('LEFT OUTER JOIN project_totals ON project_totals.project_id = projects.id') }
   scope :without_pepsico_channel, -> { joins(:channels).where.not('"channels"."permalink" = \'pepsico\'') }
-  scope :without_teste_channel, -> { joins('LEFT OUTER JOIN channels_projects ON channels_projects.project_id = projects.id LEFT OUTER JOIN channels ON channels_projects.channel_id = channels.id').where('("channels"."permalink" is null or "channels"."permalink" != \'teste\')') }
+  scope :without_teste_channel, -> { joins('LEFT OUTER JOIN channels_projects cp ON cp.project_id = projects.id LEFT OUTER JOIN channels ON cp.channel_id = channels.id').where('("channels"."permalink" is null or "channels"."permalink" != \'teste\')') }
   scope :movable_to_channel, -> { with_states([:draft, :online, :successful, :failed, :in_analysis]) }
   scope :by_progress, ->(progress) { joins(:project_total).where("project_totals.pledged >= projects.goal*?", progress.to_i/100.to_f) }
   scope :by_channel, ->(channel_id) { joins(:channels).where("channels.id = ?", channel_id) }
