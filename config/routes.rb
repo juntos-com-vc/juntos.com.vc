@@ -118,6 +118,7 @@ Rails.application.routes.draw do
   get "/ongs" => 'ongs#index', id: 'ongs', as: :ongs
   get "/contato" => 'contact#index', id: 'ongs', as: :contact
   get "/test-approve" => 'admin/projects#manual'
+  post "/boleto" => 'projects/contributions#boleto'
 
   # Channels
   constraints SubdomainConstraint do

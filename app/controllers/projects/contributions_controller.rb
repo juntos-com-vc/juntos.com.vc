@@ -50,6 +50,10 @@ class Projects::ContributionsController < ApplicationController
     @title = t('projects.contributions.show.title')
   end
 
+  def boleto
+    abort 'djiajdiajdia'
+  end
+
   def new
     @create_url = project_contributions_url(@project, project_contribution_url_options)
 
