@@ -5,7 +5,7 @@ class Projects::ContributionsController < ApplicationController
   has_scope :available_to_count, type: :boolean
   has_scope :with_state
   #has_scope :page, default: 1
-  after_filter :verify_authorized, except: [:index]
+  after_filter :verify_authorized, except: [:index, :boleto]
   belongs_to :project
   before_action :detect_old_browsers, only: [:new, :create]
   before_action :load_channel, only: [:edit, :new]
@@ -51,7 +51,97 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def boleto
-    abort 'djiajdiajdia'
+    contribution = Contribution.find(params[:contribution])
+    project = contribution.project
+    user = contribution.user
+    api = Moip.new.call
+    phone = contribution.address_phone_number[4..-1]
+    ddd = contribution.address_phone_number[1,2]
+    phone.sub! '-', ''
+    conti = false
+    moip_code = user.moip_code
+
+    if !user.moip_code?
+      c = api.customer.create(
+        own_id: "JUNTOS312", 
+        fullname: user.name, 
+        email: user.email, 
+        birthDate: user.birth_date, 
+        taxDocument: {  
+            type: 'CPF', 
+            number: "88405036253"
+        },
+        phone: {  
+            countryCode: '55', 
+            areaCode: ddd, 
+            number: phone
+        },
+        shippingAddress: {  
+            city: contribution.address_city, 
+            district: contribution.address_neighbourhood, 
+            street: contribution.address_street, 
+            streetNumber: contribution.address_number, 
+            zipCode: contribution.address_zip_code, 
+            state: contribution.address_state, 
+            country: "BRA"
+        }
+      )
+      if !c.errors
+        moip_code = c.id
+        user.moip_code = moip_code
+        user.save
+      end
+    end
+
+    # order = api.order.create({
+    #   ownId: contribution.id,
+    #   items: [
+    #     {
+    #       product: "Apoio para o projeto " + project.name,
+    #       quantity: 1,
+    #       detail: "",
+    #       price: Integer(contribution.value*100)
+    #     }
+    #   ],
+    #   customer: {
+    #     fullname: contribution.payer_name,
+    #     ownId: contribution.user_id,
+    #     email: contribution.payer_email,
+    #     taxDocument: {
+    #       type: "CPF",
+    #       number: contribution.payer_document
+    #     }
+    #   }
+    # })
+
+    # ret = api.payment.create(order.id,
+    #   {
+    #     funding_instrument: {
+    #       method: "BOLETO",
+    #       boleto: {
+    #         expiration_date: (Time.new + 5.days).strftime('%Y-%m-%d'),
+    #         instruction_lines: {
+    #           first: "Boleto referente DOAÇÃO para campanha na juntos.com.vc",
+    #           second: "Caso perca o prazo de pagamento, você poderá gerar outro boleto",
+    #           third: "na página da campanha que realizou a doação"
+    #           },
+    #         logo_uri: "http://juntos.com.vc/assets/juntos/logo-small.png"
+    #       }
+    #     }
+    #   }
+    # )
+    # Atualizar no banco de dados com informações do moip
+    # Retornar json com url do boleto ou erro
+    render :json => {
+      contribution: Integer(contribution.value*100),
+      ownId: contribution.user_id.to_s,
+      url: 'http://www.joao.com',
+      phone: phone,
+      ddd: ddd,
+      conti: conti,
+      customer: c
+      # order: order.to_json
+    }.to_json
   end
 
   def new

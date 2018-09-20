@@ -74,7 +74,7 @@ pt:
         insufficient_credits: "Você possui %{credits} em créditos. Esse valor não é suficiente para realizar o apoio, por favor escolha outro meio de pagamento."
         choose_payment: "Escolha o meio de pagamento"
         choose_payment_subtitle: "PAGAMENTO SEGURO"
-        cpf: 'Para prosseguir, por favor informe:'
+        cpf: 'Para prosseguir, por favor informe o CPF/CNPJ'
         credits_notice_html: Este apoio será pago com seus créditos. Após a confirmação,
           você ficará com um saldo de <strong>%{credits}</strong> em créditos para
           apoiar outros projetos.
