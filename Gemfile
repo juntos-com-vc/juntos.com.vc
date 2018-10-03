@@ -189,5 +189,4 @@ gem 'weekdays'
 
 # Countries collection
 gem 'countries'
-gem "moip2"
 gem 'faraday'
