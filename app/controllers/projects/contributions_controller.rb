@@ -58,89 +58,59 @@ class Projects::ContributionsController < ApplicationController
     phone = contribution.address_phone_number[4..-1]
     ddd = contribution.address_phone_number[1,2]
     phone.sub! '-', ''
-    conti = false
-    moip_code = user.moip_code
+    # TODO - CREATE ORDER
 
-    if !user.moip_code?
-      c = api.customer.create(
-        own_id: "JUNTOS312", 
-        fullname: user.name, 
-        email: user.email, 
-        birthDate: user.birth_date, 
-        taxDocument: {  
-            type: 'CPF', 
-            number: "88405036253"
-        },
-        phone: {  
-            countryCode: '55', 
-            areaCode: ddd, 
-            number: phone
-        },
-        shippingAddress: {  
-            city: contribution.address_city, 
-            district: contribution.address_neighbourhood, 
-            street: contribution.address_street, 
-            streetNumber: contribution.address_number, 
-            zipCode: contribution.address_zip_code, 
-            state: contribution.address_state, 
-            country: "BRA"
+    api = Moip.new
+    api.call
+    r = api.order({
+      ownId: contribution.id,
+      items: [
+        {
+          product: "Apoio para o projeto " + project.name,
+          quantity: 1,
+          detail: "",
+          price: Integer(contribution.value*100)
         }
-      )
-      if !c.errors
-        moip_code = c.id
-        user.moip_code = moip_code
-        user.save
-      end
-    end
+      ],
+      customer: {
+        fullname: contribution.payer_name,
+        ownId: contribution.user_id,
+        email: contribution.payer_email,
+        taxDocument: {
+          type: "CPF",
+          number: contribution.payer_document
+        }
+      }
+    })
 
-    # order = api.order.create({
-    #   ownId: contribution.id,
-    #   items: [
-    #     {
-    #       product: "Apoio para o projeto " + project.name,
-    #       quantity: 1,
-    #       detail: "",
-    #       price: Integer(contribution.value*100)
-    #     }
-    #   ],
-    #   customer: {
-    #     fullname: contribution.payer_name,
-    #     ownId: contribution.user_id,
-    #     email: contribution.payer_email,
-    #     taxDocument: {
-    #       type: "CPF",
-    #       number: contribution.payer_document
-    #     }
-    #   }
-    # })
-
-    # ret = api.payment.create(order.id,
-    #   {
-    #     funding_instrument: {
-    #       method: "BOLETO",
-    #       boleto: {
-    #         expiration_date: (Time.new + 5.days).strftime('%Y-%m-%d'),
-    #         instruction_lines: {
-    #           first: "Boleto referente DOAÇÃO para campanha na juntos.com.vc",
-    #           second: "Caso perca o prazo de pagamento, você poderá gerar outro boleto",
-    #           third: "na página da campanha que realizou a doação"
-    #           },
-    #         logo_uri: "http://juntos.com.vc/assets/juntos/logo-small.png"
-    #       }
-    #     }
-    #   }
-    # )
+    order = JSON.parse r.body
+    id = order['id']
+    payment = api.payment(id,
+      {
+        fundingInstrument: {
+          method: "BOLETO",
+          boleto: {
+            expirationDate: (Time.new + 5.days).strftime('%Y-%m-%d'),
+            instructionLines: {
+              first: "Boleto referente DOAÇÃO para campanha na juntos.com.vc",
+              second: "Caso perca o prazo de pagamento, você poderá gerar outro boleto",
+              third: "na página da campanha que realizou a doação"
+              },
+            logoUri: "http://juntos.com.vc/assets/juntos/logo-small.png"
+          }
+        }
+      }
+    )
+    p = JSON.parse payment.body
+    link = p['_links']['payBoleto']['printHref']
+    contribution.payment_choice = 'BoletoBancario'
+    contribution.payment_method = 'MoIP'
+    contribution.payment_token = p['id']
+    contribution.payment_id = p['id']
+    contribution.save
     # Atualizar no banco de dados com informações do moip
-    # Retornar json com url do boleto ou erro
     render :json => {
-      contribution: Integer(contribution.value*100),
-      ownId: contribution.user_id.to_s,
-      url: 'http://www.joao.com',
-      phone: phone,
-      ddd: ddd,
-      conti: conti,
-      customer: c
-      # order: order.to_json
+      url: link,
     }.to_json
   end
 

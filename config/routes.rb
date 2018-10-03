@@ -230,7 +230,7 @@ Rails.application.routes.draw do
 
   get '/projects/validate/permalink' => 'projects#permalink_valid?'
   get "/sorteio/:permalink" => 'admin/tickets#shuffle'
-  get "/testpagarme" => 'projects#testpagarme'
   get "/api/telefonica/projetos" => 'telefonica#projects'
   get "/api/telefonica/projeto/:permalink" => 'telefonica#project'
+  get "/api/telefonica/teste" => 'telefonica#testemoip'
 end

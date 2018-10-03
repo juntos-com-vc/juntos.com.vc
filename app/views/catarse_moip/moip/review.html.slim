@@ -107,13 +107,17 @@
 javascript:
   $().ready(function(){
     $('#build_boleto').on('click', function(){
+      $(this).hide();
+      $('#card-loading img').show();
       var contId = $('#contribution_id').val();
       $.ajax({
         url: '/pt/boleto/' + contId,
         type: 'PUT',
         data: "",
         success: function(data) {
-          console.log(data.url);
+          $('#build_boleto').remove();
+          $('#payment-slip-instructions').html('<a href="' + data.url + '" target="_blank" class="alt-link">Clique aqui gerar o boleto e completar o pagamento.</a>');
+          $('#card-loading img').hide();
         }
       });
       return false;

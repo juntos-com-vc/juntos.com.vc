@@ -9,6 +9,22 @@ class Moip
   def call
     authentication
   end
+
+  def order(data)
+    return @conn.post do |req|
+      req.url '/v2/orders'
+      req.headers['Content-Type'] = 'application/json'
+      req.body = data.to_json
+    end
+  end
+
+  def payment(order, data)
+    return @conn.post do |req|
+      req.url '/v2/orders/' + order + '/payments'
+      req.headers['Content-Type'] = 'application/json'
+      req.body = data.to_json
+    end
+  end
  
   private
  
@@ -20,20 +36,9 @@ class Moip
     ENV['MOIP_KEY']
   end
  
-  def credentials
-    Rails.application.credentials[Rails.env.to_sym][:moip]
-  end
- 
   def authentication
-    Moip2::Api.new(moip_client)
-  end
- 
-  def moip_client
-    moip_env = ENV['MOIP_TEST'] ? :sandbox : :production
-    Moip2::Client.new(moip_env, moip_auth)
-  end
- 
-  def moip_auth
-    auth = Moip2::Auth::Basic.new(token, key)
+    url = ENV['MOIP_TEST'] ? 'https://sandbox.moip.com.br/' : 'https://api.moip.com.br/'
+    @conn = Faraday.new(url: url)
+    @conn.basic_auth(token, key)
   end
 end
