@@ -773,7 +773,7 @@ DEPENDENCIES
   catarse_juntos_gift_cards!
   catarse_moip!
   catarse_monkeymail (>= 0.1.6)
-  catarse_paypal_express (= 3.0.1)
+  catarse_paypal_express
   catarse_settings_db (>= 0.1.0)
   chartkick
   clockwork (~> 1.0.0)
