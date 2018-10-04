@@ -82,6 +82,7 @@ class Projects::ContributionsController < ApplicationController
         }
       }
     })
+    puts r.body
 
     order = JSON.parse r.body
     id = order['id']
