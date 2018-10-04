@@ -189,3 +189,4 @@ gem 'weekdays'
 
 # Countries collection
 gem 'countries'
+gem 'faraday'

@@ -82,7 +82,7 @@
             = label_tag 'user_document_payment_slip', t('projects.contributions.review.form.labels.document'), class: 'field-label fontweight-semibold'
             = text_field_tag 'user_document_payment_slip', nil, { autocomplete: 'off', class: 'w-input text-field', required: true }
             .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="user_document_payment_slip"]
-              = t('projects.contributions.edit.form_labels.payment_card_source')
+              = t('projects.contributions.edit.cpf')
         .w-row
           .w-col.w-col-12
             #payment-slip-instructions.card.card-message.u-radius.fontsize-small.zindex-10.u-marginbottom-30
@@ -104,3 +104,22 @@
             = render 'terms'
 
 = javascript_include_tag js_moip_index_path
+javascript:
+  $().ready(function(){
+    $('#build_boleto').on('click', function(){
+      $(this).hide();
+      $('#card-loading img').show();
+      var contId = $('#contribution_id').val();
+      $.ajax({
+        url: '/pt/boleto/' + contId,
+        type: 'PUT',
+        data: "",
+        success: function(data) {
+          $('#build_boleto').remove();
+          $('#payment-slip-instructions').html('<a href="' + data.url + '" target="_blank" class="alt-link">Clique aqui gerar o boleto e completar o pagamento.</a>');
+          $('#card-loading img').hide();
+        }
+      });
+      return false;
+    });
+  });

@@ -5,7 +5,7 @@ class Projects::ContributionsController < ApplicationController
   has_scope :available_to_count, type: :boolean
   has_scope :with_state
   #has_scope :page, default: 1
-  after_filter :verify_authorized, except: [:index]
+  after_filter :verify_authorized, except: [:index, :boleto]
   belongs_to :project
   before_action :detect_old_browsers, only: [:new, :create]
   before_action :load_channel, only: [:edit, :new]
@@ -51,7 +51,67 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def boleto
-    abort 'djiajdiajdia'
+    contribution = Contribution.find(params[:contribution])
+    project = contribution.project
+    user = contribution.user
+    api = Moip.new.call
+    phone = contribution.address_phone_number[4..-1]
+    ddd = contribution.address_phone_number[1,2]
+    phone.sub! '-', ''
+    # TODO - CREATE ORDER
+
+    api = Moip.new
+    api.call
+    r = api.order({
+      ownId: contribution.id,
+      items: [
+        {
+          product: "Apoio para o projeto " + project.name,
+          quantity: 1,
+          detail: "",
+          price: Integer(contribution.value*100)
+        }
+      ],
+      customer: {
+        fullname: contribution.payer_name,
+        ownId: contribution.user_id,
+        email: contribution.payer_email,
+        taxDocument: {
+          type: "CPF",
+          number: contribution.payer_document
+        }
+      }
+    })
+
+    order = JSON.parse r.body
+    id = order['id']
+    payment = api.payment(id,
+      {
+        fundingInstrument: {
+          method: "BOLETO",
+          boleto: {
+            expirationDate: (Time.new + 5.days).strftime('%Y-%m-%d'),
+            instructionLines: {
+              first: "Boleto referente DOAÇÃO para campanha na juntos.com.vc",
+              second: "Caso perca o prazo de pagamento, você poderá gerar outro boleto",
+              third: "na página da campanha que realizou a doação"
+              },
+            logoUri: "http://juntos.com.vc/assets/juntos/logo-small.png"
+          }
+        }
+      }
+    )
+    p = JSON.parse payment.body
+    link = p['_links']['payBoleto']['printHref']
+    contribution.payment_choice = 'BoletoBancario'
+    contribution.payment_method = 'MoIP'
+    contribution.payment_token = p['id']
+    contribution.payment_id = p['id']
+    contribution.save
+    # Atualizar no banco de dados com informações do moip
+    render :json => {
+      url: link,
+    }.to_json
   end
 
   def new
