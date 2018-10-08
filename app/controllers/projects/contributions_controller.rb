@@ -82,7 +82,6 @@ class Projects::ContributionsController < ApplicationController
         }
       }
     })
-    puts r.body
 
     order = JSON.parse r.body
     id = order['id']
@@ -108,6 +107,7 @@ class Projects::ContributionsController < ApplicationController
     contribution.payment_method = 'MoIP'
     contribution.payment_token = p['id']
     contribution.payment_id = p['id']
+    contribution.state = 'waiting_confirmation'
     contribution.save
     # Atualizar no banco de dados com informações do moip
     render :json => {

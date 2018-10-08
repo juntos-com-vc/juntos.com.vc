@@ -38,12 +38,6 @@ class Moip
  
   def authentication
     url = ENV['MOIP_TEST'] == 'true' ? 'https://sandbox.moip.com.br/' : 'https://api.moip.com.br/'
-    puts "================== MOIP ================"
-    puts url
-    puts ENV['MOIP_TEST']
-    puts get_token
-    puts get_key
-    puts "================== FIM MOIP ================"
     @conn = Faraday.new(url: url)
     @conn.basic_auth(token, key)
   end
