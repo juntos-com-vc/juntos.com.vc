@@ -62,6 +62,7 @@ class Projects::ContributionsController < ApplicationController
 
     api = Moip.new
     api.call
+    documentType = contribution.payer_document.length > 11 ? "CNPJ" : "CPF"
     r = api.order({
       ownId: contribution.id,
       items: [
@@ -77,7 +78,7 @@ class Projects::ContributionsController < ApplicationController
         ownId: contribution.user_id,
         email: contribution.payer_email,
         taxDocument: {
-          type: "CPF",
+          type: documentType,
           number: contribution.payer_document
         }
       }
