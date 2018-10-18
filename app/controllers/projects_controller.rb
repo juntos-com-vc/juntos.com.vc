@@ -122,27 +122,27 @@ class ProjectsController < ApplicationController
   def show
     @title = resource.name
     authorize @project
-    if @project.permalink == 'fundodebolsas'
-      redirect_to 'https://benfeitoria.com/fundodebolsas'
-    else
-      fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
-      @channel = resource.channels.first
-      @posts_count = resource.posts.count(:all)
-      @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
-      @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
-      @project_documentation = ProjectDocumentationViewObject.new(
-        banks: Bank.order(:code).to_collection,
-        project: @project
-      )
+    # if @project.permalink == 'fundodebolsas'
+    #   redirect_to 'https://benfeitoria.com/fundodebolsas'
+    # else
+    fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
+    @channel = resource.channels.first
+    @posts_count = resource.posts.count(:all)
+    @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
+    @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
+    @project_documentation = ProjectDocumentationViewObject.new(
+      banks: Bank.order(:code).to_collection,
+      project: @project
+    )
 
-      if @project.recurring?
-        @plans = Plan.active
-        @last_subscription_report = @project.subscription_reports.try(:last)
-        @supporters = User.with_paid_subscriptions_for_project(@project.id)
-      else
-        @contributions = @project.contributions.available_to_count
-      end
+    if @project.recurring?
+      @plans = Plan.active
+      @last_subscription_report = @project.subscription_reports.try(:last)
+      @supporters = User.with_paid_subscriptions_for_project(@project.id)
+    else
+      @contributions = @project.contributions.available_to_count
     end
+    # end
   end
 
   def video
