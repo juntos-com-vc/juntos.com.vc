@@ -117,11 +117,14 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def moipwebhook
-    tk = params[:token]
+    # tk = params[:token]
+    rs = params[:resource]
+    payment = rs[:payment]
+    id = payment[:id]
+    status = payment[:status]
     st = 'fora'
-    if tk == 'f7f062eea25e4ecfb6010771c7a7f3a3'
+    if status == 'AUTHORIZED'
       st = 'entrou no token'
-      id = params[:id]
       contribution = Contribution.where(payment_token: id).first()
       if contribution.state == 'waiting_confirmation'
         st = 'entrou no status'
@@ -131,6 +134,7 @@ class Projects::ContributionsController < ApplicationController
     end
     render :json => {
       status: st,
+      # id: id
     }.to_json
   end
 
