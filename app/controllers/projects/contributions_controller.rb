@@ -63,6 +63,7 @@ class Projects::ContributionsController < ApplicationController
     api = Moip.new
     api.call
     document_type = contribution.payer_document.length > 11 ? "CNPJ" : "CPF"
+    zip = contribution.address_zip_code.sub! '-', ''
     r = api.order({
       ownId: contribution.id,
       items: [
@@ -80,6 +81,15 @@ class Projects::ContributionsController < ApplicationController
         taxDocument: {
           type: document_type,
           number: contribution.payer_document
+        },
+        shippingAddress: {
+          city: contribution.address_city,
+          district: contribution.address_neighbourhood,
+          street: contribution.address_street,
+          streetNumber: contribution.address_number,
+          zipCode: zip,
+          state: contribution.address_state,
+          country: "BRA"
         }
       }
     })

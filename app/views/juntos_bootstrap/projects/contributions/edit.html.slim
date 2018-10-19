@@ -40,8 +40,8 @@
               .w-row
                 = form.input :country_code, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, input_html: {class: 'w-select'}, include_blank: false, collection: @countries, required: true
               .w-row
-                = form.input :address_street, as: :string, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, required: true 
-                = form.input :address_number, as: :string, wrapper_html: {class: 'w-col w-col-small-6 w-col-tiny-6 w-col-2 w-sub-col-middle'}, required: true
+                = form.input :address_street, as: :string, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, input_html: {data: {required_in_brazil: true}}
+                = form.input :address_number, as: :string, wrapper_html: {class: 'w-col w-col-small-6 w-col-tiny-6 w-col-2 w-sub-col-middle'}, input_html: {data: {required_in_brazil: true}}
                 = form.input :address_complement, as: :string, wrapper_html: {class: 'w-col w-col-small-6 w-col-tiny-6 w-col-4'}
               .w-row
                 = form.input :address_neighbourhood, as: :string, wrapper_html: {class: 'w-col w-col-6 w-sub-col'}, input_html: {data: {required_in_brazil: true}}
