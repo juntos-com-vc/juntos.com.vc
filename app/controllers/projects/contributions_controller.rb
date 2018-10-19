@@ -5,7 +5,7 @@ class Projects::ContributionsController < ApplicationController
   has_scope :available_to_count, type: :boolean
   has_scope :with_state
   #has_scope :page, default: 1
-  after_filter :verify_authorized, except: [:index, :boleto]
+  after_filter :verify_authorized, except: [:index, :boleto, :moipwebhook]
   belongs_to :project
   before_action :detect_old_browsers, only: [:new, :create]
   before_action :load_channel, only: [:edit, :new]
@@ -113,6 +113,24 @@ class Projects::ContributionsController < ApplicationController
     # Atualizar no banco de dados com informações do moip
     render :json => {
       url: link,
+    }.to_json
+  end
+
+  def moipwebhook
+    tk = params[:token]
+    st = 'fora'
+    if tk == 'f7f062eea25e4ecfb6010771c7a7f3a3'
+      st = 'entrou no token'
+      id = params[:id]
+      contribution = Contribution.where(payment_token: id).first()
+      if contribution.state == 'waiting_confirmation'
+        st = 'entrou no status'
+        contribution.state = 'confirmed'
+        contribution.save
+      end
+    end
+    render :json => {
+      status: st,
     }.to_json
   end
 
