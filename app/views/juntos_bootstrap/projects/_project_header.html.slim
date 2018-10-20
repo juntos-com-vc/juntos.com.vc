@@ -103,6 +103,8 @@
             li.u-marginleft-20.fontsize-large.fontweight-semibold style="color:#{@project.color}"
               - if %w(associacaoacorde pesquisadoacao).include?(@project.permalink)
                 = @project.display_pledged(2)
+              - elsif %w(fundodebolsas boletos).include?(@project.permalink)
+                = @project.display_pledged(4)
               - else
                 = @project.display_pledged
             li.u-marginleft-20.fontsize-smallest
