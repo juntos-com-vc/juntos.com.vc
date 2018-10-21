@@ -273,3 +273,87 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         = link_to '#', class: 'btn btn-medium btn-tweet' do
           = image_tag 'catarse_bootstrap/twitter-256.png', class: 'icon-share-mobile'
           = t('.tweet')
+- if %w(fundodebolsas boletos).include?(@project.permalink)
+  #countdow-timer
+    .container
+      h1#head Olá, seja bem vindo (a)! Que bom que estamos ansiosos (as) juntos (as) pra que a campanha comece!! Pedimos que use sua energia e também nos ajude a divulgá-la para aquelas pessoas que tem tudo a ver com essa causa! Logo começarão as doações, em exatos:
+      ul
+        li
+          span#hours
+          | Hora(s)
+        li
+          span#minutes
+          | Minuto(s)
+        li
+          span#seconds
+          | Segundo(s)
+      h1#head Vamos Juntos? #doarémaravilhoso #fundodebolsas
+  = content_for :custom_javascripts do
+    script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"
+    javascript:
+      const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+      let countDown = new Date('Oct 22, 2018 00:00:00').getTime(),
+        x = setInterval(function () {
+
+          let now = new Date().getTime(),
+            distance = countDown - now;
+
+            document.getElementById('hours').innerText = pad(Math.floor((distance % (day)) / (hour))),
+            document.getElementById('minutes').innerText = pad(Math.floor((distance % (hour)) / (minute))),
+            document.getElementById('seconds').innerText = pad(Math.floor((distance % (minute)) / second));
+
+          //do something later when date is reached
+          if (distance < 0) {
+           clearInterval(x);
+           $('#countdow-timer').remove();
+          } else {
+            $('#countdow-timer').show();
+          }
+
+        }, second);
+      function pad (str) {
+        max = 2;
+        str = str.toString();
+        return str.length < max ? pad("0" + str, max) : str;
+      }
+  = content_for :custom_css do
+    css:
+      #countdow-timer {
+        position: absolute;
+        top: 49px;
+        width: 100%;
+        text-align: center;
+        padding: 5%;
+        background-color:rgba(0, 0, 0, 0.8);
+        display: none;
+      }
+      #countdow-timer .container {
+        color: #333;
+        text-align: center;
+      }
+      #countdow-timer h1 {
+        font-weight: normal
+        line-height: 100%;
+        font-size: 18px;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #fff;
+      }
+      #countdow-timer ul {
+        color: #fff;
+      }
+      #countdow-timer li {
+        display: inline-block;
+        font-size: 1.5em;
+        list-style-type: none;
+        padding: 1em;
+        text-transform: uppercase;
+      }
+      #countdow-timer li span {
+        display: block;
+        font-size: 4.5rem;
+        line-height: 100%;
+      }
