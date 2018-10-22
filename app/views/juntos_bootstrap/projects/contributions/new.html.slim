@@ -16,7 +16,7 @@
             .card.card-message.zindex-10.u-radius.u-marginbottom-30.fontsize-small
               == t('.you_have_credits', credits: number_to_currency(current_user.credits))
           .w-form.back-reward-form
-            - if %w(boletos).include?(@project.permalink)
+            - if %w(boletos fundodebolsas).include?(@project.permalink)
               h1 #doaremaeavilhoso #fundodebolsas
             -else
               = render 'devise/shared/alert'

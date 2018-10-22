@@ -14,7 +14,7 @@
             = radio_button_tag 'payment_type', "boleto", false, class: 'w-radio-input back-payment-radio-button'
             = label_tag :payment_type_boleto, class: "boleto w-form-label" do
               = image_tag 'catarse_bootstrap/payment_boleto.png'
-        - if pr.project_id == 5756
+        - if pr.project_id == 5756 || pr.project_id == 5666
           .w-col.w-col-5.w-col-small-5.back-payment-moip-options-column
             .w-radio.w-clearfix
               = radio_button_tag 'payment_type', "doacao_parcelada", false, class: 'w-radio-input back-payment-radio-button'
