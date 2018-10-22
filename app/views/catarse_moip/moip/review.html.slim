@@ -109,7 +109,7 @@
             #card-loading.loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "catarse_bootstrap/loader.gif"
             = submit_tag t('projects.contributions.review.form.labels.build_boleto'), class: 'btn btn-large u-marginbottom-20', id: "build_boleto", disabled: true
             = render 'terms'
-      - if pr.project_id == 5756
+      - if pr.project_id == 5756 || pr.project_id == 5666
         #payment_type_doacao_parcelada_section.w-hidden.payment_section
           .w-row
             .w-col.w-col-6
