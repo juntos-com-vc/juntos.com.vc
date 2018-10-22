@@ -119,6 +119,7 @@ Rails.application.routes.draw do
   get "/contato" => 'contact#index', id: 'ongs', as: :contact
   get "/test-approve" => 'admin/projects#manual'
   put "/boleto/:contribution" => 'projects/contributions#boleto'
+  put "/doacaoparcelada/:contribution" => 'projects/contributions#doacaoparcelada'
   post "/moip/callback" => 'projects/contributions#moipwebhook'
 
   # Channels

@@ -5,7 +5,7 @@ class Projects::ContributionsController < ApplicationController
   has_scope :available_to_count, type: :boolean
   has_scope :with_state
   #has_scope :page, default: 1
-  after_filter :verify_authorized, except: [:index, :boleto, :moipwebhook]
+  after_filter :verify_authorized, except: [:index, :boleto, :moipwebhook, :doacaoparcelada]
   belongs_to :project
   before_action :detect_old_browsers, only: [:new, :create]
   before_action :load_channel, only: [:edit, :new]
@@ -123,6 +123,20 @@ class Projects::ContributionsController < ApplicationController
     # Atualizar no banco de dados com informações do moip
     render :json => {
       url: link,
+    }.to_json
+  end
+
+  def doacaoparcelada
+    contribution = Contribution.find(params[:contribution])
+
+    method = "Doação Parcelada #{params[:method]}"
+    contribution.installments = params[:installments]
+    contribution.payment_method = method
+    contribution.state = contribution.value <= 10000 ? 'confirmed' : 'waiting_confirmation'
+    contribution.save
+
+    render :json => {
+      status: "success",
     }.to_json
   end
 
