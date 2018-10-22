@@ -173,6 +173,9 @@ class Projects::ContributionsController < ApplicationController
       @contribution.platform_value = permitted_params[:contribution][:platform_value]
       @contribution.preferred_payment_engine = permitted_params[:contribution][:preferred_payment_engine]
       @contribution.reward_id = (params[:contribution][:reward_id].to_i == 0 ? nil : params[:contribution][:reward_id])
+      if params[:school].present?
+        @contribution.referal_link = params[:school]
+      end
       authorize @contribution
       @contribution.update_current_billing_info
       create! do |success,failure|

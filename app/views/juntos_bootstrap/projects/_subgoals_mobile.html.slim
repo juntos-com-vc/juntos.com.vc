@@ -30,7 +30,7 @@
         .w-col.w-col-12.w-col-small-12.w-col-tiny-12.fontweight-semibold
           .w-col.w-col-12
             = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
-          .fontsize-largest.block-components = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : 1)
+          .fontsize-largest.block-components = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : (%w(boletos fundodebolsas).include?(@project.permalink) ? 4 : 1))
           .fontsize-smaller = t('projects.show.sidebar.goal', total: @project.display_goal)
         .w-col.w-col-12.w-col-small-12.w-col-tiny-12.fontweight-semibold
           .w-col.w-col-12
@@ -49,7 +49,7 @@
         .w-col.w-col-6.w-col-small-6.w-col-tiny-6.fontweight-semibold
           .w-col.w-col-12
             = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
-          .fontsize-largest.inline-components = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : 1)
+          .fontsize-largest.inline-components = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : (%w(boletos fundodebolsas).include?(@project.permalink) ? 4 : 1))
           .fontsize-smaller = t('projects.show.sidebar.goal', total: @project.display_goal)
 
     -  else
@@ -62,7 +62,7 @@
           .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
             .w-col.w-col-12
               = image_tag('juntos/project_values.png', class: 'category-image u-left u-margintop-10 img-stats-mobile')
-            .fontsize-largest.inline-components = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : 1)
+            .fontsize-largest.inline-components = @project.display_pledged(%w(associacaoacorde pesquisadoacao).include?(@project.permalink) ? 2 : (%w(boletos fundodebolsas).include?(@project.permalink) ? 4 : 1))
             .fontsize-smaller = t('projects.show.sidebar.goal', total: @project.display_goal)
           .w-col.w-col-4.w-col-small-4.w-col-tiny-4.fontweight-semibold
             .w-col.w-col-12
