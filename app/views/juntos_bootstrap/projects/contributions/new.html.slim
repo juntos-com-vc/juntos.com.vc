@@ -16,6 +16,9 @@
             .card.card-message.zindex-10.u-radius.u-marginbottom-30.fontsize-small
               == t('.you_have_credits', credits: number_to_currency(current_user.credits))
           .w-form.back-reward-form
+            - if %w(boletos).include?(@project.permalink)
+              h1 #doaremaeavilhoso #fundodebolsas
+            -else
               = render 'devise/shared/alert'
               = form.input_field :referal_link, as: :hidden, input_html: { value: referal_link }
               = form.input :reward_id, as: :radio_buttons, collection: @rewards, input_html: {class: 'w-radio-input back-reward-radio-button'}, item_wrapper_class: 'w-radio w-clearfix back-reward-radio-reward', label: ''
@@ -69,9 +72,9 @@
             br/
           a#submit.btn.btn-large.u-margintop-20 href="#"
             = t('.complete_payment')
-          .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only
-            = t('.gift_card')
-          p.minimum-value = t('.gift_card_text')
-          .w-row.u-margintop-40
-
-          a#submit_gift_card.btn.btn-large href="#" = t('.validate_gift_card')
+          / .fontsize-base.fontweight-semibold.u-margintop-20.u-marginbottom-10.u-text-center-small-only.text-success-small-only
+          /   = t('.gift_card')
+          / p.minimum-value = t('.gift_card_text')
+          / .w-row.u-margintop-40
+          /
+          / a#submit_gift_card.btn.btn-large href="#" = t('.validate_gift_card')

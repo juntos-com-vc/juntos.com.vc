@@ -54,14 +54,14 @@ nav.project-nav.w-hidden-main.w-hidden-medium
       .w-col.w-col-12.nav.nav-tabs.scroll-tabs.no-padding role="tablist"
         = link_to '#about', id: 'about_link', class: 'mobile-tab selected active', data: {target: '#project_about.content'}, role: "presentation", style: "background-color: #{@project.color};"  do
           = t('.menu.about')
-        = link_to '#rewards', id: 'rewards_link', class: 'mobile-tab' , data: {target: '#rewards'}, style: "background-color: #{@project.color};"  do
-          => t('.menu.reward')
+        = link_to '#posts', id: 'posts_link', class: 'mobile-tab', data: {target: '#project_posts'}, style: "background-color: #{@project.color};" do
+          => t('.menu.posts')
         = link_to '#contributions', id: 'contributions_link', class: 'mobile-tab' , data: {target: '#project_contributions'}, style: "background-color: #{@project.color};"  do
           => t('.menu.contributions')
           span.badge = project_aumigo ? 4618 :  @project.total_contributions
             |&nbsp;
         = link_to '#comments', id: 'comments_link', class: ' mobile-tab' , data: {target: '#project_comments'}, style: "background-color: #{@project.color};"  do
-          => t('.menu.result')
+          | Comentários
             |&nbsp;
         - if @project.page1_title.present?
           = link_to '#page1', id: 'page1_link', class: ' mobile-tab' , data: {target: '#project_page1.content'}, style: "background-color: #{@project.color};"  do

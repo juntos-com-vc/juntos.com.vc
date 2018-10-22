@@ -27,6 +27,8 @@
       .circle
         - circle_id = (project.id + Time.now.to_f).to_s
         - multiply = %w(associacaoacorde pesquisadoacao).include?(project.permalink) ? 2 : 1
+        - if %w(fundodebolsas boletos).include?(project.permalink)
+          - multiply = 4
         .project_progress id="#{circle_id}"
         - if request.xhr?
             javascript:
@@ -57,4 +59,6 @@
             = t('.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )};")
         .collected-money
           - multiply = %w(associacaoacorde pesquisadoacao).include?(project.permalink) ? 2 : 1
+          - if %w(fundodebolsas boletos).include?(project.permalink)
+            - multiply = 4
           = link_to t('.pledged_html', value: number_to_currency((project.pledged * multiply), precision: 0, unit: ''), style: "color: #{( defined?(:channel) && channel.present? ? channel.main_color : project.color )};"), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised', target: target

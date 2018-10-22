@@ -15,12 +15,15 @@ div class=(policy(project.user).update? ? 'project_land u-marginbottom-40' : 'sm
       .circle
         - circle_id = (project.id + Time.now.to_f).to_s
         - project_color = project.category.try(:color) || '#CCC'
+        - multiply = %w(associacaoacorde pesquisadoacao).include?(project.permalink) ? 2 : 1
+        - if %w(fundodebolsas boletos).include?(project.permalink)
+          - multiply = 4
         .project_progress id="#{circle_id}"
         javascript:
           (function() {
             Circles.create({
-              id: "#{circle_id}", radius: 30, value: "#{project.progress}",
-              text: "<div class='percent' style='color: #{project_color}'>#{project.progress}%<div><span>da meta</span></div></div>",
+              id: "#{circle_id}", radius: 30, value: "#{project.progress(multiply)}",
+              text: "<div class='percent' style='color: #{project_color}'>#{project.progress(multiply)}%<div><span>da meta</span></div></div>",
               colors: ['#CCC', "#{project_color}"],
               duration: 0,
               width: 5
@@ -29,7 +32,7 @@ div class=(policy(project.user).update? ? 'project_land u-marginbottom-40' : 'sm
       .time-remaining
         = t('projects.project.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: '')
       .collected-money
-        = link_to t('projects.project.pledged_html', style: '', value: number_to_currency(project.pledged, precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised'
+        = link_to t('projects.project.pledged_html', style: '', value: number_to_currency(project.pledged*multiply, precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised'
       /ul
         /li
           /- if project.time_to_go[:time] > 0
