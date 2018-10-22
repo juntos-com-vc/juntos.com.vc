@@ -1,4 +1,5 @@
 = javascript_include_tag 'catarse_moip'
+- pr = Contribution.find(params[:id])
 #catarse_moip_form
   = form_tag 'javascript:void(0);', class: 'moip' do
     .back-payment-moip-options.next_step_after_valid_document
@@ -13,6 +14,12 @@
             = radio_button_tag 'payment_type', "boleto", false, class: 'w-radio-input back-payment-radio-button'
             = label_tag :payment_type_boleto, class: "boleto w-form-label" do
               = image_tag 'catarse_bootstrap/payment_boleto.png'
+        - if pr.project_id == 5756
+          .w-col.w-col-5.w-col-small-5.back-payment-moip-options-column
+            .w-radio.w-clearfix
+              = radio_button_tag 'payment_type', "doacao_parcelada", false, class: 'w-radio-input back-payment-radio-button'
+              = label_tag :payment_type_doacao_parcelada, class: "doacao_parcelada w-form-label", style: "padding-top: 8px" do
+                = "Doação Parcelada"
     .formwrapper
       #payment_type_cards_section.payment_section
         .w-row
@@ -102,7 +109,56 @@
             #card-loading.loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "catarse_bootstrap/loader.gif"
             = submit_tag t('projects.contributions.review.form.labels.build_boleto'), class: 'btn btn-large u-marginbottom-20', id: "build_boleto", disabled: true
             = render 'terms'
-      
+      - if pr.project_id == 5756
+        #payment_type_doacao_parcelada_section.w-hidden.payment_section
+          .w-row
+            .w-col.w-col-6
+              = label_tag 'user_document_payment_slip', t('projects.contributions.review.form.labels.document'), class: 'field-label fontweight-semibold'
+              = text_field_tag 'user_document_payment_slip', nil, {autocomplete: 'off', class: 'w-input text-field', required: true}
+              .fontsize-smaller.text-error.u-marginbottom-20.fa.fa-exclamation-triangle.w-hidden[data-error-for="user_document_payment_slip"]
+                = t('projects.contributions.edit.cpf')
+          .w-row
+            .w-col.w-col-6
+              = label_tag 'method', 'Método de Pagamento', class: 'field-label fontweight-semibold'
+              select id="method" name="method" class="select required w-input text-field w-select"
+                option value=("Boletos")  Boletos
+                option value=("Cartão de Crédito")  Cartão de Crédito
+          .w-row
+            .w-col.w-col-6
+              = label_tag 'installments', 'Parcelas', class: 'field-label fontweight-semibold'
+              select id="installments" name="installments" class="select required w-input text-field w-select"
+                option value=("1")  1x
+                option value=("2")  2x
+                option value=("3")  3x
+                option value=("4")  4x
+                option value=("5")  5x
+                option value=("6")  6x
+                option value=("7")  7x
+                option value=("8")  8x
+                option value=("9")  9x
+                option value=("10")  10x
+                option value=("11")  11x
+                option value=("12")  12x
+                option value=("13")  13x
+          .w-row
+            .w-col.w-col-12
+              #payment-doacao_parcelada-instructions.card.card-message.u-radius.fontsize-small.zindex-10.u-marginbottom-30[style="display: none;"]
+                = t('projects.contributions.edit.errors.payment_boleto_link')
+
+          .w-row
+            .w-col.w-col-12
+              .payment-error-message.card.card-error.u-radius.zindex-10.u-marginbottom-30.w-hidden
+                .fontsize-smaller.fontweight-bold.u-marginbottom-10= t('.review_errors_title')
+                .message-text.fontsize-smaller = t('.review_errors')
+          .w-row
+            .w-col.w-col-12
+              #payment-doacao_parcelada-link.card.card-message.fontsize-small.u-radius.u-marginbottom-30.zindex-10.w-hidden
+                .link_content.fontsize-smaller
+          .w-row
+            .w-col.w-col-push-3.w-col-6
+              #doacao_parcelada-loading.loader.u-text-center.w-col.w-col-12.u-marginbottom-30 = image_tag "catarse_bootstrap/loader.gif"
+              = submit_tag "Solicitar doação parcelada", class: 'btn btn-large u-marginbottom-20', id: "build_doacao_parcelada", disabled: true
+
 = javascript_include_tag js_moip_index_path
 javascript:
   $().ready(function(){
