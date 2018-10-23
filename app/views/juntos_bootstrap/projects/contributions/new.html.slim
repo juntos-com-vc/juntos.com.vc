@@ -49,6 +49,9 @@
                   option value="Renascença"  Renascença
                   option value=("Yeshivá Cotia")  Yeshivá Cotia
                   option value=("Yeshiva Lubavitch")  Yeshiva Lubavitch
+                  option value=("Outros")  Outros
+                label for="contribution_schools" Se desejar apoiar mais de uma escola, escolha a opção "Outros" e preencha as porcentagens - Ex: 20% escola X e 80% escola Y
+                = form.input_field :schools, value: "", class: 'string optional w-input text-field w-input  u-marginbottom-20', style: "display: none;"
             - unless @project.recurring?
               .minimum-value
                 p == t('.secured_transaction')
@@ -78,3 +81,15 @@
           / .w-row.u-margintop-40
           /
           / a#submit_gift_card.btn.btn-large href="#" = t('.validate_gift_card')
+= content_for :custom_javascripts do
+  javascript:
+    $().ready(function () {
+      $('#school').on('change', function () {
+        if($(this).val() == "Outros") {
+          $('#contribution_schools').show();
+        } else {
+          $('#contribution_schools').hide();
+        }
+        return false;
+      });
+    });
