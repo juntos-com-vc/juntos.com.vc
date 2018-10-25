@@ -215,7 +215,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
           = current_user.display_pending_documents
         - unless (%w(bolsasdazmina azminareportagens marcha2016 toddynho asa paranaue jornaljoca projetooca).include? @project.permalink.downcase) || @project.recurring?
           .u-marginbottom-10.w-hidden-small.w-hidden-tiny.project-style= t('.contribution_style')
-      - if %w(boletos fundodebolsas).include?(@project.permalink)
+      - if %w(boletos fundodebolsas bancadao).include?(@project.permalink)
         #contribution-messages[projectid="#{@project.id}"]
       .card.card-user.u-marginbottom-10.w-hidden-small.w-hidden-tiny
         .proposed_by
@@ -261,7 +261,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
               = link_to partner.link, target: :_blank do
                 = image_tag partner.image.thumb.url
 
-      - if %w(boletos fundodebolsas).include?(@project.permalink)
+      - if %w(boletos fundodebolsas bancadao).include?(@project.permalink)
         #rewards.u-marginbottom-30.w-hidden-small.w-hidden-tiny[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
           .u-text-center = image_tag 'loading.gif'
 
@@ -274,7 +274,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         = link_to '#', class: 'btn btn-medium btn-tweet' do
           = image_tag 'catarse_bootstrap/twitter-256.png', class: 'icon-share-mobile'
           = t('.tweet')
-- if %w(fundodebolsas boletos).include?(@project.permalink)
+- if %w(fundodebolsas boletos bancadao).include?(@project.permalink)
   #countdow-timer
     .container
       h1#head Olá, seja bem vindo (a)! Que bom que estamos ansiosos (as) juntos (as) pra que a campanha comece!! Pedimos que use sua energia e também nos ajude a divulgá-la para aquelas pessoas que tem tudo a ver com essa causa! Logo começarão as doações, em exatos:
@@ -420,6 +420,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
       }
       #contribution-messages ul li {
         padding: 2px 0;
+        overflow: hidden;
       }
       #contribution-messages ul span.payer_name {
         float: left;

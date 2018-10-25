@@ -141,7 +141,7 @@ class Projects::ContributionsController < ApplicationController
   end
 
   def contributions
-    contributions = Contribution.confirmed_state.where(project_id: params[:project]).order("value DESC")
+    contributions = Contribution.confirmed_state.where(project_id: params[:project]).order("created_at DESC")
     render :json => contributions.map {|c| { value: c.value, name: c.anonymous ? 'Anônimo' : c.payer_name, message: c.message }}
   end
 
