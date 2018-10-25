@@ -31,9 +31,9 @@
             label
               - value = @contribution.project_value? ? (@contribution.project_value == @contribution.project_value.to_i ? @contribution.project_value.to_i : @contribution.project_value.gsub('.', ',')) : @contribution.project_value
               = form.input_field :project_value, value: value, as: :string, class: 'w-input back-reward-input-reward u-marginbottom-20', placeholder: t('.amount')
-            - if %w(fundodebolsas boletos bancadao).include?(@project.permalink)
+            - if %w(fundodebolsas boletos).include?(@project.permalink)
               - if %w(boletos).include?(@project.permalink)
-                label for="contribution_message" Mensagem de Apoio
+                label for="contribution_message" A quem você dedica esta doação?
                 = form.input_field :message, value: "", class: 'string optional w-input text-field w-input  u-marginbottom-20'
               label for="school" Qual escola você deseja apoiar?
               select id="school" name="school" class="select required w-input text-field w-select"

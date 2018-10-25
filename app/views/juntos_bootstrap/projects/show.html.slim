@@ -196,7 +196,6 @@ nav.project-nav.w-hidden-main.w-hidden-medium
             == @project.page1
 
     #project-sidebar.aside.w-col.w-col-4[data-project-owner-sidebar]
-
       .project-contribution-card
         - if @project.accept_contributions?
           - if project_aumigo
@@ -216,6 +215,8 @@ nav.project-nav.w-hidden-main.w-hidden-medium
           = current_user.display_pending_documents
         - unless (%w(bolsasdazmina azminareportagens marcha2016 toddynho asa paranaue jornaljoca projetooca).include? @project.permalink.downcase) || @project.recurring?
           .u-marginbottom-10.w-hidden-small.w-hidden-tiny.project-style= t('.contribution_style')
+      - if %w(boletos fundodebolsas).include?(@project.permalink)
+        #contribution-messages[projectid="#{@project.id}"]
       .card.card-user.u-marginbottom-10.w-hidden-small.w-hidden-tiny
         .proposed_by
           .header
@@ -260,10 +261,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
               = link_to partner.link, target: :_blank do
                 = image_tag partner.image.thumb.url
 
-
-      - if %w(boletos).include?(@project.permalink)
-        #contribution-messages[projectid="#{@project.id}"]
-      - else
+      - if %w(boletos fundodebolsas).include?(@project.permalink)
         #rewards.u-marginbottom-30.w-hidden-small.w-hidden-tiny[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
           .u-text-center = image_tag 'loading.gif'
 
@@ -330,7 +328,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         let container = $("#contribution-messages");
         let project = container.attr('projectid');
         $.get(`/pt/project/${project}/getcontributions`, function (data) {
-          let ul = "<h1>Doações</h1><ul>";
+          let ul = "<h1>DOAÇÕES</h1><ul>";
           for(let l in data) {
             let i = data[l];
             ul += `<li><span clas="payer_name">${i.name}</span><strong>${number_format(i.value, 2, ',', '.')}</strong>`;
@@ -413,9 +411,12 @@ nav.project-nav.w-hidden-main.w-hidden-medium
       }
       #contribution-messages h1 {
         border-bottom: 1px solid #f8bc1c;
+        border-top: 1px solid #f8bc1c !important;
         color: #f8bc1c;
         padding-bottom: 13px;
+        padding-top: 13px;
         text-align: center;
+        font-size: 15px;
       }
       #contribution-messages ul li {
         padding: 2px 0;
