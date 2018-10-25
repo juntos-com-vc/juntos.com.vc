@@ -5,7 +5,7 @@ class Projects::ContributionsController < ApplicationController
   has_scope :available_to_count, type: :boolean
   has_scope :with_state
   #has_scope :page, default: 1
-  after_filter :verify_authorized, except: [:index, :boleto, :moipwebhook, :doacaoparcelada]
+  after_filter :verify_authorized, except: [:index, :boleto, :moipwebhook, :doacaoparcelada, :contributions]
   belongs_to :project
   before_action :detect_old_browsers, only: [:new, :create]
   before_action :load_channel, only: [:edit, :new]
@@ -140,6 +140,11 @@ class Projects::ContributionsController < ApplicationController
     }.to_json
   end
 
+  def contributions
+    contributions = Contribution.confirmed_state.where(project_id: params[:project]).order("value DESC")
+    render :json => contributions.map {|c| { value: c.value, name: c.anonymous ? 'Anônimo' : c.payer_name, message: c.message }}
+  end
+
   def moipwebhook
     # tk = params[:token]
     rs = params[:resource]
@@ -190,6 +195,9 @@ class Projects::ContributionsController < ApplicationController
       if params[:school].present?
         p = params[:school] == 'Outros' ? params[:contribution][:schools] : params[:school]
         @contribution.referal_link = p
+      end
+      if params[:contribution][:message].present?
+        @contribution.message = params[:contribution][:message]
       end
       authorize @contribution
       @contribution.update_current_billing_info

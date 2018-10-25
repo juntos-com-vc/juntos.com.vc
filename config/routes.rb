@@ -121,6 +121,7 @@ Rails.application.routes.draw do
   put "/boleto/:contribution" => 'projects/contributions#boleto'
   put "/doacaoparcelada/:contribution" => 'projects/contributions#doacaoparcelada'
   post "/moip/callback" => 'projects/contributions#moipwebhook'
+  get "/project/:project/getcontributions" => 'projects/contributions#contributions'
 
   # Channels
   constraints SubdomainConstraint do

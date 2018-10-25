@@ -261,8 +261,11 @@ nav.project-nav.w-hidden-main.w-hidden-medium
                 = image_tag partner.image.thumb.url
 
 
-      #rewards.u-marginbottom-30.w-hidden-small.w-hidden-tiny[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
-        .u-text-center = image_tag 'loading.gif'
+      - if %w(boletos).include?(@project.permalink)
+        #contribution-messages[projectid="#{@project.id}"]
+      - else
+        #rewards.u-marginbottom-30.w-hidden-small.w-hidden-tiny[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
+          .u-text-center = image_tag 'loading.gif'
 
     .w-hidden-main.w-hidden-medium.project-share
       .div-share-mobile-fb
@@ -313,12 +316,54 @@ nav.project-nav.w-hidden-main.w-hidden-medium
           } else {
             $('#countdow-timer').show();
           }
-
         }, second);
       function pad (str) {
         max = 2;
         str = str.toString();
         return str.length < max ? pad("0" + str, max) : str;
+      }
+      $().ready(function () {
+        getContributions();
+        setInterval(getContributions, 60000);
+      });
+      function getContributions() {
+        let container = $("#contribution-messages");
+        let project = container.attr('projectid');
+        $.get(`/pt/project/${project}/getcontributions`, function (data) {
+          let ul = "<h1>Doações</h1><ul>";
+          for(let l in data) {
+            let i = data[l];
+            ul += `<li><span clas="payer_name">${i.name}</span><strong>${number_format(i.value, 2, ',', '.')}</strong>`;
+            if(i.message)
+              ul += `<span class="message">${i.message}</span>`;
+            ul += "</li>";
+          }
+          ul += "</ul>";
+          container.html(ul);
+        });
+      }
+      function number_format(number, decimals, dec_point, thousands_sep) {
+        // Strip all characters but numerical ones.
+        number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+        var n = !isFinite(+number) ? 0 : +number,
+          prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+          sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+          dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+          s = '',
+          toFixedFix = function (n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+          };
+        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+          s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+          s[1] = s[1] || '';
+          s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
       }
   = content_for :custom_css do
     css:
@@ -356,4 +401,35 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         display: block;
         font-size: 4.5rem;
         line-height: 100%;
+      }
+      #contribution-messages ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        height: 400px;
+        overflow-y: auto;
+        margin-top: 12px;
+      }
+      #contribution-messages h1 {
+        border-bottom: 1px solid #f8bc1c;
+        color: #f8bc1c;
+        padding-bottom: 13px;
+        text-align: center;
+      }
+      #contribution-messages ul li {
+        padding: 2px 0;
+      }
+      #contribution-messages ul span.payer_name {
+        float: left;
+      }
+      #contribution-messages ul span.message {
+        display: block;
+        width: 100%;
+        font-style: italic;
+        text-align: right;
+        padding: 4px 0;
+      }
+      #contribution-messages ul strong {
+        float: right;
       }
