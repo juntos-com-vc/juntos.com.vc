@@ -208,16 +208,19 @@ nav.project-nav.w-hidden-main.w-hidden-medium
               | Este projeto já teve os três primeiros meses financiados pela LIVO e agora estamos correndo atrás para que ele dure um ano!
               br
               | Faça parte dessa história!
-            - elsif %w(boletos fundodebolsas).include?(@project.permalink)
+            - elsif %w(fundodebolsas boletos bancadao).include?(@project.permalink)
               = "Este projeto se encerrará dia 28/10/2018"
             - elsif ! %w(bolsasdazmina azminareportagens amigosdobem jornaljoca marcha2016 paranaue projetooca doritosrainbow).include? @project.permalink.downcase
               = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
         - if current_user.present? && current_user == @project.user
           = current_user.display_pending_documents
-        - unless (%w(bolsasdazmina azminareportagens marcha2016 toddynho asa paranaue jornaljoca projetooca fundodebolsas boletos).include? @project.permalink.downcase) || @project.recurring?
+        - unless (%w(bolsasdazmina azminareportagens marcha2016 toddynho asa paranaue jornaljoca projetooca fundodebolsas boletos bancadao).include? @project.permalink.downcase) || @project.recurring?
           .u-marginbottom-10.w-hidden-small.w-hidden-tiny.project-style= t('.contribution_style')
-      - if %w(boletos fundodebolsas).include?(@project.permalink)
+      - if %w(fundodebolsas boletos bancadao).include?(@project.permalink)
         #contribution-messages[projectid="#{@project.id}"]
+          h1 DOAÇÕES
+          input#message-filter.string.optional.w-input.text-field.w-input.u-marginbottom-20 type="text" placeholder="Filtrar doações" /
+          ul
       .card.card-user.u-marginbottom-10.w-hidden-small.w-hidden-tiny
         .proposed_by
           .header
@@ -262,7 +265,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
               = link_to partner.link, target: :_blank do
                 = image_tag partner.image.thumb.url
 
-      - if %w(boletos fundodebolsas).include?(@project.permalink)
+      - if %w(fundodebolsas boletos bancadao).include?(@project.permalink)
         #rewards.u-marginbottom-30.w-hidden-small.w-hidden-tiny[data-can_update="#{policy(@project).update?}" data-index_path=project_rewards_path(@project)]
           .u-text-center = image_tag 'loading.gif'
 
@@ -275,7 +278,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         = link_to '#', class: 'btn btn-medium btn-tweet' do
           = image_tag 'catarse_bootstrap/twitter-256.png', class: 'icon-share-mobile'
           = t('.tweet')
-- if %w(fundodebolsas boletos).include?(@project.permalink)
+- if %w(fundodebolsas boletos bancadao).include?(@project.permalink)
   #countdow-timer
     .container
       h1#head Olá, seja bem vindo (a)! Que bom que estamos ansiosos (as) juntos (as) pra que a campanha comece!! Pedimos que use sua energia e também nos ajude a divulgá-la para aquelas pessoas que tem tudo a ver com essa causa! Logo começarão as doações, em exatos:
@@ -321,24 +324,41 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         str = str.toString();
         return str.length < max ? pad("0" + str, max) : str;
       }
+
+      jQuery.expr[':'].Contains = function (a, i, m) {
+        return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+      };
       $().ready(function () {
         getContributions();
         setInterval(getContributions, 60000);
+        $('#message-filter').on('keyup', function(){
+          let v = $(this).val();
+          if(v.length > 0) {
+            $("#contribution-messages ul li").hide();
+            $("#contribution-messages ul li").each(function(){
+              let f = $(this).find('span:Contains(' + v + ')');
+              if(f.length > 0) {
+                $(this).show();
+              }
+            });
+          } else {
+            $("#contribution-messages ul li").show();
+          }
+        });
       });
       function getContributions() {
         let container = $("#contribution-messages");
         let project = container.attr('projectid');
         $.get(`/pt/project/${project}/getcontributions`, function (data) {
-          let ul = "<h1>DOAÇÕES</h1><ul>";
+          let ul = "";
           for(let l in data) {
             let i = data[l];
-            ul += `<li><span clas="payer_name">${i.name}</span><strong>${number_format(i.value, 2, ',', '.')}</strong>`;
+            ul += `<li><span class="payer_name">${i.name}</span><strong>${number_format(i.value, 2, ',', '.')}</strong>`;
             if(i.message)
               ul += `<span class="message">${i.message}</span>`;
             ul += "</li>";
           }
-          ul += "</ul>";
-          container.html(ul);
+          container.find('ul').html(ul);
         });
       }
       function number_format(number, decimals, dec_point, thousands_sep) {
@@ -432,7 +452,14 @@ nav.project-nav.w-hidden-main.w-hidden-medium
         font-style: italic;
         text-align: right;
         padding: 4px;
+        float: right;
       }
       #contribution-messages ul strong {
         float: right;
+      }
+      #message-filter {
+        margin-top: 10px;
+        font-weight: normal;
+        font-size: 14px;
+        color: #3f4752;
       }
