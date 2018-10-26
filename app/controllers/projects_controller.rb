@@ -2,7 +2,7 @@
 include ActionView::Helpers::NumberHelper
 
 class ProjectsController < ApplicationController
-  after_filter :verify_authorized, except: %i[total index video video_embed embed embed_panel about_mobile supported_by_channel permalink_valid? generate_subscriptions_report]
+  after_filter :verify_authorized, except: %i[total index video video_embed embed embed_panel about_mobile supported_by_channel permalink_valid? generate_subscriptions_report shabat]
   inherit_resources
   has_scope :pg_search, :by_category_id, :near_of
   has_scope :recent, :expiring, :failed, :successful, :in_funding, :recommended, :not_expired, type: :boolean
@@ -56,6 +56,10 @@ class ProjectsController < ApplicationController
       flash[:alert] = response.project.errors.full_messages.to_sentence
       render :new
     end
+  end
+
+  def shabat
+
   end
 
   def destroy
@@ -122,27 +126,27 @@ class ProjectsController < ApplicationController
   def show
     @title = resource.name
     authorize @project
-    # if @project.permalink == 'fundodebolsas'
-    #   redirect_to 'https://benfeitoria.com/fundodebolsas'
-    # else
-    fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
-    @channel = resource.channels.first
-    @posts_count = resource.posts.count(:all)
-    @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
-    @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
-    @project_documentation = ProjectDocumentationViewObject.new(
-      banks: Bank.order(:code).to_collection,
-      project: @project
-    )
-
-    if @project.recurring?
-      @plans = Plan.active
-      @last_subscription_report = @project.subscription_reports.try(:last)
-      @supporters = User.with_paid_subscriptions_for_project(@project.id)
+    if @project.state == 'in_analysis' && (@project.permalink == 'fundodebolsas' || @project.permalink == 'boletos' || @project.permalink == 'bancadao')
+      redirect_to '/pt/shabat'
     else
-      @contributions = @project.contributions.available_to_count
+      fb_admins_add(resource.user.facebook_id) if resource.user.facebook_id
+      @channel = resource.channels.first
+      @posts_count = resource.posts.count(:all)
+      @post = resource.posts.where(id: params[:project_post_id]).first if params[:project_post_id].present?
+      @pending_contributions = @project.contributions.with_state(:waiting_confirmation)
+      @project_documentation = ProjectDocumentationViewObject.new(
+        banks: Bank.order(:code).to_collection,
+        project: @project
+      )
+
+      if @project.recurring?
+        @plans = Plan.active
+        @last_subscription_report = @project.subscription_reports.try(:last)
+        @supporters = User.with_paid_subscriptions_for_project(@project.id)
+      else
+        @contributions = @project.contributions.available_to_count
+      end
     end
-    # end
   end
 
   def video
