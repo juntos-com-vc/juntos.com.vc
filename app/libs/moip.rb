@@ -25,6 +25,13 @@ class Moip
       req.body = data.to_json
     end
   end
+
+  def get_boleto(payment)
+    return @conn.get do |req|
+      req.url '/v2/payments/' + payment
+      req.headers['Content-Type'] = 'application/json'
+    end
+  end
  
   private
  

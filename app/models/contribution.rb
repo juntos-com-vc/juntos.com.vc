@@ -148,6 +148,14 @@ class Contribution < ActiveRecord::Base
     project.rewards.where('minimum_value <= ?', self.value).order(:minimum_value)
   end
 
+  def slip_url
+    api = Moip.new
+    api.call
+    bol = api.get_boleto(self.payment_token)
+    b = JSON.parse bol.body
+    b['_links']['payBoleto']['printHref']
+  end
+
   def notify_to_contributor(template_name, options = {})
     notify_once(template_name, self.user, self, options)
   end
