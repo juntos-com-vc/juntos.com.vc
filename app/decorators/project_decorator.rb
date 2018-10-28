@@ -78,11 +78,27 @@ class ProjectDecorator < Draper::Decorator
 
   def progress(divisor = 1)
     return 0 if source.goal == 0.0 || source.goal.nil?
-    ((source.pledged / (source.goal / divisor)) * 100).to_i
+    if source.permalink == 'fundodebolsas'
+      p = source.pledged
+      limit = 6554797
+      p2 = p - limit
+      p = (limit*4) + (p2*3)
+      ((p / source.goal) * 100).to_i
+    else
+      ((source.pledged / (source.goal / divisor)) * 100).to_i
+    end
   end
 
   def display_pledged(multiply = 1)
-    number_to_currency (source.pledged * multiply)
+    p = source.pledged
+    limit = 6554797
+    if source.permalink == 'fundodebolsas'
+      p2 = p - limit
+      p = (limit*4) + (p2*3)
+    else
+      p *= multiply
+    end
+    number_to_currency (p)
   end
 
   def display_goal
