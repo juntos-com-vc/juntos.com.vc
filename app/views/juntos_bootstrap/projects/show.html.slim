@@ -209,7 +209,7 @@ nav.project-nav.w-hidden-main.w-hidden-medium
               br
               | Faça parte dessa história!
             - elsif %w(fundodebolsas boletos bancadao).include?(@project.permalink)
-              = "Este projeto se encerrará dia 28/10/2018"
+              = "Este projeto foi bem sucedido e foi financiado em 28/10/2018"
             - elsif ! %w(bolsasdazmina azminareportagens amigosdobem jornaljoca marcha2016 paranaue projetooca doritosrainbow).include? @project.permalink.downcase
               = t(".contribute_project.display_status.#{@project.display_status}", goal: @project.display_goal, date: @project.display_expires_at)
         - if current_user.present? && current_user == @project.user
