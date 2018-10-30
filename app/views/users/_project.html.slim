@@ -32,7 +32,7 @@ div class=(policy(project.user).update? ? 'project_land u-marginbottom-40' : 'sm
       .time-remaining
         = t('projects.project.time_remaining_html', count: project.time_to_go[:time], unit: project.time_to_go[:unit], style: '')
       .collected-money
-        = link_to t('projects.project.pledged_html', style: '', value: number_to_currency(project.pledged*multiply, precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised'
+        = link_to t('projects.project.pledged_html', style: '', value: number_to_currency(project.display_pledged(multiply), precision: 0, unit: '')), project_by_slug_path(project.permalink), title: project.name, class: 'money-raised'
       /ul
         /li
           /- if project.time_to_go[:time] > 0
