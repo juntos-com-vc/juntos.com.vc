@@ -81,8 +81,9 @@ class ProjectDecorator < Draper::Decorator
     if source.permalink == 'fundodebolsas'
       p = source.pledged
       limit = 1638699.25
-      p2 = p - limit
-      p = (limit*4) + (p2*3)
+      limit2 = 2095489.91
+      p2 = limit2 - limit
+      p = (limit*4) + (p2*3) + (p-limit2)
       ((p / source.goal) * 100).to_i
     else
       ((source.pledged / (source.goal / divisor)) * 100).to_i
@@ -92,9 +93,10 @@ class ProjectDecorator < Draper::Decorator
   def display_pledged(multiply = 1)
     p = source.pledged
     limit = 1638699.25
+    limit2 = 2095489.91
     if source.permalink == 'fundodebolsas'
-      p2 = p - limit
-      p = (limit*4) + (p2*3)
+      p2 = limit2 - limit
+      p = (limit*4) + (p2*3) + (p-limit2)
     else
       p *= multiply
     end
