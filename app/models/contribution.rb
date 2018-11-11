@@ -88,6 +88,7 @@ class Contribution < ActiveRecord::Base
   }
   def as_json(options={})
     { 
+      :id => self.id,
       :value => self.value.to_f,
       :project_value => self.project_value.to_f,
       :platform_value => self.platform_value.to_f,
