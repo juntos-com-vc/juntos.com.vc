@@ -78,7 +78,8 @@ class ProjectsController < ApplicationController
         projects = Project.visible.select{|p| p.progress >= 100 || p.state == 'successful'}.count
         summary.total_projects = projects
         summary.contributions = statistics.total_contributions
-        summary.total = statistics.total_contributed
+        # 6150952,07 referentes ao matchfunding do projeto fundodebolsas
+        summary.total = statistics.total_contributed + 6150952.07
         summary.save
       end
     else
